@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stand-alone (Stereo)", "Stand-alone (Stereo).vcxproj", "{09322231-86AE-6E7D-C7A4-9B37D337826E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stand-alone (Multi)", "Stand-alone (Multi).vcxproj", "{8860E450-1754-101E-ECA7-1E3BB3CD09B2}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VST Plug-in (Stereo)", "VST Plug-in (Stereo).vcxproj", "{3E8C9090-3401-0720-B97A-59E5712AA69F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VST Plug-in (Multi)", "VST Plug-in (Multi).vcxproj", "{9FE425A4-6B97-7A59-F75E-D075E57163C8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09322231-86AE-6E7D-C7A4-9B37D337826E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{09322231-86AE-6E7D-C7A4-9B37D337826E}.Debug|Win32.Build.0 = Debug|Win32
+		{09322231-86AE-6E7D-C7A4-9B37D337826E}.Release|Win32.ActiveCfg = Release|Win32
+		{09322231-86AE-6E7D-C7A4-9B37D337826E}.Release|Win32.Build.0 = Release|Win32
+		{8860E450-1754-101E-ECA7-1E3BB3CD09B2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8860E450-1754-101E-ECA7-1E3BB3CD09B2}.Debug|Win32.Build.0 = Debug|Win32
+		{8860E450-1754-101E-ECA7-1E3BB3CD09B2}.Release|Win32.ActiveCfg = Release|Win32
+		{8860E450-1754-101E-ECA7-1E3BB3CD09B2}.Release|Win32.Build.0 = Release|Win32
+		{3E8C9090-3401-0720-B97A-59E5712AA69F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3E8C9090-3401-0720-B97A-59E5712AA69F}.Debug|Win32.Build.0 = Debug|Win32
+		{3E8C9090-3401-0720-B97A-59E5712AA69F}.Release|Win32.ActiveCfg = Release|Win32
+		{3E8C9090-3401-0720-B97A-59E5712AA69F}.Release|Win32.Build.0 = Release|Win32
+		{9FE425A4-6B97-7A59-F75E-D075E57163C8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9FE425A4-6B97-7A59-F75E-D075E57163C8}.Debug|Win32.Build.0 = Debug|Win32
+		{9FE425A4-6B97-7A59-F75E-D075E57163C8}.Release|Win32.ActiveCfg = Release|Win32
+		{9FE425A4-6B97-7A59-F75E-D075E57163C8}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
