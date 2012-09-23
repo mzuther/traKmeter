@@ -42,6 +42,9 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor()
     setLatencySamples(TRAKMETER_BUFFER_SIZE);
     pPluginParameters = new TraKmeterPluginParameters();
 
+    // depends on "TraKmeterPluginParameters"!
+    bTransientMode = getParameterAsBool(TraKmeterPluginParameters::selTransientMode);
+
     fProcessedSeconds = 0.0f;
 
     fPeakLevels = NULL;
@@ -114,6 +117,11 @@ void TraKmeterAudioProcessor::setParameter(int index, float newValue)
     // Please use this method for non-automatable values only!
 
     pPluginParameters->setParameterFromFloat(index, newValue);
+
+    if (index == TraKmeterPluginParameters::selTransientMode)
+    {
+        setTransientMode(getParameterAsBool(index));
+    }
 }
 
 
@@ -188,6 +196,11 @@ void TraKmeterAudioProcessor::changeParameter(int index, int nValue)
     setParameterNotifyingHost(index, newValue);
 
     endParameterChangeGesture(index);
+
+    if (index == TraKmeterPluginParameters::selTransientMode)
+    {
+        setTransientMode(getParameterAsBool(index));
+    }
 }
 
 
@@ -310,7 +323,8 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     isStereo = (nNumInputChannels == 2);
 
     DBG("[traKmeter] number of input channels: " + String(nNumInputChannels));
-    pMeterBallistics = new MeterBallistics(nNumInputChannels, true, false);
+
+    pMeterBallistics = new MeterBallistics(nNumInputChannels, true, false, bTransientMode);
 
     // during tracking and mixing, we don't want any peak-to-average
     // gain correction, so disable globally here!
@@ -578,6 +592,29 @@ int TraKmeterAudioProcessor::countOverflows(AudioRingBuffer* ring_buffer, const 
 MeterBallistics* TraKmeterAudioProcessor::getLevels()
 {
     return pMeterBallistics;
+}
+
+
+bool TraKmeterAudioProcessor::getTransientMode()
+{
+    return bTransientMode;
+}
+
+
+void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
+{
+    if (transient_mode != bTransientMode)
+    {
+        bTransientMode = transient_mode;
+
+        if (pMeterBallistics)
+        {
+            delete pMeterBallistics;
+            pMeterBallistics = NULL;
+
+            pMeterBallistics = new MeterBallistics(nNumInputChannels, true, false, bTransientMode);
+        }
+    }
 }
 
 

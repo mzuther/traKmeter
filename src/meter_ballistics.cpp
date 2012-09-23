@@ -30,7 +30,7 @@ float MeterBallistics::fMeterMinimumDecibel;
 float MeterBallistics::fPeakToAverageCorrection;
 
 
-MeterBallistics::MeterBallistics(int nChannels, bool bPeakMeterInfiniteHold, bool bAverageMeterInfiniteHold)
+MeterBallistics::MeterBallistics(int nChannels, bool bPeakMeterInfiniteHold, bool bAverageMeterInfiniteHold, bool transient_mode)
 /*  Constructor.
 
     nChannels (integer): number of audio input channels
@@ -40,6 +40,10 @@ MeterBallistics::MeterBallistics(int nChannels, bool bPeakMeterInfiniteHold, boo
 
     bAverageMeterInfiniteHold (Boolean): selects "infinite peak hold"
     (true) or "falling peaks" mode (false) for average meter
+
+    transient_mode (Boolean): selects "transient mode" (true) or
+    "averaging mode" (false) for average meter
+
     return value: none
 */
 {
@@ -50,6 +54,9 @@ MeterBallistics::MeterBallistics(int nChannels, bool bPeakMeterInfiniteHold, boo
 
     // store the number of audio input channels
     nNumberOfChannels = nChannels;
+
+    // store setting for transient mode
+    bTransientMode = transient_mode;
 
     // allocate variables for peak meter's level and peak mark (all
     // audio input channels)
@@ -549,8 +556,25 @@ void MeterBallistics::AverageMeterBallistics(int nChannel, float fTimePassed, fl
     return value: none
 */
 {
-    // meter ballistics: 99% of final reading in 5.0 s (logarithmic)
-    LogMeterBallistics(5.000f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
+    // in "transient mode", the meter has a rise time of one sample
+    // and falls to 99% of the final reading in 5.0 s (logarithmic)
+    if (bTransientMode)
+    {
+        if (fAverageLevelCurrent < fAverageMeterLevels[nChannel])
+        {
+            LogMeterBallistics(5.000f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
+        }
+        else
+        {
+            fAverageMeterLevels[nChannel] = fAverageLevelCurrent;
+        }
+    }
+    // otherwise, the meter reaches 99% of the final reading in 600 ms
+    // (logarithmic)
+    else
+    {
+        LogMeterBallistics(0.600f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
+    }
 }
 
 
@@ -595,7 +619,7 @@ void MeterBallistics::LogMeterBallistics(float fMeterInertia, float fTimePassed,
 {
     // we only have to calculate meter ballistics if meter level and
     // meter readout are not equal
-    if (fLevel < fReadout)
+    if (fLevel != fReadout)
     {
         // Thanks to Bram from Smartelectronix for the code snippet!
         // (http://www.musicdsp.org/showone.php?id=136)
@@ -603,10 +627,6 @@ void MeterBallistics::LogMeterBallistics(float fMeterInertia, float fTimePassed,
         // rise and fall: 99% of final reading in "fMeterInertia" seconds
         float fAttackReleaseCoef = powf(0.01f, fTimePassed / fMeterInertia);
         fReadout = fAttackReleaseCoef * (fReadout - fLevel) + fLevel;
-    }
-    else
-    {
-        fReadout = fLevel;
     }
 }
 

@@ -33,6 +33,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
 {
     nParam = new int[nNumParameters];
 
+    nParam[selTransientMode] = 1;
     nParam[selMixMode] = 0;
     nParam[selGain] = 0;
 
@@ -191,6 +192,10 @@ const String TraKmeterPluginParameters::getParameterName(int nIndex)
 {
     switch (nIndex)
     {
+    case selTransientMode:
+        return "Transient mode";
+        break;
+
     case selMixMode:
         return "Mixing mode";
         break;
@@ -342,6 +347,7 @@ XmlElement TraKmeterPluginParameters::storeAsXml()
 {
     XmlElement xml("TRAKMETER_SETTINGS");
 
+    xml.setAttribute("TransientMode", getParameterAsInt(selTransientMode));
     xml.setAttribute("MixMode", getParameterAsInt(selMixMode));
     xml.setAttribute("Gain", getParameterAsInt(selGain));
 
@@ -359,6 +365,7 @@ void TraKmeterPluginParameters::loadFromXml(XmlElement* xml)
 {
     if (xml && xml->hasTagName("TRAKMETER_SETTINGS"))
     {
+        setParameterFromInt(selTransientMode, xml->getIntAttribute("TransientMode", getParameterAsInt(selTransientMode)));
         setParameterFromInt(selMixMode, xml->getIntAttribute("MixMode", getParameterAsInt(selMixMode)));
         setParameterFromInt(selGain, xml->getIntAttribute("Gain", getParameterAsInt(selGain)));
 

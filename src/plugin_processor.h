@@ -99,6 +99,9 @@ public:
     MeterBallistics* getLevels();
     void processBufferChunk(AudioSampleBuffer& buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples);
 
+    bool getTransientMode();
+    void setTransientMode(const bool transient_mode);
+
     //==========================================================================
     int getNumPrograms();
     int getNumChannels();
@@ -132,6 +135,7 @@ private:
     int nSamplesInBuffer;
     float fProcessedSeconds;
 
+    bool bTransientMode;
     float* fPeakLevels;
     float* fRmsLevels;
 

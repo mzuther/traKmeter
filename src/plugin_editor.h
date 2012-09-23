@@ -73,6 +73,7 @@ private:
 
     TextButton* ButtonReset;
 
+    TextButton* ButtonTransientMode;
     TextButton* ButtonMixMode;
     TextButton* ButtonValidation;
     TextButton* ButtonAbout;

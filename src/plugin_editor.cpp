@@ -44,6 +44,13 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor = ownerFilter;
     pProcessor->addActionListener(this);
 
+    ButtonTransientMode = new TextButton("Transient");
+    ButtonTransientMode->setColour(TextButton::buttonColourId, Colours::grey);
+    ButtonTransientMode->setColour(TextButton::buttonOnColourId, Colours::yellow);
+
+    ButtonTransientMode->addListener(this);
+    addAndMakeVisible(ButtonTransientMode);
+
     ButtonMixMode = new TextButton("Mixing");
     ButtonMixMode->setColour(TextButton::buttonColourId, Colours::grey);
     ButtonMixMode->setColour(TextButton::buttonOnColourId, Colours::red);
@@ -103,7 +110,10 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor->addActionListenerParameters(this);
     trakmeter = NULL;
 
-    int nIndex = TraKmeterPluginParameters::selMixMode;
+    int nIndex = TraKmeterPluginParameters::selTransientMode;
+    changeParameter(nIndex, pProcessor->getParameterAsInt(nIndex));
+
+    nIndex = TraKmeterPluginParameters::selMixMode;
     changeParameter(nIndex, pProcessor->getParameterAsInt(nIndex));
 
     nIndex = TraKmeterPluginParameters::selGain;
@@ -128,8 +138,9 @@ void TraKmeterAudioProcessorEditor::resizeEditor()
     setSize(nRightColumnStart + 70, nHeight);
 
     ButtonReset->setBounds(nRightColumnStart, 10, 60, 20);
-    ButtonMixMode->setBounds(nRightColumnStart, 35, 60, 20);
-    SliderGain->setBounds(nRightColumnStart - 10, 65, 70, 20);
+    ButtonTransientMode->setBounds(nRightColumnStart, 45, 60, 20);
+    ButtonMixMode->setBounds(nRightColumnStart, 70, 60, 20);
+    SliderGain->setBounds(nRightColumnStart - 10, 100, 70, 20);
 
     ButtonValidation->setBounds(nRightColumnStart, nHeight - 56, 60, 20);
     ButtonAbout->setBounds(nRightColumnStart, nHeight - 31, 60, 20);
@@ -203,6 +214,11 @@ void TraKmeterAudioProcessorEditor::changeParameter(int nIndex, int nValue)
 {
     switch (nIndex)
     {
+    case TraKmeterPluginParameters::selTransientMode:
+        pProcessor->setTransientMode(nValue != 0);
+        ButtonTransientMode->setToggleState(nValue != 0, false);
+        break;
+
     case TraKmeterPluginParameters::selMixMode:
         ButtonMixMode->setToggleState(nValue != 0, false);
         SliderGain->setVisible(nValue != 0);
@@ -255,6 +271,10 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
         {
             pMeterBallistics->reset();
         }
+    }
+    else if (button == ButtonTransientMode)
+    {
+        pProcessor->changeParameter(TraKmeterPluginParameters::selTransientMode, !button->getToggleState());
     }
     else if (button == ButtonMixMode)
     {

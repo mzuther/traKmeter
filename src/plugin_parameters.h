@@ -68,7 +68,8 @@ public:
 
     enum Parameters  // public namespace!
     {
-        selMixMode = 0,
+        selTransientMode = 0,
+        selMixMode,
         selGain,
 
         nNumParametersRevealed,
