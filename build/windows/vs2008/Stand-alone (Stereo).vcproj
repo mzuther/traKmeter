@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="Stand-alone (Stereo)"
-	ProjectGUID="{A7B6FE45-B451-6F57-6045-FE01BE4BBBB1}"
+	ProjectGUID="{1BD4B8C0-FC29-D582-82A2-EEAB5AB091D3}"
 	RootNamespace="Stand-alone (Stereo)"
 	Keyword="Win32Proj"
 	>
@@ -241,6 +241,10 @@
 				</File>
 			</Filter>
 			<File
+				RelativePath="..\..\..\src\average_meter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\window_validation.h"
 				>
 			</File>
@@ -261,6 +265,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\peak_meter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\meter_segment.h"
 				>
 			</File>
@@ -274,10 +282,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\peak_label.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\peakmeter.h"
 				>
 			</File>
 			<File
@@ -337,15 +341,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\peakmeter.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\main.cpp"
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\peak_meter.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\meter_bar_average.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\average_meter.cpp"
 				>
 			</File>
 			<File

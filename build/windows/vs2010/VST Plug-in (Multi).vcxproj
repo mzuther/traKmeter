@@ -11,7 +11,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{9FE425A4-6B97-7A59-F75E-D075E57163C8}</ProjectGuid>
+		<ProjectGuid>{82D622AA-B0A5-5224-4588-07132753CE99}</ProjectGuid>
 		<RootNamespace>VST Plug-in (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 	</PropertyGroup>
@@ -114,16 +114,17 @@
 		</Link>
 	</ItemDefinitionGroup>
 	<ItemGroup>
+		<ClInclude Include="..\..\..\src\average_meter.h" />
 		<ClInclude Include="..\..\..\src\window_validation.h" />
 		<ClInclude Include="..\..\..\src\prohibiting_bounds_constrainer.h" />
 		<ClInclude Include="..\..\..\src\channel_slider.h" />
 		<ClInclude Include="..\..\..\src\meter_bar_average.h" />
 		<ClInclude Include="..\..\..\src\trakmeter.h" />
+		<ClInclude Include="..\..\..\src\peak_meter.h" />
 		<ClInclude Include="..\..\..\src\meter_segment.h" />
 		<ClInclude Include="..\..\..\src\overflow_meter.h" />
 		<ClInclude Include="..\..\..\src\audio_ring_buffer.h" />
 		<ClInclude Include="..\..\..\src\peak_label.h" />
-		<ClInclude Include="..\..\..\src\peakmeter.h" />
 		<ClInclude Include="..\..\..\src\window_about.h" />
 		<ClInclude Include="..\..\..\src\meter_bar_peak.h" />
 		<ClInclude Include="..\..\..\src\audio_file_player.h" />
@@ -148,11 +149,13 @@
 		</ClCompile>
 		<ClCompile Include="..\..\..\src\averager.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\src\peakmeter.cpp">
-		</ClCompile>
 		<ClCompile Include="..\..\..\src\main.cpp">
 		</ClCompile>
+		<ClCompile Include="..\..\..\src\peak_meter.cpp">
+		</ClCompile>
 		<ClCompile Include="..\..\..\src\meter_bar_average.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\src\average_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\src\window_validation.cpp">
 		</ClCompile>

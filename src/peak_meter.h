@@ -29,6 +29,7 @@
 #include "juce_library_code/juce_header.h"
 #include "meter_bar_peak.h"
 #include "trakmeter.h"
+#include "plugin_processor.h"
 
 
 //==============================================================================
@@ -37,11 +38,12 @@
 class PeakMeter : public Component
 {
 public:
-    PeakMeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels, int segment_height);
+    PeakMeter(const String& componentName, int PosX, int PosY, int width, int nCrestFactor, int nNumChannels, int segment_height);
     ~PeakMeter();
 
     void setLevels(MeterBallistics* pMeterBallistics);
     void paint(Graphics& g);
+    int getPreferredHeight();
     void resized();
     void visibilityChanged();
 

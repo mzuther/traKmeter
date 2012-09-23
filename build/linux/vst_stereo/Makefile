@@ -113,9 +113,10 @@ OBJECTS := \
 	$(OBJDIR)/meter_bar_peak.o \
 	$(OBJDIR)/plugin_parameters.o \
 	$(OBJDIR)/averager.o \
-	$(OBJDIR)/peakmeter.o \
 	$(OBJDIR)/main.o \
+	$(OBJDIR)/peak_meter.o \
 	$(OBJDIR)/meter_bar_average.o \
+	$(OBJDIR)/average_meter.o \
 	$(OBJDIR)/window_validation.o \
 	$(OBJDIR)/peak_label.o \
 	$(OBJDIR)/audio_ring_buffer.o \
@@ -206,13 +207,16 @@ $(OBJDIR)/plugin_parameters.o: ../../../src/plugin_parameters.cpp
 $(OBJDIR)/averager.o: ../../../src/averager.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/peakmeter.o: ../../../src/peakmeter.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/main.o: ../../../src/main.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/peak_meter.o: ../../../src/peak_meter.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/meter_bar_average.o: ../../../src/meter_bar_average.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/average_meter.o: ../../../src/average_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/window_validation.o: ../../../src/window_validation.cpp

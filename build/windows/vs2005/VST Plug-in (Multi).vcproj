@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="VST Plug-in (Multi)"
-	ProjectGUID="{C2DAC966-6BC0-74B7-FE36-94823C944727}"
+	ProjectGUID="{A2D919E7-12AC-0D45-021B-785C485E881B}"
 	RootNamespace="VST Plug-in (Multi)"
 	Keyword="Win32Proj"
 	>
@@ -245,6 +245,10 @@
 				</File>
 			</Filter>
 			<File
+				RelativePath="..\..\..\src\average_meter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\window_validation.h"
 				>
 			</File>
@@ -265,6 +269,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\peak_meter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\meter_segment.h"
 				>
 			</File>
@@ -278,10 +286,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\peak_label.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\src\peakmeter.h"
 				>
 			</File>
 			<File
@@ -337,15 +341,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\src\peakmeter.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\src\main.cpp"
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\peak_meter.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\meter_bar_average.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\average_meter.cpp"
 				>
 			</File>
 			<File

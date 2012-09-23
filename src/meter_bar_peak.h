@@ -36,7 +36,7 @@
 class MeterBarPeak : public Component
 {
 public:
-    MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int crest_factor, int segment_height, bool display_peaks);
+    MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks);
     ~MeterBarPeak();
 
     void setLevels(float peakLevel, float peakLevelPeak);
@@ -53,6 +53,7 @@ private:
     int nPosX;
     int nPosY;
     int nWidth;
+    int nHeight;
     int nSegmentHeight;
     int nNumberOfBars;
 

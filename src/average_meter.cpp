@@ -23,9 +23,9 @@
 
 ---------------------------------------------------------------------------- */
 
-#include "peakmeter.h"
+#include "average_meter.h"
 
-PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int segment_height)
+AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int width, int nCrestFactor, int nNumChannels, int segment_height)
 {
     setName(componentName);
 
@@ -36,26 +36,29 @@ PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int nCrest
     nMeterCrestFactor = nCrestFactor;
 
     nNumberOfBars = 10;
-    nMeterPositionTop = 26;
+    nSegmentHeight = segment_height;
+    nMeterPositionBottom = 19;
+    nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
 
     nPosX = posX;
     nPosY = posY;
-    nSegmentHeight = segment_height;
+    nWidth = width;
+    nHeight = nMeterHeight + nMeterPositionBottom;
 
     int nPositionX = 0;
-    LevelMeters = new MeterBarPeak*[nInputChannels];
+    LevelMeters = new MeterBarAverage*[nInputChannels];
 
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_METER_WIDTH + 4) + 2;
+        nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) - 2;
 
-        LevelMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_METER_WIDTH, nMeterCrestFactor, nSegmentHeight, true);
+        LevelMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nMeterCrestFactor, nSegmentHeight, true);
         addAndMakeVisible(LevelMeters[nChannel]);
     }
 }
 
 
-PeakMeter::~PeakMeter()
+AverageMeter::~AverageMeter()
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
@@ -70,65 +73,55 @@ PeakMeter::~PeakMeter()
 }
 
 
-void PeakMeter::visibilityChanged()
+int AverageMeter::getPreferredHeight()
 {
-    nHeight = nNumberOfBars * nSegmentHeight + nMeterPositionTop + 8;
-    nWidth = 2 * TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_METER_WIDTH + 4);
+    return nHeight;
+}
 
+
+void AverageMeter::visibilityChanged()
+{
     setBounds(nPosX, nPosY, nWidth, nHeight);
 }
 
 
-void PeakMeter::paint(Graphics& g)
+void AverageMeter::paint(Graphics& g)
 {
-    int x = 4;
-
-    g.setColour(Colours::grey.withAlpha(0.1f));
-    g.fillRect(x - 4, 0, nWidth, nHeight + 1);
-
-    g.setColour(Colours::darkgrey);
-    g.drawRect(x - 4, 0, nWidth - 1, nHeight - 1);
-
-    g.setColour(Colours::darkgrey.darker(0.7f));
-    g.drawRect(x - 3, 0 + 1, nWidth - 1, nHeight - 1);
-
-    g.setColour(Colours::darkgrey.darker(0.4f));
-    g.drawRect(x - 3, 0 + 1, nWidth - 2, nHeight - 2);
-
-    int y = 6;
+    int x = 0;
+    int y = nMeterHeight + nMeterPositionBottom - 12;
     int width = 20;
     int height = 11;
 
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 14);
+    g.fillRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
 
     g.setColour(Colours::grey);
-    g.drawRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 14);
+    g.drawRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
 
-    int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_METER_WIDTH + 4) + 1;
+    int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) + 1;
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 14);
+    g.fillRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
 
     g.setColour(Colours::grey);
-    g.drawRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 14);
+    g.drawRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
 
     String strMarker = "dB";
 
     g.setColour(Colours::black);
     g.setFont(12.0f);
-    drawMarkers(g, strMarker, x + 1, y + 2, width, height);
+    drawMarkers(g, strMarker, x + 1, y + 1, width, height);
 
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect((nWidth - 32) / 2, y, 32, 14);
+    g.fillRect((nWidth - 30) / 2, y, 30, 12);
 
     g.setColour(Colours::grey);
-    g.drawRect((nWidth - 32) / 2, y, 32, 14);
+    g.drawRect((nWidth - 30) / 2, y, 30, 12);
 
     g.setColour(Colours::black);
-    g.drawFittedText("Peak", (nWidth - 32) / 2, y + 1, 32, 12, Justification::centred, 1, 1.0f);
+    g.drawFittedText("RMS", (nWidth - 30) / 2, y, 30, 12, Justification::centred, 1, 1.0f);
 
-    strMarker = "OVR";
-    y = nMeterPositionTop + nSegmentHeight / 2 - 2;
+    y = nSegmentHeight / 2 - 1;
+    strMarker = "HOT";
 
     g.setFont(11.0f);
     g.setColour(Colours::red);
@@ -136,7 +129,7 @@ void PeakMeter::paint(Graphics& g)
 
     for (int n = nNumberOfBars; n > 4; n -= 2)
     {
-        int nLevel = n;
+        int nLevel = n - 8;
 
         if (nLevel > 0)
         {
@@ -149,7 +142,7 @@ void PeakMeter::paint(Graphics& g)
 
         y += 2 * nSegmentHeight;
 
-        if (nLevel == 10)
+        if (nLevel == 0)
         {
             g.setColour(Colours::white);
         }
@@ -163,28 +156,30 @@ void PeakMeter::paint(Graphics& g)
 
     strMarker = "SIG";
 
-    g.setColour(Colours::white);
+    g.setColour(Colours::yellow);
     drawMarkers(g, strMarker, x + 1, y + 2 * nSegmentHeight, width, height);
 }
 
 
-void PeakMeter::resized()
+void AverageMeter::resized()
 {
 }
 
 
-void PeakMeter::setLevels(MeterBallistics* pMeterBallistics)
+void AverageMeter::setLevels(MeterBallistics* pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        LevelMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
+        LevelMeters[nChannel]->setLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
     }
 }
 
 
-void PeakMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height)
+void AverageMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height)
 {
-    int meter_width = nInputChannels * (TraKmeter::TRAKMETER_METER_WIDTH + 4) - 2;
+    g.saveState();
+
+    int meter_width = nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) - 2;
 
     g.drawFittedText(strMarker, x, y, width, height, Justification::centred, 1, 1.0f);
     g.drawFittedText(strMarker, x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 4, y, width, height, Justification::centred, 1, 1.0f);
@@ -199,6 +194,8 @@ void PeakMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int wi
     {
         g.setPixel(nMarkerX, nMarkerY);
     }
+
+    g.restoreState();
 }
 
 

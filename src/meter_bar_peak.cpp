@@ -25,7 +25,7 @@
 
 #include "meter_bar_peak.h"
 
-MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int crest_factor, int segment_height, bool display_peaks)
+MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks)
 {
     setName(componentName);
 
@@ -33,16 +33,18 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     // performance on redrawing)
     setOpaque(true);
 
+    nNumberOfBars = number_of_bars;
+    nSegmentHeight = segment_height;
+
     nPosX = pos_x;
     nPosY = pos_y;
     nWidth = width;
-    nSegmentHeight = segment_height;
+    nHeight = nNumberOfBars * nSegmentHeight + 1;
 
     int nCrestFactor = 10 * crest_factor;
     fPeakLevel = 0.0f;
     fPeakLevelPeak = 0.0f;
 
-    nNumberOfBars = 10;
     MeterArray = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
@@ -54,18 +56,18 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", (nThreshold - nCrestFactor) * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
     addAndMakeVisible(MeterArray[n]);
 
-    fRange = 1.0f;
-    bDiscreteLevels = false;
-
     for (int n = 1; n < (nNumberOfBars - 1); n++)
     {
-        nThreshold -= 10;
+        int nThresholdDifference = 10;
+        nThreshold -= nThresholdDifference;
+        fRange = nThresholdDifference / 10.0f;
+        bDiscreteLevels = false;
 
-        if (nThreshold >= 120)
+        if (nThreshold >= 100)
         {
             nColor = 0;
         }
-        else if ((nThreshold >= 100) && (nThreshold < 120))
+        else if ((nThreshold >= 80) && (nThreshold < 100))
         {
             nColor = 1;
         }
@@ -108,16 +110,14 @@ MeterBarPeak::~MeterBarPeak()
 
 void MeterBarPeak::visibilityChanged()
 {
+    setBounds(nPosX, nPosY, nWidth, nHeight);
+
     int x = 0;
     int y = 0;
-    int width = nWidth;
-    int height = nNumberOfBars * nSegmentHeight + 1;
-
-    setBounds(nPosX, nPosY, width, height);
 
     for (int n = 0; n < nNumberOfBars; n++)
     {
-        MeterArray[n]->setBounds(x, y, width, nSegmentHeight + 1);
+        MeterArray[n]->setBounds(x, y, nWidth, nSegmentHeight + 1);
         y += nSegmentHeight;
     }
 }

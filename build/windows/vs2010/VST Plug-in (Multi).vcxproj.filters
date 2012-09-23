@@ -2,16 +2,19 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup>
 		<Filter Include="src">
-			<UniqueIdentifier>{05E60A90-ADB0-3553-9F14-698DF726B8DE}</UniqueIdentifier>
+			<UniqueIdentifier>{792A811A-73E7-4947-7F0A-187454DD9D1F}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\juce_library_code">
-			<UniqueIdentifier>{137C17E1-DE31-5567-6A1A-F0EC7CEBDE50}</UniqueIdentifier>
+			<UniqueIdentifier>{C9B3E6B9-24FD-9C05-7C1E-3059F5B5249E}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\resources">
-			<UniqueIdentifier>{D12C985D-985A-600D-6349-612E59EEC17B}</UniqueIdentifier>
+			<UniqueIdentifier>{6F5BCD4C-9185-72A4-FE8D-EF158013A1B2}</UniqueIdentifier>
 		</Filter>
 	</ItemGroup>
 	<ItemGroup>
+		<ClInclude Include="..\..\..\src\average_meter.h">
+			<Filter>src</Filter>
+		</ClInclude>
 		<ClInclude Include="..\..\..\src\window_validation.h">
 			<Filter>src</Filter>
 		</ClInclude>
@@ -27,6 +30,9 @@
 		<ClInclude Include="..\..\..\src\trakmeter.h">
 			<Filter>src</Filter>
 		</ClInclude>
+		<ClInclude Include="..\..\..\src\peak_meter.h">
+			<Filter>src</Filter>
+		</ClInclude>
 		<ClInclude Include="..\..\..\src\meter_segment.h">
 			<Filter>src</Filter>
 		</ClInclude>
@@ -37,9 +43,6 @@
 			<Filter>src</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\src\peak_label.h">
-			<Filter>src</Filter>
-		</ClInclude>
-		<ClInclude Include="..\..\..\src\peakmeter.h">
 			<Filter>src</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\src\window_about.h">
@@ -95,13 +98,16 @@
 		<ClCompile Include="..\..\..\src\averager.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\src\peakmeter.cpp">
-			<Filter>src</Filter>
-		</ClCompile>
 		<ClCompile Include="..\..\..\src\main.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
+		<ClCompile Include="..\..\..\src\peak_meter.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
 		<ClCompile Include="..\..\..\src\meter_bar_average.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\src\average_meter.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
 		<ClCompile Include="..\..\..\src\window_validation.cpp">

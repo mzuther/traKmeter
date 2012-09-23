@@ -23,45 +23,52 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __METER_BAR_AVERAGE_H__
-#define __METER_BAR_AVERAGE_H__
+#ifndef __AVERAGE_METER_H__
+#define __AVERAGE_METER_H__
 
 #include "juce_library_code/juce_header.h"
-#include "meter_segment.h"
+#include "meter_bar_average.h"
+#include "trakmeter.h"
+#include "plugin_processor.h"
 
 
 //==============================================================================
 /**
 */
-class MeterBarAverage : public Component
+class AverageMeter : public Component
 {
 public:
-    MeterBarAverage(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks);
-    ~MeterBarAverage();
+    AverageMeter(const String& componentName, int PosX, int PosY, int width, int nCrestFactor, int nNumChannels, int segment_height);
+    ~AverageMeter();
 
-    void setLevels(float averageLevel, float averageLevelPeak);
+    void setLevels(MeterBallistics* pMeterBallistics);
     void paint(Graphics& g);
+    int getPreferredHeight();
     void resized();
     void visibilityChanged();
 
 private:
-    JUCE_LEAK_DETECTOR(MeterBarAverage);
+    JUCE_LEAK_DETECTOR(AverageMeter);
 
-    float fAverageLevel;
-    float fAverageLevelPeak;
-
+    int nNumberOfBars;
     int nPosX;
     int nPosY;
-    int nWidth;
     int nHeight;
+    int nWidth;
     int nSegmentHeight;
-    int nNumberOfBars;
+    int nMeterPositionBottom;
+    int nMeterHeight;
 
-    MeterSegment** MeterArray;
+    int nMeterCrestFactor;
+    int nInputChannels;
+
+    MeterBarAverage** LevelMeters;
+
+    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height);
 };
 
 
-#endif  // __METER_BAR_AVERAGE_H__
+#endif  // __AVERAGE_METER_H__
 
 
 // Local Variables:

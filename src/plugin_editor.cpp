@@ -101,7 +101,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     resizeEditor();
 
     pProcessor->addActionListenerParameters(this);
-    peakmeter = NULL;
     trakmeter = NULL;
 
     int nIndex = TraKmeterPluginParameters::selMixMode;
@@ -124,7 +123,7 @@ TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 void TraKmeterAudioProcessorEditor::resizeEditor()
 {
     nHeight = 256;
-    nRightColumnStart = 2 * TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_METER_WIDTH + 4) + 20;
+    nRightColumnStart = 2 * TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) + 20;
 
     setSize(nRightColumnStart + 70, nHeight);
 
@@ -162,7 +161,6 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String& message
 
         if (pMeterBallistics)
         {
-            peakmeter->setLevels(pMeterBallistics);
             trakmeter->setLevels(pMeterBallistics);
         }
 
@@ -225,13 +223,6 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
     {
         bReloadMeters = false;
 
-        if (peakmeter)
-        {
-            removeChildComponent(peakmeter);
-            delete peakmeter;
-            peakmeter = NULL;
-        }
-
         if (trakmeter)
         {
             removeChildComponent(trakmeter);
@@ -240,10 +231,8 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         }
 
         int nCrestFactor = 20;
-        peakmeter = new PeakMeter("PeakMeter", 10, 10, nCrestFactor, nInputChannels, 6);
-        trakmeter = new TraKmeter("traKmeter", 10, 112, nCrestFactor, nInputChannels, 10);
+        trakmeter = new TraKmeter("traKmeter (level meter)", 10, 10, nCrestFactor, nInputChannels);
 
-        addAndMakeVisible(peakmeter);
         addAndMakeVisible(trakmeter);
     }
 }

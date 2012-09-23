@@ -26,9 +26,12 @@
 #ifndef __TRAKMETER_H__
 #define __TRAKMETER_H__
 
+class AverageMeter;
+class PeakMeter;
+
 #include "juce_library_code/juce_header.h"
-#include "meter_bar_average.h"
-#include "plugin_processor.h"
+#include "average_meter.h"
+#include "peak_meter.h"
 
 
 //==============================================================================
@@ -38,9 +41,10 @@ class TraKmeter : public Component
 {
 public:
     static const int TRAKMETER_LABEL_WIDTH = 32;
-    static const int TRAKMETER_METER_WIDTH = 22;
+    static const int TRAKMETER_SEGMENT_WIDTH = 22;
+    static const int TRAKMETER_SEGMENT_HEIGHT = 8;
 
-    TraKmeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels, int segment_height);
+    TraKmeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels);
     ~TraKmeter();
 
     void setLevels(MeterBallistics* pMeterBallistics);
@@ -51,18 +55,19 @@ public:
 private:
     JUCE_LEAK_DETECTOR(TraKmeter);
 
-    int nNumberOfBars;
     int nPosX;
     int nPosY;
     int nHeight;
     int nWidth;
-    int nSegmentHeight;
-    int nMeterPositionTop;
 
-    int nMeterCrestFactor;
+    int nHeightPeakMeter;
+    int nHeightAverageMeter;
+    int nHeightSeparator;
+
     int nInputChannels;
 
-    MeterBarAverage** LevelMeters;
+    PeakMeter* peak_meter;
+    AverageMeter* average_meter;
 
     void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height);
 };

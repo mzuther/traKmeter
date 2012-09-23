@@ -25,7 +25,7 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int segment_height)
+TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels)
 {
     setName(componentName);
 
@@ -33,38 +33,33 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     setOpaque(false);
 
     nInputChannels = nNumChannels;
-    nMeterCrestFactor = nCrestFactor;
-
-    nNumberOfBars = 10;
-    nMeterPositionTop = 26;
 
     nPosX = posX;
     nPosY = posY;
-    nSegmentHeight = segment_height;
+    nWidth = 2 * TRAKMETER_LABEL_WIDTH + nInputChannels * (TRAKMETER_SEGMENT_WIDTH + 4);
+    nHeight = 0;
 
-    int nPositionX = 0;
-    LevelMeters = new MeterBarAverage*[nInputChannels];
+    peak_meter = new PeakMeter("Peak Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, TRAKMETER_SEGMENT_HEIGHT);
+    addAndMakeVisible(peak_meter);
 
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
-    {
-        nPositionX = TRAKMETER_LABEL_WIDTH + nChannel * (TRAKMETER_METER_WIDTH + 4) + 2;
+    nHeightPeakMeter = peak_meter->getPreferredHeight();
+    nHeightSeparator = 28;
 
-        LevelMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX, nMeterPositionTop, TRAKMETER_METER_WIDTH, nMeterCrestFactor, nSegmentHeight, true);
-        addAndMakeVisible(LevelMeters[nChannel]);
-    }
+    average_meter = new AverageMeter("Average Meter", 4, nHeightPeakMeter + nHeightSeparator + 4, nWidth - 8, nCrestFactor, nInputChannels, TRAKMETER_SEGMENT_HEIGHT);
+    addAndMakeVisible(average_meter);
+
+    nHeightAverageMeter = average_meter->getPreferredHeight();
+    nHeight = nHeightPeakMeter + nHeightAverageMeter + nHeightSeparator + 8;
 }
 
 
 TraKmeter::~TraKmeter()
 {
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
-    {
-        delete LevelMeters[nChannel];
-        LevelMeters[nChannel] = NULL;
-    }
+    delete peak_meter;
+    peak_meter = NULL;
 
-    delete [] LevelMeters;
-    LevelMeters = NULL;
+    delete average_meter;
+    average_meter = NULL;
 
     deleteAllChildren();
 }
@@ -72,9 +67,6 @@ TraKmeter::~TraKmeter()
 
 void TraKmeter::visibilityChanged()
 {
-    nHeight = nNumberOfBars * nSegmentHeight + nMeterPositionTop + 8;
-    nWidth = 2 * TRAKMETER_LABEL_WIDTH + nInputChannels * (TRAKMETER_METER_WIDTH + 4);
-
     setBounds(nPosX, nPosY, nWidth, nHeight);
 }
 
@@ -82,6 +74,7 @@ void TraKmeter::visibilityChanged()
 void TraKmeter::paint(Graphics& g)
 {
     int x = 4;
+    int y = 0;
 
     g.setColour(Colours::grey.withAlpha(0.1f));
     g.fillRect(x - 4, 0, nWidth, nHeight + 1);
@@ -95,76 +88,59 @@ void TraKmeter::paint(Graphics& g)
     g.setColour(Colours::darkgrey.darker(0.4f));
     g.drawRect(x - 3, 0 + 1, nWidth - 2, nHeight - 2);
 
-    int y = 6;
+    y = nHeightPeakMeter + (nHeightSeparator - 12) / 2 + 4;
     int width = 20;
     int height = 11;
 
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x, y, TRAKMETER_LABEL_WIDTH - 9, 14);
+    g.fillRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
 
     g.setColour(Colours::grey);
-    g.drawRect(x, y, TRAKMETER_LABEL_WIDTH - 9, 14);
+    g.drawRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
 
-    int x_2 = TRAKMETER_LABEL_WIDTH + nInputChannels * (TRAKMETER_METER_WIDTH + 4) + 1;
+    int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) + 1;
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x_2 + x, y, TRAKMETER_LABEL_WIDTH - 9, 14);
+    g.fillRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
 
     g.setColour(Colours::grey);
-    g.drawRect(x_2 + x, y, TRAKMETER_LABEL_WIDTH - 9, 14);
+    g.drawRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
 
-    String strMarker = "dB";
-
+    String strMarker = "CH";
     g.setColour(Colours::black);
     g.setFont(12.0f);
-    drawMarkers(g, strMarker, x + 1, y + 2, width, height);
+    drawMarkers(g, strMarker, x + 1, y + 1, width, height);
 
-    g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect((nWidth - 30) / 2, y, 30, 14);
+    x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + 2;
 
-    g.setColour(Colours::grey);
-    g.drawRect((nWidth - 30) / 2, y, 30, 14);
-
-    g.setColour(Colours::black);
-    g.drawFittedText("RMS", (nWidth - 30) / 2, y + 1, 30, 12, Justification::centred, 1, 1.0f);
-
-    y = nMeterPositionTop + nSegmentHeight / 2;
-    strMarker = "HOT";
-
-    g.setFont(11.0f);
-    g.setColour(Colours::red);
-    drawMarkers(g, strMarker, x + 1, y, width, height);
-
-    for (int n = nNumberOfBars; n > 4; n -= 2)
+    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        int nLevel = n - 8;
+        g.setColour(Colours::grey.brighter(0.6f));
+        g.fillRect(x_2, y, TraKmeter::TRAKMETER_SEGMENT_WIDTH, 12);
 
-        if (nLevel > 0)
+        g.setColour(Colours::grey);
+        g.drawRect(x_2, y, TraKmeter::TRAKMETER_SEGMENT_WIDTH, 12);
+
+        if (nInputChannels == 2)
         {
-            strMarker = "+" + String(nLevel);
+            if (nChannel == 0)
+            {
+                strMarker = "L";
+            }
+            else
+            {
+                strMarker = "R";
+            }
         }
         else
         {
-            strMarker = String(nLevel);
+            strMarker = String(nChannel + 1);
         }
 
-        y += 2 * nSegmentHeight;
+        g.setColour(Colours::black);
+        g.drawFittedText(strMarker, x_2, y + 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH, 10, Justification::centred, 1, 1.0f);
 
-        if (nLevel == 0)
-        {
-            g.setColour(Colours::white);
-        }
-        else
-        {
-            g.setColour(Colours::white.darker(0.4f));
-        }
-
-        drawMarkers(g, strMarker, x + 1, y, width, height);
+        x_2 += TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4;
     }
-
-    strMarker = "SIG";
-
-    g.setColour(Colours::red);
-    drawMarkers(g, strMarker, x + 1, y + 2 * nSegmentHeight, width, height);
 }
 
 
@@ -173,18 +149,11 @@ void TraKmeter::resized()
 }
 
 
-void TraKmeter::setLevels(MeterBallistics* pMeterBallistics)
-{
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
-    {
-        LevelMeters[nChannel]->setLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
-    }
-}
-
-
 void TraKmeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height)
 {
-    int meter_width = nInputChannels * (TRAKMETER_METER_WIDTH + 4) - 2;
+    g.saveState();
+
+    int meter_width = nInputChannels * (TRAKMETER_SEGMENT_WIDTH + 4) - 2;
 
     g.drawFittedText(strMarker, x, y, width, height, Justification::centred, 1, 1.0f);
     g.drawFittedText(strMarker, x + TRAKMETER_LABEL_WIDTH + meter_width + 4, y, width, height, Justification::centred, 1, 1.0f);
@@ -199,6 +168,15 @@ void TraKmeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int wi
     {
         g.setPixel(nMarkerX, nMarkerY);
     }
+
+    g.restoreState();
+}
+
+
+void TraKmeter::setLevels(MeterBallistics* pMeterBallistics)
+{
+    peak_meter->setLevels(pMeterBallistics);
+    average_meter->setLevels(pMeterBallistics);
 }
 
 

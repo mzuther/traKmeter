@@ -2,34 +2,37 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup>
 		<Filter Include="src">
-			<UniqueIdentifier>{E41FACBF-0C9B-ADF9-DA6C-7D0FC8B9E243}</UniqueIdentifier>
+			<UniqueIdentifier>{62DDBB11-0116-DA17-C61B-B9D36538AAF7}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\juce_library_code">
-			<UniqueIdentifier>{8E9B3A40-FEF1-DD51-B2E7-8006373F6717}</UniqueIdentifier>
+			<UniqueIdentifier>{47905598-8BB5-84F5-D457-D740501B9EDA}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\resources">
-			<UniqueIdentifier>{EB18B600-B13C-FEF5-1E9B-5752915004F2}</UniqueIdentifier>
+			<UniqueIdentifier>{3B16615E-E79C-17EF-61EF-F7FB80E96236}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="libraries">
-			<UniqueIdentifier>{99613875-7490-2B4E-1974-24EE805D49A5}</UniqueIdentifier>
+			<UniqueIdentifier>{27193438-BB01-8924-4439-935D3464BD32}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="libraries\juce">
-			<UniqueIdentifier>{4684BFFA-4830-B2C0-3848-3C550F60FA0D}</UniqueIdentifier>
+			<UniqueIdentifier>{A9E63C82-C158-E3F7-12FF-917F5066A8C9}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="libraries\juce\src">
-			<UniqueIdentifier>{E16D16AF-F615-A068-23AE-F78F3EE2029D}</UniqueIdentifier>
+			<UniqueIdentifier>{67858B00-9026-4EB1-B60C-835F289D5F58}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="libraries\juce\src\audio">
-			<UniqueIdentifier>{2B0E5AE2-C788-1110-F121-BC16EC898ACE}</UniqueIdentifier>
+			<UniqueIdentifier>{0FB24B09-E75C-855F-20C9-8915FCC3CB17}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="libraries\juce\src\audio\plugin_client">
-			<UniqueIdentifier>{8D16EF6E-C7B3-21C6-943D-6F47122D072B}</UniqueIdentifier>
+			<UniqueIdentifier>{F87DF138-46B8-4762-A0FC-604796D09157}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="libraries\juce\src\audio\plugin_client\Standalone">
-			<UniqueIdentifier>{AEA25461-7824-BB0D-5030-26AC8AD87659}</UniqueIdentifier>
+			<UniqueIdentifier>{917BF84C-78CE-220F-4AA1-F3950275C700}</UniqueIdentifier>
 		</Filter>
 	</ItemGroup>
 	<ItemGroup>
+		<ClInclude Include="..\..\..\src\average_meter.h">
+			<Filter>src</Filter>
+		</ClInclude>
 		<ClInclude Include="..\..\..\src\window_validation.h">
 			<Filter>src</Filter>
 		</ClInclude>
@@ -45,6 +48,9 @@
 		<ClInclude Include="..\..\..\src\trakmeter.h">
 			<Filter>src</Filter>
 		</ClInclude>
+		<ClInclude Include="..\..\..\src\peak_meter.h">
+			<Filter>src</Filter>
+		</ClInclude>
 		<ClInclude Include="..\..\..\src\meter_segment.h">
 			<Filter>src</Filter>
 		</ClInclude>
@@ -55,9 +61,6 @@
 			<Filter>src</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\src\peak_label.h">
-			<Filter>src</Filter>
-		</ClInclude>
-		<ClInclude Include="..\..\..\src\peakmeter.h">
 			<Filter>src</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\src\window_about.h">
@@ -119,13 +122,16 @@
 		<ClCompile Include="..\..\..\src\averager.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\src\peakmeter.cpp">
-			<Filter>src</Filter>
-		</ClCompile>
 		<ClCompile Include="..\..\..\src\main.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
+		<ClCompile Include="..\..\..\src\peak_meter.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
 		<ClCompile Include="..\..\..\src\meter_bar_average.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\src\average_meter.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
 		<ClCompile Include="..\..\..\src\window_validation.cpp">

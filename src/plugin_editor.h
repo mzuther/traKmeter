@@ -29,7 +29,6 @@
 #include "juce_library_code/juce_header.h"
 #include "juce_library_code/JucePluginCharacteristics.h"
 #include "plugin_processor.h"
-#include "peakmeter.h"
 #include "trakmeter.h"
 #include "window_about.h"
 #include "window_validation.h"
@@ -71,7 +70,6 @@ private:
 
     TraKmeterAudioProcessor* pProcessor;
     TraKmeter* trakmeter;
-    PeakMeter* peakmeter;
 
     TextButton* ButtonReset;
 
