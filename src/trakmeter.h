@@ -40,9 +40,9 @@ class PeakMeter;
 class TraKmeter : public Component
 {
 public:
-    static const int TRAKMETER_LABEL_WIDTH = 32;
+    static const int TRAKMETER_LABEL_WIDTH = 36;
     static const int TRAKMETER_SEGMENT_WIDTH = 22;
-    static const int TRAKMETER_SEGMENT_HEIGHT = 8;
+    static const int TRAKMETER_SEGMENT_HEIGHT = 9;
 
     TraKmeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels);
     ~TraKmeter();

@@ -37,7 +37,7 @@ AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int 
 
     nNumberOfBars = 10;
     nSegmentHeight = segment_height;
-    nMeterPositionBottom = 19;
+    nMeterPositionBottom = 21;
     nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
 
     nPosX = posX;
@@ -50,7 +50,7 @@ AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int 
 
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) - 2;
+        nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
 
         LevelMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nMeterCrestFactor, nSegmentHeight, true);
         addAndMakeVisible(LevelMeters[nChannel]);
@@ -88,22 +88,22 @@ void AverageMeter::visibilityChanged()
 void AverageMeter::paint(Graphics& g)
 {
     int x = 0;
-    int y = nMeterHeight + nMeterPositionBottom - 12;
-    int width = 20;
-    int height = 11;
+    int y = nMeterHeight + nMeterPositionBottom - 13;
+    int width = TraKmeter::TRAKMETER_LABEL_WIDTH - 14;
+    int height = 13;
 
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
+    g.fillRect(x, y, width + 3, height);
 
     g.setColour(Colours::grey);
-    g.drawRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
+    g.drawRect(x, y, width + 3, height);
 
-    int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) + 1;
+    int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 1;
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
+    g.fillRect(x + x_2, y, width + 3, height);
 
     g.setColour(Colours::grey);
-    g.drawRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
+    g.drawRect(x + x_2 + x, y, width + 3, height);
 
     String strMarker = "dB";
 
@@ -112,18 +112,18 @@ void AverageMeter::paint(Graphics& g)
     drawMarkers(g, strMarker, x + 1, y + 1, width, height);
 
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect((nWidth - 30) / 2, y, 30, 12);
+    g.fillRect((nWidth - 32) / 2, y, 32, height);
 
     g.setColour(Colours::grey);
-    g.drawRect((nWidth - 30) / 2, y, 30, 12);
+    g.drawRect((nWidth - 32) / 2, y, 32, height);
 
     g.setColour(Colours::black);
-    g.drawFittedText("RMS", (nWidth - 30) / 2, y, 30, 12, Justification::centred, 1, 1.0f);
+    g.drawFittedText("RMS", (nWidth - 30) / 2, y, 30, height, Justification::centred, 1, 1.0f);
 
-    y = nSegmentHeight / 2 - 1;
+    y = nSegmentHeight / 2;
     strMarker = "HOT";
 
-    g.setFont(11.0f);
+    g.setFont(12.0f);
     g.setColour(Colours::red);
     drawMarkers(g, strMarker, x + 1, y, width, height);
 
@@ -179,16 +179,17 @@ void AverageMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int
 {
     g.saveState();
 
-    int meter_width = nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) - 2;
+    int meter_width = nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 4;
+    int x_2 = x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 4;
 
-    g.drawFittedText(strMarker, x, y, width, height, Justification::centred, 1, 1.0f);
-    g.drawFittedText(strMarker, x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 4, y, width, height, Justification::centred, 1, 1.0f);
+    g.drawFittedText(strMarker, x, y - 1, width, height, Justification::centred, 1, 1.0f);
+    g.drawFittedText(strMarker, x_2, y - 1, width, height, Justification::centred, 1, 1.0f);
 
     g.setColour(Colours::grey);
 
     int nMarkerY = y + 5;
     int nStart = x + width + 2;
-    int nEnd = x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 2;
+    int nEnd = x + x_2 - 3;
 
     for (int nMarkerX = nStart; nMarkerX < nEnd; nMarkerX++)
     {

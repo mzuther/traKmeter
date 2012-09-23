@@ -51,12 +51,15 @@ private:
     JUCE_LEAK_DETECTOR(PeakMeter);
 
     int nNumberOfBars;
+
     int nPosX;
     int nPosY;
     int nHeight;
     int nWidth;
+
     int nSegmentHeight;
     int nMeterPositionTop;
+    int nMeterHeight;
 
     int nMeterCrestFactor;
     int nInputChannels;

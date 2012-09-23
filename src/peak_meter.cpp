@@ -36,20 +36,21 @@ PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width,
     nMeterCrestFactor = nCrestFactor;
 
     nNumberOfBars = 10;
-    nMeterPositionTop = 19;
     nSegmentHeight = segment_height;
+    nMeterPositionTop = 21;
+    nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
 
     nPosX = posX;
     nPosY = posY;
     nWidth = width;
-    nHeight = nMeterPositionTop + nNumberOfBars * nSegmentHeight + 1;
+    nHeight = nMeterPositionTop + nMeterHeight;
 
     int nPositionX = 0;
     LevelMeters = new MeterBarPeak*[nInputChannels];
 
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) - 2;
+        nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
 
         LevelMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nMeterCrestFactor, nSegmentHeight, true);
         addAndMakeVisible(LevelMeters[nChannel]);
@@ -88,40 +89,41 @@ void PeakMeter::paint(Graphics& g)
 {
     int x = 0;
     int y = 0;
-    int width = 20;
-    int height = 11;
+    int width = TraKmeter::TRAKMETER_LABEL_WIDTH - 14;
+    int height = 13;
 
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
+    g.fillRect(x, y, width + 3, height);
 
     g.setColour(Colours::grey);
-    g.drawRect(x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
+    g.drawRect(x, y, width + 3, height);
 
-    int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) + 1;
+    int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 1;
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
+    g.fillRect(x + x_2, y, width + 3, height);
 
     g.setColour(Colours::grey);
-    g.drawRect(x_2 + x, y, TraKmeter::TRAKMETER_LABEL_WIDTH - 9, 12);
+    g.drawRect(x + x_2 + x, y, width + 3, height);
 
     String strMarker = "dB";
+
     g.setColour(Colours::black);
     g.setFont(12.0f);
     drawMarkers(g, strMarker, x + 1, y + 1, width, height);
 
     g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect((nWidth - 32) / 2, y, 32, 12);
+    g.fillRect((nWidth - 32) / 2, y, 32, height);
 
     g.setColour(Colours::grey);
-    g.drawRect((nWidth - 32) / 2, y, 32, 12);
+    g.drawRect((nWidth - 32) / 2, y, 32, height);
 
     g.setColour(Colours::black);
-    g.drawFittedText("Peak", (nWidth - 32) / 2, y, 32, 12, Justification::centred, 1, 1.0f);
+    g.drawFittedText("Peak", (nWidth - 32) / 2, y, 32, height, Justification::centred, 1, 1.0f);
 
-    y = nMeterPositionTop + nSegmentHeight / 2 - 1;
+    y = nMeterPositionTop + nSegmentHeight / 2;
     strMarker = "OVR";
 
-    g.setFont(11.0f);
+    g.setFont(12.0f);
     g.setColour(Colours::red);
     drawMarkers(g, strMarker, x + 1, y, width, height);
 
@@ -177,16 +179,17 @@ void PeakMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int wi
 {
     g.saveState();
 
-    int meter_width = nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 4) - 2;
+    int meter_width = nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 4;
+    int x_2 = x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 4;
 
-    g.drawFittedText(strMarker, x, y, width, height, Justification::centred, 1, 1.0f);
-    g.drawFittedText(strMarker, x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 4, y, width, height, Justification::centred, 1, 1.0f);
+    g.drawFittedText(strMarker, x, y - 1, width, height, Justification::centred, 1, 1.0f);
+    g.drawFittedText(strMarker, x_2, y - 1, width, height, Justification::centred, 1, 1.0f);
 
     g.setColour(Colours::grey);
 
     int nMarkerY = y + 5;
     int nStart = x + width + 2;
-    int nEnd = x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 2;
+    int nEnd = x + x_2 - 3;
 
     for (int nMarkerX = nStart; nMarkerX < nEnd; nMarkerX++)
     {

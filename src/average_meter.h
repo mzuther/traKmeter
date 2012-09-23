@@ -51,10 +51,12 @@ private:
     JUCE_LEAK_DETECTOR(AverageMeter);
 
     int nNumberOfBars;
+
     int nPosX;
     int nPosY;
     int nHeight;
     int nWidth;
+
     int nSegmentHeight;
     int nMeterPositionBottom;
     int nMeterHeight;
