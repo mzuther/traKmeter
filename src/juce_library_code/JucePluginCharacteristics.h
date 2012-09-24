@@ -66,8 +66,8 @@
 #define JucePlugin_SilenceInProducesSilenceOut  1
 #define JucePlugin_TailLengthSeconds    0
 #define JucePlugin_EditorRequiresKeyboardFocus  0
-#define JucePlugin_VersionCode          0x10301
-#define JucePlugin_VersionString        "1.03.1"
+#define JucePlugin_VersionCode          0x10302
+#define JucePlugin_VersionString        "1.03.2"
 #define JucePlugin_VSTUniqueID          JucePlugin_PluginCode
 #define JucePlugin_VSTCategory          kPlugCategEffect
 #define JucePlugin_AUMainType           kAudioUnitType_Effect

@@ -35,7 +35,7 @@ PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width,
     nInputChannels = nNumChannels;
     nMeterCrestFactor = nCrestFactor;
 
-    nNumberOfBars = 10;
+    nNumberOfBars = 9;
     nSegmentHeight = segment_height;
     nMeterPositionTop = 21;
     nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
@@ -120,7 +120,7 @@ void PeakMeter::paint(Graphics& g)
     g.setColour(Colours::black);
     g.drawFittedText("Peak", (nWidth - 32) / 2, y, 32, height, Justification::centred, 1, 1.0f);
 
-    y = nMeterPositionTop + nSegmentHeight / 2;
+    y = nMeterPositionTop;
     strMarker = "OVR";
 
     g.setFont(12.0f);
@@ -129,7 +129,7 @@ void PeakMeter::paint(Graphics& g)
 
     for (int n = nNumberOfBars; n > 4; n -= 2)
     {
-        int nLevel = n;
+        int nLevel = n + 1;
 
         if (nLevel > 0)
         {

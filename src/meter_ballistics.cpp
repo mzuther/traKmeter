@@ -569,11 +569,11 @@ void MeterBallistics::AverageMeterBallistics(int nChannel, float fTimePassed, fl
             fAverageMeterLevels[nChannel] = fAverageLevelCurrent;
         }
     }
-    // otherwise, the meter reaches 99% of the final reading in 600 ms
+    // otherwise, the meter reaches 99% of the final reading in 300 ms
     // (logarithmic)
     else
     {
-        LogMeterBallistics(0.600f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
+        LogMeterBallistics(0.300f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
     }
 }
 

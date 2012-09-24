@@ -48,7 +48,7 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     MeterArray = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
-    int nThreshold = 120;
+    int nThreshold = 110;
     float fRange = (nCrestFactor - nThreshold) * 0.1f;
     int nColor = 0;
     bool bDiscreteLevels = true;
@@ -84,7 +84,7 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     // signals are detected at -60 dB and above
     fRange = -(-600 + nCrestFactor - nThreshold) * 0.1f;
     nThreshold = -600 + nCrestFactor;
-    nColor = 2;
+    nColor = 1;
     bDiscreteLevels = false;
 
     MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", (nThreshold - nCrestFactor) * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);

@@ -35,7 +35,7 @@ AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int 
     nInputChannels = nNumChannels;
     nMeterCrestFactor = nCrestFactor;
 
-    nNumberOfBars = 10;
+    nNumberOfBars = 9;
     nSegmentHeight = segment_height;
     nMeterPositionBottom = 21;
     nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
@@ -120,7 +120,7 @@ void AverageMeter::paint(Graphics& g)
     g.setColour(Colours::black);
     g.drawFittedText("RMS", (nWidth - 30) / 2, y, 30, height, Justification::centred, 1, 1.0f);
 
-    y = nSegmentHeight / 2;
+    y = 0;
     strMarker = "HOT";
 
     g.setFont(12.0f);
@@ -129,7 +129,7 @@ void AverageMeter::paint(Graphics& g)
 
     for (int n = nNumberOfBars; n > 4; n -= 2)
     {
-        int nLevel = n - 8;
+        int nLevel = n - 7;
 
         if (nLevel > 0)
         {

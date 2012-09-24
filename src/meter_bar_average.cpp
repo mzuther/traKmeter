@@ -63,11 +63,11 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
         fRange = nThresholdDifference / 10.0f;
         bDiscreteLevels = true;
 
-        if ((nThreshold >= -20) && (nThreshold < 20))
+        if ((nThreshold > -20) && (nThreshold < 20))
         {
             nColor = 2;
         }
-        else if ((nThreshold >= -40) && (nThreshold < 40))
+        else if ((nThreshold > -40) && (nThreshold < 40))
         {
             nColor = 1;
         }
