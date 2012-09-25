@@ -161,9 +161,9 @@ void MeterSegment::setLevels(float fLevel, float fLevelPeak)
 
     // peak lies within thresholds or on upper threshold, so show peak
     // marker on segment
-    if (displayPeaks && (fLevelPeak > fLowerThreshold) && (fLevelPeak <= fUpperThreshold))
+    if ((fLevelPeak > fLowerThreshold) && (fLevelPeak <= fUpperThreshold))
     {
-        bPeakMarker = true;
+        bPeakMarker = displayPeaks;
     }
     // otherwise, do not show peak marker on segment
     else

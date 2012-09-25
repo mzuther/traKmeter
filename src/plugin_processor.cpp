@@ -326,9 +326,10 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
 
     pMeterBallistics = new MeterBallistics(nNumInputChannels, true, false, bTransientMode);
 
-    // during tracking and mixing, we don't want any peak-to-average
-    // gain correction, so disable globally here!
-    pMeterBallistics->setPeakToAverageCorrection(0.0f);
+    // RMS peak-to-average gain correction; this is simply the
+    // difference between peak and average meter readings during
+    // validation, measured using pure sines
+    pMeterBallistics->setPeakToAverageCorrection(+2.97f);
 
     fPeakLevels = new float[nNumInputChannels];
     fRmsLevels = new float[nNumInputChannels];
@@ -613,6 +614,12 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
             pMeterBallistics = NULL;
 
             pMeterBallistics = new MeterBallistics(nNumInputChannels, true, false, bTransientMode);
+
+
+            // RMS peak-to-average gain correction; this is simply the
+            // difference between peak and average meter readings
+            // during validation, measured using pure sines
+            pMeterBallistics->setPeakToAverageCorrection(+2.97f);
         }
     }
 }
