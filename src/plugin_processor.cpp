@@ -425,12 +425,22 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
         return;
     }
 
+    int nNumSamples = buffer.getNumSamples();
+
+    // In case we have more outputs than inputs, we'll clear any
+    // output channels that didn't contain input data, because these
+    // aren't guaranteed to be empty -- they may contain garbage.
+
+    for (int i = nNumInputChannels; i < getNumOutputChannels(); i++)
+    {
+        buffer.clear(i, 0, nNumSamples);
+    }
+
     if (audioFilePlayer)
     {
         audioFilePlayer->fillBufferChunk(&buffer);
     }
 
-    int nNumSamples = buffer.getNumSamples();
     // bool bMono = getParameterAsBool(TraKmeterPluginParameters::selMono);
     bool bMixMode = getParameterAsBool(TraKmeterPluginParameters::selMixMode);
 
@@ -464,54 +474,53 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
     nSamplesInBuffer %= TRAKMETER_BUFFER_SIZE;
 
     pRingBufferOutput->copyToBuffer(buffer, 0, nNumSamples, TRAKMETER_BUFFER_SIZE - nSamplesInBuffer);
-
-    // In case we have more outputs than inputs, we'll clear any
-    // output channels that didn't contain input data, because these
-    // aren't guaranteed to be empty -- they may contain garbage.
-
-    for (int i = nNumInputChannels; i < getNumOutputChannels(); i++)
-    {
-        buffer.clear(i, 0, nNumSamples);
-    }
 }
 
 
 void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer& buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
 {
-    unsigned int uPreDelay = uChunkSize / 2;
-    // bool bMono = getParameterAsBool(TraKmeterPluginParameters::selMono);
+    bool hasOpenEditor = (getActiveEditor() != NULL);
 
-    // length of buffer chunk in fractional seconds
-    // (1024 samples / 44100 samples/s = 23.2 ms)
-    fProcessedSeconds = (float) uChunkSize / (float) getSampleRate();
-
-    for (int nChannel = 0; nChannel < nNumInputChannels; nChannel++)
+    if (hasOpenEditor)
     {
-        // if (bMono && (nChannel == 1))
-        // {
-        //     fPeakLevels[nChannel] = fPeakLevels[0];
-        //     fRmsLevels[nChannel] = fRmsLevels[0];
-        //     nOverflows[nChannel] = nOverflows[0];
-        // }
-        // else
+        unsigned int uPreDelay = uChunkSize / 2;
+        // bool bMono = getParameterAsBool(TraKmeterPluginParameters::selMono);
+
+        // length of buffer chunk in fractional seconds
+        // (1024 samples / 44100 samples/s = 23.2 ms)
+        fProcessedSeconds = (float) uChunkSize / (float) getSampleRate();
+
+        for (int nChannel = 0; nChannel < nNumInputChannels; nChannel++)
         {
-            // determine peak level for uChunkSize samples (use pre-delay)
-            fPeakLevels[nChannel] = pRingBufferInput->getMagnitude(nChannel, uChunkSize, uPreDelay);
+            // if (bMono && (nChannel == 1))
+            // {
+            //     fPeakLevels[nChannel] = fPeakLevels[0];
+            //     fRmsLevels[nChannel] = fRmsLevels[0];
+            //     nOverflows[nChannel] = nOverflows[0];
+            // }
+            // else
+            {
+                // determine peak level for uChunkSize samples (use
+                // pre-delay)
+                fPeakLevels[nChannel] = pRingBufferInput->getMagnitude(nChannel, uChunkSize, uPreDelay);
 
-            // determine peak level for uChunkSize samples (use pre-delay)
-            fRmsLevels[nChannel] = pRingBufferInput->getRMSLevel(nChannel, uChunkSize, uPreDelay);
+                // determine peak level for uChunkSize samples (use
+                // pre-delay)
+                fRmsLevels[nChannel] = pRingBufferInput->getRMSLevel(nChannel, uChunkSize, uPreDelay);
 
-            // determine overflows for uChunkSize samples (use pre-delay)
-            nOverflows[nChannel] = countOverflows(pRingBufferInput, nChannel, uChunkSize, uPreDelay);
+                // determine overflows for uChunkSize samples (use
+                // pre-delay)
+                nOverflows[nChannel] = countOverflows(pRingBufferInput, nChannel, uChunkSize, uPreDelay);
+            }
+
+            // apply meter ballistics and store values so that the
+            // editor can access them
+            pMeterBallistics->updateChannel(nChannel, fProcessedSeconds, fPeakLevels[nChannel], fRmsLevels[nChannel], nOverflows[nChannel]);
         }
 
-        // apply meter ballistics and store values so that the editor
-        // can access them
-        pMeterBallistics->updateChannel(nChannel, fProcessedSeconds, fPeakLevels[nChannel], fRmsLevels[nChannel], nOverflows[nChannel]);
+        // "UM" --> update meters
+        sendActionMessage("UM");
     }
-
-    // "UM" --> update meters
-    sendActionMessage("UM");
 
     AudioSampleBuffer TempAudioBuffer = AudioSampleBuffer(nNumInputChannels, uChunkSize);
     pRingBufferInput->copyToBuffer(TempAudioBuffer, 0, uChunkSize, 0);
@@ -629,6 +638,13 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
 
 AudioProcessorEditor* TraKmeterAudioProcessor::createEditor()
 {
+    //  meter ballistics are not updated when the editor is closed, so
+    //  reset them here
+    if (pMeterBallistics)
+    {
+        pMeterBallistics->reset();
+    }
+
     if (nNumInputChannels > 0)
     {
         return new TraKmeterAudioProcessorEditor(this, nNumInputChannels);
