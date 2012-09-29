@@ -40,7 +40,7 @@
 class TraKmeterAudioProcessorEditor : public AudioProcessorEditor, public ButtonListener, public SliderListener, public ActionListener
 {
 public:
-    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor* ownerFilter, int nNumChannels);
+    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor* ownerFilter, int nNumChannels, int CrestFactor);
     ~TraKmeterAudioProcessorEditor();
 
     void buttonClicked(Button* button);
@@ -61,10 +61,11 @@ private:
     void reloadMeters();
     void resizeEditor();
 
+    int nInputChannels;
+    int nCrestFactor;
+
     bool bReloadMeters;
     bool bIsValidating;
-    int nInputChannels;
-    int nStereoInputChannels;
     int nRightColumnStart;
     int nHeight;
 

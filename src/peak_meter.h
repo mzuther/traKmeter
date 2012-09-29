@@ -38,7 +38,7 @@
 class PeakMeter : public Component
 {
 public:
-    PeakMeter(const String& componentName, int PosX, int PosY, int width, int nCrestFactor, int nNumChannels, int segment_height);
+    PeakMeter(const String& componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
     ~PeakMeter();
 
     void setLevels(MeterBallistics* pMeterBallistics);
@@ -61,7 +61,7 @@ private:
     int nMeterPositionTop;
     int nMeterHeight;
 
-    int nMeterCrestFactor;
+    int nCrestFactor;
     int nInputChannels;
 
     MeterBarPeak** LevelMeters;

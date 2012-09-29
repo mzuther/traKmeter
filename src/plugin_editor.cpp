@@ -26,7 +26,7 @@
 #include "plugin_editor.h"
 
 //==============================================================================
-TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor* ownerFilter, int nNumChannels)
+TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor* ownerFilter, int nNumChannels, int CrestFactor)
     : AudioProcessorEditor(ownerFilter)
 {
     // the editor window does not have any transparent areas
@@ -37,6 +37,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     bReloadMeters = true;
 
     nInputChannels = nNumChannels;
+    nCrestFactor = CrestFactor;
 
     // The plug-in editor's size as well as the location of buttons
     // and labels will be set later on in this constructor.
@@ -132,7 +133,7 @@ TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 
 void TraKmeterAudioProcessorEditor::resizeEditor()
 {
-    nHeight = 283;
+    nHeight = 18 * TraKmeter::TRAKMETER_SEGMENT_HEIGHT + 103;
     nRightColumnStart = 2 * TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) + 20;
 
     setSize(nRightColumnStart + 70, nHeight);
@@ -246,9 +247,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
             trakmeter = NULL;
         }
 
-        int nCrestFactor = 20;
         trakmeter = new TraKmeter("traKmeter (level meter)", 10, 10, nCrestFactor, nInputChannels);
-
         addAndMakeVisible(trakmeter);
     }
 }

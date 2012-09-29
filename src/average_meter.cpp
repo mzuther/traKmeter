@@ -25,7 +25,7 @@
 
 #include "average_meter.h"
 
-AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int width, int nCrestFactor, int nNumChannels, int segment_height)
+AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
 {
     setName(componentName);
 
@@ -33,9 +33,9 @@ AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int 
     setOpaque(false);
 
     nInputChannels = nNumChannels;
-    nMeterCrestFactor = nCrestFactor;
+    nCrestFactor = CrestFactor;
 
-    nNumberOfBars = 9;
+    nNumberOfBars = 8;
     nSegmentHeight = segment_height;
     nMeterPositionBottom = 21;
     nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
@@ -52,7 +52,7 @@ AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int 
     {
         nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
 
-        LevelMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nMeterCrestFactor, nSegmentHeight, true);
+        LevelMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true);
         addAndMakeVisible(LevelMeters[nChannel]);
     }
 }
@@ -127,9 +127,11 @@ void AverageMeter::paint(Graphics& g)
     g.setColour(Colours::red);
     drawMarkers(g, strMarker, x + 1, y, width, height);
 
-    for (int n = nNumberOfBars; n > 4; n -= 2)
+    y -= TraKmeter::TRAKMETER_SEGMENT_HEIGHT / 2;
+
+    for (int n = nNumberOfBars; n > 2; n -= 2)
     {
-        int nLevel = n - 7;
+        int nLevel = n - 24;
 
         if (nLevel > 0)
         {
@@ -142,7 +144,7 @@ void AverageMeter::paint(Graphics& g)
 
         y += 2 * nSegmentHeight;
 
-        if (nLevel == 0)
+        if (nLevel == -nCrestFactor)
         {
             g.setColour(Colours::white);
         }
@@ -154,6 +156,7 @@ void AverageMeter::paint(Graphics& g)
         drawMarkers(g, strMarker, x + 1, y, width, height);
     }
 
+    y -= TraKmeter::TRAKMETER_SEGMENT_HEIGHT / 2;
     strMarker = "SIG";
 
     g.setColour(Colours::yellow);

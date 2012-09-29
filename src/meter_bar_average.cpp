@@ -48,12 +48,12 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
     MeterArray = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
-    int nThreshold = 40;
-    float fRange = (nCrestFactor - nThreshold) * 0.1f;
+    int nThreshold = -nCrestFactor + 30;
+    float fRange = -nThreshold * 0.1f;
     int nColor = 0;
     bool bDiscreteLevels = true;
 
-    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", (nThreshold - nCrestFactor) * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
     addAndMakeVisible(MeterArray[n]);
 
     for (int n = 1; n < (nNumberOfBars - 1); n++)
@@ -61,13 +61,13 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
         int nThresholdDifference = 10;
         nThreshold -= nThresholdDifference;
         fRange = nThresholdDifference / 10.0f;
-        bDiscreteLevels = true;
+        bDiscreteLevels = false;
 
-        if ((nThreshold > -20) && (nThreshold < 20))
+        if ((nThreshold >= -200) && (nThreshold < -160))
         {
             nColor = 2;
         }
-        else if ((nThreshold > -40) && (nThreshold < 40))
+        else if ((nThreshold >= -210) && (nThreshold < -150))
         {
             nColor = 1;
         }
@@ -76,18 +76,18 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
             nColor = 0;
         }
 
-        MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", (nThreshold - nCrestFactor) * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+        MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
         addAndMakeVisible(MeterArray[n]);
     }
 
     n = nNumberOfBars - 1;
     // signals are detected at -60 dB and above
-    fRange = -(-600 + nCrestFactor - nThreshold) * 0.1f;
-    nThreshold = -600 + nCrestFactor;
+    fRange = -(-600 - nThreshold) * 0.1f;
+    nThreshold = -600;
     nColor = 0;
-    bDiscreteLevels = true;
+    bDiscreteLevels = false;
 
-    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", (nThreshold - nCrestFactor) * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
     addAndMakeVisible(MeterArray[n]);
 }
 

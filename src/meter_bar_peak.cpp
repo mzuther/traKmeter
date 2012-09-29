@@ -48,12 +48,12 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     MeterArray = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
-    int nThreshold = 110;
-    float fRange = (nCrestFactor - nThreshold) * 0.1f;
+    int nThreshold = -90;
+    float fRange = -nThreshold * 0.1f;
     int nColor = 0;
     bool bDiscreteLevels = true;
 
-    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", (nThreshold - nCrestFactor) * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
     addAndMakeVisible(MeterArray[n]);
 
     for (int n = 1; n < (nNumberOfBars - 1); n++)
@@ -63,11 +63,15 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
         fRange = nThresholdDifference / 10.0f;
         bDiscreteLevels = false;
 
-        if (nThreshold >= 100)
+        if (nThreshold >= -80)
         {
             nColor = 0;
         }
-        else if ((nThreshold >= 80) && (nThreshold < 100))
+        else if (nThreshold < -160)
+        {
+            nColor = 1;
+        }
+        else if ((nThreshold >= -100) && (nThreshold < -80))
         {
             nColor = 1;
         }
@@ -76,18 +80,18 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
             nColor = 2;
         }
 
-        MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", (nThreshold - nCrestFactor) * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+        MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
         addAndMakeVisible(MeterArray[n]);
     }
 
     n = nNumberOfBars - 1;
     // signals are detected at -60 dB and above
-    fRange = -(-600 + nCrestFactor - nThreshold) * 0.1f;
-    nThreshold = -600 + nCrestFactor;
-    nColor = 1;
+    fRange = -(-600 - nThreshold) * 0.1f;
+    nThreshold = -600;
+    nColor = 0;
     bDiscreteLevels = false;
 
-    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", (nThreshold - nCrestFactor) * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
     addAndMakeVisible(MeterArray[n]);
 }
 

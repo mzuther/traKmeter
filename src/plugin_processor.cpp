@@ -26,6 +26,15 @@
 #include "plugin_processor.h"
 #include "plugin_editor.h"
 
+
+const int TRAKMETER_CREST_FACTOR = 18;
+
+// RMS peak-to-average gain correction; this is simply the
+// difference between peak and average meter readings
+// during validation, measured using pure sines
+const float PEAK_TO_AVERAGE_CORRECTION = MeterBallistics::level2decibel(sqrtf(2.0f));
+
+
 //==============================================================================
 
 TraKmeterAudioProcessor::TraKmeterAudioProcessor()
@@ -324,12 +333,10 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
 
     DBG("[traKmeter] number of input channels: " + String(nNumInputChannels));
 
-    pMeterBallistics = new MeterBallistics(nNumInputChannels, true, false, bTransientMode);
+    pMeterBallistics = new MeterBallistics(nNumInputChannels, TRAKMETER_CREST_FACTOR, true, false, bTransientMode);
 
-    // RMS peak-to-average gain correction; this is simply the
-    // difference between peak and average meter readings during
-    // validation, measured using pure sines
-    pMeterBallistics->setPeakToAverageCorrection(+2.97f);
+    // RMS peak-to-average gain correction
+    pMeterBallistics->setPeakToAverageCorrection(PEAK_TO_AVERAGE_CORRECTION);
 
     fPeakLevels = new float[nNumInputChannels];
     fRmsLevels = new float[nNumInputChannels];
@@ -533,7 +540,7 @@ void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChann
     // reset all meters before we start the validation
     pMeterBallistics->reset();
 
-    audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, 20);
+    audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, TRAKMETER_CREST_FACTOR);
     audioFilePlayer->setReporters(nSelectedChannel, bReportCSV, bAverageMeterLevel, bPeakMeterLevel);
 
     // refresh editor; "V+" --> validation started
@@ -622,13 +629,10 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
             delete pMeterBallistics;
             pMeterBallistics = NULL;
 
-            pMeterBallistics = new MeterBallistics(nNumInputChannels, true, false, bTransientMode);
+            pMeterBallistics = new MeterBallistics(nNumInputChannels, TRAKMETER_CREST_FACTOR, true, false, bTransientMode);
 
-
-            // RMS peak-to-average gain correction; this is simply the
-            // difference between peak and average meter readings
-            // during validation, measured using pure sines
-            pMeterBallistics->setPeakToAverageCorrection(+2.97f);
+            // RMS peak-to-average gain correction
+            pMeterBallistics->setPeakToAverageCorrection(PEAK_TO_AVERAGE_CORRECTION);
         }
     }
 }
@@ -647,11 +651,11 @@ AudioProcessorEditor* TraKmeterAudioProcessor::createEditor()
 
     if (nNumInputChannels > 0)
     {
-        return new TraKmeterAudioProcessorEditor(this, nNumInputChannels);
+        return new TraKmeterAudioProcessorEditor(this, nNumInputChannels, TRAKMETER_CREST_FACTOR);
     }
     else
     {
-        return new TraKmeterAudioProcessorEditor(this, JucePlugin_MaxNumInputChannels);
+        return new TraKmeterAudioProcessorEditor(this, JucePlugin_MaxNumInputChannels, TRAKMETER_CREST_FACTOR);
     }
 }
 

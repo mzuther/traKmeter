@@ -38,6 +38,7 @@ class MeterBallistics;
 #include "meter_ballistics.h"
 #include "plugin_parameters.h"
 
+
 //============================================================================
 class TraKmeterAudioProcessor  : public AudioProcessor, public ActionBroadcaster
 {

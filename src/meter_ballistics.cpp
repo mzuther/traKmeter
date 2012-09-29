@@ -30,7 +30,7 @@ float MeterBallistics::fMeterMinimumDecibel;
 float MeterBallistics::fPeakToAverageCorrection;
 
 
-MeterBallistics::MeterBallistics(int nChannels, bool bPeakMeterInfiniteHold, bool bAverageMeterInfiniteHold, bool transient_mode)
+MeterBallistics::MeterBallistics(int nChannels, int CrestFactor, bool bPeakMeterInfiniteHold, bool bAverageMeterInfiniteHold, bool transient_mode)
 /*  Constructor.
 
     nChannels (integer): number of audio input channels
@@ -54,6 +54,9 @@ MeterBallistics::MeterBallistics(int nChannels, bool bPeakMeterInfiniteHold, boo
 
     // store the number of audio input channels
     nNumberOfChannels = nChannels;
+
+    // store meter's crest factor
+    nCrestFactor = CrestFactor;
 
     // store setting for transient mode
     bTransientMode = transient_mode;
@@ -424,15 +427,11 @@ void MeterBallistics::setPeakToAverageCorrection(float peak_to_average_correctio
 {
     fPeakToAverageCorrection = peak_to_average_correction;
 
-    // the K-20 meter has the highest maximum crest factor (20 dB) of
-    // all K-System meters
-    float fMaximumCrestFactor = 20.0f;
-
     // logarithmic levels have no minimum level, so let's define one
     // (70 dB meter range + 0.01 to make sure that the minimum level
     // is below the meter's threshold + maximum crest factor +
     // peak-to-average gain correction) and store it for later use
-    fMeterMinimumDecibel = -(70.01f + fMaximumCrestFactor + fPeakToAverageCorrection);
+    fMeterMinimumDecibel = -(70.01f + nCrestFactor + fPeakToAverageCorrection);
 }
 
 
@@ -556,17 +555,41 @@ void MeterBallistics::AverageMeterBallistics(int nChannel, float fTimePassed, fl
     return value: none
 */
 {
-    // in "transient mode", the meter has a rise time of one sample
-    // and falls to 99% of the final reading in 5.0 s (logarithmic)
+    // in "transient mode", the meter rises to 99% of the final
+    // reading in 10 ms (logarithmic) and generally has a fall time of
+    // 6 dB per second (linear)
     if (bTransientMode)
     {
+        // meter is falling
         if (fAverageLevelCurrent < fAverageMeterLevels[nChannel])
         {
-            LogMeterBallistics(5.000f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
+            // switch to fast meter fall time on levels outside the
+            // average meter's scale
+            if (fAverageMeterLevels[nChannel] < (-nCrestFactor - 4))
+            {
+                LogMeterBallistics(0.300f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
+            }
+            else
+            {
+                // fall time: 6 dB per second (linear)
+                float fReleaseCoef = 6.0f * fTimePassed;
+
+                // apply fall time
+                fAverageMeterLevels[nChannel] -= fReleaseCoef;
+
+                // make sure that meter doesn't fall below current level
+                if (fAverageLevelCurrent > fAverageMeterLevels[nChannel])
+                {
+                    // meter reaches 99% of the final reading in 10 ms
+                    LogMeterBallistics(0.010f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
+                }
+            }
         }
+        // meter is rising
         else
         {
-            fAverageMeterLevels[nChannel] = fAverageLevelCurrent;
+            // meter reaches 99% of the final reading in 10 ms
+            LogMeterBallistics(0.010f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
         }
     }
     // otherwise, the meter reaches 99% of the final reading in 300 ms

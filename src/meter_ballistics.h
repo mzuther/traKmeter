@@ -36,7 +36,7 @@
 class MeterBallistics
 {
 public:
-    MeterBallistics(int nChannels, bool bPeakMeterInfiniteHold, bool bAverageMeterInfiniteHold, bool transient_mode);
+    MeterBallistics(int nChannels, int CrestFactor, bool bPeakMeterInfiniteHold, bool bAverageMeterInfiniteHold, bool transient_mode);
     ~MeterBallistics();
 
     void setPeakMeterInfiniteHold(bool bInfiniteHold);
@@ -59,11 +59,12 @@ public:
     static float level2decibel(float fLevel);
     static float decibel2level(float fDecibels);
     static float getMeterMinimumDecibel();
-    static void setPeakToAverageCorrection(float peak_to_average_correction);
+    void setPeakToAverageCorrection(float peak_to_average_correction);
 private:
     JUCE_LEAK_DETECTOR(MeterBallistics);
 
     int nNumberOfChannels;
+    int nCrestFactor;
     bool bTransientMode;
 
     static float fMeterMinimumDecibel;

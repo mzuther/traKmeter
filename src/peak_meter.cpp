@@ -25,7 +25,7 @@
 
 #include "peak_meter.h"
 
-PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width, int nCrestFactor, int nNumChannels, int segment_height)
+PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
 {
     setName(componentName);
 
@@ -33,9 +33,9 @@ PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width,
     setOpaque(false);
 
     nInputChannels = nNumChannels;
-    nMeterCrestFactor = nCrestFactor;
+    nCrestFactor = CrestFactor;
 
-    nNumberOfBars = 9;
+    nNumberOfBars = 10;
     nSegmentHeight = segment_height;
     nMeterPositionTop = 21;
     nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
@@ -52,7 +52,7 @@ PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width,
     {
         nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
 
-        LevelMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nMeterCrestFactor, nSegmentHeight, true);
+        LevelMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true);
         addAndMakeVisible(LevelMeters[nChannel]);
     }
 }
@@ -127,9 +127,11 @@ void PeakMeter::paint(Graphics& g)
     g.setColour(Colours::red);
     drawMarkers(g, strMarker, x + 1, y, width, height);
 
-    for (int n = nNumberOfBars; n > 4; n -= 2)
+    y -= TraKmeter::TRAKMETER_SEGMENT_HEIGHT / 2;
+
+    for (int n = (nNumberOfBars - 1); n > 2; n -= 2)
     {
-        int nLevel = n + 1;
+        int nLevel = n - 19;
 
         if (nLevel > 0)
         {
@@ -142,7 +144,7 @@ void PeakMeter::paint(Graphics& g)
 
         y += 2 * nSegmentHeight;
 
-        if (nLevel == 10)
+        if (nLevel == -10)
         {
             g.setColour(Colours::white);
         }
@@ -154,6 +156,7 @@ void PeakMeter::paint(Graphics& g)
         drawMarkers(g, strMarker, x + 1, y, width, height);
     }
 
+    y -= TraKmeter::TRAKMETER_SEGMENT_HEIGHT / 2;
     strMarker = "SIG";
 
     g.setColour(Colours::yellow);
