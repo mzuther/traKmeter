@@ -63,18 +63,15 @@ bliss!
 \section{Gain staging}
 \label{sec:gain_staging}
 
-Professional analog audio equipment is designed to be run at nominal
-levels of \SI[addsign=all]{+4}{\dBu} (\SI{1.23}{\VRMS}), leaving a
-headroom for peaks of about \SI{20}{\dB}.  This is consistent with the
-maximum crest factor of analog audio signals.
+Professional analog audio equipment is designed to be run at a nominal
+level of \textbf{\SI[addsign=all]{+4}{\dBu}} (\SI{1.23}{\VRMS})
+leaving a headroom for peaks of about \SI{20}{\dB}.  This in turn is
+consistent with the maximum crest factor of analog audio signals.
 
-Thus, driving all equipment at \SI[addsign=all]{+4}{\dBu} ensures an
-optimal signal-to-noise ratio while preventing clipping and keeping
-transients intact.  The process of setting optimal input and output
-levels is called gain staging.  It starts at using a good preamp and
-cranking it up to the needed output level.  Do not fear the preamp's
-internal noise -- making up for low gain in later stages will only
-result in even more noise!
+Thus, driving all analog audio equipment at \SI[addsign=all]{+4}{\dBu}
+ensures an optimal signal-to-noise ratio while preventing clipping and
+keeping transients intact.  The process of setting audio devices to
+run at optimal input and output levels is called gain staging.
 
 Now let's transfer gain staging to the digital domain.  The maximum
 crest factor of analog audio signals is around \SI{20}{\dB}, so we'll
@@ -82,33 +79,33 @@ have to adjust the headroom accordingly.  To keep with international
 standards, we'll follow the
 \href{http://tech.ebu.ch/publications/r068}{EBU R68-2000}
 recommendation and set our average input and output levels to
-\SI{-18}{\dBFS} RMS.
+\textbf{\SI{-18}{\dBFS} RMS}.
 
 Again, this ensures an optimal signal-to-noise ratio while preventing
 clipping.  It also drives (most of) your digital audio equipment and
 plug-ins at the ``sweet spot''.
 
 Another recommendation is that peak levels should not exceed
-\SI{-9}{\dBFS} (EBU R68-2000) during recording, leaving enough space
-for inter-sample peaks.  Inter-sample peaks are audio peaks that lie
-\emph{in between} two successive samples and may lead to unpredictable
-clippings during digital-to-analog conversion.
+\textbf{\SI{-9}{\dBFS}} (EBU R68-2000) during recording, leaving
+enough space for inter-sample peaks.  Inter-sample peaks are audio
+peaks that lie \emph{in between} two successive samples and may lead
+to unpredictable clippings during digital-to-analog conversion.
 
 \section{Digital audio myths}
 \label{sec:digital_audio_myths}
 
 I can almost hear you: you have heard that digital recordings should
-be performed at levels close to but not exceeding \SI{0}{\dBFS}
+be performed at peak levels close to but not exceeding \SI{0}{\dBFS}
 (``digital full-scale'').  Heck, this misinformation has ended up in
-the manuals of some professional audio equipment.  But for the given
-reasons it is plain wrong.
+the manuals of some professional audio equipment.  But for the reasons
+given above it is plain wrong.
 
 Just do the math for a bit depth of 16 bit: even if your recordings
-peak at a (relatively low) level of \SI{-18}{\dBFS} and you discard
-the least significant bit (some people claim that it mostly consists
-of errors), this still leaves you with a signal-to-noise ratio of
-\SI{72}{\dB}.  That is about what you can expect from the best
-professional analog tape machines and recording desks!
+peak at a level of \SI{-18}{\dBFS} and you discard the least
+significant bit (some people claim that it mostly consists of errors),
+this still leaves you with a signal-to-noise ratio of \SI{72}{\dB}.
+That is about what you can expect from the best professional analog
+tape machines and recording desks!
 
 \begin{wrapfigure}{r}{0pt}
   \includegraphics[scale=0.24,clip]{include/images/otari_meter.png}
@@ -122,11 +119,11 @@ meter bridge (small triangle on the photo).  Although I admit that the
 mark is only useful for audio alignment, given that it sits on a peak
 meter\ldots
 
-If you do not believe me yet, simply record a couple of tracks at
-\SI{-2}{\dBFS} peak and then repeat the experiment at \SI{-10}{\dBFS}
-peak.  Mix the tracks, adjust master levels and compare the mixes.
-The mix from the tracks recorded at higher level will almost certainly
-sound worse.
+If you do not believe me still, simply record a couple of tracks
+peaking at \SI{-1}{\dBFS} and then repeat the procedure, this time
+having the tracks peak at \SI{-9}{\dBFS}.  Mix the tracks, adjust
+master levels and compare the mixes.  The mix from the tracks recorded
+at higher level will almost certainly sound worse.
 
 \section{Introducing traKmeter}
 \label{sec:introducing_trakmeter}
@@ -134,7 +131,56 @@ sound worse.
 Most digital audio equipment sadly only has peak meters.  This is
 readily understandable as you want to avoid digital clippings by all
 means.  However, the lack of average meters makes correct gain staging
-harder.  And this is were \textbf{traKmeter} comes in.
+almost impossible.
+
+For gain staging, you need average meters or, even better, a
+combination of peak and average meters.  And this is were
+\textbf{traKmeter} comes in.
+
+\chapter{traKmeter}
+\label{chap:trakmeter}
+
+\textbf{traKmeter} consists of two meters, a peak meter on top and an
+average meter below.  Both meters have an area of green LEDs that is
+enclosed by first yellow and then red LEDs.
+
+You may have noticed that the average meter's green area is centred
+around the \textbf{\SI{-18}{\dBFS} RMS} mark.  This number should be
+vaguely familiar.  Remember, it corresponds to the optimal average
+audio level in the digital domain.
+
+A fully lit yellow LED on the top end of the peak meter corresponds to
+a level of \textbf{\SI{-9}{\dBFS}}.  Again, this number should be
+familiar.  Remember, peak levels in the digital domain shouldn't
+exceed this level.
+
+Thus, by keeping meter readout in the green areas and from entering
+the yellow and red areas on top of each meter, you will automatically
+record at optimal audio levels.
+
+\newpage %% layout
+
+\section{Recording with traKmeter}
+\label{sec:recording_with_trakmeter}
+
+Open up an instance of \textbf{traKmeter} and set it up so that it
+measures your audio input.  That can be done either by starting the
+standalone version and connecting it to one or more input channels of
+your sound card, or by inserting a plug-in instance into an input
+channel of your digital audio workstation.
+
+In the second case, take care that your digital audio workstation
+doesn't add additional headroom and that no processing takes place
+before \textbf{traKmeter}.  This can be ascertained by feeding
+calibration tones into your sound card or by directly comparing the
+readouts of standalone and plug-in version.
+
+Now, feed a signal you want to record into an audio input channel and
+adjust the level using \textbf{traKmeter}.  Try to set the input level
+so that transients reach \textbf{\SI{-18}{\dBFS} RMS} on the average
+meter.  Make sure that the peak level never exceeds
+\textbf{\SI{-9}{\dBFS}}.  In case both conditions cannot be met
+simultaneously, adjust the peak level only.
 
 \chapter{Recording tips}
 \label{chap:recording_tips}
@@ -149,9 +195,9 @@ may not know some of them, so read ahead!
   Go for a simple design and invest your money in better quality
   instead.
 
-  Crank the preamp up to the needed output level.  Do not fear the
-  preamp's internal noise -- making up for low gain in later stages
-  will only result in even more noise!  Also see
+  Crank up the preamp to yield the needed output level.  Do not fear
+  the preamp's internal noise -- making up for low gain in later
+  stages will result in even more noise!  Also see
   \ref{sec:gain_staging}.
 
 \item[Avoid unballanced equipment.]  Run all signals on balanced lines
@@ -163,8 +209,9 @@ may not know some of them, so read ahead!
   possible.
 
 \item[Record at lower levels.]  Record digital audio at
-  \SI{-18}{\dBFS} RMS with peak levels not exceeding \SI{-9}{\dBFS}.
-  For an in-depth explanation, see \ref{sec:gain_staging}.
+  \textbf{\SI{-18}{\dBFS} RMS} with peak levels not exceeding
+  \textbf{\SI{-9}{\dBFS}}.  For an in-depth explanation, see
+  \ref{sec:gain_staging}.
 
 \item[Record in mono.]  Most audio sources do not contain stereo
   information that is useful in a mixing context (notable exceptions
@@ -211,11 +258,9 @@ may not know some of them, so read ahead!
   Finally, only use professional software for sample rate conversion.
   This is by no means a trivial task.
 
-\item[Dither often.]
+\item[Treat your room.]  TO DO!
 
-\item[Treat your room.]
-
-\item[Experiment with microphone placement.]
+\item[Experiment with microphone placement.]  TO DO!
 
 \end{description}
 
@@ -223,7 +268,7 @@ may not know some of them, so read ahead!
 \label{chap:installation}
 
 In order to use the pre-compiled binaries, simply extract the
-traKMeter files from the downloaded archive.  For the VST plug-in,
+traKmeter files from the downloaded archive.  For the VST plug-in,
 you'll then have to move the extracted files to your plug-in folder
 (\path{~/.vst}, \path{C:\Program Files\Steinberg\VstPlugins\} or the
   like).
@@ -231,66 +276,68 @@ you'll then have to move the extracted files to your plug-in folder
 \chapter{Controls}
 \label{chap:controls}
 
-\section{Reset button}
+\textbf{TO DO!}
 
-\begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset.png}
-\end{wrapfigure}
+% \section{Reset button}
 
-Click on this button to reset all meters and peaks.  You can also get
-rid of graphical artifacts, because the meters will be redrawn as
-well.
+% \begin{wrapfigure}{r}{0.14\linewidth}
+%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset.png}
+% \end{wrapfigure}
 
-\section{Validation button}
-\label{sec:validation_button}
+% Click on this button to reset all meters and peaks.  You can also get
+% rid of graphical artifacts, because the meters will be redrawn as
+% well.
 
-\begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
-\end{wrapfigure}
+% \section{Validation button}
+% \label{sec:validation_button}
 
-Click on this button to open the \textbf{validation window} (see
-\ref{chap:validation}) which allows you to play an audio file (WAV,
-AIFF or FLAC) through traKMeter and dump internal data.  During
-validation, the button will light up and clicking it will stop the
-validation.
+% \begin{wrapfigure}{r}{0.14\linewidth}
+%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
+%   \newline \vspace{-0.9\baselineskip}
+%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
+% \end{wrapfigure}
 
-On Linux, dumped data will be written to \path{stderr}, so just start
-the traKMeter standalone or your VST host from the shell and watch the
-output coming.  On other systems, have a look at your VST host's log
-files (I have successfully used Ableton Live for this).  If that
-doesn't work, you might have to start either the traKMeter standalone
-or your VST host from a debugger.
+% Click on this button to open the \textbf{validation window} (see
+% \ref{chap:validation}) which allows you to play an audio file (WAV,
+% AIFF or FLAC) through traKmeter and dump internal data.  During
+% validation, the button will light up and clicking it will stop the
+% validation.
 
-As a side note, \textbf{SMA(50)} designates the simple moving average
-of 50 values, a neat way to emphasise trends and eliminate short-term
-fluctuations.
+% On Linux, dumped data will be written to \path{stderr}, so just start
+% the traKmeter standalone or your VST host from the shell and watch the
+% output coming.  On other systems, have a look at your VST host's log
+% files (I have successfully used Ableton Live for this).  If that
+% doesn't work, you might have to start either the traKmeter standalone
+% or your VST host from a debugger.
 
-\section{About button}
+% As a side note, \textbf{SMA(50)} designates the simple moving average
+% of 50 values, a neat way to emphasise trends and eliminate short-term
+% fluctuations.
 
-\begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_off.png}
-\end{wrapfigure}
+% \section{About button}
 
-Clicking on this button will open the \textbf{about window} where you
-will be informed about version number, contributors, copyright and the
-GNU General Public License.
+% \begin{wrapfigure}{r}{0.14\linewidth}
+%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_on.png}
+%   \newline \vspace{-0.9\baselineskip}
+%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_off.png}
+% \end{wrapfigure}
 
-\section{Display license}
+% Clicking on this button will open the \textbf{about window} where you
+% will be informed about version number, contributors, copyright and the
+% GNU General Public License.
 
-\begin{wrapfigure}{r}{0.15\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_off.png}
-\end{wrapfigure}
+% \section{Display license}
 
-This button is located in the \textbf{about window} and does not only
-advertise that you are using free software licensed under the
-\textbf{GNU General Public License} -- when clicked, it will also open
-the license's website in your web browser \dots
+% \begin{wrapfigure}{r}{0.15\linewidth}
+%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_on.png}
+%   \newline \vspace{-0.9\baselineskip}
+%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_off.png}
+% \end{wrapfigure}
+
+% This button is located in the \textbf{about window} and does not only
+% advertise that you are using free software licensed under the
+% \textbf{GNU General Public License} -- when clicked, it will also open
+% the license's website in your web browser \dots
 
 \chapter{Meters}
 \label{chap:meters}
@@ -301,231 +348,232 @@ The average level meter uses an averaging period of \num{1024}
 samples.  This meter exhibits a completely flat frequency response.
 
 On rising levels, it takes \SI{10}{\milli\second} for the meter to
-reach \SI{99}{\percent} of the final reading (logarithmic).  When the
-levels start falling, it generally has a fall time of \SI{6}{\dB} per
-second (linear), unless the level falls below \SI{-22}{\dBFS}, when
-the ballistics change to \SI{300}{\milli\second} for the meter to
-reach \SI{99}{\percent} of the final reading.
+reach \SI{99}{\percent} of the final reading.  When above
+\SI{-22}{\dBFS}, levels fall with a speed of \SI{6}{\dB\per\second}.
+Ballistics then change to \SI{300}{\milli\second} for the meter to
+fall to \SI{99}{\percent} of the final reading.
+
+Peak levels will be held for \SI{10}{\second} and then fall with a
+speed of \SI{8.67}{\dB\per\second}.
 
 \section{Peak level meter}
 
-The peak level meter displays also possesses a completely flat
-frequency response.  It has a rise time of one sample and a fall time
-of \SI{8.67}{\dB\per\second} (linear).
+The peak level meter also possesses a completely flat frequency
+response.  It has a rise time of one sample and a fall time of
+\SI{8.67}{\dB\per\second}.
+
+Peak levels will be held until the meter is reset.
 
 \chapter{Validation}
 \label{chap:validation}
 
 \textbf{TO DO!}
 
-I have gone to great lengths to ensure that all meters read correctly.
-You want to validate for yourself?  Just download and extract the
-source code.  The directory \path{validation} contains instructions
-and FLAC-compressed wave files.  To validate \textbf{ITU-R} mode,
-please download \href{http://www.itu.int/pub/R-REP-BS.2217}{ITU-R
-  BS.2217} and follow the instructions (at the time being, the tests
-for loudness gating should be ignored).  A word of warning: these
-audio files may \textbf{damage your ears} and speakers, so please
-watch your monitor levels!
+% I have gone to great lengths to ensure that all meters read correctly.
+% You want to validate for yourself?  Just download and extract the
+% source code.  The directory \path{validation} contains instructions
+% and FLAC-compressed wave files.  To validate \textbf{ITU-R} mode,
+% please download \href{http://www.itu.int/pub/R-REP-BS.2217}{ITU-R
+%   BS.2217} and follow the instructions (at the time being, the tests
+% for loudness gating should be ignored).  A word of warning: these
+% audio files may \textbf{damage your ears} and speakers, so please
+% watch your monitor levels!
 
-\begin{wrapfigure}{r}{0.395\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/dialog_validation.png}
-\end{wrapfigure}
+% \begin{wrapfigure}{r}{0.395\linewidth}
+%   \includegraphics[scale=\screenshotscale,clip]{include/images/dialog_validation.png}
+% \end{wrapfigure}
 
-After opening the \textbf{validation window} (see
-\ref{sec:validation_button}), click on the ellipsis button (the one
-with the dots) to select an audio file for playback through traKMeter.
-Please make sure that the sample rates of your host (\textbf{Host SR})
-and the audio file match, otherwise the results will not be correct.
+% After opening the \textbf{validation window} (see
+% \ref{sec:validation_button}), click on the ellipsis button (the one
+% with the dots) to select an audio file for playback through traKmeter.
+% Please make sure that the sample rates of your host (\textbf{Host SR})
+% and the audio file match, otherwise the results will not be correct.
 
-Now, select which \textbf{variables} (if any) should be dumped.  You
-may also restrict dumped data to a specific audio \textbf{channel}.
+% Now, select which \textbf{variables} (if any) should be dumped.  You
+% may also restrict dumped data to a specific audio \textbf{channel}.
 
-Finally, click on the \textbf{validate} button to reset all meters and
-start playback of the selected audio file.  All audio input will be
-discarded during playback and for an additional ten seconds.  To stop
-playback early, simply click on the \textbf{validate} button again.
+% Finally, click on the \textbf{validate} button to reset all meters and
+% start playback of the selected audio file.  All audio input will be
+% discarded during playback and for an additional ten seconds.  To stop
+% playback early, simply click on the \textbf{validate} button again.
 
-In case you want to calibrate your monitor system, head over to
-\href{http://www.digido.com/media/downloads.html}{Bob Katz's download
-  section}, get the file labelled \textbf{\SI{-20}{\dBFS} RMS pink
-  noise stereo \num{44.1}}, set K-meter to \textbf{RMS} mode and click
-on the \textbf{validate} button.  Please ensure that all intermediate
-software and hardware mixers are set to the correct levels.
+% In case you want to calibrate your monitor system, head over to
+% \href{http://www.digido.com/media/downloads.html}{Bob Katz's download
+%   section}, get the file labelled \textbf{\SI{-20}{\dBFS} RMS pink
+%   noise stereo \num{44.1}}, set K-meter to \textbf{RMS} mode and click
+% on the \textbf{validate} button.  Please ensure that all intermediate
+% software and hardware mixers are set to the correct levels.
 
-\section{Validation status}
+% \section{Validation status}
 
-\begin{minipage}{1.0\linewidth}
-  \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
-  \begin{tabular}{>{\bfseries}llcc}
+% \begin{minipage}{1.0\linewidth}
+%   \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
+%   \begin{tabular}{>{\bfseries}llcc}
 
-    &
-    \textbf{Readout} &
-    \textbf{RMS} &
-    \textbf{ITU-R} \\
+%     &
+%     \textbf{Readout} &
+%     \textbf{RMS} &
+%     \textbf{ITU-R} \\
 
-    Avg level meter &
-    meter ballistics &
-    \Checkmark{} &
-    \Checkmark{} \\
+%     Avg level meter &
+%     meter ballistics &
+%     \Checkmark{} &
+%     \Checkmark{} \\
 
-    &
-    readings &
-    \Checkmark{} &
-    --- \\
+%     &
+%     readings &
+%     \Checkmark{} &
+%     --- \\
 
-    &
-    frequency response &
-    \Checkmark{} &
-    \Checkmark{} \\
+%     &
+%     frequency response &
+%     \Checkmark{} &
+%     \Checkmark{} \\
 
-    &
-    pink noise &
-    \Checkmark{} &
-    --- \\
+%     &
+%     pink noise &
+%     \Checkmark{} &
+%     --- \\
 
-    &
-    ITU-R BS.2217 &
-    --- &
-    \Checkmark{} \\
+%     &
+%     ITU-R BS.2217 &
+%     --- &
+%     \Checkmark{} \\
 
-    Peak level meter &
-    meter ballistics &
-    \Checkmark{} &
-    \Checkmark{} \\
+%     Peak level meter &
+%     meter ballistics &
+%     \Checkmark{} &
+%     \Checkmark{} \\
 
-    &
-    readings &
-    \Checkmark{} &
-    \Checkmark{} \\
+%     &
+%     readings &
+%     \Checkmark{} &
+%     \Checkmark{} \\
 
-    Maximum peak &
-    readings &
-    \Checkmark{} &
-    \Checkmark{} \\
+%     Maximum peak &
+%     readings &
+%     \Checkmark{} &
+%     \Checkmark{} \\
 
-    Overload counter &
-    readings &
-    \Checkmark{} &
-    \Checkmark{} \\
+%     Overload counter &
+%     readings &
+%     \Checkmark{} &
+%     \Checkmark{} \\
 
-    Phase correlation &
-    readings &
-    \Checkmark{} &
-    \Checkmark{} \\
+%     Phase correlation &
+%     readings &
+%     \Checkmark{} &
+%     \Checkmark{} \\
 
-    Stereo meter &
-    readings &
-    \Checkmark{} &
-    \Checkmark{} \\
+%     Stereo meter &
+%     readings &
+%     \Checkmark{} &
+%     \Checkmark{} \\
 
-  \end{tabular}
-\end{minipage}
+%   \end{tabular}
+% \end{minipage}
 
-\newpage %% layout
+% \newpage %% layout
 
-\section{Frequency and phase response}
+% \section{Frequency and phase response}
 
-Frequency and phase response have been determined at a sample rate of
-\SI{192}{\kilo\hertz} using
-\href{http://www.savioursofsoul.de/Christian/programs/measurement-programs/}{VST
-  Plugin Analyser}.
+% Frequency and phase response have been determined at a sample rate of
+% \SI{192}{\kilo\hertz} using
+% \href{http://www.savioursofsoul.de/Christian/programs/measurement-programs/}{VST
+%   Plugin Analyser}.
 
-\textbf{Frequency response of complete effect path (\SI{5}{\hertz} to
-  \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{\pm 0.1}{\dB}):}
+% \textbf{Frequency response of complete effect path (\SI{5}{\hertz} to
+%   \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{\pm 0.1}{\dB}):}
 
-\begin{center}
-  \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-fx_path.png}
-\end{center}
+% \begin{center}
+%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-fx_path.png}
+% \end{center}
 
-\textbf{Phase response of complete effect path (\SI{5}{\hertz} to
-  \SI{96}{\kilo\hertz}, \SI{0}{\degree}\,\SI{\pm 0.1}{\degree}):}
+% \textbf{Phase response of complete effect path (\SI{5}{\hertz} to
+%   \SI{96}{\kilo\hertz}, \SI{0}{\degree}\,\SI{\pm 0.1}{\degree}):}
 
-\begin{center}
-  \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-fx_path.png}
-\end{center}
+% \begin{center}
+%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-fx_path.png}
+% \end{center}
 
-\newpage %% layout
+% \newpage %% layout
 
-\textbf{Frequency response of band-limited RMS detection stage
-  (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-140}{\dB} to
-  \SI{5}{\dB}):}
+% \textbf{Frequency response of band-limited RMS detection stage
+%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-140}{\dB} to
+%   \SI{5}{\dB}):}
 
-\begin{center}
-  \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-rms.png}
-\end{center}
+% \begin{center}
+%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-rms.png}
+% \end{center}
 
-\textbf{Phase response of band-limited RMS detection stage
-  (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-180}{\degree} to
-  \SI[addsign]{+180}{\degree}):}
+% \textbf{Phase response of band-limited RMS detection stage
+%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-180}{\degree} to
+%   \SI[addsign]{+180}{\degree}):}
 
-\begin{center}
-  \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-rms.png}
-\end{center}
-\newpage %% layout
+% \begin{center}
+%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-rms.png}
+% \end{center}
+% \newpage %% layout
 
-\textbf{Frequency response of band-limited ITU-R BS.1770-1 detection stage
-  (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-140}{\dB} to
-  \SI{5}{\dB}):}
+% \textbf{Frequency response of band-limited ITU-R BS.1770-1 detection stage
+%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-140}{\dB} to
+%   \SI{5}{\dB}):}
 
-\begin{center}
-  \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-itu_r.png}
-\end{center}
+% \begin{center}
+%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-itu_r.png}
+% \end{center}
 
-\textbf{Phase response of band-limited ITU-R BS.1770-1 detection stage
-  (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-180}{\degree} to
-  \SI[addsign]{+180}{\degree}):}
+% \textbf{Phase response of band-limited ITU-R BS.1770-1 detection stage
+%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-180}{\degree} to
+%   \SI[addsign]{+180}{\degree}):}
 
-\begin{center}
-  \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-itu_r.png}
-\end{center}
+% \begin{center}
+%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-itu_r.png}
+% \end{center}
 
-\newpage %% layout
+% \newpage %% layout
 
-\textbf{Frequency response of band-limited RMS detection stage
-  (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{\pm
-    1}{\dB}):}
+% \textbf{Frequency response of band-limited RMS detection stage
+%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{\pm
+%     1}{\dB}):}
 
-\begin{center}
-  \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq_zoomed-rms.png}
-\end{center}
+% \begin{center}
+%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq_zoomed-rms.png}
+% \end{center}
 
-\textbf{Frequency response of band-limited ITU-R BS.1770-1 detection stage
-  (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{-6}{\dB} to
-  \SI{4}{\dB}):}
+% \textbf{Frequency response of band-limited ITU-R BS.1770-1 detection stage
+%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{-6}{\dB} to
+%   \SI{4}{\dB}):}
 
-\begin{center}
-  \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq_zoomed-itu_r.png}
-\end{center}
+% \begin{center}
+%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq_zoomed-itu_r.png}
+% \end{center}
 
-\chapter{Help needed}
-\label{chap:help_needed}
+% \chapter{Help needed}
+% \label{chap:help_needed}
 
-As traKmeter was coded using cross-platform code, it should be easy to
-compile versions for Windows (\num{64} bit) and Mac OS X.  I just
-don’t have the adequate systems and compilers.
+% As traKmeter was coded using cross-platform code, it should be easy to
+% compile versions for Windows (\num{64} bit) and Mac OS X.  I just
+% don’t have the adequate systems and compilers.
 
-In case you want to help, please see the next chapter for an email
-address.  You’ll need sufficient experience in coding, compiling and
-debugging, though, so no beginners please!
+% In case you want to help, please see the next chapter for an email
+% address.  You’ll need sufficient experience in coding, compiling and
+% debugging, though, so no beginners please!
 
 \chapter{Final words}
 \label{chap:final_words}
 
-\textbf{TO DO!}
+I want to thank \textbf{Rickard} of Interfearing Sounds for asking me
+how to use K-Meter for tracking.  This question and the following
+thoughts really got traKmeter started.  I'd like to thank
+\textbf{bram@smartelectronix} for his code to calculate logarithmic
+rise and fall times.  I must also thank the \textbf{beta testers} and
+\textbf{users of traKmeter} for sending kind words, suggestions and
+bug reports.  Finally, I want to thank the \textbf{open source
+  community} for making all of this possible.
 
-I want to express my gratitude to \textbf{Bob Katz} for kindly
-answering all of my questions regarding the K-System meter and
-checking this document for technical errors.  I'd further like to
-thank \textbf{bram@smartelectronix} for his code to calculate
-logarithmic rise and fall times, and \textbf{Raiden} for working out
-the ITU-R BS.1770-1 filter specifications.  I must also thank the
-\textbf{beta testers} and \textbf{users of traKMeter} for sending kind
-words, suggestions and bug reports.  Finally, I want to thank the
-\textbf{open source community} for making all of this possible.
-
-Although coding traKMeter has been a lot of fun, it has also been a
-lot of work.  So if you like traKMeter, why not send me a short email
+Although coding traKmeter has been a lot of fun, it has also been a
+lot of work.  So if you like traKmeter, why not send me a short email
 and tell me so?  Write a few words about yourself, send suggestions
 for future updates or volunteer to create a nice theme -- do whatever
 you like!
@@ -546,11 +594,9 @@ Thanks for using free software.  I hope you'll enjoy it!
 \chapter{How to build traKmeter}
 \label{chap:build_trakmeter}
 
-\textbf{TO DO!}
-
 \section{Preparing GNU/Linux}
 
-To build traKMeter yourself, I recommend setting up a \texttt{chroot}
+To build traKmeter yourself, I recommend setting up a \texttt{chroot}
 environment.  This is fast and easy to do on Debian-based systems and
 might save you a \textbf{lot} of trouble.  At the time of writing, I'm
 using Linux Mint 13 (Maya), but the procedure should be similar on
@@ -626,7 +672,7 @@ Finally, log out and log in as normal user:
 \end{verbatim}
 
 Congratulations -- after you have installed the dependencies (see
-below), you are ready to build traKMeter!
+below), you are ready to build traKmeter!
 
 \section{Dependencies}
 
@@ -646,8 +692,6 @@ below), you are ready to build traKMeter!
 Place the binary somewhere in your \path{PATH}.  Depending on your
 platform, you should run \emph{premake} using the scripts
 \path{build/run_premake.sh} or \path{build/run_premake.bat}.
-
-\newpage %% layout
 
 \subsection{JUCE library}
 
@@ -709,7 +753,7 @@ Simply extract the archive into the directory
 
 This application formats the code so it looks more beautiful and
 consistent.  Thus, you only have to install it if you plan to help me
-with coding traKMeter.
+with coding traKmeter.
 
 \subsubsection{Installation}
 
@@ -731,9 +775,9 @@ where \application{CFG} is one of \application{debug32},
 \application{debug64}, \application{release32} and
 \application{release64}, and \application{TARGET} is one of
 \application{linux\_standalone\_stereo},
-\application{linux\_standalone\_surround},
+\application{linux\_standalone\_multi},
 \application{linux\_vst\_stereo} and
-\application{linux\_vst\_surround}.
+\application{linux\_vst\_multi}.
 
 The compiled binaries will end up in the directory \path{bin}.
 

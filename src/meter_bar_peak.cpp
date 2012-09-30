@@ -41,7 +41,6 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     nWidth = width;
     nHeight = nNumberOfBars * nSegmentHeight + 1;
 
-    int nCrestFactor = 10 * crest_factor;
     fPeakLevel = 0.0f;
     fPeakLevelPeak = 0.0f;
 
