@@ -86,10 +86,10 @@ clipping.  It also drives (most of) your digital audio equipment and
 plug-ins at the ``sweet spot''.
 
 Another recommendation is that peak levels should not exceed
-\textbf{\SI{-9}{\dBFS}} (EBU R68-2000) during recording, leaving
-enough space for inter-sample peaks.  Inter-sample peaks are audio
-peaks that lie \emph{in between} two successive samples and may lead
-to unpredictable clippings during digital-to-analog conversion.
+\textbf{\SI{-9}{\dBFS}} (EBU R68-2000) during tracking, leaving enough
+space for inter-sample peaks.  Inter-sample peaks are audio peaks that
+lie \emph{in between} two successive samples and may lead to
+unpredictable clippings during digital-to-analog conversion.
 
 \section{Digital audio myths}
 \label{sec:digital_audio_myths}
@@ -156,12 +156,10 @@ exceed this level.
 
 Thus, by keeping meter readout in the green areas and from entering
 the yellow and red areas on top of each meter, you will automatically
-record at optimal audio levels.
+track at optimal audio levels.
 
-\newpage %% layout
-
-\section{Recording with traKmeter}
-\label{sec:recording_with_trakmeter}
+\section{Tracking with traKmeter}
+\label{sec:tracking_with_trakmeter}
 
 Open up an instance of \textbf{traKmeter} and set it up so that it
 measures your audio input.  That can be done either by starting the
@@ -181,6 +179,38 @@ so that transients reach \textbf{\SI{-18}{\dBFS} RMS} on the average
 meter.  Make sure that the peak level never exceeds
 \textbf{\SI{-9}{\dBFS}}.  In case both conditions cannot be met
 simultaneously, adjust the peak level only.
+
+\section{Mixing with traKmeter}
+\label{sec:mixing_with_trakmeter}
+
+When you get someone else's tracks for mixing, chances are high that
+they have been recorded far too hot.  While you can't change that, you
+might want to adjust them to optimal loudness so that your upcoming
+mix is not ruined.
+
+If you have the time, it may be worth to \textbf{re-record} all tracks
+through a really good preamp and adjust their loudness at the same
+time.  The result can be stunning, especially when the original
+recordings were made with poor equipment.
+
+Another option is to insert \textbf{traKmeter} on each channel as
+first plug-in, enable the ``Mixing'' button and adjust volume using
+the gain knob.  When traKmeter is closed, the meters aren't updated,
+so the plug-in uses less system resources.  On slow computers,
+however, use traKmeter to find the correct gain and then exchange it
+against a gain plug-in.
+
+In any case, mixing levels will now be much lower than what you are
+used to.  This can easily be corrected by either adjusting the output
+gain of your subgroups or by inserting a gain plug-in in your master
+track.
+
+To preserve all transients, the final loudness of your mix should stay
+within \textbf{\SI{-20}{\dBFS} RMS} and \textbf{\SI{-16}{\dBFS} RMS}.
+Remember that smashed transients will be gone forever, whereas you can
+always bring up the volume during mastering!  My plug-in
+\textbf{K-Meter} and its K-20 scale may help you with setting correct
+mixing levels.
 
 \chapter{Recording tips}
 \label{chap:recording_tips}
