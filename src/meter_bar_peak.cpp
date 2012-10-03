@@ -62,15 +62,11 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
         fRange = nThresholdDifference / 10.0f;
         bDiscreteLevels = false;
 
-        if (nThreshold >= -80)
+        if ((nThreshold < -180) || (nThreshold >= -90))
         {
             nColor = 0;
         }
-        else if (nThreshold < -160)
-        {
-            nColor = 1;
-        }
-        else if ((nThreshold >= -100) && (nThreshold < -80))
+        else if ((nThreshold < -160) || (nThreshold >= -100))
         {
             nColor = 1;
         }

@@ -63,17 +63,17 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
         fRange = nThresholdDifference / 10.0f;
         bDiscreteLevels = false;
 
-        if ((nThreshold >= -200) && (nThreshold < -160))
+        if ((nThreshold < -210) || (nThreshold >= -150))
         {
-            nColor = 2;
+            nColor = 0;
         }
-        else if ((nThreshold >= -210) && (nThreshold < -150))
+        else if ((nThreshold < -200) || (nThreshold >= -160))
         {
             nColor = 1;
         }
         else
         {
-            nColor = 0;
+            nColor = 2;
         }
 
         MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);

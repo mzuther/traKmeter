@@ -35,7 +35,7 @@ PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width,
     nInputChannels = nNumChannels;
     nCrestFactor = CrestFactor;
 
-    nNumberOfBars = 10;
+    nNumberOfBars = 12;
     nSegmentHeight = segment_height;
     nMeterPositionTop = 21;
     nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
@@ -131,7 +131,7 @@ void PeakMeter::paint(Graphics& g)
 
     for (int n = (nNumberOfBars - 1); n > 2; n -= 2)
     {
-        int nLevel = n - 19;
+        int nLevel = n - 21;
 
         if (nLevel > 0)
         {
