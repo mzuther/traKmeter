@@ -116,6 +116,8 @@ OBJECTS := \
 	$(OBJDIR)/main.o \
 	$(OBJDIR)/peak_meter.o \
 	$(OBJDIR)/meter_bar_average.o \
+	$(OBJDIR)/meter_signal_led.o \
+	$(OBJDIR)/signal_meter.o \
 	$(OBJDIR)/average_meter.o \
 	$(OBJDIR)/window_validation.o \
 	$(OBJDIR)/peak_label.o \
@@ -216,6 +218,12 @@ $(OBJDIR)/peak_meter.o: ../../../src/peak_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/meter_bar_average.o: ../../../src/meter_bar_average.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/meter_signal_led.o: ../../../src/meter_signal_led.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/signal_meter.o: ../../../src/signal_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/average_meter.o: ../../../src/average_meter.cpp

@@ -540,7 +540,7 @@ void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChann
     // reset all meters before we start the validation
     pMeterBallistics->reset();
 
-    audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, TRAKMETER_CREST_FACTOR);
+    audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, 0);
     audioFilePlayer->setReporters(nSelectedChannel, bReportCSV, bAverageMeterLevel, bPeakMeterLevel);
 
     // refresh editor; "V+" --> validation started

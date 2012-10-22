@@ -56,7 +56,7 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
     MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
     addAndMakeVisible(MeterArray[n]);
 
-    for (int n = 1; n < (nNumberOfBars - 1); n++)
+    for (int n = 1; n < nNumberOfBars; n++)
     {
         int nThresholdDifference = 10;
         nThreshold -= nThresholdDifference;
@@ -79,16 +79,6 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
         MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
         addAndMakeVisible(MeterArray[n]);
     }
-
-    n = nNumberOfBars - 1;
-    // signals are detected at -60 dB and above
-    fRange = -(-600 - nThreshold) * 0.1f;
-    nThreshold = -600;
-    nColor = 0;
-    bDiscreteLevels = false;
-
-    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
-    addAndMakeVisible(MeterArray[n]);
 }
 
 

@@ -2,13 +2,13 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup>
 		<Filter Include="src">
-			<UniqueIdentifier>{792A811A-73E7-4947-7F0A-187454DD9D1F}</UniqueIdentifier>
+			<UniqueIdentifier>{C7C0B1B8-6A1A-4E40-8F7D-9D5C2F814CD5}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\juce_library_code">
-			<UniqueIdentifier>{C9B3E6B9-24FD-9C05-7C1E-3059F5B5249E}</UniqueIdentifier>
+			<UniqueIdentifier>{8DD33336-BB30-6FA9-2E07-7B106CB55710}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="src\resources">
-			<UniqueIdentifier>{6F5BCD4C-9185-72A4-FE8D-EF158013A1B2}</UniqueIdentifier>
+			<UniqueIdentifier>{4C29334C-9A36-A0F6-E0D1-5DAF8F93C503}</UniqueIdentifier>
 		</Filter>
 	</ItemGroup>
 	<ItemGroup>
@@ -42,6 +42,9 @@
 		<ClInclude Include="..\..\..\src\audio_ring_buffer.h">
 			<Filter>src</Filter>
 		</ClInclude>
+		<ClInclude Include="..\..\..\src\signal_meter.h">
+			<Filter>src</Filter>
+		</ClInclude>
 		<ClInclude Include="..\..\..\src\peak_label.h">
 			<Filter>src</Filter>
 		</ClInclude>
@@ -55,6 +58,9 @@
 			<Filter>src</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\src\plugin_parameters.h">
+			<Filter>src</Filter>
+		</ClInclude>
+		<ClInclude Include="..\..\..\src\meter_signal_led.h">
 			<Filter>src</Filter>
 		</ClInclude>
 		<ClInclude Include="..\..\..\src\plugin_processor.h">
@@ -105,6 +111,12 @@
 			<Filter>src</Filter>
 		</ClCompile>
 		<ClCompile Include="..\..\..\src\meter_bar_average.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\src\meter_signal_led.cpp">
+			<Filter>src</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\src\signal_meter.cpp">
 			<Filter>src</Filter>
 		</ClCompile>
 		<ClCompile Include="..\..\..\src\average_meter.cpp">

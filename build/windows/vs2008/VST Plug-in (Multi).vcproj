@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="VST Plug-in (Multi)"
-	ProjectGUID="{116DCBE2-8C5C-0D2A-1B0C-0D90769ABC7C}"
+	ProjectGUID="{AED28299-24E8-7BAE-0957-E849B461E22A}"
 	RootNamespace="VST Plug-in (Multi)"
 	Keyword="Win32Proj"
 	>
@@ -283,6 +283,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\signal_meter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\peak_label.h"
 				>
 			</File>
@@ -300,6 +304,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\plugin_parameters.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\meter_signal_led.h"
 				>
 			</File>
 			<File
@@ -348,6 +356,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\meter_bar_average.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\meter_signal_led.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\signal_meter.cpp"
 				>
 			</File>
 			<File

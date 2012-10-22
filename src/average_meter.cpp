@@ -95,14 +95,14 @@ void AverageMeter::paint(Graphics& g)
     g.setColour(Colours::grey.brighter(0.6f));
     g.fillRect(x, y, width + 3, height);
 
-    g.setColour(Colours::grey);
+    g.setColour(Colours::black);
     g.drawRect(x, y, width + 3, height);
 
     int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 1;
     g.setColour(Colours::grey.brighter(0.6f));
     g.fillRect(x + x_2, y, width + 3, height);
 
-    g.setColour(Colours::grey);
+    g.setColour(Colours::black);
     g.drawRect(x + x_2 + x, y, width + 3, height);
 
     String strMarker = "dB";
@@ -114,7 +114,7 @@ void AverageMeter::paint(Graphics& g)
     g.setColour(Colours::grey.brighter(0.6f));
     g.fillRect((nWidth - 32) / 2, y, 32, height);
 
-    g.setColour(Colours::grey);
+    g.setColour(Colours::black);
     g.drawRect((nWidth - 32) / 2, y, 32, height);
 
     g.setColour(Colours::black);
@@ -157,7 +157,7 @@ void AverageMeter::paint(Graphics& g)
     }
 
     y -= TraKmeter::TRAKMETER_SEGMENT_HEIGHT / 2;
-    strMarker = "SIG";
+    strMarker = "LOW";
 
     g.setColour(Colours::yellow);
     drawMarkers(g, strMarker, x + 1, y + 2 * nSegmentHeight, width, height);

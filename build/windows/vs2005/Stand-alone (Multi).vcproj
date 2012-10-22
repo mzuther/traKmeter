@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="8.00"
 	Name="Stand-alone (Multi)"
-	ProjectGUID="{41BE96D1-2C73-A7E4-96D6-11BE88D72AEA}"
+	ProjectGUID="{2B6352CD-6C44-9AE2-91E8-D050CC8B71AB}"
 	RootNamespace="Stand-alone (Multi)"
 	Keyword="Win32Proj"
 	>
@@ -283,6 +283,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\signal_meter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\peak_label.h"
 				>
 			</File>
@@ -300,6 +304,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\plugin_parameters.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\meter_signal_led.h"
 				>
 			</File>
 			<File
@@ -352,6 +360,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\meter_bar_average.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\meter_signal_led.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\signal_meter.cpp"
 				>
 			</File>
 			<File

@@ -11,7 +11,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{CEA8C32C-DB58-9689-219A-212569DE84F5}</ProjectGuid>
+		<ProjectGuid>{6E9AF266-1BC8-97CA-763B-5F562ED73011}</ProjectGuid>
 		<RootNamespace>VST Plug-in (Stereo)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 	</PropertyGroup>
@@ -124,11 +124,13 @@
 		<ClInclude Include="..\..\..\src\meter_segment.h" />
 		<ClInclude Include="..\..\..\src\overflow_meter.h" />
 		<ClInclude Include="..\..\..\src\audio_ring_buffer.h" />
+		<ClInclude Include="..\..\..\src\signal_meter.h" />
 		<ClInclude Include="..\..\..\src\peak_label.h" />
 		<ClInclude Include="..\..\..\src\window_about.h" />
 		<ClInclude Include="..\..\..\src\meter_bar_peak.h" />
 		<ClInclude Include="..\..\..\src\audio_file_player.h" />
 		<ClInclude Include="..\..\..\src\plugin_parameters.h" />
+		<ClInclude Include="..\..\..\src\meter_signal_led.h" />
 		<ClInclude Include="..\..\..\src\plugin_processor.h" />
 		<ClInclude Include="..\..\..\src\meter_ballistics.h" />
 		<ClInclude Include="..\..\..\src\plugin_editor.h" />
@@ -154,6 +156,10 @@
 		<ClCompile Include="..\..\..\src\peak_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\src\meter_bar_average.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\src\meter_signal_led.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\src\signal_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\src\average_meter.cpp">
 		</ClCompile>

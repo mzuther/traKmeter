@@ -58,14 +58,14 @@ However, most of these obstacles can be overcome easily by proper gain
 staging, minimising the crossing of domains and choosing appropriate
 bit depth and sample rates.  If you also learn how to properly test
 and operate your equipment, you're well on your way to pure audio
-bliss!
+bliss\dots
 
 \section{Gain staging}
 \label{sec:gain_staging}
 
 Professional analog audio equipment is designed to be run at a nominal
-level of \textbf{\SI[addsign=all]{+4}{\dBu}} (\SI{1.23}{\VRMS})
-leaving a headroom for peaks of about \SI{20}{\dB}.  This in turn is
+level of \textbf{\SI[addsign=all]{+4}{\dBu}} (\SI{1.23}{\VRMS}) and
+leaves a headroom for peaks of about \SI{20}{\dB}.  This in turn is
 consistent with the maximum crest factor of analog audio signals.
 
 Thus, driving all analog audio equipment at \SI[addsign=all]{+4}{\dBu}
@@ -73,15 +73,15 @@ ensures an optimal signal-to-noise ratio while preventing clipping and
 keeping transients intact.  The process of setting audio devices to
 run at optimal input and output levels is called gain staging.
 
-Now let's transfer gain staging to the digital domain.  The maximum
-crest factor of analog audio signals is around \SI{20}{\dB}, so we'll
-have to adjust the headroom accordingly.  To keep with international
+Now let's transfer gain staging to the digital domain.  As the maximum
+crest factor of analog audio signals amounts to \SI{20}{\dB}, we have
+to adjust the headroom accordingly.  To keep with international
 standards, we'll follow the
 \href{http://tech.ebu.ch/publications/r068}{EBU R68-2000}
 recommendation and set our average input and output levels to
 \textbf{\SI{-18}{\dBFS} RMS}.
 
-Again, this ensures an optimal signal-to-noise ratio while preventing
+Again, this ensures a good signal-to-noise ratio while preventing
 clipping.  It also drives (most of) your digital audio equipment and
 plug-ins at the ``sweet spot''.
 
@@ -100,8 +100,8 @@ be performed at peak levels close to but not exceeding \SI{0}{\dBFS}
 the manuals of some professional audio equipment.  But for the reasons
 given above it is plain wrong.
 
-Just do the math for a bit depth of 16 bit: even if your recordings
-peak at a level of \SI{-18}{\dBFS} and you discard the least
+Let's look at the math for bit depths of 16 bit: even if your
+recordings peak at \SI{-18}{\dBFS} and you discard the least
 significant bit (some people claim that it mostly consists of errors),
 this still leaves you with a signal-to-noise ratio of \SI{72}{\dB}.
 That is about what you can expect from the best professional analog
@@ -111,19 +111,19 @@ tape machines and recording desks!
   \includegraphics[scale=0.24,clip]{include/images/otari_meter.png}
 \end{wrapfigure}
 
-As some sort of proof, the analog inputs and outputs of my 16-bit hard
-disk recorder (Otari PD-80) are aligned to
-``\SI[addsign=all]{+4}{\dBu} (\SI{-15}{\dB} from digital
-full-scale)''.  The manufacturer has even marked this level on the
-meter bridge (small triangle on the photo).  Although I admit that the
-mark is only useful for audio alignment, given that it sits on a peak
-meter\ldots
+Or take my professional 16-bit hard disk recorder (Otari PD-80): its
+analog inputs and outputs are aligned to ``\SI[addsign=all]{+4}{\dBu}
+(\textbf{\SI{-15}{\dB}} from digital full-scale)''.  The manufacturer
+has even marked this level on the meter bridge (small triangle on the
+photo).  Even if the mark is only useful for audio alignment, given
+that it sits on a peak meter\ldots
 
-If you do not believe me still, simply record a couple of tracks
-peaking at \SI{-1}{\dBFS} and then repeat the procedure, this time
-having the tracks peak at \SI{-9}{\dBFS}.  Mix the tracks, adjust
-master levels and compare the mixes.  The mix from the tracks recorded
-at higher level will almost certainly sound worse.
+% If you do not believe me still, simply record a couple of tracks
+% peaking at \SI{-1}{\dBFS} and then repeat the procedure, this time
+% having the tracks peak at \SI{-9}{\dBFS}.  Mix the tracks, adjust
+% master levels and compare the mixes.  The mix from the tracks recorded
+% at higher level will almost certainly sound worse (especially when you
+% use plug-ins).
 
 \section{Introducing traKmeter}
 \label{sec:introducing_trakmeter}
@@ -133,7 +133,7 @@ readily understandable as you want to avoid digital clippings by all
 means.  However, the lack of average meters makes correct gain staging
 almost impossible.
 
-For gain staging, you need average meters or, even better, a
+For gain staging, you need average meters or -- even better -- a
 combination of peak and average meters.  And this is were
 \textbf{traKmeter} comes in.
 
@@ -151,8 +151,8 @@ audio level in the digital domain.
 
 A fully lit yellow LED on the top end of the peak meter corresponds to
 a level of \textbf{\SI{-9}{\dBFS}}.  Again, this number should be
-familiar.  Remember, peak levels in the digital domain shouldn't
-exceed this level.
+familiar: peak levels in the digital domain shouldn't exceed this
+level.
 
 Thus, by keeping meter readout in the green areas and from entering
 the yellow and red areas on top of each meter, you will automatically
@@ -173,25 +173,25 @@ before \textbf{traKmeter}.  This can be ascertained by feeding
 calibration tones into your sound card or by directly comparing the
 readouts of standalone and plug-in version.
 
-Now, feed a signal you want to record into an audio input channel and
-adjust the level using \textbf{traKmeter}.  Try to set the input level
-so that transients reach \textbf{\SI{-18}{\dBFS} RMS} on the average
-meter.  Make sure that the peak level never exceeds
+Now, feed the signal you want to record into an audio input channel
+and adjust its level using \textbf{traKmeter}.  Try to set the input
+level so that transients reach \textbf{\SI{-18}{\dBFS} RMS} on the
+average meter.  Make sure that the peak level never exceeds
 \textbf{\SI{-9}{\dBFS}}.  In case both conditions cannot be met
 simultaneously, adjust the peak level only.
 
 \section{Mixing with traKmeter}
 \label{sec:mixing_with_trakmeter}
 
-When you get someone else's tracks for mixing, chances are high that
-they have been recorded far too hot.  While you can't change that, you
+When you get someone else's tracks for mixing, chances are that they
+have been recorded far too hot.  While you can't change that, you
 might want to adjust them to optimal loudness so that your upcoming
 mix is not ruined.
 
-If you have the time, it may be worth to \textbf{re-record} all tracks
-through a really good preamp and adjust their loudness at the same
-time.  The result can be stunning, especially when the original
-recordings were made with poor equipment.
+If the original recordings were made with poor equipment and you have
+the time, it may be worth to \textbf{re-record} all tracks through a
+really good preamp and adjust their loudness at the same time.  The
+result can be stunning!
 
 Another option is to insert \textbf{traKmeter} on each channel as
 first plug-in, enable the ``Mixing'' button and adjust volume using
@@ -209,8 +209,8 @@ To preserve all transients, the final loudness of your mix should stay
 within \textbf{\SI{-20}{\dBFS} RMS} and \textbf{\SI{-16}{\dBFS} RMS}.
 Remember that smashed transients will be gone forever, whereas you can
 always bring up the volume during mastering!  My plug-in
-\textbf{K-Meter} and its K-20 scale may help you with setting correct
-mixing levels.
+\href{http://code.mzuther.de/}{\textbf{K-Meter}} and its K-20 scale
+may help you with setting correct mixing levels.
 
 \chapter{Recording tips}
 \label{chap:recording_tips}
@@ -221,8 +221,8 @@ may not know some of them, so read ahead!
 \begin{description}
 
 \item[Use a good preamp.  Crank it up.]  ``Good'' doesn't mean your
-  preamp has to have a lot of channels or features.  In the contrary!
-  Go for a simple design and invest your money in better quality
+  preamp has to have a lot of channels or features.  To the contrary!
+  Go for a simple design and invest your money in professional quality
   instead.
 
   Crank up the preamp to yield the needed output level.  Do not fear
@@ -237,6 +237,12 @@ may not know some of them, so read ahead!
 \item[Use short audio chains.]  All equipment adds noise or may
   otherwise degrade audio, so keep your audio chains as short as
   possible.
+
+  For example, instead of routing your mixer between preamp and hard
+  disk recorder, connect it to the hard disk recorder's
+  \emph{outputs}.  This simple change can lead to much better
+  recordings (especially with cheap mixers) and you'll still be able
+  to hear yourself and other tracks during recording.
 
 \item[Record at lower levels.]  Record digital audio at
   \textbf{\SI{-18}{\dBFS} RMS} with peak levels not exceeding
@@ -282,8 +288,8 @@ may not know some of them, so read ahead!
   Please note that some professionals actually advise against using
   higher sample rates due to the possible build-up of noise beyond
   \SI{20}{\kilo\hertz}.  It is also much more demanding on your
-  computer, audio equipment and plug-ins -- and may not be worth it.
-  Try changing from recording at 16 bit to 24 bit first!
+  computer, audio equipment and plug-ins -- and may not be worth the
+  hassle.  Try changing from recording at 16 bit to 24 bit first!
 
   Finally, only use professional software for sample rate conversion.
   This is by no means a trivial task.
@@ -378,10 +384,8 @@ The average level meter uses an averaging period of \num{1024}
 samples.  This meter exhibits a completely flat frequency response.
 
 On rising levels, it takes \SI{10}{\milli\second} for the meter to
-reach \SI{99}{\percent} of the final reading.  When above
-\SI{-22}{\dBFS}, levels fall with a speed of \SI{6}{\dB\per\second}.
-Ballistics then change to \SI{300}{\milli\second} for the meter to
-fall to \SI{99}{\percent} of the final reading.
+reach \SI{99}{\percent} of the final reading.  The meter then switches
+to a linear fall time of \SI{6}{\dB\per\second}.
 
 Peak levels will be held for \SI{10}{\second} and then fall with a
 speed of \SI{8.67}{\dB\per\second}.
@@ -393,6 +397,12 @@ response.  It has a rise time of one sample and a fall time of
 \SI{8.67}{\dB\per\second}.
 
 Peak levels will be held until the meter is reset.
+
+\section{Signal meter}
+
+The blue signal meter detects peak levels of \SI{-60}{\dBFS} and
+above.  The meter has a rise time of one sample and falls to
+\SI{99}{\percent} of the final reading in \SI{2}{\second}.
 
 \chapter{Validation}
 \label{chap:validation}

@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="VST Plug-in (Stereo)"
-	ProjectGUID="{8FED7478-F1AD-DF25-C6FA-BD5118EF673C}"
+	ProjectGUID="{DB279985-26A4-0870-5BAF-B0B0D74310E2}"
 	RootNamespace="VST Plug-in (Stereo)"
 	Keyword="Win32Proj"
 	>
@@ -283,6 +283,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\src\signal_meter.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\src\peak_label.h"
 				>
 			</File>
@@ -300,6 +304,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\plugin_parameters.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\meter_signal_led.h"
 				>
 			</File>
 			<File
@@ -348,6 +356,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\src\meter_bar_average.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\meter_signal_led.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\src\signal_meter.cpp"
 				>
 			</File>
 			<File

@@ -23,58 +23,39 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __TRAKMETER_H__
-#define __TRAKMETER_H__
-
-class AverageMeter;
-class PeakMeter;
-class SignalMeter;
+#ifndef __METER_SIGNAL_LED_H__
+#define __METER_SIGNAL_LED_H__
 
 #include "juce_library_code/juce_header.h"
-#include "average_meter.h"
-#include "peak_meter.h"
-#include "signal_meter.h"
 
 
 //==============================================================================
 /**
 */
-class TraKmeter : public Component
+class MeterSignalLed : public Component
 {
 public:
-    static const int TRAKMETER_LABEL_WIDTH = 38;
-    static const int TRAKMETER_SEGMENT_WIDTH = 22;
-    static const int TRAKMETER_SEGMENT_HEIGHT = 10;
+    MeterSignalLed(const String& componentName, String& label, float fThreshold, float fRange);
+    ~MeterSignalLed();
 
-    TraKmeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels);
-    ~TraKmeter();
-
-    void setLevels(MeterBallistics* pMeterBallistics);
+    void setLevel(float fLevel);
     void paint(Graphics& g);
     void resized();
     void visibilityChanged();
 
 private:
-    JUCE_LEAK_DETECTOR(TraKmeter);
+    JUCE_LEAK_DETECTOR(MeterSignalLed);
 
-    int nPosX;
-    int nPosY;
-    int nHeight;
-    int nWidth;
+    String strLabel;
+    float fBrightness;
 
-    int nHeightPeakMeter;
-    int nHeightAverageMeter;
-    int nHeightSeparator;
-
-    int nInputChannels;
-
-    PeakMeter* peak_meter;
-    AverageMeter* average_meter;
-    SignalMeter* signal_meter;
+    float fLowerThreshold;
+    float fUpperThreshold;
+    float fThresholdRange;
 };
 
 
-#endif  // __TRAKMETER_H__
+#endif  // __METER_SIGNAL_LED_H__
 
 
 // Local Variables:

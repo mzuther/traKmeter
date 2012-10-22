@@ -76,6 +76,9 @@ MeterBallistics::MeterBallistics(int nChannels, int CrestFactor, bool bPeakMeter
     fPeakMeterPeakLastChanged = new float[nNumberOfChannels];
     fAverageMeterPeakLastChanged = new float[nNumberOfChannels];
 
+    // allocate variables for peak meter signal level
+    fPeakMeterSignals = new float[nNumberOfChannels];
+
     // allocate variables for overall maximum peak level and number of
     // registered overflows (all audio input channels)
     fMaximumPeakLevels = new float[nNumberOfChannels];
@@ -115,6 +118,9 @@ MeterBallistics::~MeterBallistics()
     delete [] fAverageMeterPeakLastChanged;
     fAverageMeterPeakLastChanged = NULL;
 
+    delete [] fPeakMeterSignals;
+    fPeakMeterSignals = NULL;
+
     delete [] fMaximumPeakLevels;
     fMaximumPeakLevels = NULL;
 
@@ -139,6 +145,9 @@ void MeterBallistics::reset()
         // set average meter's level and peak mark to meter's minimum
         fAverageMeterLevels[nChannel] = fMeterMinimumDecibel;
         fAverageMeterPeakLevels[nChannel] = fMeterMinimumDecibel;
+
+        // set peak meter signal levels to meter's minimum
+        fPeakMeterSignals[nChannel] = fMeterMinimumDecibel;
 
         // set overall maximum peak level to meter's minimum
         fMaximumPeakLevels[nChannel] = fMeterMinimumDecibel;
@@ -280,6 +289,22 @@ float MeterBallistics::getAverageMeterPeakLevel(int nChannel)
 }
 
 
+float MeterBallistics::getPeakMeterSignal(int nChannel)
+/*  Get peak meter signal level of an audio channel.
+
+    nChannel (integer): selected audio channel
+
+    return value (float): returns the peak meter signal level in
+    decibel that has been registered on the given audio channel
+*/
+{
+    jassert(nChannel >= 0);
+    jassert(nChannel < nNumberOfChannels);
+
+    return fPeakMeterSignals[nChannel];
+}
+
+
 float MeterBallistics::getMaximumPeakLevel(int nChannel)
 /*  Get overall maximum peak level of an audio channel.
 
@@ -350,6 +375,8 @@ void MeterBallistics::updateChannel(int nChannel, float fTimePassed, float fPeak
     // peak mark
     fPeakMeterLevels[nChannel] = PeakMeterBallistics(fTimePassed, fPeak, fPeakMeterLevels[nChannel]);
     fPeakMeterPeakLevels[nChannel] = PeakMeterPeakBallistics(fTimePassed, &fPeakMeterPeakLastChanged[nChannel], fPeak, fPeakMeterPeakLevels[nChannel]);
+
+    PeakMeterSignalBallistics(nChannel, fTimePassed, fPeak);
 
     // apply average meter's ballistics and store resulting level and
     // peak mark
@@ -556,33 +583,23 @@ void MeterBallistics::AverageMeterBallistics(int nChannel, float fTimePassed, fl
 */
 {
     // in "transient mode", the meter rises to 99% of the final
-    // reading in 10 ms (logarithmic) and generally has a fall time of
-    // 6 dB per second (linear)
+    // reading in 10 ms (logarithmic) and has a fall time of 6 dB per
+    // second (linear)
     if (bTransientMode)
     {
         // meter is falling
         if (fAverageLevelCurrent < fAverageMeterLevels[nChannel])
         {
-            // switch to fast meter fall time on levels outside the
-            // average meter's scale
-            if (fAverageMeterLevels[nChannel] < (-nCrestFactor - 4))
-            {
-                LogMeterBallistics(0.300f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
-            }
-            else
-            {
-                // fall time: 6 dB per second (linear)
-                float fReleaseCoef = 6.0f * fTimePassed;
+            // fall time: 6 dB per second (linear)
+            float fReleaseCoef = 6.0f * fTimePassed;
 
-                // apply fall time
-                fAverageMeterLevels[nChannel] -= fReleaseCoef;
+            // apply fall time
+            fAverageMeterLevels[nChannel] -= fReleaseCoef;
 
-                // make sure that meter doesn't fall below current level
-                if (fAverageLevelCurrent > fAverageMeterLevels[nChannel])
-                {
-                    // meter reaches 99% of the final reading in 10 ms
-                    LogMeterBallistics(0.010f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
-                }
+            // make sure that meter doesn't fall below current level
+            if (fAverageLevelCurrent > fAverageMeterLevels[nChannel])
+            {
+                fAverageMeterLevels[nChannel] = fAverageLevelCurrent;
             }
         }
         // meter is rising
@@ -592,8 +609,8 @@ void MeterBallistics::AverageMeterBallistics(int nChannel, float fTimePassed, fl
             LogMeterBallistics(0.010f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
         }
     }
-    // otherwise, the meter reaches 99% of the final reading in 300 ms
-    // (logarithmic)
+    // in "classic mode", the meter reaches 99% of the final reading
+    // in 300 ms (logarithmic)
     else
     {
         LogMeterBallistics(0.300f, fTimePassed, fAverageLevelCurrent, fAverageMeterLevels[nChannel]);
@@ -620,6 +637,34 @@ float MeterBallistics::AverageMeterPeakBallistics(float fTimePassed, float* fLas
     // the peak marks ballistics of peak meter and average meter are
     // identical, so let's reuse the peak meter code
     return PeakMeterPeakBallistics(fTimePassed, fLastChanged, fPeakCurrent, fPeakOld);
+}
+
+
+void MeterBallistics::PeakMeterSignalBallistics(int nChannel, float fTimePassed, float fPeakMeterSignalCurrent)
+/*  Calculate ballistics for peak meter signal levels and update readout.
+
+    fTimePassed (float): time that has passed since last update (in
+    fractional seconds)
+
+    fPeakMeterSignalCurrent (float): current peak meter signal level in
+    decibel
+
+    return value: none
+*/
+{
+    // meter is rising
+    if (fPeakMeterSignalCurrent >= fPeakMeterSignals[nChannel])
+    {
+        // immediate rise time, so return current peak meter signal
+        // level as new reading
+        fPeakMeterSignals[nChannel] = fPeakMeterSignalCurrent;
+    }
+    // meter is falling
+    else
+    {
+        // meter reaches 99% of the final reading in 2000 ms
+        LogMeterBallistics(2.000f, fTimePassed, fPeakMeterSignalCurrent, fPeakMeterSignals[nChannel]);
+    }
 }
 
 
