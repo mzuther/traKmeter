@@ -662,8 +662,8 @@ void MeterBallistics::PeakMeterSignalBallistics(int nChannel, float fTimePassed,
     // meter is falling
     else
     {
-        // meter reaches 99% of the final reading in 2000 ms
-        LogMeterBallistics(2.000f, fTimePassed, fPeakMeterSignalCurrent, fPeakMeterSignals[nChannel]);
+        // meter reaches 99% of the final reading in 1200 ms
+        LogMeterBallistics(1.200f, fTimePassed, fPeakMeterSignalCurrent, fPeakMeterSignals[nChannel]);
     }
 }
 
