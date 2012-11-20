@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="LEmwq6" name="traKmeter" projectType="audioplug" version="1.04.0"
+              bundleIdentifier="de.mzuther.traKmeter" buildVST="1" buildRTAS="0"
+              buildAU="1" pluginName="traKmeter" pluginDesc="Loudness meter for correctly setting up tracking and mixing levels"
+              pluginManufacturer="mzuther" pluginManufacturerCode="mz" pluginCode="trak"
+              pluginChannelConfigs="{1, 1}, {2, 2}" pluginIsSynth="0" pluginWantsMidiIn="0"
+              pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="1" pluginTailLength="0"
+              pluginEditorRequiresKeys="0" pluginAUExportPrefix="traKmeterAU"
+              pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="ePlugInCategory_None"
+              jucerVersion="3.0.0" companyName="mzuther">
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" objCExtraSuffix="uKstId" juceFolder="libraries/juce/modules"
+               vstFolder="libraries/vstsdk2.4">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="traKmeter"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="2" targetName="traKmeter"
+                       osxSDK="default" osxCompatibility="default" osxArchitecture="default"/>
+      </CONFIGURATIONS>
+    </XCODE_MAC>
+  </EXPORTFORMATS>
+  <MAINGROUP id="icjBJ4" name="traKmeter">
+    <GROUP id="{95C9EAB6-B78C-80DA-1D02-53CBEF0E6BCE}" name="Source">
+      <GROUP id="{B84CCD7B-2A5F-D22D-9E0A-AC69F077C790}" name="resources">
+        <FILE id="RcRsxn" name="resources.cpp" compile="1" resource="0" file="Source/resources/resources.cpp"/>
+        <FILE id="eTwu9N" name="resources.h" compile="0" resource="0" file="Source/resources/resources.h"/>
+      </GROUP>
+      <FILE id="o6nkqx" name="audio_file_player.cpp" compile="1" resource="0"
+            file="Source/audio_file_player.cpp"/>
+      <FILE id="KGHWmW" name="audio_file_player.h" compile="0" resource="0"
+            file="Source/audio_file_player.h"/>
+      <FILE id="jty7vd" name="audio_ring_buffer.cpp" compile="1" resource="0"
+            file="Source/audio_ring_buffer.cpp"/>
+      <FILE id="f0fsDT" name="audio_ring_buffer.h" compile="0" resource="0"
+            file="Source/audio_ring_buffer.h"/>
+      <FILE id="SootqA" name="average_meter.cpp" compile="1" resource="0"
+            file="Source/average_meter.cpp"/>
+      <FILE id="JsJxDv" name="average_meter.h" compile="0" resource="0" file="Source/average_meter.h"/>
+      <FILE id="IcW0ex" name="averager.cpp" compile="1" resource="0" file="Source/averager.cpp"/>
+      <FILE id="bQByaf" name="averager.h" compile="0" resource="0" file="Source/averager.h"/>
+      <FILE id="YXehbb" name="channel_slider.cpp" compile="1" resource="0"
+            file="Source/channel_slider.cpp"/>
+      <FILE id="tF3DYj" name="channel_slider.h" compile="0" resource="0"
+            file="Source/channel_slider.h"/>
+      <FILE id="iudgyl" name="main.cpp" compile="1" resource="0" file="Source/main.cpp"/>
+      <FILE id="IxSLje" name="meter_ballistics.cpp" compile="1" resource="0"
+            file="Source/meter_ballistics.cpp"/>
+      <FILE id="nTbjVY" name="meter_ballistics.h" compile="0" resource="0"
+            file="Source/meter_ballistics.h"/>
+      <FILE id="x9eFF3" name="meter_bar_average.cpp" compile="1" resource="0"
+            file="Source/meter_bar_average.cpp"/>
+      <FILE id="XQugiZ" name="meter_bar_average.h" compile="0" resource="0"
+            file="Source/meter_bar_average.h"/>
+      <FILE id="Yj2jMI" name="meter_bar_peak.cpp" compile="1" resource="0"
+            file="Source/meter_bar_peak.cpp"/>
+      <FILE id="qXHcws" name="meter_bar_peak.h" compile="0" resource="0"
+            file="Source/meter_bar_peak.h"/>
+      <FILE id="qZW8PR" name="meter_segment.cpp" compile="1" resource="0"
+            file="Source/meter_segment.cpp"/>
+      <FILE id="aikQXi" name="meter_segment.h" compile="0" resource="0" file="Source/meter_segment.h"/>
+      <FILE id="M0fiTp" name="meter_signal_led.cpp" compile="1" resource="0"
+            file="Source/meter_signal_led.cpp"/>
+      <FILE id="T5BZdG" name="meter_signal_led.h" compile="0" resource="0"
+            file="Source/meter_signal_led.h"/>
+      <FILE id="ARL5Y2" name="overflow_meter.cpp" compile="1" resource="0"
+            file="Source/overflow_meter.cpp"/>
+      <FILE id="TdRCcR" name="overflow_meter.h" compile="0" resource="0"
+            file="Source/overflow_meter.h"/>
+      <FILE id="Dzy7kx" name="peak_label.cpp" compile="1" resource="0" file="Source/peak_label.cpp"/>
+      <FILE id="DaEXCG" name="peak_label.h" compile="0" resource="0" file="Source/peak_label.h"/>
+      <FILE id="HVI6ul" name="peak_meter.cpp" compile="1" resource="0" file="Source/peak_meter.cpp"/>
+      <FILE id="zfhwnx" name="peak_meter.h" compile="0" resource="0" file="Source/peak_meter.h"/>
+      <FILE id="H5agV4" name="plugin_editor.cpp" compile="1" resource="0"
+            file="Source/plugin_editor.cpp"/>
+      <FILE id="vEblzb" name="plugin_editor.h" compile="0" resource="0" file="Source/plugin_editor.h"/>
+      <FILE id="cH1acQ" name="plugin_parameters.cpp" compile="1" resource="0"
+            file="Source/plugin_parameters.cpp"/>
+      <FILE id="B5OtSK" name="plugin_parameters.h" compile="0" resource="0"
+            file="Source/plugin_parameters.h"/>
+      <FILE id="yacTv3" name="plugin_processor.cpp" compile="1" resource="0"
+            file="Source/plugin_processor.cpp"/>
+      <FILE id="tJ7Ige" name="plugin_processor.h" compile="0" resource="0"
+            file="Source/plugin_processor.h"/>
+      <FILE id="wbc7zS" name="prohibiting_bounds_constrainer.h" compile="0"
+            resource="0" file="Source/prohibiting_bounds_constrainer.h"/>
+      <FILE id="oeKMKw" name="signal_meter.cpp" compile="1" resource="0"
+            file="Source/signal_meter.cpp"/>
+      <FILE id="J5Ziks" name="signal_meter.h" compile="0" resource="0" file="Source/signal_meter.h"/>
+      <FILE id="Hy4G30" name="standalone_application.cpp" compile="1" resource="0"
+            file="Source/standalone_application.cpp"/>
+      <FILE id="KrUEGR" name="standalone_application.h" compile="0" resource="0"
+            file="Source/standalone_application.h"/>
+      <FILE id="kby3Po" name="trakmeter.cpp" compile="1" resource="0" file="Source/trakmeter.cpp"/>
+      <FILE id="ILMt5L" name="trakmeter.h" compile="0" resource="0" file="Source/trakmeter.h"/>
+      <FILE id="DrDXN2" name="window_about.cpp" compile="1" resource="0"
+            file="Source/window_about.cpp"/>
+      <FILE id="mQyYrl" name="window_about.h" compile="0" resource="0" file="Source/window_about.h"/>
+      <FILE id="xsAxj7" name="window_validation.cpp" compile="1" resource="0"
+            file="Source/window_validation.cpp"/>
+      <FILE id="wgLlBW" name="window_validation.h" compile="0" resource="0"
+            file="Source/window_validation.h"/>
+    </GROUP>
+  </MAINGROUP>
+  <MODULES>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_gui_audio" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="0"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+</JUCERPROJECT>

@@ -73,17 +73,18 @@ ensures an optimal signal-to-noise ratio while preventing clipping and
 keeping transients intact.  The process of setting audio devices to
 run at optimal input and output levels is called gain staging.
 
-Now let's transfer gain staging to the digital domain.  As the maximum
-crest factor of analog audio signals amounts to \SI{20}{\dB}, we have
-to adjust the headroom accordingly.  To keep with international
+Now let's transfer this to the digital domain.  As the maximum crest
+factor of analog audio signals amounts to \SI{20}{\dB}, we have to
+adjust the headroom accordingly.  To keep with international
 standards, we'll follow the
 \href{http://tech.ebu.ch/publications/r068}{EBU R68-2000}
 recommendation and set our average input and output levels to
 \textbf{\SI{-18}{\dBFS} RMS}.
 
 Again, this ensures a good signal-to-noise ratio while preventing
-clipping.  It also drives (most of) your digital audio equipment and
-plug-ins at the ``sweet spot''.
+clipping.  Maybe even more important, this level also drives (most of)
+your digital audio equipment and plug-ins at their respective ``sweet
+spot''.
 
 Another recommendation is that peak levels should not exceed
 \textbf{\SI{-9}{\dBFS}} (EBU R68-2000) during tracking, leaving enough
@@ -301,6 +302,8 @@ may not know some of them, so read ahead\dots
 
   For example, I currently track using an old hard disk recorder, as
   digital audio workstations tend to distract me too much.
+
+\item[Avoid copy'n'paste.]  TO DO!
 
 \item[Do not fix things later.]  A bad recording is a bad recording is
   a bad recording.  You can't really ``fix it in the mix''.  So tools
@@ -754,7 +757,7 @@ platform, you should run \emph{premake} using the scripts
   \hspace*{6em}\=\=\kill
 
   Importance:  \> required \\
-  Version:     \> 1.53 \\
+  Version:     \> 2.0 \\
   License:     \> GPL v2 \\
   Homepage:    \> \href{http://www.rawmaterialsoftware.com/juce.php}{www.rawmaterialsoftware.com/juce.php}
 \end{tabbing}
