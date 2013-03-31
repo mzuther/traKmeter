@@ -2,12 +2,12 @@ Git HEAD
 ========
 
 * peak and average (RMS) meter using "K-20" scales
-    
+
 * meter ballistics, reset button
 
 * mixing mode for changing the gain (pre-meter)
-    
+
+* validation of read-out
+
 * GNU/Linux:  VST plug-in, stand-alone
   Windows:    VST plug-in, stand-alone
-    
-* still missing: validation of read-out

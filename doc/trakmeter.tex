@@ -23,7 +23,7 @@
       }}}
 }
 
-\author{\normalsize\copyright{} 2012
+\author{\normalsize\copyright{} 2012-2013
   \href{http://www.mzuther.de/}{Martin Zuther}}
 
 \date{\normalsize \emph{Last edited on \today}}
@@ -44,8 +44,8 @@ problems of its own.
 
 Whereas the analog domain is relatively inert against levels exceeding
 \SI{0}{\dBFS} (overdriving some analog equipment actually sounds
-good), the digital domain punishes even small transgressions into
-forbidden territory with harsh clipping.
+pretty good), the digital domain punishes even small transgressions
+into forbidden territory with harsh clipping.
 
 And while digital audio can be transferred without loss in quality, it
 is degraded by each and every calculation, be it a simple change in
@@ -70,8 +70,8 @@ consistent with the maximum crest factor of analog audio signals.
 
 Thus, driving all analog audio equipment at \SI[addsign=all]{+4}{\dBu}
 ensures an optimal signal-to-noise ratio while preventing clipping and
-keeping transients intact.  The process of setting audio devices to
-run at optimal input and output levels is called gain staging.
+keeping all transients intact.  The process of setting audio devices
+to run at optimal input and output levels is called gain staging.
 
 Now let's transfer this to the digital domain.  As the maximum crest
 factor of analog audio signals amounts to \SI{20}{\dB}, we have to
@@ -118,6 +118,15 @@ analog inputs and outputs are aligned to ``\SI[addsign=all]{+4}{\dBu}
 has even marked this level on the meter bridge (small triangle on the
 photo).  Even if the mark is only useful for audio alignment, given
 that it sits on a peak meter\ldots
+
+There is a great thread over at Gearslutz (``The Reason Most ITB mixes
+don’t Sound as good as Analog mixes'') well worth reading.  Here are
+links to the
+\href{http://www.gearslutz.com/board/5062929-post1.html}{first post}
+and two other selected posts
+(\href{http://www.gearslutz.com/board/5064831-post1874.html}{\#1874}
+and
+\href{http://www.gearslutz.com/board/5609740-post3614.html}{\#3614}).
 
 % If you do not believe me still, simply record a couple of tracks
 % peaking at \SI{-1}{\dBFS} and then repeat the procedure, this time
@@ -237,8 +246,8 @@ may not know some of them, so read ahead\dots
   use DI boxes or transformers and read the previous sentence again.
 
 \item[Use short audio chains.]  All equipment adds noise or may
-  otherwise degrade audio, so keep your audio chains as short as
-  possible.
+  otherwise degrade audio, so keep your audio recording chains as
+  short as possible.
 
   For example, instead of routing your mixer between preamp and hard
   disk recorder, connect it to the hard disk recorder's
@@ -258,21 +267,23 @@ may not know some of them, so read ahead\dots
   issues in the mixing stage.
 
   Recording these sources in stereo will only waste space and make you
-  miserable during mixing.  The solution is to record them in mono.
+  miserable during mixing.  So why not record them in mono in the
+  first place?
 
 \item[Use high bit depths.]  Do yourself a favour and record at 24 bit
   instead of 16 bit.  The additional bits provide an incredible amount
   of extra detail and you can record at lower levels without losing
   information.  When properly dithered, changing to a lower bit depth
-  even preserves some of that detail.
+  even preserves quite a bit of that detail.
 
   Also, if you edit audio files or apply effects, calculation errors
   are inevitable.  At 24 bit, however, these artifacts are
   \SI{48}{\dB} lower in level (and thus inaudible) compared to 16 bit
   audio files.
 
-  Your digital audio workstation's bus should use at least 32 bits to
-  avoid accumulation of the above-mentioned artifacts.
+  Your digital audio workstation's bus should use at least 32 bits
+  (floating point) to avoid accumulation of the above-mentioned
+  artifacts.
 
 \item[Avoid sample rate conversion.]  Sample rate conversion usually
   degrades audio (especially small changes of a few \si{\kilo\hertz}),
@@ -300,10 +311,16 @@ may not know some of them, so read ahead\dots
   with the flow of the session.  This is easily done by keeping
   editing and mixing to the bare minimum.
 
-  For example, I currently track using an old hard disk recorder, as
-  digital audio workstations tend to distract me too much.
+  For example, I currently track using an old hard disk recorder (I
+  love that thing!), as digital audio workstations tend to distract me
+  too much.
 
-\item[Avoid copy'n'paste.]  TO DO!
+\item[Avoid copy'n'paste.]  Quite a lot of today's electronic music
+  sounds like one short loop that was ``arranged'' by occasionally
+  muting some of its tracks.  This takes away all the small
+  inaccuracies that happen when humans play instruments.  Instead of
+  looping a track eight times, record a couple of takes and comp the
+  best ones.  You'll be surprised at the difference it makes!
 
 \item[Do not fix things later.]  A bad recording is a bad recording is
   a bad recording.  You can't really ``fix it in the mix''.  So tools
@@ -342,31 +359,31 @@ you'll then have to move the extracted files to your plug-in folder
 % rid of graphical artifacts, because the meters will be redrawn as
 % well.
 
-% \section{Validation button}
-% \label{sec:validation_button}
+\section{Validation button}
+\label{sec:validation_button}
 
-% \begin{wrapfigure}{r}{0.14\linewidth}
-%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
-%   \newline \vspace{-0.9\baselineskip}
-%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
-% \end{wrapfigure}
+\begin{wrapfigure}{r}{0.14\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
+\end{wrapfigure}
 
-% Click on this button to open the \textbf{validation window} (see
-% \ref{chap:validation}) which allows you to play an audio file (WAV,
-% AIFF or FLAC) through traKmeter and dump internal data.  During
-% validation, the button will light up and clicking it will stop the
-% validation.
+Click on this button to open the \textbf{validation window} (see
+\ref{chap:validation}) which allows you to play an audio file (WAV,
+AIFF or FLAC) through traKmeter and dump internal data.  During
+validation, the button will light up and clicking it will stop the
+validation.
 
-% On Linux, dumped data will be written to \path{stderr}, so just start
-% the traKmeter standalone or your VST host from the shell and watch the
-% output coming.  On other systems, have a look at your VST host's log
-% files (I have successfully used Ableton Live for this).  If that
-% doesn't work, you might have to start either the traKmeter standalone
-% or your VST host from a debugger.
+On Linux, dumped data will be written to \path{stderr}, so just start
+the traKmeter standalone or your VST host from the shell and watch the
+output coming.  On other systems, have a look at your VST host's log
+files (I have successfully used Ableton Live for this).  If that
+doesn't work, you might have to start either the traKmeter standalone
+or your VST host from a debugger.
 
-% As a side note, \textbf{SMA(50)} designates the simple moving average
-% of 50 values, a neat way to emphasise trends and eliminate short-term
-% fluctuations.
+As a side note, \textbf{SMA(50)} designates the simple moving average
+of 50 values, a neat way to emphasise trends and eliminate short-term
+fluctuations.
 
 % \section{About button}
 
@@ -425,111 +442,55 @@ above.  The meter has a rise time of one sample and falls to
 \chapter{Validation}
 \label{chap:validation}
 
-\textbf{TO DO!}
+I have gone to great lengths to ensure that the meters read correctly.
+You want to validate for yourself?  Just download and extract the
+source code.  The directory \path{validation} contains instructions
+and a FLAC-compressed wave file.  A word of warning: this audio file
+may \textbf{damage your ears} and speakers, so please watch your
+monitor levels!
 
-% I have gone to great lengths to ensure that all meters read correctly.
-% You want to validate for yourself?  Just download and extract the
-% source code.  The directory \path{validation} contains instructions
-% and FLAC-compressed wave files.  To validate \textbf{ITU-R} mode,
-% please download \href{http://www.itu.int/pub/R-REP-BS.2217}{ITU-R
-%   BS.2217} and follow the instructions (at the time being, the tests
-% for loudness gating should be ignored).  A word of warning: these
-% audio files may \textbf{damage your ears} and speakers, so please
-% watch your monitor levels!
+\begin{wrapfigure}{r}{0.395\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/dialog_validation.png}
+\end{wrapfigure}
 
-% \begin{wrapfigure}{r}{0.395\linewidth}
-%   \includegraphics[scale=\screenshotscale,clip]{include/images/dialog_validation.png}
-% \end{wrapfigure}
+After opening the \textbf{validation window} (see
+\ref{sec:validation_button}), click on the ellipsis button (the one
+with the dots) to select an audio file for playback through traKmeter.
+Please make sure that the sample rates of your host (\textbf{Host SR})
+and the audio file match, otherwise the results will not be correct.
 
-% After opening the \textbf{validation window} (see
-% \ref{sec:validation_button}), click on the ellipsis button (the one
-% with the dots) to select an audio file for playback through traKmeter.
-% Please make sure that the sample rates of your host (\textbf{Host SR})
-% and the audio file match, otherwise the results will not be correct.
+Now, select which \textbf{variables} (if any) should be dumped.  You
+may also restrict dumped data to a specific audio \textbf{channel}.
 
-% Now, select which \textbf{variables} (if any) should be dumped.  You
-% may also restrict dumped data to a specific audio \textbf{channel}.
+Finally, click on the \textbf{validate} button to reset all meters and
+start playback of the selected audio file.  All audio input will be
+discarded during playback and for an additional ten seconds.  To stop
+playback early, simply click on the \textbf{validate} button again.
 
-% Finally, click on the \textbf{validate} button to reset all meters and
-% start playback of the selected audio file.  All audio input will be
-% discarded during playback and for an additional ten seconds.  To stop
-% playback early, simply click on the \textbf{validate} button again.
+\section{Validation status}
 
-% In case you want to calibrate your monitor system, head over to
-% \href{http://www.digido.com/media/downloads.html}{Bob Katz's download
-%   section}, get the file labelled \textbf{\SI{-20}{\dBFS} RMS pink
-%   noise stereo \num{44.1}}, set K-meter to \textbf{RMS} mode and click
-% on the \textbf{validate} button.  Please ensure that all intermediate
-% software and hardware mixers are set to the correct levels.
+\begin{minipage}{1.0\linewidth}
+  \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
+  \begin{tabular}{>{\bfseries}llcc}
 
-% \section{Validation status}
+    &
+    \textbf{Readout} &
+    \textbf{Valid} \\
 
-% \begin{minipage}{1.0\linewidth}
-%   \renewcommand{\thempfootnote}{\arabic{mpfootnote}}
-%   \begin{tabular}{>{\bfseries}llcc}
+    Average level meter &
+    readings &
+    \Checkmark{} \\
 
-%     &
-%     \textbf{Readout} &
-%     \textbf{RMS} &
-%     \textbf{ITU-R} \\
+    Peak level meter &
+    readings &
+    \Checkmark{} \\
 
-%     Avg level meter &
-%     meter ballistics &
-%     \Checkmark{} &
-%     \Checkmark{} \\
+    Signal meter &
+    readings &
+    \Checkmark{} \\
 
-%     &
-%     readings &
-%     \Checkmark{} &
-%     --- \\
-
-%     &
-%     frequency response &
-%     \Checkmark{} &
-%     \Checkmark{} \\
-
-%     &
-%     pink noise &
-%     \Checkmark{} &
-%     --- \\
-
-%     &
-%     ITU-R BS.2217 &
-%     --- &
-%     \Checkmark{} \\
-
-%     Peak level meter &
-%     meter ballistics &
-%     \Checkmark{} &
-%     \Checkmark{} \\
-
-%     &
-%     readings &
-%     \Checkmark{} &
-%     \Checkmark{} \\
-
-%     Maximum peak &
-%     readings &
-%     \Checkmark{} &
-%     \Checkmark{} \\
-
-%     Overload counter &
-%     readings &
-%     \Checkmark{} &
-%     \Checkmark{} \\
-
-%     Phase correlation &
-%     readings &
-%     \Checkmark{} &
-%     \Checkmark{} \\
-
-%     Stereo meter &
-%     readings &
-%     \Checkmark{} &
-%     \Checkmark{} \\
-
-%   \end{tabular}
-% \end{minipage}
+  \end{tabular}
+\end{minipage}
 
 % \newpage %% layout
 

@@ -4,7 +4,7 @@
    =========
    Loudness meter for correctly setting up tracking and mixing levels
 
-   Copyright (c) 2012 Martin Zuther (http://www.mzuther.de/)
+   Copyright (c) 2012-2013 Martin Zuther (http://www.mzuther.de/)
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -68,7 +68,7 @@ WindowAbout::WindowAbout(int nWidth, int nHeight)
     // display plug-in name and version number
     TextEditorAbout->setFont(fontHeadline);
     TextEditorAbout->insertTextAtCaret(
-        String("traKmeter ") + JucePlugin_VersionString + "\n"
+        String(ProjectInfo::projectName) + " " + JucePlugin_VersionString + "\n"
     );
 
     // display plug-in description
@@ -85,7 +85,7 @@ WindowAbout::WindowAbout(int nWidth, int nHeight)
 
     TextEditorAbout->setFont(fontRegular);
     TextEditorAbout->insertTextAtCaret(
-        "(c) 2012 Martin Zuther\n\n"
+        "(c) 2012-2013 Martin Zuther\n\n"
     );
 
     // display the contributors
@@ -200,7 +200,7 @@ WindowAbout::WindowAbout(int nWidth, int nHeight)
         L"You should have received a copy of the GNU General Public License "
         L"along with this program.  If not, see <http://www.gnu.org/licenses/>.\n\n"
 
-        L"Thank you for using free software!\n\n"
+        L"Thank you for using free software!\n"
     );
 
     // in case the text has become too long to fit into the text

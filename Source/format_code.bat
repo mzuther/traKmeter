@@ -6,7 +6,7 @@
 @rem  =========
 @rem  Loudness meter for correctly setting up tracking and mixing levels
 @rem
-@rem  Copyright (c) 2012 Martin Zuther (http://www.mzuther.de/)
+@rem  Copyright (c) 2012-2013 Martin Zuther (http://www.mzuther.de/)
 @rem
 @rem  This program is free software: you can redistribute it and/or modify
 @rem  it under the terms of the GNU General Public License as published by
@@ -25,5 +25,5 @@
 @rem
 @rem ---------------------------------------------------------------------------
 
-@AStyle --options=./.astylerc "*.cpp" "*.h" "juce_library_code/*.cpp" "juce_library_code/*.h"
+@AStyle --options=./.astylerc "*.cpp" "*.h"
 @pause

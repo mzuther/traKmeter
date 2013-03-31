@@ -4,7 +4,7 @@
    =========
    Loudness meter for correctly setting up tracking and mixing levels
 
-   Copyright (c) 2012 Martin Zuther (http://www.mzuther.de/)
+   Copyright (c) 2012-2013 Martin Zuther (http://www.mzuther.de/)
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -75,6 +75,9 @@ MeterSegment::MeterSegment(const String& componentName, float fThreshold, float 
         // meter segment is blue
         fHue = 0.58f;
     }
+
+    // make sure that segment is drawn after initialisation
+    setLevels(-9999.9f, -9999.9f);
 }
 
 
