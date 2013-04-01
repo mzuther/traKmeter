@@ -17,7 +17,7 @@
         \vspace{1.5em}
         \begin{figure}[H]
           \centering{}
-          \includegraphics[scale=0.275,clip]{include/images/kmeter.png}
+          \includegraphics[scale=0.50,clip]{include/images/trakmeter.png}
         \end{figure}
         \vfill
       }}}
@@ -222,6 +222,144 @@ always bring up the volume during mastering!  My plug-in
 \href{http://code.mzuther.de/}{\textbf{K-Meter}} and its K-20 scale
 may help you with setting correct mixing levels.
 
+\chapter{Installation}
+\label{chap:installation}
+
+In order to use the pre-compiled binaries, simply extract the
+traKmeter files from the downloaded archive.  For the VST plug-in,
+you'll then have to move the extracted files to your plug-in folder
+(\path{~/.vst}, \path{C:\Program Files\Steinberg\VstPlugins\} or the
+  like).
+
+\chapter{Controls}
+\label{chap:controls}
+
+\section{Transient button}
+
+\begin{wrapfigure}{r}{0.14\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_transient_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_transient_off.png}
+\end{wrapfigure}
+
+This button changes the RMS meter's ballistics from ``transient'' mode
+to ``classic'' mode.
+
+I find that ``transient'' mode with its fast attack and slow release
+times is well suited to setting up levels.  It works fine for both
+transient audio sources (drums, percussion, piano) and static ones
+(pads, bass).
+
+If you are used to VU meters, however, ``classic'' mode with equally
+slow attack and release times may feel more comfortable to you.
+
+\emph{\underline{Note:} I don't use ``classic'' mode myself, so you
+  may find that the RMS meter scale needs to be adjusted.  Please
+  notify me, it's easy to change -- I just need to know what you
+  need.}
+
+\newpage %% layout
+
+\section{Reset button}
+
+\begin{wrapfigure}{r}{0.14\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset.png}
+\end{wrapfigure}
+
+Click on this button to reset all meters.  You can also use it to get
+rid of graphical artifacts, because the meters will be redrawn as
+well.
+
+\section{Validation button}
+\label{sec:validation_button}
+
+\begin{wrapfigure}{r}{0.14\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
+\end{wrapfigure}
+
+Click on this button to open the \textbf{validation window} (see
+\ref{chap:validation}) which allows you to play an audio file (WAV,
+AIFF or FLAC) through traKmeter and dump internal data.  During
+validation, the button will light up and clicking it will stop the
+validation.
+
+On Linux, dumped data will be written to \path{stderr}, so just start
+the traKmeter standalone or your VST host from the shell and watch the
+output coming.  On other systems, have a look at your VST host's log
+files (I have successfully used Ableton Live for this).  If that
+doesn't work, you might have to start either the traKmeter standalone
+or your VST host from a debugger.
+
+As a side note, \textbf{SMA(50)} designates the simple moving average
+of 50 values, a neat way to emphasise trends and eliminate short-term
+fluctuations.
+
+\newpage %% layout
+
+\section{About button}
+
+\begin{wrapfigure}{r}{0.14\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_off.png}
+\end{wrapfigure}
+
+Clicking on this button will open the \textbf{about window} where you
+will be informed about version number, contributors, copyright and the
+GNU General Public License.
+
+\section{Display license}
+
+\begin{wrapfigure}{r}{0.15\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_off.png}
+\end{wrapfigure}
+
+This button is located in the \textbf{about window} and does not only
+advertise that you are using free software licensed under the
+\textbf{GNU General Public License} -- when clicked, it will also open
+the license's website in your web browser \dots
+
+\chapter{Meters}
+\label{chap:meters}
+
+\section{Average level meter}
+
+The average level meter uses an averaging period of \num{1024}
+samples.  This meter exhibits a completely flat frequency response.
+
+\subsection{Transient mode}
+
+On rising levels, it takes \SI{10}{\milli\second} for the meter to
+reach \SI{99}{\percent} of the final reading.  On falling levels, the
+meter switches to a linear fall time of \SI{6}{\dB\per\second}.
+
+Peak levels will be held for \SI{10}{\second} and then fall with a
+speed of \SI{8.67}{\dB\per\second}.
+
+\subsection{Classic mode}
+
+Similar to VU meters, it takes \SI{300}{\milli\second} for the meter
+to reach \SI{99}{\percent} of the final reading.  However, the meter
+exhibits no overshoot.
+
+\section{Peak level meter}
+
+The peak level meter also possesses a completely flat frequency
+response.  It has a rise time of one sample and a fall time of
+\SI{8.67}{\dB\per\second}.
+
+Peak levels will be held until the meter is reset.
+
+\section{Signal meter}
+
+The blue signal meter detects peak levels of \SI{-60}{\dBFS} and
+above.  The meter has a rise time of one sample and falls to
+\SI{99}{\percent} of the final reading in \SI{1.2}{\second}.
+
 \chapter{Recording tips}
 \label{chap:recording_tips}
 
@@ -335,110 +473,6 @@ may not know some of them, so read ahead\dots
 
 \end{description}
 
-\chapter{Installation}
-\label{chap:installation}
-
-In order to use the pre-compiled binaries, simply extract the
-traKmeter files from the downloaded archive.  For the VST plug-in,
-you'll then have to move the extracted files to your plug-in folder
-(\path{~/.vst}, \path{C:\Program Files\Steinberg\VstPlugins\} or the
-  like).
-
-\chapter{Controls}
-\label{chap:controls}
-
-\textbf{TO DO!}
-
-% \section{Reset button}
-
-% \begin{wrapfigure}{r}{0.14\linewidth}
-%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset.png}
-% \end{wrapfigure}
-
-% Click on this button to reset all meters and peaks.  You can also get
-% rid of graphical artifacts, because the meters will be redrawn as
-% well.
-
-\section{Validation button}
-\label{sec:validation_button}
-
-\begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
-\end{wrapfigure}
-
-Click on this button to open the \textbf{validation window} (see
-\ref{chap:validation}) which allows you to play an audio file (WAV,
-AIFF or FLAC) through traKmeter and dump internal data.  During
-validation, the button will light up and clicking it will stop the
-validation.
-
-On Linux, dumped data will be written to \path{stderr}, so just start
-the traKmeter standalone or your VST host from the shell and watch the
-output coming.  On other systems, have a look at your VST host's log
-files (I have successfully used Ableton Live for this).  If that
-doesn't work, you might have to start either the traKmeter standalone
-or your VST host from a debugger.
-
-As a side note, \textbf{SMA(50)} designates the simple moving average
-of 50 values, a neat way to emphasise trends and eliminate short-term
-fluctuations.
-
-% \section{About button}
-
-% \begin{wrapfigure}{r}{0.14\linewidth}
-%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_on.png}
-%   \newline \vspace{-0.9\baselineskip}
-%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_off.png}
-% \end{wrapfigure}
-
-% Clicking on this button will open the \textbf{about window} where you
-% will be informed about version number, contributors, copyright and the
-% GNU General Public License.
-
-% \section{Display license}
-
-% \begin{wrapfigure}{r}{0.15\linewidth}
-%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_on.png}
-%   \newline \vspace{-0.9\baselineskip}
-%   \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_off.png}
-% \end{wrapfigure}
-
-% This button is located in the \textbf{about window} and does not only
-% advertise that you are using free software licensed under the
-% \textbf{GNU General Public License} -- when clicked, it will also open
-% the license's website in your web browser \dots
-
-\chapter{Meters}
-\label{chap:meters}
-
-\section{Average level meter}
-
-The average level meter uses an averaging period of \num{1024}
-samples.  This meter exhibits a completely flat frequency response.
-
-On rising levels, it takes \SI{10}{\milli\second} for the meter to
-reach \SI{99}{\percent} of the final reading.  The meter then switches
-to a linear fall time of \SI{6}{\dB\per\second}.
-
-Peak levels will be held for \SI{10}{\second} and then fall with a
-speed of \SI{8.67}{\dB\per\second}.
-
-\section{Peak level meter}
-
-The peak level meter also possesses a completely flat frequency
-response.  It has a rise time of one sample and a fall time of
-\SI{8.67}{\dB\per\second}.
-
-Peak levels will be held until the meter is reset.
-
-\section{Signal meter}
-
-The blue signal meter detects peak levels of \SI{-60}{\dBFS} and
-above.  The meter has a rise time of one sample and falls to
-\SI{99}{\percent} of the final reading in \SI{2}{\second}.
-
 \chapter{Validation}
 \label{chap:validation}
 
@@ -449,8 +483,8 @@ and a FLAC-compressed wave file.  A word of warning: this audio file
 may \textbf{damage your ears} and speakers, so please watch your
 monitor levels!
 
-\begin{wrapfigure}{r}{0.395\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/dialog_validation.png}
+\begin{wrapfigure}{r}{0.33\linewidth}
+  \includegraphics[scale=0.65,clip]{include/images/dialog_validation.png}
 \end{wrapfigure}
 
 After opening the \textbf{validation window} (see
@@ -461,6 +495,7 @@ and the audio file match, otherwise the results will not be correct.
 
 Now, select which \textbf{variables} (if any) should be dumped.  You
 may also restrict dumped data to a specific audio \textbf{channel}.
+Check \textbf{CSV} if you want to feed the output to a parser.
 
 Finally, click on the \textbf{validate} button to reset all meters and
 start playback of the selected audio file.  All audio input will be

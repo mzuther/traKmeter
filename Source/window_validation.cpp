@@ -176,7 +176,7 @@ void WindowValidation::paint(Graphics& g)
 
     g.setColour(Colours::white);
     g.setOpacity(0.05f);
-    g.fillRect(nEditorX, nHeight - 169, nEditorWidth + 4, 137);
+    g.fillRect(nEditorX, nHeight - 168, nEditorWidth + 3, 137);
 }
 
 
