@@ -141,7 +141,7 @@ void TraKmeterAudioProcessorEditor::resizeEditor()
     ButtonReset->setBounds(nRightColumnStart, 10, 60, 20);
     ButtonTransientMode->setBounds(nRightColumnStart, 45, 60, 20);
     ButtonMixMode->setBounds(nRightColumnStart, 70, 60, 20);
-    SliderGain->setBounds(nRightColumnStart - 10, 100, 70, 20);
+    SliderGain->setBounds(nRightColumnStart - 10, 96, 70, 20);
 
     ButtonValidation->setBounds(nRightColumnStart, nHeight - 56, 60, 20);
     ButtonAbout->setBounds(nRightColumnStart, nHeight - 31, 60, 20);

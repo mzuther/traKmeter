@@ -17,7 +17,7 @@
         \vspace{1.5em}
         \begin{figure}[H]
           \centering{}
-          \includegraphics[scale=0.50,clip]{include/images/trakmeter.png}
+          \includegraphics[scale=0.45,clip]{include/images/trakmeter.png}
         \end{figure}
         \vfill
       }}}
@@ -58,7 +58,7 @@ However, most of these obstacles can be overcome easily by proper gain
 staging, minimising the crossing of domains and choosing appropriate
 bit depth and sample rates.  If you also learn how to properly test
 and operate your equipment, you're well on your way to pure audio
-bliss\dots
+bliss \dots
 
 \section{Gain staging}
 \label{sec:gain_staging}
@@ -71,7 +71,8 @@ consistent with the maximum crest factor of analog audio signals.
 Thus, driving all analog audio equipment at \SI[addsign=all]{+4}{\dBu}
 ensures an optimal signal-to-noise ratio while preventing clipping and
 keeping all transients intact.  The process of setting audio devices
-to run at optimal input and output levels is called gain staging.
+to run at optimal input and output levels is called \emph{gain
+  staging}.
 
 Now let's transfer this to the digital domain.  As the maximum crest
 factor of analog audio signals amounts to \SI{20}{\dB}, we have to
@@ -101,12 +102,12 @@ be performed at peak levels close to but not exceeding \SI{0}{\dBFS}
 the manuals of some professional audio equipment.  But for the reasons
 given above it is plain wrong.
 
-Let's look at the math for bit depths of 16 bit: even if your
-recordings peak at \SI{-18}{\dBFS} and you discard the least
-significant bit (some people claim that it mostly consists of errors),
-this still leaves you with a signal-to-noise ratio of \SI{72}{\dB}.
-That is about what you can expect from the best professional analog
-tape machines and recording desks!
+Let's look at the math for bit depths of 16 bit (as a worst-case
+scenario): even if your recordings peak at \SI{-18}{\dBFS} and you
+discard the least significant bit (some people claim that it mostly
+consists of errors), this still leaves you with a signal-to-noise
+ratio of \SI{72}{\dB}.  That is about what you can expect from some of
+the best professional analog tape machines and recording desks!
 
 \begin{wrapfigure}{r}{0pt}
   \includegraphics[scale=0.24,clip]{include/images/otari_meter.png}
@@ -116,12 +117,12 @@ Or take my professional 16-bit hard disk recorder (Otari PD-80): its
 analog inputs and outputs are aligned to ``\SI[addsign=all]{+4}{\dBu}
 (\textbf{\SI{-15}{\dB}} from digital full-scale)''.  The manufacturer
 has even marked this level on the meter bridge (small triangle on the
-photo).  Even if the mark is only useful for audio alignment, given
-that it sits on a peak meter\ldots
+photo).  Although I admit that the mark is only useful for audio
+alignment, given that it sits on a peak meter \dots
 
-There is a great thread over at Gearslutz (``The Reason Most ITB mixes
-don’t Sound as good as Analog mixes'') well worth reading.  Here are
-links to the
+If you need more information, there is a great thread over at
+Gearslutz (``The Reason Most ITB mixes don’t Sound as good as Analog
+mixes'') well worth reading.  Here are links to the
 \href{http://www.gearslutz.com/board/5062929-post1.html}{first post}
 and two other selected posts
 (\href{http://www.gearslutz.com/board/5064831-post1874.html}{\#1874}
@@ -156,17 +157,17 @@ enclosed by first yellow and then red LEDs.
 
 You may have noticed that the average meter's green area is centred
 around the \textbf{\SI{-18}{\dBFS} RMS} mark.  This number should be
-vaguely familiar.  Remember, it corresponds to the optimal average
-audio level in the digital domain.
+vaguely familiar.  Remember, it corresponds to what we have determined
+to be the optimal average audio level in the digital domain.
 
 A fully lit yellow LED on the top end of the peak meter corresponds to
 a level of \textbf{\SI{-9}{\dBFS}}.  Again, this number should be
 familiar: peak levels in the digital domain shouldn't exceed this
 level.
 
-Thus, by keeping meter readout in the green areas and from entering
-the yellow and red areas on top of each meter, you will automatically
-track at optimal audio levels.
+Thus, by keeping the meter's readout in the green areas and from
+entering the yellow and red areas on top of each meter, you will
+automatically track at optimal audio levels.
 
 \section{Tracking with traKmeter}
 \label{sec:tracking_with_trakmeter}
@@ -184,11 +185,11 @@ calibration tones into your sound card or by directly comparing the
 readouts of standalone and plug-in version.
 
 Now, feed the signal you want to record into an audio input channel
-and adjust its level using \textbf{traKmeter}.  Try to set the input
-level so that transients reach \textbf{\SI{-18}{\dBFS} RMS} on the
-average meter.  Make sure that the peak level never exceeds
-\textbf{\SI{-9}{\dBFS}}.  In case both conditions cannot be met
-simultaneously, adjust the peak level only.
+and adjust its level (in the analog domain) using \textbf{traKmeter}.
+Try to set the input level so that transients reach
+\textbf{\SI{-18}{\dBFS} RMS} on the average meter.  Make sure that the
+peak level never exceeds \textbf{\SI{-9}{\dBFS}}.  In case both
+conditions cannot be met simultaneously, adjust the peak level only.
 
 \section{Mixing with traKmeter}
 \label{sec:mixing_with_trakmeter}
@@ -200,15 +201,13 @@ mix is not ruined.
 
 If the original recordings were made with poor equipment and you have
 the time, it may be worth to \textbf{re-record} all tracks through a
-really good preamp and adjust their loudness at the same time.  The
-result can be stunning!
+really good preamp and adjust their loudness at the same time.
+Depending on the preamp, the result can be stunning!
 
 Another option is to insert \textbf{traKmeter} on each channel as
-first plug-in, enable the ``Mixing'' button and adjust volume using
-the gain knob.  When traKmeter is closed, the meters aren't updated,
-so the plug-in uses less system resources.  On slow computers,
-however, use traKmeter to find the correct gain and then exchange it
-against a gain plug-in.
+first plug-in, enable the ``Mixing'' button (see
+\ref{sec:controls_mixing_button}) and adjust volume using the gain
+knob.
 
 In any case, mixing levels will now be much lower than what you are
 used to.  This can easily be corrected by either adjusting the output
@@ -234,6 +233,16 @@ you'll then have to move the extracted files to your plug-in folder
 \chapter{Controls}
 \label{chap:controls}
 
+\section{Reset button}
+
+\begin{wrapfigure}{r}{0.14\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset.png}
+\end{wrapfigure}
+
+Click on this button to reset all meters.  You can also use it to get
+rid of graphical artifacts, because the meters will be redrawn as
+well.
+
 \section{Transient button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
@@ -247,28 +256,37 @@ to ``classic'' mode.
 
 I find that ``transient'' mode with its fast attack and slow release
 times is well suited to setting up levels.  It works fine for both
-transient audio sources (drums, percussion, piano) and static ones
-(pads, bass).
+transient audio sources (drums, percussion, piano) and more ``static''
+ones (pads, bass and so on).
 
 If you are used to VU meters, however, ``classic'' mode with equally
 slow attack and release times may feel more comfortable to you.
 
 \emph{\underline{Note:} I don't use ``classic'' mode myself, so you
   may find that the RMS meter scale needs to be adjusted.  Please
-  notify me, it's easy to change -- I just need to know what you
+  notify me, it's easy to change -- I just have to know what you
   need.}
 
-\newpage %% layout
-
-\section{Reset button}
+\section{Mixing button}
+\label{sec:controls_mixing_button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_mixing_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_mixing_off.png}
 \end{wrapfigure}
 
-Click on this button to reset all meters.  You can also use it to get
-rid of graphical artifacts, because the meters will be redrawn as
-well.
+You can use traKmeter as a gain plug-in -- just enable this button and
+adjust volume using the gain knob.  When traKmeter is closed, its
+meters aren't updated, so the plug-in uses less system resources.  On
+slow computers, however, use traKmeter to find the correct gain and
+then exchange it against a simple gain plug-in.
+
+Please keep in mind that this setting should only be used for
+\textbf{pre-recorded material}.  The gain stage sits \emph{before} the
+meter and thus affects the meter's read-out.  So if you apply a
+negative gain during recording, your analog input stage might clip
+without the meters hitting the red area!
 
 \section{Validation button}
 \label{sec:validation_button}
@@ -282,8 +300,8 @@ well.
 Click on this button to open the \textbf{validation window} (see
 \ref{chap:validation}) which allows you to play an audio file (WAV,
 AIFF or FLAC) through traKmeter and dump internal data.  During
-validation, the button will light up and clicking it will stop the
-validation.
+validation, the button will light up and clicking it will stop
+validation early.
 
 On Linux, dumped data will be written to \path{stderr}, so just start
 the traKmeter standalone or your VST host from the shell and watch the
@@ -296,8 +314,6 @@ As a side note, \textbf{SMA(50)} designates the simple moving average
 of 50 values, a neat way to emphasise trends and eliminate short-term
 fluctuations.
 
-\newpage %% layout
-
 \section{About button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
@@ -309,6 +325,8 @@ fluctuations.
 Clicking on this button will open the \textbf{about window} where you
 will be informed about version number, contributors, copyright and the
 GNU General Public License.
+
+\newpage %% layout
 
 \section{Display license}
 
@@ -328,8 +346,15 @@ the license's website in your web browser \dots
 
 \section{Average level meter}
 
-The average level meter uses an averaging period of \num{1024}
-samples.  This meter exhibits a completely flat frequency response.
+\begin{wrapfigure}{r}{0.18\linewidth}
+  \includegraphics[scale=0.625,clip]{include/images/level_meter_average.png}
+\end{wrapfigure}
+
+The average level meter uses an averaging period of \num{1024} samples
+and exhibits a completely flat frequency response.
+
+Peaks will be held for \SI{10}{\second} and then fall with a speed of
+\SI{8.67}{\dB\per\second}.
 
 \subsection{Transient mode}
 
@@ -337,34 +362,39 @@ On rising levels, it takes \SI{10}{\milli\second} for the meter to
 reach \SI{99}{\percent} of the final reading.  On falling levels, the
 meter switches to a linear fall time of \SI{6}{\dB\per\second}.
 
-Peak levels will be held for \SI{10}{\second} and then fall with a
-speed of \SI{8.67}{\dB\per\second}.
-
 \subsection{Classic mode}
 
 Similar to VU meters, it takes \SI{300}{\milli\second} for the meter
-to reach \SI{99}{\percent} of the final reading.  However, the meter
+to reach \SI{99}{\percent} of the final reading.  However, this meter
 exhibits no overshoot.
 
 \section{Peak level meter}
 
-The peak level meter also possesses a completely flat frequency
-response.  It has a rise time of one sample and a fall time of
+\begin{wrapfigure}{r}{0.18\linewidth}
+  \includegraphics[scale=0.625,clip]{include/images/level_meter_peak.png}
+\end{wrapfigure}
+
+The peak level meter possesses a completely flat frequency response.
+It has a rise time of one sample and a fall time of
 \SI{8.67}{\dB\per\second}.
 
-Peak levels will be held until the meter is reset.
+Peaks will be indefinitely held until the meter is reset.
 
 \section{Signal meter}
 
+\begin{wrapfigure}{r}{0.18\linewidth}
+  \includegraphics[scale=0.625,clip]{include/images/level_meter_signal.png}
+\end{wrapfigure}
+
 The blue signal meter detects peak levels of \SI{-60}{\dBFS} and
-above.  The meter has a rise time of one sample and falls to
+above.  It has a rise time of one sample and falls to
 \SI{99}{\percent} of the final reading in \SI{1.2}{\second}.
 
 \chapter{Recording tips}
 \label{chap:recording_tips}
 
 Over the years, I have accumulated a couple of recording tips.  You
-may not know some of them, so read ahead\dots
+may not know some of them, so read ahead \dots
 
 \begin{description}
 
@@ -388,7 +418,7 @@ may not know some of them, so read ahead\dots
   short as possible.
 
   For example, instead of routing your mixer between preamp and hard
-  disk recorder, connect it to the hard disk recorder's
+  disk recorder, connect the mixer to your hard disk recorder's
   \emph{outputs}.  This simple change can lead to much better
   recordings (especially with cheap mixers) and you'll still be able
   to hear yourself and other tracks during recording.
@@ -404,9 +434,9 @@ may not know some of them, so read ahead\dots
   pseudo-stereo effects of some synthesisers may even cause phasing
   issues in the mixing stage.
 
-  Recording these sources in stereo will only waste space and make you
-  miserable during mixing.  So why not record them in mono in the
-  first place?
+  Recording these sources in stereo will only waste space on your hard
+  disk and make you miserable during mixing.  So why not record them
+  in mono in the first place?
 
 \item[Use high bit depths.]  Do yourself a favour and record at 24 bit
   instead of 16 bit.  The additional bits provide an incredible amount
@@ -415,7 +445,7 @@ may not know some of them, so read ahead\dots
   even preserves quite a bit of that detail.
 
   Also, if you edit audio files or apply effects, calculation errors
-  are inevitable.  At 24 bit, however, these artifacts are
+  are inevitable.  At 24 bit, however, most of these artifacts are
   \SI{48}{\dB} lower in level (and thus inaudible) compared to 16 bit
   audio files.
 
@@ -454,11 +484,11 @@ may not know some of them, so read ahead\dots
   too much.
 
 \item[Avoid copy'n'paste.]  Quite a lot of today's electronic music
-  sounds like one short loop that was ``arranged'' by occasionally
-  muting some of its tracks.  This takes away all the small
-  inaccuracies that happen when humans play instruments.  Instead of
-  looping a track eight times, record a couple of takes and comp the
-  best ones.  You'll be surprised at the difference it makes!
+  sounds like (and actually is) one short loop that was ``arranged''
+  by occasionally muting some of its tracks.  This takes away all the
+  small inaccuracies that happen when humans play instruments.
+  Instead of looping a track eight times, record a couple of takes and
+  comp the best ones.  You'll be surprised at the difference it makes!
 
 \item[Do not fix things later.]  A bad recording is a bad recording is
   a bad recording.  You can't really ``fix it in the mix''.  So tools
@@ -469,7 +499,7 @@ may not know some of them, so read ahead\dots
   Instead, record a few more takes.  Treat your room (acoustically and
   in terms of positive vibe).  Experiment with microphone placement.
   Try everything you can to help the musicians perform better.  Maybe
-  you even have to look for better musicians\dots
+  you even have to look for better musicians \dots
 
 \end{description}
 
