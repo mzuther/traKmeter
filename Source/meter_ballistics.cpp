@@ -26,8 +26,16 @@
 #include "meter_ballistics.h"
 
 
-float MeterBallistics::fMeterMinimumDecibel;
-float MeterBallistics::fPeakToAverageCorrection;
+// RMS peak-to-average gain correction; this is simply the difference
+// between peak and average meter readings during validation, measured
+// using pure sines
+float MeterBallistics::fPeakToAverageCorrection = MeterBallistics::level2decibel(sqrtf(2.0f));
+
+// logarithmic levels have no minimum level, so let's define one:
+// (70 dB meter range + 0.01 to make sure that the minimum level is
+// below the meter's threshold + 20 dB maximum crest factor +
+// peak-to-average gain correction)
+float MeterBallistics::fMeterMinimumDecibel = -(70.01f + 20.0f + fPeakToAverageCorrection);
 
 
 MeterBallistics::MeterBallistics(int nChannels, int CrestFactor, bool bPeakMeterInfiniteHold, bool bAverageMeterInfiniteHold, bool transient_mode)
@@ -47,11 +55,6 @@ MeterBallistics::MeterBallistics(int nChannels, int CrestFactor, bool bPeakMeter
     return value: none
 */
 {
-    // initialise peak-to-average gain correction which calibrates the
-    // level meters so that sine waves read the same on peak and
-    // average meters
-    setPeakToAverageCorrection(0.0f);
-
     // store the number of audio input channels
     nNumberOfChannels = nChannels;
 
@@ -442,23 +445,6 @@ float MeterBallistics::decibel2level(float fDecibels)
 float MeterBallistics::getMeterMinimumDecibel()
 {
     return fMeterMinimumDecibel;
-}
-
-
-void MeterBallistics::setPeakToAverageCorrection(float peak_to_average_correction)
-/*  Set peak-to-average gain correction and related variables.
-
-    peak_to_average_correction: gain to add to average levels so that
-	sine waves read the same on peak and average meters
-*/
-{
-    fPeakToAverageCorrection = peak_to_average_correction;
-
-    // logarithmic levels have no minimum level, so let's define one
-    // (70 dB meter range + 0.01 to make sure that the minimum level
-    // is below the meter's threshold + maximum crest factor +
-    // peak-to-average gain correction) and store it for later use
-    fMeterMinimumDecibel = -(70.01f + nCrestFactor + fPeakToAverageCorrection);
 }
 
 

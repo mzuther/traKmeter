@@ -27,12 +27,6 @@
 #include "plugin_editor.h"
 
 
-// RMS peak-to-average gain correction; this is simply the
-// difference between peak and average meter readings
-// during validation, measured using pure sines
-const float PEAK_TO_AVERAGE_CORRECTION = MeterBallistics::level2decibel(sqrtf(2.0f));
-
-
 //==============================================================================
 
 TraKmeterAudioProcessor::TraKmeterAudioProcessor()
@@ -342,9 +336,6 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
 
     pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
 
-    // RMS peak-to-average gain correction
-    pMeterBallistics->setPeakToAverageCorrection(PEAK_TO_AVERAGE_CORRECTION);
-
     fPeakLevels = new float[nNumInputChannels];
     fRmsLevels = new float[nNumInputChannels];
 
@@ -604,9 +595,6 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
             pMeterBallistics = NULL;
 
             pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
-
-            // RMS peak-to-average gain correction
-            pMeterBallistics->setPeakToAverageCorrection(PEAK_TO_AVERAGE_CORRECTION);
         }
     }
 }
@@ -630,9 +618,6 @@ void TraKmeterAudioProcessor::setCrestFactor(const int crest_factor)
             pMeterBallistics = NULL;
 
             pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
-
-            // RMS peak-to-average gain correction
-            pMeterBallistics->setPeakToAverageCorrection(PEAK_TO_AVERAGE_CORRECTION);
         }
     }
 }
