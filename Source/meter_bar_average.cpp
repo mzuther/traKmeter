@@ -48,8 +48,8 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
     MeterArray = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
-    int nThreshold = -nCrestFactor + 30;
-    float fRange = -nThreshold * 0.1f;
+    int nThreshold = -170 + nCrestFactor;
+    float fRange = (nCrestFactor - nThreshold) * 0.1f;
     int nColor = 0;
     bool bDiscreteLevels = true;
 
@@ -63,11 +63,13 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
         fRange = nThresholdDifference / 10.0f;
         bDiscreteLevels = false;
 
-        if ((nThreshold < -210) || (nThreshold >= -150))
+        int nTrueThreshold = nThreshold - nCrestFactor;
+
+        if ((nTrueThreshold < -230) || (nTrueThreshold >= -170))
         {
             nColor = 0;
         }
-        else if ((nThreshold < -200) || (nThreshold >= -160))
+        else if ((nTrueThreshold < -220) || (nTrueThreshold >= -180))
         {
             nColor = 1;
         }

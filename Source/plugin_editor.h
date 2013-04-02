@@ -47,7 +47,6 @@ public:
 
     void actionListenerCallback(const String& message);
     void changeParameter(int nIndex);
-    void changeParameter(int nIndex, int nValue);
 
     //==============================================================================
     // This is just a standard Juce paint method...
@@ -73,6 +72,7 @@ private:
 
     TextButton* ButtonReset;
 
+    TextButton* ButtonCrestFactor;
     TextButton* ButtonTransientMode;
     TextButton* ButtonMixMode;
     TextButton* ButtonValidation;

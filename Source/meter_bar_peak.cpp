@@ -41,14 +41,15 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     nWidth = width;
     nHeight = nNumberOfBars * nSegmentHeight + 1;
 
+    int nCrestFactor = 10 * crest_factor;
     fPeakLevel = 0.0f;
     fPeakLevelPeak = 0.0f;
 
     MeterArray = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
-    int nThreshold = -90;
-    float fRange = -nThreshold * 0.1f;
+    int nThreshold = -90 + nCrestFactor;
+    float fRange = (nCrestFactor - nThreshold) * 0.1f;
     int nColor = 0;
     bool bDiscreteLevels = true;
 
@@ -62,11 +63,13 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
         fRange = nThresholdDifference / 10.0f;
         bDiscreteLevels = false;
 
-        if ((nThreshold < -180) || (nThreshold >= -90))
+        int nTrueThreshold = nThreshold - nCrestFactor;
+
+        if ((nTrueThreshold < -190) || (nTrueThreshold >= -90))
         {
             nColor = 0;
         }
-        else if ((nThreshold < -160) || (nThreshold >= -100))
+        else if ((nTrueThreshold < -160) || (nTrueThreshold >= -100))
         {
             nColor = 1;
         }

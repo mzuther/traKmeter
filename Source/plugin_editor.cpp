@@ -45,9 +45,16 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor = ownerFilter;
     pProcessor->addActionListener(this);
 
+    ButtonCrestFactor = new TextButton("K-20");
+    ButtonCrestFactor->setColour(TextButton::buttonColourId, Colours::grey);
+    ButtonCrestFactor->setColour(TextButton::buttonOnColourId, Colours::yellow);
+
+    ButtonCrestFactor->addListener(this);
+    addAndMakeVisible(ButtonCrestFactor);
+
     ButtonTransientMode = new TextButton("Transient");
     ButtonTransientMode->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonTransientMode->setColour(TextButton::buttonOnColourId, Colours::yellow);
+    ButtonTransientMode->setColour(TextButton::buttonOnColourId, Colours::orange);
 
     ButtonTransientMode->addListener(this);
     addAndMakeVisible(ButtonTransientMode);
@@ -111,14 +118,17 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor->addActionListenerParameters(this);
     trakmeter = NULL;
 
-    int nIndex = TraKmeterPluginParameters::selTransientMode;
-    changeParameter(nIndex, pProcessor->getParameterAsInt(nIndex));
+    int nIndex = TraKmeterPluginParameters::selCrestFactor;
+    changeParameter(nIndex);
+
+    nIndex = TraKmeterPluginParameters::selTransientMode;
+    changeParameter(nIndex);
 
     nIndex = TraKmeterPluginParameters::selMixMode;
-    changeParameter(nIndex, pProcessor->getParameterAsInt(nIndex));
+    changeParameter(nIndex);
 
     nIndex = TraKmeterPluginParameters::selGain;
-    changeParameter(nIndex, pProcessor->getParameterAsInt(nIndex));
+    changeParameter(nIndex);
 }
 
 
@@ -139,9 +149,10 @@ void TraKmeterAudioProcessorEditor::resizeEditor()
     setSize(nRightColumnStart + 70, nHeight);
 
     ButtonReset->setBounds(nRightColumnStart, 10, 60, 20);
-    ButtonTransientMode->setBounds(nRightColumnStart, 45, 60, 20);
-    ButtonMixMode->setBounds(nRightColumnStart, 70, 60, 20);
-    SliderGain->setBounds(nRightColumnStart - 10, 96, 70, 20);
+    ButtonCrestFactor->setBounds(nRightColumnStart, 45, 60, 20);
+    ButtonTransientMode->setBounds(nRightColumnStart, 70, 60, 20);
+    ButtonMixMode->setBounds(nRightColumnStart, 95, 60, 20);
+    SliderGain->setBounds(nRightColumnStart - 10, 121, 70, 20);
 
     ButtonValidation->setBounds(nRightColumnStart, nHeight - 56, 60, 20);
     ButtonAbout->setBounds(nRightColumnStart, nHeight - 31, 60, 20);
@@ -164,7 +175,11 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String& message
         jassert(nIndex >= 0);
         jassert(nIndex < pProcessor->getNumParameters());
 
-        changeParameter(nIndex);
+        if (pProcessor->isParameterMarked(nIndex))
+        {
+            changeParameter(nIndex);
+            pProcessor->UnmarkParameter(nIndex);
+        }
     }
     // "UM" --> update meters
     else if (!message.compare("UM"))
@@ -202,32 +217,39 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String& message
 
 void TraKmeterAudioProcessorEditor::changeParameter(int nIndex)
 {
-    if (pProcessor->isParameterMarked(nIndex))
-    {
-        int nValue = pProcessor->getParameterAsInt(nIndex);
-        changeParameter(nIndex, nValue);
-        pProcessor->UnmarkParameter(nIndex);
-    }
-}
-
-
-void TraKmeterAudioProcessorEditor::changeParameter(int nIndex, int nValue)
-{
     switch (nIndex)
     {
+    case TraKmeterPluginParameters::selCrestFactor:
+    {
+        nCrestFactor = pProcessor->getParameterAsInt(nIndex);
+        ButtonCrestFactor->setToggleState(nCrestFactor != 0, false);
+
+        bReloadMeters = true;
+    }
+    break;
+
     case TraKmeterPluginParameters::selTransientMode:
-        pProcessor->setTransientMode(nValue != 0);
-        ButtonTransientMode->setToggleState(nValue != 0, false);
-        break;
+    {
+        bool bTransientMode = pProcessor->getParameterAsBool(nIndex);
+        ButtonTransientMode->setToggleState(bTransientMode, false);
+    }
+    break;
 
     case TraKmeterPluginParameters::selMixMode:
-        ButtonMixMode->setToggleState(nValue != 0, false);
-        SliderGain->setVisible(nValue != 0);
-        break;
+    {
+        bool bMixMode = pProcessor->getParameterAsBool(nIndex);
+        ButtonMixMode->setToggleState(bMixMode, false);
+
+        SliderGain->setVisible(bMixMode);
+    }
+    break;
 
     case TraKmeterPluginParameters::selGain:
-        SliderGain->setValue(nValue, false);
-        break;
+    {
+        int nGain = pProcessor->getParameterAsInt(nIndex);
+        SliderGain->setValue(nGain, false);
+    }
+    break;
     }
 
     reloadMeters();
@@ -271,6 +293,10 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
             pMeterBallistics->reset();
         }
     }
+    else if (button == ButtonCrestFactor)
+    {
+        pProcessor->changeParameter(TraKmeterPluginParameters::selCrestFactor, !button->getToggleState());
+    }
     else if (button == ButtonTransientMode)
     {
         pProcessor->changeParameter(TraKmeterPluginParameters::selTransientMode, !button->getToggleState());
@@ -308,8 +334,8 @@ void TraKmeterAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
     if (slider == SliderGain)
     {
-        int nValue = int(slider->getValue());
-        pProcessor->changeParameter(TraKmeterPluginParameters::selGain, nValue);
+        float fValue = float(slider->getValue()) / 100.0f + 0.12f;
+        pProcessor->changeParameter(TraKmeterPluginParameters::selGain, fValue);
     }
 }
 

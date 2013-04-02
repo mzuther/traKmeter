@@ -237,7 +237,7 @@ float MeterBallistics::getPeakMeterLevel(int nChannel)
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return fPeakMeterLevels[nChannel];
+    return fPeakMeterLevels[nChannel] + nCrestFactor;
 }
 
 
@@ -253,7 +253,7 @@ float MeterBallistics::getPeakMeterPeakLevel(int nChannel)
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return fPeakMeterPeakLevels[nChannel];
+    return fPeakMeterPeakLevels[nChannel] + nCrestFactor;
 }
 
 
@@ -269,7 +269,7 @@ float MeterBallistics::getAverageMeterLevel(int nChannel)
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return fAverageMeterLevels[nChannel];
+    return fAverageMeterLevels[nChannel] + nCrestFactor;
 }
 
 
@@ -285,7 +285,7 @@ float MeterBallistics::getAverageMeterPeakLevel(int nChannel)
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return fAverageMeterPeakLevels[nChannel];
+    return fAverageMeterPeakLevels[nChannel] + nCrestFactor;
 }
 
 
@@ -301,7 +301,7 @@ float MeterBallistics::getPeakMeterSignal(int nChannel)
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return fPeakMeterSignals[nChannel];
+    return fPeakMeterSignals[nChannel] + nCrestFactor;
 }
 
 
@@ -317,7 +317,7 @@ float MeterBallistics::getMaximumPeakLevel(int nChannel)
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return fMaximumPeakLevels[nChannel];
+    return fMaximumPeakLevels[nChannel] + nCrestFactor;
 }
 
 

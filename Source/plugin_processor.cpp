@@ -27,8 +27,6 @@
 #include "plugin_editor.h"
 
 
-const int TRAKMETER_CREST_FACTOR = 18;
-
 // RMS peak-to-average gain correction; this is simply the
 // difference between peak and average meter readings
 // during validation, measured using pure sines
@@ -51,8 +49,9 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor()
     setLatencySamples(TRAKMETER_BUFFER_SIZE);
     pPluginParameters = new TraKmeterPluginParameters();
 
-    // depends on "TraKmeterPluginParameters"!
+    // depend on "TraKmeterPluginParameters"!
     bTransientMode = getParameterAsBool(TraKmeterPluginParameters::selTransientMode);
+    nCrestFactor = getParameterAsInt(TraKmeterPluginParameters::selCrestFactor);
 
     fProcessedSeconds = 0.0f;
 
@@ -131,6 +130,25 @@ void TraKmeterAudioProcessor::setParameter(int index, float newValue)
     {
         setTransientMode(getParameterAsBool(index));
     }
+    else if (index == TraKmeterPluginParameters::selCrestFactor)
+    {
+        setCrestFactor(getParameterAsInt(index));
+    }
+}
+
+
+void TraKmeterAudioProcessor::updateParameters(bool bIncludeHiddenParameters)
+{
+    int nNumParameters = pPluginParameters->getNumParameters(bIncludeHiddenParameters);
+
+    for (int nIndex = 0; nIndex < nNumParameters; nIndex++)
+    {
+        if (pPluginParameters->isParameterMarked(nIndex))
+        {
+            float fValue = pPluginParameters->getParameterAsFloat(nIndex);
+            changeParameter(nIndex, fValue);
+        }
+    }
 }
 
 
@@ -185,30 +203,19 @@ int TraKmeterAudioProcessor::getParameterAsInt(int index)
 }
 
 
-void TraKmeterAudioProcessor::changeParameter(int index, int nValue)
+void TraKmeterAudioProcessor::changeParameter(int index, float fValue)
 {
-    // if (index == TraKmeterPluginParameters::selMono)
-    // {
-    //     if (nNumInputChannels < 2)
-    //     {
-    //         nValue = true;
-    //     }
-    //     else if (nNumInputChannels > 2)
-    //     {
-    //         nValue = false;
-    //     }
-    // }
-
     beginParameterChangeGesture(index);
-
-    float newValue = pPluginParameters->translateParameterToFloat(index, nValue);
-    setParameterNotifyingHost(index, newValue);
-
+    setParameterNotifyingHost(index, fValue);
     endParameterChangeGesture(index);
 
     if (index == TraKmeterPluginParameters::selTransientMode)
     {
         setTransientMode(getParameterAsBool(index));
+    }
+    else if (index == TraKmeterPluginParameters::selCrestFactor)
+    {
+        setCrestFactor(getParameterAsInt(index));
     }
 }
 
@@ -333,7 +340,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
 
     DBG("[traKmeter] number of input channels: " + String(nNumInputChannels));
 
-    pMeterBallistics = new MeterBallistics(nNumInputChannels, TRAKMETER_CREST_FACTOR, true, false, bTransientMode);
+    pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
 
     // RMS peak-to-average gain correction
     pMeterBallistics->setPeakToAverageCorrection(PEAK_TO_AVERAGE_CORRECTION);
@@ -409,15 +416,6 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
         int nNumSamples = buffer.getNumSamples();
         int nNumChannels = getNumInputChannels();
 
-        // In case we have more outputs than inputs, we'll clear any
-        // output channels that didn't contain input data, because these
-        // aren't guaranteed to be empty -- they may contain garbage.
-
-        if (getNumOutputChannels() > nNumChannels)
-        {
-            nNumChannels = getNumOutputChannels();
-        }
-
         for (int i = 0; i < nNumChannels; i++)
         {
             buffer.clear(i, 0, nNumSamples);
@@ -448,21 +446,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
         audioFilePlayer->fillBufferChunk(&buffer);
     }
 
-    // bool bMono = getParameterAsBool(TraKmeterPluginParameters::selMono);
     bool bMixMode = getParameterAsBool(TraKmeterPluginParameters::selMixMode);
-
-    // // convert stereo input to mono if "Mono" button has been pressed
-    // if (isStereo && bMono)
-    // {
-    //     float* output_left = buffer.getSampleData(0);
-    //     float* output_right = buffer.getSampleData(1);
-
-    //     for (int i = 0; i < nNumSamples; i++)
-    //     {
-    //         output_left[i] = 0.5f * (output_left[i] + output_right[i]);
-    //         output_right[i] = output_left[i];
-    //     }
-    // }
 
     if (bMixMode)
     {
@@ -491,7 +475,6 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer& buffer, cons
     if (hasOpenEditor)
     {
         unsigned int uPreDelay = uChunkSize / 2;
-        // bool bMono = getParameterAsBool(TraKmeterPluginParameters::selMono);
 
         // length of buffer chunk in fractional seconds
         // (1024 samples / 44100 samples/s = 23.2 ms)
@@ -499,26 +482,17 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer& buffer, cons
 
         for (int nChannel = 0; nChannel < nNumInputChannels; nChannel++)
         {
-            // if (bMono && (nChannel == 1))
-            // {
-            //     fPeakLevels[nChannel] = fPeakLevels[0];
-            //     fRmsLevels[nChannel] = fRmsLevels[0];
-            //     nOverflows[nChannel] = nOverflows[0];
-            // }
-            // else
-            {
-                // determine peak level for uChunkSize samples (use
-                // pre-delay)
-                fPeakLevels[nChannel] = pRingBufferInput->getMagnitude(nChannel, uChunkSize, uPreDelay);
+            // determine peak level for uChunkSize samples (use
+            // pre-delay)
+            fPeakLevels[nChannel] = pRingBufferInput->getMagnitude(nChannel, uChunkSize, uPreDelay);
 
-                // determine peak level for uChunkSize samples (use
-                // pre-delay)
-                fRmsLevels[nChannel] = pRingBufferInput->getRMSLevel(nChannel, uChunkSize, uPreDelay);
+            // determine peak level for uChunkSize samples (use
+            // pre-delay)
+            fRmsLevels[nChannel] = pRingBufferInput->getRMSLevel(nChannel, uChunkSize, uPreDelay);
 
-                // determine overflows for uChunkSize samples (use
-                // pre-delay)
-                nOverflows[nChannel] = countOverflows(pRingBufferInput, nChannel, uChunkSize, uPreDelay);
-            }
+            // determine overflows for uChunkSize samples (use
+            // pre-delay)
+            nOverflows[nChannel] = countOverflows(pRingBufferInput, nChannel, uChunkSize, uPreDelay);
 
             // apply meter ballistics and store values so that the
             // editor can access them
@@ -629,7 +603,33 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
             delete pMeterBallistics;
             pMeterBallistics = NULL;
 
-            pMeterBallistics = new MeterBallistics(nNumInputChannels, TRAKMETER_CREST_FACTOR, true, false, bTransientMode);
+            pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
+
+            // RMS peak-to-average gain correction
+            pMeterBallistics->setPeakToAverageCorrection(PEAK_TO_AVERAGE_CORRECTION);
+        }
+    }
+}
+
+
+int TraKmeterAudioProcessor::getCrestFactor()
+{
+    return nCrestFactor;
+}
+
+
+void TraKmeterAudioProcessor::setCrestFactor(const int crest_factor)
+{
+    if (crest_factor != nCrestFactor)
+    {
+        nCrestFactor = crest_factor;
+
+        if (pMeterBallistics)
+        {
+            delete pMeterBallistics;
+            pMeterBallistics = NULL;
+
+            pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
 
             // RMS peak-to-average gain correction
             pMeterBallistics->setPeakToAverageCorrection(PEAK_TO_AVERAGE_CORRECTION);
@@ -651,11 +651,11 @@ AudioProcessorEditor* TraKmeterAudioProcessor::createEditor()
 
     if (nNumInputChannels > 0)
     {
-        return new TraKmeterAudioProcessorEditor(this, nNumInputChannels, TRAKMETER_CREST_FACTOR);
+        return new TraKmeterAudioProcessorEditor(this, nNumInputChannels, nCrestFactor);
     }
     else
     {
-        return new TraKmeterAudioProcessorEditor(this, JucePlugin_MaxNumInputChannels, TRAKMETER_CREST_FACTOR);
+        return new TraKmeterAudioProcessorEditor(this, JucePlugin_MaxNumInputChannels, nCrestFactor);
     }
 }
 
@@ -678,6 +678,7 @@ void TraKmeterAudioProcessor::setStateInformation(const void* data, int sizeInBy
 {
     ScopedPointer<XmlElement> xml(getXmlFromBinary(data, sizeInBytes));
     pPluginParameters->loadFromXml(xml);
+    updateParameters(false);
 }
 
 //==============================================================================

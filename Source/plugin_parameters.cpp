@@ -34,6 +34,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     nParam = new int[nNumParameters];
 
     nParam[selTransientMode] = 1;
+    nParam[selCrestFactor] = 20;
     nParam[selMixMode] = 0;
     nParam[selGain] = 0;
 
@@ -119,7 +120,11 @@ void TraKmeterPluginParameters::setParameterFromInt(int nIndex, int nValue)
 
     if (nParam[nIndex] != nValue)
     {
-        if (nIndex == selGain)
+        if (nIndex == selCrestFactor)
+        {
+            nParam[nIndex] = nValue;
+        }
+        else if (nIndex == selGain)
         {
             nParam[nIndex] = nValue;
         }
@@ -196,6 +201,10 @@ const String TraKmeterPluginParameters::getParameterName(int nIndex)
         return "Transient mode";
         break;
 
+    case selCrestFactor:
+        return "Crest factor";
+        break;
+
     case selMixMode:
         return "Mixing mode";
         break;
@@ -235,7 +244,11 @@ const String TraKmeterPluginParameters::getParameterText(int nIndex)
 {
     jassert((nIndex >= 0) && (nIndex < nNumParameters));
 
-    if (nIndex == selGain)
+    if (nIndex == selCrestFactor)
+    {
+        return getParameterAsBool(nIndex) ? "K-20" : "None";
+    }
+    else if (nIndex == selGain)
     {
         int nDecibels = nParam[nIndex];
 
@@ -287,7 +300,11 @@ float TraKmeterPluginParameters::translateParameterToFloat(int nIndex, int nValu
 {
     jassert((nIndex >= 0) && (nIndex < nNumParameters));
 
-    if (nIndex == selGain)
+    if (nIndex == selCrestFactor)
+    {
+        return (nValue != 0) ? 1.0f : 0.0f;
+    }
+    else if (nIndex == selGain)
     {
         // 0.00f: -12 dB
         // ...
@@ -316,7 +333,11 @@ int TraKmeterPluginParameters::translateParameterToInt(int nIndex, float fValue)
 {
     jassert((nIndex >= 0) && (nIndex < nNumParameters));
 
-    if (nIndex == selGain)
+    if (nIndex == selCrestFactor)
+    {
+        return (fValue > 0.5f) ? 20 : 0;
+    }
+    else if (nIndex == selGain)
     {
         // 0.00f: -12 dB
         // ...
@@ -348,6 +369,7 @@ XmlElement TraKmeterPluginParameters::storeAsXml()
     XmlElement xml("TRAKMETER_SETTINGS");
 
     xml.setAttribute("TransientMode", getParameterAsInt(selTransientMode));
+    xml.setAttribute("CrestFactor", getParameterAsInt(selCrestFactor));
     xml.setAttribute("MixMode", getParameterAsInt(selMixMode));
     xml.setAttribute("Gain", getParameterAsInt(selGain));
 
@@ -366,6 +388,7 @@ void TraKmeterPluginParameters::loadFromXml(XmlElement* xml)
     if (xml && xml->hasTagName("TRAKMETER_SETTINGS"))
     {
         setParameterFromInt(selTransientMode, xml->getIntAttribute("TransientMode", getParameterAsInt(selTransientMode)));
+        setParameterFromInt(selCrestFactor, xml->getIntAttribute("CrestFactor", getParameterAsInt(selCrestFactor)));
         setParameterFromInt(selMixMode, xml->getIntAttribute("MixMode", getParameterAsInt(selMixMode)));
         setParameterFromInt(selGain, xml->getIntAttribute("Gain", getParameterAsInt(selGain)));
 

@@ -131,7 +131,7 @@ void PeakMeter::paint(Graphics& g)
 
     for (int n = (nNumberOfBars - 1); n > 2; n -= 2)
     {
-        int nLevel = n - 21;
+        int nLevel = nCrestFactor + n - 21;
 
         if (nLevel > 0)
         {
@@ -144,7 +144,7 @@ void PeakMeter::paint(Graphics& g)
 
         y += 2 * nSegmentHeight;
 
-        if (nLevel == -10)
+        if (nLevel == nCrestFactor - 10)
         {
             g.setColour(Colours::white);
         }

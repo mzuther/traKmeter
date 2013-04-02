@@ -131,7 +131,7 @@ void AverageMeter::paint(Graphics& g)
 
     for (int n = nNumberOfBars; n > 2; n -= 2)
     {
-        int nLevel = n - 24;
+        int nLevel = nCrestFactor + n - 26;
 
         if (nLevel > 0)
         {
@@ -144,7 +144,7 @@ void AverageMeter::paint(Graphics& g)
 
         y += 2 * nSegmentHeight;
 
-        if (nLevel == -nCrestFactor)
+        if (nLevel == nCrestFactor - 20)
         {
             g.setColour(Colours::white);
         }

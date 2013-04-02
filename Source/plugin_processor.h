@@ -71,6 +71,7 @@ public:
     bool getParameterAsBool(int nIndex);
 
     void setParameter(int index, float newValue);
+    void updateParameters(bool bIncludeHiddenParameters);
 
     File getParameterValidationFile();
     void setParameterValidationFile(File& fileValidation);
@@ -78,7 +79,7 @@ public:
     const String getParameterName(int index);
     const String getParameterText(int index);
 
-    void changeParameter(int index, int newValue);
+    void changeParameter(int index, float fValue);
     int getParameterAsInt(int index);
 
     void MarkParameter(int nIndex);
@@ -101,6 +102,9 @@ public:
 
     bool getTransientMode();
     void setTransientMode(const bool transient_mode);
+
+    int getCrestFactor();
+    void setCrestFactor(const int crest_factor);
 
     //==========================================================================
     int getNumPrograms();
@@ -136,6 +140,7 @@ private:
     float fProcessedSeconds;
 
     bool bTransientMode;
+    int nCrestFactor;
     float* fPeakLevels;
     float* fRmsLevels;
 
