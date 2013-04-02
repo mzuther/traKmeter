@@ -75,12 +75,9 @@ to run at optimal input and output levels is called \emph{gain
   staging}.
 
 Now let's transfer this to the digital domain.  As the maximum crest
-factor of analog audio signals amounts to \SI{20}{\dB}, we have to
-adjust the headroom accordingly.  To keep with international
-standards, we'll follow the
-\href{http://tech.ebu.ch/publications/r068}{EBU R68-2000}
-recommendation and set our average input and output levels to
-\textbf{\SI{-18}{\dBFS} RMS}.
+factor of analog audio signals amounts to \SI{20}{\dB}, we'll adjust
+the headroom accordingly by setting our average input and output
+levels to \textbf{\SI{-20}{\dBFS} RMS}.
 
 Again, this ensures a good signal-to-noise ratio while preventing
 clipping.  Maybe even more important, this level also drives (most of)
@@ -88,10 +85,20 @@ your digital audio equipment and plug-ins at their respective ``sweet
 spot''.
 
 Another recommendation is that peak levels should not exceed
-\textbf{\SI{-9}{\dBFS}} (EBU R68-2000) during tracking, leaving enough
-space for inter-sample peaks.  Inter-sample peaks are audio peaks that
-lie \emph{in between} two successive samples and may lead to
-unpredictable clippings during digital-to-analog conversion.
+\SI{-9}{\dBFS} (\href{http://tech.ebu.ch/publications/r068}{EBU
+  R68-2000}) during tracking.  We'll round that to
+\textbf{\SI{-10}{\dBFS}} so that it's easier to remember.  In any
+case, this will leave enough space for inter-sample peaks (audio peaks
+that lie \emph{in between} two successive samples and may lead to
+unpredictable clipping during digital-to-analog conversion).
+
+Finally, we'll emphasise the newly designated headroom and shift the
+meter scales by \SI[addsign=all]{+20}{\dB}.  Thus, the optimal average
+audio level is designated \textbf{\SI{0}{\dB} RMS}, while the maximum
+peak audio level becomes \textbf{\SI[addsign=all]{+10}{\dB}}.  As a
+nice side effect, our new scale corresponds to Bob Katz's
+\href{http://www.digido.com/level-practices-part-2-includes-the-k-system.html}{K-20
+  scale}.
 
 \section{Digital audio myths}
 \label{sec:digital_audio_myths}
@@ -102,39 +109,34 @@ be performed at peak levels close to but not exceeding \SI{0}{\dBFS}
 the manuals of some professional audio equipment.  But for the reasons
 given above it is plain wrong.
 
-Let's look at the math for bit depths of 16 bit (as a worst-case
-scenario): even if your recordings peak at \SI{-18}{\dBFS} and you
-discard the least significant bit (some people claim that it mostly
-consists of errors), this still leaves you with a signal-to-noise
-ratio of \SI{72}{\dB}.  That is about what you can expect from some of
-the best professional analog tape machines and recording desks!
-
 \begin{wrapfigure}{r}{0pt}
-  \includegraphics[scale=0.24,clip]{include/images/otari_meter.png}
+  \includegraphics[scale=0.24,clip]{include/images/level_meter_otari.png}
 \end{wrapfigure}
 
-Or take my professional 16-bit hard disk recorder (Otari PD-80): its
-analog inputs and outputs are aligned to ``\SI[addsign=all]{+4}{\dBu}
-(\textbf{\SI{-15}{\dB}} from digital full-scale)''.  The manufacturer
-has even marked this level on the meter bridge (small triangle on the
-photo).  Although I admit that the mark is only useful for audio
-alignment, given that it sits on a peak meter \dots
+Let's look at the math for bit depths of 16 bit (as a worst-case
+scenario): even if your recordings \emph{peak} at \SI{-20}{\dBFS} and
+you discard the least significant bit (some people claim that it
+mostly consists of errors), this still leaves you with a
+signal-to-noise ratio of \SI{70}{\dB}.  That is about what you can
+expect from some of the best professional analog tape machines and
+recording desks -- and we're not even talking of 24 bit.
 
-If you need more information, there is a great thread over at
-Gearslutz (``The Reason Most ITB mixes don’t Sound as good as Analog
-mixes'') well worth reading.  Here are links to the
+If you don't believe me yet, take a look at my professional 16-bit
+hard disk recorder (Otari PD-80): its analog inputs and outputs are
+aligned to ``\SI[addsign=all]{+4}{\dBu} (\textbf{\SI{-15}{\dB}} from
+digital full-scale)''.  The manufacturer has even marked this level on
+the meter bridge (small triangle on the photo).  Although I admit that
+the mark is only useful for audio alignment, given that it sits on a
+peak meter \dots
+
+There is also a great thread over at Gearslutz (``The Reason Most ITB
+mixes don’t Sound as good as Analog mixes'') well worth reading.  Here
+are links to the
 \href{http://www.gearslutz.com/board/5062929-post1.html}{first post}
 and two other selected posts
 (\href{http://www.gearslutz.com/board/5064831-post1874.html}{\#1874}
 and
 \href{http://www.gearslutz.com/board/5609740-post3614.html}{\#3614}).
-
-% If you do not believe me still, simply record a couple of tracks
-% peaking at \SI{-1}{\dBFS} and then repeat the procedure, this time
-% having the tracks peak at \SI{-9}{\dBFS}.  Mix the tracks, adjust
-% master levels and compare the mixes.  The mix from the tracks recorded
-% at higher level will almost certainly sound worse (especially when you
-% use plug-ins).
 
 \section{Introducing traKmeter}
 \label{sec:introducing_trakmeter}
@@ -151,19 +153,25 @@ combination of peak and average meters.  And this is were
 \chapter{traKmeter}
 \label{chap:trakmeter}
 
+\begin{wrapfigure}{r}{0.18\linewidth}
+  \includegraphics[scale=0.625,clip]{include/images/level_meter_complete.png}
+\end{wrapfigure}
+
 \textbf{traKmeter} consists of two meters, a peak meter on top and an
-average meter below.  Both meters have an area of green LEDs that is
-enclosed by first yellow and then red LEDs.
+average meter below.  The meters are separated by a blue signal LED
+and consist of an area of green LEDs that is enclosed by first yellow
+and then red LEDs.
 
 You may have noticed that the average meter's green area is centred
-around the \textbf{\SI{-18}{\dBFS} RMS} mark.  This number should be
-vaguely familiar.  Remember, it corresponds to what we have determined
-to be the optimal average audio level in the digital domain.
+around the \textbf{\SI{0}{\dB} RMS} mark.  This number should be
+vaguely familiar.  Remember, it corresponds to \SI{-20}{\dBFS} RMS,
+the level we have determined to be the optimal average audio level in
+the digital domain.
 
-A fully lit yellow LED on the top end of the peak meter corresponds to
-a level of \textbf{\SI{-9}{\dBFS}}.  Again, this number should be
-familiar: peak levels in the digital domain shouldn't exceed this
-level.
+A fully lit green LED on the peak meter's top end corresponds to a
+level of \textbf{\SI[addsign=all]{+10}{\dB}} (or \SI{-10}{\dBFS}).
+Again, this number should be familiar: peak levels in the digital
+domain shouldn't exceed this level.
 
 Thus, by keeping the meter's readout in the green areas and from
 entering the yellow and red areas on top of each meter, you will
@@ -187,9 +195,10 @@ readouts of standalone and plug-in version.
 Now, feed the signal you want to record into an audio input channel
 and adjust its level (in the analog domain) using \textbf{traKmeter}.
 Try to set the input level so that transients reach
-\textbf{\SI{-18}{\dBFS} RMS} on the average meter.  Make sure that the
-peak level never exceeds \textbf{\SI{-9}{\dBFS}}.  In case both
-conditions cannot be met simultaneously, adjust the peak level only.
+\textbf{\SI{0}{\dB} RMS} on the average meter.  Make sure that the
+peak level never exceeds \textbf{\SI[addsign=all]{+10}{\dB}}.  In case
+both conditions cannot be met simultaneously, adjust the peak level
+only.
 
 \section{Mixing with traKmeter}
 \label{sec:mixing_with_trakmeter}
@@ -242,6 +251,20 @@ you'll then have to move the extracted files to your plug-in folder
 Click on this button to reset all meters.  You can also use it to get
 rid of graphical artifacts, because the meters will be redrawn as
 well.
+
+\section{Crest factor button}
+
+\begin{wrapfigure}{r}{0.14\linewidth}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_crest_factor_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_crest_factor_off.png}
+\end{wrapfigure}
+
+This button changes the meter scale.  When it is pressed, meter
+readout uses the K-20 scale.  Click the button to change to decibels
+relative to digital full-scale.
+
+\newpage %% layout
 
 \section{Transient button}
 
@@ -326,8 +349,6 @@ Clicking on this button will open the \textbf{about window} where you
 will be informed about version number, contributors, copyright and the
 GNU General Public License.
 
-\newpage %% layout
-
 \section{Display license}
 
 \begin{wrapfigure}{r}{0.15\linewidth}
@@ -351,7 +372,11 @@ the license's website in your web browser \dots
 \end{wrapfigure}
 
 The average level meter uses an averaging period of \num{1024} samples
-and exhibits a completely flat frequency response.
+and exhibits a completely flat frequency response.  It has been
+calibrated according to
+\href{http://www.aes.org/publications/standards/search.cfm?docID=21}{AES17-1998}
+so that sine wave signals read the same on both peak and average
+meters.
 
 Peaks will be held for \SI{10}{\second} and then fall with a speed of
 \SI{8.67}{\dB\per\second}.
@@ -424,7 +449,7 @@ may not know some of them, so read ahead \dots
   to hear yourself and other tracks during recording.
 
 \item[Record at lower levels.]  Record digital audio at
-  \textbf{\SI{-18}{\dBFS} RMS} with peak levels not exceeding
+  \textbf{\SI{-20}{\dBFS} RMS} with peak levels not exceeding
   \textbf{\SI{-9}{\dBFS}}.  For an in-depth explanation, see
   \ref{sec:gain_staging}.
 
@@ -633,16 +658,16 @@ playback early, simply click on the \textbf{validate} button again.
 %   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq_zoomed-itu_r.png}
 % \end{center}
 
-% \chapter{Help needed}
-% \label{chap:help_needed}
+\chapter{Help needed}
+\label{chap:help_needed}
 
-% As traKmeter was coded using cross-platform code, it should be easy to
-% compile versions for Windows (\num{64} bit) and Mac OS X.  I just
-% don’t have the adequate systems and compilers.
+As traKmeter was coded using cross-platform code, it should be easy to
+compile versions for Windows (\num{64} bit) and Mac OS X.  I just
+don’t have the adequate systems and compilers.
 
-% In case you want to help, please see the next chapter for an email
-% address.  You’ll need sufficient experience in coding, compiling and
-% debugging, though, so no beginners please!
+In case you want to help, please see the next chapter for an email
+address.  You’ll need sufficient experience in coding, compiling and
+debugging, though, so no beginners please!
 
 \chapter{Final words}
 \label{chap:final_words}
