@@ -1,9 +1,19 @@
 Git HEAD
 ========
 
-* peak and average (RMS) meter using "K-20" scales
 
-* meter ballistics, reset button
+v1.04 (2013-04-03)
+==================
+
+* first public release
+
+* peak and average (RMS) meters
+
+* stereo and 8-channel operation
+
+* meter scales: "K-20" and digital full-scale
+
+* two types of meter ballistics, reset button
 
 * mixing mode for changing the gain (pre-meter)
 
