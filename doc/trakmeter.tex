@@ -338,6 +338,11 @@ AIFF or FLAC) through \textbf{traKmeter} and dump internal data.
 During validation, the button will light up and clicking it will stop
 validation early.
 
+\emph{Unfortunately, the underlying JUCE library doesn't seem to
+  support multichannel audio files.  Simply load the audio file into
+  your DAW of choice and insert \textbf{traKmeter} as a plug-in
+  instance.}
+
 On Linux, dumped data will be written to \path{stderr}, so just start
 the \textbf{traKmeter} standalone or your VST host from the shell and
 watch the output coming.  On other systems, have a look at your VST

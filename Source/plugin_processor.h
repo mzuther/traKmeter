@@ -133,7 +133,6 @@ private:
     TraKmeterPluginParameters* pPluginParameters;
 
     int nNumInputChannels;
-    bool isStereo;
     bool bSampleRateIsValid;
 
     int nSamplesInBuffer;

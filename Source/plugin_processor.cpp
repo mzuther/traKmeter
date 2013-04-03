@@ -330,8 +330,6 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     }
 
     nNumInputChannels = getNumInputChannels();
-    isStereo = (nNumInputChannels == 2);
-
     DBG("[traKmeter] number of input channels: " + String(nNumInputChannels));
 
     pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
@@ -502,11 +500,11 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer& buffer, cons
 
 void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChannel, bool bReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel)
 {
-    // reset all meters before we start the validation
-    pMeterBallistics->reset();
-
     audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, 0);
     audioFilePlayer->setReporters(nSelectedChannel, bReportCSV, bAverageMeterLevel, bPeakMeterLevel);
+
+    // reset all meters before we start the validation
+    pMeterBallistics->reset();
 
     // refresh editor; "V+" --> validation started
     sendActionMessage("V+");

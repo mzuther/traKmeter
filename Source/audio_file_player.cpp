@@ -183,6 +183,7 @@ void AudioFilePlayer::fillBufferChunk(AudioSampleBuffer* buffer)
         channelInfo.startSample = 0;
         channelInfo.numSamples = buffer->getNumSamples();
 
+        channelInfo.clearActiveBufferRegion();
         audioFileSource->getNextAudioBlock(channelInfo);
     }
 }
