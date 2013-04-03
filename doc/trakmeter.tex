@@ -1,3 +1,4 @@
+
 \input{include/settings.sty}
 \input{include/hyphenation.sty}
 
@@ -338,9 +339,9 @@ AIFF or FLAC) through \textbf{traKmeter} and dump internal data.
 During validation, the button will light up and clicking it will stop
 validation early.
 
-\emph{Unfortunately, the underlying JUCE library doesn't seem to
-  support multichannel audio files.  Simply load the audio file into
-  your DAW of choice and insert \textbf{traKmeter} as a plug-in
+\emph{Unfortunately, the underlying JUCE library does not seem to
+  support multi-channel audio files.  You may load such audio files
+  into your DAW of choice and insert \textbf{traKmeter} as a plug-in
   instance.}
 
 On Linux, dumped data will be written to \path{stderr}, so just start
@@ -554,7 +555,7 @@ may not know some of them, so read ahead \dots
 I have gone to great lengths to ensure that the meters read correctly.
 You want to validate for yourself?  Just download and extract the
 source code.  The directory \path{validation} contains instructions
-and a FLAC-compressed wave file.  A word of warning: this audio file
+and FLAC-compressed wave files.  A word of warning: these audio files
 may \textbf{damage your ears} and speakers, so please watch your
 monitor levels!
 
@@ -585,19 +586,27 @@ playback early, simply click on the \textbf{validate} button again.
   \begin{tabular}{>{\bfseries}llcc}
 
     &
-    \textbf{Readout} &
+    \textbf{Test} &
     \textbf{Valid} \\
 
     Average level meter &
-    readings &
+    visuals &
+    \Checkmark{} \\
+
+    &
+    readout &
     \Checkmark{} \\
 
     Peak level meter &
-    readings &
+    visuals &
+    \Checkmark{} \\
+
+    &
+    readout &
     \Checkmark{} \\
 
     Signal meter &
-    readings &
+    visuals &
     \Checkmark{} \\
 
   \end{tabular}

@@ -46,7 +46,7 @@ SignalMeter::SignalMeter(const String& componentName, int posX, int posY, int wi
     int nPositionX = 0;
     PeakMeterSignals = new MeterSignalLed*[nInputChannels];
 
-    // signals are detected at -60 dB and above
+    // signals are detected at -60 dB FS and above (40 dB meter range)
     int nThreshold = (-60 + nCrestFactor) * 10;
     float fRange = 40.0f;
     String strLabel;
