@@ -27,8 +27,10 @@ if not _ACTION then
 	-- prevent "attempt to ... (a nil value)" errors
 elseif _ACTION == "gmake" then
 	print ("=== Generating project files (GNU g++, " .. os.get():upper() .. ") ===")
+elseif string.startswith(_ACTION, "codeblocks") then
+	print "=== Generating project files (Code::Blocks, Windows) ==="
 elseif string.startswith(_ACTION, "vs") then
-	print "=== Generating project files (Visual C++, WINDOWS) ==="
+	print "=== Generating project files (Visual C++, Windows) ==="
 elseif string.startswith(_ACTION, "xcode") then
 	print "=== Generating project files (Xcode, Mac OS X) ==="
 else
@@ -39,7 +41,7 @@ solution "trakmeter"
 	location ("windows/" .. _ACTION .. "/")
 	language "C++"
 
-	platforms { "x32" }
+	platforms { "x32", "x64" }
 
 	configurations { "Debug", "Release" }
 
@@ -91,8 +93,45 @@ solution "trakmeter"
 	configuration { "Debug", "x32" }
 		targetsuffix ", Debug)"
 
+	configuration { "Debug", "x64" }
+		targetsuffix " x64, Debug)"
+
 	configuration { "Release", "x32" }
 		targetsuffix ")"
+
+	configuration { "Release", "x64" }
+		targetsuffix " x64)"
+
+	configuration {"windows" }
+		defines {
+			"_WINDOWS=1",
+			"_USE_MATH_DEFINES=1",
+		}
+
+		links {
+			"kernel32",
+			"user32",
+			"gdi32",
+			"winspool",
+			"comdlg32",
+			"advapi32",
+			"shell32",
+			"ole32",
+			"oleaut32",
+			"uuid",
+			"odbc32",
+			"odbccp32"
+		 }
+
+	configuration {"windows", "x32" }
+		defines {
+			"WIN32=1",
+		}
+
+	configuration {"windows", "x64" }
+		defines {
+			"WIN64=1",
+		}
 
 --------------------------------------------------------------------------------
 
@@ -114,30 +153,12 @@ solution "trakmeter"
 
 		configuration {"windows"}
 			defines {
-				"_WINDOWS=1",
-				"_USE_MATH_DEFINES=1",
-				"WIN32=1",
 				"JUCE_USE_XSHM=0",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
 				"JUCE_ASIO=1",
 				"JUCE_DIRECTSOUND=1"
 			}
-
-			links {
-				"kernel32",
-				"user32",
-				"gdi32",
-				"winspool",
-				"comdlg32",
-				"advapi32",
-				"shell32",
-				"ole32",
-				"oleaut32",
-				"uuid",
-				"odbc32",
-				"odbccp32"
-			 }
 
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_stereo_debug")
@@ -165,30 +186,12 @@ solution "trakmeter"
 
 		configuration {"windows"}
 			defines {
-				"_WINDOWS=1",
-				"_USE_MATH_DEFINES=1",
-				"WIN32=1",
 				"JUCE_USE_XSHM=0",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
 				"JUCE_ASIO=1",
 				"JUCE_DIRECTSOUND=1"
 			}
-
-			links {
-				"kernel32",
-				"user32",
-				"gdi32",
-				"winspool",
-				"comdlg32",
-				"advapi32",
-				"shell32",
-				"ole32",
-				"oleaut32",
-				"uuid",
-				"odbc32",
-				"odbccp32"
-			 }
 
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_multi_debug")
@@ -197,6 +200,7 @@ solution "trakmeter"
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_multi_release")
 
 --------------------------------------------------------------------------------
+
 	project ("VST Plug-in (Stereo)")
 		kind "SharedLib"
 		targetname "traKmeter (Stereo"
@@ -224,9 +228,6 @@ solution "trakmeter"
 
 		configuration {"windows"}
 			defines {
-				"_WINDOWS=1",
-				"_USE_MATH_DEFINES=1",
-				"WIN32=1",
 				"JUCE_USE_XSHM=0",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
@@ -234,26 +235,12 @@ solution "trakmeter"
 				"JUCE_DIRECTSOUND=0"
 			}
 
-			links {
-				"kernel32",
-				"user32",
-				"gdi32",
-				"winspool",
-				"comdlg32",
-				"advapi32",
-				"shell32",
-				"ole32",
-				"oleaut32",
-				"uuid",
-				"odbc32",
-				"odbccp32"
-			 }
-
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_stereo_debug")
 
 		configuration "Release"
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_stereo_release")
+
 --------------------------------------------------------------------------------
 
 	project ("VST Plug-in (Multi)")
@@ -283,30 +270,12 @@ solution "trakmeter"
 
 		configuration {"windows"}
 			defines {
-				"_WINDOWS=1",
-				"_USE_MATH_DEFINES=1",
-				"WIN32=1",
 				"JUCE_USE_XSHM=0",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
 				"JUCE_ASIO=0",
 				"JUCE_DIRECTSOUND=0"
 			}
-
-			links {
-				"kernel32",
-				"user32",
-				"gdi32",
-				"winspool",
-				"comdlg32",
-				"advapi32",
-				"shell32",
-				"ole32",
-				"oleaut32",
-				"uuid",
-				"odbc32",
-				"odbccp32"
-			 }
 
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_multi_debug")
