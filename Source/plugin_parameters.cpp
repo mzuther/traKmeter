@@ -367,6 +367,7 @@ int TraKmeterPluginParameters::translateParameterToInt(int nIndex, float fValue)
 XmlElement TraKmeterPluginParameters::storeAsXml()
 {
     XmlElement xml("TRAKMETER_SETTINGS");
+    xml.setAttribute("version", JucePlugin_VersionString);
 
     xml.setAttribute("TransientMode", getParameterAsInt(selTransientMode));
     xml.setAttribute("CrestFactor", getParameterAsInt(selCrestFactor));
