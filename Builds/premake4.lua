@@ -101,7 +101,6 @@ solution "trakmeter"
 		defines {
 			"TRAKMETER_STAND_ALONE=1",
 			"TRAKMETER_STEREO=1",
-			"JUCETICE_USE_AMALGAMA=1",
 			"JUCE_USE_VSTSDK_2_4=0"
 		}
 
@@ -146,7 +145,6 @@ solution "trakmeter"
 		defines {
 			"TRAKMETER_STAND_ALONE=1",
 			"TRAKMETER_MULTI=1",
-			"JUCETICE_USE_AMALGAMA=1",
 			"JUCE_USE_VSTSDK_2_4=0"
 		}
 
@@ -182,6 +180,7 @@ solution "trakmeter"
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_multi_release")
 
 --------------------------------------------------------------------------------
+
 	project (os.get() .. "_vst_stereo")
 		kind "SharedLib"
 		location (os.get() .. "/vst_stereo")
@@ -191,7 +190,6 @@ solution "trakmeter"
 		defines {
 			"TRAKMETER_VST_PLUGIN=1",
 			"TRAKMETER_STEREO=1",
-			"JUCETICE_USE_AMALGAMA=1",
 			"JUCE_USE_VSTSDK_2_4=1"
 		}
 
@@ -247,7 +245,6 @@ solution "trakmeter"
 		defines {
 			"TRAKMETER_VST_PLUGIN=1",
 			"TRAKMETER_MULTI=1",
-			"JUCETICE_USE_AMALGAMA=1",
 			"JUCE_USE_VSTSDK_2_4=1"
 		}
 
