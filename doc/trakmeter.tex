@@ -612,88 +612,12 @@ playback early, simply click on the \textbf{validate} button again.
   \end{tabular}
 \end{minipage}
 
-% \newpage %% layout
-
-% \section{Frequency and phase response}
-
-% Frequency and phase response have been determined at a sample rate of
-% \SI{192}{\kilo\hertz} using
-% \href{http://www.savioursofsoul.de/Christian/programs/measurement-programs/}{VST
-%   Plugin Analyser}.
-
-% \textbf{Frequency response of complete effect path (\SI{5}{\hertz} to
-%   \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{\pm 0.1}{\dB}):}
-
-% \begin{center}
-%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-fx_path.png}
-% \end{center}
-
-% \textbf{Phase response of complete effect path (\SI{5}{\hertz} to
-%   \SI{96}{\kilo\hertz}, \SI{0}{\degree}\,\SI{\pm 0.1}{\degree}):}
-
-% \begin{center}
-%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-fx_path.png}
-% \end{center}
-
-% \newpage %% layout
-
-% \textbf{Frequency response of band-limited RMS detection stage
-%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-140}{\dB} to
-%   \SI{5}{\dB}):}
-
-% \begin{center}
-%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-rms.png}
-% \end{center}
-
-% \textbf{Phase response of band-limited RMS detection stage
-%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-180}{\degree} to
-%   \SI[addsign]{+180}{\degree}):}
-
-% \begin{center}
-%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-rms.png}
-% \end{center}
-% \newpage %% layout
-
-% \textbf{Frequency response of band-limited ITU-R BS.1770-1 detection stage
-%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-140}{\dB} to
-%   \SI{5}{\dB}):}
-
-% \begin{center}
-%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq-itu_r.png}
-% \end{center}
-
-% \textbf{Phase response of band-limited ITU-R BS.1770-1 detection stage
-%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{-180}{\degree} to
-%   \SI[addsign]{+180}{\degree}):}
-
-% \begin{center}
-%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-phase-itu_r.png}
-% \end{center}
-
-% \newpage %% layout
-
-% \textbf{Frequency response of band-limited RMS detection stage
-%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{\pm
-%     1}{\dB}):}
-
-% \begin{center}
-%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq_zoomed-rms.png}
-% \end{center}
-
-% \textbf{Frequency response of band-limited ITU-R BS.1770-1 detection stage
-%   (\SI{5}{\hertz} to \SI{96}{\kilo\hertz}, \SI{0}{\dB} \SI{-6}{\dB} to
-%   \SI{4}{\dB}):}
-
-% \begin{center}
-%   \includegraphics[scale=0.65,clip]{include/images/fft_192khz-freq_zoomed-itu_r.png}
-% \end{center}
-
 \chapter{Help needed}
 \label{chap:help_needed}
 
 As \textbf{traKmeter} was coded using cross-platform code, it should
-be easy to compile versions for Windows (\num{64} bit) and Mac OS X.
-I just don’t have the adequate systems and compilers.
+be easy to compile on Mac OS X.  I just don’t have an adequate system
+or compiler.
 
 In case you want to help, please see the next chapter for an email
 address.  You’ll need sufficient experience in coding, compiling and
@@ -879,6 +803,27 @@ Just extract the archive into the directory
 
 Simply extract the archive into the directory
 \path{libraries/asiosdk2.2}.
+
+\subsection{Python}
+
+\begin{tabbing}
+  \hspace*{6em}\=\=\kill
+
+  Importance:  \> optional \\
+  Version:     \> 3.2 (or higher) \\
+  License:     \> Python Software Foundation License \\
+  Homepage:    \> \href{http://www.python.org/}{www.python.org}
+\end{tabbing}
+
+You'll only need Python if you want to build \num{64}-bit versions of
+\textbf{traKmeter} using Visual Studio Express.
+
+\subsubsection{Installation (Windows)}
+
+You can download an installer from the website.  Please also install
+the \href{http://msdn.microsoft.com/windows/bb980924.aspx}{Windows
+  SDK} and change \path{run_premake.bat} to reflect the SDK's version
+number.
 
 \subsection{Artistic Style}
 
