@@ -45,6 +45,9 @@ public:
 
     int getNumberOfChannels();
 
+    int getCrestFactor();
+    void setCrestFactor(int CrestFactor);
+
     float getPeakMeterLevel(int nChannel);
     float getPeakMeterPeakLevel(int nChannel);
 

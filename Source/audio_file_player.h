@@ -75,7 +75,7 @@ private:
     String formatTime(void);
     String formatValue(const float fValue);
 
-    void outputValue(const float fValue, Averager* pAverager, const String& strPrefix, const String& strSuffix);
+    void outputValue(const float fValue, Averager* pAverager, const float fCorrectionFactor, const String& strPrefix, const String& strSuffix);
     void outputMessage(const String& strMessage);
 };
 

@@ -59,7 +59,7 @@ MeterBallistics::MeterBallistics(int nChannels, int CrestFactor, bool bPeakMeter
     nNumberOfChannels = nChannels;
 
     // store meter's crest factor
-    nCrestFactor = CrestFactor;
+    setCrestFactor(CrestFactor);
 
     // store setting for transient mode
     bTransientMode = transient_mode;
@@ -225,6 +225,28 @@ int MeterBallistics::getNumberOfChannels()
 */
 {
     return nNumberOfChannels;
+}
+
+
+int MeterBallistics::getCrestFactor()
+/*  Get current crest factor.
+
+    return value (integer): returns the current crest factor in decibel
+*/
+{
+    return nCrestFactor;
+}
+
+
+void MeterBallistics::setCrestFactor(int CrestFactor)
+/*  Set current crest factor.
+
+    CrestFactor (integer): current crest factor in decibel
+
+    return value: none
+*/
+{
+    nCrestFactor = CrestFactor;
 }
 
 

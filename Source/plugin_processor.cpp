@@ -500,7 +500,7 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer& buffer, cons
 
 void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChannel, bool bReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel)
 {
-    audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, 0);
+    audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, nCrestFactor);
     audioFilePlayer->setReporters(nSelectedChannel, bReportCSV, bAverageMeterLevel, bPeakMeterLevel);
 
     // reset all meters before we start the validation
@@ -612,10 +612,12 @@ void TraKmeterAudioProcessor::setCrestFactor(const int crest_factor)
 
         if (pMeterBallistics)
         {
-            delete pMeterBallistics;
-            pMeterBallistics = NULL;
+            pMeterBallistics->setCrestFactor(nCrestFactor);
+        }
 
-            pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
+        if (audioFilePlayer)
+        {
+            audioFilePlayer->setCrestFactor(nCrestFactor);
         }
     }
 }
