@@ -23,46 +23,46 @@
 
 ---------------------------------------------------------------------------- */
 
-#include "overflow_meter.h"
+#ifndef __METER_SEGMENT_OVERLOAD_H__
+#define __METER_SEGMENT_OVERLOAD_H__
 
-OverflowMeter::OverflowMeter(const String& componentName) : Label(componentName, "0")
+#include "../JuceLibraryCode/JuceHeader.h"
+
+
+//==============================================================================
+/**
+*/
+class MeterSegmentOverload : public Component
 {
-    nOverflows = 0;
+public:
+    MeterSegmentOverload(const String& componentName, float fThreshold, float fRange, bool bDiscreteLevels, bool bDisplayPeaks, int nColor);
+    ~MeterSegmentOverload();
 
-    // this component does not have any transparent areas (increases
-    // performance on redrawing)
-    setOpaque(true);
+    void setLevels(float fLevel, float fLevelPeak, float fLevelMaximum);
+    void paint(Graphics& g);
+    void resized();
+    void visibilityChanged();
 
-    setFont(12.0f);
-    setJustificationType(Justification::centredRight);
-    setColour(Label::backgroundColourId, Colours::grey.darker(0.7f));
-    setColour(Label::textColourId, Colours::white);
-    setColour(Label::outlineColourId, Colours::grey.darker(0.2f));
-}
+private:
+    JUCE_LEAK_DETECTOR(MeterSegmentOverload);
 
-OverflowMeter::~OverflowMeter()
-{
-}
+    float fHue;
+    float fBrightness;
 
-void OverflowMeter::setOverflows(int Overflows)
-{
-    int nOverflowsOld = nOverflows;
-    nOverflows = Overflows;
+    float fLowerThreshold;
+    float fUpperThreshold;
+    float fThresholdRange;
 
-    if (nOverflows != nOverflowsOld)
-    {
-        setText(String(nOverflows), false);
+    float fMaximumLevel;
+    String strMaximumLevel;
 
-        if (nOverflowsOld == 0)
-        {
-            setColour(Label::backgroundColourId, Colours::red.darker(0.2f));
-        }
-        else if (nOverflows == 0)
-        {
-            setColour(Label::backgroundColourId, Colours::grey.darker(0.7f));
-        }
-    }
-}
+    bool bPeakMarker;
+    bool discreteLevels;
+    bool displayPeaks;
+};
+
+
+#endif  // __METER_SEGMENT_OVERLOAD_H__
 
 
 // Local Variables:

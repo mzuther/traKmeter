@@ -33,32 +33,33 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     // performance on redrawing)
     setOpaque(true);
 
-    nNumberOfBars = number_of_bars;
+    nNumberOfBars = number_of_bars - 1;
     nSegmentHeight = segment_height;
 
     nPosX = pos_x;
     nPosY = pos_y;
     nWidth = width;
-    nHeight = nNumberOfBars * nSegmentHeight + 1;
+    nHeight = (nNumberOfBars + 1) * nSegmentHeight + 1;
 
     int nCrestFactor = 10 * crest_factor;
-    fPeakLevel = 0.0f;
-    fPeakLevelPeak = 0.0f;
+    fPeakLevel = -9999.8f;
+    fPeakLevelPeak = -9999.8f;
+    fPeakLevelMaximum = -9999.8f;
 
-    MeterArray = new MeterSegment*[nNumberOfBars];
+    pMeterSegments = new MeterSegment*[nNumberOfBars];
 
-    int n = 0;
     int nThreshold = -90 + nCrestFactor;
 
     // register all hot signals, even up to +100 dB FS!
     float fRange = (nCrestFactor + 100.0f - nThreshold) * 0.1f;
+
     int nColor = 0;
     bool bDiscreteLevels = true;
 
-    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
-    addAndMakeVisible(MeterArray[n]);
+    pMeterSegmentOverload = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+    addAndMakeVisible(pMeterSegmentOverload);
 
-    for (int n = 1; n < nNumberOfBars; n++)
+    for (int n = 0; n < nNumberOfBars; n++)
     {
         int nThresholdDifference = 10;
         nThreshold -= nThresholdDifference;
@@ -80,8 +81,8 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
             nColor = 2;
         }
 
-        MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
-        addAndMakeVisible(MeterArray[n]);
+        pMeterSegments[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+        addAndMakeVisible(pMeterSegments[n]);
     }
 }
 
@@ -90,13 +91,16 @@ MeterBarPeak::~MeterBarPeak()
 {
     for (int n = 0; n < nNumberOfBars; n++)
     {
-        removeChildComponent(MeterArray[n]);
-        delete MeterArray[n];
-        MeterArray[n] = NULL;
+        removeChildComponent(pMeterSegments[n]);
+        delete pMeterSegments[n];
+        pMeterSegments[n] = NULL;
     }
 
-    delete [] MeterArray;
-    MeterArray = NULL;
+    delete [] pMeterSegments;
+    pMeterSegments = NULL;
+
+    delete pMeterSegmentOverload;
+    pMeterSegmentOverload = NULL;
 
     deleteAllChildren();
 }
@@ -109,9 +113,12 @@ void MeterBarPeak::visibilityChanged()
     int x = 0;
     int y = 0;
 
+    pMeterSegmentOverload->setBounds(x, y, nWidth, nSegmentHeight + 1);
+    y += nSegmentHeight;
+
     for (int n = 0; n < nNumberOfBars; n++)
     {
-        MeterArray[n]->setBounds(x, y, nWidth, nSegmentHeight + 1);
+        pMeterSegments[n]->setBounds(x, y, nWidth, nSegmentHeight + 1);
         y += nSegmentHeight;
     }
 }
@@ -128,16 +135,19 @@ void MeterBarPeak::resized()
 }
 
 
-void MeterBarPeak::setLevels(float peakLevel, float peakLevelPeak)
+void MeterBarPeak::setLevels(float peakLevel, float peakLevelPeak, float peakLevelMaximum)
 {
-    if ((peakLevel != fPeakLevel) || (peakLevelPeak != fPeakLevelPeak))
+    if ((peakLevel != fPeakLevel) || (peakLevelPeak != fPeakLevelPeak) || (fPeakLevelMaximum != peakLevelMaximum))
     {
         fPeakLevel = peakLevel;
         fPeakLevelPeak = peakLevelPeak;
+        fPeakLevelMaximum = peakLevelMaximum;
+
+        pMeterSegmentOverload->setLevels(fPeakLevel, fPeakLevelPeak, fPeakLevelMaximum);
 
         for (int n = 0; n < nNumberOfBars; n++)
         {
-            MeterArray[n]->setLevels(fPeakLevel, fPeakLevelPeak);
+            pMeterSegments[n]->setLevels(fPeakLevel, fPeakLevelPeak);
         }
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="LEmwq6" name="traKmeter" projectType="audioplug" version="1.04.0"
+<JUCERPROJECT id="LEmwq6" name="traKmeter" projectType="audioplug" version="1.04.1"
               bundleIdentifier="de.mzuther.traKmeter" buildVST="1" buildRTAS="0"
               buildAU="1" pluginName="traKmeter" pluginDesc="Loudness meter for correctly setting up tracking and mixing levels"
               pluginManufacturer="mzuther" pluginManufacturerCode="mz" pluginCode="trak"
@@ -59,16 +59,14 @@
       <FILE id="fONDUz" name="meter_segment.cpp" compile="1" resource="0"
             file="Source/meter_segment.cpp"/>
       <FILE id="uBiYjV" name="meter_segment.h" compile="0" resource="0" file="Source/meter_segment.h"/>
+      <FILE id="dX2BPW" name="meter_segment_overload.cpp" compile="1" resource="0"
+            file="Source/meter_segment_overload.cpp"/>
+      <FILE id="qxG21n" name="meter_segment_overload.h" compile="0" resource="0"
+            file="Source/meter_segment_overload.h"/>
       <FILE id="fC4AdW" name="meter_signal_led.cpp" compile="1" resource="0"
             file="Source/meter_signal_led.cpp"/>
       <FILE id="VO3B2n" name="meter_signal_led.h" compile="0" resource="0"
             file="Source/meter_signal_led.h"/>
-      <FILE id="OBPiRG" name="overflow_meter.cpp" compile="1" resource="0"
-            file="Source/overflow_meter.cpp"/>
-      <FILE id="fXQnk0" name="overflow_meter.h" compile="0" resource="0"
-            file="Source/overflow_meter.h"/>
-      <FILE id="NG6ODp" name="peak_label.cpp" compile="1" resource="0" file="Source/peak_label.cpp"/>
-      <FILE id="B9l4gR" name="peak_label.h" compile="0" resource="0" file="Source/peak_label.h"/>
       <FILE id="tuoFRu" name="peak_meter.cpp" compile="1" resource="0" file="Source/peak_meter.cpp"/>
       <FILE id="oPAqgN" name="peak_meter.h" compile="0" resource="0" file="Source/peak_meter.h"/>
       <FILE id="G5u5gv" name="plugin_editor.cpp" compile="1" resource="0"

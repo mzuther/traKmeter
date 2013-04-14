@@ -39,8 +39,8 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "traKmeter";
-    const char* const  versionString  = "1.04.0";
-    const int          versionNumber  = 0x10400;
+    const char* const  versionString  = "1.04.1";
+    const int          versionNumber  = 0x10401;
 }
 
 #endif   // __APPHEADERFILE_LEMWQ6__

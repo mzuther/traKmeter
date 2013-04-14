@@ -45,7 +45,7 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
     fAverageLevel = 0.0f;
     fAverageLevelPeak = 0.0f;
 
-    MeterArray = new MeterSegment*[nNumberOfBars];
+    pMeterSegments = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
     int nThreshold = -170 + nCrestFactor;
@@ -55,8 +55,8 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
     int nColor = 0;
     bool bDiscreteLevels = true;
 
-    MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
-    addAndMakeVisible(MeterArray[n]);
+    pMeterSegments[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+    addAndMakeVisible(pMeterSegments[n]);
 
     for (int n = 1; n < nNumberOfBars; n++)
     {
@@ -80,8 +80,8 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
             nColor = 2;
         }
 
-        MeterArray[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
-        addAndMakeVisible(MeterArray[n]);
+        pMeterSegments[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
+        addAndMakeVisible(pMeterSegments[n]);
     }
 }
 
@@ -90,13 +90,13 @@ MeterBarAverage::~MeterBarAverage()
 {
     for (int n = 0; n < nNumberOfBars; n++)
     {
-        removeChildComponent(MeterArray[n]);
-        delete MeterArray[n];
-        MeterArray[n] = NULL;
+        removeChildComponent(pMeterSegments[n]);
+        delete pMeterSegments[n];
+        pMeterSegments[n] = NULL;
     }
 
-    delete [] MeterArray;
-    MeterArray = NULL;
+    delete [] pMeterSegments;
+    pMeterSegments = NULL;
 
     deleteAllChildren();
 }
@@ -111,7 +111,7 @@ void MeterBarAverage::visibilityChanged()
 
     for (int n = 0; n < nNumberOfBars; n++)
     {
-        MeterArray[n]->setBounds(x, y, nWidth, nSegmentHeight + 1);
+        pMeterSegments[n]->setBounds(x, y, nWidth, nSegmentHeight + 1);
         y += nSegmentHeight;
     }
 }
@@ -137,7 +137,7 @@ void MeterBarAverage::setLevels(float averageLevel, float averageLevelPeak)
 
         for (int n = 0; n < nNumberOfBars; n++)
         {
-            MeterArray[n]->setLevels(fAverageLevel, fAverageLevelPeak);
+            pMeterSegments[n]->setLevels(fAverageLevel, fAverageLevelPeak);
         }
     }
 }

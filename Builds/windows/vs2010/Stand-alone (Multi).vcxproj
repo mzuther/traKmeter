@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{11B3C78A-D303-79E9-D419-B7F5D075EDF3}</ProjectGuid>
+		<ProjectGuid>{4ED0557E-6B80-D18D-615F-74D32C3CABEC}</ProjectGuid>
 		<RootNamespace>Stand-alone (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -89,7 +89,7 @@
 			<AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
 			<Optimization>Disabled</Optimization>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\asiosdk2.2\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCETICE_USE_AMALGAMA=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<MinimalRebuild>false</MinimalRebuild>
 			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
 			<RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -100,7 +100,7 @@
 			<DebugInformationFormat>EditAndContinue</DebugInformationFormat>
 		</ClCompile>
 		<ResourceCompile>
-			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCETICE_USE_AMALGAMA=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\asiosdk2.2\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ResourceCompile>
 		<Link>
@@ -118,7 +118,7 @@
 			<AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
 			<Optimization>Disabled</Optimization>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\asiosdk2.2\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCETICE_USE_AMALGAMA=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<MinimalRebuild>false</MinimalRebuild>
 			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
 			<RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -129,7 +129,7 @@
 			<DebugInformationFormat>OldStyle</DebugInformationFormat>
 		</ClCompile>
 		<ResourceCompile>
-			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCETICE_USE_AMALGAMA=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\asiosdk2.2\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ResourceCompile>
 		<Link>
@@ -147,7 +147,7 @@
 			<AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
 			<Optimization>MaxSpeed</Optimization>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\asiosdk2.2\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCETICE_USE_AMALGAMA=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<MinimalRebuild>false</MinimalRebuild>
 			<StringPooling>true</StringPooling>
 			<RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -159,7 +159,7 @@
 			<OmitFramePointers>true</OmitFramePointers>
 		</ClCompile>
 		<ResourceCompile>
-			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCETICE_USE_AMALGAMA=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\asiosdk2.2\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ResourceCompile>
 		<Link>
@@ -178,7 +178,7 @@
 			<AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
 			<Optimization>MaxSpeed</Optimization>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\asiosdk2.2\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCETICE_USE_AMALGAMA=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<MinimalRebuild>false</MinimalRebuild>
 			<StringPooling>true</StringPooling>
 			<RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -190,7 +190,7 @@
 			<OmitFramePointers>true</OmitFramePointers>
 		</ClCompile>
 		<ResourceCompile>
-			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCETICE_USE_AMALGAMA=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_STAND_ALONE=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=0;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\asiosdk2.2\common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ResourceCompile>
 		<Link>
@@ -213,14 +213,13 @@
 		<ClInclude Include="..\..\..\Source\trakmeter.h" />
 		<ClInclude Include="..\..\..\Source\peak_meter.h" />
 		<ClInclude Include="..\..\..\Source\meter_segment.h" />
-		<ClInclude Include="..\..\..\Source\overflow_meter.h" />
 		<ClInclude Include="..\..\..\Source\audio_ring_buffer.h" />
 		<ClInclude Include="..\..\..\Source\signal_meter.h" />
-		<ClInclude Include="..\..\..\Source\peak_label.h" />
 		<ClInclude Include="..\..\..\Source\window_about.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_peak.h" />
 		<ClInclude Include="..\..\..\Source\audio_file_player.h" />
 		<ClInclude Include="..\..\..\Source\plugin_parameters.h" />
+		<ClInclude Include="..\..\..\Source\meter_segment_overload.h" />
 		<ClInclude Include="..\..\..\Source\meter_signal_led.h" />
 		<ClInclude Include="..\..\..\Source\plugin_processor.h" />
 		<ClInclude Include="..\..\..\Source\meter_ballistics.h" />
@@ -230,6 +229,8 @@
 		<ClInclude Include="..\..\..\Source\resources\resources.h" />
 	</ItemGroup>
 	<ItemGroup>
+		<ClCompile Include="..\..\..\Source\meter_segment_overload.cpp">
+		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_segment.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\plugin_processor.cpp">
@@ -254,8 +255,6 @@
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\window_validation.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\peak_label.cpp">
-		</ClCompile>
 		<ClCompile Include="..\..\..\Source\audio_ring_buffer.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\standalone_application.cpp">
@@ -269,8 +268,6 @@
 		<ClCompile Include="..\..\..\Source\audio_file_player.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\trakmeter.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\overflow_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\channel_slider.cpp">
 		</ClCompile>

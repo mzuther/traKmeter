@@ -28,6 +28,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "meter_segment.h"
+#include "meter_segment_overload.h"
 
 
 //==============================================================================
@@ -39,7 +40,7 @@ public:
     MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks);
     ~MeterBarPeak();
 
-    void setLevels(float peakLevel, float peakLevelPeak);
+    void setLevels(float peakLevel, float peakLevelPeak, float peakLevelMaximum);
     void paint(Graphics& g);
     void resized();
     void visibilityChanged();
@@ -49,6 +50,7 @@ private:
 
     float fPeakLevel;
     float fPeakLevelPeak;
+    float fPeakLevelMaximum;
 
     int nPosX;
     int nPosY;
@@ -57,7 +59,8 @@ private:
     int nSegmentHeight;
     int nNumberOfBars;
 
-    MeterSegment** MeterArray;
+    MeterSegment** pMeterSegments;
+    MeterSegmentOverload* pMeterSegmentOverload;
 };
 
 

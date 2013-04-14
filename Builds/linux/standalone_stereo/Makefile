@@ -23,7 +23,7 @@ ifeq ($(config),debug32)
   OBJDIR     = ../../../bin/intermediate_linux/standalone_stereo_debug/x32
   TARGETDIR  = ../../../bin
   TARGET     = $(TARGETDIR)/trakmeter_stereo_debug
-  DEFINES   += -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_STAND_ALONE=1 -DTRAKMETER_STEREO=1 -DJUCETICE_USE_AMALGAMA=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
+  DEFINES   += -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_STAND_ALONE=1 -DTRAKMETER_STEREO=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
   INCLUDES  += -I../../../JuceLibraryCode -I../../../libraries -I/usr/include -I/usr/include/freetype2
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -g -Wall -m32 -fno-inline
@@ -45,7 +45,7 @@ ifeq ($(config),release32)
   OBJDIR     = ../../../bin/intermediate_linux/standalone_stereo_release/x32
   TARGETDIR  = ../../../bin
   TARGET     = $(TARGETDIR)/trakmeter_stereo
-  DEFINES   += -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_STAND_ALONE=1 -DTRAKMETER_STEREO=1 -DJUCETICE_USE_AMALGAMA=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
+  DEFINES   += -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_STAND_ALONE=1 -DTRAKMETER_STEREO=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
   INCLUDES  += -I../../../JuceLibraryCode -I../../../libraries -I/usr/include -I/usr/include/freetype2
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -O3 -fomit-frame-pointer -Wall -m32 -pipe -fvisibility=hidden
@@ -67,7 +67,7 @@ ifeq ($(config),debug64)
   OBJDIR     = ../../../bin/intermediate_linux/standalone_stereo_debug/x64
   TARGETDIR  = ../../../bin
   TARGET     = $(TARGETDIR)/trakmeter_stereo_debug_x64
-  DEFINES   += -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_STAND_ALONE=1 -DTRAKMETER_STEREO=1 -DJUCETICE_USE_AMALGAMA=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
+  DEFINES   += -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_STAND_ALONE=1 -DTRAKMETER_STEREO=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
   INCLUDES  += -I../../../JuceLibraryCode -I../../../libraries -I/usr/include -I/usr/include/freetype2
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -g -Wall -m64 -fno-inline
@@ -89,7 +89,7 @@ ifeq ($(config),release64)
   OBJDIR     = ../../../bin/intermediate_linux/standalone_stereo_release/x64
   TARGETDIR  = ../../../bin
   TARGET     = $(TARGETDIR)/trakmeter_stereo_x64
-  DEFINES   += -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_STAND_ALONE=1 -DTRAKMETER_STEREO=1 -DJUCETICE_USE_AMALGAMA=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
+  DEFINES   += -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_STAND_ALONE=1 -DTRAKMETER_STEREO=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
   INCLUDES  += -I../../../JuceLibraryCode -I../../../libraries -I/usr/include -I/usr/include/freetype2
   CPPFLAGS  += -MMD -MP $(DEFINES) $(INCLUDES)
   CFLAGS    += $(CPPFLAGS) $(ARCH) -O3 -fomit-frame-pointer -Wall -m64 -pipe -fvisibility=hidden
@@ -108,6 +108,7 @@ ifeq ($(config),release64)
 endif
 
 OBJECTS := \
+	$(OBJDIR)/meter_segment_overload.o \
 	$(OBJDIR)/meter_segment.o \
 	$(OBJDIR)/plugin_processor.o \
 	$(OBJDIR)/meter_bar_peak.o \
@@ -120,7 +121,6 @@ OBJECTS := \
 	$(OBJDIR)/signal_meter.o \
 	$(OBJDIR)/average_meter.o \
 	$(OBJDIR)/window_validation.o \
-	$(OBJDIR)/peak_label.o \
 	$(OBJDIR)/audio_ring_buffer.o \
 	$(OBJDIR)/standalone_application.o \
 	$(OBJDIR)/window_about.o \
@@ -128,7 +128,6 @@ OBJECTS := \
 	$(OBJDIR)/plugin_editor.o \
 	$(OBJDIR)/audio_file_player.o \
 	$(OBJDIR)/trakmeter.o \
-	$(OBJDIR)/overflow_meter.o \
 	$(OBJDIR)/channel_slider.o \
 	$(OBJDIR)/resources.o \
 	$(OBJDIR)/juce_audio_basics.o \
@@ -204,6 +203,9 @@ $(GCH): $(PCH)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 endif
 
+$(OBJDIR)/meter_segment_overload.o: ../../../Source/meter_segment_overload.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/meter_segment.o: ../../../Source/meter_segment.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
@@ -240,9 +242,6 @@ $(OBJDIR)/average_meter.o: ../../../Source/average_meter.cpp
 $(OBJDIR)/window_validation.o: ../../../Source/window_validation.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/peak_label.o: ../../../Source/peak_label.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/audio_ring_buffer.o: ../../../Source/audio_ring_buffer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
@@ -262,9 +261,6 @@ $(OBJDIR)/audio_file_player.o: ../../../Source/audio_file_player.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/trakmeter.o: ../../../Source/trakmeter.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/overflow_meter.o: ../../../Source/overflow_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/channel_slider.o: ../../../Source/channel_slider.cpp
