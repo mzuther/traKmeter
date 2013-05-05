@@ -45,17 +45,17 @@
 ---------------------------------------------------------------------------- */
 
 #ifdef TRAKMETER_MULTI
-#ifdef DEBUG
-#define JucePlugin_Name                 "traKmeter (Multi, Debug)"
+  #ifdef DEBUG
+    #define JucePlugin_Name                 "traKmeter (Multi, Debug)"
+  #else
+    #define JucePlugin_Name                 "traKmeter (Multi)"
+  #endif
 #else
-#define JucePlugin_Name                 "traKmeter (Multi)"
-#endif
-#else
-#ifdef DEBUG
-#define JucePlugin_Name                 "traKmeter (Stereo, Debug)"
-#else
-#define JucePlugin_Name                 "traKmeter (Stereo)"
-#endif
+  #ifdef DEBUG
+    #define JucePlugin_Name                 "traKmeter (Stereo, Debug)"
+  #else
+    #define JucePlugin_Name                 "traKmeter (Stereo)"
+  #endif
 #endif
 
 #ifdef TRAKMETER_MULTI
@@ -69,6 +69,23 @@
 #endif
 
 #define JUCE_USE_FLAC  1
+
+#ifdef TRAKMETER_SURROUND
+  #ifdef DEBUG
+    #define JucePlugin_LV2URI "http://code.mzuther.de/trakmeter/surround/debug"
+  #else
+    #define JucePlugin_LV2URI "http://code.mzuther.de/trakmeter/surround"
+  #endif
+#else
+  #ifdef DEBUG
+    #define JucePlugin_LV2URI "http://code.mzuther.de/trakmeter/stereo/debug"
+  #else
+    #define JucePlugin_LV2URI "http://code.mzuther.de/trakmeter/stereo"
+  #endif
+#endif
+
+#define JucePlugin_LV2Category "AnalyserPlugin"
+
 // [END_USER_CODE_SECTION]
 
 //==============================================================================
@@ -136,6 +153,10 @@
 
 #ifndef    JUCE_USE_MP3AUDIOFORMAT
  //#define JUCE_USE_MP3AUDIOFORMAT
+#endif
+
+#ifndef    JUCE_USE_LAME_AUDIO_FORMAT
+ //#define JUCE_USE_LAME_AUDIO_FORMAT
 #endif
 
 #ifndef    JUCE_USE_WINDOWS_MEDIA_FORMAT
@@ -241,6 +262,9 @@
 #ifndef  JucePlugin_Build_RTAS
  #define JucePlugin_Build_RTAS             0
 #endif
+#ifndef  JucePlugin_Build_AAX
+ #define JucePlugin_Build_AAX              0
+#endif
 #ifndef  JucePlugin_Name
  #define JucePlugin_Name                   "traKmeter"
 #endif
@@ -277,17 +301,17 @@
 #ifndef  JucePlugin_SilenceInProducesSilenceOut
  #define JucePlugin_SilenceInProducesSilenceOut  1
 #endif
-#ifndef  JucePlugin_TailLengthSeconds
- #define JucePlugin_TailLengthSeconds      0
-#endif
 #ifndef  JucePlugin_EditorRequiresKeyboardFocus
  #define JucePlugin_EditorRequiresKeyboardFocus  0
 #endif
+#ifndef  JucePlugin_Version
+ #define JucePlugin_Version                1.04.2
+#endif
 #ifndef  JucePlugin_VersionCode
- #define JucePlugin_VersionCode            0x10401
+ #define JucePlugin_VersionCode            0x10402
 #endif
 #ifndef  JucePlugin_VersionString
- #define JucePlugin_VersionString          "1.04.1"
+ #define JucePlugin_VersionString          "1.04.2"
 #endif
 #ifndef  JucePlugin_VSTUniqueID
  #define JucePlugin_VSTUniqueID            JucePlugin_PluginCode
@@ -313,9 +337,6 @@
 #ifndef  JucePlugin_CFBundleIdentifier
  #define JucePlugin_CFBundleIdentifier     de.mzuther.traKmeter
 #endif
-#ifndef  JucePlugin_AUCocoaViewClassName
- #define JucePlugin_AUCocoaViewClassName   traKmeterAU_V1
-#endif
 #ifndef  JucePlugin_RTASCategory
  #define JucePlugin_RTASCategory           ePlugInCategory_None
 #endif
@@ -324,6 +345,30 @@
 #endif
 #ifndef  JucePlugin_RTASProductId
  #define JucePlugin_RTASProductId          JucePlugin_PluginCode
+#endif
+#ifndef  JucePlugin_RTASDisableBypass
+ #define JucePlugin_RTASDisableBypass      0
+#endif
+#ifndef  JucePlugin_RTASDisableMultiMono
+ #define JucePlugin_RTASDisableMultiMono   0
+#endif
+#ifndef  JucePlugin_AAXIdentifier
+ #define JucePlugin_AAXIdentifier          de.mzuther.traKmeter
+#endif
+#ifndef  JucePlugin_AAXManufacturerCode
+ #define JucePlugin_AAXManufacturerCode    JucePlugin_ManufacturerCode
+#endif
+#ifndef  JucePlugin_AAXProductId
+ #define JucePlugin_AAXProductId           JucePlugin_PluginCode
+#endif
+#ifndef  JucePlugin_AAXPluginId
+ #define JucePlugin_AAXPluginId            JucePlugin_PluginCode
+#endif
+#ifndef  JucePlugin_AAXCategory
+ #define JucePlugin_AAXCategory            AAX_ePlugInCategory_Dynamics
+#endif
+#ifndef  JucePlugin_AAXDisableBypass
+ #define JucePlugin_AAXDisableBypass       0
 #endif
 
 #endif  // __JUCE_APPCONFIG_LEMWQ6__

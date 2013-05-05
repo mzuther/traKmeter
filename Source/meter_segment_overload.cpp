@@ -122,7 +122,7 @@ void MeterSegmentOverload::paint(Graphics& g)
         g.setColour(Colours::white);
     }
 
-    g.setFont(height);
+    g.setFont(float(height));
     g.drawFittedText(strMaximumLevel, 2, 2, width - 6, height - 4, Justification::centred, 1, 0.7f);
 
 }

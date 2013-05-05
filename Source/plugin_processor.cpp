@@ -276,6 +276,18 @@ bool TraKmeterAudioProcessor::producesMidi() const
 }
 
 
+bool TraKmeterAudioProcessor::silenceInProducesSilenceOut() const
+{
+    return true;
+}
+
+
+double TraKmeterAudioProcessor::getTailLengthSeconds() const
+{
+    return 0.0;
+}
+
+
 int TraKmeterAudioProcessor::getNumChannels()
 {
     return nNumInputChannels;
@@ -668,8 +680,14 @@ void TraKmeterAudioProcessor::setStateInformation(const void* data, int sizeInBy
 
 //==============================================================================
 
-// This creates new instances of the plug-in..
+// This creates new instances of the plug-in.
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+{
+    return new TraKmeterAudioProcessor();
+}
+
+
+AudioProcessor* JUCE_CALLTYPE createPluginFilterOfType(AudioProcessor::WrapperType)
 {
     return new TraKmeterAudioProcessor();
 }

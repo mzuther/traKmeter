@@ -109,7 +109,7 @@ WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProces
     ButtonDumpCSV->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationCSVFormat), false);
     contentComponent->addAndMakeVisible(ButtonDumpCSV);
 
-    SliderDumpSelectedChannel->setValue(pProcessor->getParameterAsInt(TraKmeterPluginParameters::selValidationSelectedChannel), false, false);
+    SliderDumpSelectedChannel->setValue(pProcessor->getParameterAsInt(TraKmeterPluginParameters::selValidationSelectedChannel), dontSendNotification);
     contentComponent->addAndMakeVisible(SliderDumpSelectedChannel);
 
     ButtonDumpAverageMeterLevel = new ToggleButton("Avg");
@@ -222,7 +222,7 @@ void WindowValidation::buttonClicked(Button* button)
             File selectedFile = browser.getSelectedFile(0);
             pProcessor->setParameterValidationFile(selectedFile);
             fileValidation = pProcessor->getParameterValidationFile();
-            LabelFileSelection->setText(fileValidation.getFileName(), false);
+            LabelFileSelection->setText(fileValidation.getFileName(), dontSendNotification);
         }
     }
 }

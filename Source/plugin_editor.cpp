@@ -247,7 +247,7 @@ void TraKmeterAudioProcessorEditor::changeParameter(int nIndex)
     case TraKmeterPluginParameters::selGain:
     {
         int nGain = pProcessor->getParameterAsInt(nIndex);
-        SliderGain->setValue(nGain, false);
+        SliderGain->setValue(nGain, dontSendNotification);
     }
     break;
     }
