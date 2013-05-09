@@ -59,22 +59,22 @@
 #endif
 
 #ifdef TRAKMETER_MULTI
-#define JucePlugin_MaxNumInputChannels  8
-#define JucePlugin_MaxNumOutputChannels 8
-#define JucePlugin_PreferredChannelConfigurations   {4, 4}, {6, 6}, {8, 8}
+  #define JucePlugin_MaxNumInputChannels  8
+  #define JucePlugin_MaxNumOutputChannels 8
+  #define JucePlugin_PreferredChannelConfigurations   {4, 4}, {6, 6}, {8, 8}
 #else
-#define JucePlugin_MaxNumInputChannels  2
-#define JucePlugin_MaxNumOutputChannels 2
-#define JucePlugin_PreferredChannelConfigurations   {1, 1}, {2, 2}
+  #define JucePlugin_MaxNumInputChannels  2
+  #define JucePlugin_MaxNumOutputChannels 2
+  #define JucePlugin_PreferredChannelConfigurations   {1, 1}, {2, 2}
 #endif
 
 #define JUCE_USE_FLAC  1
 
-#ifdef TRAKMETER_SURROUND
+#ifdef TRAKMETER_MULTI
   #ifdef DEBUG
-    #define JucePlugin_LV2URI "http://code.mzuther.de/trakmeter/surround/debug"
+    #define JucePlugin_LV2URI "http://code.mzuther.de/trakmeter/multi/debug"
   #else
-    #define JucePlugin_LV2URI "http://code.mzuther.de/trakmeter/surround"
+    #define JucePlugin_LV2URI "http://code.mzuther.de/trakmeter/multi"
   #endif
 #else
   #ifdef DEBUG
@@ -255,6 +255,9 @@
 
 #ifndef  JucePlugin_Build_VST
  #define JucePlugin_Build_VST              1
+#endif
+#ifndef  JucePlugin_Build_LV2
+ #define JucePlugin_Build_LV2              1
 #endif
 #ifndef  JucePlugin_Build_AU
  #define JucePlugin_Build_AU               1

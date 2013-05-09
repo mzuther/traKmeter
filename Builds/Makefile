@@ -6,7 +6,7 @@ ifndef config
 endif
 export config
 
-PROJECTS := linux_standalone_stereo linux_standalone_multi linux_vst_stereo linux_vst_multi
+PROJECTS := linux_standalone_stereo linux_standalone_multi linux_lv2_stereo linux_lv2_multi linux_vst_stereo linux_vst_multi
 
 .PHONY: all clean help $(PROJECTS)
 
@@ -20,6 +20,14 @@ linux_standalone_multi:
 	@echo "==== Building linux_standalone_multi ($(config)) ===="
 	@${MAKE} --no-print-directory -C linux/standalone_multi -f Makefile
 
+linux_lv2_stereo: 
+	@echo "==== Building linux_lv2_stereo ($(config)) ===="
+	@${MAKE} --no-print-directory -C linux/lv2_stereo -f Makefile
+
+linux_lv2_multi: 
+	@echo "==== Building linux_lv2_multi ($(config)) ===="
+	@${MAKE} --no-print-directory -C linux/lv2_multi -f Makefile
+
 linux_vst_stereo: 
 	@echo "==== Building linux_vst_stereo ($(config)) ===="
 	@${MAKE} --no-print-directory -C linux/vst_stereo -f Makefile
@@ -31,6 +39,8 @@ linux_vst_multi:
 clean:
 	@${MAKE} --no-print-directory -C linux/standalone_stereo -f Makefile clean
 	@${MAKE} --no-print-directory -C linux/standalone_multi -f Makefile clean
+	@${MAKE} --no-print-directory -C linux/lv2_stereo -f Makefile clean
+	@${MAKE} --no-print-directory -C linux/lv2_multi -f Makefile clean
 	@${MAKE} --no-print-directory -C linux/vst_stereo -f Makefile clean
 	@${MAKE} --no-print-directory -C linux/vst_multi -f Makefile clean
 
@@ -48,6 +58,8 @@ help:
 	@echo "   clean"
 	@echo "   linux_standalone_stereo"
 	@echo "   linux_standalone_multi"
+	@echo "   linux_lv2_stereo"
+	@echo "   linux_lv2_multi"
 	@echo "   linux_vst_stereo"
 	@echo "   linux_vst_multi"
 	@echo ""

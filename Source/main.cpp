@@ -33,7 +33,7 @@ START_JUCE_APPLICATION(StandaloneApplication)
 #endif
 
 // build VST plugin
-#ifdef TRAKMETER_VST_PLUGIN
+#if defined (TRAKMETER_VST_PLUGIN) || defined (TRAKMETER_LV2_PLUGIN)
 
 // do nothing till you hear from me...
 
