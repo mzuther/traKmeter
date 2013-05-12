@@ -157,6 +157,107 @@
         lv2:default 0.12 ;
         lv2:minimum 0.00 ;
         lv2:maximum 0.24 ;
+        lv2:portProperty lv2:enumeration ;
         lv2:portProperty epp:hasStrictBounds;
+        lv2:scalePoint [
+            rdf:value 0.00 ;
+            rdfs:label "-12 dB" ;
+        ] ,
+        [
+            rdf:value 0.01 ;
+            rdfs:label "-11 dB" ;
+        ] ,
+        [
+            rdf:value 0.02 ;
+            rdfs:label "-10 dB" ;
+        ] ,
+        [
+            rdf:value 0.03 ;
+            rdfs:label "-9 dB" ;
+        ] ,
+        [
+            rdf:value 0.04 ;
+            rdfs:label "-8 dB" ;
+        ] ,
+        [
+            rdf:value 0.05 ;
+            rdfs:label "-7 dB" ;
+        ] ,
+        [
+            rdf:value 0.06 ;
+            rdfs:label "-6 dB" ;
+        ] ,
+        [
+            rdf:value 0.07 ;
+            rdfs:label "-5 dB" ;
+        ] ,
+        [
+            rdf:value 0.08 ;
+            rdfs:label "-4 dB" ;
+        ] ,
+        [
+            rdf:value 0.09 ;
+            rdfs:label "-3 dB" ;
+        ] ,
+        [
+            rdf:value 0.10 ;
+            rdfs:label "-2 dB" ;
+        ] ,
+        [
+            rdf:value 0.11 ;
+            rdfs:label "-1 dB" ;
+        ] ,
+        [
+            rdf:value 0.12 ;
+            rdfs:label "0 dB" ;
+        ] ,
+        [
+            rdf:value 0.13 ;
+            rdfs:label "+1 dB" ;
+        ] ,
+        [
+            rdf:value 0.14 ;
+            rdfs:label "+2 dB" ;
+        ] ,
+        [
+            rdf:value 0.15 ;
+            rdfs:label "+3 dB" ;
+        ] ,
+        [
+            rdf:value 0.16 ;
+            rdfs:label "+4 dB" ;
+        ] ,
+        [
+            rdf:value 0.17 ;
+            rdfs:label "+5 dB" ;
+        ] ,
+        [
+            rdf:value 0.18 ;
+            rdfs:label "+6 dB" ;
+        ] ,
+        [
+            rdf:value 0.19 ;
+            rdfs:label "+7 dB" ;
+        ] ,
+        [
+            rdf:value 0.20 ;
+            rdfs:label "+8 dB" ;
+        ] ,
+        [
+            rdf:value 0.21 ;
+            rdfs:label "+9 dB" ;
+        ] ,
+        [
+            rdf:value 0.22 ;
+            rdfs:label "+10 dB" ;
+        ] ,
+        [
+            rdf:value 0.23 ;
+            rdfs:label "+11 dB" ;
+        ] ,
+        [
+            rdf:value 0.24 ;
+            rdfs:label "+12 dB" ;
+        ] ;
     ] .
 
