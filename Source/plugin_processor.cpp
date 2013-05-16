@@ -427,7 +427,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
 
     if (nNumInputChannels < 1)
     {
-        DBG("[traKmeter] nNumInputChannels < 1");
+        Logger::outputDebugString("[traKmeter] nNumInputChannels < 1");
         return;
     }
 

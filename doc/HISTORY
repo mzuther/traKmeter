@@ -1,7 +1,11 @@
 Git HEAD
 ========
 
+* LV2 plug-in (GNU/Linux)
+
 * smooth switching of crest factor
+
+* updated framework to JUCE v2.40
 
 
 v1.04 (2013-04-03)
