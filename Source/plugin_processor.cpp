@@ -343,6 +343,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
 
     nNumInputChannels = getNumInputChannels();
     DBG("[traKmeter] number of input channels: " + String(nNumInputChannels));
+    jassert(nNumInputChannels > 0);
 
     pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
 
