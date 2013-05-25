@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{C1807652-C041-A2F4-425D-ED53FF27C532}</ProjectGuid>
+		<ProjectGuid>{AD9C4AD0-290A-9D11-9096-30DD8C2B5FC2}</ProjectGuid>
 		<RootNamespace>VST Plug-in (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -303,6 +303,8 @@
 		<ClCompile Include="..\..\..\libraries\juce\modules\juce_gui_extra\juce_gui_extra.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\libraries\juce\modules\juce_video\juce_video.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\libraries\juce\modules\juce_audio_plugin_client\utility\juce_PluginUtilities.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\libraries\juce\modules\juce_audio_plugin_client\VST\juce_VST_Wrapper.cpp">
 		</ClCompile>

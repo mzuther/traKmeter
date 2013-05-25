@@ -342,8 +342,14 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     }
 
     nNumInputChannels = getNumInputChannels();
+
+    if (nNumInputChannels < 1)
+    {
+        nNumInputChannels = JucePlugin_MaxNumInputChannels;
+        DBG("[traKmeter] no input channels detected, correcting this");
+    }
+
     DBG("[traKmeter] number of input channels: " + String(nNumInputChannels));
-    jassert(nNumInputChannels > 0);
 
     pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
 
@@ -683,12 +689,6 @@ void TraKmeterAudioProcessor::setStateInformation(const void* data, int sizeInBy
 
 // This creates new instances of the plug-in.
 AudioProcessor* JUCE_CALLTYPE createPluginFilter()
-{
-    return new TraKmeterAudioProcessor();
-}
-
-
-AudioProcessor* JUCE_CALLTYPE createPluginFilterOfType(AudioProcessor::WrapperType)
 {
     return new TraKmeterAudioProcessor();
 }

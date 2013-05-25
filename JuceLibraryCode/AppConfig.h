@@ -86,6 +86,14 @@
 
 #define JucePlugin_LV2Category "AnalyserPlugin"
 
+#ifndef JucePlugin_Build_LV2
+  #ifdef TRAKMETER_LV2_PLUGIN
+    #define JucePlugin_Build_LV2  1
+  #else
+    #define JucePlugin_Build_LV2  0
+  #endif
+#endif
+
 // [END_USER_CODE_SECTION]
 
 //==============================================================================
@@ -256,11 +264,8 @@
 #ifndef  JucePlugin_Build_VST
  #define JucePlugin_Build_VST              1
 #endif
-#ifndef  JucePlugin_Build_LV2
- #define JucePlugin_Build_LV2              1
-#endif
 #ifndef  JucePlugin_Build_AU
- #define JucePlugin_Build_AU               1
+ #define JucePlugin_Build_AU               0
 #endif
 #ifndef  JucePlugin_Build_RTAS
  #define JucePlugin_Build_RTAS             0
