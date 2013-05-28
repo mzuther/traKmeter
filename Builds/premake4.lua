@@ -186,7 +186,6 @@ solution "trakmeter"
 	project (os.get() .. "_lv2_stereo")
 		kind "SharedLib"
 		location (os.get() .. "/lv2_stereo")
-		targetdir "../bin/trakmeter_lv2/"
 		targetname "trakmeter_stereo_lv2"
 		targetprefix ""
 
@@ -229,6 +228,12 @@ solution "trakmeter"
 				"Xext"
 			}
 
+		configuration { "x32" }
+			targetdir "../bin/trakmeter_lv2/"
+
+		configuration { "x64" }
+			targetdir "../bin/trakmeter_lv2_x64/"
+
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_debug")
 
@@ -240,7 +245,6 @@ solution "trakmeter"
 	project (os.get() .. "_lv2_multi")
 		kind "SharedLib"
 		location (os.get() .. "/lv2_multi")
-		targetdir "../bin/trakmeter_lv2/"
 		targetname "trakmeter_multi_lv2"
 		targetprefix ""
 
@@ -282,6 +286,12 @@ solution "trakmeter"
 				"X11",
 				"Xext"
 			}
+
+		configuration { "x32" }
+			targetdir "../bin/trakmeter_lv2/"
+
+		configuration { "x64" }
+			targetdir "../bin/trakmeter_lv2_x64/"
 
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_debug")

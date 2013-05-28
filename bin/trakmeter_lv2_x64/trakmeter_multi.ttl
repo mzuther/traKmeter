@@ -1,0 +1,379 @@
+@prefix doap: <http://usefulinc.com/ns/doap#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+
+@prefix atom: <http://lv2plug.in/ns/ext/atom#> .
+@prefix epp:  <http://lv2plug.in/ns/dev/extportinfo#> .
+@prefix lv2:  <http://lv2plug.in/ns/lv2core#> .
+@prefix pg:   <http://lv2plug.in/ns/ext/port-groups#> .
+@prefix pset: <http://lv2plug.in/ns/ext/presets#> .
+@prefix ue:   <http://lv2plug.in/ns/extensions/units#> .
+@prefix ui:   <http://lv2plug.in/ns/extensions/ui#> .
+@prefix unit: <http://lv2plug.in/ns/extensions/units#> .
+
+<http://code.mzuther.de/trakmeter/multi>
+    a lv2:AnalyserPlugin, lv2:Plugin ;
+    lv2:requiredFeature <http://lv2plug.in/ns/ext/buf-size#boundedBlockLength> ,
+                        <http://lv2plug.in/ns/ext/urid#map> ;
+    lv2:extensionData <http://lv2plug.in/ns/ext/options#interface> ,
+                      <http://lv2plug.in/ns/ext/state#interface> ,
+                      <http://kxstudio.sf.net/ns/lv2ext/programs#Interface> ;
+
+    ui:ui <http://code.mzuther.de/trakmeter/multi#ExternalUI> ,
+          <http://code.mzuther.de/trakmeter/multi#ParentUI> ;
+
+    doap:name "traKmeter (Multi)" ;
+    doap:license <http://usefulinc.com/doap/licenses/gpl> ;
+    doap:shortdesc "Loudness meter for correctly setting up tracking and mixing levels." ;
+
+    doap:creator [
+        foaf:name "Martin Zuther";
+        foaf:homepage <http://www.mzuther.de/>;
+        ];
+
+    doap:developer [
+        foaf:name "Martin Zuther";
+        foaf:homepage <http://www.mzuther.de/>;
+        ];
+    
+    doap:maintainer [
+        foaf:name "Martin Zuther" ;
+        foaf:homepage <http://www.mzuther.de/>;
+    ];
+
+    lv2:port [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 0 ;
+        lv2:symbol "lv2_freewheel" ;
+        lv2:name "Freewheel" ;
+        lv2:default 0.0 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0 ;
+        lv2:designation <http://lv2plug.in/ns/lv2core#freeWheeling> ;
+        lv2:portProperty lv2:toggled ;
+        lv2:portProperty epp:hasStrictBounds;
+    ] ,
+    [
+        a lv2:OutputPort, lv2:ControlPort ;
+        lv2:index 1 ;
+        lv2:symbol "lv2_latency" ;
+        lv2:name "Latency" ;
+        lv2:designation <http://lv2plug.in/ns/lv2core#latency> ;
+    ] ;
+
+    lv2:port [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 2 ;
+        lv2:symbol "audio_in_1" ;
+        lv2:name "Audio Input (1)" ;
+        pg:membership [
+            pg:group pg:InputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 3 ;
+        lv2:symbol "audio_in_2" ;
+        lv2:name "Audio Input (2)" ;
+        pg:membership [
+            pg:group pg:InputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 4 ;
+        lv2:symbol "audio_in_3" ;
+        lv2:name "Audio Input (3)" ;
+        pg:membership [
+            pg:group pg:InputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 5 ;
+        lv2:symbol "audio_in_4" ;
+        lv2:name "Audio Input (4)" ;
+        pg:membership [
+            pg:group pg:InputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 6 ;
+        lv2:symbol "audio_in_5" ;
+        lv2:name "Audio Input (5)" ;
+        pg:membership [
+            pg:group pg:InputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 7 ;
+        lv2:symbol "audio_in_6" ;
+        lv2:name "Audio Input (6)" ;
+        pg:membership [
+            pg:group pg:InputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 8 ;
+        lv2:symbol "audio_in_7" ;
+        lv2:name "Audio Input (7)" ;
+        pg:membership [
+            pg:group pg:InputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:InputPort, lv2:AudioPort ;
+        lv2:index 9 ;
+        lv2:symbol "audio_in_8" ;
+        lv2:name "Audio Input (8)" ;
+        pg:membership [
+            pg:group pg:InputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ;
+
+    lv2:port [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 10 ;
+        lv2:symbol "audio_out_1" ;
+        lv2:name "Audio Output (1)" ;
+        pg:membership [
+            pg:group pg:OutputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 11 ;
+        lv2:symbol "audio_out_2" ;
+        lv2:name "Audio Output (2)" ;
+        pg:membership [
+            pg:group pg:OutputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 12 ;
+        lv2:symbol "audio_out_3" ;
+        lv2:name "Audio Output (3)" ;
+        pg:membership [
+            pg:group pg:OutputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 13 ;
+        lv2:symbol "audio_out_4" ;
+        lv2:name "Audio Output (4)" ;
+        pg:membership [
+            pg:group pg:OutputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 14 ;
+        lv2:symbol "audio_out_5" ;
+        lv2:name "Audio Output (5)" ;
+        pg:membership [
+            pg:group pg:OutputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 15 ;
+        lv2:symbol "audio_out_6" ;
+        lv2:name "Audio Output (6)" ;
+        pg:membership [
+            pg:group pg:OutputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 16 ;
+        lv2:symbol "audio_out_7" ;
+        lv2:name "Audio Output (7)" ;
+        pg:membership [
+            pg:group pg:OutputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ,
+    [
+        a lv2:OutputPort, lv2:AudioPort ;
+        lv2:index 17 ;
+        lv2:symbol "audio_out_8" ;
+        lv2:name "Audio Output (8)" ;
+        pg:membership [
+            pg:group pg:OutputGroup ;
+            pg:group pg:DiscreteGroup ;
+        ];
+    ] ;
+
+    lv2:port [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 18 ;
+        lv2:symbol "transient_mode" ;
+        lv2:name "Transient mode" ;
+        lv2:default 1.0 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0 ;
+        lv2:portProperty lv2:toggled ;
+        lv2:portProperty epp:hasStrictBounds;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 19 ;
+        lv2:symbol "crest_factor" ;
+        lv2:name "Crest factor" ;
+        lv2:default 1.0 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0 ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:portProperty epp:hasStrictBounds;
+        lv2:scalePoint [
+            rdf:value 0.0 ;
+            rdfs:label "0 dB (digital full-scale)" ;
+        ] ,
+        [
+            rdf:value 1.0 ;
+            rdfs:label "20 dB (K-20 scale)" ;
+        ] ;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 20 ;
+        lv2:symbol "mixing_mode" ;
+        lv2:name "Mixing mode" ;
+        lv2:default 0.0 ;
+        lv2:minimum 0.0 ;
+        lv2:maximum 1.0 ;
+        lv2:portProperty lv2:toggled ;
+        lv2:portProperty epp:hasStrictBounds;
+    ] ,
+    [
+        a lv2:InputPort, lv2:ControlPort ;
+        lv2:index 21 ;
+        lv2:symbol "gain" ;
+        lv2:name "Gain" ;
+        lv2:default 0.12 ;
+        lv2:minimum 0.00 ;
+        lv2:maximum 0.24 ;
+        lv2:portProperty lv2:enumeration ;
+        lv2:portProperty epp:hasStrictBounds;
+        lv2:scalePoint [
+            rdf:value 0.00 ;
+            rdfs:label "-12 dB" ;
+        ] ,
+        [
+            rdf:value 0.01 ;
+            rdfs:label "-11 dB" ;
+        ] ,
+        [
+            rdf:value 0.02 ;
+            rdfs:label "-10 dB" ;
+        ] ,
+        [
+            rdf:value 0.03 ;
+            rdfs:label "-9 dB" ;
+        ] ,
+        [
+            rdf:value 0.04 ;
+            rdfs:label "-8 dB" ;
+        ] ,
+        [
+            rdf:value 0.05 ;
+            rdfs:label "-7 dB" ;
+        ] ,
+        [
+            rdf:value 0.06 ;
+            rdfs:label "-6 dB" ;
+        ] ,
+        [
+            rdf:value 0.07 ;
+            rdfs:label "-5 dB" ;
+        ] ,
+        [
+            rdf:value 0.08 ;
+            rdfs:label "-4 dB" ;
+        ] ,
+        [
+            rdf:value 0.09 ;
+            rdfs:label "-3 dB" ;
+        ] ,
+        [
+            rdf:value 0.10 ;
+            rdfs:label "-2 dB" ;
+        ] ,
+        [
+            rdf:value 0.11 ;
+            rdfs:label "-1 dB" ;
+        ] ,
+        [
+            rdf:value 0.12 ;
+            rdfs:label "0 dB" ;
+        ] ,
+        [
+            rdf:value 0.13 ;
+            rdfs:label "+1 dB" ;
+        ] ,
+        [
+            rdf:value 0.14 ;
+            rdfs:label "+2 dB" ;
+        ] ,
+        [
+            rdf:value 0.15 ;
+            rdfs:label "+3 dB" ;
+        ] ,
+        [
+            rdf:value 0.16 ;
+            rdfs:label "+4 dB" ;
+        ] ,
+        [
+            rdf:value 0.17 ;
+            rdfs:label "+5 dB" ;
+        ] ,
+        [
+            rdf:value 0.18 ;
+            rdfs:label "+6 dB" ;
+        ] ,
+        [
+            rdf:value 0.19 ;
+            rdfs:label "+7 dB" ;
+        ] ,
+        [
+            rdf:value 0.20 ;
+            rdfs:label "+8 dB" ;
+        ] ,
+        [
+            rdf:value 0.21 ;
+            rdfs:label "+9 dB" ;
+        ] ,
+        [
+            rdf:value 0.22 ;
+            rdfs:label "+10 dB" ;
+        ] ,
+        [
+            rdf:value 0.23 ;
+            rdfs:label "+11 dB" ;
+        ] ,
+        [
+            rdf:value 0.24 ;
+            rdfs:label "+12 dB" ;
+        ] ;
+    ] .
+

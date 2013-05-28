@@ -65,7 +65,7 @@ endif
 
 ifeq ($(config),debug64)
   OBJDIR     = ../../../bin/intermediate_linux/lv2_stereo_debug/x64
-  TARGETDIR  = ../../../bin/trakmeter_lv2
+  TARGETDIR  = ../../../bin/trakmeter_lv2_x64
   TARGET     = $(TARGETDIR)/trakmeter_stereo_lv2_debug_x64.so
   DEFINES   += -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_LV2_PLUGIN=1 -DTRAKMETER_STEREO=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
   INCLUDES  += -I../../../JuceLibraryCode -I../../../libraries -I/usr/include -I/usr/include/freetype2
@@ -87,7 +87,7 @@ endif
 
 ifeq ($(config),release64)
   OBJDIR     = ../../../bin/intermediate_linux/lv2_stereo_release/x64
-  TARGETDIR  = ../../../bin/trakmeter_lv2
+  TARGETDIR  = ../../../bin/trakmeter_lv2_x64
   TARGET     = $(TARGETDIR)/trakmeter_stereo_lv2_x64.so
   DEFINES   += -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_LV2_PLUGIN=1 -DTRAKMETER_STEREO=1 -DJUCE_USE_VSTSDK_2_4=0 -DLINUX=1 -DJUCE_USE_XSHM=1 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_DIRECTSOUND=0
   INCLUDES  += -I../../../JuceLibraryCode -I../../../libraries -I/usr/include -I/usr/include/freetype2
