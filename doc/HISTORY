@@ -1,9 +1,17 @@
 Git HEAD
 ========
 
+
+v1.05 (2013-05-30)
+==================
+
 * LV2 plug-in (GNU/Linux)
 
+* display maximum level on overload
+
 * smooth switching of crest factor
+
+* validation: full re-calibration
 
 * updated framework to JUCE v2.40
 

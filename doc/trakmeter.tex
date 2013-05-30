@@ -1,4 +1,3 @@
-
 \input{include/settings.sty}
 \input{include/hyphenation.sty}
 
@@ -57,7 +56,7 @@ peaks are nothing for the weak of heart.
 
 However, most of these obstacles can be overcome easily by proper gain
 staging, minimising the crossing of domains and choosing appropriate
-bit depth and sample rates.  If you also learn how to properly test
+bit depths and sample rates.  If you also learn how to properly test
 and operate your equipment, you're well on your way to pure audio
 bliss \dots
 
@@ -88,9 +87,16 @@ spot''.
 Another recommendation is that peak levels should not exceed
 \textbf{\SI{-9}{\dBFS}}
 (\href{http://tech.ebu.ch/publications/r068}{EBU R68-2000}) during
-tracking.  This will leave enough space for inter-sample peaks, audio
-peaks that lie \emph{in between} two successive samples and may lead
-to unpredictable clipping during digital-to-analog conversion.
+tracking.  This will leave enough space for sudden jumps in level and
+also for inter-sample peaks, audio peaks that lie \emph{in between}
+two successive samples and may lead to unpredictable clipping during
+digital-to-analog conversion.
+
+Some analog-to-digital converters also degrade audio when fed with
+input levels close to digital full-scale (\SI{0}{\dBFS}), resulting in
+the ``harshness'' often attributed to digital audio -- my first sound
+card certainly suffered from this.  So lowering your input levels as
+described above may also improve your overall sound.
 
 Finally, we'll emphasise the newly designated headroom and shift the
 meter scales by \SI[addsign=all]{+20}{\dB}.  Thus, the optimal average
@@ -105,8 +111,8 @@ nice side effect, our new scale corresponds to Bob Katz's
 
 I can almost hear you: you have heard that digital recordings should
 be performed at peak levels close to but not exceeding \SI{0}{\dBFS}
-(``digital full-scale'').  Heck, this misinformation has ended up in
-the manuals of some professional audio equipment.  But for the reasons
+(digital full-scale).  Heck, this misinformation has ended up in the
+manuals of some professional audio equipment.  But for the reasons
 given above it is plain wrong.
 
 \begin{wrapfigure}{r}{0pt}
@@ -239,10 +245,10 @@ may help you with setting up correct mixing levels.
 \label{chap:installation}
 
 In order to use the pre-compiled binaries, simply extract the
-\textbf{traKmeter} files from the downloaded archive.  For the VST
-plug-in, you'll then have to move the extracted files to your plug-in
-folder (\path{~/.vst}, \path{C:\Program Files\Steinberg\VstPlugins\}
-  or the like).
+\textbf{traKmeter} files from the downloaded archive.  For the
+plug-ins, you'll then have to move the extracted files to your
+respective plug-in folder (\path{~/.lv2}, \path{~/.vst},
+\path{C:\Program Files\Steinberg\VstPlugins\} or the like).
 
 \chapter{Controls}
 \label{chap:controls}
@@ -457,7 +463,8 @@ may not know some of them, so read ahead \dots
 
 \item[Avoid unballanced equipment.]  Run all signals on balanced lines
   with a nominal level of \SI[addsign=all]{+4}{\dBu}.  If you can't,
-  use DI boxes or transformers and read the previous sentence again.
+  use DI boxes or transformers and read the previous sentence again
+  \dots
 
 \item[Use short audio chains.]  All equipment adds noise or may
   otherwise degrade audio, so keep your audio recording chains as
@@ -484,11 +491,13 @@ may not know some of them, so read ahead \dots
   disk and make you miserable during mixing.  So why not record them
   in mono in the first place?
 
-\item[Use high bit depths.]  Do yourself a favour and record at 24 bit
-  instead of 16 bit.  The additional bits provide an incredible amount
-  of extra detail and you can record at lower levels without losing
-  information.  When properly dithered, changing to a lower bit depth
-  even preserves quite a bit of that detail.
+\item[Use high bit depths.]  Do yourself a favour and record at bit
+  depths of 24 bit instead of 16 bit.  Although most digital audio
+  converters only provide 20 bits of \emph{noise-free} audio, the
+  additional bits still provide an incredible amount of extra detail
+  and you can record at lower levels without losing information.  When
+  properly dithered, changing to a lower bit depth even preserves
+  quite a bit of that detail.
 
   Also, if you edit audio files or apply effects, calculation errors
   are inevitable.  At 24 bit, however, most of these artifacts are
@@ -531,10 +540,11 @@ may not know some of them, so read ahead \dots
 \item[Avoid copy'n'paste.]  Quite a lot of today's electronic music
   sounds like (and actually is) one short loop that was ``arranged''
   by occasionally muting some of its tracks.  This takes away all the
-  small inaccuracies that happen when humans play instruments.
+  small inaccuracies that happen when humans play instruments.  It
+  also makes such tracks sound absolutely lifeless.
 
-  Instead of looping a track eight times, record a couple of takes and
-  comp the best ones.  You'll be surprised at the difference it makes!
+  So instead of looping a track, record a couple of takes and comp the
+  best ones.  You'll be surprised at the difference it makes!
 
 \item[Do not fix things later.]  A bad recording is a bad recording is
   a bad recording.  You can't really ``fix it in the mix''.  So tools
@@ -616,8 +626,7 @@ playback early, simply click on the \textbf{validate} button again.
 \label{chap:help_needed}
 
 As \textbf{traKmeter} was coded using cross-platform code, it should
-be easy to compile on Mac OS X.  I just don’t have an adequate system
-or compiler.
+be easy to compile on Mac OS X.  I just don’t have a Mac \dots
 
 In case you want to help, please see the next chapter for an email
 address.  You’ll need sufficient experience in coding, compiling and
