@@ -304,7 +304,7 @@ solution "trakmeter"
 	project (os.get() .. "_vst_stereo")
 		kind "SharedLib"
 		location (os.get() .. "/vst_stereo")
-		targetname "trakmeter_stereo"
+		targetname "trakmeter_stereo_vst"
 		targetprefix ""
 
 		defines {
@@ -361,7 +361,7 @@ solution "trakmeter"
 	project (os.get() .. "_vst_multi")
 		kind "SharedLib"
 		location (os.get() .. "/vst_multi")
-		targetname "trakmeter_multi"
+		targetname "trakmeter_multi_vst"
 		targetprefix ""
 
 		defines {
