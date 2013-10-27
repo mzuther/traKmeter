@@ -106,7 +106,7 @@ WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProces
     ButtonDumpCSV = new ToggleButton("CSV");
     ButtonDumpCSV->setBounds(nEditorX, nHeight - 89, 50, 20);
     ButtonDumpCSV->setColour(ToggleButton::textColourId, Colours::white);
-    ButtonDumpCSV->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationCSVFormat), false);
+    ButtonDumpCSV->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationCSVFormat), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpCSV);
 
     SliderDumpSelectedChannel->setValue(pProcessor->getParameterAsInt(TraKmeterPluginParameters::selValidationSelectedChannel), dontSendNotification);
@@ -115,13 +115,13 @@ WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProces
     ButtonDumpAverageMeterLevel = new ToggleButton("Avg");
     ButtonDumpAverageMeterLevel->setBounds(nEditorX + 50, nHeight - 89, 50, 20);
     ButtonDumpAverageMeterLevel->setColour(ToggleButton::textColourId, Colours::white);
-    ButtonDumpAverageMeterLevel->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationAverageMeterLevel), false);
+    ButtonDumpAverageMeterLevel->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationAverageMeterLevel), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpAverageMeterLevel);
 
     ButtonDumpPeakMeterLevel = new ToggleButton("Peak");
     ButtonDumpPeakMeterLevel->setBounds(nEditorX + 100, nHeight - 89, 65, 20);
     ButtonDumpPeakMeterLevel->setColour(ToggleButton::textColourId, Colours::white);
-    ButtonDumpPeakMeterLevel->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationPeakMeterLevel), false);
+    ButtonDumpPeakMeterLevel->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationPeakMeterLevel), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpPeakMeterLevel);
 
     // create and position a "validation" button which closes the

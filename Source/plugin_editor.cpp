@@ -222,7 +222,7 @@ void TraKmeterAudioProcessorEditor::changeParameter(int nIndex)
     case TraKmeterPluginParameters::selCrestFactor:
     {
         nCrestFactor = pProcessor->getParameterAsInt(nIndex);
-        ButtonCrestFactor->setToggleState(nCrestFactor != 0, false);
+        ButtonCrestFactor->setToggleState(nCrestFactor != 0, dontSendNotification);
 
         bReloadMeters = true;
     }
@@ -231,14 +231,14 @@ void TraKmeterAudioProcessorEditor::changeParameter(int nIndex)
     case TraKmeterPluginParameters::selTransientMode:
     {
         bool bTransientMode = pProcessor->getParameterAsBool(nIndex);
-        ButtonTransientMode->setToggleState(bTransientMode, false);
+        ButtonTransientMode->setToggleState(bTransientMode, dontSendNotification);
     }
     break;
 
     case TraKmeterPluginParameters::selMixMode:
     {
         bool bMixMode = pProcessor->getParameterAsBool(nIndex);
-        ButtonMixMode->setToggleState(bMixMode, false);
+        ButtonMixMode->setToggleState(bMixMode, dontSendNotification);
 
         SliderGain->setVisible(bMixMode);
     }

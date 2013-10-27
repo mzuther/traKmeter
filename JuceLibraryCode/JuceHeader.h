@@ -27,7 +27,6 @@
 #include "modules/juce_graphics/juce_graphics.h"
 #include "modules/juce_gui_basics/juce_gui_basics.h"
 #include "modules/juce_gui_extra/juce_gui_extra.h"
-#include "modules/juce_opengl/juce_opengl.h"
 #include "modules/juce_video/juce_video.h"
 
 #if ! DONT_SET_USING_JUCE_NAMESPACE
@@ -39,8 +38,8 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "traKmeter";
-    const char* const  versionString  = "1.05.0";
-    const int          versionNumber  = 0x10500;
+    const char* const  versionString  = "1.05.1";
+    const int          versionNumber  = 0x10501;
 }
 
 #endif   // __APPHEADERFILE_LEMWQ6__
