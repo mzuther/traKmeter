@@ -25,7 +25,7 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels)
+TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int nSegmentHeight)
 {
     setName(componentName);
 
@@ -39,7 +39,7 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     nWidth = 2 * TRAKMETER_LABEL_WIDTH + nInputChannels * (TRAKMETER_SEGMENT_WIDTH + 6) - 3;
     nHeight = 0;
 
-    peak_meter = new PeakMeter("Peak Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, TRAKMETER_SEGMENT_HEIGHT);
+    peak_meter = new PeakMeter("Peak Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
     addAndMakeVisible(peak_meter);
 
     nHeightPeakMeter = peak_meter->getPreferredHeight();
@@ -48,7 +48,7 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     signal_meter = new SignalMeter("Signal Meter", 4, nHeightPeakMeter + (nHeightSeparator - 12) / 2 + 4, nWidth - 8, nCrestFactor, nInputChannels);
     addAndMakeVisible(signal_meter);
 
-    average_meter = new AverageMeter("Average Meter", 4, nHeightPeakMeter + nHeightSeparator + 4, nWidth - 8, nCrestFactor, nInputChannels, TRAKMETER_SEGMENT_HEIGHT);
+    average_meter = new AverageMeter("Average Meter", 4, nHeightPeakMeter + nHeightSeparator + 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
     addAndMakeVisible(average_meter);
 
     nHeightAverageMeter = average_meter->getPreferredHeight();

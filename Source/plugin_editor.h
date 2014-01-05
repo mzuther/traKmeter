@@ -65,6 +65,7 @@ private:
     bool bReloadMeters;
     bool bIsValidating;
     int nRightColumnStart;
+    int nSegmentHeight;
     int nHeight;
 
     TraKmeterAudioProcessor* pProcessor;

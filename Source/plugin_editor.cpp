@@ -38,6 +38,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
 
     nInputChannels = nNumChannels;
     nCrestFactor = CrestFactor;
+    nSegmentHeight = 10;
 
     // The plug-in editor's size as well as the location of buttons
     // and labels will be set later on in this constructor.
@@ -143,7 +144,7 @@ TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 
 void TraKmeterAudioProcessorEditor::resizeEditor()
 {
-    nHeight = 20 * TraKmeter::TRAKMETER_SEGMENT_HEIGHT + 103;
+    nHeight = 20 * nSegmentHeight + 103;
     nRightColumnStart = 2 * TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) + 20;
 
     setSize(nRightColumnStart + 70, nHeight);
@@ -269,7 +270,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
             trakmeter = NULL;
         }
 
-        trakmeter = new TraKmeter("traKmeter (level meter)", 10, 10, nCrestFactor, nInputChannels);
+        trakmeter = new TraKmeter("traKmeter (level meter)", 10, 10, nCrestFactor, nInputChannels, nSegmentHeight);
         addAndMakeVisible(trakmeter);
     }
 }

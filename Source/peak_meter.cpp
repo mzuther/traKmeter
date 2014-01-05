@@ -127,7 +127,7 @@ void PeakMeter::paint(Graphics& g)
     g.setColour(Colours::red);
     drawMarkers(g, strMarker, x + 1, y, width, height);
 
-    y -= TraKmeter::TRAKMETER_SEGMENT_HEIGHT / 2;
+    y -= nSegmentHeight / 2;
 
     for (int n = (nNumberOfBars - 1); n > 2; n -= 2)
     {
@@ -156,7 +156,7 @@ void PeakMeter::paint(Graphics& g)
         drawMarkers(g, strMarker, x + 1, y, width, height);
     }
 
-    y -= TraKmeter::TRAKMETER_SEGMENT_HEIGHT / 2;
+    y -= nSegmentHeight / 2;
     strMarker = "LOW";
 
     g.setColour(Colours::yellow);
