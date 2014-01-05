@@ -46,6 +46,13 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor = ownerFilter;
     pProcessor->addActionListener(this);
 
+    ButtonCombinedMeters = new TextButton("Combined");
+    ButtonCombinedMeters->setColour(TextButton::buttonColourId, Colours::grey);
+    ButtonCombinedMeters->setColour(TextButton::buttonOnColourId, Colours::green);
+
+    ButtonCombinedMeters->addListener(this);
+    addAndMakeVisible(ButtonCombinedMeters);
+
     ButtonCrestFactor = new TextButton("K-20");
     ButtonCrestFactor->setColour(TextButton::buttonColourId, Colours::grey);
     ButtonCrestFactor->setColour(TextButton::buttonOnColourId, Colours::yellow);
@@ -119,7 +126,10 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor->addActionListenerParameters(this);
     trakmeter = NULL;
 
-    int nIndex = TraKmeterPluginParameters::selCrestFactor;
+    int nIndex = TraKmeterPluginParameters::selCombinedMeters;
+    changeParameter(nIndex);
+
+    nIndex = TraKmeterPluginParameters::selCrestFactor;
     changeParameter(nIndex);
 
     nIndex = TraKmeterPluginParameters::selTransientMode;
@@ -150,10 +160,12 @@ void TraKmeterAudioProcessorEditor::resizeEditor()
     setSize(nRightColumnStart + 70, nHeight);
 
     ButtonReset->setBounds(nRightColumnStart, 10, 60, 20);
-    ButtonCrestFactor->setBounds(nRightColumnStart, 45, 60, 20);
-    ButtonTransientMode->setBounds(nRightColumnStart, 70, 60, 20);
-    ButtonMixMode->setBounds(nRightColumnStart, 95, 60, 20);
-    SliderGain->setBounds(nRightColumnStart - 10, 121, 70, 20);
+
+    ButtonCombinedMeters->setBounds(nRightColumnStart, 45, 60, 20);
+    ButtonCrestFactor->setBounds(nRightColumnStart, 70, 60, 20);
+    ButtonTransientMode->setBounds(nRightColumnStart, 95, 60, 20);
+    ButtonMixMode->setBounds(nRightColumnStart, 120, 60, 20);
+    SliderGain->setBounds(nRightColumnStart - 10, 146, 70, 20);
 
     ButtonValidation->setBounds(nRightColumnStart, nHeight - 56, 60, 20);
     ButtonAbout->setBounds(nRightColumnStart, nHeight - 31, 60, 20);
@@ -220,6 +232,15 @@ void TraKmeterAudioProcessorEditor::changeParameter(int nIndex)
 {
     switch (nIndex)
     {
+    case TraKmeterPluginParameters::selCombinedMeters:
+    {
+        bool bCombinedMeters = pProcessor->getParameterAsBool(nIndex);
+        ButtonCombinedMeters->setToggleState(bCombinedMeters, dontSendNotification);
+
+        bReloadMeters = true;
+    }
+    break;
+
     case TraKmeterPluginParameters::selCrestFactor:
     {
         nCrestFactor = pProcessor->getParameterAsInt(nIndex);
@@ -270,7 +291,8 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
             trakmeter = NULL;
         }
 
-        trakmeter = new TraKmeter("traKmeter (level meter)", 10, 10, nCrestFactor, nInputChannels, nSegmentHeight);
+        bool bCombinedMeters = pProcessor->getParameterAsBool(TraKmeterPluginParameters::selCombinedMeters);
+        trakmeter = new TraKmeter("traKmeter (level meter)", 10, 10, nCrestFactor, nInputChannels, nSegmentHeight, bCombinedMeters);
         addAndMakeVisible(trakmeter);
     }
 }
@@ -293,6 +315,10 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
         {
             pMeterBallistics->reset();
         }
+    }
+    else if (button == ButtonCombinedMeters)
+    {
+        pProcessor->changeParameter(TraKmeterPluginParameters::selCombinedMeters, !button->getToggleState());
     }
     else if (button == ButtonCrestFactor)
     {

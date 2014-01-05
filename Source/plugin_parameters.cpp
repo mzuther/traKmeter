@@ -37,6 +37,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     nParam[selCrestFactor] = 20;
     nParam[selMixMode] = 0;
     nParam[selGain] = 0;
+    nParam[selCombinedMeters] = 0;
 
     nParam[selValidationSelectedChannel] = -1;
     nParam[selValidationAverageMeterLevel] = 1;
@@ -213,6 +214,10 @@ const String TraKmeterPluginParameters::getParameterName(int nIndex)
         return "Gain";
         break;
 
+    case selCombinedMeters:
+        return "Combined meters";
+        break;
+
     case selValidationFileName:
         return "Validation: file name";
         break;
@@ -373,6 +378,7 @@ XmlElement TraKmeterPluginParameters::storeAsXml()
     xml.setAttribute("CrestFactor", getParameterAsInt(selCrestFactor));
     xml.setAttribute("MixMode", getParameterAsInt(selMixMode));
     xml.setAttribute("Gain", getParameterAsInt(selGain));
+    xml.setAttribute("CombinedMeters", getParameterAsInt(selCombinedMeters));
 
     xml.setAttribute("ValidationFile", strValidationFile);
     xml.setAttribute("ValidationSelectedChannel", getParameterAsInt(selValidationSelectedChannel));
@@ -392,6 +398,7 @@ void TraKmeterPluginParameters::loadFromXml(XmlElement* xml)
         setParameterFromInt(selCrestFactor, xml->getIntAttribute("CrestFactor", getParameterAsInt(selCrestFactor)));
         setParameterFromInt(selMixMode, xml->getIntAttribute("MixMode", getParameterAsInt(selMixMode)));
         setParameterFromInt(selGain, xml->getIntAttribute("Gain", getParameterAsInt(selGain)));
+        setParameterFromInt(selCombinedMeters, xml->getIntAttribute("CombinedMeters", getParameterAsInt(selCombinedMeters)));
 
         File fileValidation = File(xml->getStringAttribute("ValidationFile", strValidationFile));
         setValidationFile(fileValidation);

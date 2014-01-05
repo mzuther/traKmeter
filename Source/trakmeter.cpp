@@ -25,7 +25,7 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int nSegmentHeight)
+TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int nSegmentHeight, bool show_combined_meters)
 {
     setName(componentName);
 
@@ -33,32 +33,52 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     setOpaque(false);
 
     nInputChannels = nNumChannels;
+    bCombinedMeters = show_combined_meters;
 
     nPosX = posX;
     nPosY = posY;
     nWidth = 2 * TRAKMETER_LABEL_WIDTH + nInputChannels * (TRAKMETER_SEGMENT_WIDTH + 6) - 3;
     nHeight = 0;
 
-    peak_meter = new PeakMeter("Peak Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
-    addAndMakeVisible(peak_meter);
+    combined_meter = NULL;
 
-    nHeightPeakMeter = peak_meter->getPreferredHeight();
-    nHeightSeparator = 31;
+    peak_meter = NULL;
+    average_meter = NULL;
+    signal_meter = NULL;
 
-    signal_meter = new SignalMeter("Signal Meter", 4, nHeightPeakMeter + (nHeightSeparator - 12) / 2 + 4, nWidth - 8, nCrestFactor, nInputChannels);
-    addAndMakeVisible(signal_meter);
+    if (bCombinedMeters)
+    {
+        combined_meter = new CombinedMeter("Combined Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight - 1);
+        addAndMakeVisible(combined_meter);
 
-    average_meter = new AverageMeter("Average Meter", 4, nHeightPeakMeter + nHeightSeparator + 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
-    addAndMakeVisible(average_meter);
+        nHeight = combined_meter->getPreferredHeight() + 8;
+    }
+    else
+    {
+        peak_meter = new PeakMeter("Peak Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight - 1);
+        addAndMakeVisible(peak_meter);
 
-    nHeightAverageMeter = average_meter->getPreferredHeight();
+        int nHeightPeakMeter = peak_meter->getPreferredHeight();
+        int nHeightSeparator = 31;
 
-    nHeight = nHeightPeakMeter + nHeightAverageMeter + nHeightSeparator + 8;
+        signal_meter = new SignalMeter("Signal Meter", 4, nHeightPeakMeter + (nHeightSeparator - 12) / 2 + 4, nWidth - 8, nCrestFactor, nInputChannels);
+        addAndMakeVisible(signal_meter);
+
+        average_meter = new AverageMeter("Average Meter", 4, nHeightPeakMeter + nHeightSeparator + 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
+        addAndMakeVisible(average_meter);
+
+        int nHeightAverageMeter = average_meter->getPreferredHeight();
+
+        nHeight = nHeightPeakMeter + nHeightAverageMeter + nHeightSeparator + 8;
+    }
 }
 
 
 TraKmeter::~TraKmeter()
 {
+    delete combined_meter;
+    combined_meter = NULL;
+
     delete peak_meter;
     peak_meter = NULL;
 
@@ -104,9 +124,16 @@ void TraKmeter::resized()
 
 void TraKmeter::setLevels(MeterBallistics* pMeterBallistics)
 {
-    peak_meter->setLevels(pMeterBallistics);
-    average_meter->setLevels(pMeterBallistics);
-    signal_meter->setLevels(pMeterBallistics);
+    if (bCombinedMeters)
+    {
+        combined_meter->setLevels(pMeterBallistics);
+    }
+    else
+    {
+        peak_meter->setLevels(pMeterBallistics);
+        average_meter->setLevels(pMeterBallistics);
+        signal_meter->setLevels(pMeterBallistics);
+    }
 }
 
 

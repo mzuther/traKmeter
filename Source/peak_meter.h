@@ -23,8 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __PEAKMETER_H__
-#define __PEAKMETER_H__
+#ifndef __PEAK_METER_H__
+#define __PEAK_METER_H__
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "meter_bar_peak.h"
@@ -70,7 +70,7 @@ private:
 };
 
 
-#endif  // __PEAKMETER_H__
+#endif  // __PEAK_METER_H__
 
 
 // Local Variables:

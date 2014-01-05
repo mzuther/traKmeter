@@ -25,7 +25,7 @@
 
 #include "meter_bar_peak.h"
 
-MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks)
+MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
 {
     setName(componentName);
 
@@ -33,6 +33,7 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     // performance on redrawing)
     setOpaque(true);
 
+    // the upper bar is an overload meter
     nNumberOfBars = number_of_bars - 1;
     nSegmentHeight = segment_height;
 
@@ -48,7 +49,9 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
 
     pMeterSegments = new MeterSegment*[nNumberOfBars];
 
-    int nThreshold = -90 + nCrestFactor;
+    int nThreshold = show_combined_meters ? -50 : -90;
+    nThreshold += nCrestFactor;
+    int nTrueThreshold = nThreshold - nCrestFactor;
 
     // register all hot signals, even up to +100 dB FS!
     float fRange = (nCrestFactor + 100.0f - nThreshold) * 0.1f;
@@ -61,14 +64,28 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
 
     for (int n = 0; n < nNumberOfBars; n++)
     {
-        int nThresholdDifference = 10;
+        int nThresholdDifference;
+
+        if (nTrueThreshold > -260)
+        {
+            nThresholdDifference = 10;
+        }
+        else if (nTrueThreshold > -300)
+        {
+            nThresholdDifference = 40;
+        }
+        else
+        {
+            nThresholdDifference = 100;
+        }
+
         nThreshold -= nThresholdDifference;
         fRange = nThresholdDifference / 10.0f;
         bDiscreteLevels = false;
 
-        int nTrueThreshold = nThreshold - nCrestFactor;
+        nTrueThreshold = nThreshold - nCrestFactor;
 
-        if ((nTrueThreshold < -190) || (nTrueThreshold >= -90))
+        if (nTrueThreshold >= -90)
         {
             nColor = 0;
         }

@@ -126,6 +126,7 @@ OBJECTS := \
 	$(OBJDIR)/meter_ballistics.o \
 	$(OBJDIR)/plugin_editor.o \
 	$(OBJDIR)/audio_file_player.o \
+	$(OBJDIR)/combined_meter.o \
 	$(OBJDIR)/trakmeter.o \
 	$(OBJDIR)/channel_slider.o \
 	$(OBJDIR)/resources.o \
@@ -256,6 +257,9 @@ $(OBJDIR)/plugin_editor.o: ../../../Source/plugin_editor.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/audio_file_player.o: ../../../Source/audio_file_player.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/combined_meter.o: ../../../Source/combined_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/trakmeter.o: ../../../Source/trakmeter.cpp

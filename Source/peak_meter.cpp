@@ -52,7 +52,7 @@ PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width,
     {
         nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
 
-        LevelMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true);
+        LevelMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true, false);
         addAndMakeVisible(LevelMeters[nChannel]);
     }
 }
@@ -127,7 +127,7 @@ void PeakMeter::paint(Graphics& g)
     g.setColour(Colours::red);
     drawMarkers(g, strMarker, x + 1, y, width, height);
 
-    y -= nSegmentHeight / 2;
+    y -= roundf(nSegmentHeight / 2.0f);
 
     for (int n = (nNumberOfBars - 1); n > 2; n -= 2)
     {
@@ -156,7 +156,7 @@ void PeakMeter::paint(Graphics& g)
         drawMarkers(g, strMarker, x + 1, y, width, height);
     }
 
-    y -= nSegmentHeight / 2;
+    y -= roundf(nSegmentHeight / 2.0f);
     strMarker = "LOW";
 
     g.setColour(Colours::yellow);

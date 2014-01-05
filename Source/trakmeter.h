@@ -27,11 +27,13 @@
 #define __TRAKMETER_H__
 
 class AverageMeter;
+class CombinedMeter;
 class PeakMeter;
 class SignalMeter;
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "average_meter.h"
+#include "combined_meter.h"
 #include "peak_meter.h"
 #include "signal_meter.h"
 
@@ -45,7 +47,7 @@ public:
     static const int TRAKMETER_LABEL_WIDTH = 38;
     static const int TRAKMETER_SEGMENT_WIDTH = 22;
 
-    TraKmeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels, int nSegmentHeight);
+    TraKmeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels, int nSegmentHeight, bool show_combined_meters);
     ~TraKmeter();
 
     void setLevels(MeterBallistics* pMeterBallistics);
@@ -61,11 +63,10 @@ private:
     int nHeight;
     int nWidth;
 
-    int nHeightPeakMeter;
-    int nHeightAverageMeter;
-    int nHeightSeparator;
-
+    bool bCombinedMeters;
     int nInputChannels;
+
+    CombinedMeter* combined_meter;
 
     PeakMeter* peak_meter;
     AverageMeter* average_meter;

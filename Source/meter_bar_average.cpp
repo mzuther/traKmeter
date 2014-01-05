@@ -25,7 +25,7 @@
 
 #include "meter_bar_average.h"
 
-MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks)
+MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
 {
     setName(componentName);
 
@@ -48,7 +48,9 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
     pMeterSegments = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
-    int nThreshold = -170 + nCrestFactor;
+    int nThreshold = show_combined_meters ? -50 : -170;
+    nThreshold += nCrestFactor;
+    int nTrueThreshold = nThreshold - nCrestFactor;
 
     // register all hot signals, even up to +100 dB FS!
     float fRange = (nCrestFactor + 100.0f - nThreshold) * 0.1f;
@@ -60,14 +62,28 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
 
     for (int n = 1; n < nNumberOfBars; n++)
     {
-        int nThresholdDifference = 10;
+        int nThresholdDifference;
+
+        if (nTrueThreshold > -260)
+        {
+            nThresholdDifference = 10;
+        }
+        else if (nTrueThreshold > -300)
+        {
+            nThresholdDifference = 40;
+        }
+        else
+        {
+            nThresholdDifference = 100;
+        }
+
         nThreshold -= nThresholdDifference;
         fRange = nThresholdDifference / 10.0f;
         bDiscreteLevels = false;
 
-        int nTrueThreshold = nThreshold - nCrestFactor;
+        nTrueThreshold = nThreshold - nCrestFactor;
 
-        if ((nTrueThreshold < -230) || (nTrueThreshold >= -170))
+        if (nTrueThreshold >= -170)
         {
             nColor = 0;
         }

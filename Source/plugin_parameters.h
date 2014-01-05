@@ -71,6 +71,7 @@ public:
         selCrestFactor,
         selMixMode,
         selGain,
+        selCombinedMeters,
 
         nNumParametersRevealed,
 

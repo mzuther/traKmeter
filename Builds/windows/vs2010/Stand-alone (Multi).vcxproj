@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{D0B397DF-6F4F-87B5-FCA7-7AADECE83D86}</ProjectGuid>
+		<ProjectGuid>{16F1B327-951D-0945-15BF-95F39AEF5F0E}</ProjectGuid>
 		<RootNamespace>Stand-alone (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -213,6 +213,7 @@
 		<ClInclude Include="..\..\..\Source\trakmeter.h" />
 		<ClInclude Include="..\..\..\Source\peak_meter.h" />
 		<ClInclude Include="..\..\..\Source\meter_segment.h" />
+		<ClInclude Include="..\..\..\Source\combined_meter.h" />
 		<ClInclude Include="..\..\..\Source\audio_ring_buffer.h" />
 		<ClInclude Include="..\..\..\Source\signal_meter.h" />
 		<ClInclude Include="..\..\..\Source\window_about.h" />
@@ -266,6 +267,8 @@
 		<ClCompile Include="..\..\..\Source\plugin_editor.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\audio_file_player.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\combined_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\trakmeter.cpp">
 		</ClCompile>

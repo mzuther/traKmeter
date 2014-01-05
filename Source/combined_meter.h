@@ -23,48 +23,57 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __METER_BAR_PEAK_H__
-#define __METER_BAR_PEAK_H__
+#ifndef __COMBINED_METER_H__
+#define __COMBINED_METER_H__
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "meter_segment.h"
-#include "meter_segment_overload.h"
+#include "meter_bar_average.h"
+#include "meter_bar_peak.h"
+#include "trakmeter.h"
+#include "plugin_processor.h"
 
 
 //==============================================================================
 /**
 */
-class MeterBarPeak : public Component
+class CombinedMeter : public Component
 {
 public:
-    MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters);
-    ~MeterBarPeak();
+    CombinedMeter(const String& componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
+    ~CombinedMeter();
 
-    void setLevels(float peakLevel, float peakLevelPeak, float peakLevelMaximum);
+    void setLevels(MeterBallistics* pMeterBallistics);
     void paint(Graphics& g);
+    int getPreferredHeight();
     void resized();
     void visibilityChanged();
 
 private:
-    JUCE_LEAK_DETECTOR(MeterBarPeak);
+    JUCE_LEAK_DETECTOR(CombinedMeter);
 
-    float fPeakLevel;
-    float fPeakLevelPeak;
-    float fPeakLevelMaximum;
+    int nNumberOfBars;
 
     int nPosX;
     int nPosY;
-    int nWidth;
     int nHeight;
-    int nSegmentHeight;
-    int nNumberOfBars;
+    int nWidth;
 
-    MeterSegment** pMeterSegments;
-    MeterSegmentOverload* pMeterSegmentOverload;
+    int nSegmentHeight;
+    int nMeterSegmentWidth;
+    int nMeterPositionTop;
+    int nMeterHeight;
+
+    int nCrestFactor;
+    int nInputChannels;
+
+    MeterBarAverage** AverageMeters;
+    MeterBarPeak** PeakMeters;
+
+    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height);
 };
 
 
-#endif  // __METER_BAR_PEAK_H__
+#endif  // __COMBINED_METER_H__
 
 
 // Local Variables:
