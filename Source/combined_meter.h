@@ -69,7 +69,7 @@ private:
     MeterBarAverage** AverageMeters;
     MeterBarPeak** PeakMeters;
 
-    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height);
+    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour);
 };
 
 

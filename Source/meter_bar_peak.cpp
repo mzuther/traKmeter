@@ -89,6 +89,10 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
         {
             nColor = 0;
         }
+        else if (nTrueThreshold < -170)
+        {
+            nColor = 3;
+        }
         else if ((nTrueThreshold < -160) || (nTrueThreshold >= -100))
         {
             nColor = 1;

@@ -112,8 +112,8 @@ void CombinedMeter::paint(Graphics& g)
     String strMarker = "OVR";
 
     g.setFont(12.0f);
-    g.setColour(Colours::red);
-    drawMarkers(g, strMarker, x + 1, y, width, height);
+    g.setColour(Colour(0.00f, 1.0f, 1.0f, 1.0f));
+    drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.00f, 1.0f, 1.0f, 1.0f));
 
     y -= roundf(nSegmentHeight / 2.0f);
 
@@ -148,21 +148,23 @@ void CombinedMeter::paint(Graphics& g)
         if (nLevel == nCrestFactor - 10)
         {
             g.setColour(Colours::white);
+            drawMarkers(g, strMarker, x + 1, y, width, height, Colours::white.darker(0.5f));
         }
         else if (nLevel == nCrestFactor - 20)
         {
             g.setColour(Colours::white);
+            drawMarkers(g, strMarker, x + 1, y, width, height, Colours::white.darker(0.5f));
         }
         else if (nLevel == nCrestFactor - 40)
         {
-            g.setColour(Colours::white);
+            g.setColour(Colour(0.58f, 1.0f, 1.0f, 1.0f));
+            drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.58f, 1.0f, 1.0f, 1.0f));
         }
         else
         {
-            g.setColour(Colours::white.darker(0.4f));
+            g.setColour(Colours::grey.brighter(0.1f));
+            drawMarkers(g, strMarker, x + 1, y, width, height, Colours::grey.darker(0.1f));
         }
-
-        drawMarkers(g, strMarker, x + 1, y, width, height);
     }
 
     g.setColour(Colours::black.brighter(0.15f));
@@ -192,7 +194,7 @@ void CombinedMeter::setLevels(MeterBallistics* pMeterBallistics)
 }
 
 
-void CombinedMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height)
+void CombinedMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour)
 {
     g.saveState();
 
@@ -202,7 +204,7 @@ void CombinedMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, in
     g.drawFittedText(strMarker, x, y - 1, width, height, Justification::centred, 1, 1.0f);
     g.drawFittedText(strMarker, x_2, y - 1, width, height, Justification::centred, 1, 1.0f);
 
-    g.setColour(Colours::grey);
+    g.setColour(colour);
 
     int nMarkerY = y + 5;
     int nStart = x + width + 2;

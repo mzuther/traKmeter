@@ -87,6 +87,10 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
         {
             nColor = 0;
         }
+        else if (nTrueThreshold < -230)
+        {
+            nColor = 3;
+        }
         else if ((nTrueThreshold < -220) || (nTrueThreshold >= -180))
         {
             nColor = 1;
