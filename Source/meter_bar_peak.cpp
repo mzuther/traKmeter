@@ -54,7 +54,7 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     int nTrueThreshold = nThreshold - nCrestFactor;
 
     // register all hot signals, even up to +100 dB FS!
-    float fRange = (nCrestFactor + 100.0f - nThreshold) * 0.1f;
+    float fRange = (nCrestFactor - nThreshold) * 0.1f + 100.0f;
 
     int nColor = 0;
     bool bDiscreteLevels = true;
