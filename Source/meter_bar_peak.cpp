@@ -48,7 +48,7 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
 
     pMeterSegments = new MeterSegment*[nNumberOfBars];
 
-    int nThreshold = show_combined_meters ? -50 : -90;
+    int nThreshold = show_combined_meters ? -90 : -90;
     nThreshold += nCrestFactor;
     int nTrueThreshold = nThreshold - nCrestFactor;
 

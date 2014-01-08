@@ -35,7 +35,7 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
     nInputChannels = nNumChannels;
     nCrestFactor = CrestFactor;
 
-    nNumberOfBars = 29;
+    nNumberOfBars = 27;
     nSegmentHeight = segment_height;
     nPeakLabelHeight = nSegmentHeight + 2;
     nMeterPositionTop = 0;
@@ -136,22 +136,24 @@ void CombinedMeter::paint(Graphics& g)
     y -= roundf(nSegmentHeight / 2.0f);
     y += nPeakLabelHeight - nSegmentHeight + 1;
 
-    int nLevel = -4 + nCrestFactor;
+    int nTrueLevel = -8;
 
     for (int n = nNumberOfBars; n > 2; n -= 2)
     {
-        if (n > 7)
+        if (nTrueLevel > -26)
         {
-            nLevel -= 2;
+            nTrueLevel -= 2;
         }
-        else if (n == 7)
+        else if (nTrueLevel > -40)
         {
-            nLevel -= 14;
+            nTrueLevel -= 14;
         }
         else
         {
-            nLevel -= 20;
+            nTrueLevel -= 20;
         }
+
+        int nLevel = nTrueLevel + nCrestFactor;
 
         if (nLevel > 0)
         {
@@ -164,17 +166,17 @@ void CombinedMeter::paint(Graphics& g)
 
         y += 2 * nSegmentHeight;
 
-        if (nLevel == nCrestFactor - 10)
+        if (nTrueLevel == -10)
         {
             g.setColour(Colours::white);
             drawMarkers(g, strMarker, x + 1, y, width, height, Colours::white.darker(0.5f));
         }
-        else if (nLevel == nCrestFactor - 20)
+        else if (nTrueLevel == -20)
         {
             g.setColour(Colours::white);
             drawMarkers(g, strMarker, x + 1, y, width, height, Colours::white.darker(0.5f));
         }
-        else if (nLevel == nCrestFactor - 40)
+        else if (nTrueLevel == -40)
         {
             g.setColour(Colour(0.58f, 1.0f, 1.0f, 1.0f));
             drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.58f, 1.0f, 1.0f, 1.0f));
