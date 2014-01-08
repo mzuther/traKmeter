@@ -28,6 +28,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "meter_bar_peak.h"
+#include "meter_segment_overload.h"
 #include "trakmeter.h"
 #include "plugin_processor.h"
 
@@ -65,6 +66,7 @@ private:
     int nInputChannels;
 
     MeterBarPeak** LevelMeters;
+    MeterSegmentOverload** MeterSegmentOverloads;
 
     void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour);
 };

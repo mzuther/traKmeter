@@ -37,8 +37,9 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
 
     nNumberOfBars = 29;
     nSegmentHeight = segment_height;
+    nPeakLabelHeight = nSegmentHeight + 2;
     nMeterPositionTop = 0;
-    nMeterHeight = nNumberOfBars * nSegmentHeight + 2;
+    nMeterHeight = (nNumberOfBars - 1) * nSegmentHeight + nPeakLabelHeight + 2;
 
     nPosX = posX;
     nPosY = posY;
@@ -46,23 +47,27 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
     nHeight = nMeterPositionTop + nMeterHeight;
 
     int nPositionX = 0;
-    nMeterSegmentWidth = 6;
+    nPeakMeterSegmentWidth = 6;
 
     AverageMeters = new MeterBarAverage*[nInputChannels];
     PeakMeters = new MeterBarPeak*[nInputChannels];
+    PeakLabels = new PeakLabel*[nInputChannels];
 
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
 
-        int nPositionXAverage = (nChannel % 2) ? 0 : nMeterSegmentWidth + 1;
-        int nPositionXPeakMeters = (nChannel % 2) ? TraKmeter::TRAKMETER_SEGMENT_WIDTH - nMeterSegmentWidth : 0;
+        int nPositionXAverage = (nChannel % 2) ? 0 : nPeakMeterSegmentWidth + 1;
+        int nPositionXPeakMeters = (nChannel % 2) ? TraKmeter::TRAKMETER_SEGMENT_WIDTH - nPeakMeterSegmentWidth : 0;
 
-        AverageMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX + nPositionXAverage, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH - nMeterSegmentWidth - 1, nNumberOfBars, nCrestFactor, nSegmentHeight, true, true);
+        AverageMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX + nPositionXAverage, nMeterPositionTop + nPeakLabelHeight + 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH - nPeakMeterSegmentWidth - 1, nNumberOfBars - 1, nCrestFactor, nSegmentHeight, true, true);
         addAndMakeVisible(AverageMeters[nChannel]);
 
-        PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX + nPositionXPeakMeters, nMeterPositionTop, nMeterSegmentWidth, nNumberOfBars, nCrestFactor, nSegmentHeight, true, true);
+        PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX + nPositionXPeakMeters, nMeterPositionTop + nPeakLabelHeight + 1, nPeakMeterSegmentWidth, nNumberOfBars - 1, nCrestFactor, nSegmentHeight, true, true);
         addAndMakeVisible(PeakMeters[nChannel]);
+
+        PeakLabels[nChannel] = new PeakLabel("PeakLabel (" + componentName + ")", nCrestFactor);
+        addAndMakeVisible(PeakLabels[nChannel]);
     }
 }
 
@@ -77,6 +82,9 @@ CombinedMeter::~CombinedMeter()
 
         delete PeakMeters[nChannel];
         PeakMeters[nChannel] = NULL;
+
+        delete PeakLabels[nChannel];
+        PeakLabels[nChannel] = NULL;
     }
 
     delete [] AverageMeters;
@@ -84,6 +92,9 @@ CombinedMeter::~CombinedMeter()
 
     delete [] PeakMeters;
     PeakMeters = NULL;
+
+    delete [] PeakLabels;
+    PeakLabels = NULL;
 
     deleteAllChildren();
 }
@@ -98,6 +109,13 @@ int CombinedMeter::getPreferredHeight()
 void CombinedMeter::visibilityChanged()
 {
     setBounds(nPosX, nPosY, nWidth, nHeight);
+
+    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+    {
+        int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
+
+        PeakLabels[nChannel]->setBounds(nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nPeakLabelHeight);
+    }
 }
 
 
@@ -116,6 +134,7 @@ void CombinedMeter::paint(Graphics& g)
     drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.00f, 1.0f, 1.0f, 1.0f));
 
     y -= roundf(nSegmentHeight / 2.0f);
+    y += nPeakLabelHeight - nSegmentHeight + 1;
 
     int nLevel = -4 + nCrestFactor;
 
@@ -172,9 +191,8 @@ void CombinedMeter::paint(Graphics& g)
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
-        nPositionX += (nChannel % 2) ? TraKmeter::TRAKMETER_SEGMENT_WIDTH - nMeterSegmentWidth - 1 : nMeterSegmentWidth;
 
-        g.fillRect(nPositionX, nMeterPositionTop, 1, nHeight - 1);
+        g.fillRect(nPositionX, nMeterPositionTop + nPeakLabelHeight, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nHeight - nPeakLabelHeight);
     }
 }
 
@@ -189,7 +207,8 @@ void CombinedMeter::setLevels(MeterBallistics* pMeterBallistics)
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         AverageMeters[nChannel]->setLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
-        PeakMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel), pMeterBallistics->getMaximumPeakLevel(nChannel));
+        PeakMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
+        PeakLabels[nChannel]->updateLevel(pMeterBallistics->getMaximumPeakLevel(nChannel));
     }
 }
 

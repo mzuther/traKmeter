@@ -121,6 +121,7 @@ OBJECTS := \
 	$(OBJDIR)/signal_meter.o \
 	$(OBJDIR)/average_meter.o \
 	$(OBJDIR)/window_validation.o \
+	$(OBJDIR)/peak_label.o \
 	$(OBJDIR)/audio_ring_buffer.o \
 	$(OBJDIR)/window_about.o \
 	$(OBJDIR)/meter_ballistics.o \
@@ -242,6 +243,9 @@ $(OBJDIR)/average_meter.o: ../../../Source/average_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/window_validation.o: ../../../Source/window_validation.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/peak_label.o: ../../../Source/peak_label.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/audio_ring_buffer.o: ../../../Source/audio_ring_buffer.cpp

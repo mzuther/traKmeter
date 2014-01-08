@@ -1,10 +1,10 @@
 /* ----------------------------------------------------------------------------
 
-   traKmeter
-   =========
-   Loudness meter for correctly setting up tracking and mixing levels
+   K-Meter
+   =======
+   Implementation of a K-System meter according to Bob Katz' specifications
 
-   Copyright (c) 2012-2013 Martin Zuther (http://www.mzuther.de/)
+   Copyright (c) 2010-2013 Martin Zuther (http://www.mzuther.de/)
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __METER_SEGMENT_OVERLOAD_H__
-#define __METER_SEGMENT_OVERLOAD_H__
+#ifndef __PEAK_LABEL_H__
+#define __PEAK_LABEL_H__
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
@@ -32,38 +32,24 @@
 //==============================================================================
 /**
 */
-class MeterSegmentOverload : public Component
+class PeakLabel : public Label
 {
 public:
-    MeterSegmentOverload(const String& componentName, float fThreshold, float fRange, int nCrestFactor, bool bDiscreteLevels, bool bDisplayPeaks, int nColor);
-    ~MeterSegmentOverload();
+    PeakLabel(const String& componentName, int nCrestFactor);
+    ~PeakLabel();
 
-    void setLevels(float fLevel, float fLevelPeak, float fLevelMaximum);
-    void paint(Graphics& g);
-    void resized();
-    void visibilityChanged();
+    void resetLevel();
+    void updateLevel(float newLevel);
 
 private:
-    JUCE_LEAK_DETECTOR(MeterSegmentOverload);
+    JUCE_LEAK_DETECTOR(PeakLabel);
 
-    float fHue;
-    float fBrightness;
-
-    float fLowerThreshold;
-    float fUpperThreshold;
-    float fThresholdRange;
-    int nCrestFactor;
-
+    int nMeterCrestFactor;
     float fMaximumLevel;
-    String strMaximumLevel;
-
-    bool bPeakMarker;
-    bool discreteLevels;
-    bool displayPeaks;
 };
 
 
-#endif  // __METER_SEGMENT_OVERLOAD_H__
+#endif  // __PEAK_LABEL_H__
 
 
 // Local Variables:

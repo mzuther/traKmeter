@@ -48,7 +48,7 @@ MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos
     pMeterSegments = new MeterSegment*[nNumberOfBars];
 
     int n = 0;
-    int nThreshold = show_combined_meters ? -50 : -170;
+    int nThreshold = show_combined_meters ? -60 : -170;
     nThreshold += nCrestFactor;
     int nTrueThreshold = nThreshold - nCrestFactor;
 

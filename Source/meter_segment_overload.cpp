@@ -26,7 +26,7 @@
 #include "meter_segment_overload.h"
 
 
-MeterSegmentOverload::MeterSegmentOverload(const String& componentName, float fThreshold, float fRange, bool bDiscreteLevels, bool bDisplayPeaks, int nColor)
+MeterSegmentOverload::MeterSegmentOverload(const String& componentName, float fThreshold, float fRange, int CrestFactor, bool bDiscreteLevels, bool bDisplayPeaks, int nColor)
 {
     // set component name
     setName(componentName);
@@ -46,6 +46,9 @@ MeterSegmentOverload::MeterSegmentOverload(const String& componentName, float fT
     // upper threshold, meter segment will be fully lit above this
     // level
     fUpperThreshold = fThreshold + fThresholdRange;
+
+    // meter crest factor
+    nCrestFactor = CrestFactor;
 
     // show peak level marker on segment?
     bPeakMarker = false;
@@ -201,10 +204,11 @@ void MeterSegmentOverload::setLevels(float fLevel, float fLevelPeak, float fLeve
     if (fLevelMaximum != fMaximumLevel)
     {
         fMaximumLevel = fLevelMaximum;
-        int nMaximumLevel = int(fMaximumLevel + 0.5f);
 
-        if (nMaximumLevel >= fLowerThreshold)
+        if (fMaximumLevel >= fLowerThreshold)
         {
+            int nMaximumLevel = int(roundf(fMaximumLevel + 0.5f));
+
             if (nMaximumLevel > 0)
             {
                 strMaximumLevel = "+" + String(nMaximumLevel);

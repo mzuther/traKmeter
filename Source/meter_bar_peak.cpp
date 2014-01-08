@@ -33,14 +33,13 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
     // performance on redrawing)
     setOpaque(true);
 
-    // the upper bar is an overload meter
-    nNumberOfBars = number_of_bars - 1;
+    nNumberOfBars = number_of_bars;
     nSegmentHeight = segment_height;
 
     nPosX = pos_x;
     nPosY = pos_y;
     nWidth = width;
-    nHeight = (nNumberOfBars + 1) * nSegmentHeight + 1;
+    nHeight = nNumberOfBars * nSegmentHeight + 1;
 
     int nCrestFactor = 10 * crest_factor;
     fPeakLevel = -9999.8f;
@@ -55,12 +54,8 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
 
     // register all hot signals, even up to +100 dB FS!
     float fRange = (nCrestFactor - nThreshold) * 0.1f + 100.0f;
-
     int nColor = 0;
     bool bDiscreteLevels = true;
-
-    pMeterSegmentOverload = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
-    addAndMakeVisible(pMeterSegmentOverload);
 
     for (int n = 0; n < nNumberOfBars; n++)
     {
@@ -120,9 +115,6 @@ MeterBarPeak::~MeterBarPeak()
     delete [] pMeterSegments;
     pMeterSegments = NULL;
 
-    delete pMeterSegmentOverload;
-    pMeterSegmentOverload = NULL;
-
     deleteAllChildren();
 }
 
@@ -133,9 +125,6 @@ void MeterBarPeak::visibilityChanged()
 
     int x = 0;
     int y = 0;
-
-    pMeterSegmentOverload->setBounds(x, y, nWidth, nSegmentHeight + 1);
-    y += nSegmentHeight;
 
     for (int n = 0; n < nNumberOfBars; n++)
     {
@@ -156,15 +145,12 @@ void MeterBarPeak::resized()
 }
 
 
-void MeterBarPeak::setLevels(float peakLevel, float peakLevelPeak, float peakLevelMaximum)
+void MeterBarPeak::setLevels(float peakLevel, float peakLevelPeak)
 {
-    if ((peakLevel != fPeakLevel) || (peakLevelPeak != fPeakLevelPeak) || (fPeakLevelMaximum != peakLevelMaximum))
+    if ((peakLevel != fPeakLevel) || (peakLevelPeak != fPeakLevelPeak))
     {
         fPeakLevel = peakLevel;
         fPeakLevelPeak = peakLevelPeak;
-        fPeakLevelMaximum = peakLevelMaximum;
-
-        pMeterSegmentOverload->setLevels(fPeakLevel, fPeakLevelPeak, fPeakLevelMaximum);
 
         for (int n = 0; n < nNumberOfBars; n++)
         {

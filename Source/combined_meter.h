@@ -29,6 +29,7 @@
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "meter_bar_average.h"
 #include "meter_bar_peak.h"
+#include "peak_label.h"
 #include "trakmeter.h"
 #include "plugin_processor.h"
 
@@ -59,7 +60,8 @@ private:
     int nWidth;
 
     int nSegmentHeight;
-    int nMeterSegmentWidth;
+    int nPeakLabelHeight;
+    int nPeakMeterSegmentWidth;
     int nMeterPositionTop;
     int nMeterHeight;
 
@@ -68,6 +70,7 @@ private:
 
     MeterBarAverage** AverageMeters;
     MeterBarPeak** PeakMeters;
+    PeakLabel** PeakLabels;
 
     void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour);
 };
