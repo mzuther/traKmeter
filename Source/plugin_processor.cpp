@@ -33,14 +33,12 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor()
 {
     bSampleRateIsValid = false;
     audioFilePlayer = NULL;
-
     pRingBufferInput = NULL;
-    pRingBufferOutput = NULL;
 
     nNumInputChannels = 0;
     pMeterBallistics = NULL;
 
-    setLatencySamples(TRAKMETER_BUFFER_SIZE);
+    setLatencySamples(0);
     pPluginParameters = new TraKmeterPluginParameters();
 
     // depend on "TraKmeterPluginParameters"!
@@ -374,8 +372,6 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
 
     pRingBufferInput = new AudioRingBuffer("Input ring buffer", nNumInputChannels, uRingBufferSize, TRAKMETER_BUFFER_SIZE, TRAKMETER_BUFFER_SIZE);
     pRingBufferInput->setCallbackClass(this);
-
-    pRingBufferOutput = new AudioRingBuffer("Output ring buffer", nNumInputChannels, uRingBufferSize, TRAKMETER_BUFFER_SIZE, TRAKMETER_BUFFER_SIZE);
 }
 
 
@@ -393,9 +389,6 @@ void TraKmeterAudioProcessor::releaseResources()
 
     delete pMeterBallistics;
     pMeterBallistics = NULL;
-
-    delete pRingBufferOutput;
-    pRingBufferOutput = NULL;
 
     delete pRingBufferInput;
     pRingBufferInput = NULL;
@@ -471,8 +464,6 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
 
     nSamplesInBuffer += nNumSamples;
     nSamplesInBuffer %= TRAKMETER_BUFFER_SIZE;
-
-    pRingBufferOutput->copyToBuffer(buffer, 0, nNumSamples, TRAKMETER_BUFFER_SIZE - nSamplesInBuffer);
 }
 
 
@@ -513,7 +504,6 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer& buffer, cons
 
     AudioSampleBuffer TempAudioBuffer = AudioSampleBuffer(nNumInputChannels, uChunkSize);
     pRingBufferInput->copyToBuffer(TempAudioBuffer, 0, uChunkSize, 0);
-    pRingBufferOutput->addSamples(TempAudioBuffer, 0, uChunkSize);
 }
 
 

@@ -128,9 +128,7 @@ private:
     JUCE_LEAK_DETECTOR(TraKmeterAudioProcessor);
 
     AudioFilePlayer* audioFilePlayer;
-
     AudioRingBuffer* pRingBufferInput;
-    AudioRingBuffer* pRingBufferOutput;
 
     MeterBallistics* pMeterBallistics;
     TraKmeterPluginParameters* pPluginParameters;
