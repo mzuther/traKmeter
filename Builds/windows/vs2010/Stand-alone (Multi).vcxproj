@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{AA4633CA-FDB5-B714-3A44-B2493428981B}</ProjectGuid>
+		<ProjectGuid>{56F2CC7D-0E32-81EE-C018-F8EE972868B4}</ProjectGuid>
 		<RootNamespace>Stand-alone (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -216,7 +216,6 @@
 		<ClInclude Include="..\..\..\Source\combined_meter.h" />
 		<ClInclude Include="..\..\..\Source\audio_ring_buffer.h" />
 		<ClInclude Include="..\..\..\Source\signal_meter.h" />
-		<ClInclude Include="..\..\..\Source\peak_label.h" />
 		<ClInclude Include="..\..\..\Source\window_about.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_peak.h" />
 		<ClInclude Include="..\..\..\Source\audio_file_player.h" />
@@ -256,8 +255,6 @@
 		<ClCompile Include="..\..\..\Source\average_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\window_validation.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\peak_label.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\audio_ring_buffer.cpp">
 		</ClCompile>
