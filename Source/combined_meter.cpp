@@ -139,7 +139,7 @@ void CombinedMeter::paint(Graphics& g)
     g.setColour(Colour(0.00f, 1.0f, 1.0f, 1.0f));
     drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.00f, 1.0f, 1.0f, 1.0f));
 
-    y -= roundf(nSegmentHeight / 2.0f);
+    y -= round_to_int(nSegmentHeight / 2.0f);
     y += 2;
 
     int nTrueLevel = -8;

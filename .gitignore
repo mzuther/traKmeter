@@ -6,7 +6,6 @@
 *.suo
 *.vcproj.*.user
 *.vcxproj.user
-mz_*
 
 .Rhistory
 
@@ -14,6 +13,7 @@ bin/*
 !bin/trakmeter_lv2/
 !bin/final/
 !bin/releases/
+Builds/mz_*
 
 ignore/
 

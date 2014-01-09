@@ -23,57 +23,20 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __PEAK_METER_H__
-#define __PEAK_METER_H__
+#ifndef __MZ_TOOLS_H__
+#define __MZ_TOOLS_H__
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "meter_bar_peak.h"
-#include "meter_segment_overload.h"
-#include "mz_tools.h"
-#include "trakmeter.h"
-#include "plugin_processor.h"
 
 
-//==============================================================================
-/**
-*/
-class PeakMeter : public Component
+inline static int round_to_int(float x)
 {
-public:
-    PeakMeter(const String& componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
-    ~PeakMeter();
-
-    void setLevels(MeterBallistics* pMeterBallistics);
-    void paint(Graphics& g);
-    int getPreferredHeight();
-    void resized();
-    void visibilityChanged();
-
-private:
-    JUCE_LEAK_DETECTOR(PeakMeter);
-
-    int nNumberOfBars;
-
-    int nPosX;
-    int nPosY;
-    int nHeight;
-    int nWidth;
-
-    int nSegmentHeight;
-    int nMeterPositionTop;
-    int nMeterHeight;
-
-    int nCrestFactor;
-    int nInputChannels;
-
-    MeterBarPeak** LevelMeters;
-    MeterSegmentOverload** MeterSegmentOverloads;
-
-    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour);
-};
+    x += (x >= 0.0f) ? 0.5f : -0.5f;
+    return (int) x;
+}
 
 
-#endif  // __PEAK_METER_H__
+#endif  // __MZ_TOOLS_H__
 
 
 // Local Variables:

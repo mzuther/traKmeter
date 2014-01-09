@@ -207,7 +207,7 @@ void MeterSegmentOverload::setLevels(float fLevel, float fLevelPeak, float fLeve
 
         if (fMaximumLevel >= fLowerThreshold)
         {
-            int nMaximumLevel = int(roundf(fMaximumLevel + 0.5f));
+            int nMaximumLevel = round_to_int(fMaximumLevel);
 
             if (nMaximumLevel > 0)
             {

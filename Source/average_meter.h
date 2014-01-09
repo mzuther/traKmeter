@@ -28,6 +28,7 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "meter_bar_average.h"
+#include "mz_tools.h"
 #include "trakmeter.h"
 #include "plugin_processor.h"
 
