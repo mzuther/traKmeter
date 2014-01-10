@@ -35,16 +35,16 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
     nInputChannels = nNumChannels;
     nCrestFactor = CrestFactor;
 
-    nNumberOfBars = 27;
+    nNumberOfBars = 29;
     nSegmentHeight = segment_height;
-    nPeakLabelHeight = nSegmentHeight + 3;
-    nMeterPositionTop = 1;
-    nMeterHeight = (nNumberOfBars - 1) * nSegmentHeight + nPeakLabelHeight + 2;
+    nPeakLabelHeight = nSegmentHeight + 2;
+    nMeterPositionTop = 5;
+    nMeterHeight = (nNumberOfBars - 1) * nSegmentHeight + nPeakLabelHeight + 3;
 
     nPosX = posX;
     nPosY = posY;
     nWidth = width;
-    nHeight = nMeterPositionTop + nMeterHeight;
+    nHeight = 2 * nMeterPositionTop + nMeterHeight;
 
     int nPositionX = 0;
     nPeakMeterSegmentWidth = 6;
@@ -67,10 +67,10 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
         int nPositionXAverage = (nChannel % 2) ? 0 : nPeakMeterSegmentWidth + 1;
         int nPositionXPeakMeters = (nChannel % 2) ? TraKmeter::TRAKMETER_SEGMENT_WIDTH - nPeakMeterSegmentWidth : 0;
 
-        AverageMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX + nPositionXAverage, nMeterPositionTop + nPeakLabelHeight, TraKmeter::TRAKMETER_SEGMENT_WIDTH - nPeakMeterSegmentWidth - 1, nNumberOfBars - 1, nCrestFactor, nSegmentHeight, true, true);
+        AverageMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX + nPositionXAverage, nMeterPositionTop + nPeakLabelHeight + 2, TraKmeter::TRAKMETER_SEGMENT_WIDTH - nPeakMeterSegmentWidth - 1, nNumberOfBars - 1, nCrestFactor, nSegmentHeight, true, true);
         addAndMakeVisible(AverageMeters[nChannel]);
 
-        PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX + nPositionXPeakMeters, nMeterPositionTop + nPeakLabelHeight, nPeakMeterSegmentWidth, nNumberOfBars - 1, nCrestFactor, nSegmentHeight, true, true);
+        PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX + nPositionXPeakMeters, nMeterPositionTop + nPeakLabelHeight + 2, nPeakMeterSegmentWidth, nNumberOfBars - 1, nCrestFactor, nSegmentHeight, true, true);
         addAndMakeVisible(PeakMeters[nChannel]);
 
         MeterSegmentOverloads[nChannel] = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, nCrestFactor, true, true, 0);
@@ -122,7 +122,7 @@ void CombinedMeter::visibilityChanged()
         int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
         nPositionX += (nChannel % 2) ? -2 : 2;
 
-        MeterSegmentOverloads[nChannel]->setBounds(nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nSegmentHeight + 1);
+        MeterSegmentOverloads[nChannel]->setBounds(nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nPeakLabelHeight);
     }
 }
 
@@ -142,7 +142,7 @@ void CombinedMeter::paint(Graphics& g)
     drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.00f, 1.0f, 1.0f, 1.0f));
 
     y -= round_to_int(nSegmentHeight / 2.0f);
-    y += 3;
+    y += 4;
 
     int nTrueLevel = -8;
 
@@ -207,10 +207,10 @@ void CombinedMeter::paint(Graphics& g)
         nPositionX += (nChannel % 2) ? -2 : 2;
 
         g.setColour(Colours::black.brighter(0.15f));
-        g.fillRect(nPositionX - 1, nMeterPositionTop - 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH + 2, nHeight);
+        g.fillRect(nPositionX - 1, nMeterPositionTop - 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH + 2, nMeterHeight + 2);
 
         g.setColour(Colours::black);
-        g.fillRect(nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nSegmentHeight + 1);
+        g.fillRect(nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nPeakLabelHeight);
     }
 }
 

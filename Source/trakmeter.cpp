@@ -48,7 +48,7 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
 
     if (bCombinedMeters)
     {
-        combined_meter = new CombinedMeter("Combined Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
+        combined_meter = new CombinedMeter("Combined Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight - 1);
         addAndMakeVisible(combined_meter);
 
         nHeight = combined_meter->getPreferredHeight() + 8;
