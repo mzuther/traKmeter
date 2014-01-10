@@ -37,8 +37,8 @@ AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int 
 
     nNumberOfBars = 8;
     nSegmentHeight = segment_height;
-    nMeterPositionBottom = 21;
-    nMeterHeight = nNumberOfBars * nSegmentHeight + 1;
+    nMeterPositionBottom = 22;
+    nMeterHeight = nNumberOfBars * nSegmentHeight + 2;
 
     nPosX = posX;
     nPosY = posY;
@@ -51,8 +51,9 @@ AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int 
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
+        nPositionX += (nChannel % 2) ? -2 : 2;
 
-        LevelMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true, false);
+        LevelMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nPositionX, 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true, false);
         addAndMakeVisible(LevelMeters[nChannel]);
     }
 }
@@ -88,7 +89,7 @@ void AverageMeter::visibilityChanged()
 void AverageMeter::paint(Graphics& g)
 {
     int x = 0;
-    int y = nMeterHeight + nMeterPositionBottom - 13;
+    int y = nMeterHeight + nMeterPositionBottom - 14;
     int width = TraKmeter::TRAKMETER_LABEL_WIDTH - 14;
     int height = 13;
 
@@ -120,7 +121,7 @@ void AverageMeter::paint(Graphics& g)
     g.setColour(Colours::black);
     g.drawFittedText("RMS", (nWidth - 30) / 2, y, 30, height, Justification::centred, 1, 1.0f);
 
-    y = 0;
+    y = 1;
     strMarker = "HOT";
 
     g.setFont(12.0f);
@@ -161,6 +162,15 @@ void AverageMeter::paint(Graphics& g)
 
     g.setColour(Colour(0.58f, 1.0f, 1.0f, 1.0f));
     drawMarkers(g, strMarker, x + 1, y + 2 * nSegmentHeight, width, height, Colour(0.58f, 1.0f, 1.0f, 1.0f));
+
+    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+    {
+        int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
+        nPositionX += (nChannel % 2) ? -2 : 2;
+
+        g.setColour(Colours::black.brighter(0.15f));
+        g.fillRect(nPositionX - 1, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH + 2, nMeterHeight + 1);
+    }
 }
 
 

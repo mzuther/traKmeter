@@ -59,9 +59,9 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
         addAndMakeVisible(peak_meter);
 
         int nHeightPeakMeter = peak_meter->getPreferredHeight();
-        int nHeightSeparator = 31;
+        int nHeightSeparator = 29;
 
-        signal_meter = new SignalMeter("Signal Meter", 4, nHeightPeakMeter + (nHeightSeparator - 12) / 2 + 4, nWidth - 8, nCrestFactor, nInputChannels);
+        signal_meter = new SignalMeter("Signal Meter", 4, nHeightPeakMeter + (nHeightSeparator - 14) / 2 + 4, nWidth - 8, nCrestFactor, nInputChannels);
         addAndMakeVisible(signal_meter);
 
         average_meter = new AverageMeter("Average Meter", 4, nHeightPeakMeter + nHeightSeparator + 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);

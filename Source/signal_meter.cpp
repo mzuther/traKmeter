@@ -41,7 +41,7 @@ SignalMeter::SignalMeter(const String& componentName, int posX, int posY, int wi
     nPosX = posX;
     nPosY = posY;
     nWidth = width;
-    nHeight = nMeterHeight;
+    nHeight = nMeterHeight + 2;
 
     int nPositionX = 0;
     PeakMeterSignals = new MeterSignalLed*[nInputChannels];
@@ -70,10 +70,11 @@ SignalMeter::SignalMeter(const String& componentName, int posX, int posY, int wi
         }
 
         nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
+        nPositionX += (nChannel % 2) ? -2 : 2;
 
         PeakMeterSignals[nChannel] = new MeterSignalLed("Peak Meter Signal #" + String(nChannel), strLabel, nThreshold * 0.1f, fRange);
 
-        PeakMeterSignals[nChannel]->setBounds(nPositionX, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nSegmentHeight + 1);
+        PeakMeterSignals[nChannel]->setBounds(nPositionX, 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nSegmentHeight + 1);
         addAndMakeVisible(PeakMeterSignals[nChannel]);
     }
 }
@@ -109,7 +110,7 @@ void SignalMeter::visibilityChanged()
 void SignalMeter::paint(Graphics& g)
 {
     int x = 0;
-    int y = -1;
+    int y = 0;
     int width = TraKmeter::TRAKMETER_LABEL_WIDTH - 14;
     int height = 13;
 
@@ -118,6 +119,15 @@ void SignalMeter::paint(Graphics& g)
     g.setColour(Colours::white);
     g.setFont(12.0f);
     drawMarkers(g, strMarker, x + 1, y + 2, width, height);
+
+    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+    {
+        int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
+        nPositionX += (nChannel % 2) ? -2 : 2;
+
+        g.setColour(Colours::black.brighter(0.15f));
+        g.fillRect(nPositionX - 1, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH + 2, nMeterHeight + 1);
+    }
 }
 
 

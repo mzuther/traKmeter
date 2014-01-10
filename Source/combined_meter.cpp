@@ -37,7 +37,7 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
 
     nNumberOfBars = 27;
     nSegmentHeight = segment_height;
-    nPeakLabelHeight = nSegmentHeight + 2;
+    nPeakLabelHeight = nSegmentHeight + 3;
     nMeterPositionTop = 1;
     nMeterHeight = (nNumberOfBars - 1) * nSegmentHeight + nPeakLabelHeight + 2;
 
@@ -62,6 +62,7 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
+        nPositionX += (nChannel % 2) ? -2 : 2;
 
         int nPositionXAverage = (nChannel % 2) ? 0 : nPeakMeterSegmentWidth + 1;
         int nPositionXPeakMeters = (nChannel % 2) ? TraKmeter::TRAKMETER_SEGMENT_WIDTH - nPeakMeterSegmentWidth : 0;
@@ -119,6 +120,7 @@ void CombinedMeter::visibilityChanged()
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
+        nPositionX += (nChannel % 2) ? -2 : 2;
 
         MeterSegmentOverloads[nChannel]->setBounds(nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nSegmentHeight + 1);
     }
@@ -140,7 +142,7 @@ void CombinedMeter::paint(Graphics& g)
     drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.00f, 1.0f, 1.0f, 1.0f));
 
     y -= round_to_int(nSegmentHeight / 2.0f);
-    y += 2;
+    y += 3;
 
     int nTrueLevel = -8;
 
@@ -202,9 +204,10 @@ void CombinedMeter::paint(Graphics& g)
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
+        nPositionX += (nChannel % 2) ? -2 : 2;
 
         g.setColour(Colours::black.brighter(0.15f));
-        g.fillRect(nPositionX, nMeterPositionTop + nPeakLabelHeight - 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nHeight - nPeakLabelHeight - 1);
+        g.fillRect(nPositionX - 1, nMeterPositionTop - 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH + 2, nHeight);
 
         g.setColour(Colours::black);
         g.fillRect(nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nSegmentHeight + 1);
