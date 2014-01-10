@@ -13,7 +13,6 @@ bin/*
 !bin/trakmeter_lv2/
 !bin/final/
 !bin/releases/
-Builds/mz_*
 
 ignore/
 
