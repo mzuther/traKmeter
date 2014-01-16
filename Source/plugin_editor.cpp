@@ -46,7 +46,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor = ownerFilter;
     pProcessor->addActionListener(this);
 
-    ButtonMeterType = new TextButton("Type");
+    ButtonMeterType = new TextButton("Meter");
     ButtonMeterType->setColour(TextButton::buttonColourId, Colours::grey);
     ButtonMeterType->setColour(TextButton::buttonOnColourId, Colours::green);
     ButtonMeterType->setToggleState(true, dontSendNotification);

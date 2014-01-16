@@ -85,6 +85,7 @@ public:
 
         selSeparateMeters = 0,
         selCombinedMeters,
+        selAbstractMeters,
 
         nNumMeterTypes,
     };

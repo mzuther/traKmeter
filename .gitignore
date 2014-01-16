@@ -11,6 +11,7 @@
 
 bin/*
 !bin/trakmeter_lv2/
+!bin/trakmeter_lv2_x64/
 !bin/final/
 !bin/releases/
 

@@ -113,7 +113,9 @@ OBJECTS := \
 	$(OBJDIR)/plugin_processor.o \
 	$(OBJDIR)/meter_bar_peak.o \
 	$(OBJDIR)/plugin_parameters.o \
+	$(OBJDIR)/abstract_meter.o \
 	$(OBJDIR)/averager.o \
+	$(OBJDIR)/meter_segment_multi.o \
 	$(OBJDIR)/main.o \
 	$(OBJDIR)/peak_meter.o \
 	$(OBJDIR)/meter_bar_average.o \
@@ -219,7 +221,13 @@ $(OBJDIR)/meter_bar_peak.o: ../../../Source/meter_bar_peak.cpp
 $(OBJDIR)/plugin_parameters.o: ../../../Source/plugin_parameters.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/abstract_meter.o: ../../../Source/abstract_meter.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/averager.o: ../../../Source/averager.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/meter_segment_multi.o: ../../../Source/meter_segment_multi.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/main.o: ../../../Source/main.cpp

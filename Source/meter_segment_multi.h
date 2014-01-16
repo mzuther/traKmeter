@@ -23,60 +23,48 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __THREE_METER_H__
-#define __THREE_METER_H__
+#ifndef __METER_SEGMENT_MULTI_H__
+#define __METER_SEGMENT_MULTI_H__
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "meter_bar_average.h"
-#include "meter_bar_peak.h"
-#include "meter_segment_overload.h"
-#include "trakmeter.h"
-#include "plugin_processor.h"
 
 
 //==============================================================================
 /**
 */
-class ThreeMeter : public Component
+class MeterSegmentMulti : public Component
 {
 public:
-    ThreeMeter(const String& componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
-    ~ThreeMeter();
+    MeterSegmentMulti(const String& componentName, float fCrestFactor, bool bIsAverageLevel, bool bDisplayPeaks);
+    ~MeterSegmentMulti();
 
-    void setLevels(MeterBallistics* pMeterBallistics);
+    void setLevels(float fLevel, float fLevelPeak);
     void paint(Graphics& g);
-    int getPreferredHeight();
     void resized();
     void visibilityChanged();
 
 private:
-    JUCE_LEAK_DETECTOR(ThreeMeter);
+    JUCE_LEAK_DETECTOR(MeterSegmentMulti);
 
-    int nNumberOfBars;
+    float fHue;
+    float fBrightness;
 
-    int nPosX;
-    int nPosY;
-    int nHeight;
-    int nWidth;
+    float fHuePeak;
+    float fBrightnessPeak;
 
-    int nSegmentHeight;
-    int nPeakLabelHeight;
-    int nPeakMeterSegmentWidth;
-    int nMeterPositionTop;
-    int nMeterHeight;
+    float fThreshold1;
+    float fThreshold2;
+    float fThreshold3;
+    float fThreshold4;
 
-    int nCrestFactor;
-    int nInputChannels;
+    float fSignalThreshold;
+    float fSignalRange;
 
-    MeterBarAverage** AverageMeters;
-    MeterBarPeak** PeakMeters;
-    MeterSegmentOverload** MeterSegmentOverloads;
-
-    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour);
+    bool displayPeaks;
 };
 
 
-#endif  // __THREE_METER_H__
+#endif  // __METER_SEGMENT_MULTI_H__
 
 
 // Local Variables:

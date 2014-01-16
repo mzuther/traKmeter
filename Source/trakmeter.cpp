@@ -41,6 +41,7 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     nHeight = 0;
 
     combined_meter = NULL;
+    abstract_meter = NULL;
 
     peak_meter = NULL;
     average_meter = NULL;
@@ -71,6 +72,13 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
 
         nHeight = combined_meter->getPreferredHeight() + 8;
     }
+    else
+    {
+        abstract_meter = new AbstractMeter("Abstract Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight + 2);
+        addAndMakeVisible(abstract_meter);
+
+        nHeight = abstract_meter->getPreferredHeight() + 8;
+    }
 }
 
 
@@ -78,6 +86,9 @@ TraKmeter::~TraKmeter()
 {
     delete combined_meter;
     combined_meter = NULL;
+
+    delete abstract_meter;
+    abstract_meter = NULL;
 
     delete peak_meter;
     peak_meter = NULL;
@@ -133,6 +144,10 @@ void TraKmeter::setLevels(MeterBallistics* pMeterBallistics)
     else if (nMeterType == TraKmeterPluginParameters::selCombinedMeters)
     {
         combined_meter->setLevels(pMeterBallistics);
+    }
+    else
+    {
+        abstract_meter->setLevels(pMeterBallistics);
     }
 }
 

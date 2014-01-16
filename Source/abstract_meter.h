@@ -23,61 +23,58 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __TRAKMETER_H__
-#define __TRAKMETER_H__
-
-class AbstractMeter;
-class AverageMeter;
-class CombinedMeter;
-class PeakMeter;
-class SignalMeter;
+#ifndef __ABSTRACT_METER_H__
+#define __ABSTRACT_METER_H__
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "abstract_meter.h"
-#include "average_meter.h"
-#include "combined_meter.h"
-#include "peak_meter.h"
-#include "signal_meter.h"
+#include "meter_segment_multi.h"
+#include "meter_segment_overload.h"
+#include "meter_signal_led.h"
+#include "trakmeter.h"
+#include "plugin_processor.h"
 
 
 //==============================================================================
 /**
 */
-class TraKmeter : public Component
+class AbstractMeter : public Component
 {
 public:
-    static const int TRAKMETER_LABEL_WIDTH = 38;
-    static const int TRAKMETER_SEGMENT_WIDTH = 22;
-
-    TraKmeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels, int nSegmentHeight, int meter_type);
-    ~TraKmeter();
+    AbstractMeter(const String& componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
+    ~AbstractMeter();
 
     void setLevels(MeterBallistics* pMeterBallistics);
     void paint(Graphics& g);
+    int getPreferredHeight();
     void resized();
     void visibilityChanged();
 
 private:
-    JUCE_LEAK_DETECTOR(TraKmeter);
+    JUCE_LEAK_DETECTOR(AbstractMeter);
 
     int nPosX;
     int nPosY;
     int nHeight;
     int nWidth;
 
-    int nMeterType;
+    int nSegmentHeight;
+    int nSegmentSpace;
+    int nPeakMeterSegmentWidth;
+    int nMeterPositionTop;
+    int nMeterHeight;
+
+    int nCrestFactor;
     int nInputChannels;
 
-    CombinedMeter* combined_meter;
-    AbstractMeter* abstract_meter;
+    MeterSegmentOverload** OverloadMeters;
+    MeterSegmentMulti** PeakMeters;
+    MeterSegmentMulti** AverageMeters;
 
-    PeakMeter* peak_meter;
-    AverageMeter* average_meter;
-    SignalMeter* signal_meter;
+    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour);
 };
 
 
-#endif  // __TRAKMETER_H__
+#endif  // __ABSTRACT_METER_H__
 
 
 // Local Variables:

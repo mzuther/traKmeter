@@ -267,6 +267,10 @@ const String TraKmeterPluginParameters::getParameterText(int nIndex)
         case selCombinedMeters:
             strResult = "Combined";
             break;
+
+        case selAbstractMeters:
+            strResult = "Abstract";
+            break;
         }
 
         return strResult;
