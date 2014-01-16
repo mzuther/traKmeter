@@ -71,7 +71,7 @@ public:
         selCrestFactor,
         selMixMode,
         selGain,
-        selCombinedMeters,
+        selMeterType,
 
         nNumParametersRevealed,
 
@@ -82,6 +82,11 @@ public:
         selValidationCSVFormat,
 
         nNumParameters,
+
+        selSeparateMeters = 0,
+        selCombinedMeters,
+
+        nNumMeterTypes,
     };
 
 private:

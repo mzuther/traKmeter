@@ -25,7 +25,7 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int nSegmentHeight, bool show_combined_meters)
+TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int nSegmentHeight, int meter_type)
 {
     setName(componentName);
 
@@ -33,7 +33,7 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     setOpaque(false);
 
     nInputChannels = nNumChannels;
-    bCombinedMeters = show_combined_meters;
+    nMeterType = meter_type;
 
     nPosX = posX;
     nPosY = posY;
@@ -46,14 +46,7 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     average_meter = NULL;
     signal_meter = NULL;
 
-    if (bCombinedMeters)
-    {
-        combined_meter = new CombinedMeter("Combined Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight - 1);
-        addAndMakeVisible(combined_meter);
-
-        nHeight = combined_meter->getPreferredHeight() + 8;
-    }
-    else
+    if (nMeterType == TraKmeterPluginParameters::selSeparateMeters)
     {
         peak_meter = new PeakMeter("Peak Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
         addAndMakeVisible(peak_meter);
@@ -70,6 +63,13 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
         int nHeightAverageMeter = average_meter->getPreferredHeight();
 
         nHeight = nHeightPeakMeter + nHeightAverageMeter + nHeightSeparator + 8;
+    }
+    else if (nMeterType == TraKmeterPluginParameters::selCombinedMeters)
+    {
+        combined_meter = new CombinedMeter("Combined Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight - 1);
+        addAndMakeVisible(combined_meter);
+
+        nHeight = combined_meter->getPreferredHeight() + 8;
     }
 }
 
@@ -124,15 +124,15 @@ void TraKmeter::resized()
 
 void TraKmeter::setLevels(MeterBallistics* pMeterBallistics)
 {
-    if (bCombinedMeters)
-    {
-        combined_meter->setLevels(pMeterBallistics);
-    }
-    else
+    if (nMeterType == TraKmeterPluginParameters::selSeparateMeters)
     {
         peak_meter->setLevels(pMeterBallistics);
         average_meter->setLevels(pMeterBallistics);
         signal_meter->setLevels(pMeterBallistics);
+    }
+    else if (nMeterType == TraKmeterPluginParameters::selCombinedMeters)
+    {
+        combined_meter->setLevels(pMeterBallistics);
     }
 }
 

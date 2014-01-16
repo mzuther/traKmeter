@@ -73,7 +73,7 @@ private:
 
     TextButton* ButtonReset;
 
-    TextButton* ButtonCombinedMeters;
+    TextButton* ButtonMeterType;
     TextButton* ButtonCrestFactor;
     TextButton* ButtonTransientMode;
     TextButton* ButtonMixMode;

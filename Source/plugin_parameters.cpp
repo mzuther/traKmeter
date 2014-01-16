@@ -37,7 +37,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     nParam[selCrestFactor] = 20;
     nParam[selMixMode] = 0;
     nParam[selGain] = 0;
-    nParam[selCombinedMeters] = 0;
+    nParam[selMeterType] = selSeparateMeters;
 
     nParam[selValidationSelectedChannel] = -1;
     nParam[selValidationAverageMeterLevel] = 1;
@@ -121,7 +121,11 @@ void TraKmeterPluginParameters::setParameterFromInt(int nIndex, int nValue)
 
     if (nParam[nIndex] != nValue)
     {
-        if (nIndex == selCrestFactor)
+        if (nIndex == selMeterType)
+        {
+            nParam[nIndex] = nValue;
+        }
+        else if (nIndex == selCrestFactor)
         {
             nParam[nIndex] = nValue;
         }
@@ -214,8 +218,8 @@ const String TraKmeterPluginParameters::getParameterName(int nIndex)
         return "Gain";
         break;
 
-    case selCombinedMeters:
-        return "Combined meters";
+    case selMeterType:
+        return "Meter type";
         break;
 
     case selValidationFileName:
@@ -249,7 +253,25 @@ const String TraKmeterPluginParameters::getParameterText(int nIndex)
 {
     jassert((nIndex >= 0) && (nIndex < nNumParameters));
 
-    if (nIndex == selCrestFactor)
+    if (nIndex == selMeterType)
+    {
+        String strResult;
+        int nMeterType = getParameterAsInt(nIndex);
+
+        switch (nMeterType)
+        {
+        case selSeparateMeters:
+            strResult = "Separate";
+            break;
+
+        case selCombinedMeters:
+            strResult = "Combined";
+            break;
+        }
+
+        return strResult;
+    }
+    else if (nIndex == selCrestFactor)
     {
         return getParameterAsBool(nIndex) ? "K-20" : "None";
     }
@@ -305,7 +327,11 @@ float TraKmeterPluginParameters::translateParameterToFloat(int nIndex, int nValu
 {
     jassert((nIndex >= 0) && (nIndex < nNumParameters));
 
-    if (nIndex == selCrestFactor)
+    if (nIndex == selMeterType)
+    {
+        return float(nValue) / (nNumMeterTypes - 1.0f);
+    }
+    else if (nIndex == selCrestFactor)
     {
         return (nValue != 0) ? 1.0f : 0.0f;
     }
@@ -338,7 +364,12 @@ int TraKmeterPluginParameters::translateParameterToInt(int nIndex, float fValue)
 {
     jassert((nIndex >= 0) && (nIndex < nNumParameters));
 
-    if (nIndex == selCrestFactor)
+    if (nIndex == selMeterType)
+    {
+        fValue = fValue * (nNumMeterTypes - 1.0f);
+        return int(fValue + 0.5f);
+    }
+    else if (nIndex == selCrestFactor)
     {
         return (fValue > 0.5f) ? 20 : 0;
     }
@@ -378,7 +409,7 @@ XmlElement TraKmeterPluginParameters::storeAsXml()
     xml.setAttribute("CrestFactor", getParameterAsInt(selCrestFactor));
     xml.setAttribute("MixMode", getParameterAsInt(selMixMode));
     xml.setAttribute("Gain", getParameterAsInt(selGain));
-    xml.setAttribute("CombinedMeters", getParameterAsInt(selCombinedMeters));
+    xml.setAttribute("MeterType", getParameterAsInt(selMeterType));
 
     xml.setAttribute("ValidationFile", strValidationFile);
     xml.setAttribute("ValidationSelectedChannel", getParameterAsInt(selValidationSelectedChannel));
@@ -398,7 +429,7 @@ void TraKmeterPluginParameters::loadFromXml(XmlElement* xml)
         setParameterFromInt(selCrestFactor, xml->getIntAttribute("CrestFactor", getParameterAsInt(selCrestFactor)));
         setParameterFromInt(selMixMode, xml->getIntAttribute("MixMode", getParameterAsInt(selMixMode)));
         setParameterFromInt(selGain, xml->getIntAttribute("Gain", getParameterAsInt(selGain)));
-        setParameterFromInt(selCombinedMeters, xml->getIntAttribute("CombinedMeters", getParameterAsInt(selCombinedMeters)));
+        setParameterFromInt(selMeterType, xml->getIntAttribute("MeterType", getParameterAsInt(selMeterType)));
 
         File fileValidation = File(xml->getStringAttribute("ValidationFile", strValidationFile));
         setValidationFile(fileValidation);
