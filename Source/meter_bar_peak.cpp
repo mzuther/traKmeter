@@ -84,17 +84,17 @@ MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, in
         {
             nColor = 0;
         }
-        else if (nTrueThreshold < -170)
-        {
-            nColor = 3;
-        }
-        else if ((nTrueThreshold < -160) || (nTrueThreshold >= -100))
+        else if (nTrueThreshold >= -100)
         {
             nColor = 1;
         }
-        else
+        else if (nTrueThreshold >= -160)
         {
             nColor = 2;
+        }
+        else
+        {
+            nColor = 3;
         }
 
         pMeterSegments[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);

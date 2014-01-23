@@ -155,7 +155,7 @@ TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 
 void TraKmeterAudioProcessorEditor::resizeEditor()
 {
-    nHeight = 20 * nSegmentHeight + 103;
+    nHeight = 20 * nSegmentHeight + 85;
     nRightColumnStart = 2 * TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) + 20;
 
     setSize(nRightColumnStart + 70, nHeight);

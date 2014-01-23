@@ -35,10 +35,10 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
     nInputChannels = nNumChannels;
     nCrestFactor = CrestFactor;
 
-    nNumberOfBars = 29;
+    nNumberOfBars = 27;
     nSegmentHeight = segment_height;
     nPeakLabelHeight = nSegmentHeight + 2;
-    nMeterPositionTop = 5;
+    nMeterPositionTop = 4;
     nMeterHeight = (nNumberOfBars - 1) * nSegmentHeight + nPeakLabelHeight + 3;
 
     nPosX = posX;
