@@ -63,7 +63,7 @@ PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width,
         LevelMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX, nMeterPositionTop + nSegmentHeight, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true, false);
         addAndMakeVisible(LevelMeters[nChannel]);
 
-        MeterSegmentOverloads[nChannel] = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, nCrestFactor, true, true, 0);
+        MeterSegmentOverloads[nChannel] = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, nCrestFactor, false, 0);
         addAndMakeVisible(MeterSegmentOverloads[nChannel]);
     }
 }

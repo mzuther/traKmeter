@@ -74,7 +74,7 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     }
     else
     {
-        abstract_meter = new AbstractMeter("Abstract Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight + 2);
+        abstract_meter = new AbstractMeter("Abstract Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, TRAKMETER_SEGMENT_WIDTH - 3);
         addAndMakeVisible(abstract_meter);
 
         nHeight = abstract_meter->getPreferredHeight() + 8;

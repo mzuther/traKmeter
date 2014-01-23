@@ -73,7 +73,7 @@ CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, in
         PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nPositionX + nPositionXPeakMeters, nMeterPositionTop + nPeakLabelHeight + 2, nPeakMeterSegmentWidth, nNumberOfBars - 1, nCrestFactor, nSegmentHeight, true, true);
         addAndMakeVisible(PeakMeters[nChannel]);
 
-        MeterSegmentOverloads[nChannel] = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, nCrestFactor, true, true, 0);
+        MeterSegmentOverloads[nChannel] = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, nCrestFactor, false, 0);
         addAndMakeVisible(MeterSegmentOverloads[nChannel]);
     }
 }

@@ -26,16 +26,13 @@
 #include "meter_segment_overload.h"
 
 
-MeterSegmentOverload::MeterSegmentOverload(const String& componentName, float fThreshold, float fRange, int CrestFactor, bool bDiscreteLevels, bool bDisplayPeaks, int nColor)
+MeterSegmentOverload::MeterSegmentOverload(const String& componentName, float fThreshold, float fRange, int CrestFactor, bool bThickBorder, int nColor)
 {
     // set component name
     setName(componentName);
 
-    // display peaks on meter?
-    displayPeaks = bDisplayPeaks;
-
-    // display discrete levels on meter?
-    discreteLevels = bDiscreteLevels;
+    // display thick border on meter segment?
+    hasThickBorder = bThickBorder;
 
     // lower threshold, meter segment will be dark below this level
     fLowerThreshold = fThreshold;
@@ -103,29 +100,60 @@ void MeterSegmentOverload::paint(Graphics& g)
     // initialise meter segment's colour from hue and brightness
     g.setColour(Colour(fHue, 1.0f, fBrightness, 1.0f));
 
-    // fill meter segment with solid colour, but leave a border of one
-    // pixel for peak marker
-    g.fillRect(1, 1, width - 2, height - 2);
+    // fill meter segment with solid colour, but leave a border for
+    // peak marker
+    if (hasThickBorder)
+    {
+        g.fillRect(2, 2, width - 4, height - 4);
+    }
+    else
+    {
+        g.fillRect(1, 1, width - 2, height - 2);
+    }
 
     // if peak marker is lit, draw a rectangle around meter segment
     // (width: 1 pixel)
     if (bPeakMarker)
     {
-        g.setColour(Colour(fHue, 0.7f, 1.0f, 1.0f));
-        g.drawRect(0, 0, width, height);
+        if (hasThickBorder)
+        {
+            g.setColour(Colour(fHue, 1.0f, 1.0f, 1.0f));
+        }
+        else
+        {
+            g.setColour(Colour(fHue, 0.7f, 1.0f, 1.0f));
+        }
     }
-    else if (!displayPeaks)
+    else
     {
         g.setColour(Colours::black);
+    }
+
+    if (hasThickBorder)
+    {
+        g.drawRect(0, 0, width, height);
+        g.drawRect(1, 1, width - 2, height - 2);
+
+        // darken space between border and meter segment (width: 1 pixel)
+        if (fBrightness > 0.25f)
+        {
+            float fAlphaSpace = 0.385f;
+            g.setColour(Colour(0.00f, 1.0f, 0.00f, fAlphaSpace));
+            g.drawRect(2, 2, width - 4, height - 4);
+        }
+    }
+    else
+    {
         g.drawRect(0, 0, width, height);
     }
+
 
     if (fBrightness > 0.25f)
     {
         g.setColour(Colours::white);
     }
 
-    g.setFont(float(height));
+    g.setFont(11);
     g.drawFittedText(strMaximumLevel, 2, 2, width - 6, height - 4, Justification::centred, 1, 0.7f);
 
 }
@@ -153,16 +181,8 @@ void MeterSegmentOverload::setLevels(float fLevel, float fLevelPeak, float fLeve
     // current level lies above upper threshold
     if (fLevel > fUpperThreshold)
     {
-        if (discreteLevels)
-        {
-            // set meter segment to dark
-            fBrightness = 0.25f;
-        }
-        else
-        {
-            // fully light meter segment
-            fBrightness = 0.97f;
-        }
+        // set meter segment to dark
+        fBrightness = 0.25f;
     }
     // current level lies on or below lower threshold
     else if (fLevel <= fLowerThreshold)
@@ -173,27 +193,15 @@ void MeterSegmentOverload::setLevels(float fLevel, float fLevelPeak, float fLeve
     // current level lies within thresholds or on upper threshold
     else
     {
-        if (discreteLevels)
-        {
-            // fully light meter segment
-            fBrightness = 0.97f;
-        }
-        else
-        {
-            // calculate brightness from current level
-            fBrightness = (fLevel - fLowerThreshold) / fThresholdRange;
-
-            // to look well, meter segments should be left with some
-            // colour and not have maximum brightness
-            fBrightness = fBrightness * 0.72f + 0.25f;
-        }
+        // fully light meter segment
+        fBrightness = 0.97f;
     }
 
     // peak lies within thresholds or on upper threshold, so show peak
     // marker on segment
     if ((fLevelPeak > fLowerThreshold) && (fLevelPeak <= fUpperThreshold))
     {
-        bPeakMarker = displayPeaks;
+        bPeakMarker = true;
     }
     // otherwise, do not show peak marker on segment
     else

@@ -63,7 +63,7 @@ AbstractMeter::AbstractMeter(const String& componentName, int posX, int posY, in
         nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
         nPositionX += (nChannel % 2) ? -2 : 2;
 
-        OverloadMeters[nChannel] = new MeterSegmentOverload("OverloadMeters (" + componentName + ")", nOverloadThreshold * 0.1f, fOverloadRange, nCrestFactor, true, true, 0);
+        OverloadMeters[nChannel] = new MeterSegmentOverload("OverloadMeters (" + componentName + ")", nOverloadThreshold * 0.1f, fOverloadRange, nCrestFactor, true, 0);
         addAndMakeVisible(OverloadMeters[nChannel]);
 
         PeakMeters[nChannel] = new MeterSegmentMulti("PeakMeters (" + componentName + ")", nCrestFactor, false, true);
@@ -135,7 +135,7 @@ void AbstractMeter::paint(Graphics& g)
     int width = TraKmeter::TRAKMETER_LABEL_WIDTH - 12;
     int height = 13;
 
-    y = nMeterPositionTop;
+    y = nMeterPositionTop + nSegmentHeight / 2 - 6;
     String strMarker = "OVR";
 
     g.setFont(12.0f);
