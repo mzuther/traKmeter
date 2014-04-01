@@ -103,6 +103,8 @@ fi
 
 echo
 
+# schroot -c squeeze-i386
+
 case $MAKEFILE in
 	*standalone*)
 		make config=$PLATFORM $MAKEFILE $3 $4 $5 $6 $7 $8 $9 && echo && ../bin/$EXECUTABLE$EXECUTABLE_EXTENSION

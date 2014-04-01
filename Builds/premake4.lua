@@ -113,6 +113,7 @@ solution "trakmeter"
 				"JUCE_ALSA=1",
 				"JUCE_JACK=1",
 				"JUCE_ASIO=0",
+				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
 
@@ -158,6 +159,7 @@ solution "trakmeter"
 				"JUCE_ALSA=1",
 				"JUCE_JACK=1",
 				"JUCE_ASIO=0",
+				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
 
@@ -212,6 +214,7 @@ solution "trakmeter"
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
 				"JUCE_ASIO=0",
+				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
 
@@ -271,6 +274,7 @@ solution "trakmeter"
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
 				"JUCE_ASIO=0",
+				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
 
@@ -334,6 +338,7 @@ solution "trakmeter"
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
 				"JUCE_ASIO=0",
+				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
 
@@ -391,6 +396,7 @@ solution "trakmeter"
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
 				"JUCE_ASIO=0",
+				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
 
