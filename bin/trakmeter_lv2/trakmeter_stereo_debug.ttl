@@ -23,7 +23,7 @@
     ui:ui <http://code.mzuther.de/trakmeter/stereo/debug#ExternalUI> ,
           <http://code.mzuther.de/trakmeter/stereo/debug#ParentUI> ;
 
-    doap:name "traKmeter (Stereo)" ;
+    doap:name "traKmeter (Stereo, Debug)" ;
     doap:license <http://usefulinc.com/doap/licenses/gpl> ;
     doap:shortdesc "Loudness meter for correctly setting up tracking and mixing levels." ;
 

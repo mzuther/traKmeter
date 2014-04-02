@@ -23,7 +23,7 @@
     ui:ui <http://code.mzuther.de/trakmeter/multi/debug#ExternalUI> ,
           <http://code.mzuther.de/trakmeter/multi/debug#ParentUI> ;
 
-    doap:name "traKmeter (Multi)" ;
+    doap:name "traKmeter (Multi, Debug)" ;
     doap:license <http://usefulinc.com/doap/licenses/gpl> ;
     doap:shortdesc "Loudness meter for correctly setting up tracking and mixing levels." ;
 
