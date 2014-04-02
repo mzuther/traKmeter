@@ -74,17 +74,17 @@ PeakMeter::~PeakMeter()
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         delete LevelMeters[nChannel];
-        LevelMeters[nChannel] = NULL;
+        LevelMeters[nChannel] = nullptr;
 
         delete MeterSegmentOverloads[nChannel];
-        MeterSegmentOverloads[nChannel] = NULL;
+        MeterSegmentOverloads[nChannel] = nullptr;
     }
 
     delete [] LevelMeters;
-    LevelMeters = NULL;
+    LevelMeters = nullptr;
 
     delete [] MeterSegmentOverloads;
-    MeterSegmentOverloads = NULL;
+    MeterSegmentOverloads = nullptr;
 
     deleteAllChildren();
 }

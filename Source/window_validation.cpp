@@ -154,7 +154,7 @@ WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProces
 WindowValidation::~WindowValidation()
 {
     delete pConstrainer;
-    pConstrainer = NULL;
+    pConstrainer = nullptr;
 
     // delete all children of the window; "contentComponent" will be
     // deleted by the base class, so please leave it alone!
@@ -213,7 +213,7 @@ void WindowValidation::buttonClicked(Button* button)
     {
         WildcardFileFilter wildcardFilter("*.wav;*.aiff;*.flac", "", "Audio files (*.wav, *.aiff, *.flac)");
 
-        FileBrowserComponent browser(FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, fileValidation, &wildcardFilter, NULL);
+        FileBrowserComponent browser(FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, fileValidation, &wildcardFilter, nullptr);
 
         FileChooserDialogBox dialogBox("Open audio file", "Please select an audio file to inject into traKmeter's audio path.", browser, true, getLookAndFeel().findColour(AlertWindow::backgroundColourId));
 

@@ -80,23 +80,23 @@ AbstractMeter::~AbstractMeter()
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         delete OverloadMeters[nChannel];
-        OverloadMeters[nChannel] = NULL;
+        OverloadMeters[nChannel] = nullptr;
 
         delete PeakMeters[nChannel];
-        PeakMeters[nChannel] = NULL;
+        PeakMeters[nChannel] = nullptr;
 
         delete AverageMeters[nChannel];
-        AverageMeters[nChannel] = NULL;
+        AverageMeters[nChannel] = nullptr;
     }
 
     delete [] OverloadMeters;
-    OverloadMeters = NULL;
+    OverloadMeters = nullptr;
 
     delete [] PeakMeters;
-    PeakMeters = NULL;
+    PeakMeters = nullptr;
 
     delete [] AverageMeters;
-    AverageMeters = NULL;
+    AverageMeters = nullptr;
 
     deleteAllChildren();
 }

@@ -32,11 +32,11 @@
 TraKmeterAudioProcessor::TraKmeterAudioProcessor()
 {
     bSampleRateIsValid = false;
-    audioFilePlayer = NULL;
-    pRingBufferInput = NULL;
+    audioFilePlayer = nullptr;
+    pRingBufferInput = nullptr;
 
     nNumInputChannels = 0;
-    pMeterBallistics = NULL;
+    pMeterBallistics = nullptr;
 
     setLatencySamples(0);
     pPluginParameters = new TraKmeterPluginParameters();
@@ -47,10 +47,10 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor()
 
     fProcessedSeconds = 0.0f;
 
-    fPeakLevels = NULL;
-    fRmsLevels = NULL;
+    fPeakLevels = nullptr;
+    fRmsLevels = nullptr;
 
-    nOverflows = NULL;
+    nOverflows = nullptr;
 }
 
 
@@ -63,10 +63,10 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
     releaseResources();
 
     delete pPluginParameters;
-    pPluginParameters = NULL;
+    pPluginParameters = nullptr;
 
     delete audioFilePlayer;
-    audioFilePlayer = NULL;
+    audioFilePlayer = nullptr;
 }
 
 
@@ -388,22 +388,22 @@ void TraKmeterAudioProcessor::releaseResources()
     }
 
     delete pMeterBallistics;
-    pMeterBallistics = NULL;
+    pMeterBallistics = nullptr;
 
     delete pRingBufferInput;
-    pRingBufferInput = NULL;
+    pRingBufferInput = nullptr;
 
     delete [] fPeakLevels;
-    fPeakLevels = NULL;
+    fPeakLevels = nullptr;
 
     delete [] fRmsLevels;
-    fRmsLevels = NULL;
+    fRmsLevels = nullptr;
 
     delete [] nOverflows;
-    nOverflows = NULL;
+    nOverflows = nullptr;
 
     delete audioFilePlayer;
-    audioFilePlayer = NULL;
+    audioFilePlayer = nullptr;
 }
 
 
@@ -469,7 +469,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
 
 void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer& buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
 {
-    bool hasOpenEditor = (getActiveEditor() != NULL);
+    bool hasOpenEditor = (getActiveEditor() != nullptr);
 
     if (hasOpenEditor)
     {
@@ -523,7 +523,7 @@ void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChann
 void TraKmeterAudioProcessor::stopValidation()
 {
     delete audioFilePlayer;
-    audioFilePlayer = NULL;
+    audioFilePlayer = nullptr;
 
     // refresh editor; "V-" --> validation stopped
     sendActionMessage("V-");
@@ -532,7 +532,7 @@ void TraKmeterAudioProcessor::stopValidation()
 
 bool TraKmeterAudioProcessor::isValidating()
 {
-    if (audioFilePlayer == NULL)
+    if (audioFilePlayer == nullptr)
     {
         return false;
     }
@@ -599,7 +599,7 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
         if (pMeterBallistics)
         {
             delete pMeterBallistics;
-            pMeterBallistics = NULL;
+            pMeterBallistics = nullptr;
 
             pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
         }

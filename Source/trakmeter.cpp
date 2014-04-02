@@ -40,12 +40,12 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
     nWidth = 2 * TRAKMETER_LABEL_WIDTH + nInputChannels * (TRAKMETER_SEGMENT_WIDTH + 6) - 3;
     nHeight = 0;
 
-    combined_meter = NULL;
-    abstract_meter = NULL;
+    combined_meter = nullptr;
+    abstract_meter = nullptr;
 
-    peak_meter = NULL;
-    average_meter = NULL;
-    signal_meter = NULL;
+    peak_meter = nullptr;
+    average_meter = nullptr;
+    signal_meter = nullptr;
 
     if (nMeterType == TraKmeterPluginParameters::selSeparateMeters)
     {
@@ -85,19 +85,19 @@ TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrest
 TraKmeter::~TraKmeter()
 {
     delete combined_meter;
-    combined_meter = NULL;
+    combined_meter = nullptr;
 
     delete abstract_meter;
-    abstract_meter = NULL;
+    abstract_meter = nullptr;
 
     delete peak_meter;
-    peak_meter = NULL;
+    peak_meter = nullptr;
 
     delete average_meter;
-    average_meter = NULL;
+    average_meter = nullptr;
 
     delete signal_meter;
-    signal_meter = NULL;
+    signal_meter = nullptr;
 
     deleteAllChildren();
 }

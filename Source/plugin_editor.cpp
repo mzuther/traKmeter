@@ -103,7 +103,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     LabelDebug->setJustificationType(Justification::centred);
     addAndMakeVisible(LabelDebug);
 #else
-    LabelDebug = NULL;
+    LabelDebug = nullptr;
 #endif
 
     ButtonValidation = new TextButton("Validate");
@@ -125,7 +125,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     resizeEditor();
 
     pProcessor->addActionListenerParameters(this);
-    trakmeter = NULL;
+    trakmeter = nullptr;
 
     int nIndex = TraKmeterPluginParameters::selMeterType;
     changeParameter(nIndex);
@@ -286,7 +286,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         {
             removeChildComponent(trakmeter);
             delete trakmeter;
-            trakmeter = NULL;
+            trakmeter = nullptr;
         }
 
         int nMeterType = pProcessor->getParameterAsInt(TraKmeterPluginParameters::selMeterType);
@@ -344,7 +344,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
 
         removeChildComponent(windowAbout);
         delete windowAbout;
-        windowAbout = NULL;
+        windowAbout = nullptr;
     }
     else if (button == ButtonValidation)
     {
@@ -355,7 +355,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
 
         removeChildComponent(windowValidation);
         delete windowValidation;
-        windowValidation = NULL;
+        windowValidation = nullptr;
     }
 }
 

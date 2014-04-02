@@ -109,11 +109,11 @@ MeterBarPeak::~MeterBarPeak()
     {
         removeChildComponent(pMeterSegments[n]);
         delete pMeterSegments[n];
-        pMeterSegments[n] = NULL;
+        pMeterSegments[n] = nullptr;
     }
 
     delete [] pMeterSegments;
-    pMeterSegments = NULL;
+    pMeterSegments = nullptr;
 
     deleteAllChildren();
 }

@@ -85,23 +85,23 @@ CombinedMeter::~CombinedMeter()
     {
 
         delete AverageMeters[nChannel];
-        AverageMeters[nChannel] = NULL;
+        AverageMeters[nChannel] = nullptr;
 
         delete PeakMeters[nChannel];
-        PeakMeters[nChannel] = NULL;
+        PeakMeters[nChannel] = nullptr;
 
         delete MeterSegmentOverloads[nChannel];
-        MeterSegmentOverloads[nChannel] = NULL;
+        MeterSegmentOverloads[nChannel] = nullptr;
     }
 
     delete [] AverageMeters;
-    AverageMeters = NULL;
+    AverageMeters = nullptr;
 
     delete [] PeakMeters;
-    PeakMeters = NULL;
+    PeakMeters = nullptr;
 
     delete [] MeterSegmentOverloads;
-    MeterSegmentOverloads = NULL;
+    MeterSegmentOverloads = nullptr;
 
     deleteAllChildren();
 }

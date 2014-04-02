@@ -84,7 +84,7 @@ AudioFilePlayer::AudioFilePlayer(const File audioFile, int sample_rate, MeterBal
     }
     else
     {
-        audioFileSource = NULL;
+        audioFileSource = nullptr;
         bIsPlaying = false;
         bReports = false;
     }
@@ -99,22 +99,22 @@ AudioFilePlayer::~AudioFilePlayer()
     }
 
     delete audioFileSource;
-    audioFileSource = NULL;
+    audioFileSource = nullptr;
 
     for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
     {
         delete pAverager_AverageMeterLevels[nChannel];
-        pAverager_AverageMeterLevels[nChannel] = NULL;
+        pAverager_AverageMeterLevels[nChannel] = nullptr;
 
         delete pAverager_PeakMeterLevels[nChannel];
-        pAverager_PeakMeterLevels[nChannel] = NULL;
+        pAverager_PeakMeterLevels[nChannel] = nullptr;
     }
 
     delete [] pAverager_AverageMeterLevels;
-    pAverager_AverageMeterLevels = NULL;
+    pAverager_AverageMeterLevels = nullptr;
 
     delete [] pAverager_PeakMeterLevels;
-    pAverager_PeakMeterLevels = NULL;
+    pAverager_PeakMeterLevels = nullptr;
 }
 
 

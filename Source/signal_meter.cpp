@@ -85,11 +85,11 @@ SignalMeter::~SignalMeter()
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         delete PeakMeterSignals[nChannel];
-        PeakMeterSignals[nChannel] = NULL;
+        PeakMeterSignals[nChannel] = nullptr;
     }
 
     delete [] PeakMeterSignals;
-    PeakMeterSignals = NULL;
+    PeakMeterSignals = nullptr;
 
     deleteAllChildren();
 }

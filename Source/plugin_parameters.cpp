@@ -61,10 +61,10 @@ TraKmeterPluginParameters::~TraKmeterPluginParameters()
     removeAllActionListeners();
 
     delete [] nParam;
-    nParam = NULL;
+    nParam = nullptr;
 
     delete [] bParamChanged;
-    bParamChanged = NULL;
+    bParamChanged = nullptr;
 }
 
 

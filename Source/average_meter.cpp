@@ -64,11 +64,11 @@ AverageMeter::~AverageMeter()
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
         delete LevelMeters[nChannel];
-        LevelMeters[nChannel] = NULL;
+        LevelMeters[nChannel] = nullptr;
     }
 
     delete [] LevelMeters;
-    LevelMeters = NULL;
+    LevelMeters = nullptr;
 
     deleteAllChildren();
 }

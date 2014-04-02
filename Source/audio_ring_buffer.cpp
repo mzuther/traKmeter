@@ -65,7 +65,7 @@ AudioRingBuffer::AudioRingBuffer(const String& buffer_name, const unsigned int c
 AudioRingBuffer::~AudioRingBuffer()
 {
     delete [] uChannelOffset;
-    uChannelOffset = NULL;
+    uChannelOffset = nullptr;
 
     free(pAudioData);
 }
@@ -314,7 +314,7 @@ void AudioRingBuffer::setCallbackClass(TraKmeterAudioProcessor* callback_class)
 
 void AudioRingBuffer::clearCallbackClass()
 {
-    pCallbackClass = NULL;
+    pCallbackClass = nullptr;
 }
 
 
