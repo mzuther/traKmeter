@@ -118,6 +118,7 @@ solution "trakmeter"
 			}
 
 			links {
+				"dl",
 				"freetype",
 				"pthread",
 				"rt",
@@ -164,6 +165,7 @@ solution "trakmeter"
 			}
 
 			links {
+				"dl",
 				"freetype",
 				"pthread",
 				"rt",
@@ -224,6 +226,7 @@ solution "trakmeter"
 			}
 
 			links {
+				"dl",
 				"freetype",
 				"pthread",
 				"rt",
@@ -284,6 +287,7 @@ solution "trakmeter"
 			}
 
 			links {
+				"dl",
 				"freetype",
 				"pthread",
 				"rt",
@@ -348,6 +352,7 @@ solution "trakmeter"
 			}
 
 			links {
+				"dl",
 				"freetype",
 				"pthread",
 				"rt",
@@ -406,6 +411,7 @@ solution "trakmeter"
 			}
 
 			links {
+				"dl",
 				"freetype",
 				"pthread",
 				"rt",

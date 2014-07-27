@@ -672,10 +672,13 @@ Thanks for using free software.  I hope you'll enjoy it!
 To build \textbf{traKmeter} yourself, I recommend setting up a
 \texttt{chroot} environment.  This is fast and easy to do on
 Debian-based systems and might save you a \textbf{lot} of trouble.  At
-the time of writing, I'm using Linux Mint 13 (Maya), but the procedure
-should be similar on your distribution of choice.  If you aim at
-generic \num{64}-bit compilation, simply change \texttt{i386} to
-\texttt{amd64}.
+the time of writing, I'm using Linux Mint 17, but the procedure should
+be similar on your distribution of choice.
+
+If you aim at generic \num{64}-bit compilation, simply change
+\texttt{i386} to \texttt{amd64} and \texttt{x32} to \texttt{x64}.  If
+you experience problems, try to change \texttt{stable} to a release
+name such as \texttt{wheezy}.
 
 To install the necessary packages and install the \texttt{chroot} base
 system, execute the following statements (please change
@@ -685,10 +688,9 @@ system, execute the following statements (please change
 \begin{verbatim}
   sudo apt-get install debootstrap schroot
 
-  sudo mkdir -p /srv/chroot/squeeze_i386
   sudo debootstrap --variant=buildd \
-    --arch i386 squeeze \
-    /srv/chroot/squeeze_i386 \
+    --arch i386 stable \
+    /srv/chroot/stable_i386 \
     http://ftp.de.debian.org/debian/
 \end{verbatim}
 
@@ -698,9 +700,9 @@ remove all preceding white space so that each line begins in the first
 column):
 
 \begin{verbatim}
-  [squeeze-i386]
-  description=Debian 6 (Squeeze, i386)
-  directory=/srv/chroot/squeeze_i386
+  [stable-i386]
+  description=Debian stable (i386)
+  directory=/srv/chroot/stable_i386
   personality=linux
   root-users=username
   type=directory
@@ -716,7 +718,7 @@ setting up a \num{32}-bit \texttt{chroot} environment on a
 When \path{debootstrap} is done, log in as superuser:
 
 \begin{verbatim}
-  schroot -c squeeze-i386 -u root
+  schroot -c stable-i386 -u root
 \end{verbatim}
 
 to install a few packages.  The packages \path{less} and \path{vim}
@@ -725,8 +727,8 @@ are optional, but might come in handy:
 \begin{verbatim}
   apt-get update
   apt-get -y install bash-completion libasound2-dev \
-    libjack-jackd2-dev mesa-common-dev xorg-dev
-  apt-get -y install less vim
+    libjack-jackd2-dev mesa-common-dev xorg-dev \
+    less vim
   apt-get clean
 \end{verbatim}
 
@@ -735,14 +737,14 @@ file \path{/etc/bash.bashrc} and unquote these lines:
 
 \begin{verbatim}
   # enable bash completion in interactive shells
-  [two more lines...]
+  [a couple of lines...]
   fi
 \end{verbatim}
 
 Finally, log out and log in as normal user:
 
 \begin{verbatim}
-  schroot -c squeeze-i386
+  schroot -c stable-i386
 \end{verbatim}
 
 Congratulations -- after you have installed the dependencies (see
@@ -765,7 +767,7 @@ below), you are ready to build \textbf{traKmeter}.
 
 Place the binary somewhere in your \path{PATH}.  Depending on your
 platform, you should run \emph{premake} using the scripts
-\path{build/run_premake.sh} or \path{build/run_premake.bat}.
+\path{Builds/run_premake.sh} or \path{Builds/run_premake.bat}.
 
 \subsection{JUCE library}
 
@@ -857,7 +859,7 @@ with coding \textbf{traKmeter}.
 
 Place the binary somewhere in your \path{PATH}.  Depending on your
 platform, you should run \emph{astyle} using the scripts
-\path{src/format_code.sh} or \path{src/format_code.bat}.
+\path{Source/format_code.sh} or \path{Source/format_code.bat}.
 
 \section{Building on GNU/Linux}
 
@@ -888,7 +890,7 @@ After preparing the dependencies, change into the directory
   ./run_premake.bat
 \end{verbatim}
 
-Then change into the directory \path{build/windows/vs20xx}, open the
+Then change into the directory \path{Builds/windows/vs20xx}, open the
 project file with the corresponding version of Visual C++ and build
 the project.
 
