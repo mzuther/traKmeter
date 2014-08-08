@@ -42,7 +42,7 @@ public:
     {
     }
 
-    void checkBounds(juce::Rectangle<int> &bounds, const juce::Rectangle<int> &previousBounds, const juce::Rectangle<int> &limits, bool isStretchingTop, bool isStretchingLeft, bool isStretchingBottom, bool isStretchingRight)
+    void checkBounds(juce::Rectangle<int>& bounds, const juce::Rectangle<int>& previousBounds, const juce::Rectangle<int>& limits, bool isStretchingTop, bool isStretchingLeft, bool isStretchingBottom, bool isStretchingRight)
     {
         // prohibit window movement and resizing by simply ignoring
         // the change

@@ -107,9 +107,8 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
 #endif
 
     ButtonValidation = new TextButton("Validate");
-    ButtonValidation->setColour(TextButton::textColourOnId, Colours::white);
     ButtonValidation->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonValidation->setColour(TextButton::buttonOnColourId, Colours::blue);
+    ButtonValidation->setColour(TextButton::buttonOnColourId, Colours::red);
 
     ButtonValidation->addListener(this);
     addAndMakeVisible(ButtonValidation);
@@ -208,14 +207,14 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String& message
         if (bIsValidating && !pProcessor->isValidating())
         {
             bIsValidating = false;
-            ButtonValidation->setColour(TextButton::buttonColourId, Colours::grey);
+            ButtonValidation->setToggleState(false, dontSendNotification);
         }
     }
     // "V+" --> validation started
     else if ((!message.compare("V+")) && pProcessor->isValidating())
     {
         bIsValidating = true;
-        ButtonValidation->setColour(TextButton::buttonColourId, Colours::red);
+        ButtonValidation->setToggleState(true, dontSendNotification);
     }
     // "V-" --> validation stopped
     else if (!message.compare("V-"))
