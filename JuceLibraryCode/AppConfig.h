@@ -300,7 +300,7 @@
  #define JucePlugin_ManufacturerWebsite    ""
 #endif
 #ifndef  JucePlugin_ManufacturerEmail
- #define JucePlugin_ManufacturerEmail      "support@yourcompany.com"
+ #define JucePlugin_ManufacturerEmail      ""
 #endif
 #ifndef  JucePlugin_ManufacturerCode
  #define JucePlugin_ManufacturerCode       'mz'
@@ -333,13 +333,13 @@
  #define JucePlugin_EditorRequiresKeyboardFocus  0
 #endif
 #ifndef  JucePlugin_Version
- #define JucePlugin_Version                1.06.1
+ #define JucePlugin_Version                1.06.2
 #endif
 #ifndef  JucePlugin_VersionCode
- #define JucePlugin_VersionCode            0x10601
+ #define JucePlugin_VersionCode            0x10602
 #endif
 #ifndef  JucePlugin_VersionString
- #define JucePlugin_VersionString          "1.06.1"
+ #define JucePlugin_VersionString          "1.06.2"
 #endif
 #ifndef  JucePlugin_VSTUniqueID
  #define JucePlugin_VSTUniqueID            JucePlugin_PluginCode
