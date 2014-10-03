@@ -336,25 +336,14 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
     }
     else if (button == ButtonAbout)
     {
-        WindowAbout *windowAbout = new WindowAbout(getWidth(), getHeight());
-        addAndMakeVisible(windowAbout);
-
-        windowAbout->runModalLoop();
-
-        removeChildComponent(windowAbout);
-        delete windowAbout;
-        windowAbout = nullptr;
+        WindowAbout windowAbout(this);
+        windowAbout.runModalLoop();
     }
     else if (button == ButtonValidation)
     {
-        WindowValidation *windowValidation = new WindowValidation(getWidth(), getHeight(), pProcessor);
+        WindowValidation windowValidation(getWidth(), getHeight(), pProcessor);
         addAndMakeVisible(windowValidation);
-
-        windowValidation->runModalLoop();
-
-        removeChildComponent(windowValidation);
-        delete windowValidation;
-        windowValidation = nullptr;
+        windowValidation.runModalLoop();
     }
 }
 
