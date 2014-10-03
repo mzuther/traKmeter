@@ -26,7 +26,7 @@
 #include "plugin_editor.h"
 
 //==============================================================================
-TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor* ownerFilter, int nNumChannels, int CrestFactor)
+TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, int nNumChannels, int CrestFactor)
     : AudioProcessorEditor(ownerFilter)
 {
     // the editor window does not have any transparent areas
@@ -177,7 +177,7 @@ void TraKmeterAudioProcessorEditor::resizeEditor()
 }
 
 
-void TraKmeterAudioProcessorEditor::actionListenerCallback(const String& message)
+void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &message)
 {
     // "PC" --> parameter changed, followed by a hash and the
     // parameter's ID
@@ -197,7 +197,7 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String& message
     // "UM" --> update meters
     else if (!message.compare("UM"))
     {
-        MeterBallistics* pMeterBallistics = pProcessor->getLevels();
+        MeterBallistics *pMeterBallistics = pProcessor->getLevels();
 
         if (pMeterBallistics)
         {
@@ -295,18 +295,18 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
 }
 
 //==============================================================================
-void TraKmeterAudioProcessorEditor::paint(Graphics& g)
+void TraKmeterAudioProcessorEditor::paint(Graphics &g)
 {
     g.setGradientFill(ColourGradient(Colours::darkgrey.darker(0.8f), 0, 0, Colours::darkgrey.darker(1.4f), 0, (float) getHeight(), false));
     g.fillAll();
 }
 
 
-void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
+void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
 {
     if (button == ButtonReset)
     {
-        MeterBallistics* pMeterBallistics = pProcessor->getLevels();
+        MeterBallistics *pMeterBallistics = pProcessor->getLevels();
 
         if (pMeterBallistics)
         {
@@ -336,7 +336,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
     }
     else if (button == ButtonAbout)
     {
-        WindowAbout* windowAbout = new WindowAbout(getWidth(), getHeight());
+        WindowAbout *windowAbout = new WindowAbout(getWidth(), getHeight());
         addAndMakeVisible(windowAbout);
 
         windowAbout->runModalLoop();
@@ -347,7 +347,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
     }
     else if (button == ButtonValidation)
     {
-        WindowValidation* windowValidation = new WindowValidation(getWidth(), getHeight(), pProcessor);
+        WindowValidation *windowValidation = new WindowValidation(getWidth(), getHeight(), pProcessor);
         addAndMakeVisible(windowValidation);
 
         windowValidation->runModalLoop();
@@ -359,7 +359,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button* button)
 }
 
 
-void TraKmeterAudioProcessorEditor::sliderValueChanged(Slider* slider)
+void TraKmeterAudioProcessorEditor::sliderValueChanged(Slider *slider)
 {
     if (slider == SliderGain)
     {

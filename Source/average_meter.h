@@ -39,11 +39,11 @@
 class AverageMeter : public Component
 {
 public:
-    AverageMeter(const String& componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
+    AverageMeter(const String &componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
     ~AverageMeter();
 
-    void setLevels(MeterBallistics* pMeterBallistics);
-    void paint(Graphics& g);
+    void setLevels(MeterBallistics *pMeterBallistics);
+    void paint(Graphics &g);
     int getPreferredHeight();
     void resized();
     void visibilityChanged();
@@ -65,9 +65,9 @@ private:
     int nCrestFactor;
     int nInputChannels;
 
-    MeterBarAverage** LevelMeters;
+    MeterBarAverage **LevelMeters;
 
-    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour);
+    void drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour);
 };
 
 

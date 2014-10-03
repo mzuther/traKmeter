@@ -25,7 +25,7 @@
 
 #include "meter_bar_average.h"
 
-MeterBarAverage::MeterBarAverage(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
+MeterBarAverage::MeterBarAverage(const String &componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
 {
     setName(componentName);
 
@@ -137,7 +137,7 @@ void MeterBarAverage::visibilityChanged()
 }
 
 
-void MeterBarAverage::paint(Graphics& g)
+void MeterBarAverage::paint(Graphics &g)
 {
     g.fillAll(Colours::black);
 }

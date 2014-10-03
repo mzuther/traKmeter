@@ -26,7 +26,7 @@
 #include "audio_file_player.h"
 
 
-AudioFilePlayer::AudioFilePlayer(const File audioFile, int sample_rate, MeterBallistics* meter_ballistics, int crest_factor)
+AudioFilePlayer::AudioFilePlayer(const File audioFile, int sample_rate, MeterBallistics *meter_ballistics, int crest_factor)
 {
     nReportChannel = -1;
     bReports = false;
@@ -55,7 +55,7 @@ AudioFilePlayer::AudioFilePlayer(const File audioFile, int sample_rate, MeterBal
     AudioFormatManager formatManager;
     formatManager.registerBasicFormats();
 
-    AudioFormatReader* formatReader = formatManager.createReaderFor(audioFile);
+    AudioFormatReader *formatReader = formatManager.createReaderFor(audioFile);
 
     if (formatReader)
     {
@@ -161,7 +161,7 @@ bool AudioFilePlayer::isPlaying()
 }
 
 
-void AudioFilePlayer::fillBufferChunk(AudioSampleBuffer* buffer)
+void AudioFilePlayer::fillBufferChunk(AudioSampleBuffer *buffer)
 {
     // report old meter readings
     if (bReports)
@@ -361,7 +361,7 @@ String AudioFilePlayer::formatValue(const float fValue)
 }
 
 
-void AudioFilePlayer::outputValue(const float fValue, Averager* pAverager, const float fCorrectionFactor, const String& strPrefix, const String& strSuffix)
+void AudioFilePlayer::outputValue(const float fValue, Averager *pAverager, const float fCorrectionFactor, const String &strPrefix, const String &strSuffix)
 {
     String strValue;
 
@@ -399,7 +399,7 @@ void AudioFilePlayer::outputValue(const float fValue, Averager* pAverager, const
 }
 
 
-void AudioFilePlayer::outputMessage(const String& strMessage)
+void AudioFilePlayer::outputMessage(const String &strMessage)
 {
 
     Logger::outputDebugString("[Validation - " + formatTime() + "] " + strMessage);

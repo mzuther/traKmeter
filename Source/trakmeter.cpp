@@ -25,7 +25,7 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(const String& componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int nSegmentHeight, int meter_type)
+TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int nSegmentHeight, int meter_type)
 {
     setName(componentName);
 
@@ -109,7 +109,7 @@ void TraKmeter::visibilityChanged()
 }
 
 
-void TraKmeter::paint(Graphics& g)
+void TraKmeter::paint(Graphics &g)
 {
     int x = 4;
     int y = 0;
@@ -133,7 +133,7 @@ void TraKmeter::resized()
 }
 
 
-void TraKmeter::setLevels(MeterBallistics* pMeterBallistics)
+void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     if (nMeterType == TraKmeterPluginParameters::selSeparateMeters)
     {

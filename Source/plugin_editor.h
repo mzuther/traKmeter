@@ -39,18 +39,18 @@
 class TraKmeterAudioProcessorEditor : public AudioProcessorEditor, public ButtonListener, public SliderListener, public ActionListener
 {
 public:
-    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor* ownerFilter, int nNumChannels, int CrestFactor);
+    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, int nNumChannels, int CrestFactor);
     ~TraKmeterAudioProcessorEditor();
 
-    void buttonClicked(Button* button);
-    void sliderValueChanged(Slider* slider);
+    void buttonClicked(Button *button);
+    void sliderValueChanged(Slider *slider);
 
-    void actionListenerCallback(const String& message);
+    void actionListenerCallback(const String &message);
     void changeParameter(int nIndex);
 
     //==============================================================================
     // This is just a standard Juce paint method...
-    void paint(Graphics& g);
+    void paint(Graphics &g);
     void resized();
 
 private:
@@ -68,21 +68,21 @@ private:
     int nSegmentHeight;
     int nHeight;
 
-    TraKmeterAudioProcessor* pProcessor;
-    TraKmeter* trakmeter;
+    TraKmeterAudioProcessor *pProcessor;
+    TraKmeter *trakmeter;
 
-    TextButton* ButtonReset;
+    TextButton *ButtonReset;
 
-    TextButton* ButtonMeterType;
-    TextButton* ButtonCrestFactor;
-    TextButton* ButtonTransientMode;
-    TextButton* ButtonMixMode;
-    TextButton* ButtonValidation;
-    TextButton* ButtonAbout;
+    TextButton *ButtonMeterType;
+    TextButton *ButtonCrestFactor;
+    TextButton *ButtonTransientMode;
+    TextButton *ButtonMixMode;
+    TextButton *ButtonValidation;
+    TextButton *ButtonAbout;
 
-    Slider* SliderGain;
+    Slider *SliderGain;
 
-    Label* LabelDebug;
+    Label *LabelDebug;
 };
 
 

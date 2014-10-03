@@ -25,7 +25,7 @@
 
 #include "abstract_meter.h"
 
-AbstractMeter::AbstractMeter(const String& componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
+AbstractMeter::AbstractMeter(const String &componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
 {
     setName(componentName);
 
@@ -128,7 +128,7 @@ void AbstractMeter::visibilityChanged()
 }
 
 
-void AbstractMeter::paint(Graphics& g)
+void AbstractMeter::paint(Graphics &g)
 {
     int x = 0;
     int y = 0;
@@ -180,7 +180,7 @@ void AbstractMeter::resized()
 }
 
 
-void AbstractMeter::setLevels(MeterBallistics* pMeterBallistics)
+void AbstractMeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
@@ -191,7 +191,7 @@ void AbstractMeter::setLevels(MeterBallistics* pMeterBallistics)
 }
 
 
-void AbstractMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour)
+void AbstractMeter::drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour)
 {
     g.saveState();
 

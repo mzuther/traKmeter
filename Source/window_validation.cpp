@@ -26,7 +26,7 @@
 #include "window_validation.h"
 
 
-WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProcessor* processor)
+WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProcessor *processor)
     : ResizableWindow("Validation traKmeter", false)
     // create new window child of width "nWidth" and height "nHeight"
 {
@@ -162,7 +162,7 @@ WindowValidation::~WindowValidation()
 }
 
 
-void WindowValidation::paint(Graphics& g)
+void WindowValidation::paint(Graphics &g)
 {
     int nHeight = getHeight();
 
@@ -180,7 +180,7 @@ void WindowValidation::paint(Graphics& g)
 }
 
 
-void WindowValidation::buttonClicked(Button* button)
+void WindowValidation::buttonClicked(Button *button)
 {
     // find out which button has been clicked
     if (button == ButtonValidation)

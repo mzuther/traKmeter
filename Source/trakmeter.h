@@ -49,11 +49,11 @@ public:
     static const int TRAKMETER_LABEL_WIDTH = 38;
     static const int TRAKMETER_SEGMENT_WIDTH = 22;
 
-    TraKmeter(const String& componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels, int nSegmentHeight, int meter_type);
+    TraKmeter(const String &componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels, int nSegmentHeight, int meter_type);
     ~TraKmeter();
 
-    void setLevels(MeterBallistics* pMeterBallistics);
-    void paint(Graphics& g);
+    void setLevels(MeterBallistics *pMeterBallistics);
+    void paint(Graphics &g);
     void resized();
     void visibilityChanged();
 
@@ -68,12 +68,12 @@ private:
     int nMeterType;
     int nInputChannels;
 
-    CombinedMeter* combined_meter;
-    AbstractMeter* abstract_meter;
+    CombinedMeter *combined_meter;
+    AbstractMeter *abstract_meter;
 
-    PeakMeter* peak_meter;
-    AverageMeter* average_meter;
-    SignalMeter* signal_meter;
+    PeakMeter *peak_meter;
+    AverageMeter *average_meter;
+    SignalMeter *signal_meter;
 };
 
 

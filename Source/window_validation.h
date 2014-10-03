@@ -35,36 +35,36 @@
 class WindowValidation : public ResizableWindow, ButtonListener
 {
 public:
-    WindowValidation(int nWidth, int nHeight, TraKmeterAudioProcessor* processor);
+    WindowValidation(int nWidth, int nHeight, TraKmeterAudioProcessor *processor);
     ~WindowValidation();
 
-    void paint(Graphics& g);
-    void buttonClicked(Button* button);
+    void paint(Graphics &g);
+    void buttonClicked(Button *button);
 
 private:
     JUCE_LEAK_DETECTOR(WindowValidation);
 
-    TraKmeterAudioProcessor* pProcessor;
+    TraKmeterAudioProcessor *pProcessor;
     File fileValidation;
 
     int nEditorX;
     int nEditorWidth;
-    Component* contentComponent;
-    ProhibitingBoundsConstrainer* pConstrainer;
+    Component *contentComponent;
+    ProhibitingBoundsConstrainer *pConstrainer;
 
-    Label* LabelFileSelection;
-    Label* LabelSampleRate;
-    Label* LabelSampleRateValue;
+    Label *LabelFileSelection;
+    Label *LabelSampleRate;
+    Label *LabelSampleRateValue;
 
-    TextButton* ButtonFileSelection;
-    TextButton* ButtonValidation;
-    TextButton* ButtonCancel;
+    TextButton *ButtonFileSelection;
+    TextButton *ButtonValidation;
+    TextButton *ButtonCancel;
 
-    Label* LabelDumpSelectedChannel;
-    ChannelSlider* SliderDumpSelectedChannel;
-    ToggleButton* ButtonDumpCSV;
-    ToggleButton* ButtonDumpAverageMeterLevel;
-    ToggleButton* ButtonDumpPeakMeterLevel;
+    Label *LabelDumpSelectedChannel;
+    ChannelSlider *SliderDumpSelectedChannel;
+    ToggleButton *ButtonDumpCSV;
+    ToggleButton *ButtonDumpAverageMeterLevel;
+    ToggleButton *ButtonDumpPeakMeterLevel;
 };
 
 

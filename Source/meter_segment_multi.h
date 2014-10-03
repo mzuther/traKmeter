@@ -35,11 +35,11 @@
 class MeterSegmentMulti : public Component
 {
 public:
-    MeterSegmentMulti(const String& componentName, float fCrestFactor, bool bIsAverageLevel, bool bDisplayPeaks);
+    MeterSegmentMulti(const String &componentName, float fCrestFactor, bool bIsAverageLevel, bool bDisplayPeaks);
     ~MeterSegmentMulti();
 
     void setLevels(float fLevel, float fLevelPeak);
-    void paint(Graphics& g);
+    void paint(Graphics &g);
     void resized();
     void visibilityChanged();
 

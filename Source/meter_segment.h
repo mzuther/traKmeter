@@ -35,11 +35,11 @@
 class MeterSegment : public Component
 {
 public:
-    MeterSegment(const String& componentName, float fThreshold, float fRange, bool bDiscreteLevels, bool bDisplayPeaks, int nColor);
+    MeterSegment(const String &componentName, float fThreshold, float fRange, bool bDiscreteLevels, bool bDisplayPeaks, int nColor);
     ~MeterSegment();
 
     void setLevels(float fLevel, float fLevelPeak);
-    void paint(Graphics& g);
+    void paint(Graphics &g);
     void resized();
     void visibilityChanged();
 

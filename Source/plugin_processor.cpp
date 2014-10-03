@@ -70,13 +70,13 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 }
 
 
-void TraKmeterAudioProcessor::addActionListenerParameters(ActionListener* listener) throw()
+void TraKmeterAudioProcessor::addActionListenerParameters(ActionListener *listener) throw()
 {
     pPluginParameters->addActionListener(listener);
 }
 
 
-void TraKmeterAudioProcessor::removeActionListenerParameters(ActionListener* listener) throw()
+void TraKmeterAudioProcessor::removeActionListenerParameters(ActionListener *listener) throw()
 {
     pPluginParameters->removeActionListener(listener);
 }
@@ -166,7 +166,7 @@ File TraKmeterAudioProcessor::getParameterValidationFile()
 }
 
 
-void TraKmeterAudioProcessor::setParameterValidationFile(File& fileValidation)
+void TraKmeterAudioProcessor::setParameterValidationFile(File &fileValidation)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -315,7 +315,7 @@ const String TraKmeterAudioProcessor::getProgramName(int index)
 }
 
 
-void TraKmeterAudioProcessor::changeProgramName(int index, const String& newName)
+void TraKmeterAudioProcessor::changeProgramName(int index, const String &newName)
 {
 }
 
@@ -407,7 +407,7 @@ void TraKmeterAudioProcessor::releaseResources()
 }
 
 
-void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer& midiMessages)
+void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer &midiMessages)
 {
     // This is the place where you'd normally do the guts of your
     // plug-in's audio processing...
@@ -467,7 +467,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
 }
 
 
-void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer& buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
+void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
 {
     bool hasOpenEditor = (getActiveEditor() != nullptr);
 
@@ -551,7 +551,7 @@ bool TraKmeterAudioProcessor::isValidating()
 }
 
 
-int TraKmeterAudioProcessor::countOverflows(AudioRingBuffer* ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay)
+int TraKmeterAudioProcessor::countOverflows(AudioRingBuffer *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay)
 {
     // initialise number of overflows in this buffer
     int nOverflows = 0;
@@ -578,7 +578,7 @@ int TraKmeterAudioProcessor::countOverflows(AudioRingBuffer* ring_buffer, const 
 }
 
 
-MeterBallistics* TraKmeterAudioProcessor::getLevels()
+MeterBallistics *TraKmeterAudioProcessor::getLevels()
 {
     return pMeterBallistics;
 }
@@ -634,7 +634,7 @@ void TraKmeterAudioProcessor::setCrestFactor(const int crest_factor)
 
 //==============================================================================
 
-AudioProcessorEditor* TraKmeterAudioProcessor::createEditor()
+AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
 {
     //  meter ballistics are not updated when the editor is closed, so
     //  reset them here
@@ -662,13 +662,13 @@ bool TraKmeterAudioProcessor::hasEditor() const
 
 //==============================================================================
 
-void TraKmeterAudioProcessor::getStateInformation(MemoryBlock& destData)
+void TraKmeterAudioProcessor::getStateInformation(MemoryBlock &destData)
 {
     copyXmlToBinary(pPluginParameters->storeAsXml(), destData);
 }
 
 
-void TraKmeterAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
+void TraKmeterAudioProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
     ScopedPointer<XmlElement> xml(getXmlFromBinary(data, sizeInBytes));
     pPluginParameters->loadFromXml(xml);
@@ -678,7 +678,7 @@ void TraKmeterAudioProcessor::setStateInformation(const void* data, int sizeInBy
 //==============================================================================
 
 // This creates new instances of the plug-in.
-AudioProcessor* JUCE_CALLTYPE createPluginFilter()
+AudioProcessor *JUCE_CALLTYPE createPluginFilter()
 {
     return new TraKmeterAudioProcessor();
 }

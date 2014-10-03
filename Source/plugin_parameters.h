@@ -50,7 +50,7 @@ public:
     void setParameterFromInt(int nIndex, int nValue);
 
     File getValidationFile();
-    void setValidationFile(File& fileValidation);
+    void setValidationFile(File &fileValidation);
 
     void MarkParameter(int nIndex);
     void UnmarkParameter(int nIndex);
@@ -63,7 +63,7 @@ public:
     float translateParameterToFloat(int nIndex, int nValue);
 
     XmlElement storeAsXml();
-    void loadFromXml(XmlElement* xml);
+    void loadFromXml(XmlElement *xml);
 
     enum Parameters  // public namespace!
     {
@@ -93,8 +93,8 @@ public:
 private:
     JUCE_LEAK_DETECTOR(TraKmeterPluginParameters);
 
-    int* nParam;
-    bool* bParamChanged;
+    int *nParam;
+    bool *bParamChanged;
     String strValidationFile;
 };
 

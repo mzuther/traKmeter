@@ -26,7 +26,7 @@
 #include "meter_signal_led.h"
 
 
-MeterSignalLed::MeterSignalLed(const String& componentName, String& label, float fThreshold, float fRange)
+MeterSignalLed::MeterSignalLed(const String &componentName, String &label, float fThreshold, float fRange)
 {
     // set component name
     setName(componentName);
@@ -56,7 +56,7 @@ MeterSignalLed::~MeterSignalLed()
 }
 
 
-void MeterSignalLed::paint(Graphics& g)
+void MeterSignalLed::paint(Graphics &g)
 {
     // get meter segment's screen dimensions
     int width = getWidth();

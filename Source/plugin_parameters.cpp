@@ -165,7 +165,7 @@ File TraKmeterPluginParameters::getValidationFile()
 }
 
 
-void TraKmeterPluginParameters::setValidationFile(File& fileValidation)
+void TraKmeterPluginParameters::setValidationFile(File &fileValidation)
 {
     if (fileValidation.existsAsFile())
     {
@@ -425,7 +425,7 @@ XmlElement TraKmeterPluginParameters::storeAsXml()
 }
 
 
-void TraKmeterPluginParameters::loadFromXml(XmlElement* xml)
+void TraKmeterPluginParameters::loadFromXml(XmlElement *xml)
 {
     if (xml && xml->hasTagName("TRAKMETER_SETTINGS"))
     {

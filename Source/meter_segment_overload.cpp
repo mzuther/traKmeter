@@ -26,7 +26,7 @@
 #include "meter_segment_overload.h"
 
 
-MeterSegmentOverload::MeterSegmentOverload(const String& componentName, float fThreshold, float fRange, int CrestFactor, bool bThickBorder, int nColor)
+MeterSegmentOverload::MeterSegmentOverload(const String &componentName, float fThreshold, float fRange, int CrestFactor, bool bThickBorder, int nColor)
 {
     // set component name
     setName(componentName);
@@ -91,7 +91,7 @@ MeterSegmentOverload::~MeterSegmentOverload()
 }
 
 
-void MeterSegmentOverload::paint(Graphics& g)
+void MeterSegmentOverload::paint(Graphics &g)
 {
     // get meter segment's screen dimensions
     int width = getWidth();

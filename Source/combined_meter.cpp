@@ -25,7 +25,7 @@
 
 #include "combined_meter.h"
 
-CombinedMeter::CombinedMeter(const String& componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
+CombinedMeter::CombinedMeter(const String &componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
 {
     setName(componentName);
 
@@ -127,7 +127,7 @@ void CombinedMeter::visibilityChanged()
 }
 
 
-void CombinedMeter::paint(Graphics& g)
+void CombinedMeter::paint(Graphics &g)
 {
     int x = 0;
     int y = 0;
@@ -220,7 +220,7 @@ void CombinedMeter::resized()
 }
 
 
-void CombinedMeter::setLevels(MeterBallistics* pMeterBallistics)
+void CombinedMeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
@@ -231,7 +231,7 @@ void CombinedMeter::setLevels(MeterBallistics* pMeterBallistics)
 }
 
 
-void CombinedMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour)
+void CombinedMeter::drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour)
 {
     g.saveState();
 

@@ -25,7 +25,7 @@
 
 #include "signal_meter.h"
 
-SignalMeter::SignalMeter(const String& componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels)
+SignalMeter::SignalMeter(const String &componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels)
 {
     setName(componentName);
 
@@ -107,7 +107,7 @@ void SignalMeter::visibilityChanged()
 }
 
 
-void SignalMeter::paint(Graphics& g)
+void SignalMeter::paint(Graphics &g)
 {
     int x = 0;
     int y = 0;
@@ -136,7 +136,7 @@ void SignalMeter::resized()
 }
 
 
-void SignalMeter::setLevels(MeterBallistics* pMeterBallistics)
+void SignalMeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
@@ -145,7 +145,7 @@ void SignalMeter::setLevels(MeterBallistics* pMeterBallistics)
 }
 
 
-void SignalMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height)
+void SignalMeter::drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height)
 {
     int meter_width = nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 6;
     int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 2;

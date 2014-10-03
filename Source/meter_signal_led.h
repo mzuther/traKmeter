@@ -35,11 +35,11 @@
 class MeterSignalLed : public Component
 {
 public:
-    MeterSignalLed(const String& componentName, String& label, float fThreshold, float fRange);
+    MeterSignalLed(const String &componentName, String &label, float fThreshold, float fRange);
     ~MeterSignalLed();
 
     void setLevel(float fLevel);
-    void paint(Graphics& g);
+    void paint(Graphics &g);
     void resized();
     void visibilityChanged();
 

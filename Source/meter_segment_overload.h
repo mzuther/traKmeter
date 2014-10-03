@@ -36,11 +36,11 @@
 class MeterSegmentOverload : public Component
 {
 public:
-    MeterSegmentOverload(const String& componentName, float fThreshold, float fRange, int nCrestFactor, bool bThickBorder, int nColor);
+    MeterSegmentOverload(const String &componentName, float fThreshold, float fRange, int nCrestFactor, bool bThickBorder, int nColor);
     ~MeterSegmentOverload();
 
     void setLevels(float fLevel, float fLevelPeak, float fLevelMaximum);
-    void paint(Graphics& g);
+    void paint(Graphics &g);
     void resized();
     void visibilityChanged();
 

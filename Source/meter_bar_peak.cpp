@@ -25,7 +25,7 @@
 
 #include "meter_bar_peak.h"
 
-MeterBarPeak::MeterBarPeak(const String& componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
+MeterBarPeak::MeterBarPeak(const String &componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
 {
     setName(componentName);
 
@@ -134,7 +134,7 @@ void MeterBarPeak::visibilityChanged()
 }
 
 
-void MeterBarPeak::paint(Graphics& g)
+void MeterBarPeak::paint(Graphics &g)
 {
     g.fillAll(Colours::black);
 }

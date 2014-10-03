@@ -40,11 +40,11 @@
 class AbstractMeter : public Component
 {
 public:
-    AbstractMeter(const String& componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
+    AbstractMeter(const String &componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
     ~AbstractMeter();
 
-    void setLevels(MeterBallistics* pMeterBallistics);
-    void paint(Graphics& g);
+    void setLevels(MeterBallistics *pMeterBallistics);
+    void paint(Graphics &g);
     int getPreferredHeight();
     void resized();
     void visibilityChanged();
@@ -66,11 +66,11 @@ private:
     int nCrestFactor;
     int nInputChannels;
 
-    MeterSegmentOverload** OverloadMeters;
-    MeterSegmentMulti** PeakMeters;
-    MeterSegmentMulti** AverageMeters;
+    MeterSegmentOverload **OverloadMeters;
+    MeterSegmentMulti **PeakMeters;
+    MeterSegmentMulti **AverageMeters;
 
-    void drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour);
+    void drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour);
 };
 
 

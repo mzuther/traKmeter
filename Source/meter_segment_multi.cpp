@@ -26,7 +26,7 @@
 #include "meter_segment_multi.h"
 
 
-MeterSegmentMulti::MeterSegmentMulti(const String& componentName, float fCrestFactor, bool bIsAverageLevel, bool bDisplayPeaks)
+MeterSegmentMulti::MeterSegmentMulti(const String &componentName, float fCrestFactor, bool bIsAverageLevel, bool bDisplayPeaks)
 {
     // set component name
     setName(componentName);
@@ -74,7 +74,7 @@ MeterSegmentMulti::~MeterSegmentMulti()
 }
 
 
-void MeterSegmentMulti::paint(Graphics& g)
+void MeterSegmentMulti::paint(Graphics &g)
 {
     // get meter segment's screen dimensions
     int width = getWidth();

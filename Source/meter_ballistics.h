@@ -73,28 +73,28 @@ private:
     static float fMeterMinimumDecibel;
     static float fPeakToAverageCorrection;
 
-    float* fPeakMeterLevels;
-    float* fPeakMeterPeakLevels;
+    float *fPeakMeterLevels;
+    float *fPeakMeterPeakLevels;
 
-    float* fAverageMeterLevels;
-    float* fAverageMeterPeakLevels;
+    float *fAverageMeterLevels;
+    float *fAverageMeterPeakLevels;
 
-    float* fPeakMeterSignals;
-    float* fMaximumPeakLevels;
-    int* nNumberOfOverflows;
+    float *fPeakMeterSignals;
+    float *fMaximumPeakLevels;
+    int *nNumberOfOverflows;
 
-    float* fPeakMeterPeakLastChanged;
-    float* fAverageMeterPeakLastChanged;
+    float *fPeakMeterPeakLastChanged;
+    float *fAverageMeterPeakLastChanged;
 
     float PeakMeterBallistics(float fTimePassed, float fPeakLevelCurrent, float fPeakLevelOld);
-    float PeakMeterPeakBallistics(float fTimePassed, float* fLastChanged, float fPeakLevelCurrent, float fPeakLevelOld);
+    float PeakMeterPeakBallistics(float fTimePassed, float *fLastChanged, float fPeakLevelCurrent, float fPeakLevelOld);
 
     void AverageMeterBallistics(int nChannel, float fTimePassed, float fAverageLevelCurrent);
-    float AverageMeterPeakBallistics(float fTimePassed, float* fLastChanged, float fAverageLevelCurrent, float fAverageLevelOld);
+    float AverageMeterPeakBallistics(float fTimePassed, float *fLastChanged, float fAverageLevelCurrent, float fAverageLevelOld);
 
     void PeakMeterSignalBallistics(int nChannel, float fTimePassed, float fPeakMeterSignalCurrent);
 
-    void LogMeterBallistics(float fMeterInertia, float fTimePassed, float fLevel, float& fReadout);
+    void LogMeterBallistics(float fMeterInertia, float fTimePassed, float fLevel, float &fReadout);
 };
 
 

@@ -25,7 +25,7 @@
 
 #include "average_meter.h"
 
-AverageMeter::AverageMeter(const String& componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
+AverageMeter::AverageMeter(const String &componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
 {
     setName(componentName);
 
@@ -86,7 +86,7 @@ void AverageMeter::visibilityChanged()
 }
 
 
-void AverageMeter::paint(Graphics& g)
+void AverageMeter::paint(Graphics &g)
 {
     int x = 0;
     int y = nMeterHeight + nMeterPositionBottom - 14;
@@ -179,7 +179,7 @@ void AverageMeter::resized()
 }
 
 
-void AverageMeter::setLevels(MeterBallistics* pMeterBallistics)
+void AverageMeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
@@ -188,7 +188,7 @@ void AverageMeter::setLevels(MeterBallistics* pMeterBallistics)
 }
 
 
-void AverageMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour)
+void AverageMeter::drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour)
 {
     g.saveState();
 

@@ -25,7 +25,7 @@
 
 #include "peak_meter.h"
 
-PeakMeter::PeakMeter(const String& componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
+PeakMeter::PeakMeter(const String &componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
 {
     setName(componentName);
 
@@ -110,7 +110,7 @@ void PeakMeter::visibilityChanged()
 }
 
 
-void PeakMeter::paint(Graphics& g)
+void PeakMeter::paint(Graphics &g)
 {
     int x = 0;
     int y = 1;
@@ -206,7 +206,7 @@ void PeakMeter::resized()
 }
 
 
-void PeakMeter::setLevels(MeterBallistics* pMeterBallistics)
+void PeakMeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
@@ -216,7 +216,7 @@ void PeakMeter::setLevels(MeterBallistics* pMeterBallistics)
 }
 
 
-void PeakMeter::drawMarkers(Graphics& g, String& strMarker, int x, int y, int width, int height, const Colour& colour)
+void PeakMeter::drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour)
 {
     g.saveState();
 
