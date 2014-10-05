@@ -341,8 +341,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
     }
     else if (button == ButtonValidation)
     {
-        WindowValidation windowValidation(getWidth(), getHeight(), pProcessor);
-        addAndMakeVisible(windowValidation);
+        WindowValidation windowValidation(this, pProcessor);
         windowValidation.runModalLoop();
     }
 }

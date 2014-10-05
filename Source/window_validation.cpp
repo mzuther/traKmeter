@@ -26,16 +26,22 @@
 #include "window_validation.h"
 
 
-WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProcessor *processor)
-    : ResizableWindow("Validation traKmeter", false)
-    // create new window child of width "nWidth" and height "nHeight"
+WindowValidation::WindowValidation(Component *pEditorWindow, TraKmeterAudioProcessor *processor)
+    : DocumentWindow("Validation", Colours::white, 0, true)
+    // create new window child
 {
+    int nWidth = 170;
+    int nHeight = 190;
+
     pProcessor = processor;
     pProcessor->stopValidation();
     fileValidation = pProcessor->getParameterValidationFile();
 
     // set dimensions to those passed to the function ...
-    setBounds(0, 0, nWidth, nHeight);
+    setSize(nWidth, nHeight + getTitleBarHeight());
+
+    // ... center window on editor ...
+    centreAroundComponent(pEditorWindow, getWidth(), getHeight());
 
     // ... and keep the new window on top
     setAlwaysOnTop(true);
@@ -44,38 +50,27 @@ WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProces
     // performance on redrawing)
     setOpaque(true);
 
-    // prohibit movement of the new window
-    pConstrainer = new ProhibitingBoundsConstrainer();
-    setConstrainer(pConstrainer);
-
     // empty windows are boring, so let's prepare a space for some
     // window components
     contentComponent = new Component("Window Area");
     setContentOwned(contentComponent, false);
 
-    nEditorWidth = 160;
-    nEditorX = nWidth - nEditorWidth - 8;
-
     LabelFileSelection = new Label("Label FileSelection", fileValidation.getFileName());
-    LabelFileSelection->setBounds(nEditorX, nHeight - 169, nEditorWidth - 38, 20);
     LabelFileSelection->setMinimumHorizontalScale(1.0f);
-    LabelFileSelection->setColour(Label::textColourId, Colours::white);
-    LabelFileSelection->setColour(Label::backgroundColourId, Colours::grey.darker(0.6f));
-    LabelFileSelection->setColour(Label::outlineColourId, Colours::black);
+    LabelFileSelection->setColour(Label::textColourId, Colours::black);
+    LabelFileSelection->setColour(Label::backgroundColourId, Colours::white.darker(0.15f));
+    LabelFileSelection->setColour(Label::outlineColourId, Colours::grey);
 
     // add and display the label
     contentComponent->addAndMakeVisible(LabelFileSelection);
 
     ButtonFileSelection = new TextButton("...");
-    ButtonFileSelection->setBounds(nEditorX + nEditorWidth - 34, nHeight - 169, 30, 20);
-
     ButtonFileSelection->addListener(this);
     contentComponent->addAndMakeVisible(ButtonFileSelection);
 
-    LabelSampleRateValue = new Label("Label SampleRate", "Host SR: ");
-    LabelSampleRateValue->setBounds(nEditorX, nHeight - 144, 75, 20);
-    LabelSampleRateValue->setColour(Label::textColourId, Colours::white);
-    contentComponent->addAndMakeVisible(LabelSampleRateValue);
+    LabelSampleRate = new Label("Label SampleRate", "Host SR: ");
+    LabelSampleRate->setColour(Label::textColourId, Colours::black);
+    contentComponent->addAndMakeVisible(LabelSampleRate);
 
     int nSampleRate = (int) pProcessor->getSampleRate();
     String strSampleRateThousands = String(nSampleRate / 1000);
@@ -83,51 +78,44 @@ WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProces
     String strSampleRate = strSampleRateThousands + " " + strSampleRateOnes + " Hz";
 
     LabelSampleRateValue = new Label("Label SampleRateValue", strSampleRate);
-    LabelSampleRateValue->setBounds(nEditorX + 66, nHeight - 144, 82, 20);
     LabelSampleRateValue->setMinimumHorizontalScale(1.0f);
-    LabelSampleRateValue->setColour(Label::textColourId, Colours::white);
-    LabelSampleRateValue->setColour(Label::backgroundColourId, Colours::grey.darker(0.6f));
-    LabelSampleRateValue->setColour(Label::outlineColourId, Colours::black);
+    LabelSampleRateValue->setColour(Label::textColourId, Colours::black);
+    LabelSampleRateValue->setColour(Label::backgroundColourId, Colours::white.darker(0.15f));
+    LabelSampleRateValue->setColour(Label::outlineColourId, Colours::grey);
 
     // add and display the label
     contentComponent->addAndMakeVisible(LabelSampleRateValue);
 
     LabelDumpSelectedChannel = new Label("Selected channel", "Channel: ");
-    LabelDumpSelectedChannel->setBounds(nEditorX, nHeight - 119, 75, 20);
-    LabelDumpSelectedChannel->setColour(Label::textColourId, Colours::white);
+    LabelDumpSelectedChannel->setColour(Label::textColourId, Colours::black);
     contentComponent->addAndMakeVisible(LabelDumpSelectedChannel);
 
     SliderDumpSelectedChannel = new ChannelSlider("Selected channel", pProcessor->getNumChannels() - 1);
-    SliderDumpSelectedChannel->setBounds(nEditorX + 66, nHeight - 119, 70, 20);
-    SliderDumpSelectedChannel->setColour(ChannelSlider::textBoxTextColourId, Colours::white);
-    SliderDumpSelectedChannel->setColour(ChannelSlider::textBoxBackgroundColourId, Colours::grey.darker(0.6f));
-    SliderDumpSelectedChannel->setColour(ChannelSlider::textBoxOutlineColourId, Colours::black);
+    SliderDumpSelectedChannel->setColour(ChannelSlider::textBoxTextColourId, Colours::black);
+    SliderDumpSelectedChannel->setColour(ChannelSlider::textBoxBackgroundColourId, Colours::white.darker(0.15f));
+    SliderDumpSelectedChannel->setColour(ChannelSlider::textBoxOutlineColourId, Colours::grey);
 
-    ButtonDumpCSV = new ToggleButton("CSV");
-    ButtonDumpCSV->setBounds(nEditorX, nHeight - 89, 50, 20);
-    ButtonDumpCSV->setColour(ToggleButton::textColourId, Colours::white);
+    ButtonDumpCSV = new ToggleButton("CSV format");
+    ButtonDumpCSV->setColour(ToggleButton::textColourId, Colours::black);
     ButtonDumpCSV->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationCSVFormat), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpCSV);
 
     SliderDumpSelectedChannel->setValue(pProcessor->getParameterAsInt(TraKmeterPluginParameters::selValidationSelectedChannel), dontSendNotification);
     contentComponent->addAndMakeVisible(SliderDumpSelectedChannel);
 
-    ButtonDumpAverageMeterLevel = new ToggleButton("Avg");
-    ButtonDumpAverageMeterLevel->setBounds(nEditorX + 50, nHeight - 89, 50, 20);
-    ButtonDumpAverageMeterLevel->setColour(ToggleButton::textColourId, Colours::white);
+    ButtonDumpAverageMeterLevel = new ToggleButton("Average meter level");
+    ButtonDumpAverageMeterLevel->setColour(ToggleButton::textColourId, Colours::black);
     ButtonDumpAverageMeterLevel->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationAverageMeterLevel), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpAverageMeterLevel);
 
-    ButtonDumpPeakMeterLevel = new ToggleButton("Peak");
-    ButtonDumpPeakMeterLevel->setBounds(nEditorX + 100, nHeight - 89, 65, 20);
-    ButtonDumpPeakMeterLevel->setColour(ToggleButton::textColourId, Colours::white);
+    ButtonDumpPeakMeterLevel = new ToggleButton("Peak meter level");
+    ButtonDumpPeakMeterLevel->setColour(ToggleButton::textColourId, Colours::black);
     ButtonDumpPeakMeterLevel->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationPeakMeterLevel), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpPeakMeterLevel);
 
     // create and position a "validation" button which closes the
     // window and runs the selected audio file when clicked
     ButtonValidation = new TextButton("Validate");
-    ButtonValidation->setBounds(nEditorX + 95, nHeight - 59, 60, 20);
     ButtonValidation->setColour(TextButton::textColourOffId, Colours::black);
     ButtonValidation->setColour(TextButton::buttonColourId, Colours::red);
     ButtonValidation->setColour(TextButton::buttonOnColourId, Colours::grey);
@@ -140,7 +128,6 @@ WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProces
     // create and position a "validation" button which closes the
     // window when clicked
     ButtonCancel = new TextButton("Cancel");
-    ButtonCancel->setBounds(nEditorX + 30, nHeight - 59, 60, 20);
     ButtonCancel->setColour(TextButton::textColourOffId, Colours::black);
     ButtonCancel->setColour(TextButton::buttonColourId, Colours::yellow);
     ButtonCancel->setColour(TextButton::buttonOnColourId, Colours::grey);
@@ -148,35 +135,44 @@ WindowValidation::WindowValidation(int nWidth, int nHeight, TraKmeterAudioProces
     // add "validation" window as button listener and display the button
     ButtonCancel->addListener(this);
     contentComponent->addAndMakeVisible(ButtonCancel);
+
+    int nPositionX = 4;
+    int nPositionY = 7;
+
+    LabelFileSelection->setBounds(nPositionX + 4, nPositionY, 120, 20);
+    ButtonFileSelection->setBounds(nPositionX + 127, nPositionY, 30, 20);
+
+    nPositionY += 24;
+    LabelSampleRate->setBounds(nPositionX, nPositionY, 75, 20);
+    LabelSampleRateValue->setBounds(nPositionX + 66, nPositionY, 82, 20);
+
+    nPositionY += 24;
+    LabelDumpSelectedChannel->setBounds(nPositionX, nPositionY, 75, 20);
+    SliderDumpSelectedChannel->setBounds(nPositionX + 66, nPositionY, 70, 20);
+
+    nPositionY += 30;
+    ButtonDumpPeakMeterLevel->setBounds(nPositionX + 1, nPositionY, 180, 20);
+
+    nPositionY += 20;
+    ButtonDumpAverageMeterLevel->setBounds(nPositionX + 1, nPositionY, 180, 20);
+
+    nPositionY += 20;
+    ButtonDumpCSV->setBounds(nPositionX + 1, nPositionY, 180, 20);
+
+    nPositionY += 31;
+    ButtonValidation->setBounds(18, nPositionY, 60, 20);
+    ButtonCancel->setBounds(88, nPositionY, 60, 20);
+
+    // finally, display window
+    setVisible(true);
 }
 
 
 WindowValidation::~WindowValidation()
 {
-    delete pConstrainer;
-    pConstrainer = nullptr;
-
     // delete all children of the window; "contentComponent" will be
     // deleted by the base class, so please leave it alone!
     contentComponent->deleteAllChildren();
-}
-
-
-void WindowValidation::paint(Graphics &g)
-{
-    int nHeight = getHeight();
-
-    // fill window background with grey colour gradient
-    g.setGradientFill(ColourGradient(Colours::darkgrey.darker(0.4f), 0, 0, Colours::darkgrey.darker(1.0f), 0, (float) nHeight, false));
-    g.fillAll();
-
-    g.setColour(Colours::white);
-    g.setOpacity(0.15f);
-    g.drawRect(nEditorX - 1, nHeight - 169, nEditorWidth + 4, 139);
-
-    g.setColour(Colours::white);
-    g.setOpacity(0.05f);
-    g.fillRect(nEditorX, nHeight - 168, nEditorWidth + 3, 137);
 }
 
 
@@ -185,6 +181,15 @@ void WindowValidation::buttonClicked(Button *button)
     // find out which button has been clicked
     if (button == ButtonValidation)
     {
+        // file name has not been set
+        if (fileValidation.getFileName() == "")
+        {
+            DBG("[traKmeter] file name for validation not set.");
+
+            // prevent closing of window
+            return;
+        }
+
         int nSelectedChannel = (int) SliderDumpSelectedChannel->getValue();
         float fSelectedChannel = (nSelectedChannel + 1.0f) / 100.0f;
         pProcessor->setParameter(TraKmeterPluginParameters::selValidationSelectedChannel, fSelectedChannel);
@@ -211,15 +216,11 @@ void WindowValidation::buttonClicked(Button *button)
     }
     else if (button == ButtonFileSelection)
     {
-        WildcardFileFilter wildcardFilter("*.wav;*.aiff;*.flac", "", "Audio files (*.wav, *.aiff, *.flac)");
+        FileChooser browser("Open audio file for validation", fileValidation, "*.wav;*.aiff;*.flac", true);
 
-        FileBrowserComponent browser(FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, fileValidation, &wildcardFilter, nullptr);
-
-        FileChooserDialogBox dialogBox("Open audio file", "Please select an audio file to inject into traKmeter's audio path.", browser, true, getLookAndFeel().findColour(AlertWindow::backgroundColourId));
-
-        if (dialogBox.show())
+        if (browser.showDialog(FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, nullptr))
         {
-            File selectedFile = browser.getSelectedFile(0);
+            File selectedFile = browser.getResult();
             pProcessor->setParameterValidationFile(selectedFile);
             fileValidation = pProcessor->getParameterValidationFile();
             LabelFileSelection->setText(fileValidation.getFileName(), dontSendNotification);
