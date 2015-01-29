@@ -51,6 +51,8 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor()
     fRmsLevels = nullptr;
 
     nOverflows = nullptr;
+
+    pDither = new Dither(24);
 }
 
 
@@ -67,6 +69,9 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 
     delete audioFilePlayer;
     audioFilePlayer = nullptr;
+
+    delete pDither;
+    pDither = nullptr;
 }
 
 
@@ -455,8 +460,17 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
 
         if (nDecibels != 0)
         {
-            float fGain = MeterBallistics::decibel2level(float(nDecibels));
-            buffer.applyGain(0, nNumSamples, fGain);
+            double dGain = MeterBallistics::decibel2level_double(double(nDecibels));
+
+            for (int nChannel = 0; nChannel < buffer.getNumChannels(); nChannel++)
+            {
+                for (int nSample = 0; nSample < buffer.getNumSamples(); nSample++)
+                {
+                    double dSampleValue = buffer.getSample(nChannel, nSample);
+                    float fNewValue = pDither->dither(dSampleValue * dGain);
+                    buffer.setSample(nChannel, nSample, fNewValue);
+                }
+            }
         }
     }
 

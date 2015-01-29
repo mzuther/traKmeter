@@ -131,6 +131,7 @@ OBJECTS := \
 	$(OBJDIR)/audio_file_player.o \
 	$(OBJDIR)/combined_meter.o \
 	$(OBJDIR)/trakmeter.o \
+	$(OBJDIR)/dither.o \
 	$(OBJDIR)/channel_slider.o \
 	$(OBJDIR)/resources.o \
 	$(OBJDIR)/juce_audio_basics.o \
@@ -273,6 +274,9 @@ $(OBJDIR)/combined_meter.o: ../../../Source/combined_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/trakmeter.o: ../../../Source/trakmeter.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/dither.o: ../../../Source/dither.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/channel_slider.o: ../../../Source/channel_slider.cpp

@@ -34,6 +34,7 @@ class MeterBallistics;
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "audio_file_player.h"
 #include "audio_ring_buffer.h"
+#include "dither.h"
 #include "meter_ballistics.h"
 #include "plugin_parameters.h"
 
@@ -132,6 +133,8 @@ private:
 
     MeterBallistics *pMeterBallistics;
     TraKmeterPluginParameters *pPluginParameters;
+
+    Dither *pDither;
 
     int nNumInputChannels;
     bool bSampleRateIsValid;

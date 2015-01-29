@@ -83,16 +83,16 @@ void MeterSegmentMulti::paint(Graphics &g)
     // initialise meter segment's colour from hue and brightness
     g.setColour(Colour(fHue, 1.0f, fBrightness, 1.0f));
 
-    // fill meter segment with solid colour, but leave a border of two
+    // fill meter segment with solid colour, but leave a border of three
     // pixels for peak marker
-    g.fillRect(2, 2, width - 4, height - 4);
+    g.fillRect(3, 3, width - 6, height - 6);
 
     // darken space between border and meter segment (width: 1 pixel)
     if (fBrightness > 0.2f)
     {
         float fAlphaSpace = (fBrightness - 0.20f) / 2.0f;
         g.setColour(Colour(0.00f, 1.0f, 0.00f, fAlphaSpace));
-        g.drawRect(2, 2, width - 4, height - 4);
+        g.drawRect(3, 3, width - 6, height - 6);
     }
 
     // if peak marker is lit, draw a rectangle around meter segment
