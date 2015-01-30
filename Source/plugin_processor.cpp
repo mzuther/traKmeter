@@ -45,6 +45,9 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor()
     bTransientMode = getParameterAsBool(TraKmeterPluginParameters::selTransientMode);
     nCrestFactor = getParameterAsInt(TraKmeterPluginParameters::selCrestFactor);
 
+    nDecibels = getParameterAsInt(TraKmeterPluginParameters::selGain);
+    dGain = MeterBallistics::decibel2level_double(nDecibels);
+
     fProcessedSeconds = 0.0f;
 
     fPeakLevels = nullptr;
@@ -213,6 +216,11 @@ void TraKmeterAudioProcessor::changeParameter(int index, float fValue)
     else if (index == TraKmeterPluginParameters::selCrestFactor)
     {
         setCrestFactor(getParameterAsInt(index));
+    }
+    else if (index == TraKmeterPluginParameters::selGain)
+    {
+        nDecibels = getParameterAsInt(TraKmeterPluginParameters::selGain);
+        dGain = MeterBallistics::decibel2level_double(nDecibels);
     }
 }
 
@@ -454,22 +462,15 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
 
     bool bMixMode = getParameterAsBool(TraKmeterPluginParameters::selMixMode);
 
-    if (bMixMode)
+    if (bMixMode && (nDecibels != 0))
     {
-        int nDecibels = getParameterAsInt(TraKmeterPluginParameters::selGain);
-
-        if (nDecibels != 0)
+        for (int nChannel = 0; nChannel < buffer.getNumChannels(); nChannel++)
         {
-            double dGain = MeterBallistics::decibel2level_double(double(nDecibels));
-
-            for (int nChannel = 0; nChannel < buffer.getNumChannels(); nChannel++)
+            for (int nSample = 0; nSample < buffer.getNumSamples(); nSample++)
             {
-                for (int nSample = 0; nSample < buffer.getNumSamples(); nSample++)
-                {
-                    double dSampleValue = buffer.getSample(nChannel, nSample);
-                    float fNewValue = pDither->dither(dSampleValue * dGain);
-                    buffer.setSample(nChannel, nSample, fNewValue);
-                }
+                double dSampleValue = buffer.getSample(nChannel, nSample);
+                float fNewSampleValue = pDither->dither(dSampleValue * dGain);
+                buffer.setSample(nChannel, nSample, fNewSampleValue);
             }
         }
     }

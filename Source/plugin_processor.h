@@ -146,6 +146,8 @@ private:
     int nCrestFactor;
     float *fPeakLevels;
     float *fRmsLevels;
+    int nDecibels;
+    double dGain;
 
     int *nOverflows;
 
