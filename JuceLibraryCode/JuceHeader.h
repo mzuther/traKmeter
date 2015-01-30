@@ -35,11 +35,13 @@
  using namespace juce;
 #endif
 
+#if ! JUCE_DONT_DECLARE_PROJECTINFO
 namespace ProjectInfo
 {
     const char* const  projectName    = "traKmeter";
     const char* const  versionString  = "1.06.2";
     const int          versionNumber  = 0x10602;
 }
+#endif
 
 #endif   // __APPHEADERFILE_LEMWQ6__
