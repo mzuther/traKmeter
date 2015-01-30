@@ -3,7 +3,7 @@ traKmeter
 
 Loudness meter for correctly setting up tracking and mixing levels
 
-Copyright (c) 2012-2014 [Martin Zuther][1]
+Copyright (c) 2010-2015 [Martin Zuther][1]
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
