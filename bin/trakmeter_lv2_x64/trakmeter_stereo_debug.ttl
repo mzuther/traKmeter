@@ -275,12 +275,8 @@
             rdfs:label "Separate" ;
         ] ,
         [
-            rdf:value 0.5 ;
-            rdfs:label "Combined" ;
-        ] ,
-        [
             rdf:value 1.0 ;
-            rdfs:label "Abstract" ;
+            rdfs:label "Combined" ;
         ] ;
     ] .
 

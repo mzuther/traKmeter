@@ -41,7 +41,6 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
     nHeight = 0;
 
     combined_meter = nullptr;
-    abstract_meter = nullptr;
 
     peak_meter = nullptr;
     average_meter = nullptr;
@@ -65,19 +64,12 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
 
         nHeight = nHeightPeakMeter + nHeightAverageMeter + nHeightSeparator + 8;
     }
-    else if (nMeterType == TraKmeterPluginParameters::selCombinedMeters)
+    else
     {
         combined_meter = new CombinedMeter("Combined Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight - 1);
         addAndMakeVisible(combined_meter);
 
         nHeight = combined_meter->getPreferredHeight() + 8;
-    }
-    else
-    {
-        abstract_meter = new AbstractMeter("Abstract Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, TRAKMETER_SEGMENT_WIDTH - 3);
-        addAndMakeVisible(abstract_meter);
-
-        nHeight = abstract_meter->getPreferredHeight() + 8;
     }
 }
 
@@ -86,9 +78,6 @@ TraKmeter::~TraKmeter()
 {
     delete combined_meter;
     combined_meter = nullptr;
-
-    delete abstract_meter;
-    abstract_meter = nullptr;
 
     delete peak_meter;
     peak_meter = nullptr;
@@ -141,13 +130,9 @@ void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
         average_meter->setLevels(pMeterBallistics);
         signal_meter->setLevels(pMeterBallistics);
     }
-    else if (nMeterType == TraKmeterPluginParameters::selCombinedMeters)
-    {
-        combined_meter->setLevels(pMeterBallistics);
-    }
     else
     {
-        abstract_meter->setLevels(pMeterBallistics);
+        combined_meter->setLevels(pMeterBallistics);
     }
 }
 

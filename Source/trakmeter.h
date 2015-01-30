@@ -26,14 +26,12 @@
 #ifndef __TRAKMETER_H__
 #define __TRAKMETER_H__
 
-class AbstractMeter;
 class AverageMeter;
 class CombinedMeter;
 class PeakMeter;
 class SignalMeter;
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "abstract_meter.h"
 #include "average_meter.h"
 #include "combined_meter.h"
 #include "peak_meter.h"
@@ -69,7 +67,6 @@ private:
     int nInputChannels;
 
     CombinedMeter *combined_meter;
-    AbstractMeter *abstract_meter;
 
     PeakMeter *peak_meter;
     AverageMeter *average_meter;

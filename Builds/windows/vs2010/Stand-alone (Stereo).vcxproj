@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{14C750A4-BF65-3EE9-7033-E211B542356C}</ProjectGuid>
+		<ProjectGuid>{E80C11C3-C7DE-7741-DAAD-86D2C51D8C20}</ProjectGuid>
 		<RootNamespace>Stand-alone (Stereo)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -207,7 +207,6 @@
 	<ItemGroup>
 		<ClInclude Include="..\..\..\Source\average_meter.h" />
 		<ClInclude Include="..\..\..\Source\window_validation.h" />
-		<ClInclude Include="..\..\..\Source\meter_segment_multi.h" />
 		<ClInclude Include="..\..\..\Source\channel_slider.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_average.h" />
 		<ClInclude Include="..\..\..\Source\trakmeter.h" />
@@ -222,7 +221,6 @@
 		<ClInclude Include="..\..\..\Source\audio_file_player.h" />
 		<ClInclude Include="..\..\..\Source\plugin_parameters.h" />
 		<ClInclude Include="..\..\..\Source\meter_segment_overload.h" />
-		<ClInclude Include="..\..\..\Source\abstract_meter.h" />
 		<ClInclude Include="..\..\..\Source\mz_tools.h" />
 		<ClInclude Include="..\..\..\Source\meter_signal_led.h" />
 		<ClInclude Include="..\..\..\Source\plugin_processor.h" />
@@ -243,11 +241,7 @@
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\plugin_parameters.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\abstract_meter.cpp">
-		</ClCompile>
 		<ClCompile Include="..\..\..\Source\averager.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\meter_segment_multi.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\main.cpp">
 		</ClCompile>
