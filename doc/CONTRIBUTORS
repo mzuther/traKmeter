@@ -1,12 +1,28 @@
+Project owner
+=============
+
+* Martin Zuther a.k.a. radix (http://www.mzuther.de/)
+
+
+
 Contributors
 ============
-Martin Zuther a.k.a. radix
-bram@smartelectronix
-Filipe Lopes
+
+* Filipe Coelho (http://www.falktx.com/)
+
+  LV2 support for JUCE.
+
+
+* Bram de Jong (http://bram.smartelectronix.com/)
+
+  Envelope follower with different attack and release.
+
+
 
 Beta testing
 ============
-Rickard (Interfearing Sounds)
+
+* Rickard (http://www.interfearingsounds.com/)
 
 
 (note: do not forget to update "src/window_about.cpp"!)
