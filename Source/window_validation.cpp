@@ -97,20 +97,20 @@ WindowValidation::WindowValidation(Component *pEditorWindow, TraKmeterAudioProce
 
     ButtonDumpCSV = new ToggleButton("CSV format");
     ButtonDumpCSV->setColour(ToggleButton::textColourId, Colours::black);
-    ButtonDumpCSV->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationCSVFormat), dontSendNotification);
+    ButtonDumpCSV->setToggleState(pProcessor->getBoolean(TraKmeterPluginParameters::selValidationCSVFormat), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpCSV);
 
-    SliderDumpSelectedChannel->setValue(pProcessor->getParameterAsInt(TraKmeterPluginParameters::selValidationSelectedChannel), dontSendNotification);
+    SliderDumpSelectedChannel->setValue(pProcessor->getRealInteger(TraKmeterPluginParameters::selValidationSelectedChannel), dontSendNotification);
     contentComponent->addAndMakeVisible(SliderDumpSelectedChannel);
 
     ButtonDumpAverageMeterLevel = new ToggleButton("Average meter level");
     ButtonDumpAverageMeterLevel->setColour(ToggleButton::textColourId, Colours::black);
-    ButtonDumpAverageMeterLevel->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationAverageMeterLevel), dontSendNotification);
+    ButtonDumpAverageMeterLevel->setToggleState(pProcessor->getBoolean(TraKmeterPluginParameters::selValidationAverageMeterLevel), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpAverageMeterLevel);
 
     ButtonDumpPeakMeterLevel = new ToggleButton("Peak meter level");
     ButtonDumpPeakMeterLevel->setColour(ToggleButton::textColourId, Colours::black);
-    ButtonDumpPeakMeterLevel->setToggleState(pProcessor->getParameterAsBool(TraKmeterPluginParameters::selValidationPeakMeterLevel), dontSendNotification);
+    ButtonDumpPeakMeterLevel->setToggleState(pProcessor->getBoolean(TraKmeterPluginParameters::selValidationPeakMeterLevel), dontSendNotification);
     contentComponent->addAndMakeVisible(ButtonDumpPeakMeterLevel);
 
     // create and position a "validation" button which closes the
@@ -191,7 +191,7 @@ void WindowValidation::buttonClicked(Button *button)
         }
 
         int nSelectedChannel = (int) SliderDumpSelectedChannel->getValue();
-        float fSelectedChannel = (nSelectedChannel + 1.0f) / 100.0f;
+        float fSelectedChannel = SliderDumpSelectedChannel->getFloat();
         pProcessor->setParameter(TraKmeterPluginParameters::selValidationSelectedChannel, fSelectedChannel);
 
         bool bReportCSV = ButtonDumpCSV->getToggleState();
@@ -216,7 +216,11 @@ void WindowValidation::buttonClicked(Button *button)
     }
     else if (button == ButtonFileSelection)
     {
-        FileChooser browser("Open audio file for validation", fileValidation, "*.wav;*.aiff;*.flac", true);
+        AudioFormatManager formatManager;
+        formatManager.registerBasicFormats();
+        String strWildcards = formatManager.getWildcardForAllFormats();
+
+        FileChooser browser("Open audio file for validation", fileValidation, strWildcards, true);
 
         if (browser.showDialog(FileBrowserComponent::openMode | FileBrowserComponent::canSelectFiles, nullptr))
         {

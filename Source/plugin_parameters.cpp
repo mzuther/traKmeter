@@ -31,40 +31,150 @@
 
 TraKmeterPluginParameters::TraKmeterPluginParameters()
 {
-    nParam = new int[nNumParameters];
+    ParameterJuggler();
 
-    nParam[selTransientMode] = 1;
-    nParam[selCrestFactor] = 20;
-    nParam[selMixMode] = 0;
-    nParam[selGain] = 0;
-    nParam[selMeterType] = selSeparateMeters;
+    strSettingsID = "TRAKMETER_SETTINGS";
 
-    nParam[selValidationSelectedChannel] = -1;
-    nParam[selValidationAverageMeterLevel] = 1;
-    nParam[selValidationPeakMeterLevel] = 1;
+    ParameterTransientMode = new WrappedParameterToggleSwitch("Off", "On");
+    ParameterTransientMode->setName("Transient mode");
+    ParameterTransientMode->setDefaultBoolean(true, true);
+    add(ParameterTransientMode, selTransientMode);
 
-    nParam[selValidationCSVFormat] = 0;
 
-    strValidationFile = String::empty;
+    ParameterCrestFactor = new WrappedParameterSwitch();
+    ParameterCrestFactor->setName("Crest factor");
 
-    bParamChanged = new bool[nNumParameters];
+    ParameterCrestFactor->addConstant(0.0f,  "0 dB (digital full-scale)");
+    ParameterCrestFactor->addConstant(20.0f, "20 dB (K-20 scale)");
 
-    for (int nIndex = 0; nIndex < nNumParameters; nIndex++)
-    {
-        UnmarkParameter(nIndex);
-    }
+    ParameterCrestFactor->setDefaultRealFloat(20.0f, true);
+    add(ParameterCrestFactor, selCrestFactor);
+
+
+    ParameterMixMode = new WrappedParameterToggleSwitch("Off", "On");
+    ParameterMixMode->setName("Mixing mode");
+    ParameterMixMode->setDefaultBoolean(false, true);
+    add(ParameterMixMode, selMixMode);
+
+
+    ParameterGain = new WrappedParameterSwitch();
+    ParameterGain->setName("Gain");
+
+    ParameterGain->addConstant(-12.0f, "-12 dB");
+    ParameterGain->addConstant(-11.0f, "-11 dB");
+    ParameterGain->addConstant(-10.0f, "-10 dB");
+    ParameterGain->addConstant(-9.0f,   "-9 dB");
+    ParameterGain->addConstant(-8.0f,   "-8 dB");
+    ParameterGain->addConstant(-7.0f,   "-7 dB");
+    ParameterGain->addConstant(-6.0f,   "-6 dB");
+    ParameterGain->addConstant(-5.0f,   "-5 dB");
+    ParameterGain->addConstant(-4.0f,   "-4 dB");
+    ParameterGain->addConstant(-3.0f,   "-3 dB");
+    ParameterGain->addConstant(-2.0f,   "-2 dB");
+    ParameterGain->addConstant(-1.0f,   "-1 dB");
+    ParameterGain->addConstant(0.0f,     "0 dB");
+    ParameterGain->addConstant(+1.0f,   "+1 dB");
+    ParameterGain->addConstant(+2.0f,   "+2 dB");
+    ParameterGain->addConstant(+3.0f,   "+3 dB");
+    ParameterGain->addConstant(+4.0f,   "+4 dB");
+    ParameterGain->addConstant(+5.0f,   "+5 dB");
+    ParameterGain->addConstant(+6.0f,   "+6 dB");
+    ParameterGain->addConstant(+7.0f,   "+7 dB");
+    ParameterGain->addConstant(+8.0f,   "+8 dB");
+    ParameterGain->addConstant(+9.0f,   "+9 dB");
+    ParameterGain->addConstant(+10.0f, "+10 dB");
+    ParameterGain->addConstant(+11.0f, "+11 dB");
+    ParameterGain->addConstant(+12.0f, "+12 dB");
+
+    ParameterGain->setDefaultRealFloat(0.0f, true);
+    add(ParameterGain, selGain);
+
+
+    ParameterMeterType = new WrappedParameterSwitch();
+    ParameterMeterType->setName("Meter type");
+
+    ParameterMeterType->addConstant(selSeparateMeters,  "Separate");
+    ParameterMeterType->addConstant(selCombinedMeters,  "Combined");
+
+    ParameterMeterType->setDefaultRealFloat(selSeparateMeters, true);
+    add(ParameterMeterType, selMeterType);
+
+
+    ParameterValidationFileName = new WrappedParameterString(String::empty);
+    ParameterValidationFileName->setName("Validation: file name");
+    add(ParameterValidationFileName, selValidationFileName);
+
+
+    ParameterValidationSelectedChannel = new WrappedParameterSwitch();
+    ParameterValidationSelectedChannel->setName("Validation: selected channel");
+
+    // values correspond to the channel index in AudioSampleBuffer
+    ParameterValidationSelectedChannel->addConstant(-1.0f, "All");
+    ParameterValidationSelectedChannel->addConstant(0.0f,   "1");
+    ParameterValidationSelectedChannel->addConstant(1.0f,   "2");
+#ifdef TRAKMETER_MULTI
+    ParameterValidationSelectedChannel->addConstant(2.0f,   "3");
+    ParameterValidationSelectedChannel->addConstant(3.0f,   "4");
+    ParameterValidationSelectedChannel->addConstant(4.0f,   "5");
+    ParameterValidationSelectedChannel->addConstant(5.0f,   "6");
+    ParameterValidationSelectedChannel->addConstant(6.0f,   "7");
+    ParameterValidationSelectedChannel->addConstant(7.0f,   "8");
+#endif
+
+    ParameterValidationSelectedChannel->setDefaultRealFloat(-1.0f, true);
+    add(ParameterValidationSelectedChannel, selValidationSelectedChannel);
+
+
+    ParameterValidationAverageMeterLevel = new WrappedParameterToggleSwitch("Off", "On");
+    ParameterValidationAverageMeterLevel->setName("Validation: average meter level");
+    ParameterValidationAverageMeterLevel->setDefaultBoolean(true, true);
+    add(ParameterValidationAverageMeterLevel, selValidationAverageMeterLevel);
+
+
+    ParameterValidationPeakMeterLevel = new WrappedParameterToggleSwitch("Off", "On");
+    ParameterValidationPeakMeterLevel->setName("Validation: peak meter level");
+    ParameterValidationPeakMeterLevel->setDefaultBoolean(true, true);
+    add(ParameterValidationPeakMeterLevel, selValidationPeakMeterLevel);
+
+
+    ParameterValidationCSVFormat = new WrappedParameterToggleSwitch("Off", "On");
+    ParameterValidationCSVFormat->setName("Validation: CSV output format");
+    ParameterValidationCSVFormat->setDefaultBoolean(false, true);
+    add(ParameterValidationCSVFormat, selValidationCSVFormat);
 }
 
 
 TraKmeterPluginParameters::~TraKmeterPluginParameters()
 {
-    removeAllActionListeners();
+    delete ParameterTransientMode;
+    ParameterTransientMode = nullptr;
 
-    delete [] nParam;
-    nParam = nullptr;
+    delete ParameterCrestFactor;
+    ParameterCrestFactor = nullptr;
 
-    delete [] bParamChanged;
-    bParamChanged = nullptr;
+    delete ParameterMixMode;
+    ParameterMixMode = nullptr;
+
+    delete ParameterGain;
+    ParameterGain = nullptr;
+
+    delete ParameterMeterType;
+    ParameterMeterType = nullptr;
+
+    delete ParameterValidationFileName;
+    ParameterValidationFileName = nullptr;
+
+    delete ParameterValidationSelectedChannel;
+    ParameterValidationSelectedChannel = nullptr;
+
+    delete ParameterValidationAverageMeterLevel;
+    ParameterValidationAverageMeterLevel = nullptr;
+
+    delete ParameterValidationPeakMeterLevel;
+    ParameterValidationPeakMeterLevel = nullptr;
+
+    delete ParameterValidationCSVFormat;
+    ParameterValidationCSVFormat = nullptr;
 }
 
 
@@ -72,7 +182,7 @@ int TraKmeterPluginParameters::getNumParameters(bool bIncludeHiddenParameters)
 {
     if (bIncludeHiddenParameters)
     {
-        return nNumParameters;
+        return nNumParametersComplete;
     }
     else
     {
@@ -81,78 +191,9 @@ int TraKmeterPluginParameters::getNumParameters(bool bIncludeHiddenParameters)
 }
 
 
-bool TraKmeterPluginParameters::getParameterAsBool(int nIndex)
-{
-    return (getParameterAsInt(nIndex) != 0) ? true : false;
-}
-
-
-float TraKmeterPluginParameters::getParameterAsFloat(int nIndex)
-{
-    int nValue = getParameterAsInt(nIndex);
-    return translateParameterToFloat(nIndex, nValue);
-}
-
-
-int TraKmeterPluginParameters::getParameterAsInt(int nIndex)
-{
-    jassert((nIndex >= 0) && (nIndex < nNumParameters));
-
-    return nParam[nIndex];
-}
-
-
-void TraKmeterPluginParameters::setParameterFromBool(int nIndex, bool bValue)
-{
-    setParameterFromInt(nIndex, bValue ? 1 : 0);
-}
-
-
-void TraKmeterPluginParameters::setParameterFromFloat(int nIndex, float fValue)
-{
-    int nValue = translateParameterToInt(nIndex, fValue);
-    setParameterFromInt(nIndex, nValue);
-}
-
-
-void TraKmeterPluginParameters::setParameterFromInt(int nIndex, int nValue)
-{
-    jassert((nIndex >= 0) && (nIndex < nNumParameters));
-
-    if (nParam[nIndex] != nValue)
-    {
-        if (nIndex == selMeterType)
-        {
-            nParam[nIndex] = nValue;
-        }
-        else if (nIndex == selCrestFactor)
-        {
-            nParam[nIndex] = nValue;
-        }
-        else if (nIndex == selGain)
-        {
-            nParam[nIndex] = nValue;
-        }
-        else if (nIndex == selValidationSelectedChannel)
-        {
-            nParam[nIndex] = nValue;
-        }
-        else
-        {
-            nParam[nIndex] = (nValue != 0) ? 1 : 0;
-        }
-
-        MarkParameter(nIndex);
-        // "PC" --> parameter changed, followed by a hash and the
-        // parameter's ID
-        sendActionMessage("PC#" + String(nIndex));
-    }
-}
-
-
 File TraKmeterPluginParameters::getValidationFile()
 {
-    File fileValidation = File(strValidationFile);
+    File fileValidation = File(ParameterValidationFileName->getText());
 
     if (fileValidation.existsAsFile())
     {
@@ -169,275 +210,8 @@ void TraKmeterPluginParameters::setValidationFile(File &fileValidation)
 {
     if (fileValidation.existsAsFile())
     {
-        strValidationFile = fileValidation.getFullPathName();
-    }
-}
-
-
-void TraKmeterPluginParameters::MarkParameter(int nIndex)
-{
-    jassert((nIndex >= 0) && (nIndex < nNumParameters));
-
-    bParamChanged[nIndex] = true;
-}
-
-
-void TraKmeterPluginParameters::UnmarkParameter(int nIndex)
-{
-    jassert((nIndex >= 0) && (nIndex < nNumParameters));
-
-    bParamChanged[nIndex] = false;
-}
-
-
-bool TraKmeterPluginParameters::isParameterMarked(int nIndex)
-{
-    jassert((nIndex >= 0) && (nIndex < nNumParameters));
-
-    return bParamChanged[nIndex];
-}
-
-
-const String TraKmeterPluginParameters::getParameterName(int nIndex)
-{
-    switch (nIndex)
-    {
-    case selTransientMode:
-        return "Transient mode";
-        break;
-
-    case selCrestFactor:
-        return "Crest factor";
-        break;
-
-    case selMixMode:
-        return "Mixing mode";
-        break;
-
-    case selGain:
-        return "Gain";
-        break;
-
-    case selMeterType:
-        return "Meter type";
-        break;
-
-    case selValidationFileName:
-        return "Validation: file name";
-        break;
-
-    case selValidationSelectedChannel:
-        return "Validation: selected channel";
-        break;
-
-    case selValidationAverageMeterLevel:
-        return "Validation: average meter level";
-        break;
-
-    case selValidationPeakMeterLevel:
-        return "Validation: peak meter level";
-        break;
-
-    case selValidationCSVFormat:
-        return "Validation: CSV output format";
-        break;
-
-    default:
-        return "invalid";
-        break;
-    }
-}
-
-
-const String TraKmeterPluginParameters::getParameterText(int nIndex)
-{
-    jassert((nIndex >= 0) && (nIndex < nNumParameters));
-
-    if (nIndex == selMeterType)
-    {
-        String strResult;
-        int nMeterType = getParameterAsInt(nIndex);
-
-        switch (nMeterType)
-        {
-        case selSeparateMeters:
-            strResult = "Separate";
-            break;
-
-        case selCombinedMeters:
-            strResult = "Combined";
-            break;
-        }
-
-        return strResult;
-    }
-    else if (nIndex == selCrestFactor)
-    {
-        return getParameterAsBool(nIndex) ? "K-20" : "None";
-    }
-    else if (nIndex == selGain)
-    {
-        int nDecibels = nParam[nIndex];
-
-        if (nDecibels > 0)
-        {
-            return "+" + String(nDecibels) + " dB";
-        }
-        else if (nDecibels < 0)
-        {
-            return String(nDecibels) + " dB";
-        }
-        else
-        {
-            return "0 dB";
-        }
-    }
-    else if (nIndex == selValidationFileName)
-    {
-        File fileValidation = File(strValidationFile);
-
-        if (fileValidation.existsAsFile())
-        {
-            return strValidationFile;
-        }
-        else
-        {
-            return String::empty;
-        }
-    }
-    else if (nIndex == selValidationSelectedChannel)
-    {
-        if (nParam[nIndex] < 0)
-        {
-            return "All";
-        }
-        else
-        {
-            return String(nParam[nIndex]);
-        }
-    }
-    else
-    {
-        return getParameterAsBool(nIndex) ? "On" : "Off";
-    }
-}
-
-
-float TraKmeterPluginParameters::translateParameterToFloat(int nIndex, int nValue)
-{
-    jassert((nIndex >= 0) && (nIndex < nNumParameters));
-
-    if (nIndex == selMeterType)
-    {
-        return float(nValue) / (nNumMeterTypes - 1.0f);
-    }
-    else if (nIndex == selCrestFactor)
-    {
-        return (nValue != 0) ? 1.0f : 0.0f;
-    }
-    else if (nIndex == selGain)
-    {
-        // 0.00f: -12 dB
-        // ...
-        // 0.12f:   0 dB
-        // ...
-        // 0.24f: +12 dB
-        return nValue / 100.0f + 0.12f;
-    }
-    else if (nIndex == selValidationSelectedChannel)
-    {
-        // 0.00f: dump all channels
-        // 0.01f: dump channel #0
-        // 0.02f: dump channel #1
-        // ...
-        // 1.00f: dump channel #99
-        return (nValue + 1.0f) / 100.0f;
-    }
-    else
-    {
-        return (nValue != 0) ? 1.0f : 0.0f;
-    }
-}
-
-
-int TraKmeterPluginParameters::translateParameterToInt(int nIndex, float fValue)
-{
-    jassert((nIndex >= 0) && (nIndex < nNumParameters));
-
-    if (nIndex == selMeterType)
-    {
-        fValue = fValue * (nNumMeterTypes - 1.0f);
-        return int(fValue + 0.5f);
-    }
-    else if (nIndex == selCrestFactor)
-    {
-        return (fValue > 0.5f) ? 20 : 0;
-    }
-    else if (nIndex == selGain)
-    {
-        // 0.00f: -12 dB
-        // ...
-        // 0.12f:   0 dB
-        // ...
-        // 0.24f: +12 dB
-        int nRoundedValue = int(fValue * 100.0f + 0.5f);
-        return nRoundedValue - 12;
-    }
-    else if (nIndex == selValidationSelectedChannel)
-    {
-        // 0.00f: dump all channels
-        // 0.01f: dump channel #0
-        // 0.02f: dump channel #1
-        // ...
-        // 1.00f: dump channel #99
-        int nRoundedValue = int(fValue * 100.0f + 0.5f);
-        return nRoundedValue - 1;
-    }
-    else
-    {
-        return (fValue > 0.5f) ? true : false;
-    }
-}
-
-
-XmlElement TraKmeterPluginParameters::storeAsXml()
-{
-    XmlElement xml("TRAKMETER_SETTINGS");
-    xml.setAttribute("version", JucePlugin_VersionString);
-
-    xml.setAttribute("TransientMode", getParameterAsInt(selTransientMode));
-    xml.setAttribute("CrestFactor", getParameterAsInt(selCrestFactor));
-    xml.setAttribute("MixMode", getParameterAsInt(selMixMode));
-    xml.setAttribute("Gain", getParameterAsInt(selGain));
-    xml.setAttribute("MeterType", getParameterAsInt(selMeterType));
-
-    xml.setAttribute("ValidationFile", strValidationFile);
-    xml.setAttribute("ValidationSelectedChannel", getParameterAsInt(selValidationSelectedChannel));
-    xml.setAttribute("ValidationAverageMeterLevel", getParameterAsInt(selValidationAverageMeterLevel));
-    xml.setAttribute("ValidationPeakMeterLevel", getParameterAsInt(selValidationPeakMeterLevel));
-    xml.setAttribute("ValidationCSVFormat", getParameterAsInt(selValidationCSVFormat));
-
-    return xml;
-}
-
-
-void TraKmeterPluginParameters::loadFromXml(XmlElement *xml)
-{
-    if (xml && xml->hasTagName("TRAKMETER_SETTINGS"))
-    {
-        setParameterFromInt(selTransientMode, xml->getIntAttribute("TransientMode", getParameterAsInt(selTransientMode)));
-        setParameterFromInt(selCrestFactor, xml->getIntAttribute("CrestFactor", getParameterAsInt(selCrestFactor)));
-        setParameterFromInt(selMixMode, xml->getIntAttribute("MixMode", getParameterAsInt(selMixMode)));
-        setParameterFromInt(selGain, xml->getIntAttribute("Gain", getParameterAsInt(selGain)));
-        setParameterFromInt(selMeterType, xml->getIntAttribute("MeterType", getParameterAsInt(selMeterType)));
-
-        File fileValidation = File(xml->getStringAttribute("ValidationFile", strValidationFile));
-        setValidationFile(fileValidation);
-
-        setParameterFromInt(selValidationSelectedChannel, xml->getIntAttribute("ValidationSelectedChannel", getParameterAsInt(selValidationSelectedChannel)));
-        setParameterFromInt(selValidationAverageMeterLevel, xml->getIntAttribute("ValidationAverageMeterLevel", getParameterAsInt(selValidationAverageMeterLevel)));
-        setParameterFromInt(selValidationPeakMeterLevel, xml->getIntAttribute("ValidationPeakMeterLevel", getParameterAsInt(selValidationPeakMeterLevel)));
-        setParameterFromInt(selValidationCSVFormat, xml->getIntAttribute("ValidationCSVFormat", getParameterAsInt(selValidationCSVFormat)));
+        String strFilename = fileValidation.getFullPathName();
+        ParameterValidationFileName->setText(strFilename);
     }
 }
 

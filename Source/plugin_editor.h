@@ -26,8 +26,10 @@
 #ifndef __PLUGINEDITOR_TRAKMETER_H__
 #define __PLUGINEDITOR_TRAKMETER_H__
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
+#include "plugin_parameters.h"
 #include "plugin_processor.h"
+#include "parameter_juggler/slider_switch.h"
 #include "trakmeter.h"
 #include "window_about.h"
 #include "window_validation.h"
@@ -39,14 +41,14 @@
 class TraKmeterAudioProcessorEditor : public AudioProcessorEditor, public ButtonListener, public SliderListener, public ActionListener
 {
 public:
-    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, int nNumChannels, int CrestFactor);
+    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, TraKmeterPluginParameters *parameters, int nNumChannels, int CrestFactor);
     ~TraKmeterAudioProcessorEditor();
 
     void buttonClicked(Button *button);
     void sliderValueChanged(Slider *slider);
 
-    void actionListenerCallback(const String &message);
-    void changeParameter(int nIndex);
+    void actionListenerCallback(const String &strMessage);
+    void updateParameter(int nIndex);
 
     //==============================================================================
     // This is just a standard Juce paint method...
@@ -80,7 +82,7 @@ private:
     TextButton *ButtonValidation;
     TextButton *ButtonAbout;
 
-    Slider *SliderGain;
+    SliderSwitch *SliderGain;
 
     Label *LabelDebug;
 };

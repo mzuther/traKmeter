@@ -26,7 +26,7 @@
 #ifndef __AVERAGE_METER_H__
 #define __AVERAGE_METER_H__
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "meter_bar_average.h"
 #include "mz_tools.h"
 #include "trakmeter.h"

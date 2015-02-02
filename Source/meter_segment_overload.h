@@ -26,7 +26,7 @@
 #ifndef __METER_SEGMENT_OVERLOAD_H__
 #define __METER_SEGMENT_OVERLOAD_H__
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "mz_tools.h"
 
 

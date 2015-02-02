@@ -27,7 +27,18 @@
 #include "plugin_editor.h"
 
 
-//==============================================================================
+/*==============================================================================
+
+Flow of parameter processing:
+
+  Editor:      buttonClicked(button) / sliderValueChanged(slider)
+  Processor:   changeParameter(nIndex, fValue)
+  Processor:   setParameter(nIndex, fValue)
+  Parameters:  setFloat(nIndex, fValue)
+  Editor:      actionListenerCallback(strMessage)
+  Editor:      updateParameter(nIndex)
+
+==============================================================================*/
 
 TraKmeterAudioProcessor::TraKmeterAudioProcessor()
 {
@@ -42,10 +53,10 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor()
     pPluginParameters = new TraKmeterPluginParameters();
 
     // depend on "TraKmeterPluginParameters"!
-    bTransientMode = getParameterAsBool(TraKmeterPluginParameters::selTransientMode);
-    nCrestFactor = getParameterAsInt(TraKmeterPluginParameters::selCrestFactor);
+    bTransientMode = getBoolean(TraKmeterPluginParameters::selTransientMode);
+    nCrestFactor = getRealInteger(TraKmeterPluginParameters::selCrestFactor);
 
-    nDecibels = getParameterAsInt(TraKmeterPluginParameters::selGain);
+    nDecibels = getRealInteger(TraKmeterPluginParameters::selGain);
     dGain = MeterBallistics::decibel2level_double(nDecibels);
 
     fProcessedSeconds = 0.0f;
@@ -78,18 +89,6 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 }
 
 
-void TraKmeterAudioProcessor::addActionListenerParameters(ActionListener *listener) throw()
-{
-    pPluginParameters->addActionListener(listener);
-}
-
-
-void TraKmeterAudioProcessor::removeActionListenerParameters(ActionListener *listener) throw()
-{
-    pPluginParameters->removeActionListener(listener);
-}
-
-
 //==============================================================================
 
 const String TraKmeterAudioProcessor::getName() const
@@ -104,62 +103,152 @@ int TraKmeterAudioProcessor::getNumParameters()
 }
 
 
-float TraKmeterAudioProcessor::getParameter(int index)
+const String TraKmeterAudioProcessor::getParameterName(int nIndex)
+{
+    return pPluginParameters->getName(nIndex);
+}
+
+
+const String TraKmeterAudioProcessor::getParameterText(int nIndex)
+{
+    return pPluginParameters->getText(nIndex);
+}
+
+
+float TraKmeterAudioProcessor::getParameter(int nIndex)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    return pPluginParameters->getParameterAsFloat(index);
+    return pPluginParameters->getFloat(nIndex);
 }
 
 
-void TraKmeterAudioProcessor::setParameter(int index, float newValue)
+void TraKmeterAudioProcessor::changeParameter(int nIndex, float fValue)
+{
+    // notify host of parameter change (this will automatically call
+    // "setParameter"!)
+    beginParameterChangeGesture(nIndex);
+    setParameterNotifyingHost(nIndex, fValue);
+    endParameterChangeGesture(nIndex);
+}
+
+
+void TraKmeterAudioProcessor::setParameter(int nIndex, float fValue)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    // Please use this method for non-automatable values only!
+    // Please only call this method directly for non-automatable
+    // values!
 
-    pPluginParameters->setParameterFromFloat(index, newValue);
+    pPluginParameters->setFloat(nIndex, fValue);
 
-    if (index == TraKmeterPluginParameters::selTransientMode)
+    if (nIndex == TraKmeterPluginParameters::selTransientMode)
     {
-        setTransientMode(getParameterAsBool(index));
+        setTransientMode(getBoolean(nIndex));
     }
-    else if (index == TraKmeterPluginParameters::selCrestFactor)
+    else if (nIndex == TraKmeterPluginParameters::selCrestFactor)
     {
-        setCrestFactor(getParameterAsInt(index));
+        setCrestFactor(getRealInteger(nIndex));
     }
-}
-
-
-void TraKmeterAudioProcessor::updateParameters(bool bIncludeHiddenParameters)
-{
-    int nNumParameters = pPluginParameters->getNumParameters(bIncludeHiddenParameters);
-
-    for (int nIndex = 0; nIndex < nNumParameters; nIndex++)
+    else if (nIndex == TraKmeterPluginParameters::selGain)
     {
-        if (pPluginParameters->isParameterMarked(nIndex))
+        nDecibels = getRealInteger(TraKmeterPluginParameters::selGain);
+        dGain = MeterBallistics::decibel2level_double(nDecibels);
+    }
+
+    // notify plug-in editor of parameter change
+    if (pPluginParameters->hasChanged(nIndex))
+    {
+        // for visible parameters, notify the editor of changes (this
+        // will also clear the change flag)
+        if (nIndex < pPluginParameters->getNumParameters(false))
         {
-            float fValue = pPluginParameters->getParameterAsFloat(nIndex);
-            changeParameter(nIndex, fValue);
+            // "PC" --> parameter changed, followed by a hash and the
+            // parameter's ID
+            sendActionMessage("PC#" + String(nIndex));
+        }
+        // for hidden parameters, we only have to clear the change
+        // flag
+        else
+        {
+            pPluginParameters->clearChangeFlag(nIndex);
         }
     }
 }
 
 
-bool TraKmeterAudioProcessor::getParameterAsBool(int nIndex)
+void TraKmeterAudioProcessor::clearChangeFlag(int nIndex)
+{
+    pPluginParameters->clearChangeFlag(nIndex);
+}
+
+
+void TraKmeterAudioProcessor::setChangeFlag(int nIndex)
+{
+    pPluginParameters->setChangeFlag(nIndex);
+}
+
+
+bool TraKmeterAudioProcessor::hasChanged(int nIndex)
+{
+    return pPluginParameters->hasChanged(nIndex);
+}
+
+
+void TraKmeterAudioProcessor::updateParameters(bool bIncludeHiddenParameters)
+{
+    int nNumParameters = pPluginParameters->getNumParameters(false);
+
+    for (int nIndex = 0; nIndex < nNumParameters; nIndex++)
+    {
+        if (pPluginParameters->hasChanged(nIndex))
+        {
+            float fValue = pPluginParameters->getFloat(nIndex);
+            changeParameter(nIndex, fValue);
+        }
+    }
+
+    if (bIncludeHiddenParameters)
+    {
+        // handle hidden parameters here!
+
+        // the following parameters need no updating:
+        //
+        // * selValidationFileName
+        // * selValidationSelectedChannel
+        // * selValidationAverageMeterLevel
+        // * selValidationPeakMeterLevel
+        // * selValidationCSVFormat
+
+    }
+}
+
+
+bool TraKmeterAudioProcessor::getBoolean(int nIndex)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    return pPluginParameters->getParameterAsBool(nIndex);
+    return pPluginParameters->getBoolean(nIndex);
+}
+
+
+int TraKmeterAudioProcessor::getRealInteger(int nIndex)
+{
+    // This method will be called by the host, probably on the audio
+    // thread, so it's absolutely time-critical. Don't use critical
+    // sections or anything GUI-related, or anything at all that may
+    // block in any way!
+
+    return pPluginParameters->getRealInteger(nIndex);
 }
 
 
@@ -185,64 +274,6 @@ void TraKmeterAudioProcessor::setParameterValidationFile(File &fileValidation)
 }
 
 
-const String TraKmeterAudioProcessor::getParameterName(int index)
-{
-    return pPluginParameters->getParameterName(index);
-}
-
-
-const String TraKmeterAudioProcessor::getParameterText(int index)
-{
-    return pPluginParameters->getParameterText(index);
-}
-
-
-int TraKmeterAudioProcessor::getParameterAsInt(int index)
-{
-    return pPluginParameters->getParameterAsInt(index);
-}
-
-
-void TraKmeterAudioProcessor::changeParameter(int index, float fValue)
-{
-    beginParameterChangeGesture(index);
-    setParameterNotifyingHost(index, fValue);
-    endParameterChangeGesture(index);
-
-    if (index == TraKmeterPluginParameters::selTransientMode)
-    {
-        setTransientMode(getParameterAsBool(index));
-    }
-    else if (index == TraKmeterPluginParameters::selCrestFactor)
-    {
-        setCrestFactor(getParameterAsInt(index));
-    }
-    else if (index == TraKmeterPluginParameters::selGain)
-    {
-        nDecibels = getParameterAsInt(TraKmeterPluginParameters::selGain);
-        dGain = MeterBallistics::decibel2level_double(nDecibels);
-    }
-}
-
-
-void TraKmeterAudioProcessor::MarkParameter(int nIndex)
-{
-    pPluginParameters->MarkParameter(nIndex);
-}
-
-
-void TraKmeterAudioProcessor::UnmarkParameter(int nIndex)
-{
-    pPluginParameters->UnmarkParameter(nIndex);
-}
-
-
-bool TraKmeterAudioProcessor::isParameterMarked(int nIndex)
-{
-    return pPluginParameters->isParameterMarked(nIndex);
-}
-
-
 const String TraKmeterAudioProcessor::getInputChannelName(int channelIndex) const
 {
     return "Input " + String(channelIndex + 1);
@@ -255,13 +286,13 @@ const String TraKmeterAudioProcessor::getOutputChannelName(int channelIndex) con
 }
 
 
-bool TraKmeterAudioProcessor::isInputChannelStereoPair(int index) const
+bool TraKmeterAudioProcessor::isInputChannelStereoPair(int nIndex) const
 {
     return true;
 }
 
 
-bool TraKmeterAudioProcessor::isOutputChannelStereoPair(int index) const
+bool TraKmeterAudioProcessor::isOutputChannelStereoPair(int nIndex) const
 {
     return true;
 }
@@ -317,18 +348,18 @@ int TraKmeterAudioProcessor::getCurrentProgram()
 }
 
 
-void TraKmeterAudioProcessor::setCurrentProgram(int index)
+void TraKmeterAudioProcessor::setCurrentProgram(int nIndex)
 {
 }
 
 
-const String TraKmeterAudioProcessor::getProgramName(int index)
+const String TraKmeterAudioProcessor::getProgramName(int nIndex)
 {
     return String::empty;
 }
 
 
-void TraKmeterAudioProcessor::changeProgramName(int index, const String &newName)
+void TraKmeterAudioProcessor::changeProgramName(int nIndex, const String &newName)
 {
 }
 
@@ -425,14 +456,13 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
     // This is the place where you'd normally do the guts of your
     // plug-in's audio processing...
 
+    int nNumSamples = buffer.getNumSamples();
+
     if (!bSampleRateIsValid)
     {
-        int nNumSamples = buffer.getNumSamples();
-        int nNumChannels = getNumInputChannels();
-
-        for (int i = 0; i < nNumChannels; i++)
+        for (int nChannel = 0; nChannel < getNumOutputChannels(); nChannel++)
         {
-            buffer.clear(i, 0, nNumSamples);
+            buffer.clear(nChannel, 0, nNumSamples);
         }
 
         return;
@@ -444,15 +474,13 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
         return;
     }
 
-    int nNumSamples = buffer.getNumSamples();
-
     // In case we have more outputs than inputs, we'll clear any
     // output channels that didn't contain input data, because these
     // aren't guaranteed to be empty -- they may contain garbage.
 
-    for (int i = nNumInputChannels; i < getNumOutputChannels(); i++)
+    for (int nChannel = nNumInputChannels; nChannel < getNumOutputChannels(); nChannel++)
     {
-        buffer.clear(i, 0, nNumSamples);
+        buffer.clear(nChannel, 0, nNumSamples);
     }
 
     if (audioFilePlayer)
@@ -460,7 +488,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
         audioFilePlayer->fillBufferChunk(&buffer);
     }
 
-    bool bMixMode = getParameterAsBool(TraKmeterPluginParameters::selMixMode);
+    bool bMixMode = getBoolean(TraKmeterPluginParameters::selMixMode);
 
     if (bMixMode && (nDecibels != 0))
     {
@@ -660,11 +688,11 @@ AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
 
     if (nNumInputChannels > 0)
     {
-        return new TraKmeterAudioProcessorEditor(this, nNumInputChannels, nCrestFactor);
+        return new TraKmeterAudioProcessorEditor(this, pPluginParameters, nNumInputChannels, nCrestFactor);
     }
     else
     {
-        return new TraKmeterAudioProcessorEditor(this, JucePlugin_MaxNumInputChannels, nCrestFactor);
+        return new TraKmeterAudioProcessorEditor(this, pPluginParameters, JucePlugin_MaxNumInputChannels, nCrestFactor);
     }
 }
 
@@ -687,7 +715,8 @@ void TraKmeterAudioProcessor::setStateInformation(const void *data, int sizeInBy
 {
     ScopedPointer<XmlElement> xml(getXmlFromBinary(data, sizeInBytes));
     pPluginParameters->loadFromXml(xml);
-    updateParameters(false);
+
+    updateParameters(true);
 }
 
 //==============================================================================

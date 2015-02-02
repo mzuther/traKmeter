@@ -31,7 +31,7 @@ class CombinedMeter;
 class PeakMeter;
 class SignalMeter;
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "average_meter.h"
 #include "combined_meter.h"
 #include "peak_meter.h"

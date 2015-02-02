@@ -26,7 +26,7 @@
 #ifndef __COMBINED_METER_H__
 #define __COMBINED_METER_H__
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "meter_bar_average.h"
 #include "meter_bar_peak.h"
 #include "meter_segment_overload.h"

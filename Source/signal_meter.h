@@ -26,7 +26,7 @@
 #ifndef __SIGNAL_METER_H__
 #define __SIGNAL_METER_H__
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "trakmeter.h"
 #include "meter_signal_led.h"
 #include "plugin_processor.h"

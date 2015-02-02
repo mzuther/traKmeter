@@ -26,7 +26,7 @@
 #ifndef __PEAK_METER_H__
 #define __PEAK_METER_H__
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "meter_bar_peak.h"
 #include "meter_segment_overload.h"
 #include "mz_tools.h"

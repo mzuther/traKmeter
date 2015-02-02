@@ -78,7 +78,7 @@ MeterSegmentOverload::MeterSegmentOverload(const String &componentName, float fT
 
     // initialise maximum level
     fMaximumLevel = -9999.9f;
-    strMaximumLevel = "";
+    strMaximumLevel = String::empty;
 
     // make sure that segment is drawn after initialisation
     setLevels(-9999.9f, -9999.9f, -9999.9f);
@@ -228,7 +228,7 @@ void MeterSegmentOverload::setLevels(float fLevel, float fLevelPeak, float fLeve
         }
         else
         {
-            strMaximumLevel = "";
+            strMaximumLevel = String::empty;
         }
     }
 

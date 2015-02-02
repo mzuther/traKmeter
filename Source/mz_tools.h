@@ -26,7 +26,7 @@
 #ifndef __MZ_TOOLS_H__
 #define __MZ_TOOLS_H__
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 
 
 inline static int round_to_int(float x)

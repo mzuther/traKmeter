@@ -31,7 +31,7 @@
 class TraKmeterAudioProcessor;
 class MeterBallistics;
 
-#include "../JuceLibraryCode/JuceHeader.h"
+#include "JuceHeader.h"
 #include "audio_file_player.h"
 #include "audio_ring_buffer.h"
 #include "dither.h"
@@ -47,9 +47,6 @@ public:
 
     TraKmeterAudioProcessor();
     ~TraKmeterAudioProcessor();
-
-    void addActionListenerParameters(ActionListener *listener) throw();
-    void removeActionListenerParameters(ActionListener *listener) throw();
 
     //==========================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock);
@@ -67,21 +64,23 @@ public:
 
     //==========================================================================
     int getNumParameters();
+    const String getParameterName(int nIndex);
+    const String getParameterText(int nIndex);
 
-    float getParameter(int index);
-    bool getParameterAsBool(int nIndex);
+    float getParameter(int nIndex);
+    void changeParameter(int nIndex, float fValue);
+    void setParameter(int nIndex, float fValue);
 
-    void setParameter(int index, float newValue);
+    void clearChangeFlag(int nIndex);
+    void setChangeFlag(int nIndex);
+    bool hasChanged(int nIndex);
     void updateParameters(bool bIncludeHiddenParameters);
 
     File getParameterValidationFile();
     void setParameterValidationFile(File &fileValidation);
 
-    const String getParameterName(int index);
-    const String getParameterText(int index);
-
-    void changeParameter(int index, float fValue);
-    int getParameterAsInt(int index);
+    bool getBoolean(int nIndex);
+    int getRealInteger(int nIndex);
 
     void MarkParameter(int nIndex);
     void UnmarkParameter(int nIndex);
@@ -92,8 +91,9 @@ public:
 
     const String getInputChannelName(int channelIndex) const;
     const String getOutputChannelName(int channelIndex) const;
-    bool isInputChannelStereoPair(int index) const;
-    bool isOutputChannelStereoPair(int index) const;
+
+    bool isInputChannelStereoPair(int nIndex) const;
+    bool isOutputChannelStereoPair(int nIndex) const;
 
     bool acceptsMidi() const;
     bool producesMidi() const;
@@ -113,10 +113,12 @@ public:
     //==========================================================================
     int getNumPrograms();
     int getNumChannels();
+
     int getCurrentProgram();
-    void setCurrentProgram(int index);
-    const String getProgramName(int index);
-    void changeProgramName(int index, const String &newName);
+    void setCurrentProgram(int nIndex);
+
+    const String getProgramName(int nIndex);
+    void changeProgramName(int nIndex, const String &newName);
 
     //==========================================================================
     void getStateInformation(MemoryBlock &destData);
