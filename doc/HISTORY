@@ -2,6 +2,25 @@ Git HEAD
 ========
 
 
+v1.06 (2015-02-02)
+==================
+
+* added "combined meters" mode
+
+* beautified meters
+
+* dither on gain change
+
+* get rid of latency
+
+* Windows: enable WASAPI
+
+* LV2: renamed debug versions
+
+* updated framework to JUCE 3.1.1
+
+
+
 v1.05 (2013-05-30)
 ==================
 
@@ -14,6 +33,7 @@ v1.05 (2013-05-30)
 * validation: full re-calibration
 
 * updated framework to JUCE v2.40
+
 
 
 v1.04 (2013-04-03)

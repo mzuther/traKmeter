@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="LEmwq6" name="traKmeter" projectType="audioplug" version="1.06.2"
+<JUCERPROJECT id="LEmwq6" name="traKmeter" projectType="audioplug" version="1.06.3"
               bundleIdentifier="de.mzuther.traKmeter" buildVST="1" buildRTAS="0"
               buildAU="0" pluginName="traKmeter" pluginDesc="Loudness meter for correctly setting up tracking and mixing levels"
               pluginManufacturer="mzuther" pluginManufacturerCode="mz" pluginCode="trak"
