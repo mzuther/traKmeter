@@ -31,8 +31,6 @@
 
 TraKmeterPluginParameters::TraKmeterPluginParameters()
 {
-    ParameterJuggler();
-
     strSettingsID = "TRAKMETER_SETTINGS";
 
     ParameterTransientMode = new WrappedParameterToggleSwitch("Off", "On");
