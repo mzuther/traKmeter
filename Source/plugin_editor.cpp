@@ -46,10 +46,9 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor = ownerFilter;
     pProcessor->addActionListener(this);
 
-    ButtonMeterType = new TextButton("Meter");
+    ButtonMeterType = new TextButton("Split");
     ButtonMeterType->setColour(TextButton::buttonColourId, Colours::grey);
     ButtonMeterType->setColour(TextButton::buttonOnColourId, Colours::green);
-    ButtonMeterType->setToggleState(true, dontSendNotification);
 
     ButtonMeterType->addListener(this);
     addAndMakeVisible(ButtonMeterType);
@@ -217,6 +216,9 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
     {
     case TraKmeterPluginParameters::selMeterType:
     {
+        bool bMeterType = pProcessor->getBoolean(nIndex);
+        ButtonMeterType->setToggleState(!bMeterType, dontSendNotification);
+
         bReloadMeters = true;
     }
     break;
@@ -298,12 +300,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
     }
     else if (button == ButtonMeterType)
     {
-        int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-        // cycle meter types
-        nMeterType = (nMeterType + 1) % TraKmeterPluginParameters::nNumMeterTypes;
-
-        float fMeterType = float(nMeterType) / (TraKmeterPluginParameters::nNumMeterTypes - 1.0f);
-        pProcessor->changeParameter(TraKmeterPluginParameters::selMeterType, fMeterType);
+        pProcessor->changeParameter(TraKmeterPluginParameters::selMeterType, button->getToggleState());
     }
     else if (button == ButtonCrestFactor)
     {

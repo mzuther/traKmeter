@@ -82,10 +82,6 @@ public:
     bool getBoolean(int nIndex);
     int getRealInteger(int nIndex);
 
-    void MarkParameter(int nIndex);
-    void UnmarkParameter(int nIndex);
-    bool isParameterMarked(int nIndex);
-
     //==========================================================================
     const String getName() const;
 

@@ -128,6 +128,11 @@ float TraKmeterAudioProcessor::getParameter(int nIndex)
 
 void TraKmeterAudioProcessor::changeParameter(int nIndex, float fValue)
 {
+    // This method will be called by the host, probably on the audio
+    // thread, so it's absolutely time-critical. Don't use critical
+    // sections or anything GUI-related, or anything at all that may
+    // block in any way!
+
     // notify host of parameter change (this will automatically call
     // "setParameter"!)
     beginParameterChangeGesture(nIndex);

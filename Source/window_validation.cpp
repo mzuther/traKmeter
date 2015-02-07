@@ -182,7 +182,7 @@ void WindowValidation::buttonClicked(Button *button)
     if (button == ButtonValidation)
     {
         // file name has not been set
-        if (fileValidation.getFileName() == "")
+        if (fileValidation.getFileName().isEmpty())
         {
             DBG("[traKmeter] file name for validation not set.");
 

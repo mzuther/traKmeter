@@ -389,7 +389,7 @@
         lv2:portProperty epp:hasStrictBounds;
         lv2:scalePoint [
             rdf:value 0.0 ;
-            rdfs:label "Separate" ;
+            rdfs:label "Split" ;
         ] ,
         [
             rdf:value 1.0 ;

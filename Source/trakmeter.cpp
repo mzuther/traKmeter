@@ -46,7 +46,7 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
     average_meter = nullptr;
     signal_meter = nullptr;
 
-    if (nMeterType == TraKmeterPluginParameters::selSeparateMeters)
+    if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
     {
         peak_meter = new PeakMeter("Peak Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
         addAndMakeVisible(peak_meter);
@@ -124,7 +124,7 @@ void TraKmeter::resized()
 
 void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
 {
-    if (nMeterType == TraKmeterPluginParameters::selSeparateMeters)
+    if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
     {
         peak_meter->setLevels(pMeterBallistics);
         average_meter->setLevels(pMeterBallistics);

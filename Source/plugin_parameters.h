@@ -64,7 +64,7 @@ public:
 
         nNumParametersComplete,
 
-        selSeparateMeters = 0,
+        selSplitMeters = 0,
         selCombinedMeters,
 
         nNumMeterTypes,
@@ -72,18 +72,6 @@ public:
 
 private:
     JUCE_LEAK_DETECTOR(TraKmeterPluginParameters);
-
-    WrappedParameterToggleSwitch  *ParameterTransientMode;
-    WrappedParameterSwitch        *ParameterCrestFactor;
-    WrappedParameterToggleSwitch  *ParameterMixMode;
-    WrappedParameterSwitch        *ParameterGain;
-    WrappedParameterSwitch        *ParameterMeterType;
-
-    WrappedParameterString        *ParameterValidationFileName;
-    WrappedParameterSwitch        *ParameterValidationSelectedChannel;
-    WrappedParameterToggleSwitch  *ParameterValidationAverageMeterLevel;
-    WrappedParameterToggleSwitch  *ParameterValidationPeakMeterLevel;
-    WrappedParameterToggleSwitch  *ParameterValidationCSVFormat;
 };
 
 #endif  // __PLUGIN_PARAMETERS_TRAKMETER_H__
