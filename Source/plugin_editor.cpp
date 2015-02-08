@@ -34,6 +34,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     setOpaque(true);
 
     bIsValidating = false;
+    bValidateWindow = false;
     bReloadMeters = true;
 
     nInputChannels = nNumChannels;
@@ -187,18 +188,21 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &strMess
         if (bIsValidating && !pProcessor->isValidating())
         {
             bIsValidating = false;
-            ButtonValidation->setToggleState(false, dontSendNotification);
         }
     }
     // "V+" --> validation started
     else if ((!strMessage.compare("V+")) && pProcessor->isValidating())
     {
         bIsValidating = true;
-        ButtonValidation->setToggleState(true, dontSendNotification);
     }
     // "V-" --> validation stopped
     else if (!strMessage.compare("V-"))
     {
+        if (!bValidateWindow)
+        {
+            ButtonValidation->setToggleState(false, dontSendNotification);
+        }
+
         // do nothing till you hear from me... :)
     }
     else
@@ -316,13 +320,27 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
     }
     else if (button == ButtonAbout)
     {
+        // manually activate button
+        button->setToggleState(true, dontSendNotification);
+
         WindowAbout windowAbout(this);
         windowAbout.runModalLoop();
+
+        // manually deactivate button
+        button->setToggleState(false, dontSendNotification);
     }
     else if (button == ButtonValidation)
     {
+        // manually activate button
+        button->setToggleState(true, dontSendNotification);
+
+        bValidateWindow = true;
         WindowValidation windowValidation(this, pProcessor);
         windowValidation.runModalLoop();
+        bValidateWindow = false;
+
+        // manually set button according to validation state
+        button->setToggleState(bIsValidating, dontSendNotification);
     }
 }
 

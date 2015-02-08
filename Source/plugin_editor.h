@@ -66,6 +66,7 @@ private:
 
     bool bReloadMeters;
     bool bIsValidating;
+    bool bValidateWindow;
     int nRightColumnStart;
     int nSegmentHeight;
     int nHeight;
