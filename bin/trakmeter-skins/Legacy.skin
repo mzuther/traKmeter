@@ -3,9 +3,9 @@
 <?xml-stylesheet type="text/xsl" href="include/xslt/skin_svg.xslt"?>
 
 <trakmeter-skin
-    name="Default"
+    name="Legacy"
     orientation="vertical"
-    path="Default"
+    path="Legacy"
     version="1.0">
 
     <default>
@@ -90,10 +90,10 @@
         />
 
         <label_debug
-            x="162"
-            y="166"
-            width="40"
-            height="10"
+            x="160"
+            y="163"
+            width="44"
+            height="11"
             image="labels/label_debug.png"
         />
     </default>
@@ -370,10 +370,10 @@
         />
 
         <label_debug
-            x="330"
-            y="166"
-            width="40"
-            height="10"
+            x="328"
+            y="163"
+            width="44"
+            height="11"
             image="labels/label_debug.png"
         />
 
@@ -770,10 +770,10 @@
         />
 
         <label_debug
-            x="330"
-            y="166"
-            width="40"
-            height="10"
+            x="328"
+            y="163"
+            width="44"
+            height="11"
             image="labels/label_debug.png"
         />
 
