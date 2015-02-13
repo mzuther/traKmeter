@@ -25,7 +25,7 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int nSegmentHeight, int meter_type)
+TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrestFactor, int nNumChannels, int segment_height, int meter_type)
 {
     setName(componentName);
 
@@ -34,10 +34,13 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
 
     nInputChannels = nNumChannels;
     nMeterType = meter_type;
+    bShowSplitMeters = (nMeterType == TraKmeterPluginParameters::selSplitMeters);
 
     AverageMeters = new MeterBarAverage*[nInputChannels];
     PeakMeters = new MeterBarPeak*[nInputChannels];
     MeterSegmentOverloads = new MeterSegmentOverload*[nInputChannels];
+
+    PeakMeterSignals = nullptr;
 
     int nThreshold = -90;
     nThreshold += nCrestFactor * 10;
@@ -45,42 +48,38 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
     // register all hot signals, even up to +100 dB FS!
     float fRange = ((nCrestFactor * 10) - nThreshold) * 0.1f + 100.0f;
 
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+    int nNumberOfBarsPeak;
+    int nNumberOfBarsAverage;
+    int nSegmentHeight;
+
+    if (bShowSplitMeters)
     {
-        if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
-        {
-            int nNumberOfBars = 9;
-
-            PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), 0, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true, false);
-            addAndMakeVisible(PeakMeters[nChannel]);
-
-            MeterSegmentOverloads[nChannel] = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, nCrestFactor, false, 0);
-            addAndMakeVisible(MeterSegmentOverloads[nChannel]);
-
-            nNumberOfBars = 8;
-
-            AverageMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), 0, 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nNumberOfBars, nCrestFactor, nSegmentHeight, true, false);
-            addAndMakeVisible(AverageMeters[nChannel]);
-        }
-        else
-        {
-            int nNumberOfBars = 27;
-
-            AverageMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), 0, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH - 7, nNumberOfBars - 1, nCrestFactor, nSegmentHeight - 1, true, true);
-            addAndMakeVisible(AverageMeters[nChannel]);
-
-            PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), 0, 0, 6, nNumberOfBars - 1, nCrestFactor, nSegmentHeight - 1, true, true);
-            addAndMakeVisible(PeakMeters[nChannel]);
-
-            MeterSegmentOverloads[nChannel] = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, nCrestFactor, false, 0);
-            addAndMakeVisible(MeterSegmentOverloads[nChannel]);
-        }
+        nNumberOfBarsPeak = 9;
+        nNumberOfBarsAverage = nNumberOfBarsPeak - 1;
+        nSegmentHeight = segment_height;
+    }
+    else
+    {
+        nNumberOfBarsPeak = 26;
+        nNumberOfBarsAverage = nNumberOfBarsPeak;
+        nSegmentHeight = segment_height - 1;
     }
 
-    if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
+    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+    {
+        PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nNumberOfBarsPeak, nCrestFactor, nSegmentHeight, true, !bShowSplitMeters);
+        addAndMakeVisible(PeakMeters[nChannel]);
+
+        AverageMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nNumberOfBarsAverage, nCrestFactor, nSegmentHeight, true, !bShowSplitMeters);
+        addAndMakeVisible(AverageMeters[nChannel]);
+
+        MeterSegmentOverloads[nChannel] = new MeterSegmentOverload("MeterSegmentOverload (" + componentName + ")", nThreshold * 0.1f, fRange, nCrestFactor, false, 0);
+        addAndMakeVisible(MeterSegmentOverloads[nChannel]);
+    }
+
+    if (bShowSplitMeters)
     {
         PeakMeterSignals = new MeterSignalLed*[nInputChannels];
-        int nSegmentHeight = 12;
         String strLabel;
 
         // signals are detected at -60 dB FS and above (40 dB meter range)
@@ -107,7 +106,7 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
 
             PeakMeterSignals[nChannel] = new MeterSignalLed("Peak Meter Signal #" + String(nChannel), strLabel, nThreshold * 0.1f, fRange);
 
-            PeakMeterSignals[nChannel]->setBounds(0, 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nSegmentHeight + 1);
+            PeakMeterSignals[nChannel]->setBounds(0, 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH, segment_height);
             addAndMakeVisible(PeakMeterSignals[nChannel]);
         }
     }
@@ -127,7 +126,7 @@ TraKmeter::~TraKmeter()
         delete MeterSegmentOverloads[nChannel];
         MeterSegmentOverloads[nChannel] = nullptr;
 
-        if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
+        if (bShowSplitMeters)
         {
             delete PeakMeterSignals[nChannel];
             PeakMeterSignals[nChannel] = nullptr;
@@ -143,7 +142,7 @@ TraKmeter::~TraKmeter()
     delete [] MeterSegmentOverloads;
     MeterSegmentOverloads = nullptr;
 
-    if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
+    if (bShowSplitMeters)
     {
         delete [] PeakMeterSignals;
         PeakMeterSignals = nullptr;
@@ -163,7 +162,7 @@ void TraKmeter::applySkin(Skin *pSkin)
         // pSkin->placeAndSkinStateLabel(MeterSegmentOverloads[nChannel], "label_over_left");
         pSkin->placeComponent(MeterSegmentOverloads[nChannel], "label_over_" + String(nChannel + 1));
 
-        if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
+        if (bShowSplitMeters)
         {
             // pSkin->placeAndSkinStateLabel(PeakMeterSignals[nChannel], "label_over_left");
             pSkin->placeComponent(PeakMeterSignals[nChannel], "label_signal_" + String(nChannel + 1));
@@ -192,7 +191,7 @@ void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
         PeakMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
         MeterSegmentOverloads[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel), pMeterBallistics->getMaximumPeakLevel(nChannel));
 
-        if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
+        if (bShowSplitMeters)
         {
             PeakMeterSignals[nChannel]->setLevel(pMeterBallistics->getPeakMeterSignal(nChannel));
         }

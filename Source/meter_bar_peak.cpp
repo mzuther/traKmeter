@@ -25,7 +25,7 @@
 
 #include "meter_bar_peak.h"
 
-MeterBarPeak::MeterBarPeak(const String &componentName, int pos_x, int pos_y, int width, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
+MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
 {
     setName(componentName);
 
@@ -35,11 +35,6 @@ MeterBarPeak::MeterBarPeak(const String &componentName, int pos_x, int pos_y, in
 
     nNumberOfBars = number_of_bars;
     nSegmentHeight = segment_height;
-
-    nPosX = pos_x;
-    nPosY = pos_y;
-    nWidth = width;
-    nHeight = nNumberOfBars * nSegmentHeight + 1;
 
     int nCrestFactor = 10 * crest_factor;
     fPeakLevel = -9999.8f;
@@ -119,21 +114,6 @@ MeterBarPeak::~MeterBarPeak()
 }
 
 
-void MeterBarPeak::visibilityChanged()
-{
-    setBounds(nPosX, nPosY, nWidth, nHeight);
-
-    int x = 0;
-    int y = 0;
-
-    for (int n = 0; n < nNumberOfBars; n++)
-    {
-        pMeterSegments[n]->setBounds(x, y, nWidth, nSegmentHeight + 1);
-        y += nSegmentHeight;
-    }
-}
-
-
 void MeterBarPeak::paint(Graphics &g)
 {
     g.fillAll(Colours::black);
@@ -142,6 +122,13 @@ void MeterBarPeak::paint(Graphics &g)
 
 void MeterBarPeak::resized()
 {
+    int y = 0;
+
+    for (int n = 0; n < nNumberOfBars; n++)
+    {
+        pMeterSegments[n]->setBounds(0, y, getWidth(), nSegmentHeight + 1);
+        y += nSegmentHeight;
+    }
 }
 
 
