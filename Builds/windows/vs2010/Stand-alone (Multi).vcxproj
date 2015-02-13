@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{80D3B50E-777F-FDF0-B3FB-C00AE0B92FF4}</ProjectGuid>
+		<ProjectGuid>{33B721A9-145D-C596-99F7-9BC683E06A00}</ProjectGuid>
 		<RootNamespace>Stand-alone (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -205,16 +205,12 @@
 		</Link>
 	</ItemDefinitionGroup>
 	<ItemGroup>
-		<ClInclude Include="..\..\..\Source\average_meter.h" />
 		<ClInclude Include="..\..\..\Source\window_validation.h" />
 		<ClInclude Include="..\..\..\Source\channel_slider.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_average.h" />
 		<ClInclude Include="..\..\..\Source\trakmeter.h" />
-		<ClInclude Include="..\..\..\Source\peak_meter.h" />
 		<ClInclude Include="..\..\..\Source\meter_segment.h" />
-		<ClInclude Include="..\..\..\Source\combined_meter.h" />
 		<ClInclude Include="..\..\..\Source\audio_ring_buffer.h" />
-		<ClInclude Include="..\..\..\Source\signal_meter.h" />
 		<ClInclude Include="..\..\..\Source\state_label.h" />
 		<ClInclude Include="..\..\..\Source\dither.h" />
 		<ClInclude Include="..\..\..\Source\window_about.h" />
@@ -263,17 +259,11 @@
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\main.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\peak_meter.cpp">
-		</ClCompile>
 		<ClCompile Include="..\..\..\Source\window_skin.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_bar_average.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_signal_led.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\signal_meter.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\average_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\window_validation.cpp">
 		</ClCompile>
@@ -288,8 +278,6 @@
 		<ClCompile Include="..\..\..\Source\plugin_editor.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\audio_file_player.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\combined_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\trakmeter.cpp">
 		</ClCompile>

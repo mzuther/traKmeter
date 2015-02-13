@@ -101,16 +101,16 @@
     <stereo_split>
         <meter_peak_1
             x="51"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_2
             x="75"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_average_1
@@ -126,6 +126,24 @@
             width="22"
             height="81"
             image="meters/meter_bar_split_average.png" />
+
+        <label_over_1
+            x="51"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_2
+            x="75"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
 
         <label_signal_1
             x="51"
@@ -341,58 +359,58 @@
 
         <meter_peak_1
             x="51"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_2
             x="75"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_3
             x="107"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_4
             x="131"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_5
             x="163"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_6
             x="187"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_7
             x="219"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_8
             x="243"
-            y="35"
+            y="45"
             width="22"
-            height="101"
+            height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_average_1
@@ -450,6 +468,78 @@
             width="22"
             height="81"
             image="meters/meter_bar_split_average.png" />
+
+        <label_over_1
+            x="51"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_2
+            x="75"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_3
+            x="107"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_4
+            x="131"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_5
+            x="163"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_6
+            x="187"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_7
+            x="219"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_8
+            x="243"
+            y="35"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
 
         <label_signal_1
             x="51"

@@ -33,7 +33,9 @@
           "meter_peak_1,
            meter_peak_2,
            meter_average_1,
-           meter_average_2
+           meter_average_2,
+           label_over_1,
+           label_over_2
 ">
 
 <!ENTITY % trakmeter_components_multi
@@ -52,7 +54,15 @@
            meter_average_5,
            meter_average_6,
            meter_average_7,
-           meter_average_8
+           meter_average_8,
+           label_over_1,
+           label_over_2,
+           label_over_3,
+           label_over_4,
+           label_over_5,
+           label_over_6,
+           label_over_7,
+           label_over_8
 ">
 
 <!ENTITY % split_components_stereo
@@ -85,38 +95,6 @@
            label_signal_6?,
            label_signal_7?,
            label_signal_8?
-">
-
-<!ENTITY % combined_components_stereo
-          "label_over_1,
-           label_over_2
-">
-
-<!ENTITY % combined_components_multi
-          "label_over_1,
-           label_over_2,
-           label_over_3,
-           label_over_4,
-           label_over_5,
-           label_over_6,
-           label_over_7,
-           label_over_8
-">
-
-<!ENTITY % combined_components_stereo_optional
-          "label_over_1?,
-           label_over_2?
-">
-
-<!ENTITY % combined_components_multi_optional
-          "label_over_1?,
-           label_over_2?,
-           label_over_3?,
-           label_over_4?,
-           label_over_5?,
-           label_over_6?,
-           label_over_7?,
-           label_over_8?
 ">
 
 <!ENTITY % attrs_image_size
@@ -194,21 +172,21 @@
     <!ELEMENT default (%main_components;)>
 
     <!ELEMENT stereo_split (%main_components_optional;, %trakmeter_components_stereo;, %split_components_stereo;)>
-    <!ELEMENT stereo_combined (%main_components_optional;, %trakmeter_components_stereo;, %combined_components_stereo;)>
+    <!ELEMENT stereo_combined (%main_components_optional;, %trakmeter_components_stereo;)>
     <!ELEMENT multi_split (%main_components_optional;, %trakmeter_components_multi;, %split_components_multi;)>
-    <!ELEMENT multi_combined (%main_components_optional;, %trakmeter_components_multi;, %combined_components_multi;)>
+    <!ELEMENT multi_combined (%main_components_optional;, %trakmeter_components_multi;)>
 
     <!ELEMENT stereo_split_k20 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
     <!ELEMENT stereo_split_normal (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
 
-    <!ELEMENT stereo_combined_k20 (%trakmeter_background;, %main_components_optional;, %combined_components_stereo_optional;)>
-    <!ELEMENT stereo_combined_normal (%trakmeter_background;, %main_components_optional;, %combined_components_stereo_optional;)>
+    <!ELEMENT stereo_combined_k20 (%trakmeter_background;, %main_components_optional;)>
+    <!ELEMENT stereo_combined_normal (%trakmeter_background;, %main_components_optional;)>
 
     <!ELEMENT multi_split_k20 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
     <!ELEMENT multi_split_normal (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
 
-    <!ELEMENT multi_combined_k20 (%trakmeter_background;, %main_components_optional;, %combined_components_multi_optional;)>
-    <!ELEMENT multi_combined_normal (%trakmeter_background;, %main_components_optional;, %combined_components_multi_optional;)>
+    <!ELEMENT multi_combined_k20 (%trakmeter_background;, %main_components_optional;)>
+    <!ELEMENT multi_combined_normal (%trakmeter_background;, %main_components_optional;)>
 
         <!ELEMENT background (#PCDATA)>
             <!ATTLIST background %attrs_background;>

@@ -26,16 +26,12 @@
 #ifndef __TRAKMETER_H__
 #define __TRAKMETER_H__
 
-class AverageMeter;
-class CombinedMeter;
-class PeakMeter;
-class SignalMeter;
-
 #include "JuceHeader.h"
-#include "average_meter.h"
-#include "combined_meter.h"
-#include "peak_meter.h"
-#include "signal_meter.h"
+#include "meter_ballistics.h"
+#include "meter_bar_average.h"
+#include "meter_bar_peak.h"
+#include "meter_segment_overload.h"
+#include "meter_signal_led.h"
 #include "skin.h"
 
 
@@ -61,11 +57,11 @@ private:
     int nInputChannels;
     int nMeterType;
 
-    CombinedMeter *combined_meter;
+    MeterBarAverage **AverageMeters;
+    MeterBarPeak **PeakMeters;
+    MeterSegmentOverload **MeterSegmentOverloads;
 
-    PeakMeter *peak_meter;
-    AverageMeter *average_meter;
-    SignalMeter *signal_meter;
+    MeterSignalLed **PeakMeterSignals;
 };
 
 

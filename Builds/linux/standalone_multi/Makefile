@@ -117,12 +117,9 @@ OBJECTS := \
 	$(OBJDIR)/skin.o \
 	$(OBJDIR)/averager.o \
 	$(OBJDIR)/main.o \
-	$(OBJDIR)/peak_meter.o \
 	$(OBJDIR)/window_skin.o \
 	$(OBJDIR)/meter_bar_average.o \
 	$(OBJDIR)/meter_signal_led.o \
-	$(OBJDIR)/signal_meter.o \
-	$(OBJDIR)/average_meter.o \
 	$(OBJDIR)/window_validation.o \
 	$(OBJDIR)/audio_ring_buffer.o \
 	$(OBJDIR)/standalone_application.o \
@@ -130,7 +127,6 @@ OBJECTS := \
 	$(OBJDIR)/meter_ballistics.o \
 	$(OBJDIR)/plugin_editor.o \
 	$(OBJDIR)/audio_file_player.o \
-	$(OBJDIR)/combined_meter.o \
 	$(OBJDIR)/trakmeter.o \
 	$(OBJDIR)/dither.o \
 	$(OBJDIR)/channel_slider.o \
@@ -245,9 +241,6 @@ $(OBJDIR)/averager.o: ../../../Source/averager.cpp
 $(OBJDIR)/main.o: ../../../Source/main.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/peak_meter.o: ../../../Source/peak_meter.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/window_skin.o: ../../../Source/window_skin.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
@@ -255,12 +248,6 @@ $(OBJDIR)/meter_bar_average.o: ../../../Source/meter_bar_average.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/meter_signal_led.o: ../../../Source/meter_signal_led.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/signal_meter.o: ../../../Source/signal_meter.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/average_meter.o: ../../../Source/average_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/window_validation.o: ../../../Source/window_validation.cpp
@@ -282,9 +269,6 @@ $(OBJDIR)/plugin_editor.o: ../../../Source/plugin_editor.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/audio_file_player.o: ../../../Source/audio_file_player.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/combined_meter.o: ../../../Source/combined_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/trakmeter.o: ../../../Source/trakmeter.cpp
