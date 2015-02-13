@@ -2,9 +2,9 @@
 
 @rem ----------------------------------------------------------------------------
 @rem
-@rem  K-Meter
-@rem  =======
-@rem  Implementation of a K-System meter according to Bob Katz' specifications
+@rem  traKmeter
+@rem  =========
+@rem  Loudness meter for correctly setting up tracking and mixing levels
 @rem
 @rem  Copyright (c) 2012-2015 Martin Zuther (http://www.mzuther.de/)
 @rem

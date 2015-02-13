@@ -30,8 +30,10 @@
 #include "plugin_parameters.h"
 #include "plugin_processor.h"
 #include "parameter_juggler/slider_switch.h"
+#include "skin.h"
 #include "trakmeter.h"
 #include "window_about.h"
+#include "window_skin.h"
 #include "window_validation.h"
 
 
@@ -51,41 +53,48 @@ public:
     void updateParameter(int nIndex);
 
     //==============================================================================
-    // This is just a standard Juce paint method...
-    void paint(Graphics &g);
     void resized();
 
 private:
     JUCE_LEAK_DETECTOR(TraKmeterAudioProcessorEditor);
 
     void reloadMeters();
-    void resizeEditor();
-
-    int nInputChannels;
-    int nCrestFactor;
+    void applySkin();
+    void loadSkin();
 
     bool bReloadMeters;
     bool bIsValidating;
     bool bValidateWindow;
-    int nRightColumnStart;
+    bool bInitialising;
+
+    int nCrestFactor;
+    int nInputChannels;
+
     int nSegmentHeight;
     int nHeight;
 
     TraKmeterAudioProcessor *pProcessor;
     TraKmeter *trakmeter;
 
-    TextButton *ButtonReset;
+    File fileSkinDirectory;
+    Skin *pSkin;
+    String strSkinName;
 
-    TextButton *ButtonMeterType;
-    TextButton *ButtonCrestFactor;
-    TextButton *ButtonTransientMode;
-    TextButton *ButtonMixMode;
-    TextButton *ButtonValidation;
-    TextButton *ButtonAbout;
+    ImageButton *ButtonReset;
+
+    ImageButton *ButtonMeterType;
+    ImageButton *ButtonCrestFactor;
+    ImageButton *ButtonTransientMode;
+    ImageButton *ButtonMixMode;
+
+    ImageButton *ButtonSkin;
+    ImageButton *ButtonValidation;
+    ImageButton *ButtonAbout;
 
     SliderSwitch *SliderGain;
 
-    Label *LabelDebug;
+    ImageComponent *LabelDebug;
+    ImageComponent *BackgroundImage;
 };
 
 

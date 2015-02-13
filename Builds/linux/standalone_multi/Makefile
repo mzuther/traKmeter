@@ -112,10 +112,13 @@ OBJECTS := \
 	$(OBJDIR)/meter_segment.o \
 	$(OBJDIR)/plugin_processor.o \
 	$(OBJDIR)/meter_bar_peak.o \
+	$(OBJDIR)/state_label.o \
 	$(OBJDIR)/plugin_parameters.o \
+	$(OBJDIR)/skin.o \
 	$(OBJDIR)/averager.o \
 	$(OBJDIR)/main.o \
 	$(OBJDIR)/peak_meter.o \
+	$(OBJDIR)/window_skin.o \
 	$(OBJDIR)/meter_bar_average.o \
 	$(OBJDIR)/meter_signal_led.o \
 	$(OBJDIR)/signal_meter.o \
@@ -227,7 +230,13 @@ $(OBJDIR)/plugin_processor.o: ../../../Source/plugin_processor.cpp
 $(OBJDIR)/meter_bar_peak.o: ../../../Source/meter_bar_peak.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/state_label.o: ../../../Source/state_label.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/plugin_parameters.o: ../../../Source/plugin_parameters.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/skin.o: ../../../Source/skin.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/averager.o: ../../../Source/averager.cpp
@@ -237,6 +246,9 @@ $(OBJDIR)/main.o: ../../../Source/main.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/peak_meter.o: ../../../Source/peak_meter.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/window_skin.o: ../../../Source/window_skin.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/meter_bar_average.o: ../../../Source/meter_bar_average.cpp

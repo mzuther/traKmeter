@@ -25,7 +25,7 @@
 
 #include "signal_meter.h"
 
-SignalMeter::SignalMeter(const String &componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels)
+SignalMeter::SignalMeter(const String &componentName, int posX, int posY, int width, int nCrestFactor, int nNumChannels)
 {
     setName(componentName);
 
@@ -33,10 +33,9 @@ SignalMeter::SignalMeter(const String &componentName, int posX, int posY, int wi
     setOpaque(false);
 
     nInputChannels = nNumChannels;
-    nCrestFactor = CrestFactor;
 
-    nSegmentHeight = 12;
-    nMeterHeight = nSegmentHeight + 1;
+    int nSegmentHeight = 12;
+    int nMeterHeight = nSegmentHeight + 1;
 
     nPosX = posX;
     nPosY = posY;
@@ -107,30 +106,6 @@ void SignalMeter::visibilityChanged()
 }
 
 
-void SignalMeter::paint(Graphics &g)
-{
-    int x = 0;
-    int y = 0;
-    int width = TraKmeter::TRAKMETER_LABEL_WIDTH - 14;
-    int height = 13;
-
-    String strMarker = "SIG";
-
-    g.setColour(Colours::white);
-    g.setFont(12.0f);
-    drawMarkers(g, strMarker, x + 1, y + 2, width, height);
-
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
-    {
-        int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
-        nPositionX += (nChannel % 2) ? -2 : 2;
-
-        g.setColour(Colours::black.brighter(0.15f));
-        g.fillRect(nPositionX - 1, 0, TraKmeter::TRAKMETER_SEGMENT_WIDTH + 2, nMeterHeight + 1);
-    }
-}
-
-
 void SignalMeter::resized()
 {
 }
@@ -142,46 +117,6 @@ void SignalMeter::setLevels(MeterBallistics *pMeterBallistics)
     {
         PeakMeterSignals[nChannel]->setLevel(pMeterBallistics->getPeakMeterSignal(nChannel));
     }
-}
-
-
-void SignalMeter::drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height)
-{
-    int meter_width = nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 6;
-    int x_2 = TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 2;
-
-    g.saveState();
-
-    g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x, y - 1, width + 3, height);
-
-    g.setColour(Colours::black);
-    g.drawRect(x, y - 1, width + 3, height);
-
-    g.setColour(Colours::grey.brighter(0.6f));
-    g.fillRect(x_2 + x, y - 1, width + 3, height);
-
-    g.setColour(Colours::black);
-    g.drawRect(x_2 + x, y - 1, width + 3, height);
-
-    x_2 = x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 5;
-    g.setColour(Colours::black);
-
-    g.drawFittedText(strMarker, x + 1, y - 1, width, height, Justification::centred, 1, 1.0f);
-    g.drawFittedText(strMarker, x_2 + 1, y - 1, width, height, Justification::centred, 1, 1.0f);
-
-    g.setColour(Colours::grey);
-
-    int nMarkerY = y + 5;
-    int nStart = x + width + 3;
-    int nEnd = x + x_2 - 2;
-
-    for (int nMarkerX = nStart; nMarkerX < nEnd; nMarkerX++)
-    {
-        g.setPixel(nMarkerX, nMarkerY);
-    }
-
-    g.restoreState();
 }
 
 

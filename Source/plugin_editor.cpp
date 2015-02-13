@@ -25,6 +25,7 @@
 
 #include "plugin_editor.h"
 
+
 //==============================================================================
 TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, TraKmeterPluginParameters *parameters, int nNumChannels, int CrestFactor)
     : AudioProcessorEditor(ownerFilter)
@@ -33,9 +34,11 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     // (increases performance on redrawing)
     setOpaque(true);
 
+    // prevent meter reload during initialisation
+    bInitialising = true;
+
     bIsValidating = false;
     bValidateWindow = false;
-    bReloadMeters = true;
 
     nInputChannels = nNumChannels;
     nCrestFactor = CrestFactor;
@@ -47,31 +50,19 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor = ownerFilter;
     pProcessor->addActionListener(this);
 
-    ButtonMeterType = new TextButton("Split");
-    ButtonMeterType->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonMeterType->setColour(TextButton::buttonOnColourId, Colours::green);
-
+    ButtonMeterType = new ImageButton("Split");
     ButtonMeterType->addListener(this);
     addAndMakeVisible(ButtonMeterType);
 
-    ButtonCrestFactor = new TextButton("K-20");
-    ButtonCrestFactor->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonCrestFactor->setColour(TextButton::buttonOnColourId, Colours::yellow);
-
+    ButtonCrestFactor = new ImageButton("K-20");
     ButtonCrestFactor->addListener(this);
     addAndMakeVisible(ButtonCrestFactor);
 
-    ButtonTransientMode = new TextButton("Transient");
-    ButtonTransientMode->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonTransientMode->setColour(TextButton::buttonOnColourId, Colours::orange);
-
+    ButtonTransientMode = new ImageButton("Transient");
     ButtonTransientMode->addListener(this);
     addAndMakeVisible(ButtonTransientMode);
 
-    ButtonMixMode = new TextButton("Mixing");
-    ButtonMixMode->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonMixMode->setColour(TextButton::buttonOnColourId, Colours::red);
-
+    ButtonMixMode = new ImageButton("Mixing");
     ButtonMixMode->addListener(this);
     addAndMakeVisible(ButtonMixMode);
 
@@ -83,38 +74,33 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     SliderGain->addListener(this);
     addChildComponent(SliderGain);
 
-    ButtonReset = new TextButton("Reset");
-    ButtonReset->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonReset->setColour(TextButton::buttonOnColourId, Colours::red);
-
+    ButtonReset = new ImageButton("Reset");
     ButtonReset->addListener(this);
     addAndMakeVisible(ButtonReset);
 
-#ifdef DEBUG
-    LabelDebug = new Label("Debug Notification", "DEBUG");
-    LabelDebug->setColour(Label::textColourId, Colours::red);
-    LabelDebug->setJustificationType(Justification::centred);
-    addAndMakeVisible(LabelDebug);
-#else
-    LabelDebug = nullptr;
-#endif
+    ButtonSkin = new ImageButton("Skin");
+    ButtonSkin->addListener(this);
+    addAndMakeVisible(ButtonSkin);
 
-    ButtonValidation = new TextButton("Validate");
-    ButtonValidation->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonValidation->setColour(TextButton::buttonOnColourId, Colours::red);
-
+    ButtonValidation = new ImageButton("Validate");
     ButtonValidation->addListener(this);
     addAndMakeVisible(ButtonValidation);
 
-    ButtonAbout = new TextButton("About");
-    ButtonAbout->setColour(TextButton::buttonColourId, Colours::grey);
-    ButtonAbout->setColour(TextButton::buttonOnColourId, Colours::yellow);
-
+    ButtonAbout = new ImageButton("About");
     ButtonAbout->addListener(this);
     addAndMakeVisible(ButtonAbout);
 
-    // This is where our plug-in editor's size is set.
-    resizeEditor();
+    LabelDebug = new ImageComponent("Debug Notification");
+    // moves debug label to the back of the editor's z-plane to that
+    // it doesn't overlay (and thus block) any other components
+    addAndMakeVisible(LabelDebug, 0);
+
+    BackgroundImage = new ImageComponent("Background Image");
+    // prevent unnecessary redrawing of plugin editor
+    BackgroundImage->setOpaque(true);
+    // moves background image to the back of the editor's z-plane to
+    // that it doesn't overlay (and thus block) any other components
+    addAndMakeVisible(BackgroundImage, 0);
 
     trakmeter = nullptr;
 
@@ -123,6 +109,21 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     updateParameter(TraKmeterPluginParameters::selMixMode);
     updateParameter(TraKmeterPluginParameters::selGain);
     updateParameter(TraKmeterPluginParameters::selMeterType);
+
+    // the following may or may not work on Mac
+    File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
+    fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter-skins/");
+
+    pSkin = nullptr;
+    strSkinName = pProcessor->getParameterSkinName();
+    loadSkin();
+
+    // force meter reload after initialisation ...
+    bInitialising = false;
+    bReloadMeters = true;
+
+    // will also apply skin to plug-in editor
+    reloadMeters();
 }
 
 
@@ -130,31 +131,78 @@ TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 {
     pProcessor->removeActionListener(this);
 
+    delete pSkin;
+    pSkin = nullptr;
+
     deleteAllChildren();
 }
 
 
-void TraKmeterAudioProcessorEditor::resizeEditor()
+void TraKmeterAudioProcessorEditor::loadSkin()
 {
-    nHeight = 20 * nSegmentHeight + 85;
-    nRightColumnStart = 2 * TraKmeter::TRAKMETER_LABEL_WIDTH + nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) + 20;
-
-    setSize(nRightColumnStart + 70, nHeight);
-
-    ButtonReset->setBounds(nRightColumnStart, 10, 60, 20);
-
-    ButtonMeterType->setBounds(nRightColumnStart, 45, 60, 20);
-    ButtonCrestFactor->setBounds(nRightColumnStart, 70, 60, 20);
-    ButtonTransientMode->setBounds(nRightColumnStart, 95, 60, 20);
-    ButtonMixMode->setBounds(nRightColumnStart, 120, 60, 20);
-    SliderGain->setBounds(nRightColumnStart + 5, 145, 50, 50);
-
-    ButtonValidation->setBounds(nRightColumnStart, nHeight - 56, 60, 20);
-    ButtonAbout->setBounds(nRightColumnStart, nHeight - 31, 60, 20);
-
-    if (LabelDebug)
+    if (pSkin != nullptr)
     {
-        LabelDebug->setBounds(nRightColumnStart, nHeight - 78, 60, 16);
+        delete pSkin;
+        pSkin = nullptr;
+    }
+
+    File fileSkin = fileSkinDirectory.getChildFile(strSkinName + ".skin");
+
+    if (!fileSkin.existsAsFile())
+    {
+        Logger::outputDebugString("[Skin] file \"" + fileSkin.getFileName() + "\" not found");
+
+        strSkinName = "Default";
+        fileSkin = fileSkinDirectory.getChildFile(strSkinName + ".skin");
+    }
+
+    pProcessor->setParameterSkinName(strSkinName);
+
+    int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
+    pSkin = new Skin(fileSkin, nInputChannels, nCrestFactor, nMeterType);
+}
+
+
+void TraKmeterAudioProcessorEditor::applySkin()
+{
+    // prevent skin application during meter initialisation
+    if (bInitialising)
+    {
+        return;
+    }
+
+    // update skin
+    int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
+    pSkin->updateSkin(nInputChannels, nCrestFactor, nMeterType);
+
+    // moves background image to the back of the editor's z-plane;
+    // will also resize plug-in editor
+    pSkin->setBackgroundImage(BackgroundImage, this);
+
+    pSkin->placeAndSkinButton(ButtonMeterType, "button_split");
+    pSkin->placeAndSkinButton(ButtonCrestFactor, "button_k20");
+    pSkin->placeAndSkinButton(ButtonTransientMode, "button_transient");
+    pSkin->placeAndSkinButton(ButtonMixMode, "button_mixing");
+
+    pSkin->placeAndSkinButton(ButtonReset, "button_reset");
+    pSkin->placeAndSkinButton(ButtonSkin, "button_skin");
+
+    pSkin->placeAndSkinButton(ButtonValidation, "button_validate");
+    pSkin->placeAndSkinButton(ButtonAbout, "button_about");
+
+    pSkin->placeComponent(SliderGain, "slider_gain");
+
+#ifdef DEBUG
+    pSkin->placeAndSkinLabel(LabelDebug, "label_debug");
+#else
+    pSkin->placeComponent(LabelDebug, "label_debug");
+    LabelDebug->setImage(Image());
+    LabelDebug->setBounds(-1, -1, 1, 1);
+#endif
+
+    if (trakmeter != nullptr)
+    {
+        trakmeter->applySkin(pSkin);
     }
 }
 
@@ -223,6 +271,7 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
         bool bMeterType = pProcessor->getBoolean(nIndex);
         ButtonMeterType->setToggleState(!bMeterType, dontSendNotification);
 
+        // will also apply skin to plug-in editor
         bReloadMeters = true;
     }
     break;
@@ -260,7 +309,12 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
     break;
     }
 
-    reloadMeters();
+    // prevent meter reload during initialisation
+    if (!bInitialising)
+    {
+        // will also apply skin to plug-in editor
+        reloadMeters();
+    }
 }
 
 
@@ -279,18 +333,17 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
 
         int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
         trakmeter = new TraKmeter("traKmeter (level meter)", 10, 10, nCrestFactor, nInputChannels, nSegmentHeight, nMeterType);
-        addAndMakeVisible(trakmeter);
+
+        // moves traKmeter to the back of the editor's z-plane so that
+        // it doesn't overlay (and thus block) any other components
+        addAndMakeVisible(trakmeter, 0);
+
+        // moves background image to the back of the editor's z-plane
+        applySkin();
     }
 }
 
 //==============================================================================
-void TraKmeterAudioProcessorEditor::paint(Graphics &g)
-{
-    g.setGradientFill(ColourGradient(Colours::darkgrey.darker(0.8f), 0, 0, Colours::darkgrey.darker(1.4f), 0, (float) getHeight(), false));
-    g.fillAll();
-}
-
-
 void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
 {
     if (button == ButtonReset)
@@ -301,14 +354,28 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         {
             pMeterBallistics->reset();
         }
+
+        loadSkin();
+
+        // will also apply skin to plug-in editor
+        bReloadMeters = true;
+        reloadMeters();
     }
     else if (button == ButtonMeterType)
     {
         pProcessor->changeParameter(TraKmeterPluginParameters::selMeterType, button->getToggleState());
+
+        // will also apply skin to plug-in editor
+        bReloadMeters = true;
+        reloadMeters();
     }
     else if (button == ButtonCrestFactor)
     {
         pProcessor->changeParameter(TraKmeterPluginParameters::selCrestFactor, !button->getToggleState());
+
+        // will also apply skin to plug-in editor
+        bReloadMeters = true;
+        reloadMeters();
     }
     else if (button == ButtonTransientMode)
     {
@@ -317,6 +384,26 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
     else if (button == ButtonMixMode)
     {
         pProcessor->changeParameter(TraKmeterPluginParameters::selMixMode, !button->getToggleState());
+    }
+    else if (button == ButtonSkin)
+    {
+        // manually activate button
+        button->setToggleState(true, dontSendNotification);
+
+        File fileSkin = fileSkinDirectory.getChildFile(strSkinName + ".skin");
+
+        WindowSkin windowSkin(this, fileSkin);
+        windowSkin.runModalLoop();
+
+        // manually deactivate button
+        button->setToggleState(false, dontSendNotification);
+
+        strSkinName = windowSkin.getSelectedString();
+        loadSkin();
+
+        // will also apply skin to plug-in editor
+        bReloadMeters = true;
+        reloadMeters();
     }
     else if (button == ButtonAbout)
     {

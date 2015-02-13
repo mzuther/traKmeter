@@ -25,7 +25,7 @@
 
 #include "combined_meter.h"
 
-CombinedMeter::CombinedMeter(const String &componentName, int posX, int posY, int width, int CrestFactor, int nNumChannels, int segment_height)
+CombinedMeter::CombinedMeter(const String &componentName, int posX, int posY, int width, int nCrestFactor, int nNumChannels, int nSegmentHeight)
 {
     setName(componentName);
 
@@ -33,13 +33,11 @@ CombinedMeter::CombinedMeter(const String &componentName, int posX, int posY, in
     setOpaque(false);
 
     nInputChannels = nNumChannels;
-    nCrestFactor = CrestFactor;
 
-    nNumberOfBars = 27;
-    nSegmentHeight = segment_height;
+    int nNumberOfBars = 27;
     nPeakLabelHeight = nSegmentHeight + 2;
     nMeterPositionTop = 4;
-    nMeterHeight = (nNumberOfBars - 1) * nSegmentHeight + nPeakLabelHeight + 3;
+    int nMeterHeight = (nNumberOfBars - 1) * nSegmentHeight + nPeakLabelHeight + 3;
 
     nPosX = posX;
     nPosY = posY;
@@ -47,7 +45,7 @@ CombinedMeter::CombinedMeter(const String &componentName, int posX, int posY, in
     nHeight = 2 * nMeterPositionTop + nMeterHeight;
 
     int nPositionX = 0;
-    nPeakMeterSegmentWidth = 6;
+    int nPeakMeterSegmentWidth = 6;
 
     AverageMeters = new MeterBarAverage*[nInputChannels];
     PeakMeters = new MeterBarPeak*[nInputChannels];
@@ -127,94 +125,6 @@ void CombinedMeter::visibilityChanged()
 }
 
 
-void CombinedMeter::paint(Graphics &g)
-{
-    int x = 0;
-    int y = 0;
-    int width = TraKmeter::TRAKMETER_LABEL_WIDTH - 14;
-    int height = 13;
-
-    y = nMeterPositionTop;
-    String strMarker = "OVR";
-
-    g.setFont(12.0f);
-    g.setColour(Colour(0.00f, 1.0f, 1.0f, 1.0f));
-    drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.00f, 1.0f, 1.0f, 1.0f));
-
-    y -= round_to_int(nSegmentHeight / 2.0f);
-    y += 4;
-
-    int nTrueLevel = -8;
-
-    for (int n = nNumberOfBars; n > 2; n -= 2)
-    {
-        if (nTrueLevel > -26)
-        {
-            nTrueLevel -= 2;
-        }
-        else if (nTrueLevel > -40)
-        {
-            nTrueLevel -= 14;
-        }
-        else
-        {
-            nTrueLevel -= 20;
-        }
-
-        int nLevel = nTrueLevel + nCrestFactor;
-
-        if (nLevel > 0)
-        {
-            strMarker = "+" + String(nLevel);
-        }
-        else
-        {
-            strMarker = String(nLevel);
-        }
-
-        y += 2 * nSegmentHeight;
-
-        if (nTrueLevel == -10)
-        {
-            g.setColour(Colours::white);
-            drawMarkers(g, strMarker, x + 1, y, width, height, Colours::white.darker(0.5f));
-        }
-        else if (nTrueLevel == -20)
-        {
-            g.setColour(Colours::white);
-            drawMarkers(g, strMarker, x + 1, y, width, height, Colours::white.darker(0.5f));
-        }
-        else if (nTrueLevel == -40)
-        {
-            g.setColour(Colour(0.58f, 1.0f, 1.0f, 1.0f));
-            drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.58f, 1.0f, 1.0f, 1.0f));
-        }
-        else if (nTrueLevel < -40)
-        {
-            g.setColour(Colour(0.58f, 0.7f, 0.6f, 1.0f));
-            drawMarkers(g, strMarker, x + 1, y, width, height, Colour(0.58f, 0.7f, 0.5f, 1.0f));
-        }
-        else
-        {
-            g.setColour(Colours::grey.brighter(0.1f));
-            drawMarkers(g, strMarker, x + 1, y, width, height, Colours::grey.darker(0.1f));
-        }
-    }
-
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
-    {
-        int nPositionX = TraKmeter::TRAKMETER_LABEL_WIDTH + nChannel * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 3;
-        nPositionX += (nChannel % 2) ? -2 : 2;
-
-        g.setColour(Colours::black.brighter(0.15f));
-        g.fillRect(nPositionX - 1, nMeterPositionTop - 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH + 2, nMeterHeight + 2);
-
-        g.setColour(Colours::black);
-        g.fillRect(nPositionX, nMeterPositionTop, TraKmeter::TRAKMETER_SEGMENT_WIDTH, nPeakLabelHeight);
-    }
-}
-
-
 void CombinedMeter::resized()
 {
 }
@@ -228,31 +138,6 @@ void CombinedMeter::setLevels(MeterBallistics *pMeterBallistics)
         PeakMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
         MeterSegmentOverloads[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel), pMeterBallistics->getMaximumPeakLevel(nChannel));
     }
-}
-
-
-void CombinedMeter::drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour)
-{
-    g.saveState();
-
-    int meter_width = nInputChannels * (TraKmeter::TRAKMETER_SEGMENT_WIDTH + 6) - 4;
-    int x_2 = x + TraKmeter::TRAKMETER_LABEL_WIDTH + meter_width + 4;
-
-    g.drawFittedText(strMarker, x, y - 1, width, height, Justification::centred, 1, 1.0f);
-    g.drawFittedText(strMarker, x_2, y - 1, width, height, Justification::centred, 1, 1.0f);
-
-    g.setColour(colour);
-
-    int nMarkerY = y + 5;
-    int nStart = x + width + 2;
-    int nEnd = x + x_2 - 3;
-
-    for (int nMarkerX = nStart; nMarkerX < nEnd; nMarkerX++)
-    {
-        g.setPixel(nMarkerX, nMarkerY);
-    }
-
-    g.restoreState();
 }
 
 

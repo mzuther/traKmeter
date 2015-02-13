@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{C97D8CA4-4A76-6FDC-395A-5C7D6B967B3B}</ProjectGuid>
+		<ProjectGuid>{C156D0A5-B613-A2E4-DB5B-F56F56CCCEDB}</ProjectGuid>
 		<RootNamespace>VST Plug-in (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -223,12 +223,15 @@
 		<ClInclude Include="..\..\..\Source\combined_meter.h" />
 		<ClInclude Include="..\..\..\Source\audio_ring_buffer.h" />
 		<ClInclude Include="..\..\..\Source\signal_meter.h" />
+		<ClInclude Include="..\..\..\Source\state_label.h" />
 		<ClInclude Include="..\..\..\Source\dither.h" />
 		<ClInclude Include="..\..\..\Source\window_about.h" />
+		<ClInclude Include="..\..\..\Source\window_skin.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_peak.h" />
 		<ClInclude Include="..\..\..\Source\audio_file_player.h" />
 		<ClInclude Include="..\..\..\Source\plugin_parameters.h" />
 		<ClInclude Include="..\..\..\Source\meter_segment_overload.h" />
+		<ClInclude Include="..\..\..\Source\skin.h" />
 		<ClInclude Include="..\..\..\Source\mz_tools.h" />
 		<ClInclude Include="..\..\..\Source\meter_signal_led.h" />
 		<ClInclude Include="..\..\..\Source\plugin_processor.h" />
@@ -257,13 +260,19 @@
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_bar_peak.cpp">
 		</ClCompile>
+		<ClCompile Include="..\..\..\Source\state_label.cpp">
+		</ClCompile>
 		<ClCompile Include="..\..\..\Source\plugin_parameters.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\skin.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\averager.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\main.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\peak_meter.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\window_skin.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_bar_average.cpp">
 		</ClCompile>

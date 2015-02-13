@@ -79,6 +79,9 @@ public:
     File getParameterValidationFile();
     void setParameterValidationFile(File &fileValidation);
 
+    String getParameterSkinName();
+    void setParameterSkinName(String &strSkinName);
+
     bool getBoolean(int nIndex);
     int getRealInteger(int nIndex);
 

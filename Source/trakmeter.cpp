@@ -35,10 +35,7 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
     nInputChannels = nNumChannels;
     nMeterType = meter_type;
 
-    nPosX = posX;
-    nPosY = posY;
-    nWidth = 2 * TRAKMETER_LABEL_WIDTH + nInputChannels * (TRAKMETER_SEGMENT_WIDTH + 6) - 3;
-    nHeight = 0;
+    int nWidth = 2 * TRAKMETER_LABEL_WIDTH + nInputChannels * (TRAKMETER_SEGMENT_WIDTH + 6) - 3;
 
     combined_meter = nullptr;
 
@@ -59,17 +56,11 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
 
         average_meter = new AverageMeter("Average Meter", 4, nHeightPeakMeter + nHeightSeparator + 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight);
         addAndMakeVisible(average_meter);
-
-        int nHeightAverageMeter = average_meter->getPreferredHeight();
-
-        nHeight = nHeightPeakMeter + nHeightAverageMeter + nHeightSeparator + 8;
     }
     else
     {
         combined_meter = new CombinedMeter("Combined Meter", 4, 4, nWidth - 8, nCrestFactor, nInputChannels, nSegmentHeight - 1);
         addAndMakeVisible(combined_meter);
-
-        nHeight = combined_meter->getPreferredHeight() + 8;
     }
 }
 
@@ -92,28 +83,57 @@ TraKmeter::~TraKmeter()
 }
 
 
-void TraKmeter::visibilityChanged()
+void TraKmeter::applySkin(Skin *pSkin)
 {
-    setBounds(nPosX, nPosY, nWidth, nHeight);
-}
+    // if (nInputChannels == 2)
+    // {
+    //     pSkin->placeComponent(peak_meter[0], "meter_kmeter_left");
+    //     pSkin->placeAndSkinStateLabel(OverflowMeters[0], "label_over_left");
+    //     pSkin->placeAndSkinStateLabel(MaximumPeakLabels[0], "label_peak_left");
 
+    //     pSkin->placeComponent(LevelMeters[1], "meter_kmeter_right");
+    //     pSkin->placeAndSkinStateLabel(OverflowMeters[1], "label_over_right");
+    //     pSkin->placeAndSkinStateLabel(MaximumPeakLabels[1], "label_peak_right");
+    // }
+    // else if (nInputChannels == 6)
+    // {
+    //     pSkin->placeComponent(LevelMeters[0], "meter_kmeter_left");
+    //     pSkin->placeAndSkinStateLabel(OverflowMeters[0], "label_over_left");
+    //     pSkin->placeAndSkinStateLabel(MaximumPeakLabels[0], "label_peak_left");
 
-void TraKmeter::paint(Graphics &g)
-{
-    int x = 4;
-    int y = 0;
+    //     pSkin->placeComponent(LevelMeters[1], "meter_kmeter_right");
+    //     pSkin->placeAndSkinStateLabel(OverflowMeters[1], "label_over_right");
+    //     pSkin->placeAndSkinStateLabel(MaximumPeakLabels[1], "label_peak_right");
 
-    g.setColour(Colours::grey.withAlpha(0.1f));
-    g.fillRect(x - 4, y, nWidth, nHeight + 1);
+    //     pSkin->placeComponent(LevelMeters[2], "meter_kmeter_center");
+    //     pSkin->placeAndSkinStateLabel(OverflowMeters[2], "label_over_center");
+    //     pSkin->placeAndSkinStateLabel(MaximumPeakLabels[2], "label_peak_center");
 
-    g.setColour(Colours::darkgrey);
-    g.drawRect(x - 4, y, nWidth - 1, nHeight - 1);
+    //     pSkin->placeComponent(LevelMeters[3], "meter_kmeter_lfe");
+    //     pSkin->placeAndSkinStateLabel(OverflowMeters[3], "label_over_lfe");
+    //     pSkin->placeAndSkinStateLabel(MaximumPeakLabels[3], "label_peak_lfe");
 
-    g.setColour(Colours::darkgrey.darker(0.7f));
-    g.drawRect(x - 3, y + 1, nWidth - 1, nHeight - 1);
+    //     pSkin->placeComponent(LevelMeters[4], "meter_kmeter_ls");
+    //     pSkin->placeAndSkinStateLabel(OverflowMeters[4], "label_over_ls");
+    //     pSkin->placeAndSkinStateLabel(MaximumPeakLabels[4], "label_peak_ls");
 
-    g.setColour(Colours::darkgrey.darker(0.4f));
-    g.drawRect(x - 3, y + 1, nWidth - 2, nHeight - 2);
+    //     pSkin->placeComponent(LevelMeters[5], "meter_kmeter_rs");
+    //     pSkin->placeAndSkinStateLabel(OverflowMeters[5], "label_over_rs");
+    //     pSkin->placeAndSkinStateLabel(MaximumPeakLabels[5], "label_peak_rs");
+    // }
+    // else
+    // {
+    //     DBG("[K-Meter] channel configuration (" + String(nInputChannels) + " channels) not supported");
+    // }
+
+    // Component *parent = getParentComponent();
+
+    // if (parent != nullptr)
+    // {
+    //     setBounds(0, 0, parent->getWidth(), parent->getHeight());
+    // }
+
+    pSkin->placeComponent(this, "meter_graduation");
 }
 
 

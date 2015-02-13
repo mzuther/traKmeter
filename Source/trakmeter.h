@@ -36,6 +36,7 @@ class SignalMeter;
 #include "combined_meter.h"
 #include "peak_meter.h"
 #include "signal_meter.h"
+#include "skin.h"
 
 
 //==============================================================================
@@ -51,20 +52,14 @@ public:
     ~TraKmeter();
 
     void setLevels(MeterBallistics *pMeterBallistics);
-    void paint(Graphics &g);
+    void applySkin(Skin *pSkin);
     void resized();
-    void visibilityChanged();
 
 private:
     JUCE_LEAK_DETECTOR(TraKmeter);
 
-    int nPosX;
-    int nPosY;
-    int nHeight;
-    int nWidth;
-
-    int nMeterType;
     int nInputChannels;
+    int nMeterType;
 
     CombinedMeter *combined_meter;
 

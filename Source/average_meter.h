@@ -39,11 +39,10 @@
 class AverageMeter : public Component
 {
 public:
-    AverageMeter(const String &componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
+    AverageMeter(const String &componentName, int PosX, int PosY, int width, int nCrestFactor, int nNumChannels, int nSegmentHeight);
     ~AverageMeter();
 
     void setLevels(MeterBallistics *pMeterBallistics);
-    void paint(Graphics &g);
     int getPreferredHeight();
     void resized();
     void visibilityChanged();
@@ -51,23 +50,14 @@ public:
 private:
     JUCE_LEAK_DETECTOR(AverageMeter);
 
-    int nNumberOfBars;
-
     int nPosX;
     int nPosY;
     int nHeight;
     int nWidth;
 
-    int nSegmentHeight;
-    int nMeterPositionBottom;
-    int nMeterHeight;
-
-    int nCrestFactor;
     int nInputChannels;
 
     MeterBarAverage **LevelMeters;
-
-    void drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour);
 };
 
 

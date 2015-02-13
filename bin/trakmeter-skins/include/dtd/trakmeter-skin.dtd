@@ -1,0 +1,343 @@
+<!ENTITY % main_components
+          "button_split,
+           button_k20,
+           button_transient,
+           button_mixing,
+           button_skin,
+           button_reset,
+           button_validate,
+           button_about,
+           slider_gain,
+           label_debug
+">
+
+<!ENTITY % main_components_optional
+          "button_split?,
+           button_k20?,
+           button_transient?,
+           button_mixing?,
+           button_skin?,
+           button_reset?,
+           button_validate?,
+           button_about?,
+           slider_gain?,
+           label_debug?
+">
+
+<!ENTITY % trakmeter_background
+          "background,
+           meter_graduation*
+">
+
+<!ENTITY % trakmeter_components_stereo
+          "meter_peak_1,
+           meter_peak_2,
+           meter_average_1,
+           meter_average_2
+">
+
+<!ENTITY % trakmeter_components_multi
+          "meter_peak_1,
+           meter_peak_2,
+           meter_peak_3,
+           meter_peak_4,
+           meter_peak_5,
+           meter_peak_6,
+           meter_peak_7,
+           meter_peak_8,
+           meter_average_1,
+           meter_average_2,
+           meter_average_3,
+           meter_average_4,
+           meter_average_5,
+           meter_average_6,
+           meter_average_7,
+           meter_average_8
+">
+
+<!ENTITY % split_components_stereo
+          "label_signal_1,
+           label_signal_2
+">
+
+<!ENTITY % split_components_multi
+          "label_signal_1,
+           label_signal_2,
+           label_signal_3,
+           label_signal_4,
+           label_signal_5,
+           label_signal_6,
+           label_signal_7,
+           label_signal_8
+">
+
+<!ENTITY % split_components_stereo_optional
+          "label_signal_1?,
+           label_signal_2?
+">
+
+<!ENTITY % split_components_multi_optional
+          "label_signal_1?,
+           label_signal_2?,
+           label_signal_3?,
+           label_signal_4?,
+           label_signal_5?,
+           label_signal_6?,
+           label_signal_7?,
+           label_signal_8?
+">
+
+<!ENTITY % combined_components_stereo
+          "label_over_1,
+           label_over_2
+">
+
+<!ENTITY % combined_components_multi
+          "label_over_1,
+           label_over_2,
+           label_over_3,
+           label_over_4,
+           label_over_5,
+           label_over_6,
+           label_over_7,
+           label_over_8
+">
+
+<!ENTITY % combined_components_stereo_optional
+          "label_over_1?,
+           label_over_2?
+">
+
+<!ENTITY % combined_components_multi_optional
+          "label_over_1?,
+           label_over_2?,
+           label_over_3?,
+           label_over_4?,
+           label_over_5?,
+           label_over_6?,
+           label_over_7?,
+           label_over_8?
+">
+
+<!ENTITY % attrs_image_size
+          "width CDATA #REQUIRED
+           height CDATA #REQUIRED
+">
+
+<!ENTITY % attrs_image_position
+          "x CDATA #REQUIRED
+           y CDATA #REQUIRED
+           %attrs_image_size;
+">
+
+<!ENTITY % attrs_image_spacing
+          "spacing_left CDATA #IMPLIED
+           spacing_top CDATA #IMPLIED
+">
+
+<!ENTITY % attrs_font
+          "font_size CDATA #IMPLIED
+">
+
+<!ENTITY % attrs_background
+          "%attrs_image_size;
+           image CDATA #REQUIRED
+">
+
+<!ENTITY % attrs_meter_graduation
+          "%attrs_image_position;
+           image CDATA #REQUIRED
+">
+
+<!ENTITY % attrs_button
+          "%attrs_image_position;
+           image_on CDATA #REQUIRED
+           image_off CDATA #REQUIRED
+">
+
+<!ENTITY % attrs_slider
+          "%attrs_image_position;
+           image CDATA #REQUIRED
+">
+
+<!ENTITY % attrs_label
+          "%attrs_image_position;
+           image CDATA #REQUIRED
+">
+
+<!ENTITY % attrs_state_label
+          "%attrs_image_position;
+           %attrs_image_spacing;
+           %attrs_font;
+           image_on CDATA #REQUIRED
+           image_off CDATA #REQUIRED
+           image_detected CDATA #REQUIRED
+">
+
+<!ENTITY % attrs_meter
+          "%attrs_image_position;
+           image CDATA #REQUIRED
+">
+
+<!ELEMENT trakmeter-skin (default,
+                       stereo_split?, stereo_split_k20, stereo_split_normal,
+                       stereo_combined?, stereo_combined_k20, stereo_combined_normal,
+                       multi_split?, multi_split_k20, multi_split_normal,
+                       multi_combined?, multi_combined_k20, multi_combined_normal)>
+    <!ATTLIST trakmeter-skin
+              name CDATA #REQUIRED
+              orientation (vertical | horizontal) #REQUIRED
+              path CDATA #REQUIRED
+              version CDATA "1.0"
+    >
+
+    <!ELEMENT default (%main_components;)>
+
+    <!ELEMENT stereo_split (%main_components_optional;, %trakmeter_components_stereo;, %split_components_stereo;)>
+    <!ELEMENT stereo_combined (%main_components_optional;, %trakmeter_components_stereo;, %combined_components_stereo;)>
+    <!ELEMENT multi_split (%main_components_optional;, %trakmeter_components_multi;, %split_components_multi;)>
+    <!ELEMENT multi_combined (%main_components_optional;, %trakmeter_components_multi;, %combined_components_multi;)>
+
+    <!ELEMENT stereo_split_k20 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+    <!ELEMENT stereo_split_normal (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+
+    <!ELEMENT stereo_combined_k20 (%trakmeter_background;, %main_components_optional;, %combined_components_stereo_optional;)>
+    <!ELEMENT stereo_combined_normal (%trakmeter_background;, %main_components_optional;, %combined_components_stereo_optional;)>
+
+    <!ELEMENT multi_split_k20 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
+    <!ELEMENT multi_split_normal (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
+
+    <!ELEMENT multi_combined_k20 (%trakmeter_background;, %main_components_optional;, %combined_components_multi_optional;)>
+    <!ELEMENT multi_combined_normal (%trakmeter_background;, %main_components_optional;, %combined_components_multi_optional;)>
+
+        <!ELEMENT background (#PCDATA)>
+            <!ATTLIST background %attrs_background;>
+
+        <!ELEMENT meter_graduation (#PCDATA)>
+            <!ATTLIST meter_graduation %attrs_meter_graduation;>
+
+        <!ELEMENT button_split (#PCDATA)>
+            <!ATTLIST button_split %attrs_button;>
+
+        <!ELEMENT button_k20 (#PCDATA)>
+            <!ATTLIST button_k20 %attrs_button;>
+
+        <!ELEMENT button_transient (#PCDATA)>
+            <!ATTLIST button_transient %attrs_button;>
+
+        <!ELEMENT button_mixing (#PCDATA)>
+            <!ATTLIST button_mixing %attrs_button;>
+
+        <!ELEMENT button_skin (#PCDATA)>
+            <!ATTLIST button_skin %attrs_button;>
+
+        <!ELEMENT button_reset (#PCDATA)>
+            <!ATTLIST button_reset %attrs_button;>
+
+        <!ELEMENT button_validate (#PCDATA)>
+            <!ATTLIST button_validate %attrs_button;>
+
+        <!ELEMENT button_about (#PCDATA)>
+            <!ATTLIST button_about %attrs_button;>
+
+        <!ELEMENT slider_gain (#PCDATA)>
+            <!ATTLIST slider_gain %attrs_slider;>
+
+        <!ELEMENT label_debug (#PCDATA)>
+            <!ATTLIST label_debug %attrs_label;>
+
+        <!ELEMENT label_over_1 (#PCDATA)>
+            <!ATTLIST label_over_1 %attrs_state_label;>
+
+        <!ELEMENT label_over_2 (#PCDATA)>
+            <!ATTLIST label_over_2 %attrs_state_label;>
+
+        <!ELEMENT label_over_3 (#PCDATA)>
+            <!ATTLIST label_over_3 %attrs_state_label;>
+
+        <!ELEMENT label_over_4 (#PCDATA)>
+            <!ATTLIST label_over_4 %attrs_state_label;>
+
+        <!ELEMENT label_over_5 (#PCDATA)>
+            <!ATTLIST label_over_5 %attrs_state_label;>
+
+        <!ELEMENT label_over_6 (#PCDATA)>
+            <!ATTLIST label_over_6 %attrs_state_label;>
+
+        <!ELEMENT label_over_7 (#PCDATA)>
+            <!ATTLIST label_over_7 %attrs_state_label;>
+
+        <!ELEMENT label_over_8 (#PCDATA)>
+            <!ATTLIST label_over_8 %attrs_state_label;>
+
+        <!ELEMENT label_signal_1 (#PCDATA)>
+            <!ATTLIST label_signal_1 %attrs_label;>
+
+        <!ELEMENT label_signal_2 (#PCDATA)>
+            <!ATTLIST label_signal_2 %attrs_label;>
+
+        <!ELEMENT label_signal_3 (#PCDATA)>
+            <!ATTLIST label_signal_3 %attrs_label;>
+
+        <!ELEMENT label_signal_4 (#PCDATA)>
+            <!ATTLIST label_signal_4 %attrs_label;>
+
+        <!ELEMENT label_signal_5 (#PCDATA)>
+            <!ATTLIST label_signal_5 %attrs_label;>
+
+        <!ELEMENT label_signal_6 (#PCDATA)>
+            <!ATTLIST label_signal_6 %attrs_label;>
+
+        <!ELEMENT label_signal_7 (#PCDATA)>
+            <!ATTLIST label_signal_7 %attrs_label;>
+
+        <!ELEMENT label_signal_8 (#PCDATA)>
+            <!ATTLIST label_signal_8 %attrs_label;>
+
+        <!ELEMENT meter_peak_1 (#PCDATA)>
+            <!ATTLIST meter_peak_1 %attrs_meter;>
+
+        <!ELEMENT meter_peak_2 (#PCDATA)>
+            <!ATTLIST meter_peak_2 %attrs_meter;>
+
+        <!ELEMENT meter_peak_3 (#PCDATA)>
+            <!ATTLIST meter_peak_3 %attrs_meter;>
+
+        <!ELEMENT meter_peak_4 (#PCDATA)>
+            <!ATTLIST meter_peak_4 %attrs_meter;>
+
+        <!ELEMENT meter_peak_5 (#PCDATA)>
+            <!ATTLIST meter_peak_5 %attrs_meter;>
+
+        <!ELEMENT meter_peak_6 (#PCDATA)>
+            <!ATTLIST meter_peak_6 %attrs_meter;>
+
+        <!ELEMENT meter_peak_7 (#PCDATA)>
+            <!ATTLIST meter_peak_7 %attrs_meter;>
+
+        <!ELEMENT meter_peak_8 (#PCDATA)>
+            <!ATTLIST meter_peak_8 %attrs_meter;>
+
+        <!ELEMENT meter_average_1 (#PCDATA)>
+            <!ATTLIST meter_average_1 %attrs_meter;>
+
+        <!ELEMENT meter_average_2 (#PCDATA)>
+            <!ATTLIST meter_average_2 %attrs_meter;>
+
+        <!ELEMENT meter_average_3 (#PCDATA)>
+            <!ATTLIST meter_average_3 %attrs_meter;>
+
+        <!ELEMENT meter_average_4 (#PCDATA)>
+            <!ATTLIST meter_average_4 %attrs_meter;>
+
+        <!ELEMENT meter_average_5 (#PCDATA)>
+            <!ATTLIST meter_average_5 %attrs_meter;>
+
+        <!ELEMENT meter_average_6 (#PCDATA)>
+            <!ATTLIST meter_average_6 %attrs_meter;>
+
+        <!ELEMENT meter_average_7 (#PCDATA)>
+            <!ATTLIST meter_average_7 %attrs_meter;>
+
+        <!ELEMENT meter_average_8 (#PCDATA)>
+            <!ATTLIST meter_average_8 %attrs_meter;>

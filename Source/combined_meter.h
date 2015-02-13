@@ -40,11 +40,10 @@
 class CombinedMeter : public Component
 {
 public:
-    CombinedMeter(const String &componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels, int segment_height);
+    CombinedMeter(const String &componentName, int PosX, int PosY, int width, int nCrestFactor, int nNumChannels, int nSegmentHeight);
     ~CombinedMeter();
 
     void setLevels(MeterBallistics *pMeterBallistics);
-    void paint(Graphics &g);
     int getPreferredHeight();
     void resized();
     void visibilityChanged();
@@ -52,27 +51,19 @@ public:
 private:
     JUCE_LEAK_DETECTOR(CombinedMeter);
 
-    int nNumberOfBars;
-
     int nPosX;
     int nPosY;
     int nHeight;
     int nWidth;
 
-    int nSegmentHeight;
     int nPeakLabelHeight;
-    int nPeakMeterSegmentWidth;
     int nMeterPositionTop;
-    int nMeterHeight;
 
-    int nCrestFactor;
     int nInputChannels;
 
     MeterBarAverage **AverageMeters;
     MeterBarPeak **PeakMeters;
     MeterSegmentOverload **MeterSegmentOverloads;
-
-    void drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height, const Colour &colour);
 };
 
 

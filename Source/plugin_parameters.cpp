@@ -139,6 +139,30 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     ParameterValidationCSVFormat->setName("Validation: CSV output format");
     ParameterValidationCSVFormat->setDefaultBoolean(false, true);
     add(ParameterValidationCSVFormat, selValidationCSVFormat);
+
+
+    // the following may or may not work on Mac
+    File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
+    File fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter-skins/");
+
+    // file defining the default skin's name
+    File fileDefaultSkin = fileSkinDirectory.getChildFile("default_skin.ini");
+
+    // create file if necessary
+    if (!fileDefaultSkin.existsAsFile())
+    {
+        fileDefaultSkin.create();
+
+        // set "Default" as default skin
+        fileDefaultSkin.replaceWithText("Default", true, true);
+    }
+
+    // load name of default skin
+    String strDefaultSkinName = fileDefaultSkin.loadFileAsString();
+
+    WrappedParameterString *ParameterSkinName = new WrappedParameterString(strDefaultSkinName);
+    ParameterSkinName->setName("Skin");
+    add(ParameterSkinName, selSkinName);
 }
 
 
@@ -183,6 +207,18 @@ void TraKmeterPluginParameters::setValidationFile(File &fileValidation)
         String strFilename = fileValidation.getFullPathName();
         setText(selValidationFileName, strFilename);
     }
+}
+
+
+String TraKmeterPluginParameters::getSkinName()
+{
+    return getText(selSkinName);
+}
+
+
+void TraKmeterPluginParameters::setSkinName(String &strSkinName)
+{
+    setText(selSkinName, strSkinName);
 }
 
 

@@ -10,6 +10,8 @@
 .Rhistory
 
 bin/*
+bin/trakmeter-skins/default_skin.ini
+!bin/trakmeter-skins/
 !bin/trakmeter_lv2/
 !bin/trakmeter_lv2_x64/
 !bin/final/

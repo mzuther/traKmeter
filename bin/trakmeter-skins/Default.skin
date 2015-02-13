@@ -1,0 +1,845 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE trakmeter-skin SYSTEM "include/dtd/trakmeter-skin.dtd">
+<?xml-stylesheet type="text/xsl" href="include/xslt/skin_svg.xslt"?>
+
+<trakmeter-skin
+    name="Legacy"
+    orientation="vertical"
+    path="Legacy"
+    version="1.0">
+
+    <default>
+        <button_split
+            x="152"
+            y="45"
+            width="60"
+            height="20"
+            image_on="buttons/button_split_on.png"
+            image_off="buttons/button_split_off.png"
+        />
+
+        <button_k20
+            x="152"
+            y="70"
+            width="60"
+            height="20"
+            image_on="buttons/button_k20_on.png"
+            image_off="buttons/button_k20_off.png"
+        />
+
+        <button_transient
+            x="152"
+            y="95"
+            width="60"
+            height="20"
+            image_on="buttons/button_transient_on.png"
+            image_off="buttons/button_transient_off.png"
+        />
+
+        <button_mixing
+            x="152"
+            y="120"
+            width="60"
+            height="20"
+            image_on="buttons/button_mixing_on.png"
+            image_off="buttons/button_mixing_off.png"
+        />
+
+        <button_skin
+            x="152"
+            y="204"
+            width="60"
+            height="20"
+            image_on="buttons/button_skin_on.png"
+            image_off="buttons/button_skin_off.png"
+        />
+
+        <button_reset
+            x="152"
+            y="10"
+            width="60"
+            height="20"
+            image_on="buttons/button_reset_on.png"
+            image_off="buttons/button_reset_off.png"
+        />
+
+        <button_validate
+            x="152"
+            y="229"
+            width="60"
+            height="20"
+            image_on="buttons/button_validate_on.png"
+            image_off="buttons/button_validate_off.png"
+        />
+
+        <button_about
+            x="152"
+            y="254"
+            width="60"
+            height="20"
+            image_on="buttons/button_about_on.png"
+            image_off="buttons/button_about_off.png"
+        />
+
+        <slider_gain
+            x="157"
+            y="145"
+            width="50"
+            height="50"
+            image="sliders/slider_gain.png"
+        />
+
+        <label_debug
+            x="160"
+            y="163"
+            width="44"
+            height="11"
+            image="labels/label_debug.png"
+        />
+    </default>
+
+    <stereo_split>
+        <meter_peak_1
+            x="51"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_peak_2
+            x="75"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_average_1
+            x="51"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <meter_average_2
+            x="75"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <label_signal_1
+            x="51"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_left.png" />
+
+        <label_signal_2
+            x="75"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_right.png" />
+    </stereo_split>
+
+    <stereo_split_k20>
+        <background
+            width="222"
+            height="285"
+            image="backgrounds/stereo/background.png" />
+
+        <meter_graduation
+            x="10"
+            y="10"
+            width="129"
+            height="264"
+            image="backgrounds/stereo/graduation_split_k20.png"
+        />
+    </stereo_split_k20>
+
+    <stereo_split_normal>
+        <background
+            width="222"
+            height="285"
+            image="backgrounds/stereo/background.png" />
+
+        <meter_graduation
+            x="10"
+            y="10"
+            width="129"
+            height="264"
+            image="backgrounds/stereo/graduation_split_normal.png"
+        />
+    </stereo_split_normal>
+
+    <stereo_combined>
+        <meter_peak_1
+            x="51"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_peak_2
+            x="91"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_average_1
+            x="58"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <meter_average_2
+            x="75"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <label_over_1
+            x="51"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_2
+            x="75"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+    </stereo_combined>
+
+    <stereo_combined_k20>
+        <background
+            width="222"
+            height="285"
+            image="backgrounds/stereo/background.png" />
+
+        <meter_graduation
+            x="10"
+            y="10"
+            width="129"
+            height="264"
+            image="backgrounds/stereo/graduation_combined_k20.png"
+        />
+    </stereo_combined_k20>
+
+    <stereo_combined_normal>
+        <background
+            width="222"
+            height="285"
+            image="backgrounds/stereo/background.png" />
+
+        <meter_graduation
+            x="10"
+            y="10"
+            width="129"
+            height="264"
+            image="backgrounds/stereo/graduation_combined_normal.png"
+        />
+    </stereo_combined_normal>
+
+    <multi_split>
+        <button_split
+            x="320"
+            y="45"
+            width="60"
+            height="20"
+            image_on="buttons/button_split_on.png"
+            image_off="buttons/button_split_off.png"
+        />
+
+        <button_k20
+            x="320"
+            y="70"
+            width="60"
+            height="20"
+            image_on="buttons/button_k20_on.png"
+            image_off="buttons/button_k20_off.png"
+        />
+
+        <button_transient
+            x="320"
+            y="95"
+            width="60"
+            height="20"
+            image_on="buttons/button_transient_on.png"
+            image_off="buttons/button_transient_off.png"
+        />
+
+        <button_mixing
+            x="320"
+            y="120"
+            width="60"
+            height="20"
+            image_on="buttons/button_mixing_on.png"
+            image_off="buttons/button_mixing_off.png"
+        />
+
+        <button_skin
+            x="320"
+            y="204"
+            width="60"
+            height="20"
+            image_on="buttons/button_skin_on.png"
+            image_off="buttons/button_skin_off.png"
+        />
+
+        <button_reset
+            x="320"
+            y="10"
+            width="60"
+            height="20"
+            image_on="buttons/button_reset_on.png"
+            image_off="buttons/button_reset_off.png"
+        />
+
+        <button_validate
+            x="320"
+            y="229"
+            width="60"
+            height="20"
+            image_on="buttons/button_validate_on.png"
+            image_off="buttons/button_validate_off.png"
+        />
+
+        <button_about
+            x="320"
+            y="254"
+            width="60"
+            height="20"
+            image_on="buttons/button_about_on.png"
+            image_off="buttons/button_about_off.png"
+        />
+
+        <slider_gain
+            x="325"
+            y="145"
+            width="50"
+            height="50"
+            image="sliders/slider_gain.png"
+        />
+
+        <label_debug
+            x="328"
+            y="163"
+            width="44"
+            height="11"
+            image="labels/label_debug.png"
+        />
+
+        <meter_peak_1
+            x="51"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_peak_2
+            x="75"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_peak_3
+            x="107"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_peak_4
+            x="131"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_peak_5
+            x="163"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_peak_6
+            x="187"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_peak_7
+            x="219"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_peak_8
+            x="243"
+            y="35"
+            width="22"
+            height="101"
+            image="meters/meter_bar_split_peak.png" />
+
+        <meter_average_1
+            x="51"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <meter_average_2
+            x="75"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <meter_average_3
+            x="107"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <meter_average_4
+            x="131"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <meter_average_5
+            x="163"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <meter_average_6
+            x="187"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <meter_average_7
+            x="219"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <meter_average_8
+            x="243"
+            y="167"
+            width="22"
+            height="81"
+            image="meters/meter_bar_split_average.png" />
+
+        <label_signal_1
+            x="51"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_1.png" />
+
+        <label_signal_2
+            x="75"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_2.png" />
+
+        <label_signal_3
+            x="107"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_3.png" />
+
+        <label_signal_4
+            x="131"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_4.png" />
+
+        <label_signal_5
+            x="163"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_5.png" />
+
+        <label_signal_6
+            x="187"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_6.png" />
+
+        <label_signal_7
+            x="219"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_7.png" />
+
+        <label_signal_8
+            x="243"
+            y="145"
+            width="22"
+            height="13"
+            image="labels/label_signal_8.png" />
+    </multi_split>
+
+    <multi_split_k20>
+        <background
+            width="390"
+            height="285"
+            image="backgrounds/multi/background.png" />
+
+        <meter_graduation
+            x="10"
+            y="10"
+            width="297"
+            height="264"
+            image="backgrounds/multi/graduation_split_k20.png"
+        />
+    </multi_split_k20>
+
+    <multi_split_normal>
+        <background
+            width="390"
+            height="285"
+            image="backgrounds/multi/background.png" />
+
+        <meter_graduation
+            x="10"
+            y="10"
+            width="297"
+            height="264"
+            image="backgrounds/multi/graduation_split_normal.png"
+        />
+    </multi_split_normal>
+
+    <multi_combined>
+        <button_split
+            x="320"
+            y="45"
+            width="60"
+            height="20"
+            image_on="buttons/button_split_on.png"
+            image_off="buttons/button_split_off.png"
+        />
+
+        <button_k20
+            x="320"
+            y="70"
+            width="60"
+            height="20"
+            image_on="buttons/button_k20_on.png"
+            image_off="buttons/button_k20_off.png"
+        />
+
+        <button_transient
+            x="320"
+            y="95"
+            width="60"
+            height="20"
+            image_on="buttons/button_transient_on.png"
+            image_off="buttons/button_transient_off.png"
+        />
+
+        <button_mixing
+            x="320"
+            y="120"
+            width="60"
+            height="20"
+            image_on="buttons/button_mixing_on.png"
+            image_off="buttons/button_mixing_off.png"
+        />
+
+        <button_skin
+            x="320"
+            y="204"
+            width="60"
+            height="20"
+            image_on="buttons/button_skin_on.png"
+            image_off="buttons/button_skin_off.png"
+        />
+
+        <button_reset
+            x="320"
+            y="10"
+            width="60"
+            height="20"
+            image_on="buttons/button_reset_on.png"
+            image_off="buttons/button_reset_off.png"
+        />
+
+        <button_validate
+            x="320"
+            y="229"
+            width="60"
+            height="20"
+            image_on="buttons/button_validate_on.png"
+            image_off="buttons/button_validate_off.png"
+        />
+
+        <button_about
+            x="320"
+            y="254"
+            width="60"
+            height="20"
+            image_on="buttons/button_about_on.png"
+            image_off="buttons/button_about_off.png"
+        />
+
+        <slider_gain
+            x="325"
+            y="145"
+            width="50"
+            height="50"
+            image="sliders/slider_gain.png"
+        />
+
+        <label_debug
+            x="328"
+            y="163"
+            width="44"
+            height="11"
+            image="labels/label_debug.png"
+        />
+
+        <meter_peak_1
+            x="51"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_peak_2
+            x="91"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_peak_3
+            x="107"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_peak_4
+            x="147"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_peak_5
+            x="163"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_peak_6
+            x="203"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_peak_7
+            x="219"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_peak_8
+            x="259"
+            y="31"
+            width="6"
+            height="235"
+            image="meters/meter_bar_combined_peak.png" />
+
+        <meter_average_1
+            x="58"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <meter_average_2
+            x="75"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <meter_average_3
+            x="114"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <meter_average_4
+            x="131"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <meter_average_5
+            x="170"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <meter_average_6
+            x="187"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <meter_average_7
+            x="226"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <meter_average_8
+            x="243"
+            y="31"
+            width="15"
+            height="235"
+            image="meters/meter_bar_combined_average.png" />
+
+        <label_over_1
+            x="51"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_2
+            x="75"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_3
+            x="107"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_4
+            x="131"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_5
+            x="163"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_6
+            x="187"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_7
+            x="219"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+
+        <label_over_8
+            x="243"
+            y="18"
+            width="22"
+            height="11"
+            image_on="labels/label_over_on.png"
+            image_off="labels/label_over_off.png"
+            image_detected="labels/label_over_detected.png" />
+    </multi_combined>
+
+    <multi_combined_k20>
+        <background
+            width="390"
+            height="285"
+            image="backgrounds/multi/background.png" />
+
+        <meter_graduation
+            x="10"
+            y="10"
+            width="297"
+            height="264"
+            image="backgrounds/multi/graduation_combined_k20.png"
+        />
+    </multi_combined_k20>
+
+    <multi_combined_normal>
+        <background
+            width="390"
+            height="285"
+            image="backgrounds/multi/background.png" />
+
+        <meter_graduation
+            x="10"
+            y="10"
+            width="297"
+            height="264"
+            image="backgrounds/multi/graduation_combined_normal.png"
+        />
+    </multi_combined_normal>
+
+</trakmeter-skin>

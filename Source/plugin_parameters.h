@@ -41,10 +41,13 @@ public:
     TraKmeterPluginParameters();
     ~TraKmeterPluginParameters();
 
+    int getNumParameters(bool bIncludeHiddenParameters);
+
     File getValidationFile();
     void setValidationFile(File &fileValidation);
 
-    int getNumParameters(bool bIncludeHiddenParameters);
+    String getSkinName();
+    void setSkinName(String &strSkinName);
 
     enum Parameters  // public namespace!
     {
@@ -61,6 +64,7 @@ public:
         selValidationAverageMeterLevel,
         selValidationPeakMeterLevel,
         selValidationCSVFormat,
+        selSkinName,
 
         nNumParametersComplete,
 

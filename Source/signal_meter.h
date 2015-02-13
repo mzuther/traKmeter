@@ -38,11 +38,10 @@
 class SignalMeter : public Component
 {
 public:
-    SignalMeter(const String &componentName, int PosX, int PosY, int width, int CrestFactor, int nNumChannels);
+    SignalMeter(const String &componentName, int PosX, int PosY, int width, int nCrestFactor, int nNumChannels);
     ~SignalMeter();
 
     void setLevels(MeterBallistics *pMeterBallistics);
-    void paint(Graphics &g);
     int getPreferredHeight();
     void resized();
     void visibilityChanged();
@@ -55,15 +54,9 @@ private:
     int nHeight;
     int nWidth;
 
-    int nSegmentHeight;
-    int nMeterHeight;
-
-    int nCrestFactor;
     int nInputChannels;
 
     MeterSignalLed **PeakMeterSignals;
-
-    void drawMarkers(Graphics &g, String &strMarker, int x, int y, int width, int height);
 };
 
 
