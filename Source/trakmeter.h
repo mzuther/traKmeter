@@ -30,7 +30,7 @@
 #include "meter_ballistics.h"
 #include "meter_bar_average.h"
 #include "meter_bar_peak.h"
-#include "meter_segment_overload.h"
+#include "overload_meter.h"
 #include "meter_signal_led.h"
 #include "skin.h"
 
@@ -60,7 +60,7 @@ private:
 
     MeterBarAverage **AverageMeters;
     MeterBarPeak **PeakMeters;
-    MeterSegmentOverload **MeterSegmentOverloads;
+    OverloadMeter **OverloadMeters;
 
     MeterSignalLed **PeakMeterSignals;
 };

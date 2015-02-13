@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{9BB286D8-62AC-72BE-B96A-E60CDD4D5CA5}</ProjectGuid>
+		<ProjectGuid>{1DE8B8D8-4BE5-AC03-2044-5DA88827E5DB}</ProjectGuid>
 		<RootNamespace>VST Plug-in (Stereo)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -217,6 +217,7 @@
 		<ClInclude Include="..\..\..\Source\channel_slider.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_average.h" />
 		<ClInclude Include="..\..\..\Source\trakmeter.h" />
+		<ClInclude Include="..\..\..\Source\overload_meter.h" />
 		<ClInclude Include="..\..\..\Source\meter_segment.h" />
 		<ClInclude Include="..\..\..\Source\audio_ring_buffer.h" />
 		<ClInclude Include="..\..\..\Source\state_label.h" />
@@ -226,7 +227,6 @@
 		<ClInclude Include="..\..\..\Source\meter_bar_peak.h" />
 		<ClInclude Include="..\..\..\Source\audio_file_player.h" />
 		<ClInclude Include="..\..\..\Source\plugin_parameters.h" />
-		<ClInclude Include="..\..\..\Source\meter_segment_overload.h" />
 		<ClInclude Include="..\..\..\Source\skin.h" />
 		<ClInclude Include="..\..\..\Source\mz_tools.h" />
 		<ClInclude Include="..\..\..\Source\meter_signal_led.h" />
@@ -248,8 +248,6 @@
 		<ClInclude Include="..\..\..\Source\resources\resources.h" />
 	</ItemGroup>
 	<ItemGroup>
-		<ClCompile Include="..\..\..\Source\meter_segment_overload.cpp">
-		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_segment.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\plugin_processor.cpp">
@@ -287,6 +285,8 @@
 		<ClCompile Include="..\..\..\Source\trakmeter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\dither.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\overload_meter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\channel_slider.cpp">
 		</ClCompile>

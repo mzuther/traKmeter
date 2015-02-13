@@ -246,9 +246,9 @@
 
 					<xsl:with-param name="component_state">
 						<xsl:choose>
-							<xsl:when test="ends-with($label, '_1')">detected</xsl:when>
+							<xsl:when test="ends-with($label, '_1')">on</xsl:when>
 
-							<xsl:when test="ends-with($label, '_3')">on</xsl:when>
+							<xsl:when test="ends-with($label, '_3')">active</xsl:when>
 
 							<xsl:otherwise>off</xsl:otherwise>
 						</xsl:choose>
@@ -299,8 +299,8 @@
 							<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($node)/*/@path, '/', ($node/@image_on))" /></xsl:attribute>
 						</xsl:when>
 
-						<xsl:when test="$component_state = 'detected'">
-							<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($node)/*/@path, '/', ($node/@image_detected))" /></xsl:attribute>
+						<xsl:when test="$component_state = 'active'">
+							<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($node)/*/@path, '/', ($node/@image_active))" /></xsl:attribute>
 						</xsl:when>
 
 						<xsl:otherwise>
@@ -319,8 +319,8 @@
 									<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($fallback_1)/*/@path, '/', ($fallback_1/@image_on))" /></xsl:attribute>
 								</xsl:when>
 
-								<xsl:when test="$component_state = 'detected'">
-									<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($fallback_1)/*/@path, '/', ($fallback_1/@image_detected))" /></xsl:attribute>
+								<xsl:when test="$component_state = 'active'">
+									<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($fallback_1)/*/@path, '/', ($fallback_1/@image_active))" /></xsl:attribute>
 								</xsl:when>
 
 								<xsl:otherwise>
@@ -337,8 +337,8 @@
 									<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($fallback_2)/*/@path, '/', ($fallback_2/@image_on))" /></xsl:attribute>
 								</xsl:when>
 
-								<xsl:when test="$component_state = 'detected'">
-									<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($fallback_2)/*/@path, '/', ($fallback_2/@image_detected))" /></xsl:attribute>
+								<xsl:when test="$component_state = 'active'">
+									<xsl:attribute name="xlink:href"><xsl:value-of select="concat(root($fallback_2)/*/@path, '/', ($fallback_2/@image_active))" /></xsl:attribute>
 								</xsl:when>
 
 								<xsl:otherwise>

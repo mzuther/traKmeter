@@ -147,9 +147,11 @@
           "%attrs_image_position;
            %attrs_image_spacing;
            %attrs_font;
+           colour_on CDATA #IMPLIED
+           colour_active CDATA #IMPLIED
+           image_active CDATA #REQUIRED
            image_on CDATA #REQUIRED
            image_off CDATA #REQUIRED
-           image_detected CDATA #REQUIRED
 ">
 
 <!ENTITY % attrs_meter

@@ -304,19 +304,8 @@ void Skin::placeAndSkinStateLabel(StateLabel *label, String strXmlTag)
         int spacing_top = xmlLabel->getIntAttribute("spacing_top", 0);
         int font_size = xmlLabel->getIntAttribute("font_size", 12);
 
-        String strImageOn = xmlLabel->getStringAttribute("image_on");
-        File fileImageOn = fileResourcePath->getChildFile(strImageOn);
-        Image imageOn;
-
-        if (!fileImageOn.existsAsFile())
-        {
-            Logger::outputDebugString(String("[Skin] image file \"") + fileImageOn.getFullPathName() + "\" not found");
-            imageOn = Image();
-        }
-        else
-        {
-            imageOn = ImageFileFormat::loadFrom(fileImageOn);
-        }
+        String strColourOn = xmlLabel->getStringAttribute("colour_on", "ffffff");
+        String strColourActive = xmlLabel->getStringAttribute("colour_active", "ffffff");
 
         String strImageOff = xmlLabel->getStringAttribute("image_off");
         File fileImageOff = fileResourcePath->getChildFile(strImageOff);
@@ -332,7 +321,36 @@ void Skin::placeAndSkinStateLabel(StateLabel *label, String strXmlTag)
             imageOff = ImageFileFormat::loadFrom(fileImageOff);
         }
 
-        label->setImages(imageOff, imageOn, spacing_left, spacing_top, font_size);
+        String strImageOn = xmlLabel->getStringAttribute("image_on");
+        File fileImageOn = fileResourcePath->getChildFile(strImageOn);
+        Image imageOn;
+
+        if (!fileImageOn.existsAsFile())
+        {
+            Logger::outputDebugString(String("[Skin] image file \"") + fileImageOn.getFullPathName() + "\" not found");
+            imageOn = Image();
+        }
+        else
+        {
+            imageOn = ImageFileFormat::loadFrom(fileImageOn);
+        }
+
+        // will use "image_on" if "image_active" does not exist
+        String strImageActive = xmlLabel->getStringAttribute("image_active", strImageOn);
+        File fileImageActive = fileResourcePath->getChildFile(strImageActive);
+        Image imageActive;
+
+        if (!fileImageActive.existsAsFile())
+        {
+            Logger::outputDebugString(String("[Skin] image file \"") + fileImageActive.getFullPathName() + "\" not found");
+            imageActive = Image();
+        }
+        else
+        {
+            imageActive = ImageFileFormat::loadFrom(fileImageActive);
+        }
+
+        label->setImages(imageOff, imageOn, imageActive, strColourOn, strColourActive, spacing_left, spacing_top, font_size);
         label->setBounds(x, y, width, height);
     }
 }

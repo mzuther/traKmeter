@@ -108,7 +108,6 @@ ifeq ($(config),release64)
 endif
 
 OBJECTS := \
-	$(OBJDIR)/meter_segment_overload.o \
 	$(OBJDIR)/meter_segment.o \
 	$(OBJDIR)/plugin_processor.o \
 	$(OBJDIR)/meter_bar_peak.o \
@@ -128,6 +127,7 @@ OBJECTS := \
 	$(OBJDIR)/audio_file_player.o \
 	$(OBJDIR)/trakmeter.o \
 	$(OBJDIR)/dither.o \
+	$(OBJDIR)/overload_meter.o \
 	$(OBJDIR)/channel_slider.o \
 	$(OBJDIR)/wrapped_parameter_toggle_switch.o \
 	$(OBJDIR)/parameter_juggler.o \
@@ -215,9 +215,6 @@ $(GCH): $(PCH)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 endif
 
-$(OBJDIR)/meter_segment_overload.o: ../../../Source/meter_segment_overload.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/meter_segment.o: ../../../Source/meter_segment.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
@@ -273,6 +270,9 @@ $(OBJDIR)/trakmeter.o: ../../../Source/trakmeter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/dither.o: ../../../Source/dither.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/overload_meter.o: ../../../Source/overload_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/channel_slider.o: ../../../Source/channel_slider.cpp

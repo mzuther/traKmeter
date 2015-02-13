@@ -132,18 +132,28 @@
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_2
             x="75"
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_signal_1
             x="51"
@@ -224,18 +234,28 @@
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_2
             x="75"
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
     </stereo_combined>
 
     <stereo_combined_k20>
@@ -474,72 +494,112 @@
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_2
             x="75"
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_3
             x="107"
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_4
             x="131"
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_5
             x="163"
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_6
             x="187"
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_7
             x="219"
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_8
             x="243"
             y="35"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_signal_1
             x="51"
@@ -834,72 +894,112 @@
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_2
             x="75"
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_3
             x="107"
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_4
             x="131"
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_5
             x="163"
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_6
             x="187"
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_7
             x="219"
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
 
         <label_over_8
             x="243"
             y="18"
             width="22"
             height="11"
+            font_size="11"
+            spacing_left="2"
+            spacing_top="0"
+            colour_on="ff0000"
+            colour_active="ffffff"
+            image_active="labels/label_over_active.png"
             image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png"
-            image_detected="labels/label_over_detected.png" />
+            image_off="labels/label_over_off.png" />
     </multi_combined>
 
     <multi_combined_k20>

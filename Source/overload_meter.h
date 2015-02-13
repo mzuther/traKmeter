@@ -1,10 +1,10 @@
 /* ----------------------------------------------------------------------------
 
-   traKmeter
-   =========
-   Loudness meter for correctly setting up tracking and mixing levels
+   K-Meter
+   =======
+   Implementation of a K-System meter according to Bob Katz' specifications
 
-   Copyright (c) 2012-2015 Martin Zuther (http://www.mzuther.de/)
+   Copyright (c) 2010-2015 Martin Zuther (http://www.mzuther.de/)
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -23,47 +23,39 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __METER_SEGMENT_OVERLOAD_H__
-#define __METER_SEGMENT_OVERLOAD_H__
+#ifndef __OVERLOAD_METER_H__
+#define __OVERLOAD_METER_H__
 
 #include "JuceHeader.h"
 #include "mz_tools.h"
+#include "state_label.h"
+
 
 
 //==============================================================================
 /**
 */
-class MeterSegmentOverload : public Component
+class OverloadMeter : public StateLabel
 {
 public:
-    MeterSegmentOverload(const String &componentName, float fThreshold, float fRange, int nCrestFactor, bool bThickBorder, int nColor);
-    ~MeterSegmentOverload();
+    OverloadMeter(const String &componentName, float fThreshold, int nCrestFactor);
+    ~OverloadMeter();
 
-    void setLevels(float fLevel, float fLevelPeak, float fLevelMaximum);
-    void paint(Graphics &g);
-    void resized();
-    void visibilityChanged();
+    void setLevels(float fLevel, float fMaximumLevelNew);
 
 private:
-    JUCE_LEAK_DETECTOR(MeterSegmentOverload);
+    JUCE_LEAK_DETECTOR(OverloadMeter);
 
-    float fHue;
-    float fBrightness;
-
-    float fLowerThreshold;
-    float fUpperThreshold;
-    float fThresholdRange;
+    float fThreshold;
     int nCrestFactor;
 
     float fMaximumLevel;
-    String strMaximumLevel;
-
-    bool bPeakMarker;
-    bool hasThickBorder;
+    bool bActiveOverload;
+    bool bOverloadsDetected;
 };
 
 
-#endif  // __METER_SEGMENT_OVERLOAD_H__
+#endif  // __OVERLOAD_METER_H__
 
 
 // Local Variables:
