@@ -47,7 +47,7 @@
 
         <button_skin
             x="152"
-            y="204"
+            y="209"
             width="60"
             height="20"
             image_on="buttons/button_skin_on.png"
@@ -65,7 +65,7 @@
 
         <button_validate
             x="152"
-            y="229"
+            y="234"
             width="60"
             height="20"
             image_on="buttons/button_validate_on.png"
@@ -74,7 +74,7 @@
 
         <button_about
             x="152"
-            y="254"
+            y="259"
             width="60"
             height="20"
             image_on="buttons/button_about_on.png"
@@ -91,7 +91,7 @@
 
         <label_debug
             x="162"
-            y="166"
+            y="196"
             width="40"
             height="10"
             image="labels/label_debug.png"
@@ -100,36 +100,36 @@
 
     <stereo_split>
         <meter_peak_1
-            x="51"
-            y="45"
+            x="49"
+            y="47"
             width="22"
             height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_2
-            x="75"
-            y="45"
+            x="77"
+            y="47"
             width="22"
             height="91"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_average_1
-            x="51"
-            y="167"
+            x="49"
+            y="171"
             width="22"
             height="81"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_2
-            x="75"
-            y="167"
+            x="77"
+            y="171"
             width="22"
             height="81"
             image="meters/meter_bar_split_average.png" />
 
         <label_over_1
-            x="51"
-            y="35"
+            x="49"
+            y="37"
             width="22"
             height="11"
             font_size="11"
@@ -142,8 +142,8 @@
             image_off="labels/label_over_off.png" />
 
         <label_over_2
-            x="75"
-            y="35"
+            x="77"
+            y="37"
             width="22"
             height="11"
             font_size="11"
@@ -156,15 +156,15 @@
             image_off="labels/label_over_off.png" />
 
         <label_signal_1
-            x="51"
-            y="145"
+            x="49"
+            y="148"
             width="22"
             height="13"
             image="labels/label_signal_left.png" />
 
         <label_signal_2
-            x="75"
-            y="145"
+            x="77"
+            y="148"
             width="22"
             height="13"
             image="labels/label_signal_right.png" />
@@ -173,14 +173,14 @@
     <stereo_split_k20>
         <background
             width="222"
-            height="285"
-            image="backgrounds/stereo/background.png" />
+            height="289"
+            image="backgrounds/stereo/background_split.png" />
 
         <meter_graduation
-            x="10"
-            y="10"
-            width="129"
-            height="264"
+            x="13"
+            y="37"
+            width="122"
+            height="215"
             image="backgrounds/stereo/graduation_split_k20.png"
         />
     </stereo_split_k20>
@@ -188,49 +188,49 @@
     <stereo_split_normal>
         <background
             width="222"
-            height="285"
-            image="backgrounds/stereo/background.png" />
+            height="289"
+            image="backgrounds/stereo/background_split.png" />
 
         <meter_graduation
-            x="10"
-            y="10"
-            width="129"
-            height="264"
+            x="13"
+            y="37"
+            width="122"
+            height="215"
             image="backgrounds/stereo/graduation_split_normal.png"
         />
     </stereo_split_normal>
 
     <stereo_combined>
         <meter_peak_1
-            x="51"
-            y="31"
+            x="50"
+            y="36"
             width="6"
             height="235"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_2
-            x="91"
-            y="31"
+            x="92"
+            y="36"
             width="6"
             height="235"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_average_1
-            x="58"
-            y="31"
+            x="56"
+            y="36"
             width="15"
             height="235"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_2
-            x="75"
-            y="31"
+            x="77"
+            y="36"
             width="15"
             height="235"
             image="meters/meter_bar_combined_average.png" />
 
         <label_over_1
-            x="51"
+            x="49"
             y="18"
             width="22"
             height="11"
@@ -244,7 +244,7 @@
             image_off="labels/label_over_off.png" />
 
         <label_over_2
-            x="75"
+            x="77"
             y="18"
             width="22"
             height="11"
@@ -261,14 +261,14 @@
     <stereo_combined_k20>
         <background
             width="222"
-            height="285"
-            image="backgrounds/stereo/background.png" />
+            height="289"
+            image="backgrounds/stereo/background_combined.png" />
 
         <meter_graduation
-            x="10"
-            y="10"
-            width="129"
-            height="264"
+            x="15"
+            y="40"
+            width="118"
+            height="227"
             image="backgrounds/stereo/graduation_combined_k20.png"
         />
     </stereo_combined_k20>
@@ -276,14 +276,14 @@
     <stereo_combined_normal>
         <background
             width="222"
-            height="285"
-            image="backgrounds/stereo/background.png" />
+            height="289"
+            image="backgrounds/stereo/background_combined.png" />
 
         <meter_graduation
-            x="10"
-            y="10"
-            width="129"
-            height="264"
+            x="15"
+            y="40"
+            width="118"
+            height="227"
             image="backgrounds/stereo/graduation_combined_normal.png"
         />
     </stereo_combined_normal>
@@ -662,7 +662,7 @@
         <background
             width="390"
             height="285"
-            image="backgrounds/multi/background.png" />
+            image="backgrounds/multi/background_split.png" />
 
         <meter_graduation
             x="10"
@@ -677,7 +677,7 @@
         <background
             width="390"
             height="285"
-            image="backgrounds/multi/background.png" />
+            image="backgrounds/multi/background_split.png" />
 
         <meter_graduation
             x="10"
@@ -1006,7 +1006,7 @@
         <background
             width="390"
             height="285"
-            image="backgrounds/multi/background.png" />
+            image="backgrounds/multi/background_combined.png" />
 
         <meter_graduation
             x="10"
@@ -1021,7 +1021,7 @@
         <background
             width="390"
             height="285"
-            image="backgrounds/multi/background.png" />
+            image="backgrounds/multi/background_combined.png" />
 
         <meter_graduation
             x="10"
