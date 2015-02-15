@@ -11,7 +11,7 @@
     <default>
         <button_split
             x="152"
-            y="45"
+            y="46"
             width="60"
             height="20"
             image_on="buttons/button_split_on.png"
@@ -20,7 +20,7 @@
 
         <button_k20
             x="152"
-            y="70"
+            y="71"
             width="60"
             height="20"
             image_on="buttons/button_k20_on.png"
@@ -29,7 +29,7 @@
 
         <button_transient
             x="152"
-            y="95"
+            y="96"
             width="60"
             height="20"
             image_on="buttons/button_transient_on.png"
@@ -38,7 +38,7 @@
 
         <button_mixing
             x="152"
-            y="120"
+            y="121"
             width="60"
             height="20"
             image_on="buttons/button_mixing_on.png"
@@ -47,7 +47,7 @@
 
         <button_skin
             x="152"
-            y="209"
+            y="208"
             width="60"
             height="20"
             image_on="buttons/button_skin_on.png"
@@ -56,7 +56,7 @@
 
         <button_reset
             x="152"
-            y="10"
+            y="11"
             width="60"
             height="20"
             image_on="buttons/button_reset_on.png"
@@ -65,7 +65,7 @@
 
         <button_validate
             x="152"
-            y="234"
+            y="233"
             width="60"
             height="20"
             image_on="buttons/button_validate_on.png"
@@ -74,7 +74,7 @@
 
         <button_about
             x="152"
-            y="259"
+            y="258"
             width="60"
             height="20"
             image_on="buttons/button_about_on.png"
@@ -83,7 +83,7 @@
 
         <slider_gain
             x="157"
-            y="145"
+            y="146"
             width="50"
             height="50"
             image="sliders/slider_gain.png"
@@ -91,7 +91,7 @@
 
         <label_debug
             x="162"
-            y="196"
+            y="33"
             width="40"
             height="10"
             image="labels/label_debug.png"
@@ -291,7 +291,7 @@
     <multi_split>
         <button_split
             x="340"
-            y="45"
+            y="46"
             width="60"
             height="20"
             image_on="buttons/button_split_on.png"
@@ -300,7 +300,7 @@
 
         <button_k20
             x="340"
-            y="70"
+            y="71"
             width="60"
             height="20"
             image_on="buttons/button_k20_on.png"
@@ -309,7 +309,7 @@
 
         <button_transient
             x="340"
-            y="95"
+            y="96"
             width="60"
             height="20"
             image_on="buttons/button_transient_on.png"
@@ -318,7 +318,7 @@
 
         <button_mixing
             x="340"
-            y="120"
+            y="121"
             width="60"
             height="20"
             image_on="buttons/button_mixing_on.png"
@@ -327,7 +327,7 @@
 
         <button_skin
             x="340"
-            y="209"
+            y="208"
             width="60"
             height="20"
             image_on="buttons/button_skin_on.png"
@@ -336,7 +336,7 @@
 
         <button_reset
             x="340"
-            y="10"
+            y="11"
             width="60"
             height="20"
             image_on="buttons/button_reset_on.png"
@@ -345,7 +345,7 @@
 
         <button_validate
             x="340"
-            y="234"
+            y="233"
             width="60"
             height="20"
             image_on="buttons/button_validate_on.png"
@@ -354,7 +354,7 @@
 
         <button_about
             x="340"
-            y="259"
+            y="258"
             width="60"
             height="20"
             image_on="buttons/button_about_on.png"
@@ -363,7 +363,7 @@
 
         <slider_gain
             x="345"
-            y="145"
+            y="146"
             width="50"
             height="50"
             image="sliders/slider_gain.png"
@@ -371,7 +371,7 @@
 
         <label_debug
             x="350"
-            y="196"
+            y="33"
             width="40"
             height="10"
             image="labels/label_debug.png"
@@ -689,7 +689,7 @@
     <multi_combined>
         <button_split
             x="340"
-            y="45"
+            y="46"
             width="60"
             height="20"
             image_on="buttons/button_split_on.png"
@@ -698,7 +698,7 @@
 
         <button_k20
             x="340"
-            y="70"
+            y="71"
             width="60"
             height="20"
             image_on="buttons/button_k20_on.png"
@@ -707,7 +707,7 @@
 
         <button_transient
             x="340"
-            y="95"
+            y="96"
             width="60"
             height="20"
             image_on="buttons/button_transient_on.png"
@@ -716,7 +716,7 @@
 
         <button_mixing
             x="340"
-            y="120"
+            y="121"
             width="60"
             height="20"
             image_on="buttons/button_mixing_on.png"
@@ -725,7 +725,7 @@
 
         <button_skin
             x="340"
-            y="209"
+            y="208"
             width="60"
             height="20"
             image_on="buttons/button_skin_on.png"
@@ -734,7 +734,7 @@
 
         <button_reset
             x="340"
-            y="10"
+            y="11"
             width="60"
             height="20"
             image_on="buttons/button_reset_on.png"
@@ -743,7 +743,7 @@
 
         <button_validate
             x="340"
-            y="234"
+            y="233"
             width="60"
             height="20"
             image_on="buttons/button_validate_on.png"
@@ -752,7 +752,7 @@
 
         <button_about
             x="340"
-            y="259"
+            y="258"
             width="60"
             height="20"
             image_on="buttons/button_about_on.png"
@@ -761,7 +761,7 @@
 
         <slider_gain
             x="345"
-            y="145"
+            y="146"
             width="50"
             height="50"
             image="sliders/slider_gain.png"
@@ -769,7 +769,7 @@
 
         <label_debug
             x="350"
-            y="196"
+            y="33"
             width="40"
             height="10"
             image="labels/label_debug.png"
@@ -1007,9 +1007,9 @@
             image="backgrounds/multi/background_combined.png" />
 
         <meter_graduation
-            x="13"
+            x="15"
             y="40"
-            width="310"
+            width="307"
             height="227"
             image="backgrounds/multi/graduation_combined_k20.png" />
     </multi_combined_k20>
@@ -1021,9 +1021,9 @@
             image="backgrounds/multi/background_combined.png" />
 
         <meter_graduation
-            x="13"
+            x="15"
             y="40"
-            width="310"
+            width="307"
             height="227"
             image="backgrounds/multi/graduation_combined_normal.png" />
     </multi_combined_normal>
