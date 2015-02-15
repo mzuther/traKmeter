@@ -91,7 +91,7 @@
 
         <label_debug
             x="162"
-            y="33"
+            y="192"
             width="40"
             height="10"
             image="labels/label_debug.png"
@@ -371,7 +371,7 @@
 
         <label_debug
             x="350"
-            y="33"
+            y="192"
             width="40"
             height="10"
             image="labels/label_debug.png"
@@ -769,7 +769,7 @@
 
         <label_debug
             x="350"
-            y="33"
+            y="192"
             width="40"
             height="10"
             image="labels/label_debug.png"
