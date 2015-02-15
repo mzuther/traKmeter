@@ -306,7 +306,7 @@ float AudioRingBuffer::getRMSLevel(const unsigned int channel, const unsigned in
 }
 
 
-void AudioRingBuffer::setCallbackClass(TraKmeterAudioProcessor *callback_class)
+void AudioRingBuffer::setCallbackClass(AudioRingBufferProcessor *callback_class)
 {
     pCallbackClass = callback_class;
 }

@@ -33,14 +33,14 @@ class MeterBallistics;
 
 #include "JuceHeader.h"
 #include "audio_file_player.h"
-#include "audio_ring_buffer.h"
 #include "meter_ballistics.h"
 #include "plugin_parameters.h"
+#include "common/audio/audio_ring_buffer.h"
 #include "common/audio/dither.h"
 
 
 //============================================================================
-class TraKmeterAudioProcessor  : public AudioProcessor, public ActionBroadcaster
+class TraKmeterAudioProcessor  : public AudioProcessor, public ActionBroadcaster, virtual public AudioRingBufferProcessor
 {
 public:
     //==========================================================================
@@ -101,7 +101,7 @@ public:
     double getTailLengthSeconds() const;
 
     MeterBallistics *getLevels();
-    void processBufferChunk(AudioSampleBuffer &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples);
+    virtual void processBufferChunk(AudioSampleBuffer &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples);
 
     bool getTransientMode();
     void setTransientMode(const bool transient_mode);

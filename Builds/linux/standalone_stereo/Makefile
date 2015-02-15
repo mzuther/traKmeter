@@ -117,7 +117,6 @@ OBJECTS := \
 	$(OBJDIR)/meter_bar_average.o \
 	$(OBJDIR)/meter_signal_led.o \
 	$(OBJDIR)/window_validation.o \
-	$(OBJDIR)/audio_ring_buffer.o \
 	$(OBJDIR)/standalone_application.o \
 	$(OBJDIR)/meter_ballistics.o \
 	$(OBJDIR)/plugin_editor.o \
@@ -136,6 +135,7 @@ OBJECTS := \
 	$(OBJDIR)/generic_plugin_standalone.o \
 	$(OBJDIR)/generic_state_label.o \
 	$(OBJDIR)/resources.o \
+	$(OBJDIR)/audio_ring_buffer.o \
 	$(OBJDIR)/dither.o \
 	$(OBJDIR)/generic_skin.o \
 	$(OBJDIR)/wrapped_parameter_toggle_switch.o \
@@ -244,9 +244,6 @@ $(OBJDIR)/meter_signal_led.o: ../../../Source/meter_signal_led.cpp
 $(OBJDIR)/window_validation.o: ../../../Source/window_validation.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/audio_ring_buffer.o: ../../../Source/audio_ring_buffer.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/standalone_application.o: ../../../Source/standalone_application.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
@@ -299,6 +296,9 @@ $(OBJDIR)/generic_state_label.o: ../../../Source/common/widgets/generic_state_la
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/resources.o: ../../../Source/common/widgets/resources/resources.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/audio_ring_buffer.o: ../../../Source/common/audio/audio_ring_buffer.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/dither.o: ../../../Source/common/audio/dither.cpp

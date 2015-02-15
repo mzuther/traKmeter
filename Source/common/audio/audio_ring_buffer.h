@@ -29,9 +29,9 @@
 #define RING_BUFFER_MEM_TEST 255.0f
 
 class AudioRingBuffer;
+class AudioRingBufferProcessor;
 
 #include "JuceHeader.h"
-#include "plugin_processor.h"
 
 
 //==============================================================================
@@ -44,7 +44,7 @@ public:
     ~AudioRingBuffer();
 
     void clear();
-    void setCallbackClass(TraKmeterAudioProcessor *callback_class);
+    void setCallbackClass(AudioRingBufferProcessor *callback_class);
 
     String getBufferName();
     unsigned int getCurrentPosition();
@@ -67,7 +67,7 @@ private:
     void clearCallbackClass();
     void triggerFullBuffer(AudioSampleBuffer &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples);
 
-    TraKmeterAudioProcessor *pCallbackClass;
+    AudioRingBufferProcessor *pCallbackClass;
     String strBufferName;
 
     unsigned int uChannels;
@@ -81,6 +81,13 @@ private:
     unsigned int *uChannelOffset;
 
     float *pAudioData;
+};
+
+
+class AudioRingBufferProcessor
+{
+public:
+    virtual void processBufferChunk(AudioSampleBuffer &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples) = 0;
 };
 
 
