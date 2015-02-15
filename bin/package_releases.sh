@@ -29,7 +29,9 @@ TRAKMETER_VERSION="1.05"
 
 TRAKMETER_EXECUTABLE_DIR="final"
 TRAKMETER_RELEASE_DIR="releases"
+
 TRAKMETER_DOCUMENTATION_DIR="../doc"
+TRAKMETER_SKIN_DIR="../skins"
 
 function copy_new_executable
 {
@@ -99,6 +101,11 @@ function compress_new_archive
 }
 
 echo
+
+
+# ----- General -----
+
+rm -f "$TRAKMETER_SKIN_DIR/default_skin.ini"
 
 
 # ----- GNU/Linux Standalone (32 bit) -----
