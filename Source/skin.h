@@ -23,51 +23,33 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __SKIN__
-#define __SKIN__
+#ifndef __SKIN_H__
+#define __SKIN_H__
 
 class Skin;
 
 #include "JuceHeader.h"
 #include "trakmeter.h"
 #include "plugin_parameters.h"
-#include "mz_juce_common/widgets/generic_state_label.h"
+#include "common/skin/generic_skin.h"
 
 
-class Skin
+class Skin : public GenericSkin
 {
 public:
     Skin(File &fileSkin, int nNumChannels, int nCrestFactor, int nMeterType);
     ~Skin();
 
-    bool loadFromXml(File &fileSkin);
     void updateSkin(int nNumChannels, int nCrestFactor, int nMeterType);
-    void placeComponent(Component *component, String strXmlTag);
-    void placeAndSkinButton(ImageButton *button, String strXmlTag);
-    void placeAndSkinLabel(ImageComponent *label, String strXmlTag);
-    void placeAndSkinStateLabel(GenericStateLabel *label, String strXmlTag);
-    void setBackgroundImage(ImageComponent *background, AudioProcessorEditor *editor);
+
+protected:
+    int nNumberOfChannels;
 
 private:
     JUCE_LEAK_DETECTOR(Skin);
-
-    XmlElement *getComponentFromXml(String strXmlTag);
-
-    XmlElement *xml;
-    XmlElement *xmlSkinGroup;
-    XmlElement *xmlSkinFallback_1;
-    XmlElement *xmlSkinFallback_2;
-
-    File *fileResourcePath;
-
-    String strBackgroundSelector;
-    String strSkinGroup;
-    String strSkinFallback_1;
-
-    int nNumberOfChannels;
 };
 
-#endif   // __SKIN__
+#endif   // __SKIN_H__
 
 
 // Local Variables:

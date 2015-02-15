@@ -1,8 +1,8 @@
 /* ----------------------------------------------------------------------------
 
-   K-Meter
-   =======
-   Implementation of a K-System meter according to Bob Katz' specifications
+   MZ common JUCE
+   ==============
+   Common classes for use with the JUCE library
 
    Copyright (c) 2010-2015 Martin Zuther (http://www.mzuther.de/)
 
@@ -23,39 +23,26 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __OVERLOAD_METER_H__
-#define __OVERLOAD_METER_H__
+#ifndef __MZ_JUCE_COMMON_H__
+#define __MZ_JUCE_COMMON_H__
 
 #include "JuceHeader.h"
-#include "common/tools.h"
-#include "common/widgets/generic_state_label.h"
 
 
-
-//==============================================================================
-/**
-*/
-class OverloadMeter : public GenericStateLabel
+class MZ_Juce_Common
 {
 public:
-    OverloadMeter(const String &componentName, float fThreshold, int nCrestFactor);
-    ~OverloadMeter();
-
-    void setLevels(float fLevel, float fMaximumLevelNew);
+    static String getVersion()
+    {
+        return "1.2.2";
+    }
 
 private:
-    JUCE_LEAK_DETECTOR(OverloadMeter);
-
-    float fThreshold;
-    int nCrestFactor;
-
-    float fMaximumLevel;
-    bool bActiveOverload;
-    bool bOverloadsDetected;
+    JUCE_LEAK_DETECTOR(MZ_Juce_Common);
 };
 
 
-#endif  // __OVERLOAD_METER_H__
+#endif  // __MZ_JUCE_COMMON_H__
 
 
 // Local Variables:
