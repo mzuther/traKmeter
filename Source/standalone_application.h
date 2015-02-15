@@ -23,32 +23,26 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __STANDALONE_APPLICATION_H__
-#define __STANDALONE_APPLICATION_H__
+#ifndef __TRAKMETER_STANDALONE_H__
+#define __TRAKMETER_STANDALONE_H__
 
-#include "JuceHeader.h"
-#include "plugin_processor.h"
-#include "juce/modules/juce_audio_plugin_client/Standalone/juce_StandaloneFilterWindow.h"
+#include "mz_juce_common/widgets/generic_plugin_standalone.h"
 
-class StandaloneApplication : public JUCEApplication
+
+class TraKmeterStandalone : virtual public GenericPluginStandalone
 {
 public:
-    StandaloneApplication();
-    ~StandaloneApplication();
+    TraKmeterStandalone();
+    ~TraKmeterStandalone();
 
-    void initialise(const String &commandLineParameters);
-    void shutdown();
-
-    const String getApplicationName();
-    const String getApplicationVersion();
+protected:
+    PropertiesFile::Options prepare_properties();
 
 private:
-    JUCE_LEAK_DETECTOR(StandaloneApplication);
-
-    StandaloneFilterWindow *filterWindow;
+    JUCE_LEAK_DETECTOR(TraKmeterStandalone);
 };
 
-#endif   // __STANDALONE_APPLICATION_H__
+#endif   // __TRAKMETER_STANDALONE_H__
 
 
 // Local Variables:

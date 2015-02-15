@@ -34,7 +34,7 @@ class MeterBallistics;
 #include "JuceHeader.h"
 #include "audio_file_player.h"
 #include "audio_ring_buffer.h"
-#include "dither.h"
+#include "mz_juce_common/audio/dither.h"
 #include "meter_ballistics.h"
 #include "plugin_parameters.h"
 

@@ -27,15 +27,15 @@
 #define __OVERLOAD_METER_H__
 
 #include "JuceHeader.h"
-#include "mz_tools.h"
-#include "state_label.h"
+#include "mz_juce_common/tools.h"
+#include "mz_juce_common/widgets/generic_state_label.h"
 
 
 
 //==============================================================================
 /**
 */
-class OverloadMeter : public StateLabel
+class OverloadMeter : public GenericStateLabel
 {
 public:
     OverloadMeter(const String &componentName, float fThreshold, int nCrestFactor);

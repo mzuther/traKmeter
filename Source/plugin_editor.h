@@ -29,11 +29,11 @@
 #include "JuceHeader.h"
 #include "plugin_parameters.h"
 #include "plugin_processor.h"
-#include "parameter_juggler/slider_switch.h"
+#include "mz_juce_common/parameter_juggler/slider_switch.h"
 #include "skin.h"
 #include "trakmeter.h"
-#include "window_about.h"
-#include "window_skin.h"
+#include "mz_juce_common/widgets/generic_window_about.h"
+#include "mz_juce_common/widgets/generic_window_skin.h"
 #include "window_validation.h"
 
 
