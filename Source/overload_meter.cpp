@@ -92,7 +92,7 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
             bOverloadsDetected = false;
         }
 
-        pLabel->setText(String(strMaximumLevel), dontSendNotification);
+        label->setText(String(strMaximumLevel), dontSendNotification);
     }
 
     if (bOverloadsDetected)
