@@ -58,11 +58,11 @@ private:
     int nMeterType;
     bool bShowSplitMeters;
 
-    MeterBarAverage **AverageMeters;
-    MeterBarPeak **PeakMeters;
-    OverloadMeter **OverloadMeters;
+    OwnedArray<MeterBarAverage> p_arrAverageMeters;
+    OwnedArray<MeterBarPeak> p_arrPeakMeters;
+    OwnedArray<OverloadMeter> p_arrOverloadMeters;
 
-    MeterSignalLed **PeakMeterSignals;
+    OwnedArray<MeterSignalLed> p_arrPeakMeterSignals;
 };
 
 

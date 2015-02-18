@@ -40,17 +40,14 @@ Flow of parameter processing:
 
 ==============================================================================*/
 
-TraKmeterAudioProcessor::TraKmeterAudioProcessor()
+TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
+    dither(24)
 {
     bSampleRateIsValid = false;
-    audioFilePlayer = nullptr;
-    pRingBufferInput = nullptr;
-
     nNumInputChannels = 0;
-    pMeterBallistics = nullptr;
+    fProcessedSeconds = 0.0f;
 
     setLatencySamples(0);
-    pPluginParameters = new TraKmeterPluginParameters();
 
     // depend on "TraKmeterPluginParameters"!
     bTransientMode = getBoolean(TraKmeterPluginParameters::selTransientMode);
@@ -58,15 +55,6 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor()
 
     nDecibels = getRealInteger(TraKmeterPluginParameters::selGain);
     dGain = MeterBallistics::decibel2level_double(nDecibels);
-
-    fProcessedSeconds = 0.0f;
-
-    fPeakLevels = nullptr;
-    fRmsLevels = nullptr;
-
-    nOverflows = nullptr;
-
-    pDither = new Dither(24);
 }
 
 
@@ -77,15 +65,6 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
     // call function "releaseResources()" by force to make sure all
     // allocated memory is freed
     releaseResources();
-
-    delete pPluginParameters;
-    pPluginParameters = nullptr;
-
-    delete audioFilePlayer;
-    audioFilePlayer = nullptr;
-
-    delete pDither;
-    pDither = nullptr;
 }
 
 
@@ -99,19 +78,19 @@ const String TraKmeterAudioProcessor::getName() const
 
 int TraKmeterAudioProcessor::getNumParameters()
 {
-    return pPluginParameters->getNumParameters(false);
+    return pluginParameters.getNumParameters(false);
 }
 
 
 const String TraKmeterAudioProcessor::getParameterName(int nIndex)
 {
-    return pPluginParameters->getName(nIndex);
+    return pluginParameters.getName(nIndex);
 }
 
 
 const String TraKmeterAudioProcessor::getParameterText(int nIndex)
 {
-    return pPluginParameters->getText(nIndex);
+    return pluginParameters.getText(nIndex);
 }
 
 
@@ -122,7 +101,7 @@ float TraKmeterAudioProcessor::getParameter(int nIndex)
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    return pPluginParameters->getFloat(nIndex);
+    return pluginParameters.getFloat(nIndex);
 }
 
 
@@ -151,7 +130,7 @@ void TraKmeterAudioProcessor::setParameter(int nIndex, float fValue)
     // Please only call this method directly for non-automatable
     // values!
 
-    pPluginParameters->setFloat(nIndex, fValue);
+    pluginParameters.setFloat(nIndex, fValue);
 
     if (nIndex == TraKmeterPluginParameters::selTransientMode)
     {
@@ -168,11 +147,11 @@ void TraKmeterAudioProcessor::setParameter(int nIndex, float fValue)
     }
 
     // notify plug-in editor of parameter change
-    if (pPluginParameters->hasChanged(nIndex))
+    if (pluginParameters.hasChanged(nIndex))
     {
         // for visible parameters, notify the editor of changes (this
         // will also clear the change flag)
-        if (nIndex < pPluginParameters->getNumParameters(false))
+        if (nIndex < pluginParameters.getNumParameters(false))
         {
             // "PC" --> parameter changed, followed by a hash and the
             // parameter's ID
@@ -182,7 +161,7 @@ void TraKmeterAudioProcessor::setParameter(int nIndex, float fValue)
         // flag
         else
         {
-            pPluginParameters->clearChangeFlag(nIndex);
+            pluginParameters.clearChangeFlag(nIndex);
         }
     }
 }
@@ -190,31 +169,31 @@ void TraKmeterAudioProcessor::setParameter(int nIndex, float fValue)
 
 void TraKmeterAudioProcessor::clearChangeFlag(int nIndex)
 {
-    pPluginParameters->clearChangeFlag(nIndex);
+    pluginParameters.clearChangeFlag(nIndex);
 }
 
 
 void TraKmeterAudioProcessor::setChangeFlag(int nIndex)
 {
-    pPluginParameters->setChangeFlag(nIndex);
+    pluginParameters.setChangeFlag(nIndex);
 }
 
 
 bool TraKmeterAudioProcessor::hasChanged(int nIndex)
 {
-    return pPluginParameters->hasChanged(nIndex);
+    return pluginParameters.hasChanged(nIndex);
 }
 
 
 void TraKmeterAudioProcessor::updateParameters(bool bIncludeHiddenParameters)
 {
-    int nNumParameters = pPluginParameters->getNumParameters(false);
+    int nNumParameters = pluginParameters.getNumParameters(false);
 
     for (int nIndex = 0; nIndex < nNumParameters; nIndex++)
     {
-        if (pPluginParameters->hasChanged(nIndex))
+        if (pluginParameters.hasChanged(nIndex))
         {
-            float fValue = pPluginParameters->getFloat(nIndex);
+            float fValue = pluginParameters.getFloat(nIndex);
             changeParameter(nIndex, fValue);
         }
     }
@@ -242,7 +221,7 @@ bool TraKmeterAudioProcessor::getBoolean(int nIndex)
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    return pPluginParameters->getBoolean(nIndex);
+    return pluginParameters.getBoolean(nIndex);
 }
 
 
@@ -253,7 +232,7 @@ int TraKmeterAudioProcessor::getRealInteger(int nIndex)
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    return pPluginParameters->getRealInteger(nIndex);
+    return pluginParameters.getRealInteger(nIndex);
 }
 
 
@@ -264,7 +243,7 @@ File TraKmeterAudioProcessor::getParameterValidationFile()
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    return pPluginParameters->getValidationFile();
+    return pluginParameters.getValidationFile();
 }
 
 
@@ -275,7 +254,7 @@ void TraKmeterAudioProcessor::setParameterValidationFile(File &fileValidation)
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    pPluginParameters->setValidationFile(fileValidation);
+    pluginParameters.setValidationFile(fileValidation);
 }
 
 
@@ -286,7 +265,7 @@ String TraKmeterAudioProcessor::getParameterSkinName()
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    return pPluginParameters->getSkinName();
+    return pluginParameters.getSkinName();
 }
 
 
@@ -297,7 +276,7 @@ void TraKmeterAudioProcessor::setParameterSkinName(String &strSkinName)
     // sections or anything GUI-related, or anything at all that may
     // block in any way!
 
-    pPluginParameters->setSkinName(strSkinName);
+    pluginParameters.setSkinName(strSkinName);
 }
 
 
@@ -422,19 +401,6 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
 
     pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
 
-    fPeakLevels = new float[nNumInputChannels];
-    fRmsLevels = new float[nNumInputChannels];
-
-    nOverflows = new int[nNumInputChannels];
-
-    for (int nChannel = 0; nChannel < nNumInputChannels; nChannel++)
-    {
-        fPeakLevels[nChannel] = 0.0f;
-        fRmsLevels[nChannel] = 0.0f;
-
-        nOverflows[nChannel] = 0;
-    }
-
     // make sure that ring buffer can hold at least
     // TRAKMETER_BUFFER_SIZE samples and is large enough to receive a
     // full block of audio
@@ -458,22 +424,7 @@ void TraKmeterAudioProcessor::releaseResources()
         return;
     }
 
-    delete pMeterBallistics;
     pMeterBallistics = nullptr;
-
-    delete pRingBufferInput;
-    pRingBufferInput = nullptr;
-
-    delete [] fPeakLevels;
-    fPeakLevels = nullptr;
-
-    delete [] fRmsLevels;
-    fRmsLevels = nullptr;
-
-    delete [] nOverflows;
-    nOverflows = nullptr;
-
-    delete audioFilePlayer;
     audioFilePlayer = nullptr;
 }
 
@@ -524,7 +475,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
             for (int nSample = 0; nSample < buffer.getNumSamples(); nSample++)
             {
                 double dSampleValue = buffer.getSample(nChannel, nSample);
-                float fNewSampleValue = pDither->dither(dSampleValue * dGain);
+                float fNewSampleValue = dither.dither(dSampleValue * dGain);
                 buffer.setSample(nChannel, nSample, fNewSampleValue);
             }
         }
@@ -553,19 +504,19 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, cons
         {
             // determine peak level for uChunkSize samples (use
             // pre-delay)
-            fPeakLevels[nChannel] = pRingBufferInput->getMagnitude(nChannel, uChunkSize, uPreDelay);
+            float fPeakLevels = pRingBufferInput->getMagnitude(nChannel, uChunkSize, uPreDelay);
 
             // determine peak level for uChunkSize samples (use
             // pre-delay)
-            fRmsLevels[nChannel] = pRingBufferInput->getRMSLevel(nChannel, uChunkSize, uPreDelay);
+            float fRmsLevels = pRingBufferInput->getRMSLevel(nChannel, uChunkSize, uPreDelay);
 
             // determine overflows for uChunkSize samples (use
             // pre-delay)
-            nOverflows[nChannel] = countOverflows(pRingBufferInput, nChannel, uChunkSize, uPreDelay);
+            int nOverflows = countOverflows(pRingBufferInput, nChannel, uChunkSize, uPreDelay);
 
             // apply meter ballistics and store values so that the
             // editor can access them
-            pMeterBallistics->updateChannel(nChannel, fProcessedSeconds, fPeakLevels[nChannel], fRmsLevels[nChannel], nOverflows[nChannel]);
+            pMeterBallistics->updateChannel(nChannel, fProcessedSeconds, fPeakLevels, fRmsLevels, nOverflows);
         }
 
         // "UM" --> update meters
@@ -592,7 +543,6 @@ void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChann
 
 void TraKmeterAudioProcessor::stopValidation()
 {
-    delete audioFilePlayer;
     audioFilePlayer = nullptr;
 
     // refresh editor; "V-" --> validation stopped
@@ -602,7 +552,7 @@ void TraKmeterAudioProcessor::stopValidation()
 
 bool TraKmeterAudioProcessor::isValidating()
 {
-    if (audioFilePlayer == nullptr)
+    if (!audioFilePlayer)
     {
         return false;
     }
@@ -668,9 +618,6 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
 
         if (pMeterBallistics)
         {
-            delete pMeterBallistics;
-            pMeterBallistics = nullptr;
-
             pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
         }
     }
@@ -715,11 +662,11 @@ AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
 
     if (nNumInputChannels > 0)
     {
-        return new TraKmeterAudioProcessorEditor(this, pPluginParameters, nNumInputChannels, nCrestFactor);
+        return new TraKmeterAudioProcessorEditor(this, &pluginParameters, nNumInputChannels, nCrestFactor);
     }
     else
     {
-        return new TraKmeterAudioProcessorEditor(this, pPluginParameters, JucePlugin_MaxNumInputChannels, nCrestFactor);
+        return new TraKmeterAudioProcessorEditor(this, &pluginParameters, JucePlugin_MaxNumInputChannels, nCrestFactor);
     }
 }
 
@@ -734,14 +681,14 @@ bool TraKmeterAudioProcessor::hasEditor() const
 
 void TraKmeterAudioProcessor::getStateInformation(MemoryBlock &destData)
 {
-    copyXmlToBinary(pPluginParameters->storeAsXml(), destData);
+    copyXmlToBinary(pluginParameters.storeAsXml(), destData);
 }
 
 
 void TraKmeterAudioProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
     ScopedPointer<XmlElement> xml(getXmlFromBinary(data, sizeInBytes));
-    pPluginParameters->loadFromXml(xml);
+    pluginParameters.loadFromXml(xml);
 
     updateParameters(true);
 }

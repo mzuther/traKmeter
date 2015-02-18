@@ -41,8 +41,6 @@ MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int 
     fPeakLevelPeak = -9999.8f;
     fPeakLevelMaximum = -9999.8f;
 
-    pMeterSegments = new MeterSegment*[nNumberOfBars];
-
     int nThreshold = show_combined_meters ? -90 : -90;
     nThreshold += nCrestFactor;
     int nTrueThreshold = nThreshold - nCrestFactor;
@@ -92,25 +90,14 @@ MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int 
             nColor = 3;
         }
 
-        pMeterSegments[n] = new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor);
-        addAndMakeVisible(pMeterSegments[n]);
+        MeterSegment *pMeterSegment = p_arrMeterSegments.add(new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor));
+        addAndMakeVisible(pMeterSegment);
     }
 }
 
 
 MeterBarPeak::~MeterBarPeak()
 {
-    for (int n = 0; n < nNumberOfBars; n++)
-    {
-        removeChildComponent(pMeterSegments[n]);
-        delete pMeterSegments[n];
-        pMeterSegments[n] = nullptr;
-    }
-
-    delete [] pMeterSegments;
-    pMeterSegments = nullptr;
-
-    deleteAllChildren();
 }
 
 
@@ -126,7 +113,7 @@ void MeterBarPeak::resized()
 
     for (int n = 0; n < nNumberOfBars; n++)
     {
-        pMeterSegments[n]->setBounds(0, y, getWidth(), nSegmentHeight + 1);
+        p_arrMeterSegments[n]->setBounds(0, y, getWidth(), nSegmentHeight + 1);
         y += nSegmentHeight;
     }
 }
@@ -141,7 +128,7 @@ void MeterBarPeak::setLevels(float peakLevel, float peakLevelPeak)
 
         for (int n = 0; n < nNumberOfBars; n++)
         {
-            pMeterSegments[n]->setLevels(fPeakLevel, fPeakLevelPeak);
+            p_arrMeterSegments[n]->setLevels(fPeakLevel, fPeakLevelPeak);
         }
     }
 }

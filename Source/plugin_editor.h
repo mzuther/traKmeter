@@ -74,27 +74,27 @@ private:
     int nHeight;
 
     TraKmeterAudioProcessor *pProcessor;
-    TraKmeter *trakmeter;
+    ScopedPointer<TraKmeter> trakmeter;
 
     File fileSkinDirectory;
-    Skin *pSkin;
+    ScopedPointer<Skin> pSkin;
     String strSkinName;
 
-    ImageButton *ButtonReset;
+    ScopedPointer<ImageButton> ButtonReset;
 
-    ImageButton *ButtonMeterType;
-    ImageButton *ButtonCrestFactor;
-    ImageButton *ButtonTransientMode;
-    ImageButton *ButtonMixMode;
+    ScopedPointer<ImageButton> ButtonMeterType;
+    ScopedPointer<ImageButton> ButtonCrestFactor;
+    ScopedPointer<ImageButton> ButtonTransientMode;
+    ScopedPointer<ImageButton> ButtonMixMode;
 
-    ImageButton *ButtonSkin;
-    ImageButton *ButtonValidation;
-    ImageButton *ButtonAbout;
+    ScopedPointer<ImageButton> ButtonSkin;
+    ScopedPointer<ImageButton> ButtonValidation;
+    ScopedPointer<ImageButton> ButtonAbout;
 
-    SliderSwitch *SliderGain;
+    ScopedPointer<SliderSwitch> SliderGain;
 
-    ImageComponent *LabelDebug;
-    ImageComponent *BackgroundImage;
+    ScopedPointer<ImageComponent> LabelDebug;
+    ScopedPointer<ImageComponent> BackgroundImage;
 };
 
 

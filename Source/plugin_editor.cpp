@@ -102,8 +102,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     // that it doesn't overlay (and thus block) any other components
     addAndMakeVisible(BackgroundImage, 0);
 
-    trakmeter = nullptr;
-
     updateParameter(TraKmeterPluginParameters::selTransientMode);
     updateParameter(TraKmeterPluginParameters::selCrestFactor);
     updateParameter(TraKmeterPluginParameters::selMixMode);
@@ -114,7 +112,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
     fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter-skins/");
 
-    pSkin = nullptr;
     strSkinName = pProcessor->getParameterSkinName();
     loadSkin();
 
@@ -130,22 +127,11 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
 TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 {
     pProcessor->removeActionListener(this);
-
-    delete pSkin;
-    pSkin = nullptr;
-
-    deleteAllChildren();
 }
 
 
 void TraKmeterAudioProcessorEditor::loadSkin()
 {
-    if (pSkin != nullptr)
-    {
-        delete pSkin;
-        pSkin = nullptr;
-    }
-
     File fileSkin = fileSkinDirectory.getChildFile(strSkinName + ".skin");
 
     if (!fileSkin.existsAsFile())
@@ -200,7 +186,7 @@ void TraKmeterAudioProcessorEditor::applySkin()
     LabelDebug->setBounds(-1, -1, 1, 1);
 #endif
 
-    if (trakmeter != nullptr)
+    if (trakmeter)
     {
         trakmeter->applySkin(pSkin);
     }
@@ -327,8 +313,6 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         if (trakmeter)
         {
             removeChildComponent(trakmeter);
-            delete trakmeter;
-            trakmeter = nullptr;
         }
 
         int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);

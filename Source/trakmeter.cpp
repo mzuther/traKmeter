@@ -36,12 +36,6 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
     nMeterType = meter_type;
     bShowSplitMeters = (nMeterType == TraKmeterPluginParameters::selSplitMeters);
 
-    AverageMeters = new MeterBarAverage*[nInputChannels];
-    PeakMeters = new MeterBarPeak*[nInputChannels];
-    OverloadMeters = new OverloadMeter*[nInputChannels];
-
-    PeakMeterSignals = nullptr;
-
     int nThreshold = -90;
     nThreshold += nCrestFactor * 10;
 
@@ -64,19 +58,18 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
 
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        PeakMeters[nChannel] = new MeterBarPeak("Level Meter Peak #" + String(nChannel), nNumberOfBarsPeak, nCrestFactor, nSegmentHeight, true, !bShowSplitMeters);
-        addAndMakeVisible(PeakMeters[nChannel]);
+        MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(new MeterBarPeak("Level Meter Peak #" + String(nChannel), nNumberOfBarsPeak, nCrestFactor, nSegmentHeight, true, !bShowSplitMeters));
+        addAndMakeVisible(pMeterBarPeak);
 
-        AverageMeters[nChannel] = new MeterBarAverage("Level Meter Average #" + String(nChannel), nNumberOfBarsAverage, nCrestFactor, nSegmentHeight, true, !bShowSplitMeters);
-        addAndMakeVisible(AverageMeters[nChannel]);
+        MeterBarAverage *pMeterBarAverage = p_arrAverageMeters.add(new MeterBarAverage("Level Meter Average #" + String(nChannel), nNumberOfBarsAverage, nCrestFactor, nSegmentHeight, true, !bShowSplitMeters));
+        addAndMakeVisible(pMeterBarAverage);
 
-        OverloadMeters[nChannel] = new OverloadMeter("OverloadMeter (" + componentName + ")", nThreshold * 0.1f, nCrestFactor);
-        addAndMakeVisible(OverloadMeters[nChannel]);
+        OverloadMeter *pOverloadMeter = p_arrOverloadMeters.add(new OverloadMeter("OverloadMeter (" + componentName + ")", nThreshold * 0.1f, nCrestFactor));
+        addAndMakeVisible(pOverloadMeter);
     }
 
     if (bShowSplitMeters)
     {
-        PeakMeterSignals = new MeterSignalLed*[nInputChannels];
         String strLabel;
 
         // signals are detected at -60 dB FS and above (40 dB meter range)
@@ -101,10 +94,8 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
                 strLabel = String(nChannel + 1);
             }
 
-            PeakMeterSignals[nChannel] = new MeterSignalLed("Peak Meter Signal #" + String(nChannel), strLabel, nThreshold * 0.1f, fRange);
-
-            PeakMeterSignals[nChannel]->setBounds(0, 1, TraKmeter::TRAKMETER_SEGMENT_WIDTH, segment_height);
-            addAndMakeVisible(PeakMeterSignals[nChannel]);
+            MeterSignalLed *pMeterSignalLed = p_arrPeakMeterSignals.add(new MeterSignalLed("Peak Meter Signal #" + String(nChannel), strLabel, nThreshold * 0.1f, fRange));
+            addAndMakeVisible(pMeterSignalLed);
         }
     }
 }
@@ -112,40 +103,6 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
 
 TraKmeter::~TraKmeter()
 {
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
-    {
-        delete AverageMeters[nChannel];
-        AverageMeters[nChannel] = nullptr;
-
-        delete PeakMeters[nChannel];
-        PeakMeters[nChannel] = nullptr;
-
-        delete OverloadMeters[nChannel];
-        OverloadMeters[nChannel] = nullptr;
-
-        if (bShowSplitMeters)
-        {
-            delete PeakMeterSignals[nChannel];
-            PeakMeterSignals[nChannel] = nullptr;
-        }
-    }
-
-    delete [] AverageMeters;
-    AverageMeters = nullptr;
-
-    delete [] PeakMeters;
-    PeakMeters = nullptr;
-
-    delete [] OverloadMeters;
-    OverloadMeters = nullptr;
-
-    if (bShowSplitMeters)
-    {
-        delete [] PeakMeterSignals;
-        PeakMeterSignals = nullptr;
-    }
-
-    deleteAllChildren();
 }
 
 
@@ -153,14 +110,14 @@ void TraKmeter::applySkin(Skin *pSkin)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        pSkin->placeComponent(AverageMeters[nChannel], "meter_average_" + String(nChannel + 1));
-        pSkin->placeComponent(PeakMeters[nChannel], "meter_peak_" + String(nChannel + 1));
+        pSkin->placeComponent(p_arrAverageMeters[nChannel], "meter_average_" + String(nChannel + 1));
+        pSkin->placeComponent(p_arrPeakMeters[nChannel], "meter_peak_" + String(nChannel + 1));
 
-        pSkin->placeAndSkinStateLabel(OverloadMeters[nChannel], "label_over_" + String(nChannel + 1));
+        pSkin->placeAndSkinStateLabel(p_arrOverloadMeters[nChannel], "label_over_" + String(nChannel + 1));
 
         if (bShowSplitMeters)
         {
-            pSkin->placeComponent(PeakMeterSignals[nChannel], "label_signal_" + String(nChannel + 1));
+            pSkin->placeComponent(p_arrPeakMeterSignals[nChannel], "label_signal_" + String(nChannel + 1));
         }
     }
 
@@ -182,13 +139,13 @@ void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        AverageMeters[nChannel]->setLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
-        PeakMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
-        OverloadMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getMaximumPeakLevel(nChannel));
+        p_arrAverageMeters[nChannel]->setLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
+        p_arrPeakMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
+        p_arrOverloadMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getMaximumPeakLevel(nChannel));
 
         if (bShowSplitMeters)
         {
-            PeakMeterSignals[nChannel]->setLevel(pMeterBallistics->getPeakMeterSignal(nChannel));
+            p_arrPeakMeterSignals[nChannel]->setLevel(pMeterBallistics->getPeakMeterSignal(nChannel));
         }
     }
 }

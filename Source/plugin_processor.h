@@ -129,13 +129,13 @@ public:
 private:
     JUCE_LEAK_DETECTOR(TraKmeterAudioProcessor);
 
-    AudioFilePlayer *audioFilePlayer;
-    AudioRingBuffer *pRingBufferInput;
+    ScopedPointer<AudioFilePlayer> audioFilePlayer;
+    ScopedPointer<AudioRingBuffer> pRingBufferInput;
 
-    MeterBallistics *pMeterBallistics;
-    TraKmeterPluginParameters *pPluginParameters;
+    ScopedPointer<MeterBallistics> pMeterBallistics;
 
-    Dither *pDither;
+    TraKmeterPluginParameters pluginParameters;
+    Dither dither;
 
     int nNumInputChannels;
     bool bSampleRateIsValid;
@@ -145,12 +145,8 @@ private:
 
     bool bTransientMode;
     int nCrestFactor;
-    float *fPeakLevels;
-    float *fRmsLevels;
     int nDecibels;
     double dGain;
-
-    int *nOverflows;
 
     int countOverflows(AudioRingBuffer *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay);
 };
