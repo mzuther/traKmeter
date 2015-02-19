@@ -61,10 +61,6 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
 TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 {
     removeAllActionListeners();
-
-    // call function "releaseResources()" by force to make sure all
-    // allocated memory is freed
-    releaseResources();
 }
 
 
@@ -376,7 +372,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
 
-    DBG("[traKmeter] in method TraKmeterAudioProcessor::prepareToPlay()");
+    DBG("[traKmeter] preparing to play");
 
     if ((sampleRate < 44100) || (sampleRate > 192000))
     {
@@ -417,12 +413,7 @@ void TraKmeterAudioProcessor::releaseResources()
     // When playback stops, you can use this as an opportunity to free
     // up any spare memory, etc.
 
-    DBG("[traKmeter] in method TraKmeterAudioProcessor::releaseResources()");
-
-    if (!bSampleRateIsValid)
-    {
-        return;
-    }
+    DBG("[traKmeter] releasing resources");
 
     pMeterBallistics = nullptr;
     audioFilePlayer = nullptr;
