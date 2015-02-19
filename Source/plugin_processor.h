@@ -26,8 +26,6 @@
 #ifndef __TRAKMETER_PLUGINPROCESSOR_H__
 #define __TRAKMETER_PLUGINPROCESSOR_H__
 
-#define TRAKMETER_BUFFER_SIZE 1024
-
 class TraKmeterAudioProcessor;
 class MeterBallistics;
 
@@ -133,6 +131,8 @@ private:
     ScopedPointer<AudioRingBuffer> pRingBufferInput;
 
     ScopedPointer<MeterBallistics> pMeterBallistics;
+
+    const int nTrakmeterBufferSize;
 
     TraKmeterPluginParameters pluginParameters;
     Dither dither;

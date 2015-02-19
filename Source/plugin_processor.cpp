@@ -41,6 +41,7 @@ Flow of parameter processing:
 ==============================================================================*/
 
 TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
+    nTrakmeterBufferSize(1024),
     dither(24)
 {
     bSampleRateIsValid = false;
@@ -398,12 +399,12 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
 
     // make sure that ring buffer can hold at least
-    // TRAKMETER_BUFFER_SIZE samples and is large enough to receive a
+    // nTrakmeterBufferSize samples and is large enough to receive a
     // full block of audio
     nSamplesInBuffer = 0;
-    unsigned int uRingBufferSize = (samplesPerBlock > TRAKMETER_BUFFER_SIZE) ? samplesPerBlock : TRAKMETER_BUFFER_SIZE;
+    unsigned int uRingBufferSize = (samplesPerBlock > nTrakmeterBufferSize) ? samplesPerBlock : nTrakmeterBufferSize;
 
-    pRingBufferInput = new AudioRingBuffer("Input ring buffer", nNumInputChannels, uRingBufferSize, TRAKMETER_BUFFER_SIZE, TRAKMETER_BUFFER_SIZE);
+    pRingBufferInput = new AudioRingBuffer("Input ring buffer", nNumInputChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
     pRingBufferInput->setCallbackClass(this);
 }
 
@@ -475,7 +476,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
     pRingBufferInput->addSamples(buffer, 0, nNumSamples);
 
     nSamplesInBuffer += nNumSamples;
-    nSamplesInBuffer %= TRAKMETER_BUFFER_SIZE;
+    nSamplesInBuffer %= nTrakmeterBufferSize;
 }
 
 
