@@ -77,24 +77,27 @@ private:
     ScopedPointer<TraKmeter> trakmeter;
 
     File fileSkinDirectory;
-    ScopedPointer<Skin> pSkin;
+    Skin skin;
     String strSkinName;
 
-    ScopedPointer<ImageButton> ButtonReset;
+    ImageButton ButtonReset;
 
-    ScopedPointer<ImageButton> ButtonMeterType;
-    ScopedPointer<ImageButton> ButtonCrestFactor;
-    ScopedPointer<ImageButton> ButtonTransientMode;
-    ScopedPointer<ImageButton> ButtonMixMode;
+    ImageButton ButtonMeterType;
+    ImageButton ButtonCrestFactor;
+    ImageButton ButtonTransientMode;
+    ImageButton ButtonMixMode;
 
-    ScopedPointer<ImageButton> ButtonSkin;
-    ScopedPointer<ImageButton> ButtonValidation;
-    ScopedPointer<ImageButton> ButtonAbout;
+    ImageButton ButtonSkin;
+    ImageButton ButtonValidation;
+    ImageButton ButtonAbout;
 
     ScopedPointer<SliderSwitch> SliderGain;
 
-    ScopedPointer<ImageComponent> LabelDebug;
-    ScopedPointer<ImageComponent> BackgroundImage;
+#ifdef DEBUG
+    ImageComponent LabelDebug;
+#endif
+
+    ImageComponent BackgroundImage;
 };
 
 

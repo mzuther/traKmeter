@@ -50,21 +50,17 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor = ownerFilter;
     pProcessor->addActionListener(this);
 
-    ButtonMeterType = new ImageButton("Split");
-    ButtonMeterType->addListener(this);
-    addAndMakeVisible(ButtonMeterType);
+    ButtonMeterType.addListener(this);
+    addAndMakeVisible(&ButtonMeterType);
 
-    ButtonCrestFactor = new ImageButton("K-20");
-    ButtonCrestFactor->addListener(this);
-    addAndMakeVisible(ButtonCrestFactor);
+    ButtonCrestFactor.addListener(this);
+    addAndMakeVisible(&ButtonCrestFactor);
 
-    ButtonTransientMode = new ImageButton("Transient");
-    ButtonTransientMode->addListener(this);
-    addAndMakeVisible(ButtonTransientMode);
+    ButtonTransientMode.addListener(this);
+    addAndMakeVisible(&ButtonTransientMode);
 
-    ButtonMixMode = new ImageButton("Mixing");
-    ButtonMixMode->addListener(this);
-    addAndMakeVisible(ButtonMixMode);
+    ButtonMixMode.addListener(this);
+    addAndMakeVisible(&ButtonMixMode);
 
     int nIndex = TraKmeterPluginParameters::selGain;
     String strName = parameters->getName(nIndex);
@@ -74,33 +70,29 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     SliderGain->addListener(this);
     addChildComponent(SliderGain);
 
-    ButtonReset = new ImageButton("Reset");
-    ButtonReset->addListener(this);
-    addAndMakeVisible(ButtonReset);
+    ButtonReset.addListener(this);
+    addAndMakeVisible(&ButtonReset);
 
-    ButtonSkin = new ImageButton("Skin");
-    ButtonSkin->addListener(this);
-    addAndMakeVisible(ButtonSkin);
+    ButtonSkin.addListener(this);
+    addAndMakeVisible(&ButtonSkin);
 
-    ButtonValidation = new ImageButton("Validate");
-    ButtonValidation->addListener(this);
-    addAndMakeVisible(ButtonValidation);
+    ButtonValidation.addListener(this);
+    addAndMakeVisible(&ButtonValidation);
 
-    ButtonAbout = new ImageButton("About");
-    ButtonAbout->addListener(this);
-    addAndMakeVisible(ButtonAbout);
+    ButtonAbout.addListener(this);
+    addAndMakeVisible(&ButtonAbout);
 
-    LabelDebug = new ImageComponent("Debug Notification");
+#ifdef DEBUG
     // moves debug label to the back of the editor's z-plane to that
     // it doesn't overlay (and thus block) any other components
-    addAndMakeVisible(LabelDebug, 0);
+    addAndMakeVisible(&LabelDebug, 0);
+#endif
 
-    BackgroundImage = new ImageComponent("Background Image");
     // prevent unnecessary redrawing of plugin editor
-    BackgroundImage->setOpaque(true);
+    BackgroundImage.setOpaque(true);
     // moves background image to the back of the editor's z-plane to
     // that it doesn't overlay (and thus block) any other components
-    addAndMakeVisible(BackgroundImage, 0);
+    addAndMakeVisible(&BackgroundImage, 0);
 
     updateParameter(TraKmeterPluginParameters::selTransientMode);
     updateParameter(TraKmeterPluginParameters::selCrestFactor);
@@ -145,7 +137,7 @@ void TraKmeterAudioProcessorEditor::loadSkin()
     pProcessor->setParameterSkinName(strSkinName);
 
     int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-    pSkin = new Skin(fileSkin, nInputChannels, nCrestFactor, nMeterType);
+    skin.loadSkin(fileSkin, nInputChannels, nCrestFactor, nMeterType);
 }
 
 
@@ -159,36 +151,32 @@ void TraKmeterAudioProcessorEditor::applySkin()
 
     // update skin
     int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-    pSkin->updateSkin(nInputChannels, nCrestFactor, nMeterType);
+    skin.updateSkin(nInputChannels, nCrestFactor, nMeterType);
 
     // moves background image to the back of the editor's z-plane;
     // will also resize plug-in editor
-    pSkin->setBackgroundImage(BackgroundImage, this);
+    skin.setBackgroundImage(&BackgroundImage, this);
 
-    pSkin->placeAndSkinButton(ButtonMeterType, "button_split");
-    pSkin->placeAndSkinButton(ButtonCrestFactor, "button_k20");
-    pSkin->placeAndSkinButton(ButtonTransientMode, "button_transient");
-    pSkin->placeAndSkinButton(ButtonMixMode, "button_mixing");
+    skin.placeAndSkinButton(&ButtonMeterType, "button_split");
+    skin.placeAndSkinButton(&ButtonCrestFactor, "button_k20");
+    skin.placeAndSkinButton(&ButtonTransientMode, "button_transient");
+    skin.placeAndSkinButton(&ButtonMixMode, "button_mixing");
 
-    pSkin->placeAndSkinButton(ButtonReset, "button_reset");
-    pSkin->placeAndSkinButton(ButtonSkin, "button_skin");
+    skin.placeAndSkinButton(&ButtonReset, "button_reset");
+    skin.placeAndSkinButton(&ButtonSkin, "button_skin");
 
-    pSkin->placeAndSkinButton(ButtonValidation, "button_validate");
-    pSkin->placeAndSkinButton(ButtonAbout, "button_about");
+    skin.placeAndSkinButton(&ButtonValidation, "button_validate");
+    skin.placeAndSkinButton(&ButtonAbout, "button_about");
 
-    pSkin->placeComponent(SliderGain, "slider_gain");
+    skin.placeComponent(SliderGain, "slider_gain");
 
 #ifdef DEBUG
-    pSkin->placeAndSkinLabel(LabelDebug, "label_debug");
-#else
-    pSkin->placeComponent(LabelDebug, "label_debug");
-    LabelDebug->setImage(Image());
-    LabelDebug->setBounds(-1, -1, 1, 1);
+    skin.placeAndSkinLabel(&LabelDebug, "label_debug");
 #endif
 
     if (trakmeter)
     {
-        trakmeter->applySkin(pSkin);
+        trakmeter->applySkin(&skin);
     }
 }
 
@@ -234,7 +222,7 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &strMess
     {
         if (!bValidateWindow)
         {
-            ButtonValidation->setToggleState(false, dontSendNotification);
+            ButtonValidation.setToggleState(false, dontSendNotification);
         }
 
         // do nothing till you hear from me... :)
@@ -255,7 +243,7 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
     case TraKmeterPluginParameters::selMeterType:
     {
         bool bMeterType = pProcessor->getBoolean(nIndex);
-        ButtonMeterType->setToggleState(!bMeterType, dontSendNotification);
+        ButtonMeterType.setToggleState(!bMeterType, dontSendNotification);
 
         // will also apply skin to plug-in editor
         bReloadMeters = true;
@@ -265,7 +253,7 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
     case TraKmeterPluginParameters::selCrestFactor:
     {
         nCrestFactor = pProcessor->getRealInteger(nIndex);
-        ButtonCrestFactor->setToggleState(nCrestFactor != 0, dontSendNotification);
+        ButtonCrestFactor.setToggleState(nCrestFactor != 0, dontSendNotification);
 
         bReloadMeters = true;
     }
@@ -274,14 +262,14 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
     case TraKmeterPluginParameters::selTransientMode:
     {
         bool bTransientMode = pProcessor->getBoolean(nIndex);
-        ButtonTransientMode->setToggleState(bTransientMode, dontSendNotification);
+        ButtonTransientMode.setToggleState(bTransientMode, dontSendNotification);
     }
     break;
 
     case TraKmeterPluginParameters::selMixMode:
     {
         bool bMixMode = pProcessor->getBoolean(nIndex);
-        ButtonMixMode->setToggleState(bMixMode, dontSendNotification);
+        ButtonMixMode.setToggleState(bMixMode, dontSendNotification);
 
         SliderGain->setVisible(bMixMode);
     }
@@ -330,7 +318,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
 //==============================================================================
 void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
 {
-    if (button == ButtonReset)
+    if (button == &ButtonReset)
     {
         MeterBallistics *pMeterBallistics = pProcessor->getLevels();
 
@@ -345,7 +333,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         bReloadMeters = true;
         reloadMeters();
     }
-    else if (button == ButtonMeterType)
+    else if (button == &ButtonMeterType)
     {
         pProcessor->changeParameter(TraKmeterPluginParameters::selMeterType, button->getToggleState());
 
@@ -353,7 +341,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         bReloadMeters = true;
         reloadMeters();
     }
-    else if (button == ButtonCrestFactor)
+    else if (button == &ButtonCrestFactor)
     {
         pProcessor->changeParameter(TraKmeterPluginParameters::selCrestFactor, !button->getToggleState());
 
@@ -361,15 +349,15 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         bReloadMeters = true;
         reloadMeters();
     }
-    else if (button == ButtonTransientMode)
+    else if (button == &ButtonTransientMode)
     {
         pProcessor->changeParameter(TraKmeterPluginParameters::selTransientMode, !button->getToggleState());
     }
-    else if (button == ButtonMixMode)
+    else if (button == &ButtonMixMode)
     {
         pProcessor->changeParameter(TraKmeterPluginParameters::selMixMode, !button->getToggleState());
     }
-    else if (button == ButtonSkin)
+    else if (button == &ButtonSkin)
     {
         // manually activate button
         button->setToggleState(true, dontSendNotification);
@@ -389,7 +377,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         bReloadMeters = true;
         reloadMeters();
     }
-    else if (button == ButtonAbout)
+    else if (button == &ButtonAbout)
     {
         // manually activate button
         button->setToggleState(true, dontSendNotification);
@@ -452,7 +440,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         // manually deactivate button
         button->setToggleState(false, dontSendNotification);
     }
-    else if (button == ButtonValidation)
+    else if (button == &ButtonValidation)
     {
         // manually activate button
         button->setToggleState(true, dontSendNotification);

@@ -23,8 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __CHANNEL_SLIDER_H__
-#define __CHANNEL_SLIDER_H__
+#ifndef __GENERIC_CHANNEL_SLIDER_H__
+#define __GENERIC_CHANNEL_SLIDER_H__
 
 #include "JuceHeader.h"
 
@@ -32,22 +32,27 @@
 //==============================================================================
 /**
 */
-class ChannelSlider : public Slider
+class GenericChannelSlider : public Slider
 {
 public:
-    ChannelSlider(const String &componentName, int nNumChannels);
-    ~ChannelSlider();
+    GenericChannelSlider(const String &componentName = String::empty);
+    ~GenericChannelSlider();
+
+    int getNumberOfChannels();
+    void setNumberOfChannels(int nNumChannels);
 
     float getFloat();
     double getValueFromText(const String &strText);
     String getTextFromValue(double fValue);
 
 private:
-    JUCE_LEAK_DETECTOR(ChannelSlider);
+    JUCE_LEAK_DETECTOR(GenericChannelSlider);
+
+    int nNumberOfChannels;
 };
 
 
-#endif  // __CHANNEL_SLIDER_H__
+#endif  // __GENERIC_CHANNEL_SLIDER_H__
 
 
 // Local Variables:

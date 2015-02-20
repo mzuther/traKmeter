@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{0197EBE4-B02F-0659-61F1-779A995E1DDA}</ProjectGuid>
+		<ProjectGuid>{512902C9-045F-2495-4262-221F23716D3D}</ProjectGuid>
 		<RootNamespace>Stand-alone (Stereo)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -206,7 +206,6 @@
 	</ItemDefinitionGroup>
 	<ItemGroup>
 		<ClInclude Include="..\..\..\Source\window_validation.h" />
-		<ClInclude Include="..\..\..\Source\channel_slider.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_average.h" />
 		<ClInclude Include="..\..\..\Source\trakmeter.h" />
 		<ClInclude Include="..\..\..\Source\overload_meter.h" />
@@ -226,6 +225,7 @@
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_plugin_standalone.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\slider_continuous.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_about.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_channel_slider.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\slider_combined.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_skin.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.h" />
@@ -275,8 +275,6 @@
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\overload_meter.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\channel_slider.cpp">
-		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\math\averager.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\generic_horizontal_meter.cpp">
@@ -292,6 +290,8 @@
 		<ClCompile Include="..\..\..\Source\common\widgets\slider_continuous.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_channel_slider.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\generic_plugin_standalone.cpp">
 		</ClCompile>

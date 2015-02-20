@@ -26,16 +26,20 @@
 #include "skin.h"
 
 
-Skin::Skin(File &fileSkin, int nNumChannels, int nCrestFactor, int nMeterType)
-    : GenericSkin(fileSkin, "trakmeter-skin")
+Skin::Skin()
 {
-    updateSkin(nNumChannels, nCrestFactor, nMeterType);
-    loadFromXml(fileSkin);
 }
 
 
 Skin::~Skin()
 {
+}
+
+
+void Skin::loadSkin(File &fileSkin, int nNumChannels, int nCrestFactor, int nMeterType)
+{
+    updateSkin(nNumChannels, nCrestFactor, nMeterType);
+    loadFromXml(fileSkin, "trakmeter-skin");
 }
 
 

@@ -27,8 +27,8 @@
 #define __WINDOW_VALIDATION_H__
 
 #include "JuceHeader.h"
-#include "channel_slider.h"
 #include "plugin_processor.h"
+#include "common/widgets/generic_channel_slider.h"
 
 
 class WindowValidation : public DocumentWindow, ButtonListener
@@ -45,21 +45,21 @@ private:
     TraKmeterAudioProcessor *pProcessor;
     File fileValidation;
 
-    ScopedPointer<Component> contentComponent;
+    Component contentComponent;
 
-    ScopedPointer<Label> LabelFileSelection;
-    ScopedPointer<Label> LabelSampleRate;
-    ScopedPointer<Label> LabelSampleRateValue;
+    Label LabelFileSelection;
+    Label LabelSampleRate;
+    Label LabelSampleRateValue;
 
-    ScopedPointer<TextButton> ButtonFileSelection;
-    ScopedPointer<TextButton> ButtonValidation;
-    ScopedPointer<TextButton> ButtonCancel;
+    TextButton ButtonFileSelection;
+    TextButton ButtonValidation;
+    TextButton ButtonCancel;
 
-    ScopedPointer<Label> LabelDumpSelectedChannel;
-    ScopedPointer<ChannelSlider> SliderDumpSelectedChannel;
-    ScopedPointer<ToggleButton> ButtonDumpCSV;
-    ScopedPointer<ToggleButton> ButtonDumpAverageMeterLevel;
-    ScopedPointer<ToggleButton> ButtonDumpPeakMeterLevel;
+    Label LabelDumpSelectedChannel;
+    GenericChannelSlider SliderDumpSelectedChannel;
+    ToggleButton ButtonDumpCSV;
+    ToggleButton ButtonDumpAverageMeterLevel;
+    ToggleButton ButtonDumpPeakMeterLevel;
 };
 
 

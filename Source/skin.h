@@ -37,9 +37,10 @@ class Skin;
 class Skin : public GenericSkin
 {
 public:
-    Skin(File &fileSkin, int nNumChannels, int nCrestFactor, int nMeterType);
+    Skin();
     ~Skin();
 
+    void loadSkin(File &fileSkin, int nNumChannels, int nCrestFactor, int nMeterType);
     void updateSkin(int nNumChannels, int nCrestFactor, int nMeterType);
 
 protected:
