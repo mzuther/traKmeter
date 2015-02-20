@@ -122,7 +122,6 @@ public:
     void setStateInformation(const void *data, int sizeInBytes);
 
     //==========================================================================
-    juce_UseDebuggingNewOperator
 
 private:
     JUCE_LEAK_DETECTOR(TraKmeterAudioProcessor);
