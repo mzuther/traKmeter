@@ -26,9 +26,6 @@
 #ifndef __TRAKMETER_PLUGINPROCESSOR_H__
 #define __TRAKMETER_PLUGINPROCESSOR_H__
 
-class TraKmeterAudioProcessor;
-class MeterBallistics;
-
 #include "JuceHeader.h"
 #include "audio_file_player.h"
 #include "meter_ballistics.h"

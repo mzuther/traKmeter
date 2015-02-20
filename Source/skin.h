@@ -26,10 +26,7 @@
 #ifndef __SKIN_H__
 #define __SKIN_H__
 
-class Skin;
-
 #include "JuceHeader.h"
-#include "trakmeter.h"
 #include "plugin_parameters.h"
 #include "common/skin/generic_skin.h"
 

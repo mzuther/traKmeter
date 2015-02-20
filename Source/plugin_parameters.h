@@ -26,8 +26,6 @@
 #ifndef __PLUGIN_PARAMETERS_TRAKMETER_H__
 #define __PLUGIN_PARAMETERS_TRAKMETER_H__
 
-class TraKmeterPluginParameters;
-
 #include "JuceHeader.h"
 #include "common/parameter_juggler/parameter_juggler.h"
 
