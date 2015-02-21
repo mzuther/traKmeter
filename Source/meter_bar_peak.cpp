@@ -25,7 +25,7 @@
 
 #include "meter_bar_peak.h"
 
-MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters)
+MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters)
 {
     setName(componentName);
 
@@ -91,7 +91,8 @@ MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int 
             nColor = 3;
         }
 
-        GenericMeterSegment *pMeterSegment = p_arrMeterSegments.add(new GenericMeterSegment("GenericMeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, display_peaks));
+        GenericMeterSegment *pMeterSegment = p_arrMeterSegments.add(new GenericMeterSegment());
+        pMeterSegment->setThresholds(nThreshold * 0.1f, fRange);
         pMeterSegment->setColour(arrHues[nColor], Colour(arrHues[nColor], 1.0f, 1.0f, 0.7f));
 
         addAndMakeVisible(pMeterSegment);
@@ -131,7 +132,7 @@ void MeterBarPeak::setLevels(float peakLevel, float peakLevelPeak)
 
         for (int n = 0; n < nNumberOfBars; n++)
         {
-            p_arrMeterSegments[n]->setLevels(-9999.9f, fPeakLevel, -9999.9f, fPeakLevelPeak);
+            p_arrMeterSegments[n]->setLevels(fPeakLevel, -9999.9f, fPeakLevelPeak, -9999.9f);
         }
     }
 }

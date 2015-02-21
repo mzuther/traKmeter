@@ -36,7 +36,7 @@
 class MeterBarAverage : public Component
 {
 public:
-    MeterBarAverage(const String &componentName, int number_of_bars, int crest_factor, int segment_height, bool display_peaks, bool show_combined_meters);
+    MeterBarAverage(const String &componentName, int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters);
     ~MeterBarAverage();
 
     void setLevels(float averageLevel, float averageLevelPeak);

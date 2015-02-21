@@ -58,10 +58,10 @@ TraKmeter::TraKmeter(const String &componentName, int posX, int posY, int nCrest
 
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(new MeterBarPeak("Level Meter Peak #" + String(nChannel), nNumberOfBarsPeak, nCrestFactor, nSegmentHeight, true, !bShowSplitMeters));
+        MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(new MeterBarPeak("Level Meter Peak #" + String(nChannel), nNumberOfBarsPeak, nCrestFactor, nSegmentHeight, !bShowSplitMeters));
         addAndMakeVisible(pMeterBarPeak);
 
-        MeterBarAverage *pMeterBarAverage = p_arrAverageMeters.add(new MeterBarAverage("Level Meter Average #" + String(nChannel), nNumberOfBarsAverage, nCrestFactor, nSegmentHeight, true, !bShowSplitMeters));
+        MeterBarAverage *pMeterBarAverage = p_arrAverageMeters.add(new MeterBarAverage("Level Meter Average #" + String(nChannel), nNumberOfBarsAverage, nCrestFactor, nSegmentHeight, !bShowSplitMeters));
         addAndMakeVisible(pMeterBarAverage);
 
         OverloadMeter *pOverloadMeter = p_arrOverloadMeters.add(new OverloadMeter("OverloadMeter (" + componentName + ")", nThreshold * 0.1f, nCrestFactor));
