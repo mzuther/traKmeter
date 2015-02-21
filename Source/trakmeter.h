@@ -44,7 +44,7 @@ public:
     static const int TRAKMETER_LABEL_WIDTH = 38;
     static const int TRAKMETER_SEGMENT_WIDTH = 22;
 
-    TraKmeter(const String &componentName, int PosX, int PosY, int nCrestFactor, int nNumChannels, int segment_height, int meter_type);
+    TraKmeter(int PosX, int PosY, int nCrestFactor, int nNumChannels, int segment_height, int meter_type);
     ~TraKmeter();
 
     void setLevels(MeterBallistics *pMeterBallistics);

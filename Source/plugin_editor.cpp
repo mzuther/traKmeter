@@ -304,7 +304,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         }
 
         int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-        trakmeter = new TraKmeter("traKmeter (level meter)", 10, 10, nCrestFactor, nInputChannels, nSegmentHeight, nMeterType);
+        trakmeter = new TraKmeter(10, 10, nCrestFactor, nInputChannels, nSegmentHeight, nMeterType);
 
         // moves traKmeter to the back of the editor's z-plane so that
         // it doesn't overlay (and thus block) any other components

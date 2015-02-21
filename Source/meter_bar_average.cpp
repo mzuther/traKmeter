@@ -25,10 +25,8 @@
 
 #include "meter_bar_average.h"
 
-MeterBarAverage::MeterBarAverage(const String &componentName, int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters)
+MeterBarAverage::MeterBarAverage(int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters)
 {
-    setName(componentName);
-
     // this component does not have any transparent areas (increases
     // performance on redrawing)
     setOpaque(true);
@@ -136,11 +134,11 @@ void MeterBarAverage::setLevels(float averageLevel, float averageLevelPeak)
         fAverageLevelPeak = averageLevelPeak;
 
         // register all hot signals, even up to +100 dB FS!
-        p_arrMeterSegments[0]->setLevels(-9999.9f, fAverageLevel, -9999.9f, fAverageLevelPeak);
+        p_arrMeterSegments[0]->setDiscreteLevels(fAverageLevel, fAverageLevelPeak);
 
         for (int n = 1; n < nNumberOfBars; n++)
         {
-            p_arrMeterSegments[n]->setLevels(fAverageLevel, -9999.9f, fAverageLevelPeak, -9999.9f);
+            p_arrMeterSegments[n]->setNormalLevels(fAverageLevel, fAverageLevelPeak);
         }
     }
 }

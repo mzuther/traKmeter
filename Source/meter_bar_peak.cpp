@@ -25,10 +25,8 @@
 
 #include "meter_bar_peak.h"
 
-MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters)
+MeterBarPeak::MeterBarPeak(int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters)
 {
-    setName(componentName);
-
     // this component does not have any transparent areas (increases
     // performance on redrawing)
     setOpaque(true);
@@ -132,7 +130,7 @@ void MeterBarPeak::setLevels(float peakLevel, float peakLevelPeak)
 
         for (int n = 0; n < nNumberOfBars; n++)
         {
-            p_arrMeterSegments[n]->setLevels(fPeakLevel, -9999.9f, fPeakLevelPeak, -9999.9f);
+            p_arrMeterSegments[n]->setNormalLevels(fPeakLevel, fPeakLevelPeak);
         }
     }
 }
