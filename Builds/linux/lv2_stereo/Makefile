@@ -126,6 +126,7 @@ OBJECTS := \
 	$(OBJDIR)/generic_horizontal_meter.o \
 	$(OBJDIR)/slider_combined.o \
 	$(OBJDIR)/slider_switch.o \
+	$(OBJDIR)/generic_meter_segment.o \
 	$(OBJDIR)/generic_window_skin.o \
 	$(OBJDIR)/generic_window_about.o \
 	$(OBJDIR)/slider_continuous.o \
@@ -270,6 +271,9 @@ $(OBJDIR)/slider_combined.o: ../../../Source/common/widgets/slider_combined.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/slider_switch.o: ../../../Source/common/widgets/slider_switch.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/generic_meter_segment.o: ../../../Source/common/widgets/generic_meter_segment.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/generic_window_skin.o: ../../../Source/common/widgets/generic_window_skin.cpp
