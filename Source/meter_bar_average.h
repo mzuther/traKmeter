@@ -27,7 +27,7 @@
 #define __METER_BAR_AVERAGE_H__
 
 #include "JuceHeader.h"
-#include "meter_segment.h"
+#include "common/widgets/generic_meter_segment.h"
 
 
 //==============================================================================
@@ -52,7 +52,7 @@ private:
     int nSegmentHeight;
     int nNumberOfBars;
 
-    OwnedArray<MeterSegment> p_arrMeterSegments;
+    OwnedArray<GenericMeterSegment> p_arrMeterSegments;
 };
 
 

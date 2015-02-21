@@ -36,19 +36,20 @@ MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int 
     nNumberOfBars = number_of_bars;
     nSegmentHeight = segment_height;
 
-    int nCrestFactor = 10 * crest_factor;
+    Array<float> arrHues;
+
+    arrHues.add(0.00f);  // red
+    arrHues.add(0.18f);  // yellow
+    arrHues.add(0.30f);  // green
+    arrHues.add(0.58f);  // blue
+
     fPeakLevel = -9999.8f;
     fPeakLevelPeak = -9999.8f;
     fPeakLevelMaximum = -9999.8f;
 
-    int nThreshold = show_combined_meters ? -90 : -90;
-    nThreshold += nCrestFactor;
-    int nTrueThreshold = nThreshold - nCrestFactor;
-
-    // register all hot signals, even up to +100 dB FS!
-    float fRange = (nCrestFactor - nThreshold) * 0.1f + 100.0f;
-    int nColor = 0;
-    bool bDiscreteLevels = true;
+    int nCrestFactor = 10 * crest_factor;
+    int nTrueThreshold = show_combined_meters ? -90 : -90;
+    int nThreshold = nTrueThreshold + nCrestFactor;
 
     for (int n = 0; n < nNumberOfBars; n++)
     {
@@ -67,11 +68,11 @@ MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int 
             nThresholdDifference = 100;
         }
 
-        nThreshold -= nThresholdDifference;
-        fRange = nThresholdDifference / 10.0f;
-        bDiscreteLevels = false;
+        nTrueThreshold -= nThresholdDifference;
+        nThreshold = nTrueThreshold + nCrestFactor;
+        float fRange = nThresholdDifference / 10.0f;
 
-        nTrueThreshold = nThreshold - nCrestFactor;
+        int nColor;
 
         if (nTrueThreshold >= -90)
         {
@@ -90,7 +91,9 @@ MeterBarPeak::MeterBarPeak(const String &componentName, int number_of_bars, int 
             nColor = 3;
         }
 
-        MeterSegment *pMeterSegment = p_arrMeterSegments.add(new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor));
+        GenericMeterSegment *pMeterSegment = p_arrMeterSegments.add(new GenericMeterSegment("GenericMeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, display_peaks));
+        pMeterSegment->setColour(arrHues[nColor], Colour(arrHues[nColor], 1.0f, 1.0f, 0.7f));
+
         addAndMakeVisible(pMeterSegment);
     }
 }
@@ -128,7 +131,7 @@ void MeterBarPeak::setLevels(float peakLevel, float peakLevelPeak)
 
         for (int n = 0; n < nNumberOfBars; n++)
         {
-            p_arrMeterSegments[n]->setLevels(fPeakLevel, fPeakLevelPeak);
+            p_arrMeterSegments[n]->setLevels(-9999.9f, fPeakLevel, -9999.9f, fPeakLevelPeak);
         }
     }
 }

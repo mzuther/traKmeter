@@ -36,24 +36,21 @@ MeterBarAverage::MeterBarAverage(const String &componentName, int number_of_bars
     nNumberOfBars = number_of_bars;
     nSegmentHeight = segment_height;
 
+    Array<float> arrHues;
+
+    arrHues.add(0.00f);  // red
+    arrHues.add(0.18f);  // yellow
+    arrHues.add(0.30f);  // green
+    arrHues.add(0.58f);  // blue
+
+    fAverageLevel = -9999.8f;
+    fAverageLevelPeak = -9999.8f;
+
     int nCrestFactor = 10 * crest_factor;
-    fAverageLevel = 0.0f;
-    fAverageLevelPeak = 0.0f;
+    int nTrueThreshold = show_combined_meters ? -100 : -170;
+    int nThreshold = nTrueThreshold + nCrestFactor;
 
-    int n = 0;
-    int nThreshold = show_combined_meters ? -100 : -170;
-    nThreshold += nCrestFactor;
-    int nTrueThreshold = nThreshold - nCrestFactor;
-
-    // register all hot signals, even up to +100 dB FS!
-    float fRange = (nCrestFactor - nThreshold) * 0.1f + 100.0f;
-    int nColor = 0;
-    bool bDiscreteLevels = true;
-
-    MeterSegment *pMeterSegment = p_arrMeterSegments.add(new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor));
-    addAndMakeVisible(pMeterSegment);
-
-    for (n = 1; n < nNumberOfBars; n++)
+    for (int n = 0; n < nNumberOfBars; n++)
     {
         int nThresholdDifference;
 
@@ -70,11 +67,17 @@ MeterBarAverage::MeterBarAverage(const String &componentName, int number_of_bars
             nThresholdDifference = 100;
         }
 
-        nThreshold -= nThresholdDifference;
-        fRange = nThresholdDifference / 10.0f;
-        bDiscreteLevels = false;
+        nTrueThreshold -= nThresholdDifference;
+        nThreshold = nTrueThreshold + nCrestFactor;
+        float fRange = nThresholdDifference / 10.0f;
 
-        nTrueThreshold = nThreshold - nCrestFactor;
+        // register all hot signals, even up to +100 dB FS!
+        if (n == 0)
+        {
+            fRange = 100.0f - nTrueThreshold * 0.1f;
+        }
+
+        int nColor;
 
         if (nTrueThreshold >= -170)
         {
@@ -93,7 +96,9 @@ MeterBarAverage::MeterBarAverage(const String &componentName, int number_of_bars
             nColor = 3;
         }
 
-        pMeterSegment = p_arrMeterSegments.add(new MeterSegment("MeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, bDiscreteLevels, display_peaks, nColor));
+        GenericMeterSegment *pMeterSegment = p_arrMeterSegments.add(new GenericMeterSegment("GenericMeterSegment #" + String(n) + " (" + componentName + ")", nThreshold * 0.1f, fRange, display_peaks));
+        pMeterSegment->setColour(arrHues[nColor], Colour(arrHues[nColor], 1.0f, 1.0f, 0.7f));
+
         addAndMakeVisible(pMeterSegment);
     }
 }
@@ -129,9 +134,12 @@ void MeterBarAverage::setLevels(float averageLevel, float averageLevelPeak)
         fAverageLevel = averageLevel;
         fAverageLevelPeak = averageLevelPeak;
 
-        for (int n = 0; n < nNumberOfBars; n++)
+        // register all hot signals, even up to +100 dB FS!
+        p_arrMeterSegments[0]->setLevels(fAverageLevel, -9999.9f, fAverageLevelPeak, -9999.9f);
+
+        for (int n = 1; n < nNumberOfBars; n++)
         {
-            p_arrMeterSegments[n]->setLevels(fAverageLevel, fAverageLevelPeak);
+            p_arrMeterSegments[n]->setLevels(-9999.9f, fAverageLevel, -9999.9f, fAverageLevelPeak);
         }
     }
 }
