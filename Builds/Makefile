@@ -6,34 +6,34 @@ ifndef config
 endif
 export config
 
-PROJECTS := linux_standalone_stereo linux_standalone_multi linux_lv2_stereo linux_lv2_multi linux_vst_stereo linux_vst_multi
+PROJECTS := trakmeter_standalone_stereo trakmeter_standalone_multi trakmeter_lv2_stereo trakmeter_lv2_multi trakmeter_vst_stereo trakmeter_vst_multi
 
 .PHONY: all clean help $(PROJECTS)
 
 all: $(PROJECTS)
 
-linux_standalone_stereo: 
-	@echo "==== Building linux_standalone_stereo ($(config)) ===="
+trakmeter_standalone_stereo: 
+	@echo "==== Building trakmeter_standalone_stereo ($(config)) ===="
 	@${MAKE} --no-print-directory -C linux/standalone_stereo -f Makefile
 
-linux_standalone_multi: 
-	@echo "==== Building linux_standalone_multi ($(config)) ===="
+trakmeter_standalone_multi: 
+	@echo "==== Building trakmeter_standalone_multi ($(config)) ===="
 	@${MAKE} --no-print-directory -C linux/standalone_multi -f Makefile
 
-linux_lv2_stereo: 
-	@echo "==== Building linux_lv2_stereo ($(config)) ===="
+trakmeter_lv2_stereo: 
+	@echo "==== Building trakmeter_lv2_stereo ($(config)) ===="
 	@${MAKE} --no-print-directory -C linux/lv2_stereo -f Makefile
 
-linux_lv2_multi: 
-	@echo "==== Building linux_lv2_multi ($(config)) ===="
+trakmeter_lv2_multi: 
+	@echo "==== Building trakmeter_lv2_multi ($(config)) ===="
 	@${MAKE} --no-print-directory -C linux/lv2_multi -f Makefile
 
-linux_vst_stereo: 
-	@echo "==== Building linux_vst_stereo ($(config)) ===="
+trakmeter_vst_stereo: 
+	@echo "==== Building trakmeter_vst_stereo ($(config)) ===="
 	@${MAKE} --no-print-directory -C linux/vst_stereo -f Makefile
 
-linux_vst_multi: 
-	@echo "==== Building linux_vst_multi ($(config)) ===="
+trakmeter_vst_multi: 
+	@echo "==== Building trakmeter_vst_multi ($(config)) ===="
 	@${MAKE} --no-print-directory -C linux/vst_multi -f Makefile
 
 clean:
@@ -56,11 +56,11 @@ help:
 	@echo "TARGETS:"
 	@echo "   all (default)"
 	@echo "   clean"
-	@echo "   linux_standalone_stereo"
-	@echo "   linux_standalone_multi"
-	@echo "   linux_lv2_stereo"
-	@echo "   linux_lv2_multi"
-	@echo "   linux_vst_stereo"
-	@echo "   linux_vst_multi"
+	@echo "   trakmeter_standalone_stereo"
+	@echo "   trakmeter_standalone_multi"
+	@echo "   trakmeter_lv2_stereo"
+	@echo "   trakmeter_lv2_multi"
+	@echo "   trakmeter_vst_stereo"
+	@echo "   trakmeter_vst_multi"
 	@echo ""
 	@echo "For more information, see http://industriousone.com/premake/quick-start"

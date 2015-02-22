@@ -37,7 +37,7 @@ else
 	print "Action not specified\n"
 end
 
-solution "trakmeter"
+solution "traKmeter"
 	location ("windows/" .. _ACTION .. "/")
 	language "C++"
 
@@ -135,7 +135,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project ("Stand-alone (Stereo)")
+	project ("trakmeter Stand-alone (Stereo)")
 		kind "WindowedApp"
 		targetname "traKmeter (Stereo"
 		targetprefix ""
@@ -168,7 +168,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project ("Stand-alone (Multi)")
+	project ("trakmeter Stand-alone (Multi)")
 		kind "WindowedApp"
 		targetname "traKmeter (Multi"
 		targetprefix ""
@@ -201,7 +201,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project ("VST Plug-in (Stereo)")
+	project ("trakmeter VST (Stereo)")
 		kind "SharedLib"
 		targetname "traKmeter (Stereo"
 		targetprefix ""
@@ -244,7 +244,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project ("VST Plug-in (Multi)")
+	project ("trakmeter VST (Multi)")
 		kind "SharedLib"
 		targetname "traKmeter (Multi"
 		targetprefix ""

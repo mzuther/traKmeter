@@ -94,7 +94,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project (os.get() .. "_standalone_stereo")
+	project ("trakmeter_standalone_stereo")
 		kind "WindowedApp"
 		location (os.get() .. "/standalone_stereo")
 		targetname "trakmeter_stereo"
@@ -140,7 +140,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project (os.get() .. "_standalone_multi")
+	project ("trakmeter_standalone_multi")
 		kind "WindowedApp"
 		location (os.get() .. "/standalone_multi")
 		targetname "trakmeter_multi"
@@ -187,7 +187,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project (os.get() .. "_lv2_stereo")
+	project ("trakmeter_lv2_stereo")
 		kind "SharedLib"
 		location (os.get() .. "/lv2_stereo")
 		targetname "trakmeter_stereo_lv2"
@@ -248,7 +248,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project (os.get() .. "_lv2_multi")
+	project ("trakmeter_lv2_multi")
 		kind "SharedLib"
 		location (os.get() .. "/lv2_multi")
 		targetname "trakmeter_multi_lv2"
@@ -309,7 +309,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project (os.get() .. "_vst_stereo")
+	project ("trakmeter_vst_stereo")
 		kind "SharedLib"
 		location (os.get() .. "/vst_stereo")
 		targetname "trakmeter_stereo_vst"
@@ -368,7 +368,7 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project (os.get() .. "_vst_multi")
+	project ("trakmeter_vst_multi")
 		kind "SharedLib"
 		location (os.get() .. "/vst_multi")
 		targetname "trakmeter_multi_vst"

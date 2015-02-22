@@ -175,7 +175,7 @@ all: $(TARGETDIR) $(OBJDIR) prebuild prelink $(TARGET)
 	@:
 
 $(TARGET): $(GCH) $(OBJECTS) $(LDDEPS) $(RESOURCES)
-	@echo Linking linux_standalone_multi
+	@echo Linking trakmeter_standalone_multi
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -196,7 +196,7 @@ else
 endif
 
 clean:
-	@echo Cleaning linux_standalone_multi
+	@echo Cleaning trakmeter_standalone_multi
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(OBJDIR)

@@ -50,29 +50,29 @@ case $2 in
 		MAKEFILE_PRINT="clean targets"
 		;;
 	1)
-		MAKEFILE="linux_standalone_stereo"
+		MAKEFILE="trakmeter_standalone_stereo"
 		MAKEFILE_PRINT="Standalone (Stereo)"
 		EXECUTABLE="trakmeter_stereo"
 		;;
 	2)
-		MAKEFILE="linux_standalone_multi"
+		MAKEFILE="trakmeter_standalone_multi"
 		MAKEFILE_PRINT="Standalone (Multi)"
 		EXECUTABLE="trakmeter_multi"
 		;;
 	3)
-		MAKEFILE="linux_lv2_stereo"
+		MAKEFILE="trakmeter_lv2_stereo"
 		MAKEFILE_PRINT="LV2 plug-in (Stereo)"
 		;;
 	4)
-		MAKEFILE="linux_lv2_multi"
+		MAKEFILE="trakmeter_lv2_multi"
 		MAKEFILE_PRINT="LV2 plug-in (Multi)"
 		;;
 	5)
-		MAKEFILE="linux_vst_stereo"
+		MAKEFILE="trakmeter_vst_stereo"
 		MAKEFILE_PRINT="VST plug-in (Stereo)"
 		;;
 	6)
-		MAKEFILE="linux_vst_multi"
+		MAKEFILE="trakmeter_vst_multi"
 		MAKEFILE_PRINT="VST plug-in (Multi)"
 		;;
 	*)
