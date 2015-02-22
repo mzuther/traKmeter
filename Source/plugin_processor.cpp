@@ -386,6 +386,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
         bSampleRateIsValid = true;
     }
 
+    isPreValidating = false;
     nNumInputChannels = getNumInputChannels();
 
     if (nNumInputChannels < 1)
@@ -482,6 +483,13 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
 
 void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
 {
+    // silence input if validation window is open
+    if (isPreValidating)
+    {
+        buffer.clear();
+        pRingBufferInput->clear();
+    }
+
     bool hasOpenEditor = (getActiveEditor() != nullptr);
 
     if (hasOpenEditor)
@@ -520,6 +528,18 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, cons
 }
 
 
+void TraKmeterAudioProcessor::preValidation(bool bStart)
+{
+    if (bStart)
+    {
+        // stops any running validation and resets all meters
+        stopValidation();
+    }
+
+    isPreValidating = bStart;
+}
+
+
 void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChannel, bool bReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel)
 {
     audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, nCrestFactor);
@@ -528,6 +548,8 @@ void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChann
     // reset all meters before we start the validation
     pMeterBallistics->reset();
 
+    isPreValidating = false;
+
     // refresh editor; "V+" --> validation started
     sendActionMessage("V+");
 }
@@ -535,7 +557,11 @@ void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChann
 
 void TraKmeterAudioProcessor::stopValidation()
 {
+    isPreValidating = false;
     audioFilePlayer = nullptr;
+
+    // reset all meters after the validation
+    pMeterBallistics->reset();
 
     // refresh editor; "V-" --> validation stopped
     sendActionMessage("V-");

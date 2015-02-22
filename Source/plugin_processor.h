@@ -49,6 +49,7 @@ public:
 
     void processBlock(AudioSampleBuffer &buffer, MidiBuffer &midiMessages);
 
+    void preValidation(bool bStart);
     void startValidation(File fileAudio, int nSelectedChannel, bool bReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel);
     void stopValidation();
     bool isValidating();
@@ -135,6 +136,7 @@ private:
 
     int nNumInputChannels;
     bool bSampleRateIsValid;
+    bool isPreValidating;
 
     int nSamplesInBuffer;
     float fProcessedSeconds;
