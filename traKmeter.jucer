@@ -89,6 +89,10 @@
           <FILE id="S7qQhi" name="generic_skin.h" compile="0" resource="0" file="Source/common/skin/generic_skin.h"/>
         </GROUP>
         <GROUP id="{3063C66A-B173-52D9-C63C-4FCC1E27221C}" name="widgets">
+          <GROUP id="{1AFE8E45-B425-6289-30C9-7F8147399487}" name="resources">
+            <FILE id="KxVfOA" name="resources.cpp" compile="1" resource="0" file="Source/common/widgets/resources/resources.cpp"/>
+            <FILE id="TVAOy1" name="resources.h" compile="0" resource="0" file="Source/common/widgets/resources/resources.h"/>
+          </GROUP>
           <FILE id="bkolp8" name="generic_channel_slider.cpp" compile="1" resource="0"
                 file="Source/common/widgets/generic_channel_slider.cpp"/>
           <FILE id="SibELC" name="generic_channel_slider.h" compile="0" resource="0"
@@ -97,6 +101,14 @@
                 file="Source/common/widgets/generic_horizontal_meter.cpp"/>
           <FILE id="gdAnFb" name="generic_horizontal_meter.h" compile="0" resource="0"
                 file="Source/common/widgets/generic_horizontal_meter.h"/>
+          <FILE id="bWJGn2" name="generic_meter_bar.cpp" compile="1" resource="0"
+                file="Source/common/widgets/generic_meter_bar.cpp"/>
+          <FILE id="L2M1GF" name="generic_meter_bar.h" compile="0" resource="0"
+                file="Source/common/widgets/generic_meter_bar.h"/>
+          <FILE id="K02yse" name="generic_meter_segment.cpp" compile="1" resource="0"
+                file="Source/common/widgets/generic_meter_segment.cpp"/>
+          <FILE id="aaYKwD" name="generic_meter_segment.h" compile="0" resource="0"
+                file="Source/common/widgets/generic_meter_segment.h"/>
           <FILE id="ixbyL2" name="generic_plugin_standalone.cpp" compile="1"
                 resource="0" file="Source/common/widgets/generic_plugin_standalone.cpp"/>
           <FILE id="hg9wP1" name="generic_plugin_standalone.h" compile="0" resource="0"
@@ -113,10 +125,6 @@
                 file="Source/common/widgets/generic_window_skin.cpp"/>
           <FILE id="h5BveW" name="generic_window_skin.h" compile="0" resource="0"
                 file="Source/common/widgets/generic_window_skin.h"/>
-          <GROUP id="{1AFE8E45-B425-6289-30C9-7F8147399487}" name="resources">
-            <FILE id="KxVfOA" name="resources.cpp" compile="1" resource="0" file="Source/common/widgets/resources/resources.cpp"/>
-            <FILE id="TVAOy1" name="resources.h" compile="0" resource="0" file="Source/common/widgets/resources/resources.h"/>
-          </GROUP>
           <FILE id="zlhyis" name="slider_combined.cpp" compile="1" resource="0"
                 file="Source/common/widgets/slider_combined.cpp"/>
           <FILE id="t2hUW8" name="slider_combined.h" compile="0" resource="0"
@@ -154,9 +162,6 @@
             file="Source/meter_bar_peak.cpp"/>
       <FILE id="u11D2H" name="meter_bar_peak.h" compile="0" resource="0"
             file="Source/meter_bar_peak.h"/>
-      <FILE id="ogHUVX" name="meter_segment.cpp" compile="1" resource="0"
-            file="Source/meter_segment.cpp"/>
-      <FILE id="rsGe0Y" name="meter_segment.h" compile="0" resource="0" file="Source/meter_segment.h"/>
       <FILE id="fzmyoQ" name="meter_signal_led.cpp" compile="1" resource="0"
             file="Source/meter_signal_led.cpp"/>
       <FILE id="nFD0ly" name="meter_signal_led.h" compile="0" resource="0"
