@@ -37,29 +37,25 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels, int
     int nThreshold = -90;
     nThreshold += nCrestFactor * 10;
 
-    int nNumberOfBarsPeak;
-    int nNumberOfBarsAverage;
     int nSegmentHeight;
 
     if (bShowSplitMeters)
     {
-        nNumberOfBarsPeak = 9;
-        nNumberOfBarsAverage = nNumberOfBarsPeak - 1;
         nSegmentHeight = segment_height;
     }
     else
     {
-        nNumberOfBarsPeak = 26;
-        nNumberOfBarsAverage = nNumberOfBarsPeak;
         nSegmentHeight = segment_height - 1;
     }
 
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(new MeterBarPeak(nNumberOfBarsPeak, nCrestFactor, nSegmentHeight, !bShowSplitMeters));
+        MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(new MeterBarPeak());
+        pMeterBarPeak->create(nCrestFactor, nSegmentHeight, MeterBarPeak::orientationVertical, !bShowSplitMeters);
         addAndMakeVisible(pMeterBarPeak);
 
-        MeterBarAverage *pMeterBarAverage = p_arrAverageMeters.add(new MeterBarAverage(nNumberOfBarsAverage, nCrestFactor, nSegmentHeight, !bShowSplitMeters));
+        MeterBarAverage *pMeterBarAverage = p_arrAverageMeters.add(new MeterBarAverage());
+        pMeterBarAverage->create(nCrestFactor, nSegmentHeight, MeterBarAverage::orientationVertical, !bShowSplitMeters);
         addAndMakeVisible(pMeterBarAverage);
 
         OverloadMeter *pOverloadMeter = p_arrOverloadMeters.add(new OverloadMeter("OverloadMeter", nThreshold * 0.1f, nCrestFactor));
@@ -137,8 +133,10 @@ void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        p_arrAverageMeters[nChannel]->setLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
-        p_arrPeakMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
+        p_arrAverageMeters[nChannel]->setNormalLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
+
+        p_arrPeakMeters[nChannel]->setNormalLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
+
         p_arrOverloadMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getMaximumPeakLevel(nChannel));
 
         if (bShowSplitMeters)

@@ -27,33 +27,25 @@
 #define __METER_BAR_PEAK_H__
 
 #include "JuceHeader.h"
-#include "common/widgets/generic_meter_segment.h"
+#include "common/widgets/generic_meter_bar.h"
 
 
 //==============================================================================
 /**
 */
-class MeterBarPeak : public Component
+class MeterBarPeak : public GenericMeterBar
 {
 public:
-    MeterBarPeak(int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters);
+    MeterBarPeak();
     ~MeterBarPeak();
 
-    void setLevels(float peakLevel, float peakLevelPeak);
-    void paint(Graphics &g);
-    void resized();
+    void create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters);
 
 private:
     JUCE_LEAK_DETECTOR(MeterBarPeak);
 
-    float fPeakLevel;
-    float fPeakLevelPeak;
-    float fPeakLevelMaximum;
-
-    int nSegmentHeight;
-    int nNumberOfBars;
-
-    OwnedArray<GenericMeterSegment> p_arrMeterSegments;
+    Array<float> arrHues;
+    Array<Colour> arrPeakColours;
 };
 
 

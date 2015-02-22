@@ -25,80 +25,16 @@
 
 #include "meter_bar_average.h"
 
-MeterBarAverage::MeterBarAverage(int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters)
+MeterBarAverage::MeterBarAverage()
 {
-    // this component does not have any transparent areas (increases
-    // performance on redrawing)
-    setOpaque(true);
-
-    nNumberOfBars = number_of_bars;
-    nSegmentHeight = segment_height;
-
-    Array<float> arrHues;
-
     arrHues.add(0.00f);  // red
     arrHues.add(0.18f);  // yellow
     arrHues.add(0.30f);  // green
     arrHues.add(0.58f);  // blue
 
-    fAverageLevel = -9999.8f;
-    fAverageLevelPeak = -9999.8f;
-
-    int nCrestFactor = 10 * crest_factor;
-    int nTrueThreshold = show_combined_meters ? -100 : -170;
-    int nThreshold = nTrueThreshold + nCrestFactor;
-
-    for (int n = 0; n < nNumberOfBars; n++)
+    for (int n = 0; n < arrHues.size(); n++)
     {
-        int nThresholdDifference;
-
-        if (nTrueThreshold > -260)
-        {
-            nThresholdDifference = 10;
-        }
-        else if (nTrueThreshold > -300)
-        {
-            nThresholdDifference = 40;
-        }
-        else
-        {
-            nThresholdDifference = 100;
-        }
-
-        nTrueThreshold -= nThresholdDifference;
-        nThreshold = nTrueThreshold + nCrestFactor;
-        float fRange = nThresholdDifference / 10.0f;
-
-        // register all hot signals, even up to +100 dB FS!
-        if (n == 0)
-        {
-            fRange = 100.0f - nTrueThreshold * 0.1f;
-        }
-
-        int nColor;
-
-        if (nTrueThreshold >= -170)
-        {
-            nColor = 0;
-        }
-        else if (nTrueThreshold >= -180)
-        {
-            nColor = 1;
-        }
-        else if (nTrueThreshold >= -220)
-        {
-            nColor = 2;
-        }
-        else
-        {
-            nColor = 3;
-        }
-
-        GenericMeterSegment *pMeterSegment = p_arrMeterSegments.add(new GenericMeterSegment());
-        pMeterSegment->setThresholds(nThreshold * 0.1f, fRange);
-        pMeterSegment->setColour(arrHues[nColor], Colour(arrHues[nColor], 1.0f, 1.0f, 0.7f));
-
-        addAndMakeVisible(pMeterSegment);
+        arrPeakColours.add(Colour(arrHues[n], 1.0f, 1.0f, 0.7f));
     }
 }
 
@@ -108,38 +44,74 @@ MeterBarAverage::~MeterBarAverage()
 }
 
 
-void MeterBarAverage::paint(Graphics &g)
+void MeterBarAverage::create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters)
 {
-    g.fillAll(Colours::black);
-}
+    GenericMeterBar::create();
+    setOrientation(orientation);
 
+    int nCrestFactor = crestFactor * 10;
+    int nTrueLowerThreshold;
+    int nNumberOfBars;
 
-void MeterBarAverage::resized()
-{
-    int y = 0;
+    if (bShowCombinedMeters)
+    {
+        nTrueLowerThreshold = -90;
+        nNumberOfBars = 26;
+    }
+    else
+    {
+        nTrueLowerThreshold = -160;
+        nNumberOfBars = 8;
+    }
+
+    int nLowerThreshold = nTrueLowerThreshold + nCrestFactor;
 
     for (int n = 0; n < nNumberOfBars; n++)
     {
-        p_arrMeterSegments[n]->setBounds(0, y, getWidth(), nSegmentHeight + 1);
-        y += nSegmentHeight;
-    }
-}
+        int nThresholdDifference;
 
-
-void MeterBarAverage::setLevels(float averageLevel, float averageLevelPeak)
-{
-    if ((averageLevel != fAverageLevel) || (averageLevelPeak != fAverageLevelPeak))
-    {
-        fAverageLevel = averageLevel;
-        fAverageLevelPeak = averageLevelPeak;
-
-        // register all hot signals, even up to +100 dB FS!
-        p_arrMeterSegments[0]->setDiscreteLevels(fAverageLevel, fAverageLevelPeak);
-
-        for (int n = 1; n < nNumberOfBars; n++)
+        if (nTrueLowerThreshold > -260)
         {
-            p_arrMeterSegments[n]->setNormalLevels(fAverageLevel, fAverageLevelPeak);
+            nThresholdDifference = 10;
         }
+        else if (nTrueLowerThreshold > -300)
+        {
+            nThresholdDifference = 40;
+        }
+        else
+        {
+            nThresholdDifference = 100;
+        }
+
+        int nColour;
+
+        nTrueLowerThreshold -= nThresholdDifference;
+        nLowerThreshold = nTrueLowerThreshold + nCrestFactor;
+
+        if (nTrueLowerThreshold >= -170)
+        {
+            nColour = 0;
+        }
+        else if (nTrueLowerThreshold >= -180)
+        {
+            nColour = 1;
+        }
+        else if (nTrueLowerThreshold >= -220)
+        {
+            nColour = 2;
+        }
+        else
+        {
+            nColour = 3;
+        }
+
+        float fLowerThreshold = nLowerThreshold * 0.1f;
+        float fRange = nThresholdDifference * 0.1f;
+
+        int nSpacingBefore = 0;
+        bool bHasHighestLevel = (n == 0) ? true : false;
+
+        addSegment(fLowerThreshold, fRange, bHasHighestLevel, nMainSegmentHeight, nSpacingBefore, arrHues[nColour], arrPeakColours[nColour]);
     }
 }
 

@@ -27,32 +27,25 @@
 #define __METER_BAR_AVERAGE_H__
 
 #include "JuceHeader.h"
-#include "common/widgets/generic_meter_segment.h"
+#include "common/widgets/generic_meter_bar.h"
 
 
 //==============================================================================
 /**
 */
-class MeterBarAverage : public Component
+class MeterBarAverage : public GenericMeterBar
 {
 public:
-    MeterBarAverage(int number_of_bars, int crest_factor, int segment_height, bool show_combined_meters);
+    MeterBarAverage();
     ~MeterBarAverage();
 
-    void setLevels(float averageLevel, float averageLevelPeak);
-    void paint(Graphics &g);
-    void resized();
+    void create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters);
 
 private:
     JUCE_LEAK_DETECTOR(MeterBarAverage);
 
-    float fAverageLevel;
-    float fAverageLevelPeak;
-
-    int nSegmentHeight;
-    int nNumberOfBars;
-
-    OwnedArray<GenericMeterSegment> p_arrMeterSegments;
+    Array<float> arrHues;
+    Array<Colour> arrPeakColours;
 };
 
 
