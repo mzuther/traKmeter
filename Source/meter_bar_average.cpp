@@ -113,7 +113,7 @@ void MeterBarAverage::create(int crestFactor, int nMainSegmentHeight, Orientatio
         addSegment(fLowerThreshold, fRange, bHasHighestLevel, nMainSegmentHeight, nSpacingBefore, arrHues[nColour], arrPeakColours[nColour]);
     }
 
-    // set orientation only when *all* meter segments have been added!
+    // set orientation here to save some processing power
     setOrientation(orientation);
 }
 
