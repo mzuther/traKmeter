@@ -47,7 +47,6 @@ MeterBarPeak::~MeterBarPeak()
 void MeterBarPeak::create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters)
 {
     GenericMeterBar::create();
-    setOrientation(orientation);
 
     int nCrestFactor = crestFactor * 10;
     int nTrueLowerThreshold;
@@ -113,6 +112,9 @@ void MeterBarPeak::create(int crestFactor, int nMainSegmentHeight, Orientation o
 
         addSegment(fLowerThreshold, fRange, bHasHighestLevel, nMainSegmentHeight, nSpacingBefore, arrHues[nColour], arrPeakColours[nColour]);
     }
+
+    // set orientation only when *all* meter segments have been added!
+    setOrientation(orientation);
 }
 
 

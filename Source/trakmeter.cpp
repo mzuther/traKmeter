@@ -104,8 +104,8 @@ void TraKmeter::applySkin(Skin *pSkin)
 {
     for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
     {
-        pSkin->placeComponent(p_arrAverageMeters[nChannel], "meter_average_" + String(nChannel + 1));
-        pSkin->placeComponent(p_arrPeakMeters[nChannel], "meter_peak_" + String(nChannel + 1));
+        pSkin->placeMeterBar(p_arrAverageMeters[nChannel], "meter_average_" + String(nChannel + 1));
+        pSkin->placeMeterBar(p_arrPeakMeters[nChannel], "meter_peak_" + String(nChannel + 1));
 
         pSkin->placeAndSkinStateLabel(p_arrOverloadMeters[nChannel], "label_over_" + String(nChannel + 1));
 

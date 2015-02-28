@@ -72,7 +72,7 @@ void MeterSignalLed::paint(Graphics &g)
     // pixel for peak marker
     g.fillRect(1, 1, width - 2, height - 2);
 
-    // initialise color for label (light blue for levels below the
+    // initialise colour for label (light blue for levels below the
     // threshold and black for all other levels)
     if (fBrightness <= 0.32f)
     {
