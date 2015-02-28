@@ -44,6 +44,10 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
     nTrakmeterBufferSize(1024),
     dither(24)
 {
+    DBG(String("App  v") + JucePlugin_VersionString);
+    DBG(String("Comm v") + MZ_Juce_Common::getVersion());
+    DBG("");
+
     bSampleRateIsValid = false;
     nNumInputChannels = 0;
     fProcessedSeconds = 0.0f;
