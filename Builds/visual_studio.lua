@@ -135,7 +135,7 @@ solution "traKmeter"
 
 --------------------------------------------------------------------------------
 
-	project ("trakmeter Stand-alone (Stereo)")
+	project ("trakmeter (Stereo)")
 		kind "WindowedApp"
 		targetname "traKmeter (Stereo"
 		targetprefix ""
@@ -168,7 +168,7 @@ solution "traKmeter"
 
 --------------------------------------------------------------------------------
 
-	project ("trakmeter Stand-alone (Multi)")
+	project ("trakmeter (Multi)")
 		kind "WindowedApp"
 		targetname "traKmeter (Multi"
 		targetprefix ""
