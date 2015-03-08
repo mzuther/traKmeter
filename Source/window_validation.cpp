@@ -64,15 +64,15 @@ WindowValidation::WindowValidation(Component *pEditorWindow, TraKmeterAudioProce
     LabelFileSelection.setColour(Label::outlineColourId, Colours::grey);
 
     // add and display the label
-    contentComponent.addAndMakeVisible(&LabelFileSelection);
+    contentComponent.addAndMakeVisible(LabelFileSelection);
 
     ButtonFileSelection.setButtonText("...");
     ButtonFileSelection.addListener(this);
-    contentComponent.addAndMakeVisible(&ButtonFileSelection);
+    contentComponent.addAndMakeVisible(ButtonFileSelection);
 
     LabelSampleRate.setText("Host SR: ", dontSendNotification);
     LabelSampleRate.setColour(Label::textColourId, Colours::black);
-    contentComponent.addAndMakeVisible(&LabelSampleRate);
+    contentComponent.addAndMakeVisible(LabelSampleRate);
 
     int nSampleRate = (int) pProcessor->getSampleRate();
     String strSampleRateThousands = String(nSampleRate / 1000);
@@ -86,11 +86,11 @@ WindowValidation::WindowValidation(Component *pEditorWindow, TraKmeterAudioProce
     LabelSampleRateValue.setColour(Label::outlineColourId, Colours::grey);
 
     // add and display the label
-    contentComponent.addAndMakeVisible(&LabelSampleRateValue);
+    contentComponent.addAndMakeVisible(LabelSampleRateValue);
 
     LabelDumpSelectedChannel.setText("Channel: ", dontSendNotification);
     LabelDumpSelectedChannel.setColour(Label::textColourId, Colours::black);
-    contentComponent.addAndMakeVisible(&LabelDumpSelectedChannel);
+    contentComponent.addAndMakeVisible(LabelDumpSelectedChannel);
 
     SliderDumpSelectedChannel.setNumberOfChannels(pProcessor->getNumChannels() - 1);
     SliderDumpSelectedChannel.setColour(GenericChannelSlider::textBoxTextColourId, Colours::black);
@@ -100,20 +100,20 @@ WindowValidation::WindowValidation(Component *pEditorWindow, TraKmeterAudioProce
     ButtonDumpCSV.setButtonText("CSV format");
     ButtonDumpCSV.setColour(ToggleButton::textColourId, Colours::black);
     ButtonDumpCSV.setToggleState(pProcessor->getBoolean(TraKmeterPluginParameters::selValidationCSVFormat), dontSendNotification);
-    contentComponent.addAndMakeVisible(&ButtonDumpCSV);
+    contentComponent.addAndMakeVisible(ButtonDumpCSV);
 
     SliderDumpSelectedChannel.setValue(pProcessor->getRealInteger(TraKmeterPluginParameters::selValidationSelectedChannel), dontSendNotification);
-    contentComponent.addAndMakeVisible(&SliderDumpSelectedChannel);
+    contentComponent.addAndMakeVisible(SliderDumpSelectedChannel);
 
     ButtonDumpAverageMeterLevel.setButtonText("Average meter level");
     ButtonDumpAverageMeterLevel.setColour(ToggleButton::textColourId, Colours::black);
     ButtonDumpAverageMeterLevel.setToggleState(pProcessor->getBoolean(TraKmeterPluginParameters::selValidationAverageMeterLevel), dontSendNotification);
-    contentComponent.addAndMakeVisible(&ButtonDumpAverageMeterLevel);
+    contentComponent.addAndMakeVisible(ButtonDumpAverageMeterLevel);
 
     ButtonDumpPeakMeterLevel.setButtonText("Peak meter level");
     ButtonDumpPeakMeterLevel.setColour(ToggleButton::textColourId, Colours::black);
     ButtonDumpPeakMeterLevel.setToggleState(pProcessor->getBoolean(TraKmeterPluginParameters::selValidationPeakMeterLevel), dontSendNotification);
-    contentComponent.addAndMakeVisible(&ButtonDumpPeakMeterLevel);
+    contentComponent.addAndMakeVisible(ButtonDumpPeakMeterLevel);
 
     // create and position a "validation" button which closes the
     // window and runs the selected audio file when clicked
@@ -125,7 +125,7 @@ WindowValidation::WindowValidation(Component *pEditorWindow, TraKmeterAudioProce
     // add "validation" window as button listener and display the
     // button
     ButtonValidation.addListener(this);
-    contentComponent.addAndMakeVisible(&ButtonValidation);
+    contentComponent.addAndMakeVisible(ButtonValidation);
 
     // create and position a "validation" button which closes the
     // window when clicked
@@ -136,7 +136,7 @@ WindowValidation::WindowValidation(Component *pEditorWindow, TraKmeterAudioProce
 
     // add "validation" window as button listener and display the button
     ButtonCancel.addListener(this);
-    contentComponent.addAndMakeVisible(&ButtonCancel);
+    contentComponent.addAndMakeVisible(ButtonCancel);
 
     int nPositionX = 4;
     int nPositionY = 7;

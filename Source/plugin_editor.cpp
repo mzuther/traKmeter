@@ -51,16 +51,16 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     pProcessor->addActionListener(this);
 
     ButtonMeterType.addListener(this);
-    addAndMakeVisible(&ButtonMeterType);
+    addAndMakeVisible(ButtonMeterType);
 
     ButtonCrestFactor.addListener(this);
-    addAndMakeVisible(&ButtonCrestFactor);
+    addAndMakeVisible(ButtonCrestFactor);
 
     ButtonTransientMode.addListener(this);
-    addAndMakeVisible(&ButtonTransientMode);
+    addAndMakeVisible(ButtonTransientMode);
 
     ButtonMixMode.addListener(this);
-    addAndMakeVisible(&ButtonMixMode);
+    addAndMakeVisible(ButtonMixMode);
 
     int nIndex = TraKmeterPluginParameters::selGain;
     String strName = parameters->getName(nIndex);
@@ -71,28 +71,28 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     addChildComponent(SliderGain);
 
     ButtonReset.addListener(this);
-    addAndMakeVisible(&ButtonReset);
+    addAndMakeVisible(ButtonReset);
 
     ButtonSkin.addListener(this);
-    addAndMakeVisible(&ButtonSkin);
+    addAndMakeVisible(ButtonSkin);
 
     ButtonValidation.addListener(this);
-    addAndMakeVisible(&ButtonValidation);
+    addAndMakeVisible(ButtonValidation);
 
     ButtonAbout.addListener(this);
-    addAndMakeVisible(&ButtonAbout);
+    addAndMakeVisible(ButtonAbout);
 
 #ifdef DEBUG
     // moves debug label to the back of the editor's z-plane to that
     // it doesn't overlay (and thus block) any other components
-    addAndMakeVisible(&LabelDebug, 0);
+    addAndMakeVisible(LabelDebug, 0);
 #endif
 
     // prevent unnecessary redrawing of plugin editor
     BackgroundImage.setOpaque(true);
     // moves background image to the back of the editor's z-plane to
     // that it doesn't overlay (and thus block) any other components
-    addAndMakeVisible(&BackgroundImage, 0);
+    addAndMakeVisible(BackgroundImage, 0);
 
     updateParameter(TraKmeterPluginParameters::selTransientMode);
     updateParameter(TraKmeterPluginParameters::selCrestFactor);
@@ -385,59 +385,94 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         // manually activate button
         button->setToggleState(true, dontSendNotification);
 
-        StringPairArray strArray;
+        StringPairArray arrChapters;
 
-        strArray.set("Copyright", "(c) 2012-2015 Martin Zuther\n");
+        String pluginNameAndVersion = String(ProjectInfo::projectName);
+        pluginNameAndVersion += " v";
+        pluginNameAndVersion += JucePlugin_VersionString;
 
-        strArray.set("Contributors",
-                     L"Filipe Coelho\n"
-                     L"Bram de Jong\n");
+        arrChapters.set(
+            pluginNameAndVersion,
+            String(JucePlugin_Desc) + ".\n");
 
-        strArray.set("Beta testing",
-                     L"Rickard (Interfearing Sounds)\n");
+        arrChapters.set(
+            "Copyright",
+            "(c) 2012-2015 Martin Zuther\n");
 
-        strArray.set("Thanks",
-                     L"I want to thank all contributors "
-                     L"and beta testers and the open source "
-                     L"community at large!\n\n"
-                     L"Thank you for using free software!\n");
+        arrChapters.set(
+            "Contributors",
+            L"Filipe Coelho\n"
+            L"Bram de Jong\n");
 
-        strArray.set("Libraries",
+        arrChapters.set(
+            "Beta testing",
+            L"Rickard (Interfearing Sounds)\n");
+
+        arrChapters.set(
+            "Thanks",
+            L"I want to thank all contributors and beta testers "
+            L"and the open source community at large!\n\n"
+            L"Thank you for using free software!\n");
+
+        arrChapters.set(
+            "Libraries",
 #ifdef LINUX
-                     L"ALSA\n"
+            L"ALSA\n"
 #endif
 #ifdef LINUX
-                     L"FreeType\n"
-                     L"JACK\n"
+            L"FreeType\n"
+            L"JACK\n"
 #endif
-                     L"JUCE\n"
+            L"JUCE\n"
 #if (KMETER_LV2_PLUGIN != 0)
-                     L"LV2\n"
+            L"LV2\n"
 #endif
 #ifdef LINUX
-                     L"POSIX Threads\n"
-                     L"Xlib\n"
-                     L"Xext\n"
+            L"POSIX Threads\n"
+            L"Xlib\n"
+            L"Xext\n"
 #endif
-                    );
+        );
 
 #if (JUCE_USE_VSTSDK_2_4 != 0)
-
         // display trademarks (but only when necessary)
-        strArray.set("Trademarks",
-                     L"VST PlugIn Technology by Steinberg\n");
-
+        arrChapters.set(
+            "Trademarks",
+            L"VST PlugIn Technology by Steinberg\n");
 #endif
 
 #if (JUCE_ASIO != 0)
-
         // display trademarks (but only when necessary)
-        strArray.set("Trademarks",
-                     L"ASIO Technology by Steinberg Media Technologies GmbH\n");
-
+        arrChapters.set(
+            "Trademarks",
+            L"ASIO Technology by Steinberg Media Technologies GmbH\n");
 #endif
 
-        GenericWindowAbout windowAbout(this, strArray);
+        arrChapters.set(
+            "License",
+            L"This program is free software: you can redistribute it "
+            L"and/or modify it under the terms of the GNU General "
+            L"Public License as published by the Free Software "
+            L"Foundation, either version 3 of the License, or (at "
+            L"your option) any later version.\n\n"
+
+            L"This program is distributed in the hope that it will "
+            L"be useful, but WITHOUT ANY WARRANTY; without even "
+            L"the implied warranty of MERCHANTABILITY or FITNESS "
+            L"FOR A PARTICULAR PURPOSE.  See the GNU General Public "
+            L"License for more details.\n\n"
+
+            L"You should have received a copy of the GNU General "
+            L"Public License along with this program.  If not, "
+            L"see <http://www.gnu.org/licenses/>.\n\n"
+
+            L"Thank you for using free software!");
+
+        GenericWindowAbout windowAbout(this);
+
+        // display "chapters"
+        windowAbout.addChapters(arrChapters);
+
         windowAbout.runModalLoop();
 
         // manually deactivate button
