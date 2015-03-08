@@ -365,14 +365,14 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         File fileSkin = fileSkinDirectory.getChildFile(strSkinName + ".skin");
 
         GenericWindowSkin windowSkin(this, fileSkin);
-        int nExitValue = windowSkin.runModalLoop();
+        int exitValue = windowSkin.runModalLoop();
 
         // manually deactivate button
         button->setToggleState(false, dontSendNotification);
 
-        if (nExitValue > 0)
+        if (exitValue > 0)
         {
-            strSkinName = windowSkin.getSelectedString();
+            strSkinName = windowSkin.getSelectedSkinName();
             loadSkin();
 
             // will also apply skin to plug-in editor

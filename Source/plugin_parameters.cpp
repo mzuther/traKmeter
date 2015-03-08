@@ -145,20 +145,21 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
     File fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter-skins/");
 
-    // file defining the default skin's name
-    File fileDefaultSkin = fileSkinDirectory.getChildFile("default_skin.ini");
+    // locate file containing the default skin's name
+    File defaultSkinFile = fileSkinDirectory.getChildFile("default_skin.ini");
 
-    // create file if necessary
-    if (!fileDefaultSkin.existsAsFile())
+    // make sure the file exists
+    if (!defaultSkinFile.existsAsFile())
     {
-        fileDefaultSkin.create();
+        // create file
+        defaultSkinFile.create();
 
-        // set "Default" as default skin
-        fileDefaultSkin.replaceWithText("Default", true, true);
+        // set "Default" as default skin (using Unicode encoding)
+        defaultSkinFile.replaceWithText("Default", true, true);
     }
 
-    // load name of default skin
-    String strDefaultSkinName = fileDefaultSkin.loadFileAsString();
+    // load name of default skin from file
+    String strDefaultSkinName = defaultSkinFile.loadFileAsString();
 
     WrappedParameterString *ParameterSkinName = new WrappedParameterString(strDefaultSkinName);
     ParameterSkinName->setName("Skin");
