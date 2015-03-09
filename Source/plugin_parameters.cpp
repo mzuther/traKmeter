@@ -33,13 +33,13 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
 {
     strSettingsID = "TRAKMETER_SETTINGS";
 
-    WrappedParameterToggleSwitch *ParameterTransientMode = new WrappedParameterToggleSwitch("Off", "On");
+    PluginParameterToggleSwitch *ParameterTransientMode = new PluginParameterToggleSwitch("Off", "On");
     ParameterTransientMode->setName("Transient mode");
     ParameterTransientMode->setDefaultBoolean(true, true);
     add(ParameterTransientMode, selTransientMode);
 
 
-    WrappedParameterSwitch *ParameterCrestFactor = new WrappedParameterSwitch();
+    PluginParameterSwitch *ParameterCrestFactor = new PluginParameterSwitch();
     ParameterCrestFactor->setName("Crest factor");
 
     ParameterCrestFactor->addConstant(0.0f,  "0 dB (digital full-scale)");
@@ -49,13 +49,13 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    WrappedParameterToggleSwitch *ParameterMixMode = new WrappedParameterToggleSwitch("Off", "On");
+    PluginParameterToggleSwitch *ParameterMixMode = new PluginParameterToggleSwitch("Off", "On");
     ParameterMixMode->setName("Mixing mode");
     ParameterMixMode->setDefaultBoolean(false, true);
     add(ParameterMixMode, selMixMode);
 
 
-    WrappedParameterSwitch *ParameterGain = new WrappedParameterSwitch();
+    PluginParameterSwitch *ParameterGain = new PluginParameterSwitch();
     ParameterGain->setName("Gain");
 
     ParameterGain->addConstant(-12.0f, "-12 dB");
@@ -88,7 +88,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     add(ParameterGain, selGain);
 
 
-    WrappedParameterSwitch *ParameterMeterType = new WrappedParameterSwitch();
+    PluginParameterSwitch *ParameterMeterType = new PluginParameterSwitch();
     ParameterMeterType->setName("Meter type");
 
     ParameterMeterType->addConstant(selSplitMeters,     "Split");
@@ -98,12 +98,12 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     add(ParameterMeterType, selMeterType);
 
 
-    WrappedParameterString *ParameterValidationFileName = new WrappedParameterString(String::empty);
+    PluginParameterString *ParameterValidationFileName = new PluginParameterString(String::empty);
     ParameterValidationFileName->setName("Validation: file name");
     add(ParameterValidationFileName, selValidationFileName);
 
 
-    WrappedParameterSwitch *ParameterValidationSelectedChannel = new WrappedParameterSwitch();
+    PluginParameterSwitch *ParameterValidationSelectedChannel = new PluginParameterSwitch();
     ParameterValidationSelectedChannel->setName("Validation: selected channel");
 
     // values correspond to the channel index in AudioSampleBuffer
@@ -123,19 +123,19 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     add(ParameterValidationSelectedChannel, selValidationSelectedChannel);
 
 
-    WrappedParameterToggleSwitch *ParameterValidationAverageMeterLevel = new WrappedParameterToggleSwitch("Off", "On");
+    PluginParameterToggleSwitch *ParameterValidationAverageMeterLevel = new PluginParameterToggleSwitch("Off", "On");
     ParameterValidationAverageMeterLevel->setName("Validation: average meter level");
     ParameterValidationAverageMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationAverageMeterLevel, selValidationAverageMeterLevel);
 
 
-    WrappedParameterToggleSwitch *ParameterValidationPeakMeterLevel = new WrappedParameterToggleSwitch("Off", "On");
+    PluginParameterToggleSwitch *ParameterValidationPeakMeterLevel = new PluginParameterToggleSwitch("Off", "On");
     ParameterValidationPeakMeterLevel->setName("Validation: peak meter level");
     ParameterValidationPeakMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationPeakMeterLevel, selValidationPeakMeterLevel);
 
 
-    WrappedParameterToggleSwitch *ParameterValidationCSVFormat = new WrappedParameterToggleSwitch("Off", "On");
+    PluginParameterToggleSwitch *ParameterValidationCSVFormat = new PluginParameterToggleSwitch("Off", "On");
     ParameterValidationCSVFormat->setName("Validation: CSV output format");
     ParameterValidationCSVFormat->setDefaultBoolean(false, true);
     add(ParameterValidationCSVFormat, selValidationCSVFormat);
@@ -161,7 +161,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     // load name of default skin from file
     String strDefaultSkinName = defaultSkinFile.loadFileAsString();
 
-    WrappedParameterString *ParameterSkinName = new WrappedParameterString(strDefaultSkinName);
+    PluginParameterString *ParameterSkinName = new PluginParameterString(strDefaultSkinName);
     ParameterSkinName->setName("Skin");
     add(ParameterSkinName, selSkinName);
 }
