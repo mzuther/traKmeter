@@ -174,12 +174,6 @@ void TraKmeterAudioProcessor::clearChangeFlag(int nIndex)
 }
 
 
-void TraKmeterAudioProcessor::setChangeFlag(int nIndex)
-{
-    pluginParameters.setChangeFlag(nIndex);
-}
-
-
 bool TraKmeterAudioProcessor::hasChanged(int nIndex)
 {
     return pluginParameters.hasChanged(nIndex);
