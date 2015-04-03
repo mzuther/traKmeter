@@ -55,16 +55,16 @@ public:
         selGain,
         selMeterType,
 
-        nNumParametersRevealed,
+        numberOfParametersRevealed,
 
-        selValidationFileName = nNumParametersRevealed,
+        selValidationFileName = numberOfParametersRevealed,
         selValidationSelectedChannel,
         selValidationAverageMeterLevel,
         selValidationPeakMeterLevel,
         selValidationCSVFormat,
         selSkinName,
 
-        nNumParametersComplete,
+        numberOfParametersComplete,
 
         selSplitMeters = 0,
         selCombinedMeters,

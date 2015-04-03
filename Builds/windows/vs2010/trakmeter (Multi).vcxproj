@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{AA076D1C-6DA0-692B-CC39-79BE9545A6ED}</ProjectGuid>
+		<ProjectGuid>{A843E325-83AA-E5E0-2A85-5D5BE328E1B1}</ProjectGuid>
 		<RootNamespace>trakmeter (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -237,8 +237,8 @@
 		<ClInclude Include="..\..\..\Source\common\audio\audio_ring_buffer.h" />
 		<ClInclude Include="..\..\..\Source\common\audio\dither.h" />
 		<ClInclude Include="..\..\..\Source\common\skin\generic_skin.h" />
-		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_toggle_switch.h" />
 		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter.h" />
+		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_boolean.h" />
 		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_switch.h" />
 		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_combined.h" />
 		<ClInclude Include="..\..\..\Source\common\parameter_juggler\parameter_juggler.h" />
@@ -312,9 +312,9 @@
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\parameter_juggler\parameter_juggler.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter.cpp">
+		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_boolean.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_toggle_switch.cpp">
+		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_string.cpp">
 		</ClCompile>

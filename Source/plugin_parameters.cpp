@@ -31,9 +31,9 @@
 
 TraKmeterPluginParameters::TraKmeterPluginParameters()
 {
-    strSettingsID = "TRAKMETER_SETTINGS";
+    jugglerID = "TRAKMETER_SETTINGS";
 
-    PluginParameterToggleSwitch *ParameterTransientMode = new PluginParameterToggleSwitch("Off", "On");
+    PluginParameterBoolean *ParameterTransientMode = new PluginParameterBoolean("Off", "On");
     ParameterTransientMode->setName("Transient mode");
     ParameterTransientMode->setDefaultBoolean(true, true);
     add(ParameterTransientMode, selTransientMode);
@@ -42,14 +42,14 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     PluginParameterSwitch *ParameterCrestFactor = new PluginParameterSwitch();
     ParameterCrestFactor->setName("Crest factor");
 
-    ParameterCrestFactor->addConstant(0.0f,  "0 dB (digital full-scale)");
-    ParameterCrestFactor->addConstant(20.0f, "20 dB (K-20 scale)");
+    ParameterCrestFactor->addPreset(0.0f,  "0 dB (digital full-scale)");
+    ParameterCrestFactor->addPreset(20.0f, "20 dB (K-20 scale)");
 
     ParameterCrestFactor->setDefaultRealFloat(20.0f, true);
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    PluginParameterToggleSwitch *ParameterMixMode = new PluginParameterToggleSwitch("Off", "On");
+    PluginParameterBoolean *ParameterMixMode = new PluginParameterBoolean("Off", "On");
     ParameterMixMode->setName("Mixing mode");
     ParameterMixMode->setDefaultBoolean(false, true);
     add(ParameterMixMode, selMixMode);
@@ -58,31 +58,31 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     PluginParameterSwitch *ParameterGain = new PluginParameterSwitch();
     ParameterGain->setName("Gain");
 
-    ParameterGain->addConstant(-12.0f, "-12 dB");
-    ParameterGain->addConstant(-11.0f, "-11 dB");
-    ParameterGain->addConstant(-10.0f, "-10 dB");
-    ParameterGain->addConstant(-9.0f,   "-9 dB");
-    ParameterGain->addConstant(-8.0f,   "-8 dB");
-    ParameterGain->addConstant(-7.0f,   "-7 dB");
-    ParameterGain->addConstant(-6.0f,   "-6 dB");
-    ParameterGain->addConstant(-5.0f,   "-5 dB");
-    ParameterGain->addConstant(-4.0f,   "-4 dB");
-    ParameterGain->addConstant(-3.0f,   "-3 dB");
-    ParameterGain->addConstant(-2.0f,   "-2 dB");
-    ParameterGain->addConstant(-1.0f,   "-1 dB");
-    ParameterGain->addConstant(0.0f,     "0 dB");
-    ParameterGain->addConstant(+1.0f,   "+1 dB");
-    ParameterGain->addConstant(+2.0f,   "+2 dB");
-    ParameterGain->addConstant(+3.0f,   "+3 dB");
-    ParameterGain->addConstant(+4.0f,   "+4 dB");
-    ParameterGain->addConstant(+5.0f,   "+5 dB");
-    ParameterGain->addConstant(+6.0f,   "+6 dB");
-    ParameterGain->addConstant(+7.0f,   "+7 dB");
-    ParameterGain->addConstant(+8.0f,   "+8 dB");
-    ParameterGain->addConstant(+9.0f,   "+9 dB");
-    ParameterGain->addConstant(+10.0f, "+10 dB");
-    ParameterGain->addConstant(+11.0f, "+11 dB");
-    ParameterGain->addConstant(+12.0f, "+12 dB");
+    ParameterGain->addPreset(-12.0f, "-12 dB");
+    ParameterGain->addPreset(-11.0f, "-11 dB");
+    ParameterGain->addPreset(-10.0f, "-10 dB");
+    ParameterGain->addPreset(-9.0f,   "-9 dB");
+    ParameterGain->addPreset(-8.0f,   "-8 dB");
+    ParameterGain->addPreset(-7.0f,   "-7 dB");
+    ParameterGain->addPreset(-6.0f,   "-6 dB");
+    ParameterGain->addPreset(-5.0f,   "-5 dB");
+    ParameterGain->addPreset(-4.0f,   "-4 dB");
+    ParameterGain->addPreset(-3.0f,   "-3 dB");
+    ParameterGain->addPreset(-2.0f,   "-2 dB");
+    ParameterGain->addPreset(-1.0f,   "-1 dB");
+    ParameterGain->addPreset(0.0f,     "0 dB");
+    ParameterGain->addPreset(+1.0f,   "+1 dB");
+    ParameterGain->addPreset(+2.0f,   "+2 dB");
+    ParameterGain->addPreset(+3.0f,   "+3 dB");
+    ParameterGain->addPreset(+4.0f,   "+4 dB");
+    ParameterGain->addPreset(+5.0f,   "+5 dB");
+    ParameterGain->addPreset(+6.0f,   "+6 dB");
+    ParameterGain->addPreset(+7.0f,   "+7 dB");
+    ParameterGain->addPreset(+8.0f,   "+8 dB");
+    ParameterGain->addPreset(+9.0f,   "+9 dB");
+    ParameterGain->addPreset(+10.0f, "+10 dB");
+    ParameterGain->addPreset(+11.0f, "+11 dB");
+    ParameterGain->addPreset(+12.0f, "+12 dB");
 
     ParameterGain->setDefaultRealFloat(0.0f, true);
     add(ParameterGain, selGain);
@@ -91,8 +91,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     PluginParameterSwitch *ParameterMeterType = new PluginParameterSwitch();
     ParameterMeterType->setName("Meter type");
 
-    ParameterMeterType->addConstant(selSplitMeters,     "Split");
-    ParameterMeterType->addConstant(selCombinedMeters,  "Combined");
+    ParameterMeterType->addPreset(selSplitMeters,     "Split");
+    ParameterMeterType->addPreset(selCombinedMeters,  "Combined");
 
     ParameterMeterType->setDefaultRealFloat(selSplitMeters, true);
     add(ParameterMeterType, selMeterType);
@@ -107,35 +107,35 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     ParameterValidationSelectedChannel->setName("Validation: selected channel");
 
     // values correspond to the channel index in AudioSampleBuffer
-    ParameterValidationSelectedChannel->addConstant(-1.0f, "All");
-    ParameterValidationSelectedChannel->addConstant(0.0f,   "1");
-    ParameterValidationSelectedChannel->addConstant(1.0f,   "2");
+    ParameterValidationSelectedChannel->addPreset(-1.0f, "All");
+    ParameterValidationSelectedChannel->addPreset(0.0f,   "1");
+    ParameterValidationSelectedChannel->addPreset(1.0f,   "2");
 #ifdef TRAKMETER_MULTI
-    ParameterValidationSelectedChannel->addConstant(2.0f,   "3");
-    ParameterValidationSelectedChannel->addConstant(3.0f,   "4");
-    ParameterValidationSelectedChannel->addConstant(4.0f,   "5");
-    ParameterValidationSelectedChannel->addConstant(5.0f,   "6");
-    ParameterValidationSelectedChannel->addConstant(6.0f,   "7");
-    ParameterValidationSelectedChannel->addConstant(7.0f,   "8");
+    ParameterValidationSelectedChannel->addPreset(2.0f,   "3");
+    ParameterValidationSelectedChannel->addPreset(3.0f,   "4");
+    ParameterValidationSelectedChannel->addPreset(4.0f,   "5");
+    ParameterValidationSelectedChannel->addPreset(5.0f,   "6");
+    ParameterValidationSelectedChannel->addPreset(6.0f,   "7");
+    ParameterValidationSelectedChannel->addPreset(7.0f,   "8");
 #endif
 
     ParameterValidationSelectedChannel->setDefaultRealFloat(-1.0f, true);
     add(ParameterValidationSelectedChannel, selValidationSelectedChannel);
 
 
-    PluginParameterToggleSwitch *ParameterValidationAverageMeterLevel = new PluginParameterToggleSwitch("Off", "On");
+    PluginParameterBoolean *ParameterValidationAverageMeterLevel = new PluginParameterBoolean("Off", "On");
     ParameterValidationAverageMeterLevel->setName("Validation: average meter level");
     ParameterValidationAverageMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationAverageMeterLevel, selValidationAverageMeterLevel);
 
 
-    PluginParameterToggleSwitch *ParameterValidationPeakMeterLevel = new PluginParameterToggleSwitch("Off", "On");
+    PluginParameterBoolean *ParameterValidationPeakMeterLevel = new PluginParameterBoolean("Off", "On");
     ParameterValidationPeakMeterLevel->setName("Validation: peak meter level");
     ParameterValidationPeakMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationPeakMeterLevel, selValidationPeakMeterLevel);
 
 
-    PluginParameterToggleSwitch *ParameterValidationCSVFormat = new PluginParameterToggleSwitch("Off", "On");
+    PluginParameterBoolean *ParameterValidationCSVFormat = new PluginParameterBoolean("Off", "On");
     ParameterValidationCSVFormat->setName("Validation: CSV output format");
     ParameterValidationCSVFormat->setDefaultBoolean(false, true);
     add(ParameterValidationCSVFormat, selValidationCSVFormat);
@@ -177,11 +177,11 @@ int TraKmeterPluginParameters::getNumParameters(bool bIncludeHiddenParameters)
 {
     if (bIncludeHiddenParameters)
     {
-        return nNumParametersComplete;
+        return numberOfParametersComplete;
     }
     else
     {
-        return nNumParametersRevealed;
+        return numberOfParametersRevealed;
     }
 }
 
