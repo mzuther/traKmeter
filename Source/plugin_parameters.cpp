@@ -142,11 +142,11 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
 
 
     // the following may or may not work on Mac
-    File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
-    File fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter-skins/");
+    File applicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
+    File skinDirectory = applicationDirectory.getChildFile("./trakmeter-skins/");
 
     // locate file containing the default skin's name
-    File defaultSkinFile = fileSkinDirectory.getChildFile("default_skin.ini");
+    File defaultSkinFile = skinDirectory.getChildFile("default_skin.ini");
 
     // make sure the file exists
     if (!defaultSkinFile.existsAsFile())
@@ -159,9 +159,9 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     }
 
     // load name of default skin from file
-    String strDefaultSkinName = defaultSkinFile.loadFileAsString();
+    String defaultSkinName = defaultSkinFile.loadFileAsString();
 
-    PluginParameterString *ParameterSkinName = new PluginParameterString(strDefaultSkinName);
+    PluginParameterString *ParameterSkinName = new PluginParameterString(defaultSkinName);
     ParameterSkinName->setName("Skin");
     add(ParameterSkinName, selSkinName);
 }
@@ -188,11 +188,11 @@ int TraKmeterPluginParameters::getNumParameters(bool bIncludeHiddenParameters)
 
 File TraKmeterPluginParameters::getValidationFile()
 {
-    File fileValidation = File(getText(selValidationFileName));
+    File validationFile = File(getText(selValidationFileName));
 
-    if (fileValidation.existsAsFile())
+    if (validationFile.existsAsFile())
     {
-        return fileValidation;
+        return validationFile;
     }
     else
     {
@@ -201,12 +201,12 @@ File TraKmeterPluginParameters::getValidationFile()
 }
 
 
-void TraKmeterPluginParameters::setValidationFile(File &fileValidation)
+void TraKmeterPluginParameters::setValidationFile(File &validationFile)
 {
-    if (fileValidation.existsAsFile())
+    if (validationFile.existsAsFile())
     {
-        String strFilename = fileValidation.getFullPathName();
-        setText(selValidationFileName, strFilename);
+        String validationFileName = validationFile.getFullPathName();
+        setText(selValidationFileName, validationFileName);
     }
 }
 
