@@ -39,8 +39,6 @@ public:
     TraKmeterPluginParameters();
     ~TraKmeterPluginParameters();
 
-    int getNumParameters(bool bIncludeHiddenParameters);
-
     File getValidationFile();
     void setValidationFile(File &fileValidation);
 

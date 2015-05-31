@@ -29,11 +29,11 @@
 // The methods of this class may be called on the audio thread, so
 // they are absolutely time-critical!
 
-TraKmeterPluginParameters::TraKmeterPluginParameters()
+TraKmeterPluginParameters::TraKmeterPluginParameters() :
+    ParameterJuggler("TRAKMETER_SETTINGS", numberOfParametersComplete,
+                     numberOfParametersRevealed)
 {
-    jugglerID = "TRAKMETER_SETTINGS";
-
-    PluginParameterBoolean *ParameterTransientMode = new PluginParameterBoolean("Off", "On");
+    PluginParameterBoolean *ParameterTransientMode = new PluginParameterBoolean("On", "Off");
     ParameterTransientMode->setName("Transient mode");
     ParameterTransientMode->setDefaultBoolean(true, true);
     add(ParameterTransientMode, selTransientMode);
@@ -49,7 +49,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    PluginParameterBoolean *ParameterMixMode = new PluginParameterBoolean("Off", "On");
+    PluginParameterBoolean *ParameterMixMode = new PluginParameterBoolean("On", "Off");
     ParameterMixMode->setName("Mixing mode");
     ParameterMixMode->setDefaultBoolean(false, true);
     add(ParameterMixMode, selMixMode);
@@ -99,12 +99,12 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
 
 
     PluginParameterString *ParameterValidationFileName = new PluginParameterString(String::empty);
-    ParameterValidationFileName->setName("Validation: file name");
+    ParameterValidationFileName->setName("Validation file");
     add(ParameterValidationFileName, selValidationFileName);
 
 
     PluginParameterSwitch *ParameterValidationSelectedChannel = new PluginParameterSwitch();
-    ParameterValidationSelectedChannel->setName("Validation: selected channel");
+    ParameterValidationSelectedChannel->setName("Validation audio channel");
 
     // values correspond to the channel index in AudioSampleBuffer
     ParameterValidationSelectedChannel->addPreset(-1.0f, "All");
@@ -123,20 +123,20 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
     add(ParameterValidationSelectedChannel, selValidationSelectedChannel);
 
 
-    PluginParameterBoolean *ParameterValidationAverageMeterLevel = new PluginParameterBoolean("Off", "On");
-    ParameterValidationAverageMeterLevel->setName("Validation: average meter level");
+    PluginParameterBoolean *ParameterValidationAverageMeterLevel = new PluginParameterBoolean("On", "Off");
+    ParameterValidationAverageMeterLevel->setName("Validate average meter level");
     ParameterValidationAverageMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationAverageMeterLevel, selValidationAverageMeterLevel);
 
 
-    PluginParameterBoolean *ParameterValidationPeakMeterLevel = new PluginParameterBoolean("Off", "On");
-    ParameterValidationPeakMeterLevel->setName("Validation: peak meter level");
+    PluginParameterBoolean *ParameterValidationPeakMeterLevel = new PluginParameterBoolean("On", "Off");
+    ParameterValidationPeakMeterLevel->setName("Validate peak meter level");
     ParameterValidationPeakMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationPeakMeterLevel, selValidationPeakMeterLevel);
 
 
-    PluginParameterBoolean *ParameterValidationCSVFormat = new PluginParameterBoolean("Off", "On");
-    ParameterValidationCSVFormat->setName("Validation: CSV output format");
+    PluginParameterBoolean *ParameterValidationCSVFormat = new PluginParameterBoolean("CSV", "Full");
+    ParameterValidationCSVFormat->setName("Validation output format");
     ParameterValidationCSVFormat->setDefaultBoolean(false, true);
     add(ParameterValidationCSVFormat, selValidationCSVFormat);
 
@@ -170,19 +170,6 @@ TraKmeterPluginParameters::TraKmeterPluginParameters()
 TraKmeterPluginParameters::~TraKmeterPluginParameters()
 {
     // parameters will be deleted in "ParameterJuggler"
-}
-
-
-int TraKmeterPluginParameters::getNumParameters(bool bIncludeHiddenParameters)
-{
-    if (bIncludeHiddenParameters)
-    {
-        return numberOfParametersComplete;
-    }
-    else
-    {
-        return numberOfParametersRevealed;
-    }
 }
 
 
