@@ -27,7 +27,7 @@
 #define __OVERLOAD_METER_H__
 
 #include "JuceHeader.h"
-#include "common/tools.h"
+#include "common/mz_juce_common.h"
 #include "common/widgets/generic_state_label.h"
 
 
