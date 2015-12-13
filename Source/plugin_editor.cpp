@@ -102,7 +102,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
 
     // the following may or may not work on Mac
     File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
-    fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter-skins/");
+    fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter/skins/");
 
     strSkinName = pProcessor->getParameterSkinName();
     loadSkin();
