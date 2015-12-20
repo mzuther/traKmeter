@@ -234,12 +234,6 @@ solution "trakmeter"
 				"Xext"
 			}
 
-		configuration { "x32" }
-			targetdir "../bin/trakmeter_lv2/"
-
-		configuration { "x64" }
-			targetdir "../bin/trakmeter_lv2_x64/"
-
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_debug")
 
@@ -294,12 +288,6 @@ solution "trakmeter"
 				"X11",
 				"Xext"
 			}
-
-		configuration { "x32" }
-			targetdir "../bin/trakmeter_lv2/"
-
-		configuration { "x64" }
-			targetdir "../bin/trakmeter_lv2_x64/"
 
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_debug")

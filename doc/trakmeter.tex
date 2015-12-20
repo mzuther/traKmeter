@@ -23,7 +23,7 @@
       }}}
 }
 
-\author{\normalsize\copyright{} 2012-2014
+\author{\normalsize\copyright{} 2012-2015
   \href{http://www.mzuther.de/}{Martin Zuther}}
 
 \date{\normalsize \emph{Last edited on \today}}
@@ -249,6 +249,11 @@ In order to use the pre-compiled binaries, simply extract the
 plug-ins, you'll then have to move the extracted files to your
 respective plug-in folder (\path{~/.lv2}, \path{~/.vst},
 \path{C:\Program Files\Steinberg\VstPlugins\} or the like).
+
+Should the standalone version ever fail to start, you can reset its
+settings by deleting \path{trakmeter_stereo.ini} or
+\path{trakmeter_surround.ini}.  These files are located in
+\path{~/.config} (GNU/Linux) or \path{%appdata%\.config\} (Windows).
 
 \chapter{Controls}
 \label{chap:controls}
@@ -569,6 +574,10 @@ and FLAC-compressed wave files.  A word of warning: these audio files
 may \textbf{damage your ears} and speakers, so please watch your
 monitor levels!
 
+Begin by starting \textbf{traKmeter}.  If in a Bash shell, try this:
+
+\path{./trakmeter_stereo 2>&1 | tee /tmp/validation.log}
+
 \begin{wrapfigure}{r}{0.33\linewidth}
   \includegraphics[scale=0.65,clip]{include/images/dialog_validation.png}
 \end{wrapfigure}
@@ -626,7 +635,8 @@ playback early, simply click on the \textbf{validate} button again.
 \label{chap:help_needed}
 
 As \textbf{traKmeter} was coded using cross-platform code, it should
-be easy to compile on Mac OS X.  I just don’t have a Mac \dots
+be easy to compile on Mac OS X.  Unfortunately, I happen to not have a
+Mac \dots
 
 In case you want to help, please see the next chapter for an email
 address.  You’ll need sufficient experience in coding, compiling and
@@ -766,7 +776,7 @@ below), you are ready to build \textbf{traKmeter}.
 \subsubsection{Installation}
 
 Place the binary somewhere in your \path{PATH}.  Depending on your
-platform, you should run \emph{premake} using the scripts
+platform, you should run \path{premake} using the scripts
 \path{Builds/run_premake.sh} or \path{Builds/run_premake.bat}.
 
 \subsection{JUCE library}
@@ -776,7 +786,7 @@ platform, you should run \emph{premake} using the scripts
 
   Importance:  \> required \\
   Version:     \> 3.2.0 \\
-  License:     \> GPL v2 (among others) \\
+  License:     \> ISC and GPL v2 (among others) \\
   Homepage:    \> \href{http://www.juce.com/}{www.juce.com}
 \end{tabbing}
 
@@ -858,7 +868,7 @@ with coding \textbf{traKmeter}.
 \subsubsection{Installation}
 
 Place the binary somewhere in your \path{PATH}.  Depending on your
-platform, you should run \emph{astyle} using the scripts
+platform, you should run \path{astyle} using the scripts
 \path{Source/format_code.sh} or \path{Source/format_code.bat}.
 
 \section{Building on GNU/Linux}
@@ -873,11 +883,8 @@ environment, change into the directory \path{build} and execute
 
 where \application{CFG} is one of \application{debug32},
 \application{debug64}, \application{release32} and
-\application{release64}, and \application{TARGET} is one of
-\application{linux\_standalone\_stereo},
-\application{linux\_standalone\_multi},
-\application{linux\_vst\_stereo} and
-\application{linux\_vst\_multi}.
+\application{release64}, and \application{TARGET} is the version you
+want to compile, such as \application{linux\_standalone\_stereo}.
 
 The compiled binaries will end up in the directory \path{bin}.
 

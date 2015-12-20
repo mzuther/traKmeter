@@ -25,312 +25,348 @@
 #
 # ----------------------------------------------------------------------------
 
-TRAKMETER_VERSION="1.05"
+version="2.0.0"
 
-TRAKMETER_EXECUTABLE_DIR="final"
-TRAKMETER_RELEASE_DIR="releases"
+executable_dir="final"
+include_dir="trakmeter"
+release_dir="releases"
 
-TRAKMETER_DOCUMENTATION_DIR="../doc"
-TRAKMETER_SKIN_DIR="../skins"
 
-function copy_new_executable
+function finalise_executable
 {
-	if [ -f "$1" ]; then
-		echo "  Finalising file $1..."
-		cp "$1" "$TRAKMETER_EXECUTABLE_DIR"/
+	filename=$1
+
+	if [ -f "./$filename" ]; then
+		echo "  Finalising: $filename"
+		mv "./$filename" "./$executable_dir"
 	fi
 }
 
-function move_new_executable
+
+function archive_create
 {
-	if [ -f "$1" ]; then
-		echo "  Finalising file $1..."
-		mv "$1" "$TRAKMETER_EXECUTABLE_DIR"/
+	rm -rf "/tmp/$archive_dir"
+
+	echo "  Creating archive in \"/tmp/$archive_dir\":"
+	mkdir -p "/tmp/$archive_dir"
+	echo
+}
+
+
+function archive_add
+{
+	filename=$1
+	source_dir=$2
+
+	if [ -f "$source_dir/$filename" ]; then
+		echo "  [+] $filename"
+		cp --dereference "$source_dir/$filename" "/tmp/$archive_dir/$filename"
+	elif [ -d "$source_dir/$filename" ]; then
+		echo "  [+] $filename/*"
+		cp --dereference --recursive "$source_dir/$filename/" "/tmp/$archive_dir/$filename"
 	fi
 }
 
-function fill_archive
-{
-	if [ ! -d "$2" ]; then
-		mkdir -p "$2"
-	fi
 
-	if [ -f "$1" ]; then
-		echo "    $1"
-		cp "$1" "$2"
+function archive_del
+{
+	filename=$1
+
+	if [ -f "$filename" ]; then
+		echo "  [-] $filename"
+		rm "/tmp/$archive_dir/$filename"
+	elif [ -d "$filename" ]; then
+		echo "  [-] $filename/*"
+		rm -rf "/tmp/$archive_dir/$filename/"
 	fi
 }
 
-function delete_old_archive
+
+function archive_compress
 {
-	if [ -f "$1" ]; then
-		echo "  Deleting old archive \"$1\"..."
-		rm "$1"
+	archive_type=$1
+	old_dir=$(pwd)
+
+	echo
+	echo "  Compressing archive..."
+
+	cd /tmp
+
+	if [ "$archive_type" = "bzip2" ]; then
+		archive_name="$archive_dir.tar.bz2"
+		rm -f "$archive_name"
+		tar --create --bzip2 --verbose --file "$archive_name" "$archive_dir" > /dev/null
+	elif [ "$archive_type" = "gzip" ]; then
+		archive_name="$archive_dir.tar.gz"
+		rm -f "$archive_name"
+		tar --create --gzip --verbose --file "$archive_name" "$archive_dir" > /dev/null
+	elif [ "$archive_type" = "zip" ]; then
+		archive_name="$archive_dir.zip"
+		rm -f "$archive_name"
+		zip --recurse-paths "$archive_name" "$archive_dir" > /dev/null
+	fi
+
+	cd $old_dir
+}
+
+
+function archive_store
+{
+	archive_type=$1
+	destination_dir=$2
+
+	if [ "$archive_type" = "bzip2" ]; then
+		archive_name="$archive_dir.tar.bz2"
+	elif [ "$archive_type" = "gzip" ]; then
+		archive_name="$archive_dir.tar.gz"
+	elif [ "$archive_type" = "zip" ]; then
+		archive_name="$archive_dir.zip"
+	fi
+
+	rm -rf "/tmp/$archive_dir/"
+
+	if [ -f "$destination_dir/$archive_name" ]; then
+		echo "  Overwriting \"$destination_dir/$archive_name\"..."
 	else
-		echo "  Old archive \"$1\" not found."
-	fi
-}
-
-function create_new_archive
-{
-	echo "  Creating folder \"$1\"..."
-	echo "  Copying files to \"$1\"..."
-	mkdir -p "$1"
-	echo
-}
-
-function compress_new_archive
-{
-	echo
-	echo "  Creating archive \"$1\"..."
-	echo
-
-	if [ "$3" = "bzip2" ]; then
-		tar --create --bzip2 --verbose --file "$1" "$2"/* | gawk ' { print "    adding: " $1 } '
-	elif [ "$3" = "zip" ]; then
-		zip --recurse-paths "$1" "$2"/* | gawk ' { print "  " $0 } '
+		echo "  Storing at \"$destination_dir/$archive_name\"..."
 	fi
 
-	echo
-	echo "  Removing folder \"$2\"..."
-
-	rm -r "$2"/
+	mv "/tmp/$archive_name" "$destination_dir/$archive_name"
 
 	echo "  Done."
 	echo
 }
 
-echo
-
 
 # ----- General -----
 
-rm -f "$TRAKMETER_SKIN_DIR/default_skin.ini"
+echo
+echo "  === Finalising executables ==="
+echo
+
+finalise_executable "trakmeter_stereo"
+finalise_executable "trakmeter_multi"
+
+finalise_executable "trakmeter_stereo_lv2.so"
+finalise_executable "trakmeter_multi_lv2.so"
+
+finalise_executable "trakmeter_stereo_vst.so"
+finalise_executable "trakmeter_multi_vst.so"
+
+finalise_executable "trakmeter_stereo_x64"
+finalise_executable "trakmeter_multi_x64"
+
+finalise_executable "trakmeter_stereo_lv2_x64.so"
+finalise_executable "trakmeter_multi_lv2_x64.so"
+
+finalise_executable "trakmeter_stereo_vst_x64.so"
+finalise_executable "trakmeter_multi_vst_x64.so"
+
+finalise_executable "traKmeter (Stereo).exe"
+finalise_executable "traKmeter (Multi).exe"
+
+finalise_executable "traKmeter (Stereo).dll"
+finalise_executable "traKmeter (Multi).dll"
+
+finalise_executable "traKmeter (Stereo x64).exe"
+finalise_executable "traKmeter (Multi x64).exe"
+
+finalise_executable "traKmeter (Stereo x64).dll"
+finalise_executable "traKmeter (Multi x64).dll"
+
+echo "  Done."
+echo
+
+rm -f "$include_dir/skins/default_skin.ini"
+
+echo
 
 
 # ----- GNU/Linux Standalone (32 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-standalone_$TRAKMETER_VERSION"
-
-echo "  === GNU/Linux Standalone v$TRAKMETER_VERSION (32 bit) ==="
+echo "  === GNU/Linux Standalone $version (32 bit) ==="
 echo
 
-move_new_executable "trakmeter_stereo"
-move_new_executable "trakmeter_multi"
+archive_dir="trakmeter-standalone_$version"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/linux32/trakmeter-standalone_$TRAKMETER_VERSION.tar.bz2"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "trakmeter_stereo" "./$executable_dir"
+archive_add "trakmeter_multi" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_stereo" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_multi" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "$include_dir" "."
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/linux32/$TRAKMETER_ARCHIVE_DIR.tar.bz2" "$TRAKMETER_ARCHIVE_DIR" "bzip2"
+archive_compress "gzip"
+archive_store "gzip" "$release_dir/linux32"
 
 
 # ----- GNU/Linux LV2 (32 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-lv2_$TRAKMETER_VERSION"
-TRAKMETER_LV2_DIR="trakmeter_lv2"
-
-echo "  === GNU/Linux LV2 v$TRAKMETER_VERSION (32 bit) ==="
+echo "  === GNU/Linux LV2 $version (32 bit) ==="
 echo
 
-move_new_executable "$TRAKMETER_LV2_DIR/trakmeter_stereo_lv2.so"
-move_new_executable "$TRAKMETER_LV2_DIR/trakmeter_multi_lv2.so"
+archive_dir="trakmeter-lv2_$version"
+lv2_dir="trakmeter_lv2"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/linux32/trakmeter-lv2_$TRAKMETER_VERSION.tar.bz2"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "trakmeter_stereo_lv2.so" "./$executable_dir"
+archive_add "trakmeter_multi_lv2.so" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_stereo_lv2.so" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_multi_lv2.so" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_LV2_DIR/manifest.ttl" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_LV2_DIR/trakmeter_stereo.ttl" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_LV2_DIR/trakmeter_multi.ttl" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "manifest.ttl" "./$lv2_dir"
+archive_add "trakmeter_stereo.ttl" "./$lv2_dir"
+archive_add "trakmeter_multi.ttl" "./$lv2_dir"
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/linux32/$TRAKMETER_ARCHIVE_DIR.tar.bz2" "$TRAKMETER_ARCHIVE_DIR" "bzip2"
+archive_add "$include_dir" "."
+
+archive_compress "gzip"
+archive_store "gzip" "$release_dir/linux32"
 
 
 # ----- GNU/Linux VST (32 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-vst_$TRAKMETER_VERSION"
-
-echo "  === GNU/Linux VST v$TRAKMETER_VERSION (32 bit) ==="
+echo "  === GNU/Linux VST $version (32 bit) ==="
 echo
 
-move_new_executable "trakmeter_stereo_vst.so"
-move_new_executable "trakmeter_multi_vst.so"
+archive_dir="trakmeter-vst_$version"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/linux32/trakmeter-vst_$TRAKMETER_VERSION.tar.bz2"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "trakmeter_stereo_vst.so" "./$executable_dir"
+archive_add "trakmeter_multi_vst.so" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_stereo_vst.so" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_multi_vst.so" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "$include_dir" "."
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/linux32/$TRAKMETER_ARCHIVE_DIR.tar.bz2" "$TRAKMETER_ARCHIVE_DIR" "bzip2"
+archive_compress "gzip"
+archive_store "gzip" "$release_dir/linux32"
 
 
 # ----- GNU/Linux Standalone (64 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-standalone_$TRAKMETER_VERSION"
-
-echo "  === GNU/Linux Standalone v$TRAKMETER_VERSION (64 bit) ==="
+echo "  === GNU/Linux Standalone $version (64 bit) ==="
 echo
 
-move_new_executable "trakmeter_stereo_x64"
-move_new_executable "trakmeter_multi_x64"
+archive_dir="trakmeter-standalone_$version"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/linux64/trakmeter-standalone_$TRAKMETER_VERSION.tar.bz2"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "trakmeter_stereo_x64" "./$executable_dir"
+archive_add "trakmeter_multi_x64" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_stereo_x64" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_multi_x64" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "$include_dir" "."
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/linux64/$TRAKMETER_ARCHIVE_DIR.tar.bz2" "$TRAKMETER_ARCHIVE_DIR" "bzip2"
+archive_compress "gzip"
+archive_store "gzip" "$release_dir/linux64"
 
 
 # ----- GNU/Linux LV2 (64 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-lv2_$TRAKMETER_VERSION"
-TRAKMETER_LV2_DIR="trakmeter_lv2_x64"
-
-echo "  === GNU/Linux LV2 v$TRAKMETER_VERSION (64 bit) ==="
+echo "  === GNU/Linux LV2 $version (64 bit) ==="
 echo
 
-move_new_executable "$TRAKMETER_LV2_DIR/trakmeter_stereo_lv2_x64.so"
-move_new_executable "$TRAKMETER_LV2_DIR/trakmeter_multi_lv2_x64.so"
+archive_dir="trakmeter-lv2_$version"
+lv2_dir="trakmeter_lv2_x64"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/linux64/trakmeter-lv2_$TRAKMETER_VERSION.tar.bz2"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "trakmeter_stereo_lv2_x64.so" "./$executable_dir"
+archive_add "trakmeter_multi_lv2_x64.so" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_stereo_lv2_x64.so" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_multi_lv2_x64.so" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_LV2_DIR/manifest.ttl" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_LV2_DIR/trakmeter_stereo.ttl" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_LV2_DIR/trakmeter_multi.ttl" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "manifest.ttl" "./$lv2_dir"
+archive_add "trakmeter_stereo.ttl" "./$lv2_dir"
+archive_add "trakmeter_multi.ttl" "./$lv2_dir"
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/linux64/$TRAKMETER_ARCHIVE_DIR.tar.bz2" "$TRAKMETER_ARCHIVE_DIR" "bzip2"
+archive_add "$include_dir" "."
+
+archive_compress "gzip"
+archive_store "gzip" "$release_dir/linux64"
 
 
 # ----- GNU/Linux VST (64 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-vst_$TRAKMETER_VERSION"
-
-echo "  === GNU/Linux VST v$TRAKMETER_VERSION (64 bit) ==="
+echo "  === GNU/Linux VST $version (64 bit) ==="
 echo
 
-move_new_executable "trakmeter_stereo_vst_x64.so"
-move_new_executable "trakmeter_multi_vst_x64.so"
+archive_dir="trakmeter-vst_$version"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/linux64/trakmeter-vst_$TRAKMETER_VERSION.tar.bz2"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "trakmeter_stereo_vst_x64.so" "./$executable_dir"
+archive_add "trakmeter_multi_vst_x64.so" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_stereo_vst_x64.so" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/trakmeter_multi_vst_x64.so" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "$include_dir" "."
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/linux64/$TRAKMETER_ARCHIVE_DIR.tar.bz2" "$TRAKMETER_ARCHIVE_DIR" "bzip2"
+archive_compress "gzip"
+archive_store "gzip" "$release_dir/linux64"
 
 
 # ----- Windows Standalone (32 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-standalone_$TRAKMETER_VERSION"
-
-echo "  === Windows Standalone v$TRAKMETER_VERSION (32 bit) ==="
+echo "  === Windows Standalone $version (32 bit) ==="
 echo
 
-move_new_executable "traKmeter (Stereo).exe"
-move_new_executable "traKmeter (Multi).exe"
+archive_dir="trakmeter-standalone_$version"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/w32/trakmeter-standalone_$TRAKMETER_VERSION.zip"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "traKmeter (Stereo).exe" "./$executable_dir"
+archive_add "traKmeter (Multi).exe" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/traKmeter (Stereo).exe" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/traKmeter (Multi).exe" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "$include_dir" "."
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/w32/$TRAKMETER_ARCHIVE_DIR.zip" "$TRAKMETER_ARCHIVE_DIR" "zip"
+archive_compress "zip"
+archive_store "zip" "$release_dir/w32"
 
 
 # ----- Windows VST (32 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-vst_$TRAKMETER_VERSION"
-
-echo "  === Windows VST v$TRAKMETER_VERSION (32 bit) ==="
+echo "  === Windows VST $version (32 bit) ==="
 echo
 
-move_new_executable "traKmeter (Stereo).dll"
-move_new_executable "traKmeter (Multi).dll"
+archive_dir="trakmeter-vst_$version"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/w32/trakmeter-vst_$TRAKMETER_VERSION.zip"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "traKmeter (Stereo).dll" "./$executable_dir"
+archive_add "traKmeter (Multi).dll" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/traKmeter (Stereo).dll" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/traKmeter (Multi).dll" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "$include_dir" "."
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/w32/$TRAKMETER_ARCHIVE_DIR.zip" "$TRAKMETER_ARCHIVE_DIR" "zip"
+archive_compress "zip"
+archive_store "zip" "$release_dir/w32"
 
 
 # ----- Windows Standalone (64 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-standalone_$TRAKMETER_VERSION"
-
-echo "  === Windows Standalone v$TRAKMETER_VERSION (64 bit) ==="
+echo "  === Windows Standalone $version (64 bit) ==="
 echo
 
-move_new_executable "traKmeter (Stereo x64).exe"
-move_new_executable "traKmeter (Multi x64).exe"
+archive_dir="trakmeter-standalone_$version"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/w64/trakmeter-standalone_$TRAKMETER_VERSION.zip"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "traKmeter (Stereo x64).exe" "./$executable_dir"
+archive_add "traKmeter (Multi x64).exe" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/traKmeter (Stereo x64).exe" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/traKmeter (Multi x64).exe" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "$include_dir" "."
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/w64/$TRAKMETER_ARCHIVE_DIR.zip" "$TRAKMETER_ARCHIVE_DIR" "zip"
+archive_compress "zip"
+archive_store "zip" "$release_dir/w64"
 
 
 # ----- Windows VST (64 bit) -----
 
-TRAKMETER_ARCHIVE_DIR="trakmeter-vst_$TRAKMETER_VERSION"
-
-echo "  === Windows VST v$TRAKMETER_VERSION (64 bit) ==="
+echo "  === Windows VST $version (64 bit) ==="
 echo
 
-move_new_executable "traKmeter (Stereo x64).dll"
-move_new_executable "traKmeter (Multi x64).dll"
+archive_dir="trakmeter-vst_$version"
 
-delete_old_archive "$TRAKMETER_RELEASE_DIR/w64/trakmeter-vst_$TRAKMETER_VERSION.zip"
+archive_create
 
-create_new_archive "$TRAKMETER_ARCHIVE_DIR"
+archive_add "traKmeter (Stereo x64).dll" "./$executable_dir"
+archive_add "traKmeter (Multi x64).dll" "./$executable_dir"
 
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/traKmeter (Stereo x64).dll" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_EXECUTABLE_DIR/traKmeter (Multi x64).dll" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/LICENSE" "$TRAKMETER_ARCHIVE_DIR"
-fill_archive "$TRAKMETER_DOCUMENTATION_DIR/trakmeter.pdf" "$TRAKMETER_ARCHIVE_DIR"
+archive_add "$include_dir" "."
 
-compress_new_archive "$TRAKMETER_RELEASE_DIR/w64/$TRAKMETER_ARCHIVE_DIR.zip" "$TRAKMETER_ARCHIVE_DIR" "zip"
+archive_compress "zip"
+archive_store "zip" "$release_dir/w64"
