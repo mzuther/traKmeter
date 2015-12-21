@@ -35,7 +35,7 @@
 class MeterSignalLed : public Component
 {
 public:
-    MeterSignalLed(const String &componentName, String &label, float fThreshold, float fRange);
+    MeterSignalLed(const String &componentName, String &label, float hue);
     ~MeterSignalLed();
 
     void setLevel(float fLevel);
@@ -48,10 +48,7 @@ private:
 
     String strLabel;
     float fBrightness;
-
-    float fLowerThreshold;
-    float fUpperThreshold;
-    float fThresholdRange;
+    float fHue;
 };
 
 

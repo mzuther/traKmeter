@@ -62,7 +62,7 @@ private:
     OwnedArray<MeterBarPeak> p_arrPeakMeters;
     OwnedArray<OverloadMeter> p_arrOverloadMeters;
 
-    OwnedArray<MeterSignalLed> p_arrPeakMeterSignals;
+    OwnedArray<MeterSignalLed> p_arrSignalMeters;
 };
 
 

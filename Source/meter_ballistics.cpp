@@ -99,8 +99,8 @@ void MeterBallistics::reset()
         arrAverageMeterLevels.set(nChannel, fMeterMinimumDecibel);
         arrAverageMeterPeakLevels.set(nChannel, fMeterMinimumDecibel);
 
-        // set peak meter signal levels to meter's minimum
-        arrPeakMeterSignals.set(nChannel, fMeterMinimumDecibel);
+        // set signal meter readout to minimum
+        arrSignalMeterReadouts.set(nChannel, 0.0f);
 
         // set overall maximum peak level to meter's minimum
         arrMaximumPeakLevels.set(nChannel, fMeterMinimumDecibel);
@@ -264,19 +264,19 @@ float MeterBallistics::getAverageMeterPeakLevel(int nChannel)
 }
 
 
-float MeterBallistics::getPeakMeterSignal(int nChannel)
-/*  Get peak meter signal level of an audio channel.
+float MeterBallistics::getSignalMeterReadout(int nChannel)
+/*  Get signal meter readout of an audio channel.
 
     nChannel (integer): selected audio channel
 
-    return value (float): returns the peak meter signal level in
-    decibel that has been registered on the given audio channel
+    return value (float): returns the signal meter readout (between
+    0.0 and 1.0) that has been registered on the given audio channel
 */
 {
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return arrPeakMeterSignals[nChannel] + nCrestFactor;
+    return arrSignalMeterReadouts[nChannel];
 }
 
 
@@ -351,7 +351,7 @@ void MeterBallistics::updateChannel(int nChannel, float fTimePassed, float fPeak
     arrPeakMeterLevels.set(nChannel, PeakMeterBallistics(fTimePassed, fPeak, arrPeakMeterLevels[nChannel]));
     arrPeakMeterPeakLevels.set(nChannel, PeakMeterPeakBallistics(fTimePassed, arrPeakMeterPeakLastChanged.getReference(nChannel), fPeak, arrPeakMeterPeakLevels[nChannel]));
 
-    PeakMeterSignalBallistics(nChannel, fTimePassed, fPeak);
+    SignalMeterBallistics(nChannel, fTimePassed, fPeak);
 
     // apply average meter's ballistics and store resulting level and
     // peak mark
@@ -649,30 +649,37 @@ float MeterBallistics::AverageMeterPeakBallistics(float fTimePassed, float &fLas
 }
 
 
-void MeterBallistics::PeakMeterSignalBallistics(int nChannel, float fTimePassed, float fPeakMeterSignalCurrent)
-/*  Calculate ballistics for peak meter signal levels and update readout.
+void MeterBallistics::SignalMeterBallistics(int nChannel, float fTimePassed, float fPeakMeterSignalCurrent)
+/*  Calculate ballistics for signal meter and update readout.
 
     fTimePassed (float): time that has passed since last update (in
     fractional seconds)
 
-    fPeakMeterSignalCurrent (float): current peak meter signal level in
-    decibel
+    fPeakMeterSignalCurrent (float): current signal meter readout
+    (between 0.0 and 1.0)
 
     return value: none
 */
 {
-    // meter is rising
-    if (fPeakMeterSignalCurrent >= arrPeakMeterSignals[nChannel])
+    // the signal meter has a threshold of -60 dB FS; meter is rising
+    if (fPeakMeterSignalCurrent >= -60)
     {
-        // immediate rise time, so return current peak meter signal
-        // level as new reading
-        arrPeakMeterSignals.set(nChannel, fPeakMeterSignalCurrent);
+        // immediate rise time, so set to full readout
+        arrSignalMeterReadouts.set(nChannel, 1.0f);
     }
-    // meter is falling
+    // meter is falling back to zero
     else
     {
+        // shorten release phase
+        if (arrSignalMeterReadouts[nChannel] < 0.1f)
+        {
+            arrSignalMeterReadouts.set(nChannel, 0.0f);
+        }
         // meter reaches 99% of the final reading in 1200 ms
-        LogMeterBallistics(1.200f, fTimePassed, fPeakMeterSignalCurrent, arrPeakMeterSignals.getReference(nChannel));
+        else
+        {
+            LogMeterBallistics(1.200f, fTimePassed, 0.0f, arrSignalMeterReadouts.getReference(nChannel));
+        }
     }
 }
 

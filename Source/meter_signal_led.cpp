@@ -26,7 +26,7 @@
 #include "meter_signal_led.h"
 
 
-MeterSignalLed::MeterSignalLed(const String &componentName, String &label, float fThreshold, float fRange)
+MeterSignalLed::MeterSignalLed(const String &componentName, String &label, float hue)
 {
     // set component name
     setName(componentName);
@@ -34,15 +34,8 @@ MeterSignalLed::MeterSignalLed(const String &componentName, String &label, float
     // set label
     strLabel = label;
 
-    // lower threshold, meter segment will be dark below this level
-    fLowerThreshold = fThreshold;
-
-    // level range above lower threshold; this affects the brightness
-    fThresholdRange = fRange;
-
-    // upper threshold, meter segment will be fully lit above this
-    // level
-    fUpperThreshold = fThreshold + fThresholdRange;
+    // meter segment is blue
+    fHue = hue;
 
     // initialise meter segment's brightness (0.0f is dark, 1.0f is
     // fully lit)
@@ -62,9 +55,6 @@ void MeterSignalLed::paint(Graphics &g)
     int width = getWidth();
     int height = getHeight();
 
-    // meter segment is blue
-    float fHue = 0.60f;
-
     // initialise meter segment's colour from hue and brightness
     g.setColour(Colour(fHue, 0.9f, fBrightness, 1.0f));
 
@@ -72,7 +62,7 @@ void MeterSignalLed::paint(Graphics &g)
     // pixel for peak marker
     g.fillRect(1, 1, width - 2, height - 2);
 
-    // initialise colour for label (light blue for levels below the
+    // initialise colour for label (light colour for levels below the
     // threshold and black for all other levels)
     if (fBrightness <= 0.32f)
     {
@@ -110,28 +100,8 @@ void MeterSignalLed::setLevel(float fLevel)
     // store old brightness and peak marker values
     float fBrightnessOld = fBrightness;
 
-    // current level lies above upper threshold
-    if (fLevel > fUpperThreshold)
-    {
-        // fully light meter segment
-        fBrightness = 0.97f;
-    }
-    // current level lies on or below lower threshold
-    else if (fLevel <= fLowerThreshold)
-    {
-        // set meter segment to dark
-        fBrightness = 0.32f;
-    }
-    // current level lies within thresholds or on upper threshold
-    else
-    {
-        // calculate brightness from current level
-        fBrightness = (fLevel - fLowerThreshold) / fThresholdRange;
-
-        // to look well, meter segments should be left with some
-        // colour and not have maximum brightness
-        fBrightness = fBrightness * 0.65f + 0.32f;
-    }
+    // calculate brightness from meter readout
+    fBrightness = fLevel * 0.65f + 0.32f;
 
     // re-paint meter segment only when the brightness has changed
     if (fBrightness != fBrightnessOld)

@@ -53,7 +53,7 @@ public:
     float getAverageMeterLevel(int nChannel);
     float getAverageMeterPeakLevel(int nChannel);
 
-    float getPeakMeterSignal(int nChannel);
+    float getSignalMeterReadout(int nChannel);
     float getMaximumPeakLevel(int nChannel);
     int getNumberOfOverflows(int nChannel);
 
@@ -80,7 +80,7 @@ private:
     Array<float> arrAverageMeterLevels;
     Array<float> arrAverageMeterPeakLevels;
 
-    Array<float> arrPeakMeterSignals;
+    Array<float> arrSignalMeterReadouts;
     Array<float> arrMaximumPeakLevels;
     Array<int> arrNumberOfOverflows;
 
@@ -93,7 +93,7 @@ private:
     void AverageMeterBallistics(int nChannel, float fTimePassed, float fAverageLevelCurrent);
     float AverageMeterPeakBallistics(float fTimePassed, float &fLastChanged, float fAverageLevelCurrent, float fAverageLevelOld);
 
-    void PeakMeterSignalBallistics(int nChannel, float fTimePassed, float fPeakMeterSignalCurrent);
+    void SignalMeterBallistics(int nChannel, float fTimePassed, float fPeakMeterSignalCurrent);
 
     void LogMeterBallistics(float fMeterInertia, float fTimePassed, float fLevel, float &fReadout);
 };
