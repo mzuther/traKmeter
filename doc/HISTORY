@@ -2,6 +2,28 @@ Git HEAD
 ========
 
 
+v2.0.0 (2015-12-24)
+==================
+
+* completely changed parameter handling
+
+* re-factored and documented code
+
+* changed operation of signal meter
+
+* changed plug-in manufacturer and category
+
+* moved skins and documentation to subdirectory "trakmeter"
+
+* updated framework to JUCE v3.2.0
+
+* simplified packaging
+
+* validation: full re-calibration
+
+* validation: updated documents
+
+
 v1.9.0 (2015-02-28)
 ==================
 
