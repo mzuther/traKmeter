@@ -95,7 +95,7 @@ digital-to-analog conversion.
 Some analog-to-digital converters also degrade audio when fed with
 input levels close to digital full-scale (\SI{0}{\dBFS}), resulting in
 the ``harshness'' often attributed to digital audio -- my first sound
-card certainly suffered from this.  So lowering your input levels as
+card definitely suffered from this.  So lowering your input levels as
 described above may also improve your overall sound.
 
 Finally, we'll emphasise the newly designated headroom and shift the
@@ -115,10 +115,6 @@ be performed at peak levels close to but not exceeding \SI{0}{\dBFS}
 manuals of some professional audio equipment.  But for the reasons
 given above it is plain wrong.
 
-\begin{wrapfigure}{r}{0pt}
-  \includegraphics[scale=0.24,clip]{include/images/level_meter_otari.png}
-\end{wrapfigure}
-
 Let's look at a worst-case scenario: even if your recordings
 \emph{peak} at \SI{-20}{\dBFS} and you discard the least significant
 bit (some people claim that it mostly consists of errors), a bit depth
@@ -126,6 +122,10 @@ of 16 bit would still leave you with a signal-to-noise ratio of
 \SI{70}{\dB}.  That is about what you can expect from some of the best
 professional analog tape machines and recording desks -- and we're not
 even talking of 24 bit.
+
+\begin{wrapfigure}{r}{0pt}
+\includegraphics[scale=0.24,clip]{include/images/level_meter_otari.png}
+\end{wrapfigure}
 
 If you don't believe me yet, take a look at my professional 16-bit
 hard disk recorder (Otari PD-80): its analog inputs and outputs are
@@ -153,20 +153,20 @@ means.  However, the lack of average meters makes correct gain staging
 almost impossible.
 
 For gain staging, you need average meters or -- even better -- a
-combination of peak and average meters.  And this is were
-\textbf{traKmeter} comes in.
+combination of peak and average meters.  And this is were traKmeter
+comes in.
 
 \chapter{traKmeter}
 \label{chap:trakmeter}
 
-\begin{wrapfigure}{r}{0.18\linewidth}
-  \includegraphics[scale=0.625,clip]{include/images/level_meter_complete.png}
+\begin{wrapfigure}{r}{0.21\linewidth}
+\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_complete.png}
 \end{wrapfigure}
 
-\textbf{traKmeter} consists of two meters, a peak meter on top and an
-average meter below.  The meters are separated by a blue signal LED
-and consist of an area of green LEDs that is enclosed by first yellow
-and then red LEDs.
+traKmeter consists of two meters, a peak meter on top and an average
+meter below.  The meters are separated by an orange signal LED and
+consist of an area of green LEDs that is enclosed by either blue ones
+(lower levels) or yellow and then red ones (higher levels).
 
 You may have noticed that the average meter's green area is centred
 around the \textbf{\SI{0}{\dB} RMS} mark.  This number should be
@@ -180,35 +180,36 @@ Again, this number should be familiar: peak levels in the digital
 domain shouldn't exceed this level.
 
 Thus, by keeping the meter's readout in the green areas and from
-entering the yellow and red areas on top of each meter, you will
-automatically track at optimal audio levels.
+entering the yellow and especially the red areas on top of each meter,
+you will automatically track at optimal audio levels.  It's as simple
+as that!
 
 \section{Tracking with traKmeter}
 \label{sec:tracking_with_trakmeter}
 
-Open up an instance of \textbf{traKmeter} and set it up so that it
-measures your audio input.  That can be done either by starting the
-standalone version and connecting it to one or more input channels of
-your sound card, or by inserting a plug-in instance into an input
-channel of your digital audio workstation.
+Open up an instance of traKmeter and set it up so that it measures
+your audio input.  That can be done either by starting the standalone
+version and connecting it to one or more input channels of your sound
+card, or by inserting a plug-in instance into an input channel of your
+digital audio workstation.
 
 In the second case, take care that your digital audio workstation
 doesn't add additional headroom and that no processing takes place
-before \textbf{traKmeter}.  This can be ascertained by feeding
-calibration tones into your sound card or by directly comparing the
-readouts of standalone and plug-in version.
+before traKmeter.  This can be ascertained by feeding calibration
+tones into your sound card or by directly comparing the readouts of
+standalone and plug-in version.
 
-\begin{wrapfigure}{r}{0.42\linewidth}
-  \includegraphics[scale=0.45,clip]{include/images/trakmeter_optimal.png}
+\begin{wrapfigure}{r}{0.45\linewidth}
+\includegraphics[scale=0.45,clip]{include/images/trakmeter_optimal.png}
 \end{wrapfigure}
 
 Now, feed the signal you want to record into an audio input channel
-and adjust its level (in the analog domain!) using \textbf{traKmeter}.
-Try to set the input level so that transients fall into the average
-meter's \textbf{\SI{0}{\dB} RMS} area.  Make sure that peak levels
-never exceed \textbf{\SI[addsign=all]{+11}{\dB}}.  In case both
-conditions cannot be met simultaneously, adjust the peak level only.
-See the image to the right for a visual clue.
+and adjust its level (in the analog domain!) using traKmeter.  Try to
+set the input level so that transients fall into the average meter's
+\textbf{\SI{0}{\dB} RMS} area.  Make sure that peak levels never
+exceed \textbf{\SI[addsign=all]{+11}{\dB}}.  In case both conditions
+cannot be met simultaneously, adjust the peak level only.  See the
+image to the right for a visual clue.
 
 \section{Mixing with traKmeter}
 \label{sec:mixing_with_trakmeter}
@@ -218,14 +219,14 @@ have been recorded far too hot.  While you can't change that, you
 might want to adjust them to optimal loudness so that your upcoming
 mix is not ruined.
 
-If the original recordings were made with poor equipment and you have
-the time, it may be worth to \textbf{re-record} all tracks through a
-really good preamp and adjust their loudness at the same time.
-Depending on the preamp, the results can be stunning!
+\emph{If the original recordings were made with poor equipment and you
+  have the time, it may well be worth to \textbf{re-record} all tracks
+  through a really good preamp and adjust their loudness at the same
+  time.  Depending on the preamp, the results can be stunning!}
 
-Another option is to insert \textbf{traKmeter} on each channel as
-first plug-in, enable the ``Mixing'' button (see
-\ref{sec:mixing_button}) and adjust volume using the gain knob.
+Another option is to insert traKmeter on each channel as first
+plug-in, enable the ``Mixing'' button (see \ref{sec:mixing_button})
+and adjust volume using the gain knob.
 
 In any case, mixing levels will now be much lower than what you are
 used to.  This can easily be corrected by either adjusting the output
@@ -245,10 +246,10 @@ may help you with setting up correct mixing levels.
 \label{chap:installation}
 
 In order to use the pre-compiled binaries, simply extract the
-\textbf{traKmeter} files from the downloaded archive.  For the
-plug-ins, you'll then have to move the extracted files to your
-respective plug-in folder (\path{~/.lv2}, \path{~/.vst},
-\path{C:\Program Files\Steinberg\VstPlugins\} or the like).
+traKmeter files from the downloaded archive.  For the plug-ins, you'll
+then have to move the extracted files to your respective plug-in
+folder (\path{~/.lv2}, \path{~/.vst}, \path{C:\Program
+  Files\Steinberg\VstPlugins\} or the like).
 
 Should the standalone version ever fail to start, you can reset its
 settings by deleting \path{trakmeter_stereo.ini} or
@@ -262,7 +263,9 @@ settings by deleting \path{trakmeter_stereo.ini} or
 \label{sec:reset_button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset.png}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_reset_on.png}
+\newline \vspace{-0.9\baselineskip}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_reset_off.png}
 \end{wrapfigure}
 
 Click on this button to reset all meters.  You can also use it to get
@@ -273,9 +276,9 @@ well.
 \label{sec:crest_factor_button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_crest_factor_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_crest_factor_off.png}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_crest_factor_on.png}
+\newline \vspace{-0.9\baselineskip}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_crest_factor_off.png}
 \end{wrapfigure}
 
 When this button is pressed, meter readout uses the K-20 scale (crest
@@ -291,9 +294,9 @@ relative to digital full-scale (crest factor of \SI{0}{\dB}).
 \label{sec:transient_button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_transient_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_transient_off.png}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_transient_on.png}
+\newline \vspace{-0.9\baselineskip}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_transient_off.png}
 \end{wrapfigure}
 
 This button changes the RMS meter's ballistics from ``transient'' mode
@@ -316,18 +319,17 @@ you.
 \label{sec:mixing_button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_mixing_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_mixing_off.png}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_mixing_on.png}
+\newline \vspace{-0.9\baselineskip}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_mixing_off.png}
 \end{wrapfigure}
 
-You can use \textbf{traKmeter} as a gain plug-in -- just enable this
-button and adjust the gain knob.
+You can use traKmeter as a gain plug-in -- just enable this button and
+adjust the gain knob which appears.
 
 When the plug-in is closed, its meters aren't updated, so it uses less
-system resources.  On slow computers, however, use \textbf{traKmeter}
-to find the correct gain and then exchange it against a simple gain
-plug-in.
+system resources.  On slow computers, however, use traKmeter to find
+the correct gain and then exchange it against a simple gain plug-in.
 
 Please keep in mind that this setting should only be used for
 \textbf{pre-recorded material}.  The gain stage sits \emph{before} the
@@ -339,28 +341,26 @@ without the meters hitting the red area!
 \label{sec:validation_button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
+\newline \vspace{-0.9\baselineskip}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
 \end{wrapfigure}
 
 Click on this button to open the \textbf{validation window} (see
-\ref{chap:validation}) which allows you to play an audio file (WAV,
-AIFF or FLAC) through \textbf{traKmeter} and dump internal data.
-During validation, the button will light up and clicking it will stop
-validation early.
+\ref{chap:validation}) which allows you to play an audio file through
+traKmeter and dump internal data.  During validation, the button will
+light up and clicking it will stop validation early.
 
 \emph{Unfortunately, the underlying JUCE library does not seem to
   support multi-channel audio files.  You may load such audio files
-  into your DAW of choice and insert \textbf{traKmeter} as a plug-in
-  instance.}
+  into your DAW of choice and use a traKmeter plug-in.}
 
 On Linux, dumped data will be written to \path{stderr}, so just start
-the \textbf{traKmeter} standalone or your VST host from the shell and
-watch the output coming.  On other systems, have a look at your VST
-host's log files (I have successfully used Ableton Live for this).  If
-that doesn't work, you might have to start either the
-\textbf{traKmeter} standalone or your VST host from a debugger.
+the traKmeter standalone or your VST host from the shell and watch the
+output coming.  On other systems, have a look at your VST host's log
+files (I have successfully used Ableton Live for this).  If that
+doesn't work, you might have to start either the traKmeter standalone
+or your VST host from a debugger.
 
 As a side note, \textbf{SMA(50)} designates the simple moving average
 of 50 values, a neat way to emphasise trends and eliminate short-term
@@ -369,9 +369,9 @@ fluctuations.
 \section{About button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_off.png}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_about_on.png}
+\newline \vspace{-0.9\baselineskip}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_about_off.png}
 \end{wrapfigure}
 
 Clicking on this button will open the \textbf{about window} where you
@@ -381,9 +381,9 @@ GNU General Public License.
 \section{Display license}
 
 \begin{wrapfigure}{r}{0.15\linewidth}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_on.png}
-  \newline \vspace{-0.9\baselineskip}
-  \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_off.png}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_on.png}
+\newline \vspace{-0.9\baselineskip}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_off.png}
 \end{wrapfigure}
 
 This button is located in the \textbf{about window} and does not only
@@ -400,8 +400,8 @@ can be adjusted using the ``Crest factor'' button (see
 
 \section{Average level meter}
 
-\begin{wrapfigure}{r}{0.18\linewidth}
-  \includegraphics[scale=0.625,clip]{include/images/level_meter_average.png}
+\begin{wrapfigure}{r}{0.21\linewidth}
+\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_average.png}
 \end{wrapfigure}
 
 The average level meter uses an averaging period of \num{1024}
@@ -427,8 +427,8 @@ no overshoot, however.
 
 \section{Peak level meter}
 
-\begin{wrapfigure}{r}{0.18\linewidth}
-  \includegraphics[scale=0.625,clip]{include/images/level_meter_peak.png}
+\begin{wrapfigure}{r}{0.21\linewidth}
+\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_peak.png}
 \end{wrapfigure}
 
 The peak level meter has a rise time of one sample and a fall time of
@@ -439,13 +439,13 @@ Peaks will be indefinitely held until the meter is reset.
 
 \section{Signal meter}
 
-\begin{wrapfigure}{r}{0.18\linewidth}
-  \includegraphics[scale=0.625,clip]{include/images/level_meter_signal.png}
+\begin{wrapfigure}{r}{0.21\linewidth}
+\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_signal.png}
 \end{wrapfigure}
 
-The blue signal meter detects peak levels of \SI{-60}{\dBFS} and
-above.  It has a rise time of one sample and falls to
-\SI{99}{\percent} of the final reading in \SI{1.2}{\second}.
+The orange signal meter detects peak levels of \SI{-60}{\dBFS} and
+above.  It has a rise time of one sample and simply fades out if the
+level falls below the threshold.
 
 \chapter{Recording tips}
 \label{chap:recording_tips}
@@ -574,20 +574,19 @@ and FLAC-compressed wave files.  A word of warning: these audio files
 may \textbf{damage your ears} and speakers, so please watch your
 monitor levels!
 
-Begin by starting \textbf{traKmeter}.  If in a Bash shell, try this:
+Begin by starting traKmeter.  If in a Bash shell, try this:
 
 \path{./trakmeter_stereo 2>&1 | tee /tmp/validation.log}
 
-\begin{wrapfigure}{r}{0.33\linewidth}
-  \includegraphics[scale=0.65,clip]{include/images/dialog_validation.png}
+\begin{wrapfigure}{r}{0.32\linewidth}
+\includegraphics[scale=0.60,clip]{include/images/dialog_validation.png}
 \end{wrapfigure}
 
 After opening the \textbf{validation window} (see
 \ref{sec:validation_button}), click on the ellipsis button (the one
-with the dots) to select an audio file for playback through
-\textbf{traKmeter}.  Please make sure that the sample rates of your
-host (\textbf{Host SR}) and the audio file match, otherwise the
-results will not be correct.
+with the dots) to select an audio file for playback through traKmeter.
+Please make sure that the sample rates of your host (\textbf{Host SR})
+and the audio file match, otherwise the results will not be correct.
 
 Now, select which \textbf{variables} (if any) should be dumped.  You
 may also restrict dumped data to a specific audio \textbf{channel}.
@@ -634,9 +633,8 @@ playback early, simply click on the \textbf{validate} button again.
 \chapter{Help needed}
 \label{chap:help_needed}
 
-As \textbf{traKmeter} was coded using cross-platform code, it should
-be easy to compile on Mac OS X.  Unfortunately, I happen to not have a
-Mac \dots
+As traKmeter was coded using cross-platform code, it should be easy to
+compile on Mac OS X.  Unfortunately, I happen to not have a Mac \dots
 
 In case you want to help, please see the next chapter for an email
 address.  You’ll need sufficient experience in coding, compiling and
@@ -647,19 +645,19 @@ debugging, though, so no beginners please!
 
 I want to thank \textbf{Rickard} of Interfearing Sounds for asking me
 how to use K-Meter for tracking.  This question and the following
-thoughts really got \textbf{traKmeter} started.  I'd like to thank
+thoughts really got traKmeter started.  I'd like to thank
 \textbf{bram@smartelectronix} for his code to calculate logarithmic
 rise and fall times.  I must also thank the \textbf{beta testers} and
 \textbf{users of traKmeter} for sending kind words, suggestions and
 bug reports.  Finally, I want to thank the \textbf{open source
   community} for making all of this possible.
 
-Although coding \textbf{traKmeter} has been a lot of fun, it has also
-been a lot of work.  So if you like \textbf{traKmeter}, why not send
-me a short email and tell me so?  Write a few words about yourself,
-send suggestions for future updates or volunteer to create a nice
-theme.  I also really enjoy listening to music that you may have
-produced using my software\dots
+Although coding traKmeter has been a lot of fun, it has also been a
+lot of work.  So if you like traKmeter, why not send me a short email
+and tell me so?  Write a few words about yourself, send suggestions
+for future updates or volunteer to create a nice theme.  I also really
+enjoy listening to music that you may have produced using my
+software\dots
 
 Here is my email address (please remove ``\texttt{-nospam}''):
 
@@ -679,11 +677,11 @@ Thanks for using free software.  I hope you'll enjoy it!
 
 \section{Preparing GNU/Linux}
 
-To build \textbf{traKmeter} yourself, I recommend setting up a
-\texttt{chroot} environment.  This is fast and easy to do on
-Debian-based systems and might save you a \textbf{lot} of trouble.  At
-the time of writing, I'm using Linux Mint 17, but the procedure should
-be similar on your distribution of choice.
+To build traKmeter yourself, I recommend setting up a \texttt{chroot}
+environment.  This is fast and easy to do on Debian-based systems and
+might save you a \textbf{lot} of trouble.  At the time of writing, I'm
+using Linux Mint 17, but the procedure should be similar on your
+distribution of choice.
 
 If you aim at generic \num{64}-bit compilation, simply change
 \texttt{i386} to \texttt{amd64} and \texttt{x32} to \texttt{x64}.  If
@@ -758,7 +756,7 @@ Finally, log out and log in as normal user:
 \end{verbatim}
 
 Congratulations -- after you have installed the dependencies (see
-below), you are ready to build \textbf{traKmeter}.
+below), you are ready to build traKmeter.
 
 \section{Dependencies}
 
@@ -841,7 +839,7 @@ Simply extract the archive into the directory
 \end{tabbing}
 
 You'll only need Python if you want to build \num{64}-bit versions of
-\textbf{traKmeter} using Visual Studio Express.
+traKmeter using Visual Studio Express.
 
 \subsubsection{Installation (Windows)}
 
@@ -863,7 +861,7 @@ number.
 
 This application formats the code so it looks more beautiful and
 consistent.  Thus, you only have to install it if you plan to help me
-with coding \textbf{traKmeter}.
+with coding traKmeter.
 
 \subsubsection{Installation}
 

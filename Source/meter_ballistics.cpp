@@ -667,7 +667,7 @@ void MeterBallistics::SignalMeterBallistics(int nChannel, float fTimePassed, flo
         // immediate rise time, so set to full readout
         arrSignalMeterReadouts.set(nChannel, 1.0f);
     }
-    // meter is falling back to zero
+    // meter is falling back to zero (i.e. fading out)
     else
     {
         // shorten release phase
