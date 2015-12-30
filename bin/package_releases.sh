@@ -57,6 +57,11 @@ function archive_add
 {
 	filename=$1
 	source_dir=$2
+	target_dir=$(dirname "/tmp/$archive_dir/$filename")
+
+	if [ ! -d "$target_dir" ]; then
+		mkdir -p "$target_dir"
+	fi
 
 	if [ -f "$source_dir/$filename" ]; then
 		echo "  [+] $filename"
@@ -194,7 +199,9 @@ archive_create
 archive_add "trakmeter_stereo" "./$executable_dir"
 archive_add "trakmeter_multi" "./$executable_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux32"
@@ -217,7 +224,9 @@ archive_add "manifest.ttl" "./$lv2_dir"
 archive_add "trakmeter_stereo.ttl" "./$lv2_dir"
 archive_add "trakmeter_multi.ttl" "./$lv2_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux32"
@@ -235,7 +244,9 @@ archive_create
 archive_add "trakmeter_stereo_vst.so" "./$executable_dir"
 archive_add "trakmeter_multi_vst.so" "./$executable_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux32"
@@ -253,7 +264,9 @@ archive_create
 archive_add "trakmeter_stereo_x64" "./$executable_dir"
 archive_add "trakmeter_multi_x64" "./$executable_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux64"
@@ -276,7 +289,9 @@ archive_add "manifest.ttl" "./$lv2_dir"
 archive_add "trakmeter_stereo.ttl" "./$lv2_dir"
 archive_add "trakmeter_multi.ttl" "./$lv2_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux64"
@@ -294,7 +309,9 @@ archive_create
 archive_add "trakmeter_stereo_vst_x64.so" "./$executable_dir"
 archive_add "trakmeter_multi_vst_x64.so" "./$executable_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux64"
@@ -312,7 +329,9 @@ archive_create
 archive_add "traKmeter (Stereo).exe" "./$executable_dir"
 archive_add "traKmeter (Multi).exe" "./$executable_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/w32"
@@ -330,7 +349,9 @@ archive_create
 archive_add "traKmeter (Stereo).dll" "./$executable_dir"
 archive_add "traKmeter (Multi).dll" "./$executable_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/w32"
@@ -348,7 +369,9 @@ archive_create
 archive_add "traKmeter (Stereo x64).exe" "./$executable_dir"
 archive_add "traKmeter (Multi x64).exe" "./$executable_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/w64"
@@ -366,7 +389,9 @@ archive_create
 archive_add "traKmeter (Stereo x64).dll" "./$executable_dir"
 archive_add "traKmeter (Multi x64).dll" "./$executable_dir"
 
-archive_add "$include_dir" "."
+archive_add "$include_dir/doc" "."
+archive_add "$include_dir/skins/Default" "."
+archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/w64"
