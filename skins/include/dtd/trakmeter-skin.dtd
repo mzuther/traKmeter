@@ -105,7 +105,6 @@
 <!ENTITY % attrs_image_position
           "x CDATA #REQUIRED
            y CDATA #REQUIRED
-           %attrs_image_size;
 ">
 
 <!ENTITY % attrs_image_spacing
@@ -118,8 +117,7 @@
 ">
 
 <!ENTITY % attrs_background
-          "%attrs_image_size;
-           image CDATA #REQUIRED
+          "image CDATA #REQUIRED
 ">
 
 <!ENTITY % attrs_meter_graduation
@@ -135,11 +133,18 @@
 
 <!ENTITY % attrs_slider
           "%attrs_image_position;
+           %attrs_image_size;
            image CDATA #REQUIRED
 ">
 
 <!ENTITY % attrs_label
           "%attrs_image_position;
+           image CDATA #REQUIRED
+">
+
+<!ENTITY % attrs_label_signal
+          "%attrs_image_position;
+           %attrs_image_size;
            image CDATA #REQUIRED
 ">
 
@@ -156,6 +161,8 @@
 
 <!ENTITY % attrs_meter
           "%attrs_image_position;
+           segment_width CDATA #REQUIRED
+           vertical CDATA #REQUIRED
            image CDATA #REQUIRED
 ">
 
@@ -168,7 +175,7 @@
               name CDATA #REQUIRED
               orientation (vertical | horizontal) #REQUIRED
               path CDATA #REQUIRED
-              version CDATA "1.0"
+              version CDATA "1.1"
     >
 
     <!ELEMENT default (%main_components;)>
@@ -251,28 +258,28 @@
             <!ATTLIST label_over_8 %attrs_state_label;>
 
         <!ELEMENT label_signal_1 (#PCDATA)>
-            <!ATTLIST label_signal_1 %attrs_label;>
+            <!ATTLIST label_signal_1 %attrs_label_signal;>
 
         <!ELEMENT label_signal_2 (#PCDATA)>
-            <!ATTLIST label_signal_2 %attrs_label;>
+            <!ATTLIST label_signal_2 %attrs_label_signal;>
 
         <!ELEMENT label_signal_3 (#PCDATA)>
-            <!ATTLIST label_signal_3 %attrs_label;>
+            <!ATTLIST label_signal_3 %attrs_label_signal;>
 
         <!ELEMENT label_signal_4 (#PCDATA)>
-            <!ATTLIST label_signal_4 %attrs_label;>
+            <!ATTLIST label_signal_4 %attrs_label_signal;>
 
         <!ELEMENT label_signal_5 (#PCDATA)>
-            <!ATTLIST label_signal_5 %attrs_label;>
+            <!ATTLIST label_signal_5 %attrs_label_signal;>
 
         <!ELEMENT label_signal_6 (#PCDATA)>
-            <!ATTLIST label_signal_6 %attrs_label;>
+            <!ATTLIST label_signal_6 %attrs_label_signal;>
 
         <!ELEMENT label_signal_7 (#PCDATA)>
-            <!ATTLIST label_signal_7 %attrs_label;>
+            <!ATTLIST label_signal_7 %attrs_label_signal;>
 
         <!ELEMENT label_signal_8 (#PCDATA)>
-            <!ATTLIST label_signal_8 %attrs_label;>
+            <!ATTLIST label_signal_8 %attrs_label_signal;>
 
         <!ELEMENT meter_peak_1 (#PCDATA)>
             <!ATTLIST meter_peak_1 %attrs_meter;>

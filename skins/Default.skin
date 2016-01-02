@@ -6,14 +6,12 @@
     name="Default"
     orientation="vertical"
     path="Default"
-    version="1.0">
+    version="1.1">
 
     <default>
         <button_split
             x="152"
             y="46"
-            width="60"
-            height="20"
             image_on="buttons/button_split_on.png"
             image_off="buttons/button_split_off.png"
         />
@@ -21,8 +19,6 @@
         <button_k20
             x="152"
             y="71"
-            width="60"
-            height="20"
             image_on="buttons/button_k20_on.png"
             image_off="buttons/button_k20_off.png"
         />
@@ -30,8 +26,6 @@
         <button_transient
             x="152"
             y="96"
-            width="60"
-            height="20"
             image_on="buttons/button_transient_on.png"
             image_off="buttons/button_transient_off.png"
         />
@@ -39,8 +33,6 @@
         <button_mixing
             x="152"
             y="121"
-            width="60"
-            height="20"
             image_on="buttons/button_mixing_on.png"
             image_off="buttons/button_mixing_off.png"
         />
@@ -48,8 +40,6 @@
         <button_skin
             x="152"
             y="208"
-            width="60"
-            height="20"
             image_on="buttons/button_skin_on.png"
             image_off="buttons/button_skin_off.png"
         />
@@ -57,8 +47,6 @@
         <button_reset
             x="152"
             y="11"
-            width="60"
-            height="20"
             image_on="buttons/button_reset_on.png"
             image_off="buttons/button_reset_off.png"
         />
@@ -66,8 +54,6 @@
         <button_validate
             x="152"
             y="233"
-            width="60"
-            height="20"
             image_on="buttons/button_validate_on.png"
             image_off="buttons/button_validate_off.png"
         />
@@ -75,8 +61,6 @@
         <button_about
             x="152"
             y="258"
-            width="60"
-            height="20"
             image_on="buttons/button_about_on.png"
             image_off="buttons/button_about_off.png"
         />
@@ -92,8 +76,6 @@
         <label_debug
             x="162"
             y="192"
-            width="40"
-            height="10"
             image="labels/label_debug.png"
         />
     </default>
@@ -102,36 +84,34 @@
         <meter_peak_1
             x="49"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_2
             x="77"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_average_1
             x="49"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_2
             x="77"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <label_over_1
             x="49"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -144,8 +124,6 @@
         <label_over_2
             x="77"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -172,30 +150,22 @@
 
     <stereo_split_k20>
         <background
-            width="222"
-            height="289"
             image="backgrounds/stereo/background_split.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            width="122"
-            height="213"
             image="backgrounds/stereo/graduation_split_k20.png"
         />
     </stereo_split_k20>
 
     <stereo_split_normal>
         <background
-            width="222"
-            height="289"
             image="backgrounds/stereo/background_split.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            width="122"
-            height="213"
             image="backgrounds/stereo/graduation_split_normal.png"
         />
     </stereo_split_normal>
@@ -204,36 +174,34 @@
         <meter_peak_1
             x="50"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_2
             x="92"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_average_1
             x="56"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_2
             x="77"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <label_over_1
             x="49"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -246,8 +214,6 @@
         <label_over_2
             x="77"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -260,30 +226,22 @@
 
     <stereo_combined_k20>
         <background
-            width="222"
-            height="289"
             image="backgrounds/stereo/background_combined.png" />
 
         <meter_graduation
             x="15"
             y="40"
-            width="118"
-            height="227"
             image="backgrounds/stereo/graduation_combined_k20.png"
         />
     </stereo_combined_k20>
 
     <stereo_combined_normal>
         <background
-            width="222"
-            height="289"
             image="backgrounds/stereo/background_combined.png" />
 
         <meter_graduation
             x="15"
             y="40"
-            width="118"
-            height="227"
             image="backgrounds/stereo/graduation_combined_normal.png"
         />
     </stereo_combined_normal>
@@ -292,8 +250,6 @@
         <button_split
             x="340"
             y="46"
-            width="60"
-            height="20"
             image_on="buttons/button_split_on.png"
             image_off="buttons/button_split_off.png"
         />
@@ -301,8 +257,6 @@
         <button_k20
             x="340"
             y="71"
-            width="60"
-            height="20"
             image_on="buttons/button_k20_on.png"
             image_off="buttons/button_k20_off.png"
         />
@@ -310,8 +264,6 @@
         <button_transient
             x="340"
             y="96"
-            width="60"
-            height="20"
             image_on="buttons/button_transient_on.png"
             image_off="buttons/button_transient_off.png"
         />
@@ -319,8 +271,6 @@
         <button_mixing
             x="340"
             y="121"
-            width="60"
-            height="20"
             image_on="buttons/button_mixing_on.png"
             image_off="buttons/button_mixing_off.png"
         />
@@ -328,8 +278,6 @@
         <button_skin
             x="340"
             y="208"
-            width="60"
-            height="20"
             image_on="buttons/button_skin_on.png"
             image_off="buttons/button_skin_off.png"
         />
@@ -337,8 +285,6 @@
         <button_reset
             x="340"
             y="11"
-            width="60"
-            height="20"
             image_on="buttons/button_reset_on.png"
             image_off="buttons/button_reset_off.png"
         />
@@ -346,8 +292,6 @@
         <button_validate
             x="340"
             y="233"
-            width="60"
-            height="20"
             image_on="buttons/button_validate_on.png"
             image_off="buttons/button_validate_off.png"
         />
@@ -355,8 +299,6 @@
         <button_about
             x="340"
             y="258"
-            width="60"
-            height="20"
             image_on="buttons/button_about_on.png"
             image_off="buttons/button_about_off.png"
         />
@@ -372,128 +314,124 @@
         <label_debug
             x="350"
             y="192"
-            width="40"
-            height="10"
             image="labels/label_debug.png"
         />
 
         <meter_peak_1
             x="49"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_2
             x="77"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_3
             x="112"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_4
             x="140"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_5
             x="175"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_6
             x="203"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_7
             x="238"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_8
             x="266"
             y="48"
-            width="22"
-            height="91"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_average_1
             x="49"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_2
             x="77"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_3
             x="112"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_4
             x="140"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_5
             x="175"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_6
             x="203"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_7
             x="238"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <meter_average_8
             x="266"
             y="170"
-            width="22"
-            height="81"
+            segment_width="22"
+            vertical="true"
             image="meters/meter_bar_split_average.png" />
 
         <label_over_1
             x="49"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -506,8 +444,6 @@
         <label_over_2
             x="77"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -520,8 +456,6 @@
         <label_over_3
             x="112"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -534,8 +468,6 @@
         <label_over_4
             x="140"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -548,8 +480,6 @@
         <label_over_5
             x="175"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -562,8 +492,6 @@
         <label_over_6
             x="203"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -576,8 +504,6 @@
         <label_over_7
             x="238"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -590,8 +516,6 @@
         <label_over_8
             x="266"
             y="38"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -660,29 +584,21 @@
 
     <multi_split_k20>
         <background
-            width="410"
-            height="289"
             image="backgrounds/multi/background_split.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            width="311"
-            height="213"
             image="backgrounds/multi/graduation_split_k20.png" />
     </multi_split_k20>
 
     <multi_split_normal>
         <background
-            width="410"
-            height="289"
             image="backgrounds/multi/background_split.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            width="311"
-            height="213"
             image="backgrounds/multi/graduation_split_normal.png" />
     </multi_split_normal>
 
@@ -690,8 +606,6 @@
         <button_split
             x="340"
             y="46"
-            width="60"
-            height="20"
             image_on="buttons/button_split_on.png"
             image_off="buttons/button_split_off.png"
         />
@@ -699,8 +613,6 @@
         <button_k20
             x="340"
             y="71"
-            width="60"
-            height="20"
             image_on="buttons/button_k20_on.png"
             image_off="buttons/button_k20_off.png"
         />
@@ -708,8 +620,6 @@
         <button_transient
             x="340"
             y="96"
-            width="60"
-            height="20"
             image_on="buttons/button_transient_on.png"
             image_off="buttons/button_transient_off.png"
         />
@@ -717,8 +627,6 @@
         <button_mixing
             x="340"
             y="121"
-            width="60"
-            height="20"
             image_on="buttons/button_mixing_on.png"
             image_off="buttons/button_mixing_off.png"
         />
@@ -726,8 +634,6 @@
         <button_skin
             x="340"
             y="208"
-            width="60"
-            height="20"
             image_on="buttons/button_skin_on.png"
             image_off="buttons/button_skin_off.png"
         />
@@ -735,8 +641,6 @@
         <button_reset
             x="340"
             y="11"
-            width="60"
-            height="20"
             image_on="buttons/button_reset_on.png"
             image_off="buttons/button_reset_off.png"
         />
@@ -744,8 +648,6 @@
         <button_validate
             x="340"
             y="233"
-            width="60"
-            height="20"
             image_on="buttons/button_validate_on.png"
             image_off="buttons/button_validate_off.png"
         />
@@ -753,8 +655,6 @@
         <button_about
             x="340"
             y="258"
-            width="60"
-            height="20"
             image_on="buttons/button_about_on.png"
             image_off="buttons/button_about_off.png"
         />
@@ -770,128 +670,124 @@
         <label_debug
             x="350"
             y="192"
-            width="40"
-            height="10"
             image="labels/label_debug.png"
         />
 
         <meter_peak_1
             x="50"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_2
             x="92"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_3
             x="113"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_4
             x="155"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_5
             x="176"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_6
             x="218"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_7
             x="239"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_8
             x="281"
             y="36"
-            width="6"
-            height="235"
+            segment_width="6"
+            vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_average_1
             x="56"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_2
             x="77"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_3
             x="119"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_4
             x="140"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_5
             x="182"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_6
             x="203"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_7
             x="245"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_8
             x="266"
             y="36"
-            width="15"
-            height="235"
+            segment_width="15"
+            vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <label_over_1
             x="49"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -904,8 +800,6 @@
         <label_over_2
             x="77"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -918,8 +812,6 @@
         <label_over_3
             x="112"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -932,8 +824,6 @@
         <label_over_4
             x="140"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -946,8 +836,6 @@
         <label_over_5
             x="175"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -960,8 +848,6 @@
         <label_over_6
             x="203"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -974,8 +860,6 @@
         <label_over_7
             x="238"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -988,8 +872,6 @@
         <label_over_8
             x="266"
             y="18"
-            width="22"
-            height="11"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -1002,29 +884,21 @@
 
     <multi_combined_k20>
         <background
-            width="410"
-            height="289"
             image="backgrounds/multi/background_combined.png" />
 
         <meter_graduation
             x="15"
             y="40"
-            width="307"
-            height="227"
             image="backgrounds/multi/graduation_combined_k20.png" />
     </multi_combined_k20>
 
     <multi_combined_normal>
         <background
-            width="410"
-            height="289"
             image="backgrounds/multi/background_combined.png" />
 
         <meter_graduation
             x="15"
             y="40"
-            width="307"
-            height="227"
             image="backgrounds/multi/graduation_combined_normal.png" />
     </multi_combined_normal>
 
