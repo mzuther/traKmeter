@@ -181,9 +181,6 @@ finalise_executable "traKmeter (Multi x64).dll"
 
 echo "  Done."
 echo
-
-rm -f "$include_dir/skins/default_skin.ini"
-
 echo
 
 
