@@ -419,7 +419,7 @@ void TraKmeterAudioProcessor::releaseResources()
     // up any spare memory, etc.
 
     Logger::outputDebugString("[traKmeter] releasing resources");
-    Logger::outputDebugString("[traKmeter] ");
+    Logger::outputDebugString("");
 
     pMeterBallistics = nullptr;
     audioFilePlayer = nullptr;
