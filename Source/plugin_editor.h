@@ -52,6 +52,9 @@ public:
     void actionListenerCallback(const String &strMessage);
     void updateParameter(int nIndex);
 
+    void windowAboutCallback(int modalResult);
+    void windowSkinCallback(int modalResult);
+
     //==============================================================================
     void resized();
 

@@ -35,7 +35,7 @@
 
 
 //============================================================================
-class TraKmeterAudioProcessor  : public AudioProcessor, public ActionBroadcaster, virtual public AudioRingBufferProcessor
+class TraKmeterAudioProcessor : public AudioProcessor, public ActionBroadcaster, virtual public AudioRingBufferProcessor
 {
 public:
     //==========================================================================

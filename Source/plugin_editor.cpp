@@ -26,6 +26,24 @@
 #include "plugin_editor.h"
 
 
+static void window_about_callback(int modalResult, TraKmeterAudioProcessorEditor *pEditor)
+{
+    if (pEditor != nullptr)
+    {
+        pEditor->windowAboutCallback(modalResult);
+    }
+}
+
+
+static void window_skin_callback(int modalResult, TraKmeterAudioProcessorEditor *pEditor)
+{
+    if (pEditor != nullptr)
+    {
+        pEditor->windowSkinCallback(modalResult);
+    }
+}
+
+
 //==============================================================================
 TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, TraKmeterPluginParameters *parameters, int nNumChannels, int CrestFactor)
     : AudioProcessorEditor(ownerFilter)
@@ -104,15 +122,12 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
     fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter/skins/");
 
-    strSkinName = pProcessor->getParameterSkinName();
-    loadSkin();
-
     // force meter reload after initialisation ...
     bInitialising = false;
-    bReloadMeters = true;
 
-    // will also apply skin to plug-in editor
-    reloadMeters();
+    // apply skin to plug-in editor
+    strSkinName = pProcessor->getParameterSkinName();
+    loadSkin();
 }
 
 
@@ -138,6 +153,10 @@ void TraKmeterAudioProcessorEditor::loadSkin()
 
     int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
     skin.loadSkin(fileSkin, nInputChannels, nCrestFactor, nMeterType);
+
+    // will also apply skin to plug-in editor
+    bReloadMeters = true;
+    reloadMeters();
 }
 
 
@@ -177,6 +196,27 @@ void TraKmeterAudioProcessorEditor::applySkin()
     if (trakmeter)
     {
         trakmeter->applySkin(&skin);
+    }
+}
+
+
+void TraKmeterAudioProcessorEditor::windowAboutCallback(int modalResult)
+{
+    // manually deactivate about button
+    ButtonAbout.setToggleState(false, dontSendNotification);
+}
+
+
+void TraKmeterAudioProcessorEditor::windowSkinCallback(int modalResult)
+{
+    // manually deactivate skin button
+    ButtonSkin.setToggleState(false, dontSendNotification);
+
+    // user has selected a skin
+    if (modalResult > 0)
+    {
+        // apply skin to plug-in editor
+        loadSkin();
     }
 }
 
@@ -327,11 +367,8 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
             pMeterBallistics->reset();
         }
 
+        // apply skin to plug-in editor
         loadSkin();
-
-        // will also apply skin to plug-in editor
-        bReloadMeters = true;
-        reloadMeters();
     }
     else if (button == &ButtonMeterType)
     {
@@ -359,30 +396,20 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
     }
     else if (button == &ButtonSkin)
     {
-        // manually activate button
+        // manually activate button (will be deactivated in dialog
+        // window callback)
         button->setToggleState(true, dontSendNotification);
 
-        File fileSkin = fileSkinDirectory.getChildFile(strSkinName + ".skin");
+        // prepare and launch dialog window
+        DialogWindow *windowSkin = GenericWindowSkin::createWindowSkin(this, &strSkinName, fileSkinDirectory);
 
-        GenericWindowSkin windowSkin(this, fileSkin);
-        int exitValue = windowSkin.runModalLoop();
-
-        // manually deactivate button
-        button->setToggleState(false, dontSendNotification);
-
-        if (exitValue > 0)
-        {
-            strSkinName = windowSkin.getSelectedSkinName();
-            loadSkin();
-
-            // will also apply skin to plug-in editor
-            bReloadMeters = true;
-            reloadMeters();
-        }
+        // attach callback to dialog window
+        ModalComponentManager::getInstance()->attachCallback(windowSkin, ModalCallbackFunction::forComponent(window_skin_callback, this));
     }
     else if (button == &ButtonAbout)
     {
-        // manually activate button
+        // manually activate button (will be deactivated in dialog
+        // window callback)
         button->setToggleState(true, dontSendNotification);
 
         StringPairArray arrChapters;
@@ -468,15 +495,11 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
 
             L"Thank you for using free software!");
 
-        GenericWindowAbout windowAbout(this);
+        // prepare and launch dialog window
+        DialogWindow *windowAbout = GenericWindowAbout::createWindowAbout(this, arrChapters);
 
-        // display "chapters"
-        windowAbout.addChapters(arrChapters);
-
-        windowAbout.runModalLoop();
-
-        // manually deactivate button
-        button->setToggleState(false, dontSendNotification);
+        // attach callback to dialog window
+        ModalComponentManager::getInstance()->attachCallback(windowAbout, ModalCallbackFunction::forComponent(window_about_callback, this));
     }
     else if (button == &ButtonValidation)
     {

@@ -31,7 +31,7 @@
 
 
 //============================================================================
-class TraKmeterPluginParameters  : public ParameterJuggler
+class TraKmeterPluginParameters : public ParameterJuggler
 {
 public:
     //==========================================================================
