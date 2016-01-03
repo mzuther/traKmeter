@@ -108,8 +108,8 @@
 ">
 
 <!ENTITY % attrs_image_spacing
-          "spacing_left CDATA #IMPLIED
-           spacing_top CDATA #IMPLIED
+          "spacing_left CDATA #REQUIRED
+           spacing_top CDATA #REQUIRED
 ">
 
 <!ENTITY % attrs_font
@@ -144,8 +144,9 @@
 
 <!ENTITY % attrs_label_signal
           "%attrs_image_position;
-           %attrs_image_size;
-           image CDATA #REQUIRED
+           image_off CDATA #REQUIRED
+           image_low CDATA #REQUIRED
+           image_high CDATA #REQUIRED
 ">
 
 <!ENTITY % attrs_state_label

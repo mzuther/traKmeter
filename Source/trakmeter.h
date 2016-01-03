@@ -31,7 +31,7 @@
 #include "meter_bar_average.h"
 #include "meter_bar_peak.h"
 #include "overload_meter.h"
-#include "meter_signal_led.h"
+#include "common/widgets/generic_signal_led.h"
 #include "skin.h"
 
 
@@ -62,7 +62,7 @@ private:
     OwnedArray<MeterBarPeak> p_arrPeakMeters;
     OwnedArray<OverloadMeter> p_arrOverloadMeters;
 
-    OwnedArray<MeterSignalLed> p_arrSignalMeters;
+    OwnedArray<GenericSignalLed> p_arrSignalLeds;
 };
 
 

@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{F2F3AC80-8BB2-72E2-8802-B983D7EA229E}</ProjectGuid>
+		<ProjectGuid>{B888CDBC-EBE0-E3DF-2953-00454F78E05B}</ProjectGuid>
 		<RootNamespace>trakmeter (Stereo)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -206,7 +206,6 @@
 	</ItemDefinitionGroup>
 	<ItemGroup>
 		<ClInclude Include="..\..\..\Source\meter_bar_average.h" />
-		<ClInclude Include="..\..\..\Source\meter_signal_led.h" />
 		<ClInclude Include="..\..\..\Source\plugin_parameters.h" />
 		<ClInclude Include="..\..\..\Source\plugin_editor.h" />
 		<ClInclude Include="..\..\..\Source\trakmeter.h" />
@@ -222,6 +221,7 @@
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_plugin_standalone.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_meter_segment.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_skin_content.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_signal_led.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_about_content.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_horizontal_meter.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\slider_switch.h" />
@@ -254,8 +254,6 @@
 		<ClCompile Include="..\..\..\Source\standalone_application.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\plugin_processor.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\meter_signal_led.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\overload_meter.cpp">
 		</ClCompile>
@@ -294,6 +292,8 @@
 		<ClCompile Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\generic_meter_segment.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_signal_led.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\generic_window_about_content.cpp">
 		</ClCompile>

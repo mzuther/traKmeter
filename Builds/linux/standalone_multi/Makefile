@@ -113,7 +113,6 @@ OBJECTS := \
 	$(OBJDIR)/window_validation.o \
 	$(OBJDIR)/standalone_application.o \
 	$(OBJDIR)/plugin_processor.o \
-	$(OBJDIR)/meter_signal_led.o \
 	$(OBJDIR)/overload_meter.o \
 	$(OBJDIR)/meter_ballistics.o \
 	$(OBJDIR)/plugin_parameters.o \
@@ -133,6 +132,7 @@ OBJECTS := \
 	$(OBJDIR)/generic_plugin_standalone.o \
 	$(OBJDIR)/slider_switch_linear_bar.o \
 	$(OBJDIR)/generic_meter_segment.o \
+	$(OBJDIR)/generic_signal_led.o \
 	$(OBJDIR)/generic_window_about_content.o \
 	$(OBJDIR)/resources.o \
 	$(OBJDIR)/generic_skin.o \
@@ -234,9 +234,6 @@ $(OBJDIR)/standalone_application.o: ../../../Source/standalone_application.cpp
 $(OBJDIR)/plugin_processor.o: ../../../Source/plugin_processor.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/meter_signal_led.o: ../../../Source/meter_signal_led.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/overload_meter.o: ../../../Source/overload_meter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
@@ -292,6 +289,9 @@ $(OBJDIR)/slider_switch_linear_bar.o: ../../../Source/common/widgets/slider_swit
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/generic_meter_segment.o: ../../../Source/common/widgets/generic_meter_segment.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/generic_signal_led.o: ../../../Source/common/widgets/generic_signal_led.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/generic_window_about_content.o: ../../../Source/common/widgets/generic_window_about_content.cpp

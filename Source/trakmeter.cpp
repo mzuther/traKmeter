@@ -65,7 +65,6 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels, int
     if (bShowSplitMeters)
     {
         String strLabel;
-        float fHue = 0.05f;
 
         for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
         {
@@ -85,8 +84,8 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels, int
                 strLabel = String(nChannel + 1);
             }
 
-            MeterSignalLed *pMeterSignalLed = p_arrSignalMeters.add(new MeterSignalLed("Peak Meter Signal #" + String(nChannel), strLabel, fHue));
-            addAndMakeVisible(pMeterSignalLed);
+            GenericSignalLed *pGenericSignalLed = p_arrSignalLeds.add(new GenericSignalLed("Peak Meter Signal #" + String(nChannel)));
+            addAndMakeVisible(pGenericSignalLed);
         }
     }
 }
@@ -108,7 +107,7 @@ void TraKmeter::applySkin(Skin *pSkin)
 
         if (bShowSplitMeters)
         {
-            pSkin->placeComponent(p_arrSignalMeters[nChannel], "label_signal_" + String(nChannel + 1));
+            pSkin->placeAndSkinSignalLed(p_arrSignalLeds[nChannel], "label_signal_" + String(nChannel + 1));
         }
     }
 
@@ -138,7 +137,7 @@ void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
 
         if (bShowSplitMeters)
         {
-            p_arrSignalMeters[nChannel]->setLevel(pMeterBallistics->getSignalMeterReadout(nChannel));
+            p_arrSignalLeds[nChannel]->setLevel(pMeterBallistics->getSignalMeterReadout(nChannel));
         }
     }
 }

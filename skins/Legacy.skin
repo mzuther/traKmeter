@@ -6,7 +6,7 @@
     name="Legacy"
     orientation="vertical"
     path="Legacy"
-    version="1.0">
+    version="1.1">
 
     <default>
         <button_split
@@ -136,16 +136,16 @@
         <label_signal_1
             x="51"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_left.png" />
+            image_off="labels/label_signal_left_off.png"
+            image_low="labels/label_signal_left_low.png"
+            image_high="labels/label_signal_left_high.png" />
 
         <label_signal_2
             x="75"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_right.png" />
+            image_off="labels/label_signal_right_off.png"
+            image_low="labels/label_signal_right_low.png"
+            image_high="labels/label_signal_right_high.png" />
     </stereo_split>
 
     <stereo_split_k20>
@@ -528,58 +528,58 @@
         <label_signal_1
             x="51"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_1.png" />
+            image_off="labels/label_signal_1_off.png"
+            image_low="labels/label_signal_1_low.png"
+            image_high="labels/label_signal_1_high.png" />
 
         <label_signal_2
             x="75"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_2.png" />
+            image_off="labels/label_signal_2_off.png"
+            image_low="labels/label_signal_2_low.png"
+            image_high="labels/label_signal_2_high.png" />
 
         <label_signal_3
             x="107"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_3.png" />
+            image_off="labels/label_signal_3_off.png"
+            image_low="labels/label_signal_3_low.png"
+            image_high="labels/label_signal_3_high.png" />
 
         <label_signal_4
             x="131"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_4.png" />
+            image_off="labels/label_signal_4_off.png"
+            image_low="labels/label_signal_4_low.png"
+            image_high="labels/label_signal_4_high.png" />
 
         <label_signal_5
             x="163"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_5.png" />
+            image_off="labels/label_signal_5_off.png"
+            image_low="labels/label_signal_5_low.png"
+            image_high="labels/label_signal_5_high.png" />
 
         <label_signal_6
             x="187"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_6.png" />
+            image_off="labels/label_signal_6_off.png"
+            image_low="labels/label_signal_6_low.png"
+            image_high="labels/label_signal_6_high.png" />
 
         <label_signal_7
             x="219"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_7.png" />
+            image_off="labels/label_signal_7_off.png"
+            image_low="labels/label_signal_7_low.png"
+            image_high="labels/label_signal_7_high.png" />
 
         <label_signal_8
             x="243"
             y="145"
-            width="22"
-            height="13"
-            image="labels/label_signal_8.png" />
+            image_off="labels/label_signal_8_off.png"
+            image_low="labels/label_signal_8_low.png"
+            image_high="labels/label_signal_8_high.png" />
     </multi_split>
 
     <multi_split_k20>
