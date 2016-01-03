@@ -32,8 +32,8 @@
 #include "skin.h"
 #include "trakmeter.h"
 #include "window_validation.h"
-#include "common/widgets/generic_window_about.h"
-#include "common/widgets/generic_window_skin.h"
+#include "common/widgets/generic_window_about_content.h"
+#include "common/widgets/generic_window_skin_content.h"
 #include "common/widgets/slider_switch.h"
 
 
