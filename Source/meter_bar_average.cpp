@@ -32,7 +32,7 @@ MeterBarAverage::MeterBarAverage()
     arrHues.add(0.30f);  // green
     arrHues.add(0.58f);  // blue
 
-    for (int n = 0; n < arrHues.size(); n++)
+    for (int n = 0; n < arrHues.size(); ++n)
     {
         arrPeakColours.add(Colour(arrHues[n], 1.0f, 1.0f, 0.7f));
     }
@@ -65,7 +65,7 @@ void MeterBarAverage::create(int crestFactor, int nMainSegmentHeight, Orientatio
 
     int nLowerThreshold = nTrueLowerThreshold + nCrestFactor;
 
-    for (int n = 0; n < nNumberOfBars; n++)
+    for (int n = 0; n < nNumberOfBars; ++n)
     {
         int nThresholdDifference;
 

@@ -89,7 +89,7 @@ void MeterBallistics::reset()
 */
 {
     // loop through all audio channels
-    for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+    for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
     {
         // set peak meter's level and peak mark to meter's minimum
         arrPeakMeterLevels.set(nChannel, fMeterMinimumDecibel);
@@ -121,7 +121,7 @@ void MeterBallistics::setPeakMeterInfiniteHold(bool bInfiniteHold)
 */
 {
     // loop through all audio channels
-    for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+    for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
     {
         // negative times will not be processed by meter ballistics,
         // so this effectively selects "infinite peak hold" mode
@@ -149,7 +149,7 @@ void MeterBallistics::setAverageMeterInfiniteHold(bool bInfiniteHold)
 */
 {
     // loop through all audio channels
-    for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+    for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
     {
         // negative times will not be processed by meter ballistics,
         // so this effectively selects "infinite peak hold" mode

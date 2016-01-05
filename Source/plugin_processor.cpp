@@ -184,7 +184,7 @@ void TraKmeterAudioProcessor::updateParameters(bool bIncludeHiddenParameters)
 {
     int nNumParameters = pluginParameters.getNumParameters(false);
 
-    for (int nIndex = 0; nIndex < nNumParameters; nIndex++)
+    for (int nIndex = 0; nIndex < nNumParameters; ++nIndex)
     {
         if (pluginParameters.hasChanged(nIndex))
         {
@@ -435,7 +435,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
 
     if (!bSampleRateIsValid)
     {
-        for (int nChannel = 0; nChannel < getNumOutputChannels(); nChannel++)
+        for (int nChannel = 0; nChannel < getNumOutputChannels(); ++nChannel)
         {
             buffer.clear(nChannel, 0, nNumSamples);
         }
@@ -453,7 +453,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
     // output channels that didn't contain input data, because these
     // aren't guaranteed to be empty -- they may contain garbage.
 
-    for (int nChannel = nNumInputChannels; nChannel < getNumOutputChannels(); nChannel++)
+    for (int nChannel = nNumInputChannels; nChannel < getNumOutputChannels(); ++nChannel)
     {
         buffer.clear(nChannel, 0, nNumSamples);
     }
@@ -467,9 +467,9 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
 
     if (bMixMode && (nDecibels != 0))
     {
-        for (int nChannel = 0; nChannel < buffer.getNumChannels(); nChannel++)
+        for (int nChannel = 0; nChannel < buffer.getNumChannels(); ++nChannel)
         {
-            for (int nSample = 0; nSample < buffer.getNumSamples(); nSample++)
+            for (int nSample = 0; nSample < buffer.getNumSamples(); ++nSample)
             {
                 double dSampleValue = buffer.getSample(nChannel, nSample);
                 float fNewSampleValue = dither.dither(dSampleValue * dGain);
@@ -504,7 +504,7 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, cons
         // (1024 samples / 44100 samples/s = 23.2 ms)
         fProcessedSeconds = (float) uChunkSize / (float) getSampleRate();
 
-        for (int nChannel = 0; nChannel < nNumInputChannels; nChannel++)
+        for (int nChannel = 0; nChannel < nNumInputChannels; ++nChannel)
         {
             // determine peak level for uChunkSize samples (use
             // pre-delay)
@@ -599,7 +599,7 @@ int TraKmeterAudioProcessor::countOverflows(AudioRingBuffer *ring_buffer, const 
     int nOverflows = 0;
 
     // loop through samples of buffer
-    for (unsigned int uSample = 0; uSample < length; uSample++)
+    for (unsigned int uSample = 0; uSample < length; ++uSample)
     {
         // get current sample value
         float fSampleValue = ring_buffer->getSample(channel, uSample, pre_delay);
@@ -611,7 +611,7 @@ int TraKmeterAudioProcessor::countOverflows(AudioRingBuffer *ring_buffer, const 
         // (approx. -0.001 dBFS).
         if ((fSampleValue < -0.9999f) || (fSampleValue > 0.9999f))
         {
-            nOverflows++;
+            ++nOverflows;
         }
     }
 

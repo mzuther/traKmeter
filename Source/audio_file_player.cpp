@@ -43,7 +43,7 @@ AudioFilePlayer::AudioFilePlayer(const File audioFile, int sample_rate, MeterBal
     nSamplesMovingAverage = 50;
     nNumberOfChannels = pMeterBallistics->getNumberOfChannels();
 
-    for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+    for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
     {
         arrAverager_AverageMeterLevels.add(Averager(nSamplesMovingAverage, fMeterMinimumDecibel));
         arrAverager_PeakMeterLevels.add(Averager(nSamplesMovingAverage, fMeterMinimumDecibel));
@@ -174,7 +174,7 @@ void AudioFilePlayer::outputReportPlain(void)
     {
         if (nReportChannel < 0)
         {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
             {
                 float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel(nChannel);
                 String strPrefix = "average level (ch. " + String(nChannel + 1) + "):  ";
@@ -195,7 +195,7 @@ void AudioFilePlayer::outputReportPlain(void)
     {
         if (nReportChannel < 0)
         {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
             {
                 float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel(nChannel);
                 String strPrefix = "peak level (ch. " + String(nChannel + 1) + "):     ";
@@ -225,7 +225,7 @@ void AudioFilePlayer::outputReportCSVHeader(void)
     {
         if (nReportChannel < 0)
         {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
             {
                 strOutput += "\"avg_" + String(nChannel + 1) + "\"\t";
             }
@@ -240,7 +240,7 @@ void AudioFilePlayer::outputReportCSVHeader(void)
     {
         if (nReportChannel < 0)
         {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
             {
                 strOutput += "\"pk_" + String(nChannel + 1) + "\"\t";
             }
@@ -268,7 +268,7 @@ void AudioFilePlayer::outputReportCSVLine(void)
     {
         if (nReportChannel < 0)
         {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
             {
                 float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel(nChannel);
                 strOutput += formatValue(fAverageMeterLevel);
@@ -285,7 +285,7 @@ void AudioFilePlayer::outputReportCSVLine(void)
     {
         if (nReportChannel < 0)
         {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; nChannel++)
+            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
             {
                 float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel(nChannel);
                 strOutput += formatValue(fPeakMeterLevel);

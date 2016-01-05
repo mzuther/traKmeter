@@ -48,7 +48,7 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels, int
         nSegmentHeight = segment_height - 1;
     }
 
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+    for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {
         MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(new MeterBarPeak());
         pMeterBarPeak->create(nCrestFactor, nSegmentHeight, MeterBarPeak::orientationVertical, !bShowSplitMeters);
@@ -66,7 +66,7 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels, int
     {
         String strLabel;
 
-        for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+        for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
         {
             if (nInputChannels == 2)
             {
@@ -98,7 +98,7 @@ TraKmeter::~TraKmeter()
 
 void TraKmeter::applySkin(Skin *pSkin)
 {
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+    for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {
         pSkin->placeMeterBar(p_arrAverageMeters[nChannel], "meter_average_" + String(nChannel + 1));
         pSkin->placeMeterBar(p_arrPeakMeters[nChannel], "meter_peak_" + String(nChannel + 1));
@@ -127,7 +127,7 @@ void TraKmeter::resized()
 
 void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
 {
-    for (int nChannel = 0; nChannel < nInputChannels; nChannel++)
+    for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {
         p_arrAverageMeters[nChannel]->setNormalLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
 
