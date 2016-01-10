@@ -39,11 +39,6 @@ MeterBarPeak::MeterBarPeak()
 }
 
 
-MeterBarPeak::~MeterBarPeak()
-{
-}
-
-
 void MeterBarPeak::create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters)
 {
     GenericMeterBar::create();

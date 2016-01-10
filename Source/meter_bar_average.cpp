@@ -39,11 +39,6 @@ MeterBarAverage::MeterBarAverage()
 }
 
 
-MeterBarAverage::~MeterBarAverage()
-{
-}
-
-
 void MeterBarAverage::create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters)
 {
     GenericMeterBar::create();

@@ -44,6 +44,15 @@ static void window_skin_callback(int modalResult, TraKmeterAudioProcessorEditor 
 }
 
 
+static void window_validation_callback(int modalResult, TraKmeterAudioProcessorEditor *pEditor)
+{
+    if (pEditor != nullptr)
+    {
+        pEditor->windowValidationCallback(modalResult);
+    }
+}
+
+
 //==============================================================================
 TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, TraKmeterPluginParameters *parameters, int nNumChannels, int CrestFactor)
     : AudioProcessorEditor(ownerFilter)
@@ -53,20 +62,20 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     setOpaque(true);
 
     // prevent meter reload during initialisation
-    bInitialising = true;
+    isInitialising = true;
 
-    bIsValidating = false;
-    bValidateWindow = false;
+    isValidating = false;
+    validationDialogOpen = false;
 
-    nInputChannels = nNumChannels;
-    nCrestFactor = CrestFactor;
-    nSegmentHeight = 10;
+    numberOfInputChannels = nNumChannels;
+    crestFactor = CrestFactor;
+    segmentHeight = 10;
 
     // The plug-in editor's size as well as the location of buttons
     // and labels will be set later on in this constructor.
 
-    pProcessor = ownerFilter;
-    pProcessor->addActionListener(this);
+    audioProcessor = ownerFilter;
+    audioProcessor->addActionListener(this);
 
     ButtonMeterType.addListener(this);
     addAndMakeVisible(ButtonMeterType);
@@ -120,42 +129,42 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
 
     // the following may or may not work on Mac
     File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
-    fileSkinDirectory = fileApplicationDirectory.getChildFile("./trakmeter/skins/");
+    skinDirectory = fileApplicationDirectory.getChildFile("./trakmeter/skins/");
 
     // force meter reload after initialisation ...
-    bInitialising = false;
+    isInitialising = false;
 
     // apply skin to plug-in editor
-    strSkinName = pProcessor->getParameterSkinName();
+    currentSkinName = audioProcessor->getParameterSkinName();
     loadSkin();
 }
 
 
 TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 {
-    pProcessor->removeActionListener(this);
+    audioProcessor->removeActionListener(this);
 }
 
 
 void TraKmeterAudioProcessorEditor::loadSkin()
 {
-    File fileSkin = fileSkinDirectory.getChildFile(strSkinName + ".skin");
+    File fileSkin = skinDirectory.getChildFile(currentSkinName + ".skin");
 
     if (!fileSkin.existsAsFile())
     {
         Logger::outputDebugString("[Skin] file \"" + fileSkin.getFileName() + "\" not found");
 
-        strSkinName = "Default";
-        fileSkin = fileSkinDirectory.getChildFile(strSkinName + ".skin");
+        currentSkinName = "Default";
+        fileSkin = skinDirectory.getChildFile(currentSkinName + ".skin");
     }
 
-    pProcessor->setParameterSkinName(strSkinName);
+    audioProcessor->setParameterSkinName(currentSkinName);
 
-    int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-    skin.loadSkin(fileSkin, nInputChannels, nCrestFactor, nMeterType);
+    int nMeterType = audioProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
+    skin.loadSkin(fileSkin, numberOfInputChannels, crestFactor, nMeterType);
 
     // will also apply skin to plug-in editor
-    bReloadMeters = true;
+    needsMeterReload = true;
     reloadMeters();
 }
 
@@ -163,14 +172,14 @@ void TraKmeterAudioProcessorEditor::loadSkin()
 void TraKmeterAudioProcessorEditor::applySkin()
 {
     // prevent skin application during meter initialisation
-    if (bInitialising)
+    if (isInitialising)
     {
         return;
     }
 
     // update skin
-    int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-    skin.updateSkin(nInputChannels, nCrestFactor, nMeterType);
+    int nMeterType = audioProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
+    skin.updateSkin(numberOfInputChannels, crestFactor, nMeterType);
 
     // moves background image to the back of the editor's z-plane;
     // will also resize plug-in editor
@@ -221,6 +230,16 @@ void TraKmeterAudioProcessorEditor::windowSkinCallback(int modalResult)
 }
 
 
+void TraKmeterAudioProcessorEditor::windowValidationCallback(int modalResult)
+{
+    audioProcessor->silenceInput(false);
+    validationDialogOpen = false;
+
+    // manually set button according to validation state
+    ButtonValidation.setToggleState(isValidating, dontSendNotification);
+}
+
+
 void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &strMessage)
 {
     // "PC" --> parameter changed, followed by a hash and the
@@ -230,9 +249,9 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &strMess
         String strIndex = strMessage.substring(3);
         int nIndex = strIndex.getIntValue();
         jassert(nIndex >= 0);
-        jassert(nIndex < pProcessor->getNumParameters());
+        jassert(nIndex < audioProcessor->getNumParameters());
 
-        if (pProcessor->hasChanged(nIndex))
+        if (audioProcessor->hasChanged(nIndex))
         {
             updateParameter(nIndex);
         }
@@ -240,27 +259,27 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &strMess
     // "UM" --> update meters
     else if (!strMessage.compare("UM"))
     {
-        MeterBallistics *pMeterBallistics = pProcessor->getLevels();
+        MeterBallistics *pMeterBallistics = audioProcessor->getLevels();
 
         if (pMeterBallistics)
         {
             trakmeter->setLevels(pMeterBallistics);
         }
 
-        if (bIsValidating && !pProcessor->isValidating())
+        if (isValidating && !audioProcessor->isValidating())
         {
-            bIsValidating = false;
+            isValidating = false;
         }
     }
     // "V+" --> validation started
-    else if ((!strMessage.compare("V+")) && pProcessor->isValidating())
+    else if ((!strMessage.compare("V+")) && audioProcessor->isValidating())
     {
-        bIsValidating = true;
+        isValidating = true;
     }
     // "V-" --> validation stopped
     else if (!strMessage.compare("V-"))
     {
-        if (!bValidateWindow)
+        if (!validationDialogOpen)
         {
             ButtonValidation.setToggleState(false, dontSendNotification);
         }
@@ -276,39 +295,39 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &strMess
 
 void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
 {
-    pProcessor->clearChangeFlag(nIndex);
+    audioProcessor->clearChangeFlag(nIndex);
 
     switch (nIndex)
     {
     case TraKmeterPluginParameters::selMeterType:
     {
-        bool bMeterType = pProcessor->getBoolean(nIndex);
+        bool bMeterType = audioProcessor->getBoolean(nIndex);
         ButtonMeterType.setToggleState(!bMeterType, dontSendNotification);
 
         // will also apply skin to plug-in editor
-        bReloadMeters = true;
+        needsMeterReload = true;
     }
     break;
 
     case TraKmeterPluginParameters::selCrestFactor:
     {
-        nCrestFactor = pProcessor->getRealInteger(nIndex);
-        ButtonCrestFactor.setToggleState(nCrestFactor != 0, dontSendNotification);
+        crestFactor = audioProcessor->getRealInteger(nIndex);
+        ButtonCrestFactor.setToggleState(crestFactor != 0, dontSendNotification);
 
-        bReloadMeters = true;
+        needsMeterReload = true;
     }
     break;
 
     case TraKmeterPluginParameters::selTransientMode:
     {
-        bool bTransientMode = pProcessor->getBoolean(nIndex);
+        bool bTransientMode = audioProcessor->getBoolean(nIndex);
         ButtonTransientMode.setToggleState(bTransientMode, dontSendNotification);
     }
     break;
 
     case TraKmeterPluginParameters::selMixMode:
     {
-        bool bMixMode = pProcessor->getBoolean(nIndex);
+        bool bMixMode = audioProcessor->getBoolean(nIndex);
         ButtonMixMode.setToggleState(bMixMode, dontSendNotification);
 
         SliderGain->setVisible(bMixMode);
@@ -317,14 +336,14 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
 
     case TraKmeterPluginParameters::selGain:
     {
-        float fValue = pProcessor->getParameter(nIndex);
+        float fValue = audioProcessor->getParameter(nIndex);
         SliderGain->setValue(fValue, dontSendNotification);
     }
     break;
     }
 
     // prevent meter reload during initialisation
-    if (!bInitialising)
+    if (!isInitialising)
     {
         // will also apply skin to plug-in editor
         reloadMeters();
@@ -334,17 +353,17 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
 
 void TraKmeterAudioProcessorEditor::reloadMeters()
 {
-    if (bReloadMeters)
+    if (needsMeterReload)
     {
-        bReloadMeters = false;
+        needsMeterReload = false;
 
         if (trakmeter)
         {
             removeChildComponent(trakmeter);
         }
 
-        int nMeterType = pProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-        trakmeter = new TraKmeter(10, 10, nCrestFactor, nInputChannels, nSegmentHeight, nMeterType);
+        int nMeterType = audioProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
+        trakmeter = new TraKmeter(10, 10, crestFactor, numberOfInputChannels, segmentHeight, nMeterType);
 
         // moves traKmeter to the back of the editor's z-plane so that
         // it doesn't overlay (and thus block) any other components
@@ -360,7 +379,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
 {
     if (button == &ButtonReset)
     {
-        MeterBallistics *pMeterBallistics = pProcessor->getLevels();
+        MeterBallistics *pMeterBallistics = audioProcessor->getLevels();
 
         if (pMeterBallistics)
         {
@@ -372,27 +391,27 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
     }
     else if (button == &ButtonMeterType)
     {
-        pProcessor->changeParameter(TraKmeterPluginParameters::selMeterType, button->getToggleState());
+        audioProcessor->changeParameter(TraKmeterPluginParameters::selMeterType, button->getToggleState());
 
         // will also apply skin to plug-in editor
-        bReloadMeters = true;
+        needsMeterReload = true;
         reloadMeters();
     }
     else if (button == &ButtonCrestFactor)
     {
-        pProcessor->changeParameter(TraKmeterPluginParameters::selCrestFactor, !button->getToggleState());
+        audioProcessor->changeParameter(TraKmeterPluginParameters::selCrestFactor, !button->getToggleState());
 
         // will also apply skin to plug-in editor
-        bReloadMeters = true;
+        needsMeterReload = true;
         reloadMeters();
     }
     else if (button == &ButtonTransientMode)
     {
-        pProcessor->changeParameter(TraKmeterPluginParameters::selTransientMode, !button->getToggleState());
+        audioProcessor->changeParameter(TraKmeterPluginParameters::selTransientMode, !button->getToggleState());
     }
     else if (button == &ButtonMixMode)
     {
-        pProcessor->changeParameter(TraKmeterPluginParameters::selMixMode, !button->getToggleState());
+        audioProcessor->changeParameter(TraKmeterPluginParameters::selMixMode, !button->getToggleState());
     }
     else if (button == &ButtonSkin)
     {
@@ -401,7 +420,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         button->setToggleState(true, dontSendNotification);
 
         // prepare and launch dialog window
-        DialogWindow *windowSkin = GenericWindowSkinContent::createDialogWindow(this, &strSkinName, fileSkinDirectory);
+        DialogWindow *windowSkin = GenericWindowSkinContent::createDialogWindow(this, &currentSkinName, skinDirectory);
 
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowSkin, ModalCallbackFunction::forComponent(window_skin_callback, this));
@@ -496,7 +515,10 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
             L"Thank you for using free software!");
 
         // prepare and launch dialog window
-        DialogWindow *windowAbout = GenericWindowAboutContent::createDialogWindow(this, arrChapters);
+        int width = 270;
+        int height = 540;
+
+        DialogWindow *windowAbout = GenericWindowAboutContent::createDialogWindow(this, width, height, arrChapters);
 
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowAbout, ModalCallbackFunction::forComponent(window_about_callback, this));
@@ -506,13 +528,15 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         // manually activate button
         button->setToggleState(true, dontSendNotification);
 
-        bValidateWindow = true;
-        WindowValidation windowValidation(this, pProcessor);
-        windowValidation.runModalLoop();
-        bValidateWindow = false;
+        validationDialogOpen = true;
+        audioProcessor->stopValidation();
+        audioProcessor->silenceInput(true);
 
-        // manually set button according to validation state
-        button->setToggleState(bIsValidating, dontSendNotification);
+        // prepare and launch dialog window
+        DialogWindow *windowValidation = WindowValidationContent::createDialogWindow(this, audioProcessor);
+
+        // attach callback to dialog window
+        ModalComponentManager::getInstance()->attachCallback(windowValidation, ModalCallbackFunction::forComponent(window_validation_callback, this));
     }
 }
 
@@ -522,7 +546,7 @@ void TraKmeterAudioProcessorEditor::sliderValueChanged(Slider *slider)
     if (slider == SliderGain)
     {
         float fValue = (float) slider->getValue();
-        pProcessor->changeParameter(TraKmeterPluginParameters::selGain, fValue);
+        audioProcessor->changeParameter(TraKmeterPluginParameters::selGain, fValue);
     }
 }
 

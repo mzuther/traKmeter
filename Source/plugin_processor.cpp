@@ -242,7 +242,7 @@ File TraKmeterAudioProcessor::getParameterValidationFile()
 }
 
 
-void TraKmeterAudioProcessor::setParameterValidationFile(File &fileValidation)
+void TraKmeterAudioProcessor::setParameterValidationFile(const File &fileValidation)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -264,7 +264,7 @@ String TraKmeterAudioProcessor::getParameterSkinName()
 }
 
 
-void TraKmeterAudioProcessor::setParameterSkinName(String &strSkinName)
+void TraKmeterAudioProcessor::setParameterSkinName(const String &strSkinName)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -384,7 +384,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
         bSampleRateIsValid = true;
     }
 
-    isPreValidating = false;
+    isSilent = false;
     nNumInputChannels = getNumInputChannels();
 
     if (nNumInputChannels <= 0)
@@ -488,7 +488,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
 void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
 {
     // silence input if validation window is open
-    if (isPreValidating)
+    if (isSilent)
     {
         buffer.clear();
         pRingBufferInput->clear();
@@ -532,15 +532,9 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, cons
 }
 
 
-void TraKmeterAudioProcessor::preValidation(bool bStart)
+void TraKmeterAudioProcessor::silenceInput(bool isSilentNew)
 {
-    if (bStart)
-    {
-        // stops any running validation and resets all meters
-        stopValidation();
-    }
-
-    isPreValidating = bStart;
+    isSilent = isSilentNew;
 }
 
 
@@ -552,7 +546,7 @@ void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChann
     // reset all meters before we start the validation
     pMeterBallistics->reset();
 
-    isPreValidating = false;
+    isSilent = false;
 
     // refresh editor; "V+" --> validation started
     sendActionMessage("V+");
@@ -561,7 +555,7 @@ void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChann
 
 void TraKmeterAudioProcessor::stopValidation()
 {
-    isPreValidating = false;
+    isSilent = false;
     audioFilePlayer = nullptr;
 
     // reset all meters after the validation

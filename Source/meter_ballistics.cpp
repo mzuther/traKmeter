@@ -73,15 +73,6 @@ MeterBallistics::MeterBallistics(int nChannels, int CrestFactor, bool bPeakMeter
 }
 
 
-MeterBallistics::~MeterBallistics()
-/*  Destructor.
-
-    return value: none
-*/
-{
-}
-
-
 void MeterBallistics::reset()
 /*  Reset all meter readings
 

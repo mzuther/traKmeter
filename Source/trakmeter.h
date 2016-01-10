@@ -45,7 +45,6 @@ public:
     static const int TRAKMETER_SEGMENT_WIDTH = 22;
 
     TraKmeter(int PosX, int PosY, int nCrestFactor, int nNumChannels, int segment_height, int meter_type);
-    ~TraKmeter();
 
     void setLevels(MeterBallistics *pMeterBallistics);
     void applySkin(Skin *pSkin);

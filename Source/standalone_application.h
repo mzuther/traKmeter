@@ -33,7 +33,6 @@ class TraKmeterStandalone : virtual public GenericPluginStandalone
 {
 public:
     TraKmeterStandalone();
-    ~TraKmeterStandalone();
 
 protected:
     PropertiesFile::Options prepare_properties();

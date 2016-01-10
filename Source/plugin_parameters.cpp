@@ -33,6 +33,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     ParameterJuggler("TRAKMETER_SETTINGS", numberOfParametersComplete,
                      numberOfParametersRevealed)
 {
+    // parameters created here will be deleted in "ParameterJuggler"!
+
     PluginParameterBoolean *ParameterTransientMode = new PluginParameterBoolean("On", "Off");
     ParameterTransientMode->setName("Transient mode");
     ParameterTransientMode->setDefaultBoolean(true, true);
@@ -167,12 +169,6 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
 }
 
 
-TraKmeterPluginParameters::~TraKmeterPluginParameters()
-{
-    // parameters will be deleted in "ParameterJuggler"
-}
-
-
 File TraKmeterPluginParameters::getValidationFile()
 {
     File validationFile = File(getText(selValidationFileName));
@@ -188,7 +184,7 @@ File TraKmeterPluginParameters::getValidationFile()
 }
 
 
-void TraKmeterPluginParameters::setValidationFile(File &validationFile)
+void TraKmeterPluginParameters::setValidationFile(const File &validationFile)
 {
     if (validationFile.existsAsFile())
     {
@@ -204,7 +200,7 @@ String TraKmeterPluginParameters::getSkinName()
 }
 
 
-void TraKmeterPluginParameters::setSkinName(String &strSkinName)
+void TraKmeterPluginParameters::setSkinName(const String &strSkinName)
 {
     setText(selSkinName, strSkinName);
 }

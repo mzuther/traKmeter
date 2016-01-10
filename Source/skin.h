@@ -35,7 +35,6 @@ class Skin : public GenericSkin
 {
 public:
     Skin();
-    ~Skin();
 
     void loadSkin(File &fileSkin, int nNumChannels, int nCrestFactor, int nMeterType);
     void updateSkin(int nNumChannels, int nCrestFactor, int nMeterType);

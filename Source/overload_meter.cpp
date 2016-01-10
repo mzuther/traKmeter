@@ -49,11 +49,6 @@ OverloadMeter::OverloadMeter(const String &componentName, float Threshold, int C
 }
 
 
-OverloadMeter::~OverloadMeter()
-{
-}
-
-
 void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
 {
     // current level lies below threshold

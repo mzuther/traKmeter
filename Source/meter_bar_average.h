@@ -37,7 +37,6 @@ class MeterBarAverage : public GenericMeterBar
 {
 public:
     MeterBarAverage();
-    ~MeterBarAverage();
 
     void create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters);
 

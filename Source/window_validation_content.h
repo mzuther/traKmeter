@@ -23,48 +23,43 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __WINDOW_VALIDATION_H__
-#define __WINDOW_VALIDATION_H__
+#ifndef __WINDOW_VALIDATION_CONTENT_H__
+#define __WINDOW_VALIDATION_CONTENT_H__
 
 #include "JuceHeader.h"
 #include "plugin_processor.h"
-#include "common/widgets/generic_channel_slider.h"
+#include "common/widgets/generic_window_validation_content.h"
 
 
-class WindowValidation : public DocumentWindow, ButtonListener
+/// Customized dialog window for validation settings.
+///
+class WindowValidationContent : public GenericWindowValidationContent
 {
 public:
-    WindowValidation(Component *pEditorWindow, TraKmeterAudioProcessor *processor);
-    ~WindowValidation();
+    WindowValidationContent(TraKmeterAudioProcessor *processor);
 
-    void buttonClicked(Button *button);
-    void closeButtonPressed();
+    static DialogWindow *createDialogWindow(AudioProcessorEditor *pluginEditor, TraKmeterAudioProcessor *audioProcessor);
+
+    virtual void buttonClicked(Button *button);
+    virtual void applySkin();
+
+    virtual void initialise(int width, int height, int numberOfInputChannels,
+                            int sampleRate, int selectedChannel,
+                            const File &validationFileNew);
+    virtual void selectValidationFile(const File &validationFileNew);
 
 private:
-    JUCE_LEAK_DETECTOR(WindowValidation);
+    JUCE_LEAK_DETECTOR(WindowValidationContent);
 
-    TraKmeterAudioProcessor *pProcessor;
-    File fileValidation;
+    TraKmeterAudioProcessor *audioProcessor;
 
-    Component contentComponent;
-
-    Label LabelFileSelection;
-    Label LabelSampleRate;
-    Label LabelSampleRateValue;
-
-    TextButton ButtonFileSelection;
-    TextButton ButtonValidation;
-    TextButton ButtonCancel;
-
-    Label LabelDumpSelectedChannel;
-    GenericChannelSlider SliderDumpSelectedChannel;
     ToggleButton ButtonDumpCSV;
-    ToggleButton ButtonDumpAverageMeterLevel;
-    ToggleButton ButtonDumpPeakMeterLevel;
+    ToggleButton ButtonDumpAverageLevel;
+    ToggleButton ButtonDumpPeakLevel;
 };
 
 
-#endif  // __WINDOW_VALIDATION_H__
+#endif  // __WINDOW_VALIDATION_CONTENT_H__
 
 
 // Local Variables:

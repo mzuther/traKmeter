@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{E2067AA5-99A2-0BA6-9EC4-CC9F631A8644}</ProjectGuid>
+		<ProjectGuid>{F67703E0-D9CB-4E2F-9473-21B8CA3C4AFD}</ProjectGuid>
 		<RootNamespace>trakmeter (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -205,6 +205,7 @@
 		</Link>
 	</ItemDefinitionGroup>
 	<ItemGroup>
+		<ClInclude Include="..\..\..\Source\window_validation_content.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_average.h" />
 		<ClInclude Include="..\..\..\Source\plugin_parameters.h" />
 		<ClInclude Include="..\..\..\Source\plugin_editor.h" />
@@ -216,10 +217,10 @@
 		<ClInclude Include="..\..\..\Source\meter_ballistics.h" />
 		<ClInclude Include="..\..\..\Source\skin.h" />
 		<ClInclude Include="..\..\..\Source\standalone_application.h" />
-		<ClInclude Include="..\..\..\Source\window_validation.h" />
 		<ClInclude Include="..\..\..\Source\common\mz_juce_common.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_plugin_standalone.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_meter_segment.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_validation_content.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_skin_content.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_signal_led.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_about_content.h" />
@@ -229,6 +230,7 @@
 		<ClInclude Include="..\..\..\Source\common\widgets\slider_combined.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\slider_continuous.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_settings_content.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_state_label.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\generic_channel_slider.h" />
 		<ClInclude Include="..\..\..\Source\common\widgets\resources\resources.h" />
@@ -248,8 +250,6 @@
 		<ClCompile Include="..\..\..\Source\main.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\plugin_editor.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\window_validation.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\standalone_application.cpp">
 		</ClCompile>
@@ -271,9 +271,13 @@
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_bar_peak.cpp">
 		</ClCompile>
+		<ClCompile Include="..\..\..\Source\window_validation_content.cpp">
+		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\slider_continuous.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\generic_channel_slider.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_window_settings_content.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\generic_window_skin_content.cpp">
 		</ClCompile>
@@ -288,6 +292,8 @@
 		<ClCompile Include="..\..\..\Source\common\widgets\slider_switch.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\generic_plugin_standalone.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_window_validation_content.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.cpp">
 		</ClCompile>

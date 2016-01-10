@@ -39,7 +39,6 @@ class OverloadMeter : public GenericStateLabel
 {
 public:
     OverloadMeter(const String &componentName, float fThreshold, int nCrestFactor);
-    ~OverloadMeter();
 
     void setLevels(float fLevel, float fMaximumLevelNew);
 

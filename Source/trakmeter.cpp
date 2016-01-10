@@ -91,11 +91,6 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels, int
 }
 
 
-TraKmeter::~TraKmeter()
-{
-}
-
-
 void TraKmeter::applySkin(Skin *pSkin)
 {
     for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)

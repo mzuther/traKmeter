@@ -31,7 +31,7 @@
 #include "plugin_processor.h"
 #include "skin.h"
 #include "trakmeter.h"
-#include "window_validation.h"
+#include "window_validation_content.h"
 #include "common/widgets/generic_window_about_content.h"
 #include "common/widgets/generic_window_skin_content.h"
 #include "common/widgets/slider_switch.h"
@@ -54,6 +54,7 @@ public:
 
     void windowAboutCallback(int modalResult);
     void windowSkinCallback(int modalResult);
+    void windowValidationCallback(int modalResult);
 
     //==============================================================================
     void resized();
@@ -65,23 +66,22 @@ private:
     void applySkin();
     void loadSkin();
 
-    bool bReloadMeters;
-    bool bIsValidating;
-    bool bValidateWindow;
-    bool bInitialising;
+    bool needsMeterReload;
+    bool isValidating;
+    bool validationDialogOpen;
+    bool isInitialising;
 
-    int nCrestFactor;
-    int nInputChannels;
+    int crestFactor;
+    int numberOfInputChannels;
 
-    int nSegmentHeight;
-    int nHeight;
+    int segmentHeight;
 
-    TraKmeterAudioProcessor *pProcessor;
+    TraKmeterAudioProcessor *audioProcessor;
     ScopedPointer<TraKmeter> trakmeter;
 
-    File fileSkinDirectory;
+    File skinDirectory;
     Skin skin;
-    String strSkinName;
+    String currentSkinName;
 
     ImageButton ButtonReset;
 

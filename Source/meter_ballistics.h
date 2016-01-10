@@ -36,7 +36,6 @@ class MeterBallistics
 {
 public:
     MeterBallistics(int nChannels, int CrestFactor, bool bPeakMeterInfiniteHold, bool bAverageMeterInfiniteHold, bool transient_mode);
-    ~MeterBallistics();
 
     void setPeakMeterInfiniteHold(bool bInfiniteHold);
     void setAverageMeterInfiniteHold(bool bInfiniteHold);

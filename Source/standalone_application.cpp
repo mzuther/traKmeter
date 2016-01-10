@@ -30,11 +30,6 @@ TraKmeterStandalone::TraKmeterStandalone()
 }
 
 
-TraKmeterStandalone::~TraKmeterStandalone()
-{
-}
-
-
 PropertiesFile::Options TraKmeterStandalone::prepare_properties()
 {
     PropertiesFile::Options options;

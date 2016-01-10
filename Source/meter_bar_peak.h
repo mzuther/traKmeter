@@ -37,7 +37,6 @@ class MeterBarPeak : public GenericMeterBar
 {
 public:
     MeterBarPeak();
-    ~MeterBarPeak();
 
     void create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters);
 

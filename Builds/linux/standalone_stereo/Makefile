@@ -110,7 +110,6 @@ endif
 OBJECTS := \
 	$(OBJDIR)/main.o \
 	$(OBJDIR)/plugin_editor.o \
-	$(OBJDIR)/window_validation.o \
 	$(OBJDIR)/standalone_application.o \
 	$(OBJDIR)/plugin_processor.o \
 	$(OBJDIR)/overload_meter.o \
@@ -121,8 +120,10 @@ OBJECTS := \
 	$(OBJDIR)/skin.o \
 	$(OBJDIR)/trakmeter.o \
 	$(OBJDIR)/meter_bar_peak.o \
+	$(OBJDIR)/window_validation_content.o \
 	$(OBJDIR)/slider_continuous.o \
 	$(OBJDIR)/generic_channel_slider.o \
+	$(OBJDIR)/generic_window_settings_content.o \
 	$(OBJDIR)/generic_window_skin_content.o \
 	$(OBJDIR)/slider_combined.o \
 	$(OBJDIR)/generic_horizontal_meter.o \
@@ -130,6 +131,7 @@ OBJECTS := \
 	$(OBJDIR)/generic_state_label.o \
 	$(OBJDIR)/slider_switch.o \
 	$(OBJDIR)/generic_plugin_standalone.o \
+	$(OBJDIR)/generic_window_validation_content.o \
 	$(OBJDIR)/slider_switch_linear_bar.o \
 	$(OBJDIR)/generic_meter_segment.o \
 	$(OBJDIR)/generic_signal_led.o \
@@ -225,9 +227,6 @@ $(OBJDIR)/main.o: ../../../Source/main.cpp
 $(OBJDIR)/plugin_editor.o: ../../../Source/plugin_editor.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
-$(OBJDIR)/window_validation.o: ../../../Source/window_validation.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/standalone_application.o: ../../../Source/standalone_application.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
@@ -258,10 +257,16 @@ $(OBJDIR)/trakmeter.o: ../../../Source/trakmeter.cpp
 $(OBJDIR)/meter_bar_peak.o: ../../../Source/meter_bar_peak.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/window_validation_content.o: ../../../Source/window_validation_content.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/slider_continuous.o: ../../../Source/common/widgets/slider_continuous.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/generic_channel_slider.o: ../../../Source/common/widgets/generic_channel_slider.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/generic_window_settings_content.o: ../../../Source/common/widgets/generic_window_settings_content.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/generic_window_skin_content.o: ../../../Source/common/widgets/generic_window_skin_content.cpp
@@ -283,6 +288,9 @@ $(OBJDIR)/slider_switch.o: ../../../Source/common/widgets/slider_switch.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/generic_plugin_standalone.o: ../../../Source/common/widgets/generic_plugin_standalone.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+$(OBJDIR)/generic_window_validation_content.o: ../../../Source/common/widgets/generic_window_validation_content.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 $(OBJDIR)/slider_switch_linear_bar.o: ../../../Source/common/widgets/slider_switch_linear_bar.cpp
