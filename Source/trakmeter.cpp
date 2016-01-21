@@ -124,15 +124,22 @@ void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {
-        p_arrAverageMeters[nChannel]->setNormalLevels(pMeterBallistics->getAverageMeterLevel(nChannel), pMeterBallistics->getAverageMeterPeakLevel(nChannel));
+        p_arrAverageMeters[nChannel]->setNormalLevels(
+            pMeterBallistics->getAverageMeterLevel(nChannel),
+            pMeterBallistics->getAverageMeterPeakLevel(nChannel));
 
-        p_arrPeakMeters[nChannel]->setNormalLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getPeakMeterPeakLevel(nChannel));
+        p_arrPeakMeters[nChannel]->setNormalLevels(
+            pMeterBallistics->getPeakMeterLevel(nChannel),
+            pMeterBallistics->getPeakMeterPeakLevel(nChannel));
 
-        p_arrOverloadMeters[nChannel]->setLevels(pMeterBallistics->getPeakMeterLevel(nChannel), pMeterBallistics->getMaximumPeakLevel(nChannel));
+        p_arrOverloadMeters[nChannel]->setLevels(
+            pMeterBallistics->getPeakMeterLevel(nChannel),
+            pMeterBallistics->getMaximumPeakLevel(nChannel));
 
         if (bShowSplitMeters)
         {
-            p_arrSignalLeds[nChannel]->setLevel(pMeterBallistics->getSignalMeterReadout(nChannel));
+            p_arrSignalLeds[nChannel]->setLevel(
+                pMeterBallistics->getSignalMeterReadout(nChannel));
         }
     }
 }
