@@ -38,24 +38,30 @@ class WindowValidationContent : public GenericWindowValidationContent
 public:
     WindowValidationContent(TraKmeterAudioProcessor *processor);
 
-    static DialogWindow *createDialogWindow(AudioProcessorEditor *pluginEditor, TraKmeterAudioProcessor *audioProcessor);
+    static DialogWindow *createDialogWindow(
+        AudioProcessorEditor *pluginEditor,
+        TraKmeterAudioProcessor *audioProcessor);
 
     virtual void buttonClicked(Button *button);
     virtual void applySkin();
 
-    virtual void initialise(int width, int height, int numberOfInputChannels,
-                            int sampleRate, int selectedChannel,
-                            const File &validationFileNew);
-    virtual void selectValidationFile(const File &validationFileNew);
+    virtual void initialise(int componentWidth,
+                            int componentHeight,
+                            int numberOfInputChannels,
+                            int sampleRate,
+                            int selectedChannel,
+                            const File &validationFile);
+
+    virtual void selectValidationFile(const File &validationFile);
 
 private:
     JUCE_LEAK_DETECTOR(WindowValidationContent);
 
     TraKmeterAudioProcessor *audioProcessor;
 
-    ToggleButton ButtonDumpCSV;
-    ToggleButton ButtonDumpAverageLevel;
-    ToggleButton ButtonDumpPeakLevel;
+    ToggleButton buttonDumpCSV_;
+    ToggleButton buttonDumpAverageLevel_;
+    ToggleButton buttonDumpPeakLevel_;
 };
 
 

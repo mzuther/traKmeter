@@ -420,7 +420,8 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         button->setToggleState(true, dontSendNotification);
 
         // prepare and launch dialog window
-        DialogWindow *windowSkin = GenericWindowSkinContent::createDialogWindow(this, &currentSkinName, skinDirectory);
+        DialogWindow *windowSkin = GenericWindowSkinContent::createDialogWindow(
+                                       this, &currentSkinName, skinDirectory);
 
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowSkin, ModalCallbackFunction::forComponent(window_skin_callback, this));
@@ -518,7 +519,8 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         int width = 270;
         int height = 540;
 
-        DialogWindow *windowAbout = GenericWindowAboutContent::createDialogWindow(this, width, height, arrChapters);
+        DialogWindow *windowAbout = GenericWindowAboutContent::createDialogWindow(
+                                        this, width, height, arrChapters);
 
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowAbout, ModalCallbackFunction::forComponent(window_about_callback, this));
@@ -533,7 +535,8 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         audioProcessor->silenceInput(true);
 
         // prepare and launch dialog window
-        DialogWindow *windowValidation = WindowValidationContent::createDialogWindow(this, audioProcessor);
+        DialogWindow *windowValidation = WindowValidationContent::createDialogWindow(
+                                             this, audioProcessor);
 
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowValidation, ModalCallbackFunction::forComponent(window_validation_callback, this));

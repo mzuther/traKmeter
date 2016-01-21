@@ -37,11 +37,13 @@
 /// | 0      | window has been closed "by force" or by using the "Cancel" button |
 /// | 1      | window has been closed to start validation     |
 ///
-WindowValidationContent::WindowValidationContent(TraKmeterAudioProcessor *processor)
+WindowValidationContent::WindowValidationContent(
+    TraKmeterAudioProcessor *processor)
+
 {
     // dimensions of content component
-    int width = 170;
-    int height = 190;
+    int componentWidth = 170;
+    int componentHeight = 190;
 
     // store handle to audio plug-in processor (used for getting and
     // setting plug-in parameters)
@@ -51,18 +53,22 @@ WindowValidationContent::WindowValidationContent(TraKmeterAudioProcessor *proces
     int numberOfInputChannels = audioProcessor->getNumChannels();
 
     // get current audio sample rate
-    int sampleRate = (int) audioProcessor->getSampleRate();
+    int sampleRate = static_cast<int>(audioProcessor->getSampleRate());
 
     // get current audio channel used for validation
     int selectedChannel = audioProcessor->getRealInteger(
                               TraKmeterPluginParameters::selValidationSelectedChannel);
 
     // get current audio file used for validation
-    File validationFileNew = audioProcessor->getParameterValidationFile();
+    File validationFile = audioProcessor->getParameterValidationFile();
 
     // initialise parent content component
-    initialise(width, height, numberOfInputChannels, sampleRate,
-               selectedChannel, validationFileNew);
+    initialise(componentWidth,
+               componentHeight,
+               numberOfInputChannels,
+               sampleRate,
+               selectedChannel,
+               validationFile);
 }
 
 
@@ -75,19 +81,22 @@ WindowValidationContent::WindowValidationContent(TraKmeterAudioProcessor *proces
 ///
 /// @return created dialog window
 ///
-DialogWindow *WindowValidationContent::createDialogWindow(AudioProcessorEditor *pluginEditor, TraKmeterAudioProcessor *audioProcessor)
+DialogWindow *WindowValidationContent::createDialogWindow(
+    AudioProcessorEditor *pluginEditor,
+    TraKmeterAudioProcessor *audioProcessor)
+
 {
     // prepare dialog window
     DialogWindow::LaunchOptions windowValidationLauncher;
 
     // create content component
-    WindowValidationContent *content = new WindowValidationContent(
-        audioProcessor);
+    WindowValidationContent *contentComponent =
+        new WindowValidationContent(audioProcessor);
 
     // initialize dialog window settings
     windowValidationLauncher.dialogTitle = String("Validation");
     windowValidationLauncher.dialogBackgroundColour = Colours::white;
-    windowValidationLauncher.content.setOwned(content);
+    windowValidationLauncher.content.setOwned(contentComponent);
     windowValidationLauncher.componentToCentreAround = pluginEditor;
 
     windowValidationLauncher.escapeKeyTriggersCloseButton = true;
@@ -105,9 +114,9 @@ DialogWindow *WindowValidationContent::createDialogWindow(AudioProcessorEditor *
 
 /// Initialise dialog window components.
 ///
-/// @param width width of content component
+/// @param componentWidth width of content component
 ///
-/// @param height height of content component
+/// @param componentHeight height of content component
 ///
 /// @param numberOfInputChannels current number of audio input
 ///        channels
@@ -117,47 +126,68 @@ DialogWindow *WindowValidationContent::createDialogWindow(AudioProcessorEditor *
 /// @param selectedChannel current audio channel used for validation
 ///        (starting at 0; -1 designates all channels)
 ///
-/// @param validationFileNew current audio file used for validation
+/// @param validationFile current audio file used for validation
 ///
-void WindowValidationContent::initialise(int width, int height,
-        int numberOfInputChannels, int sampleRate, int selectedChannel,
-        const File &validationFileNew)
+void WindowValidationContent::initialise(
+    int componentWidth,
+    int componentHeight,
+    int numberOfInputChannels,
+    int sampleRate,
+    int selectedChannel,
+    const File &validationFile)
+
 {
     // call method of super class
     GenericWindowValidationContent::initialise(
-        width, height, numberOfInputChannels, sampleRate, selectedChannel,
-        validationFileNew);
+        componentWidth,
+        componentHeight,
+        numberOfInputChannels,
+        sampleRate,
+        selectedChannel,
+        validationFile);
+
 
     // initialise button for selecting the validation output format
-    ButtonDumpCSV.setButtonText("CSV format");
-    ButtonDumpCSV.setToggleState(
+    buttonDumpCSV_.setButtonText("CSV format");
+
+    buttonDumpCSV_.setToggleState(
         audioProcessor->getBoolean(
             TraKmeterPluginParameters::selValidationCSVFormat),
         dontSendNotification);
-    addAndMakeVisible(ButtonDumpCSV);
+
+    addAndMakeVisible(buttonDumpCSV_);
+
 
     // initialise channel selection slider
-    SliderDumpSelectedChannel.setValue(
+    sliderSelectChannel_.setValue(
         audioProcessor->getRealInteger(
             TraKmeterPluginParameters::selValidationSelectedChannel),
         dontSendNotification);
-    addAndMakeVisible(SliderDumpSelectedChannel);
+
+    addAndMakeVisible(sliderSelectChannel_);
+
 
     // initialise button for average level logging
-    ButtonDumpAverageLevel.setButtonText("Average meter level");
-    ButtonDumpAverageLevel.setToggleState(
+    buttonDumpAverageLevel_.setButtonText("Average meter level");
+
+    buttonDumpAverageLevel_.setToggleState(
         audioProcessor->getBoolean(
             TraKmeterPluginParameters::selValidationAverageMeterLevel),
         dontSendNotification);
-    addAndMakeVisible(ButtonDumpAverageLevel);
+
+    addAndMakeVisible(buttonDumpAverageLevel_);
+
 
     // initialise button for peak level logging
-    ButtonDumpPeakLevel.setButtonText("Peak meter level");
-    ButtonDumpPeakLevel.setToggleState(
+    buttonDumpPeakLevel_.setButtonText("Peak meter level");
+
+    buttonDumpPeakLevel_.setToggleState(
         audioProcessor->getBoolean(
             TraKmeterPluginParameters::selValidationPeakMeterLevel),
         dontSendNotification);
-    addAndMakeVisible(ButtonDumpPeakLevel);
+
+    addAndMakeVisible(buttonDumpPeakLevel_);
+
 
     // style and place the dialog window's components
     applySkin();
@@ -172,35 +202,36 @@ void WindowValidationContent::applySkin()
     GenericWindowValidationContent::applySkin();
 
     // style button for selecting the validation output format
-    ButtonDumpCSV.setColour(
+    buttonDumpCSV_.setColour(
         ToggleButton::textColourId,
         Colours::black);
 
     // style button for average level logging
-    ButtonDumpAverageLevel.setColour(
+    buttonDumpAverageLevel_.setColour(
         ToggleButton::textColourId,
         Colours::black);
 
     // style button for peak level logging
-    ButtonDumpPeakLevel.setColour(
+    buttonDumpPeakLevel_.setColour(
         ToggleButton::textColourId,
         Colours::black);
+
 
     // place the components
     int positionX = 5;
     int positionY = 85;
 
-    ButtonDumpPeakLevel.setBounds(positionX, positionY, 180, 20);
+    buttonDumpPeakLevel_.setBounds(positionX, positionY, 180, 20);
 
     positionY += 20;
-    ButtonDumpAverageLevel.setBounds(positionX, positionY, 180, 20);
+    buttonDumpAverageLevel_.setBounds(positionX, positionY, 180, 20);
 
     positionY += 20;
-    ButtonDumpCSV.setBounds(positionX, positionY, 180, 20);
+    buttonDumpCSV_.setBounds(positionX, positionY, 180, 20);
 
     positionY += 31;
-    ButtonValidation.setBounds(18, positionY, 60, 20);
-    ButtonCancel.setBounds(88, positionY, 60, 20);
+    buttonValidation_.setBounds(18, positionY, 60, 20);
+    buttonCancel_.setBounds(88, positionY, 60, 20);
 }
 
 
@@ -213,10 +244,10 @@ void WindowValidationContent::applySkin()
 void WindowValidationContent::buttonClicked(Button *button)
 {
     // user wants to validate the meters
-    if (button == &ButtonValidation)
+    if (button == &buttonValidation_)
     {
         // file name has not been set
-        if (validationFile == File::nonexistent)
+        if (validationFile_ == File::nonexistent)
         {
             DBG("[traKmeter] file name for validation not set.");
 
@@ -226,36 +257,38 @@ void WindowValidationContent::buttonClicked(Button *button)
 
         // get selected audio channel (internal value) and update
         // parameter
-        float selectedChannelInternal = SliderDumpSelectedChannel.getFloat();
+        float selectedChannelInternal = sliderSelectChannel_.getFloat();
+
         audioProcessor->setParameter(
             TraKmeterPluginParameters::selValidationSelectedChannel,
             selectedChannelInternal);
 
         // get selected audio channel (real value; channel numbers
         // start at 0; -1 designates all channels)
-        int selectedChannel = (int) SliderDumpSelectedChannel.getValue();
+        int selectedChannel = static_cast<int>(
+                                  sliderSelectChannel_.getValue());
 
         // get selected output format and update parameter
-        bool reportCSV = ButtonDumpCSV.getToggleState();
+        bool reportCSV = buttonDumpCSV_.getToggleState();
         audioProcessor->setParameter(
             TraKmeterPluginParameters::selValidationCSVFormat,
             reportCSV ? 1.0f : 0.0f);
 
         // get average level log setting and update parameter
-        bool logAverageLevel = ButtonDumpAverageLevel.getToggleState();
+        bool logAverageLevel = buttonDumpAverageLevel_.getToggleState();
         audioProcessor->setParameter(
             TraKmeterPluginParameters::selValidationAverageMeterLevel,
             logAverageLevel ? 1.0f : 0.0f);
 
         // get peak level log setting and update parameter
-        bool logPeakLevel = ButtonDumpPeakLevel.getToggleState();
+        bool logPeakLevel = buttonDumpPeakLevel_.getToggleState();
         audioProcessor->setParameter(
             TraKmeterPluginParameters::selValidationPeakMeterLevel,
             logPeakLevel ? 1.0f : 0.0f);
 
         // validation file has already been initialised
         audioProcessor->startValidation(
-            validationFile, selectedChannel, reportCSV,
+            validationFile_, selectedChannel, reportCSV,
             logAverageLevel, logPeakLevel);
 
         // get parent dialog window
@@ -277,19 +310,19 @@ void WindowValidationContent::buttonClicked(Button *button)
 
 /// Select a new audio file for validation.
 ///
-/// @param validationFileNew audio file for validation
+/// @param validationFile audio file for validation
 ///
-void WindowValidationContent::selectValidationFile(const File &validationFileNew)
+void WindowValidationContent::selectValidationFile(const File &validationFile)
 {
     // set audio file used for validation
-    validationFile = validationFileNew;
+    validationFile_ = validationFile;
 
     // update plug-in parameter
-    audioProcessor->setParameterValidationFile(validationFile);
+    audioProcessor->setParameterValidationFile(validationFile_);
 
     // update label that displays the name of the validation file
-    LabelFileSelection.setText(
-        validationFile.getFileName(),
+    labelFileSelection_.setText(
+        validationFile_.getFileName(),
         dontSendNotification);
 }
 
