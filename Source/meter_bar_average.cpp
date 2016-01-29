@@ -25,29 +25,26 @@
 
 #include "meter_bar_average.h"
 
-MeterBarAverage::MeterBarAverage()
-{
-    arrHues.add(0.00f);  // red
-    arrHues.add(0.18f);  // yellow
-    arrHues.add(0.30f);  // green
-    arrHues.add(0.58f);  // blue
 
-    for (int n = 0; n < arrHues.size(); ++n)
-    {
-        arrPeakColours.add(Colour(arrHues[n], 1.0f, 1.0f, 0.7f));
-    }
-}
+void MeterBarAverage::create(int crestFactor, Orientation orientation,
+                             bool discreteMeter, bool showCombinedMeters,
+                             int segmentHeight)
 
-
-void MeterBarAverage::create(int crestFactor, int nMainSegmentHeight, Orientation orientation, bool bShowCombinedMeters)
 {
     GenericMeterBar::create();
 
-    int nCrestFactor = crestFactor * 10;
+    segmentColours_.clear();
+
+    segmentColours_.add(Colour(0.00f, 1.0f, 1.0f, 1.0f));  // red
+    segmentColours_.add(Colour(0.18f, 1.0f, 1.0f, 1.0f));  // yellow
+    segmentColours_.add(Colour(0.30f, 1.0f, 1.0f, 1.0f));  // green
+    segmentColours_.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // blue
+
+    crestFactor *= 10;
     int nTrueLowerThreshold;
     int nNumberOfBars;
 
-    if (bShowCombinedMeters)
+    if (showCombinedMeters)
     {
         nTrueLowerThreshold = -90;
         nNumberOfBars = 26;
@@ -58,7 +55,7 @@ void MeterBarAverage::create(int crestFactor, int nMainSegmentHeight, Orientatio
         nNumberOfBars = 8;
     }
 
-    int nLowerThreshold = nTrueLowerThreshold + nCrestFactor;
+    int nLowerThreshold = nTrueLowerThreshold + crestFactor;
 
     for (int n = 0; n < nNumberOfBars; ++n)
     {
@@ -80,7 +77,7 @@ void MeterBarAverage::create(int crestFactor, int nMainSegmentHeight, Orientatio
         int nColour;
 
         nTrueLowerThreshold -= nThresholdDifference;
-        nLowerThreshold = nTrueLowerThreshold + nCrestFactor;
+        nLowerThreshold = nTrueLowerThreshold + crestFactor;
 
         if (nTrueLowerThreshold >= -170)
         {
@@ -103,9 +100,30 @@ void MeterBarAverage::create(int crestFactor, int nMainSegmentHeight, Orientatio
         float fRange = nThresholdDifference * 0.1f;
 
         int nSpacingBefore = 0;
-        bool bHasHighestLevel = (n == 0) ? true : false;
+        bool hasHighestLevel = (n == 0) ? true : false;
 
-        addSegment(fLowerThreshold, fRange, bHasHighestLevel, nMainSegmentHeight, nSpacingBefore, arrHues[nColour], arrPeakColours[nColour]);
+        if (discreteMeter)
+        {
+            addDiscreteSegment(
+                fLowerThreshold,
+                fRange,
+                hasHighestLevel,
+                segmentHeight,
+                nSpacingBefore,
+                segmentColours_[nColour],
+                segmentColours_[nColour].withAlpha(0.7f));
+        }
+        else
+        {
+            addContinuousSegment(
+                fLowerThreshold,
+                fRange,
+                hasHighestLevel,
+                segmentHeight,
+                nSpacingBefore,
+                segmentColours_[nColour],
+                segmentColours_[nColour].withAlpha(0.7f));
+        }
     }
 
     // set orientation here to save some processing power

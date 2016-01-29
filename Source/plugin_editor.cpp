@@ -363,7 +363,15 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         }
 
         int nMeterType = audioProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-        trakmeter = new TraKmeter(10, 10, crestFactor, numberOfInputChannels, segmentHeight, nMeterType);
+        bool discreteMeter = true;
+
+        trakmeter = new TraKmeter(10,
+                                  10,
+                                  crestFactor,
+                                  numberOfInputChannels,
+                                  segmentHeight,
+                                  discreteMeter,
+                                  nMeterType);
 
         // moves traKmeter to the back of the editor's z-plane so that
         // it doesn't overlay (and thus block) any other components

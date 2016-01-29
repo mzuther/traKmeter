@@ -25,7 +25,9 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels, int segment_height, int meter_type)
+TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels,
+                     int segment_height, bool discreteMeter, int meter_type)
+
 {
     // this component blends in with the background
     setOpaque(false);
@@ -51,11 +53,19 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels, int
     for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {
         MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(new MeterBarPeak());
-        pMeterBarPeak->create(nCrestFactor, nSegmentHeight, MeterBarPeak::orientationVertical, !bShowSplitMeters);
+        pMeterBarPeak->create(nCrestFactor,
+                              MeterBarPeak::orientationVertical,
+                              discreteMeter,
+                              !bShowSplitMeters,
+                              nSegmentHeight);
         addAndMakeVisible(pMeterBarPeak);
 
         MeterBarAverage *pMeterBarAverage = p_arrAverageMeters.add(new MeterBarAverage());
-        pMeterBarAverage->create(nCrestFactor, nSegmentHeight, MeterBarAverage::orientationVertical, !bShowSplitMeters);
+        pMeterBarAverage->create(nCrestFactor,
+                                 MeterBarAverage::orientationVertical,
+                                 discreteMeter,
+                                 !bShowSplitMeters,
+                                 nSegmentHeight);
         addAndMakeVisible(pMeterBarAverage);
 
         OverloadMeter *pOverloadMeter = p_arrOverloadMeters.add(new OverloadMeter("OverloadMeter", nThreshold * 0.1f, nCrestFactor));

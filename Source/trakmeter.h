@@ -44,7 +44,13 @@ public:
     static const int TRAKMETER_LABEL_WIDTH = 38;
     static const int TRAKMETER_SEGMENT_WIDTH = 22;
 
-    TraKmeter(int PosX, int PosY, int nCrestFactor, int nNumChannels, int segment_height, int meter_type);
+    TraKmeter(int PosX,
+              int PosY,
+              int nCrestFactor,
+              int nNumChannels,
+              int segment_height,
+              bool discreteMeter,
+              int meter_type);
 
     void setLevels(MeterBallistics *pMeterBallistics);
     void applySkin(Skin *pSkin);
