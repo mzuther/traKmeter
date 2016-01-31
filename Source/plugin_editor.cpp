@@ -365,13 +365,22 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         int nMeterType = audioProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
         bool discreteMeter = true;
 
+        Array<Colour> levelMeterColours;
+
+        levelMeterColours.add(Colour(0.00f, 1.0f, 1.0f, 1.0f));  // overload
+        levelMeterColours.add(Colour(0.18f, 1.0f, 1.0f, 1.0f));  // warning
+        levelMeterColours.add(Colour(0.30f, 1.0f, 1.0f, 1.0f));  // fine
+        levelMeterColours.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // signal
+
         trakmeter = new TraKmeter(10,
                                   10,
                                   crestFactor,
                                   numberOfInputChannels,
                                   segmentHeight,
                                   discreteMeter,
-                                  nMeterType);
+                                  nMeterType,
+                                  levelMeterColours,
+                                  levelMeterColours);
 
         // moves traKmeter to the back of the editor's z-plane so that
         // it doesn't overlay (and thus block) any other components

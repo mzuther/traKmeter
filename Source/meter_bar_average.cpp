@@ -26,19 +26,13 @@
 #include "meter_bar_average.h"
 
 
-void MeterBarAverage::create(int crestFactor, Orientation orientation,
-                             bool discreteMeter, bool showCombinedMeters,
-                             int mainSegmentHeight)
+void MeterBarAverage::create(
+    int crestFactor, Orientation orientation, bool discreteMeter,
+    bool showCombinedMeters, int mainSegmentHeight,
+    const Array<Colour> &segmentColours)
 
 {
     GenericMeterBar::create();
-
-    Array<Colour> segmentColours;
-
-    segmentColours.add(Colour(0.00f, 1.0f, 1.0f, 1.0f));  // red
-    segmentColours.add(Colour(0.18f, 1.0f, 1.0f, 1.0f));  // yellow
-    segmentColours.add(Colour(0.30f, 1.0f, 1.0f, 1.0f));  // green
-    segmentColours.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // blue
 
     crestFactor *= 10;
     int trueLowerThreshold;
@@ -81,19 +75,19 @@ void MeterBarAverage::create(int crestFactor, Orientation orientation,
 
         if (trueLowerThreshold >= -170)
         {
-            colourId = 0;
+            colourId = colourSelector::overload;
         }
         else if (trueLowerThreshold >= -180)
         {
-            colourId = 1;
+            colourId = colourSelector::warning;
         }
         else if (trueLowerThreshold >= -220)
         {
-            colourId = 2;
+            colourId = colourSelector::fine;
         }
         else
         {
-            colourId = 3;
+            colourId = colourSelector::signal;
         }
 
         int segmentHeight = mainSegmentHeight;

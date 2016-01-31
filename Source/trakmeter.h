@@ -50,7 +50,9 @@ public:
               int nNumChannels,
               int segment_height,
               bool discreteMeter,
-              int meter_type);
+              int meter_type,
+              const Array<Colour> &averageMeterColours,
+              const Array<Colour> &peakMeterColours);
 
     void setLevels(MeterBallistics *pMeterBallistics);
     void applySkin(Skin *pSkin);
