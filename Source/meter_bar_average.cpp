@@ -28,101 +28,105 @@
 
 void MeterBarAverage::create(int crestFactor, Orientation orientation,
                              bool discreteMeter, bool showCombinedMeters,
-                             int segmentHeight)
+                             int mainSegmentHeight)
 
 {
     GenericMeterBar::create();
 
-    segmentColours_.clear();
+    Array<Colour> segmentColours;
 
-    segmentColours_.add(Colour(0.00f, 1.0f, 1.0f, 1.0f));  // red
-    segmentColours_.add(Colour(0.18f, 1.0f, 1.0f, 1.0f));  // yellow
-    segmentColours_.add(Colour(0.30f, 1.0f, 1.0f, 1.0f));  // green
-    segmentColours_.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // blue
+    segmentColours.add(Colour(0.00f, 1.0f, 1.0f, 1.0f));  // red
+    segmentColours.add(Colour(0.18f, 1.0f, 1.0f, 1.0f));  // yellow
+    segmentColours.add(Colour(0.30f, 1.0f, 1.0f, 1.0f));  // green
+    segmentColours.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // blue
 
     crestFactor *= 10;
-    int nTrueLowerThreshold;
-    int nNumberOfBars;
+    int trueLowerThreshold;
+    int numberOfBars;
 
     if (showCombinedMeters)
     {
-        nTrueLowerThreshold = -90;
-        nNumberOfBars = 26;
+        trueLowerThreshold = -90;
+        numberOfBars = 26;
     }
     else
     {
-        nTrueLowerThreshold = -160;
-        nNumberOfBars = 8;
+        trueLowerThreshold = -160;
+        numberOfBars = 8;
     }
 
-    int nLowerThreshold = nTrueLowerThreshold + crestFactor;
+    int lowerThreshold = trueLowerThreshold + crestFactor;
 
-    for (int n = 0; n < nNumberOfBars; ++n)
+    for (int n = 0; n < numberOfBars; ++n)
     {
-        int nThresholdDifference;
+        int thresholdDifference;
 
-        if (nTrueLowerThreshold > -260)
+        if (trueLowerThreshold > -260)
         {
-            nThresholdDifference = 10;
+            thresholdDifference = 10;
         }
-        else if (nTrueLowerThreshold > -300)
+        else if (trueLowerThreshold > -300)
         {
-            nThresholdDifference = 40;
+            thresholdDifference = 40;
         }
         else
         {
-            nThresholdDifference = 100;
+            thresholdDifference = 100;
         }
 
-        int nColour;
+        trueLowerThreshold -= thresholdDifference;
+        lowerThreshold = trueLowerThreshold + crestFactor;
 
-        nTrueLowerThreshold -= nThresholdDifference;
-        nLowerThreshold = nTrueLowerThreshold + crestFactor;
+        int colourId;
 
-        if (nTrueLowerThreshold >= -170)
+        if (trueLowerThreshold >= -170)
         {
-            nColour = 0;
+            colourId = 0;
         }
-        else if (nTrueLowerThreshold >= -180)
+        else if (trueLowerThreshold >= -180)
         {
-            nColour = 1;
+            colourId = 1;
         }
-        else if (nTrueLowerThreshold >= -220)
+        else if (trueLowerThreshold >= -220)
         {
-            nColour = 2;
+            colourId = 2;
         }
         else
         {
-            nColour = 3;
+            colourId = 3;
         }
 
-        float fLowerThreshold = nLowerThreshold * 0.1f;
-        float fRange = nThresholdDifference * 0.1f;
-
-        int nSpacingBefore = 0;
+        int segmentHeight = mainSegmentHeight;
         bool hasHighestLevel = (n == 0) ? true : false;
 
         if (discreteMeter)
         {
+            // meter segment outlines overlap
+            int spacingBefore = -1;
+            segmentHeight += 1;
+
             addDiscreteSegment(
-                fLowerThreshold,
-                fRange,
+                lowerThreshold * 0.1f,
+                thresholdDifference * 0.1f,
                 hasHighestLevel,
                 segmentHeight,
-                nSpacingBefore,
-                segmentColours_[nColour],
-                segmentColours_[nColour].withAlpha(0.7f));
+                spacingBefore,
+                segmentColours[colourId],
+                segmentColours[colourId].withMultipliedBrightness(0.7f));
         }
         else
         {
+            // meter segment outlines must not overlap
+            int spacingBefore = 0;
+
             addContinuousSegment(
-                fLowerThreshold,
-                fRange,
+                lowerThreshold * 0.1f,
+                thresholdDifference * 0.1f,
                 hasHighestLevel,
                 segmentHeight,
-                nSpacingBefore,
-                segmentColours_[nColour],
-                segmentColours_[nColour].withAlpha(0.7f));
+                spacingBefore,
+                segmentColours[colourId],
+                segmentColours[colourId].withMultipliedBrightness(0.7f));
         }
     }
 

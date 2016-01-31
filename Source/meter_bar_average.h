@@ -38,10 +38,7 @@ public:
                 Orientation orientation,
                 bool discreteMeter,
                 bool showCombinedMeters,
-                int segmentHeight);
-
-protected:
-    Array<Colour> segmentColours_;
+                int mainSegmentHeight);
 
 private:
     JUCE_LEAK_DETECTOR(MeterBarAverage);

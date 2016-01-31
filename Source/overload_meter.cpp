@@ -68,7 +68,7 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
 
         if (fMaximumLevel >= fThreshold)
         {
-            int nMaximumLevel = MZ_Juce_Common::round_mz(fMaximumLevel);
+            int nMaximumLevel = MZ_Juce_Common::round(fMaximumLevel);
 
             if (nMaximumLevel > 0)
             {
