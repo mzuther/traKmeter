@@ -26,65 +26,68 @@
 #include "skin.h"
 
 
-Skin::Skin()
+void Skin::loadSkin(
+    File &skinFile,
+    int numberOfChannels,
+    int crestFactor,
+    int meterType)
+
 {
+    updateSkin(numberOfChannels,
+               crestFactor,
+               meterType);
+
+    loadFromXml(skinFile, "trakmeter-skin");
 }
 
 
-void Skin::loadSkin(File &fileSkin, int nNumChannels, int nCrestFactor, int nMeterType)
+void Skin::updateSkin(int numberOfChannels,
+                      int crestFactor,
+                      int meterType)
+
 {
-    updateSkin(nNumChannels, nCrestFactor, nMeterType);
-    loadFromXml(fileSkin, "trakmeter-skin");
-}
+    jassert(numberOfChannels > 0);
 
+    currentBackgroundName_ = "image";
 
-void Skin::updateSkin(int nNumChannels, int nCrestFactor, int nMeterType)
-{
-    jassert(nNumChannels > 0);
-    nNumberOfChannels = nNumChannels;
-
-    strBackgroundSelector = "image";
-
-    if (nNumberOfChannels <= 2)
+    if (numberOfChannels <= 2)
     {
-        strSkinFallback_1 = "stereo";
+        currentFallbackName_ = "stereo";
     }
     else
     {
-        strSkinFallback_1 = "multi";
+        currentFallbackName_ = "multi";
     }
 
-    if (nMeterType == TraKmeterPluginParameters::selSplitMeters)
+    if (meterType == TraKmeterPluginParameters::selSplitMeters)
     {
-        strSkinFallback_1 += "_split";
+        currentFallbackName_ += "_split";
     }
     else
     {
-        strSkinFallback_1 += "_combined";
+        currentFallbackName_ += "_combined";
     }
 
-    switch (nCrestFactor)
+    if (crestFactor == 20)
     {
-    case 20:
-        strSkinGroup = strSkinFallback_1 + "_k20";
-        break;
-
-    default:
-        strSkinGroup = strSkinFallback_1 + "_normal";
-        break;
-    }
-
-    if (xml != nullptr)
-    {
-        xmlSkinGroup = xml->getChildByName(strSkinGroup);
-        xmlSkinFallback_1 = xml->getChildByName(strSkinFallback_1);
-        xmlSkinFallback_2 = xml->getChildByName("default");
+        currentGroupName_ = currentFallbackName_ + "_k20";
     }
     else
     {
-        xmlSkinGroup = nullptr;
-        xmlSkinFallback_1 = nullptr;
-        xmlSkinFallback_2 = nullptr;
+        currentGroupName_ = currentFallbackName_ + "_normal";
+    }
+
+    if (document_ != nullptr)
+    {
+        skinGroup_ = document_->getChildByName(currentGroupName_);
+        skinFallback_1_ = document_->getChildByName(currentFallbackName_);
+        skinFallback_2_ = document_->getChildByName("default");
+    }
+    else
+    {
+        skinGroup_ = nullptr;
+        skinFallback_1_ = nullptr;
+        skinFallback_2_ = nullptr;
     }
 }
 

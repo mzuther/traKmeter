@@ -31,16 +31,18 @@
 #include "common/skin/generic_skin.h"
 
 
-class Skin : public GenericSkin
+class Skin :
+    public GenericSkin
 {
 public:
-    Skin();
+    void loadSkin(File &skinFile,
+                  int numberOfChannels,
+                  int crestFactor,
+                  int meterType);
 
-    void loadSkin(File &fileSkin, int nNumChannels, int nCrestFactor, int nMeterType);
-    void updateSkin(int nNumChannels, int nCrestFactor, int nMeterType);
-
-protected:
-    int nNumberOfChannels;
+    void updateSkin(int numberOfChannels,
+                    int crestFactor,
+                    int meterType);
 
 private:
     JUCE_LEAK_DETECTOR(Skin);
