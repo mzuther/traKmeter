@@ -26,7 +26,8 @@
 #include "overload_meter.h"
 
 
-OverloadMeter::OverloadMeter(const String &componentName, float Threshold, int CrestFactor) : GenericStateLabel(componentName)
+OverloadMeter::OverloadMeter(const String &componentName, float Threshold, int CrestFactor) :
+    GenericStateLabel(componentName)
 {
     // set component name
     setName(componentName);
@@ -94,16 +95,16 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
     {
         if (bActiveOverload)
         {
-            setState(GenericStateLabel::stateActive);
+            setState(GenericStateLabel::State::active);
         }
         else
         {
-            setState(GenericStateLabel::stateOn);
+            setState(GenericStateLabel::State::on);
         }
     }
     else
     {
-        setState(GenericStateLabel::stateOff);
+        setState(GenericStateLabel::State::off);
     }
 }
 
