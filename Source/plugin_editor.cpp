@@ -90,8 +90,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     addAndMakeVisible(ButtonMixMode);
 
     int nIndex = TraKmeterPluginParameters::selGain;
-    String strName = parameters->getName(nIndex);
-    SliderGain = new SliderSwitch(strName, parameters, nIndex);
+    SliderGain = new SliderSwitch(parameters, nIndex);
     SliderGain->setSliderColour(Colours::red);
 
     SliderGain->addListener(this);

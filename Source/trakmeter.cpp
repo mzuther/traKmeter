@@ -78,8 +78,11 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels,
 
         addAndMakeVisible(pMeterBarAverage);
 
-        OverloadMeter *pOverloadMeter = p_arrOverloadMeters.add(new OverloadMeter("OverloadMeter", nThreshold * 0.1f, nCrestFactor));
-        addAndMakeVisible(pOverloadMeter);
+        OverloadMeter *overloadMeter = new OverloadMeter(
+            nThreshold * 0.1f, nCrestFactor);
+        addAndMakeVisible(overloadMeter);
+
+        p_arrOverloadMeters.add(overloadMeter);
     }
 
     if (bShowSplitMeters)
@@ -104,8 +107,10 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels,
                 strLabel = String(nChannel + 1);
             }
 
-            GenericSignalLed *pGenericSignalLed = p_arrSignalLeds.add(new GenericSignalLed("Peak Meter Signal #" + String(nChannel)));
-            addAndMakeVisible(pGenericSignalLed);
+            GenericSignalLed *signalLed = new GenericSignalLed();
+            addAndMakeVisible(signalLed);
+
+            p_arrSignalLeds.add(signalLed);
         }
     }
 }

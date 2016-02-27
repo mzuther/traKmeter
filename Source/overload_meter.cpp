@@ -26,12 +26,8 @@
 #include "overload_meter.h"
 
 
-OverloadMeter::OverloadMeter(const String &componentName, float Threshold, int CrestFactor) :
-    GenericStateLabel(componentName)
+OverloadMeter::OverloadMeter(float Threshold, int CrestFactor)
 {
-    // set component name
-    setName(componentName);
-
     // threshold, meter segment will be dark below and fully lit above
     // this level
     fThreshold = Threshold;
