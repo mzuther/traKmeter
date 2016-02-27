@@ -26,12 +26,10 @@
 #ifndef __TRAKMETER_PLUGINPROCESSOR_H__
 #define __TRAKMETER_PLUGINPROCESSOR_H__
 
-#include "JuceHeader.h"
+#include "FrutHeader.h"
 #include "audio_file_player.h"
 #include "meter_ballistics.h"
 #include "plugin_parameters.h"
-#include "common/audio/audio_ring_buffer.h"
-#include "common/audio/dither.h"
 
 
 //============================================================================

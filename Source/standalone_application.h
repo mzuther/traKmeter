@@ -26,7 +26,7 @@
 #ifndef __TRAKMETER_STANDALONE_H__
 #define __TRAKMETER_STANDALONE_H__
 
-#include "common/widgets/generic_plugin_standalone.h"
+#include "FrutHeader.h"
 
 
 class TraKmeterStandalone :

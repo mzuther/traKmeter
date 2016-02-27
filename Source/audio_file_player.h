@@ -26,9 +26,8 @@
 #ifndef __AUDIO_FILE_PLAYER__
 #define __AUDIO_FILE_PLAYER__
 
-#include "JuceHeader.h"
+#include "FrutHeader.h"
 #include "meter_ballistics.h"
-#include "common/math/averager.h"
 
 
 class AudioFilePlayer

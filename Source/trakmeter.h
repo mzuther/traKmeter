@@ -26,12 +26,11 @@
 #ifndef __TRAKMETER_H__
 #define __TRAKMETER_H__
 
-#include "JuceHeader.h"
+#include "FrutHeader.h"
 #include "meter_ballistics.h"
 #include "meter_bar_average.h"
 #include "meter_bar_peak.h"
 #include "overload_meter.h"
-#include "common/widgets/generic_signal_led.h"
 #include "skin.h"
 
 

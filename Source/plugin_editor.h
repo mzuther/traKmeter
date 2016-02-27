@@ -26,15 +26,13 @@
 #ifndef __PLUGINEDITOR_TRAKMETER_H__
 #define __PLUGINEDITOR_TRAKMETER_H__
 
-#include "JuceHeader.h"
+#include "FrutHeader.h"
+
 #include "plugin_parameters.h"
 #include "plugin_processor.h"
 #include "skin.h"
 #include "trakmeter.h"
 #include "window_validation_content.h"
-#include "common/widgets/generic_window_about_content.h"
-#include "common/widgets/generic_window_skin_content.h"
-#include "common/widgets/slider_switch.h"
 
 
 //==============================================================================

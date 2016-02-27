@@ -46,8 +46,12 @@ solution "traKmeter"
 	configurations { "Debug", "Release" }
 
 	files {
-		"../Source/**.h",
-		"../Source/**.cpp",
+		"../Source/common/FrutHeader.h",
+		"../Source/common/amalgamated/*.h",
+		"../Source/common/amalgamated/*.cpp",
+
+		"../Source/*.h",
+		"../Source/*.cpp",
 
 		"../libraries/juce/modules/juce_audio_basics/juce_audio_basics.cpp",
 		"../libraries/juce/modules/juce_audio_devices/juce_audio_devices.cpp",
@@ -66,6 +70,7 @@ solution "traKmeter"
 
 	includedirs {
 		"../JuceLibraryCode/",
+		"../Source/common/",
 		"../libraries/"
 	}
 

@@ -26,9 +26,8 @@
 #ifndef __SKIN_H__
 #define __SKIN_H__
 
-#include "JuceHeader.h"
+#include "FrutHeader.h"
 #include "plugin_parameters.h"
-#include "common/skin/generic_skin.h"
 
 
 class Skin :
