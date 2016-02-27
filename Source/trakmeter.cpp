@@ -58,7 +58,7 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels,
                                           new MeterBarPeak());
 
         pMeterBarPeak->create(nCrestFactor,
-                              MeterBarPeak::orientationVertical,
+                              GenericMeterOrientation::vertical,
                               discreteMeter,
                               !bShowSplitMeters,
                               nSegmentHeight,
@@ -70,7 +70,7 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels,
                                                 new MeterBarAverage());
 
         pMeterBarAverage->create(nCrestFactor,
-                                 MeterBarAverage::orientationVertical,
+                                 GenericMeterOrientation::vertical,
                                  discreteMeter,
                                  !bShowSplitMeters,
                                  nSegmentHeight,

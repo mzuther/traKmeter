@@ -27,7 +27,7 @@
 
 
 void MeterBarPeak::create(
-    int crestFactor, Orientation orientation, bool discreteMeter,
+    int crestFactor, GenericMeterOrientation orientation, bool discreteMeter,
     bool showCombinedMeters, int mainSegmentHeight,
     const Array<Colour> &segmentColours)
 
