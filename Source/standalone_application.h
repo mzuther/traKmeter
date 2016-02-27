@@ -29,13 +29,14 @@
 #include "common/widgets/generic_plugin_standalone.h"
 
 
-class TraKmeterStandalone : virtual public GenericPluginStandalone
+class TraKmeterStandalone :
+    virtual public GenericPluginStandalone
 {
 public:
-    TraKmeterStandalone();
+    // it's cold and empty here ...
 
 protected:
-    PropertiesFile::Options prepare_properties();
+    virtual void initialiseSettings(PropertiesFile::Options &settings);
 
 private:
     JUCE_LEAK_DETECTOR(TraKmeterStandalone);

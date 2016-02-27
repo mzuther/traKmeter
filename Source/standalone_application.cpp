@@ -25,24 +25,24 @@
 
 #include "standalone_application.h"
 
-TraKmeterStandalone::TraKmeterStandalone()
-{
-}
 
+/// Initialise settings of stand-alone.  This includes the directory
+/// in which the current state is to be stored.
+///
+/// @param settings settings to be initialised
+void TraKmeterStandalone::initialiseSettings(
+    PropertiesFile::Options &settings)
 
-PropertiesFile::Options TraKmeterStandalone::prepare_properties()
 {
-    PropertiesFile::Options options;
 #ifdef TRAKMETER_MULTI
-    options.applicationName     = "trakmeter_multi";
+    settings.applicationName     = "trakmeter_multi";
 #else
-    options.applicationName     = "trakmeter_stereo";
+    settings.applicationName     = "trakmeter_stereo";
 #endif
-    options.folderName          = ".config";
-    options.filenameSuffix      = "ini";
-    options.osxLibrarySubFolder = "Application Support";
 
-    return options;
+    settings.filenameSuffix      = "ini";
+    settings.folderName          = ".config";
+    settings.osxLibrarySubFolder = "Application Support";
 }
 
 
