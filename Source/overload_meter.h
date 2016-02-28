@@ -34,7 +34,7 @@
 /**
 */
 class OverloadMeter :
-    public frut::GenericStateLabel
+    public frut::widget::StateLabel
 {
 public:
     OverloadMeter(float fThreshold, int nCrestFactor);

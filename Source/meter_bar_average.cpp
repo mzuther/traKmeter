@@ -27,12 +27,12 @@
 
 
 void MeterBarAverage::create(
-    int crestFactor, frut::GenericMeterOrientation orientation, bool discreteMeter,
+    int crestFactor, frut::widget::Orientation orientation, bool discreteMeter,
     bool showCombinedMeters, int mainSegmentHeight,
     const Array<Colour> &segmentColours)
 
 {
-    frut::GenericMeterBar::create();
+    frut::widget::MeterBar::create();
 
     crestFactor *= 10;
     int trueLowerThreshold;

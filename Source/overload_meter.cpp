@@ -65,7 +65,7 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
 
         if (fMaximumLevel >= fThreshold)
         {
-            int nMaximumLevel = frut::math::Simple::round(fMaximumLevel);
+            int nMaximumLevel = frut::math::SimpleMath::round(fMaximumLevel);
 
             if (nMaximumLevel > 0)
             {
@@ -91,16 +91,16 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
     {
         if (bActiveOverload)
         {
-            setState(frut::GenericStateLabel::State::active);
+            setState(frut::widget::StateLabel::State::active);
         }
         else
         {
-            setState(frut::GenericStateLabel::State::on);
+            setState(frut::widget::StateLabel::State::on);
         }
     }
     else
     {
-        setState(frut::GenericStateLabel::State::off);
+        setState(frut::widget::StateLabel::State::off);
     }
 }
 

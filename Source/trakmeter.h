@@ -68,7 +68,7 @@ private:
     OwnedArray<MeterBarPeak> p_arrPeakMeters;
     OwnedArray<OverloadMeter> p_arrOverloadMeters;
 
-    OwnedArray<frut::GenericSignalLed> p_arrSignalLeds;
+    OwnedArray<frut::widget::SignalLed> p_arrSignalLeds;
 };
 
 

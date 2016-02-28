@@ -92,7 +92,7 @@ private:
     ImageButton ButtonValidation;
     ImageButton ButtonAbout;
 
-    ScopedPointer<frut::SliderSwitch> SliderGain;
+    ScopedPointer<frut::widget::SliderSwitch> SliderGain;
 
 #ifdef DEBUG
     ImageComponent LabelDebug;

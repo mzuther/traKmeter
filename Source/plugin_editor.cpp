@@ -90,7 +90,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     addAndMakeVisible(ButtonMixMode);
 
     int nIndex = TraKmeterPluginParameters::selGain;
-    SliderGain = new frut::SliderSwitch(parameters, nIndex);
+    SliderGain = new frut::widget::SliderSwitch(parameters, nIndex);
     SliderGain->setSliderColour(Colours::red);
 
     SliderGain->addListener(this);
@@ -436,7 +436,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         button->setToggleState(true, dontSendNotification);
 
         // prepare and launch dialog window
-        DialogWindow *windowSkin = frut::GenericWindowSkinContent::createDialogWindow(
+        DialogWindow *windowSkin = frut::widget::WindowSkinContent::createDialogWindow(
                                        this, &currentSkinName, skinDirectory);
 
         // attach callback to dialog window
@@ -535,7 +535,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
         int width = 270;
         int height = 540;
 
-        DialogWindow *windowAbout = frut::GenericWindowAboutContent::createDialogWindow(
+        DialogWindow *windowAbout = frut::widget::WindowAboutContent::createDialogWindow(
                                         this, width, height, arrChapters);
 
         // attach callback to dialog window

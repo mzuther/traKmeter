@@ -31,7 +31,7 @@
 
 //============================================================================
 class TraKmeterPluginParameters :
-    public frut::ParameterJuggler
+    public frut::parameter::Juggler
 {
 public:
     //==========================================================================

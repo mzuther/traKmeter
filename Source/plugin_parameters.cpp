@@ -30,20 +30,21 @@
 // they are absolutely time-critical!
 
 TraKmeterPluginParameters::TraKmeterPluginParameters() :
-    ParameterJuggler("TRAKMETER_SETTINGS", numberOfParametersComplete,
-                     numberOfParametersRevealed)
+    Juggler("TRAKMETER_SETTINGS", numberOfParametersComplete,
+            numberOfParametersRevealed)
 {
-    // parameters created here will be deleted in "ParameterJuggler"!
+    // parameters created here will be deleted in
+    // "frut::parameter::Juggler"!
 
-    frut::PluginParameterBoolean *ParameterTransientMode =
-        new frut::PluginParameterBoolean("On", "Off");
+    frut::parameter::ParBoolean *ParameterTransientMode =
+        new frut::parameter::ParBoolean("On", "Off");
     ParameterTransientMode->setName("Transient mode");
     ParameterTransientMode->setDefaultBoolean(true, true);
     add(ParameterTransientMode, selTransientMode);
 
 
-    frut::PluginParameterSwitch *ParameterCrestFactor =
-        new frut::PluginParameterSwitch();
+    frut::parameter::ParSwitch *ParameterCrestFactor =
+        new frut::parameter::ParSwitch();
     ParameterCrestFactor->setName("Crest factor");
 
     ParameterCrestFactor->addPreset(0.0f,  "0 dB (digital full-scale)");
@@ -53,15 +54,15 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    frut::PluginParameterBoolean *ParameterMixMode =
-        new frut::PluginParameterBoolean("On", "Off");
+    frut::parameter::ParBoolean *ParameterMixMode =
+        new frut::parameter::ParBoolean("On", "Off");
     ParameterMixMode->setName("Mixing mode");
     ParameterMixMode->setDefaultBoolean(false, true);
     add(ParameterMixMode, selMixMode);
 
 
-    frut::PluginParameterSwitch *ParameterGain =
-        new frut::PluginParameterSwitch();
+    frut::parameter::ParSwitch *ParameterGain =
+        new frut::parameter::ParSwitch();
     ParameterGain->setName("Gain");
 
     ParameterGain->addPreset(-12.0f, "-12 dB");
@@ -94,8 +95,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterGain, selGain);
 
 
-    frut::PluginParameterSwitch *ParameterMeterType =
-        new frut::PluginParameterSwitch();
+    frut::parameter::ParSwitch *ParameterMeterType =
+        new frut::parameter::ParSwitch();
     ParameterMeterType->setName("Meter type");
 
     ParameterMeterType->addPreset(selSplitMeters,     "Split");
@@ -105,14 +106,14 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterMeterType, selMeterType);
 
 
-    frut::PluginParameterString *ParameterValidationFileName =
-        new frut::PluginParameterString(String::empty);
+    frut::parameter::ParString *ParameterValidationFileName =
+        new frut::parameter::ParString(String::empty);
     ParameterValidationFileName->setName("Validation file");
     add(ParameterValidationFileName, selValidationFileName);
 
 
-    frut::PluginParameterSwitch *ParameterValidationSelectedChannel =
-        new frut::PluginParameterSwitch();
+    frut::parameter::ParSwitch *ParameterValidationSelectedChannel =
+        new frut::parameter::ParSwitch();
     ParameterValidationSelectedChannel->setName("Validation audio channel");
 
     // values correspond to the channel index in AudioSampleBuffer
@@ -132,22 +133,22 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterValidationSelectedChannel, selValidationSelectedChannel);
 
 
-    frut::PluginParameterBoolean *ParameterValidationAverageMeterLevel =
-        new frut::PluginParameterBoolean("On", "Off");
+    frut::parameter::ParBoolean *ParameterValidationAverageMeterLevel =
+        new frut::parameter::ParBoolean("On", "Off");
     ParameterValidationAverageMeterLevel->setName("Validate average meter level");
     ParameterValidationAverageMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationAverageMeterLevel, selValidationAverageMeterLevel);
 
 
-    frut::PluginParameterBoolean *ParameterValidationPeakMeterLevel =
-        new frut::PluginParameterBoolean("On", "Off");
+    frut::parameter::ParBoolean *ParameterValidationPeakMeterLevel =
+        new frut::parameter::ParBoolean("On", "Off");
     ParameterValidationPeakMeterLevel->setName("Validate peak meter level");
     ParameterValidationPeakMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationPeakMeterLevel, selValidationPeakMeterLevel);
 
 
-    frut::PluginParameterBoolean *ParameterValidationCSVFormat =
-        new frut::PluginParameterBoolean("CSV", "Full");
+    frut::parameter::ParBoolean *ParameterValidationCSVFormat =
+        new frut::parameter::ParBoolean("CSV", "Full");
     ParameterValidationCSVFormat->setName("Validation output format");
     ParameterValidationCSVFormat->setDefaultBoolean(false, true);
     add(ParameterValidationCSVFormat, selValidationCSVFormat);
@@ -173,8 +174,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     // load name of default skin from file
     String defaultSkinName = defaultSkinFile.loadFileAsString();
 
-    frut::PluginParameterString *ParameterSkinName =
-        new frut::PluginParameterString(defaultSkinName);
+    frut::parameter::ParString *ParameterSkinName =
+        new frut::parameter::ParString(defaultSkinName);
     ParameterSkinName->setName("Skin");
     add(ParameterSkinName, selSkinName);
 }
