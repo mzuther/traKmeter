@@ -59,8 +59,8 @@ private:
     bool bReportAverageMeterLevel;
     bool bReportPeakMeterLevel;
 
-    Array<frut::Averager> arrAverager_AverageMeterLevels;
-    Array<frut::Averager> arrAverager_PeakMeterLevels;
+    Array<frut::math::Averager> arrAverager_AverageMeterLevels;
+    Array<frut::math::Averager> arrAverager_PeakMeterLevels;
 
     ScopedPointer<AudioFormatReaderSource> audioFileSource;
     MeterBallistics *pMeterBallistics;
@@ -72,7 +72,7 @@ private:
     String formatTime(void);
     String formatValue(const float fValue);
 
-    void outputValue(const float fValue, frut::Averager &averager, const float fCorrectionFactor, const String &strPrefix, const String &strSuffix);
+    void outputValue(const float fValue, frut::math::Averager &averager, const float fCorrectionFactor, const String &strPrefix, const String &strSuffix);
     void outputMessage(const String &strMessage);
 };
 

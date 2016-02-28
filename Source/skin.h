@@ -31,7 +31,7 @@
 
 
 class Skin :
-    public frut::GenericSkin
+    public frut::skin::Skin
 {
 public:
     void loadSkin(File &skinFile,
