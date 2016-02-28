@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{B2B7B2B7-7CE0-570D-E0E5-73208BCAF66F}</ProjectGuid>
+		<ProjectGuid>{6A4BFB27-C7C4-5183-94E9-5468516CC24C}</ProjectGuid>
 		<RootNamespace>trakmeter (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>

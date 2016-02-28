@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{0CDDC281-4CC0-5C50-5805-70E6E2C0CCC7}</ProjectGuid>
+		<ProjectGuid>{2F22B253-03F5-0624-1BAC-DBA181F6C0C0}</ProjectGuid>
 		<RootNamespace>trakmeter (Stereo)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>

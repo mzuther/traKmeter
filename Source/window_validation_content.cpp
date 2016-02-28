@@ -138,7 +138,7 @@ void WindowValidationContent::initialise(
 
 {
     // call method of super class
-    GenericWindowValidationContent::initialise(
+    frut::GenericWindowValidationContent::initialise(
         componentWidth,
         componentHeight,
         numberOfInputChannels,
@@ -199,7 +199,7 @@ void WindowValidationContent::initialise(
 void WindowValidationContent::applySkin()
 {
     // call method of super class
-    GenericWindowValidationContent::applySkin();
+    frut::GenericWindowValidationContent::applySkin();
 
     // style button for selecting the validation output format
     buttonDumpCSV_.setColour(
@@ -303,7 +303,7 @@ void WindowValidationContent::buttonClicked(Button *button)
     // otherwise, use handling of super class
     else
     {
-        GenericWindowValidationContent::buttonClicked(button);
+        frut::GenericWindowValidationContent::buttonClicked(button);
     }
 }
 

@@ -33,7 +33,7 @@
 
 
 //============================================================================
-class TraKmeterAudioProcessor : public AudioProcessor, public ActionBroadcaster, virtual public AudioRingBufferProcessor
+class TraKmeterAudioProcessor : public AudioProcessor, public ActionBroadcaster, virtual public frut::AudioRingBufferProcessor
 {
 public:
     //==========================================================================
@@ -122,14 +122,14 @@ private:
     JUCE_LEAK_DETECTOR(TraKmeterAudioProcessor);
 
     ScopedPointer<AudioFilePlayer> audioFilePlayer;
-    ScopedPointer<AudioRingBuffer> pRingBufferInput;
+    ScopedPointer<frut::AudioRingBuffer> pRingBufferInput;
 
     ScopedPointer<MeterBallistics> pMeterBallistics;
 
     const int nTrakmeterBufferSize;
 
     TraKmeterPluginParameters pluginParameters;
-    Dither dither;
+    frut::Dither dither;
 
     int nNumInputChannels;
     bool bSampleRateIsValid;
@@ -143,7 +143,7 @@ private:
     int nDecibels;
     double dGain;
 
-    int countOverflows(AudioRingBuffer *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay);
+    int countOverflows(frut::AudioRingBuffer *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay);
 };
 
 AudioProcessor *JUCE_CALLTYPE createPluginFilter();

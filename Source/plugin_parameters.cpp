@@ -35,13 +35,15 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
 {
     // parameters created here will be deleted in "ParameterJuggler"!
 
-    PluginParameterBoolean *ParameterTransientMode = new PluginParameterBoolean("On", "Off");
+    frut::PluginParameterBoolean *ParameterTransientMode =
+        new frut::PluginParameterBoolean("On", "Off");
     ParameterTransientMode->setName("Transient mode");
     ParameterTransientMode->setDefaultBoolean(true, true);
     add(ParameterTransientMode, selTransientMode);
 
 
-    PluginParameterSwitch *ParameterCrestFactor = new PluginParameterSwitch();
+    frut::PluginParameterSwitch *ParameterCrestFactor =
+        new frut::PluginParameterSwitch();
     ParameterCrestFactor->setName("Crest factor");
 
     ParameterCrestFactor->addPreset(0.0f,  "0 dB (digital full-scale)");
@@ -51,13 +53,15 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    PluginParameterBoolean *ParameterMixMode = new PluginParameterBoolean("On", "Off");
+    frut::PluginParameterBoolean *ParameterMixMode =
+        new frut::PluginParameterBoolean("On", "Off");
     ParameterMixMode->setName("Mixing mode");
     ParameterMixMode->setDefaultBoolean(false, true);
     add(ParameterMixMode, selMixMode);
 
 
-    PluginParameterSwitch *ParameterGain = new PluginParameterSwitch();
+    frut::PluginParameterSwitch *ParameterGain =
+        new frut::PluginParameterSwitch();
     ParameterGain->setName("Gain");
 
     ParameterGain->addPreset(-12.0f, "-12 dB");
@@ -90,7 +94,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterGain, selGain);
 
 
-    PluginParameterSwitch *ParameterMeterType = new PluginParameterSwitch();
+    frut::PluginParameterSwitch *ParameterMeterType =
+        new frut::PluginParameterSwitch();
     ParameterMeterType->setName("Meter type");
 
     ParameterMeterType->addPreset(selSplitMeters,     "Split");
@@ -100,12 +105,14 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterMeterType, selMeterType);
 
 
-    PluginParameterString *ParameterValidationFileName = new PluginParameterString(String::empty);
+    frut::PluginParameterString *ParameterValidationFileName =
+        new frut::PluginParameterString(String::empty);
     ParameterValidationFileName->setName("Validation file");
     add(ParameterValidationFileName, selValidationFileName);
 
 
-    PluginParameterSwitch *ParameterValidationSelectedChannel = new PluginParameterSwitch();
+    frut::PluginParameterSwitch *ParameterValidationSelectedChannel =
+        new frut::PluginParameterSwitch();
     ParameterValidationSelectedChannel->setName("Validation audio channel");
 
     // values correspond to the channel index in AudioSampleBuffer
@@ -125,19 +132,22 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterValidationSelectedChannel, selValidationSelectedChannel);
 
 
-    PluginParameterBoolean *ParameterValidationAverageMeterLevel = new PluginParameterBoolean("On", "Off");
+    frut::PluginParameterBoolean *ParameterValidationAverageMeterLevel =
+        new frut::PluginParameterBoolean("On", "Off");
     ParameterValidationAverageMeterLevel->setName("Validate average meter level");
     ParameterValidationAverageMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationAverageMeterLevel, selValidationAverageMeterLevel);
 
 
-    PluginParameterBoolean *ParameterValidationPeakMeterLevel = new PluginParameterBoolean("On", "Off");
+    frut::PluginParameterBoolean *ParameterValidationPeakMeterLevel =
+        new frut::PluginParameterBoolean("On", "Off");
     ParameterValidationPeakMeterLevel->setName("Validate peak meter level");
     ParameterValidationPeakMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationPeakMeterLevel, selValidationPeakMeterLevel);
 
 
-    PluginParameterBoolean *ParameterValidationCSVFormat = new PluginParameterBoolean("CSV", "Full");
+    frut::PluginParameterBoolean *ParameterValidationCSVFormat =
+        new frut::PluginParameterBoolean("CSV", "Full");
     ParameterValidationCSVFormat->setName("Validation output format");
     ParameterValidationCSVFormat->setDefaultBoolean(false, true);
     add(ParameterValidationCSVFormat, selValidationCSVFormat);
@@ -163,7 +173,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     // load name of default skin from file
     String defaultSkinName = defaultSkinFile.loadFileAsString();
 
-    PluginParameterString *ParameterSkinName = new PluginParameterString(defaultSkinName);
+    frut::PluginParameterString *ParameterSkinName =
+        new frut::PluginParameterString(defaultSkinName);
     ParameterSkinName->setName("Skin");
     add(ParameterSkinName, selSkinName);
 }

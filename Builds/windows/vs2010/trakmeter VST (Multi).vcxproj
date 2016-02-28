@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{1294423C-6AA3-9175-68F8-2CB0042C285C}</ProjectGuid>
+		<ProjectGuid>{6094B630-0C5C-B432-51DC-50D68E2C7043}</ProjectGuid>
 		<RootNamespace>trakmeter VST (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>

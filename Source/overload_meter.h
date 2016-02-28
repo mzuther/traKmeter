@@ -33,7 +33,8 @@
 //==============================================================================
 /**
 */
-class OverloadMeter : public GenericStateLabel
+class OverloadMeter :
+    public frut::GenericStateLabel
 {
 public:
     OverloadMeter(float fThreshold, int nCrestFactor);

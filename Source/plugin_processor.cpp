@@ -44,8 +44,8 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
     nTrakmeterBufferSize(1024),
     dither(24)
 {
+    Logger::outputDebugString(String("FRUT v") + frut::Common::getVersion());
     Logger::outputDebugString(String("App  v") + JucePlugin_VersionString);
-    Logger::outputDebugString(String("Comm v") + Frut::getVersion());
     Logger::outputDebugString("");
 
     bSampleRateIsValid = false;
@@ -408,7 +408,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     nSamplesInBuffer = 0;
     unsigned int uRingBufferSize = (samplesPerBlock > nTrakmeterBufferSize) ? samplesPerBlock : nTrakmeterBufferSize;
 
-    pRingBufferInput = new AudioRingBuffer("Input ring buffer", nNumInputChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
+    pRingBufferInput = new frut::AudioRingBuffer("Input ring buffer", nNumInputChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
     pRingBufferInput->setCallbackClass(this);
 }
 
@@ -587,7 +587,7 @@ bool TraKmeterAudioProcessor::isValidating()
 }
 
 
-int TraKmeterAudioProcessor::countOverflows(AudioRingBuffer *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay)
+int TraKmeterAudioProcessor::countOverflows(frut::AudioRingBuffer *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay)
 {
     // initialise number of overflows in this buffer
     int nOverflows = 0;

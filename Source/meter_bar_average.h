@@ -30,11 +30,11 @@
 
 
 class MeterBarAverage :
-    public GenericMeterBar
+    public frut::GenericMeterBar
 {
 public:
     void create(int crestFactor,
-                GenericMeterOrientation orientation,
+                frut::GenericMeterOrientation orientation,
                 bool discreteMeter,
                 bool showCombinedMeters,
                 int mainSegmentHeight,
