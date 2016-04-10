@@ -61,11 +61,11 @@
 #ifdef TRAKMETER_MULTI
   #define JucePlugin_MaxNumInputChannels  8
   #define JucePlugin_MaxNumOutputChannels 8
-  #define JucePlugin_PreferredChannelConfigurations   {4, 4}, {6, 6}, {8, 8}
+  #define JucePlugin_PreferredChannelConfigurations   {8, 8}
 #else
   #define JucePlugin_MaxNumInputChannels  2
   #define JucePlugin_MaxNumOutputChannels 2
-  #define JucePlugin_PreferredChannelConfigurations   {1, 1}, {2, 2}
+  #define JucePlugin_PreferredChannelConfigurations   {2, 2}
 #endif
 
 #define JUCE_USE_FLAC  1
@@ -340,13 +340,13 @@
  #define JucePlugin_EditorRequiresKeyboardFocus  0
 #endif
 #ifndef  JucePlugin_Version
- #define JucePlugin_Version                2.0.3
+ #define JucePlugin_Version                2.1.0
 #endif
 #ifndef  JucePlugin_VersionCode
- #define JucePlugin_VersionCode            0x20003
+ #define JucePlugin_VersionCode            0x20100
 #endif
 #ifndef  JucePlugin_VersionString
- #define JucePlugin_VersionString          "2.0.3"
+ #define JucePlugin_VersionString          "2.1.0"
 #endif
 #ifndef  JucePlugin_VSTUniqueID
  #define JucePlugin_VSTUniqueID            JucePlugin_PluginCode
@@ -412,7 +412,7 @@
  #define JucePlugin_MaxNumOutputChannels   2
 #endif
 #ifndef  JucePlugin_PreferredChannelConfigurations
- #define JucePlugin_PreferredChannelConfigurations  {1, 1}, {2, 2}
+ #define JucePlugin_PreferredChannelConfigurations  {2, 2}
 #endif
 
 #endif  // __JUCE_APPCONFIG_LEMWQ6__

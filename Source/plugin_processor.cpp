@@ -275,30 +275,6 @@ void TraKmeterAudioProcessor::setParameterSkinName(const String &strSkinName)
 }
 
 
-const String TraKmeterAudioProcessor::getInputChannelName(int channelIndex) const
-{
-    return "Input " + String(channelIndex + 1);
-}
-
-
-const String TraKmeterAudioProcessor::getOutputChannelName(int channelIndex) const
-{
-    return "Output " + String(channelIndex + 1);
-}
-
-
-bool TraKmeterAudioProcessor::isInputChannelStereoPair(int nIndex) const
-{
-    return true;
-}
-
-
-bool TraKmeterAudioProcessor::isOutputChannelStereoPair(int nIndex) const
-{
-    return true;
-}
-
-
 bool TraKmeterAudioProcessor::acceptsMidi() const
 {
 #if JucePlugin_WantsMidiInput
