@@ -385,7 +385,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     }
 
     isSilent = false;
-    nNumInputChannels = getNumInputChannels();
+    nNumInputChannels = getMainBusNumInputChannels();
 
     if (nNumInputChannels <= 0)
     {
@@ -435,7 +435,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
 
     if (!bSampleRateIsValid)
     {
-        for (int nChannel = 0; nChannel < getNumOutputChannels(); ++nChannel)
+        for (int nChannel = 0; nChannel < getMainBusNumOutputChannels(); ++nChannel)
         {
             buffer.clear(nChannel, 0, nNumSamples);
         }
@@ -453,7 +453,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
     // output channels that didn't contain input data, because these
     // aren't guaranteed to be empty -- they may contain garbage.
 
-    for (int nChannel = nNumInputChannels; nChannel < getNumOutputChannels(); ++nChannel)
+    for (int nChannel = nNumInputChannels; nChannel < getMainBusNumOutputChannels(); ++nChannel)
     {
         buffer.clear(nChannel, 0, nNumSamples);
     }
