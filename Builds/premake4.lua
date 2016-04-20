@@ -73,6 +73,11 @@ solution "trakmeter"
 		"../libraries/"
 	}
 
+	linkoptions {
+	   -- check for unresolved symbols in shared libraries
+		"-Wl,--no-undefined"
+	}
+
 	targetdir "../bin/"
 
 	configuration { "Debug*" }
@@ -106,9 +111,10 @@ solution "trakmeter"
 		targetprefix ""
 
 		defines {
-			"TRAKMETER_STAND_ALONE=1",
 			"TRAKMETER_STEREO=1",
-			"JUCE_USE_VSTSDK_2_4=0"
+			"JucePlugin_Build_LV2=0",
+			"JucePlugin_Build_Standalone=1",
+			"JucePlugin_Build_VST=0"
 		}
 
 		configuration {"linux"}
@@ -152,11 +158,11 @@ solution "trakmeter"
 		targetprefix ""
 
 		defines {
-			"TRAKMETER_STAND_ALONE=1",
 			"TRAKMETER_MULTI=1",
-			"JUCE_USE_VSTSDK_2_4=0"
+			"JucePlugin_Build_LV2=0",
+			"JucePlugin_Build_Standalone=1",
+			"JucePlugin_Build_VST=0"
 		}
-
 
 		configuration {"linux"}
 			defines {
@@ -199,9 +205,10 @@ solution "trakmeter"
 		targetprefix ""
 
 		defines {
-			"TRAKMETER_LV2_PLUGIN=1",
 			"TRAKMETER_STEREO=1",
-			"JUCE_USE_VSTSDK_2_4=0"
+			"JucePlugin_Build_LV2=1",
+			"JucePlugin_Build_Standalone=0",
+			"JucePlugin_Build_VST=0"
 		}
 
 		files {
@@ -210,6 +217,7 @@ solution "trakmeter"
 		}
 
 		excludes {
+			"../Source/main.cpp",
 			"../Source/standalone_application.h",
 			"../Source/standalone_application.cpp"
 		}
@@ -254,9 +262,10 @@ solution "trakmeter"
 		targetprefix ""
 
 		defines {
-			"TRAKMETER_LV2_PLUGIN=1",
 			"TRAKMETER_MULTI=1",
-			"JUCE_USE_VSTSDK_2_4=0"
+			"JucePlugin_Build_LV2=1",
+			"JucePlugin_Build_Standalone=0",
+			"JucePlugin_Build_VST=0"
 		}
 
 		files {
@@ -265,6 +274,7 @@ solution "trakmeter"
 		}
 
 		excludes {
+			"../Source/main.cpp",
 			"../Source/standalone_application.h",
 			"../Source/standalone_application.cpp"
 		}
@@ -309,9 +319,10 @@ solution "trakmeter"
 		targetprefix ""
 
 		defines {
-			"TRAKMETER_VST_PLUGIN=1",
 			"TRAKMETER_STEREO=1",
-			"JUCE_USE_VSTSDK_2_4=1"
+			"JucePlugin_Build_LV2=0",
+			"JucePlugin_Build_Standalone=0",
+			"JucePlugin_Build_VST=1"
 		}
 
 		includedirs {
@@ -324,6 +335,7 @@ solution "trakmeter"
 		}
 
 		excludes {
+			"../Source/main.cpp",
 			"../Source/standalone_application.h",
 			"../Source/standalone_application.cpp"
 		}
@@ -368,9 +380,10 @@ solution "trakmeter"
 		targetprefix ""
 
 		defines {
-			"TRAKMETER_VST_PLUGIN=1",
 			"TRAKMETER_MULTI=1",
-			"JUCE_USE_VSTSDK_2_4=1"
+			"JucePlugin_Build_LV2=0",
+			"JucePlugin_Build_Standalone=0",
+			"JucePlugin_Build_VST=1"
 		}
 
 		includedirs {
@@ -383,6 +396,7 @@ solution "trakmeter"
 		}
 
 		excludes {
+			"../Source/main.cpp",
 			"../Source/standalone_application.h",
 			"../Source/standalone_application.cpp"
 		}
