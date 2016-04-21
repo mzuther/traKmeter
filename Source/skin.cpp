@@ -26,7 +26,7 @@
 #include "skin.h"
 
 
-void Skin::loadSkin(
+bool Skin::loadSkin(
     File &skinFile,
     int numberOfChannels,
     int crestFactor,
@@ -37,7 +37,7 @@ void Skin::loadSkin(
                crestFactor,
                meterType);
 
-    loadFromXml(skinFile, "trakmeter-skin");
+    return loadFromXml(skinFile, "trakmeter-skin", "1.1");
 }
 
 
