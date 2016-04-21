@@ -14,12 +14,18 @@
               companyWebsite="http://code.mzuther.de/" pluginVSTCategory="kPlugCategAnalysis"
               pluginIsMidiEffectPlugin="0">
   <EXPORTFORMATS>
-    <LINUX_MAKE targetFolder="Builds/Linux">
+    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/Documents/code/cpp/libraries/vstsdk3.6.5"
+                extraCompilerFlags="" cppLanguageStandard="-std=c++11" externalLibraries="dl&#10;freetype&#10;pthread&#10;rt&#10;X11&#10;Xext&#10;asound"
+                extraDefs="JucePlugin_Build_LV2=0&#10;JucePlugin_Build_Standalone=0&#10;JucePlugin_Build_VST=1&#10;JucePlugin_Build_VST3=0&#10;TRAKMETER_STEREO=1&#10;LINUX=1"
+                userNotes="Add &quot;Source/main.cpp&quot; when building the stand-alone."
+                extraLinkerFlags="">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="traKmeter"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="2"
-                       targetName="traKmeter"/>
+                       targetName="traKmeter" defines="NDEBUG=1&#10;JUCE_CHECK_MEMORY_LEAKS=0"
+                       headerPath="../../JuceLibraryCode&#10;../../Source/common&#10;../../libraries&#10;/usr/include&#10;/usr/include/freetype2"/>
+        <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
+                       targetName="traKmeter" headerPath="../../JuceLibraryCode&#10;../../Source/common&#10;../../libraries&#10;/usr/include&#10;/usr/include/freetype2"
+                       defines="_DEBUG=1&#10;DEBUG=1&#10;JUCE_CHECK_MEMORY_LEAKS=1"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_audio_basics" path="libraries/juce/modules"/>
@@ -64,7 +70,6 @@
           file="Source/audio_file_player.cpp"/>
     <FILE id="IOhyCT" name="audio_file_player.h" compile="0" resource="0"
           file="Source/audio_file_player.h"/>
-    <FILE id="sc0U3Q" name="main.cpp" compile="1" resource="0" file="Source/main.cpp"/>
     <FILE id="YbvchS" name="meter_ballistics.cpp" compile="1" resource="0"
           file="Source/meter_ballistics.cpp"/>
     <FILE id="ePzRc9" name="meter_ballistics.h" compile="0" resource="0"
