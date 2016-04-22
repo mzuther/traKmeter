@@ -2,61 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 	<ItemGroup>
 		<Filter Include="Source">
-			<UniqueIdentifier>{556B3D7D-53D1-C6D0-9870-EEB2C47DB304}</UniqueIdentifier>
+			<UniqueIdentifier>{F8C8747A-E43A-0D80-098D-BFFC88C95365}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="Source\common">
-			<UniqueIdentifier>{9488FAA1-F1E9-CDFA-E05B-A866850DF8A6}</UniqueIdentifier>
+			<UniqueIdentifier>{DE56D712-00C1-591E-4DC0-57BFED650F16}</UniqueIdentifier>
 		</Filter>
 		<Filter Include="Source\common\amalgamated">
-			<UniqueIdentifier>{72079A9D-F607-BC86-EABE-DE6A80B30E8B}</UniqueIdentifier>
+			<UniqueIdentifier>{5C1EDCD6-4864-F5A3-981B-26F74847FE6A}</UniqueIdentifier>
 		</Filter>
-		<Filter Include="libraries">
-			<UniqueIdentifier>{FA0F3D9C-E10D-738B-6A91-F34379479251}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce">
-			<UniqueIdentifier>{FD502855-95C5-4F6E-3A5C-2CCE5D1851BF}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules">
-			<UniqueIdentifier>{784801C8-D7DC-2F4B-6841-DFFF6EFB77DC}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_audio_basics">
-			<UniqueIdentifier>{36E8E154-8583-FABC-8A2F-AD8AE577F04F}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_audio_devices">
-			<UniqueIdentifier>{8639FCC4-77E0-E8A2-629B-58BB4CF6758C}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_audio_formats">
-			<UniqueIdentifier>{C01AE6A5-33F5-A6D3-649E-8E0940E0546A}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_audio_processors">
-			<UniqueIdentifier>{310746FA-5304-14C0-25CF-DBF6A3D68AAF}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_audio_utils">
-			<UniqueIdentifier>{E9A64953-3D8B-F51B-16C0-777265E44D47}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_core">
-			<UniqueIdentifier>{28E913E5-5402-3AEF-D9A4-493F984BC903}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_cryptography">
-			<UniqueIdentifier>{EE0BEA07-B663-F217-9631-B202223ED072}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_data_structures">
-			<UniqueIdentifier>{06E3C54A-67BB-73DC-D32C-E6CC9FBC36C0}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_events">
-			<UniqueIdentifier>{F1FF4640-326B-15E4-3CFD-7965B2EEF427}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_graphics">
-			<UniqueIdentifier>{09E21E89-5D5F-0316-427C-D0EFB13FCFB3}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_gui_basics">
-			<UniqueIdentifier>{A2DCC519-1625-3F48-814F-B6F401A6C05B}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_gui_extra">
-			<UniqueIdentifier>{01416843-6B1D-B5D9-DB13-0EBB0F8C76D5}</UniqueIdentifier>
-		</Filter>
-		<Filter Include="libraries\juce\modules\juce_video">
-			<UniqueIdentifier>{457CFB53-8443-DD66-6BAC-08C7D6C6DAF2}</UniqueIdentifier>
+		<Filter Include="JuceLibraryCode">
+			<UniqueIdentifier>{0FEA979B-D80C-00A3-CB5A-7C27A8F5FE2E}</UniqueIdentifier>
 		</Filter>
 	</ItemGroup>
 	<ItemGroup>
@@ -131,9 +86,6 @@
 		<ClCompile Include="..\..\..\Source\common\amalgamated\frut_audio.cpp">
 			<Filter>Source\common\amalgamated</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\main.cpp">
-			<Filter>Source</Filter>
-		</ClCompile>
 		<ClCompile Include="..\..\..\Source\plugin_editor.cpp">
 			<Filter>Source</Filter>
 		</ClCompile>
@@ -170,44 +122,47 @@
 		<ClCompile Include="..\..\..\Source\window_validation_content.cpp">
 			<Filter>Source</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_audio_basics\juce_audio_basics.cpp">
-			<Filter>libraries\juce\modules\juce_audio_basics</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_audio_basics.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_audio_devices\juce_audio_devices.cpp">
-			<Filter>libraries\juce\modules\juce_audio_devices</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_audio_devices.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_audio_formats\juce_audio_formats.cpp">
-			<Filter>libraries\juce\modules\juce_audio_formats</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_audio_formats.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_audio_processors\juce_audio_processors.cpp">
-			<Filter>libraries\juce\modules\juce_audio_processors</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_audio_plugin_client_utils.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_audio_utils\juce_audio_utils.cpp">
-			<Filter>libraries\juce\modules\juce_audio_utils</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_audio_processors.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_core\juce_core.cpp">
-			<Filter>libraries\juce\modules\juce_core</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_audio_utils.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_cryptography\juce_cryptography.cpp">
-			<Filter>libraries\juce\modules\juce_cryptography</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_core.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_data_structures\juce_data_structures.cpp">
-			<Filter>libraries\juce\modules\juce_data_structures</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_cryptography.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_events\juce_events.cpp">
-			<Filter>libraries\juce\modules\juce_events</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_data_structures.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_graphics\juce_graphics.cpp">
-			<Filter>libraries\juce\modules\juce_graphics</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_events.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_gui_basics\juce_gui_basics.cpp">
-			<Filter>libraries\juce\modules\juce_gui_basics</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_graphics.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_gui_extra\juce_gui_extra.cpp">
-			<Filter>libraries\juce\modules\juce_gui_extra</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_gui_basics.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
-		<ClCompile Include="..\..\..\libraries\juce\modules\juce_video\juce_video.cpp">
-			<Filter>libraries\juce\modules\juce_video</Filter>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_gui_extra.cpp">
+			<Filter>JuceLibraryCode</Filter>
+		</ClCompile>
+		<ClCompile Include="..\..\..\JuceLibraryCode\juce_video.cpp">
+			<Filter>JuceLibraryCode</Filter>
 		</ClCompile>
 	</ItemGroup>
 </Project>

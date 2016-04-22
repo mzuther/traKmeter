@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="LEmwq6" name="traKmeter" projectType="audioplug" version="2.1.0"
+<JUCERPROJECT id="PtvFE5" name="traKmeter" projectType="audioplug" version="2.2.0"
               bundleIdentifier="de.mzuther.traKmeter" buildVST="1" buildRTAS="0"
               buildAU="0" pluginName="traKmeter" pluginDesc="Loudness meter for correctly setting up tracking and mixing levels"
               pluginManufacturer="Martin Zuther" pluginManufacturerCode="MZut"
@@ -8,16 +8,16 @@
               pluginWantsMidiIn="0" pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="1"
               pluginTailLength="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="traKmeterAU"
               pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="ePlugInCategory_None"
-              jucerVersion="4.1.0" companyName="Martin Zuther" aaxIdentifier="de.mzuther.traKmeter"
+              jucerVersion="4.2.1" companyName="Martin Zuther" aaxIdentifier="de.mzuther.traKmeter"
               pluginAAXCategory="AAX_ePlugInCategory_None" includeBinaryInAppConfig="1"
               buildVST3="0" buildAAX="0" pluginManufacturerEmail="support@yourcompany.com"
               companyWebsite="http://code.mzuther.de/" pluginVSTCategory="kPlugCategAnalysis"
-              pluginIsMidiEffectPlugin="0">
+              pluginIsMidiEffectPlugin="0" buildAUv3="0">
   <EXPORTFORMATS>
     <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/Documents/code/cpp/libraries/vstsdk3.6.5"
                 extraCompilerFlags="" cppLanguageStandard="-std=c++11" externalLibraries="dl&#10;freetype&#10;pthread&#10;rt&#10;X11&#10;Xext&#10;asound"
                 extraDefs="JucePlugin_Build_LV2=0&#10;JucePlugin_Build_Standalone=0&#10;JucePlugin_Build_VST=1&#10;JucePlugin_Build_VST3=0&#10;TRAKMETER_STEREO=1&#10;LINUX=1"
-                userNotes="Add &quot;Source/main.cpp&quot; when building the stand-alone."
+                userNotes="Add &quot;Source/standalone_application.*&quot; when building the stand-alone."
                 extraLinkerFlags="">
       <CONFIGURATIONS>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="2"
@@ -99,10 +99,6 @@
           file="Source/plugin_processor.h"/>
     <FILE id="eBvKOw" name="skin.cpp" compile="1" resource="0" file="Source/skin.cpp"/>
     <FILE id="gN7wbh" name="skin.h" compile="0" resource="0" file="Source/skin.h"/>
-    <FILE id="s60GMe" name="standalone_application.cpp" compile="1" resource="0"
-          file="Source/standalone_application.cpp"/>
-    <FILE id="woY3v8" name="standalone_application.h" compile="0" resource="0"
-          file="Source/standalone_application.h"/>
     <FILE id="z7JQPD" name="trakmeter.cpp" compile="1" resource="0" file="Source/trakmeter.cpp"/>
     <FILE id="CpjVI9" name="trakmeter.h" compile="0" resource="0" file="Source/trakmeter.h"/>
     <FILE id="RL1kDv" name="window_validation_content.cpp" compile="1"
