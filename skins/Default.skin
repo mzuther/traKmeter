@@ -150,23 +150,23 @@
 
     <stereo_split_k20>
         <background
-            image="backgrounds/stereo/background_split.png" />
+            image="backgrounds/stereo/background_stereo_split.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/stereo/graduation_split_k20.png"
+            image="backgrounds/stereo/graduation_stereo_split_k20.png"
         />
     </stereo_split_k20>
 
     <stereo_split_normal>
         <background
-            image="backgrounds/stereo/background_split.png" />
+            image="backgrounds/stereo/background_stereo_split.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/stereo/graduation_split_normal.png"
+            image="backgrounds/stereo/graduation_stereo_split_normal.png"
         />
     </stereo_split_normal>
 
@@ -226,23 +226,23 @@
 
     <stereo_combined_k20>
         <background
-            image="backgrounds/stereo/background_combined.png" />
+            image="backgrounds/stereo/background_stereo_combined.png" />
 
         <meter_graduation
             x="15"
             y="40"
-            image="backgrounds/stereo/graduation_combined_k20.png"
+            image="backgrounds/stereo/graduation_stereo_combined_k20.png"
         />
     </stereo_combined_k20>
 
     <stereo_combined_normal>
         <background
-            image="backgrounds/stereo/background_combined.png" />
+            image="backgrounds/stereo/background_stereo_combined.png" />
 
         <meter_graduation
             x="15"
             y="40"
-            image="backgrounds/stereo/graduation_combined_normal.png"
+            image="backgrounds/stereo/graduation_stereo_combined_normal.png"
         />
     </stereo_combined_normal>
 
@@ -584,22 +584,22 @@
 
     <multi_split_k20>
         <background
-            image="backgrounds/multi/background_split.png" />
+            image="backgrounds/multi/background_multi_split.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/multi/graduation_split_k20.png" />
+            image="backgrounds/multi/graduation_multi_split_k20.png" />
     </multi_split_k20>
 
     <multi_split_normal>
         <background
-            image="backgrounds/multi/background_split.png" />
+            image="backgrounds/multi/background_multi_split.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/multi/graduation_split_normal.png" />
+            image="backgrounds/multi/graduation_multi_split_normal.png" />
     </multi_split_normal>
 
     <multi_combined>
@@ -884,22 +884,22 @@
 
     <multi_combined_k20>
         <background
-            image="backgrounds/multi/background_combined.png" />
+            image="backgrounds/multi/background_multi_combined.png" />
 
         <meter_graduation
             x="15"
             y="40"
-            image="backgrounds/multi/graduation_combined_k20.png" />
+            image="backgrounds/multi/graduation_multi_combined_k20.png" />
     </multi_combined_k20>
 
     <multi_combined_normal>
         <background
-            image="backgrounds/multi/background_combined.png" />
+            image="backgrounds/multi/background_multi_combined.png" />
 
         <meter_graduation
             x="15"
             y="40"
-            image="backgrounds/multi/graduation_combined_normal.png" />
+            image="backgrounds/multi/graduation_multi_combined_normal.png" />
     </multi_combined_normal>
 
 </trakmeter-skin>
