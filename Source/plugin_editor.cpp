@@ -126,9 +126,8 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     updateParameter(TraKmeterPluginParameters::selGain);
     updateParameter(TraKmeterPluginParameters::selMeterType);
 
-    // the following may or may not work on Mac
-    File fileApplicationDirectory = File::getSpecialLocation(File::currentApplicationFile).getParentDirectory();
-    skinDirectory = fileApplicationDirectory.getChildFile("./trakmeter/skins/");
+    // locate directory containing the skins
+    skinDirectory = TraKmeterPluginParameters::getSkinDirectory();
 
     // force meter reload after initialisation ...
     isInitialising = false;
