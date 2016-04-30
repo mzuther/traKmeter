@@ -44,9 +44,7 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
     nTrakmeterBufferSize(1024),
     dither(24)
 {
-    Logger::outputDebugString(String("FRUT v") + frut::Frut::getVersion());
-    Logger::outputDebugString(String("App  v") + JucePlugin_VersionString);
-    Logger::outputDebugString("");
+    frut::Frut::printVersionNumbers();
 
     bSampleRateIsValid = false;
     nNumInputChannels = 0;
