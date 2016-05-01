@@ -101,6 +101,46 @@ solution "trakmeter"
 			"Xext"
 		}
 
+	configuration { "windows" }
+		defines {
+			"_WINDOWS=1",
+			"_USE_MATH_DEFINES=1",
+		}
+
+		flags {
+				"EnableSSE",
+				"EnableSSE2",
+				"NoMinimalRebuild",
+				"StaticRuntime",
+				"Unicode",
+				"WinMain"
+		}
+
+		links {
+			"kernel32",
+			"user32",
+			"gdi32",
+			"winspool",
+			"comdlg32",
+			"advapi32",
+			"shell32",
+			"ole32",
+			"oleaut32",
+			"uuid",
+			"odbc32",
+			"odbccp32"
+		 }
+
+	configuration { "windows", "x32" }
+		defines {
+			"WIN32=1",
+		}
+
+	configuration { "windows", "x64" }
+		defines {
+			"WIN64=1",
+		}
+
 	configuration { "Debug*" }
 		defines { "_DEBUG=1", "DEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=1" }
 		flags { "Symbols" }
@@ -115,6 +155,12 @@ solution "trakmeter"
 	configuration { "linux", "Debug", "x64" }
 		targetsuffix "_debug_x64"
 
+	configuration { "windows", "Debug", "x32" }
+		targetsuffix ", Debug)"
+
+	configuration { "windows", "Debug", "x64" }
+		targetsuffix " x64, Debug)"
+
 	configuration { "Release*" }
 		defines { "NDEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=0" }
 		flags { "OptimizeSpeed", "NoFramePointer" }
@@ -128,6 +174,16 @@ solution "trakmeter"
 
 	configuration { "linux", "Release", "x64" }
 		targetsuffix "_x64"
+
+	configuration { "windows", "Release*" }
+		flags { "NoManifest" }
+		buildoptions { "/Zi" }
+
+	configuration { "windows", "Release", "x32" }
+		targetsuffix ")"
+
+	configuration { "windows", "Release", "x64" }
+		targetsuffix " x64)"
 
 --------------------------------------------------------------------------------
 
@@ -154,6 +210,21 @@ solution "trakmeter"
 
 			links {
 				"asound"
+			}
+
+		configuration { "windows" }
+			targetname "traKmeter (Stereo"
+
+			defines {
+				"JUCE_ALSA=0",
+				"JUCE_JACK=0",
+				"JUCE_ASIO=1",
+				"JUCE_WASAPI=1",
+				"JUCE_DIRECTSOUND=1"
+			}
+
+			includedirs {
+				"../libraries/asiosdk2.3/common"
 			}
 
 		configuration "Debug"
@@ -189,6 +260,21 @@ solution "trakmeter"
 				"asound"
 			}
 
+		configuration { "windows" }
+			targetname "traKmeter (Multi"
+
+			defines {
+				"JUCE_ALSA=0",
+				"JUCE_JACK=0",
+				"JUCE_ASIO=1",
+				"JUCE_WASAPI=1",
+				"JUCE_DIRECTSOUND=1"
+			}
+
+			includedirs {
+				"../libraries/asiosdk2.3/common"
+			}
+
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_multi_debug")
 
@@ -199,9 +285,6 @@ solution "trakmeter"
 
 	project ("trakmeter_vst_stereo")
 		kind "SharedLib"
-
-		configuration { "linux" }
-			targetname "trakmeter_stereo_vst"
 
 		defines {
 			"TRAKMETER_STEREO=1",
@@ -230,6 +313,12 @@ solution "trakmeter"
 		includedirs {
 			"../libraries/vstsdk3.6.5"
 		}
+
+		configuration { "linux" }
+			targetname "trakmeter_stereo_vst"
+
+		configuration { "windows" }
+			targetname "traKmeter (Stereo"
 
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_stereo_debug")
@@ -242,9 +331,6 @@ solution "trakmeter"
 	project ("trakmeter_vst_multi")
 		kind "SharedLib"
 
-		configuration { "linux" }
-			targetname "trakmeter_multi_vst"
-
 		defines {
 			"TRAKMETER_MULTI=1",
 			"JucePlugin_Build_LV2=0",
@@ -273,6 +359,12 @@ solution "trakmeter"
 			"../libraries/vstsdk3.6.5"
 		}
 
+		configuration { "linux" }
+			targetname "trakmeter_multi_vst"
+
+		configuration { "windows" }
+			targetname "traKmeter (Multi"
+
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_multi_debug")
 
@@ -281,11 +373,11 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
+-- create LV2 projects on Linux only
+if os.get() == "linux" then
+
 	project ("trakmeter_lv2_stereo")
 		kind "SharedLib"
-
-		configuration { "linux" }
-			targetname "trakmeter_stereo_lv2"
 
 		defines {
 			"TRAKMETER_STEREO=1",
@@ -311,19 +403,25 @@ solution "trakmeter"
 			"JUCE_DIRECTSOUND=0"
 		}
 
+		configuration { "linux" }
+			targetname "trakmeter_stereo_lv2"
+
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_debug")
 
 		configuration "Release"
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_release")
 
+-- create LV2 projects on Linux only
+end
+
 --------------------------------------------------------------------------------
+
+-- create LV2 projects on Linux only
+if os.get() == "linux" then
 
 	project ("trakmeter_lv2_multi")
 		kind "SharedLib"
-
-		configuration { "linux" }
-			targetname "trakmeter_multi_lv2"
 
 		defines {
 			"TRAKMETER_MULTI=1",
@@ -349,9 +447,14 @@ solution "trakmeter"
 			"JUCE_DIRECTSOUND=0"
 		}
 
+		configuration { "linux" }
+			targetname "trakmeter_multi_lv2"
+
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_debug")
 
 		configuration "Release"
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_release")
 
+-- create LV2 projects on Linux only
+end
