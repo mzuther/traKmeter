@@ -39,10 +39,12 @@ end
 
 solution "trakmeter"
 	language "C++"
-
 	platforms { "x32", "x64" }
-
 	configurations { "Debug", "Release" }
+
+	location (os.get() .. "/" .. _ACTION .. "/")
+	targetdir "../bin/"
+	targetprefix ""
 
 	files {
 		"../Source/common/FrutHeader.h",
@@ -75,42 +77,62 @@ solution "trakmeter"
 		"../libraries/"
 	}
 
-	linkoptions {
-	   -- check for unresolved symbols in shared libraries
-		"-Wl,--no-undefined"
-	}
+	configuration { "linux" }
+		defines {
+			"LINUX=1"
+		}
 
-	targetdir "../bin/"
+		includedirs {
+			"/usr/include",
+			"/usr/include/freetype2"
+		}
+
+		linkoptions {
+			-- check for unresolved symbols in shared libraries
+			"-Wl,--no-undefined"
+		}
+
+		links {
+			"dl",
+			"freetype",
+			"pthread",
+			"rt",
+			"X11",
+			"Xext"
+		}
 
 	configuration { "Debug*" }
 		defines { "_DEBUG=1", "DEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=1" }
-		flags { "Symbols", "ExtraWarnings" }
+		flags { "Symbols" }
+
+	configuration { "linux", "Debug*" }
+		flags { "ExtraWarnings" }
 		buildoptions { "-fno-inline", "-ggdb", "-std=c++11" }
+
+	configuration { "linux", "Debug", "x32" }
+		targetsuffix "_debug"
+
+	configuration { "linux", "Debug", "x64" }
+		targetsuffix "_debug_x64"
 
 	configuration { "Release*" }
 		defines { "NDEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=0" }
-		flags { "OptimizeSpeed", "NoFramePointer", "ExtraWarnings" }
+		flags { "OptimizeSpeed", "NoFramePointer" }
+
+	configuration { "linux", "Release*" }
+		flags { "ExtraWarnings" }
 		buildoptions { "-fvisibility=hidden", "-pipe", "-std=c++11" }
 
-	configuration { "Debug", "x32" }
-		targetsuffix "_debug"
-
-	configuration { "Debug", "x64" }
-		targetsuffix "_debug_x64"
-
-	configuration { "Release", "x32" }
+	configuration { "linux", "Release", "x32" }
 		targetsuffix ""
 
-	configuration { "Release", "x64" }
+	configuration { "linux", "Release", "x64" }
 		targetsuffix "_x64"
 
 --------------------------------------------------------------------------------
 
 	project ("trakmeter_standalone_stereo")
 		kind "WindowedApp"
-		location (os.get() .. "/standalone_stereo")
-		targetname "trakmeter_stereo"
-		targetprefix ""
 
 		defines {
 			"TRAKMETER_STEREO=1",
@@ -119,10 +141,10 @@ solution "trakmeter"
 			"JucePlugin_Build_VST=0"
 		}
 
-		configuration {"linux"}
+		configuration { "linux" }
+			targetname "trakmeter_stereo"
+
 			defines {
-				"LINUX=1",
-				"JUCE_USE_XSHM=1",
 				"JUCE_ALSA=1",
 				"JUCE_JACK=1",
 				"JUCE_ASIO=0",
@@ -131,18 +153,7 @@ solution "trakmeter"
 			}
 
 			links {
-				"dl",
-				"freetype",
-				"pthread",
-				"rt",
-				"X11",
-				"Xext",
 				"asound"
-			}
-
-			includedirs {
-				"/usr/include",
-				"/usr/include/freetype2"
 			}
 
 		configuration "Debug"
@@ -155,9 +166,6 @@ solution "trakmeter"
 
 	project ("trakmeter_standalone_multi")
 		kind "WindowedApp"
-		location (os.get() .. "/standalone_multi")
-		targetname "trakmeter_multi"
-		targetprefix ""
 
 		defines {
 			"TRAKMETER_MULTI=1",
@@ -166,10 +174,10 @@ solution "trakmeter"
 			"JucePlugin_Build_VST=0"
 		}
 
-		configuration {"linux"}
+		configuration { "linux" }
+			targetname "trakmeter_multi"
+
 			defines {
-				"LINUX=1",
-				"JUCE_USE_XSHM=1",
 				"JUCE_ALSA=1",
 				"JUCE_JACK=1",
 				"JUCE_ASIO=0",
@@ -178,18 +186,7 @@ solution "trakmeter"
 			}
 
 			links {
-				"dl",
-				"freetype",
-				"pthread",
-				"rt",
-				"X11",
-				"Xext",
 				"asound"
-			}
-
-			includedirs {
-				"/usr/include",
-				"/usr/include/freetype2"
 			}
 
 		configuration "Debug"
@@ -200,131 +197,17 @@ solution "trakmeter"
 
 --------------------------------------------------------------------------------
 
-	project ("trakmeter_lv2_stereo")
-		kind "SharedLib"
-		location (os.get() .. "/lv2_stereo")
-		targetname "trakmeter_stereo_lv2"
-		targetprefix ""
-
-		defines {
-			"TRAKMETER_STEREO=1",
-			"JucePlugin_Build_LV2=1",
-			"JucePlugin_Build_Standalone=0",
-			"JucePlugin_Build_VST=0"
-		}
-
-		files {
-			  "../JuceLibraryCode/juce_audio_plugin_client_LV2.cpp"
-		}
-
-		excludes {
-			"../Source/standalone_application.h",
-			"../Source/standalone_application.cpp"
-		}
-
-		configuration {"linux"}
-			defines {
-				"LINUX=1",
-				"JUCE_USE_XSHM=1",
-				"JUCE_ALSA=0",
-				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
-				"JUCE_WASAPI=0",
-				"JUCE_DIRECTSOUND=0"
-			}
-
-			includedirs {
-				"/usr/include",
-				"/usr/include/freetype2"
-			}
-
-			links {
-				"dl",
-				"freetype",
-				"pthread",
-				"rt",
-				"X11",
-				"Xext"
-			}
-
-		configuration "Debug"
-			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_debug")
-
-		configuration "Release"
-			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_release")
-
---------------------------------------------------------------------------------
-
-	project ("trakmeter_lv2_multi")
-		kind "SharedLib"
-		location (os.get() .. "/lv2_multi")
-		targetname "trakmeter_multi_lv2"
-		targetprefix ""
-
-		defines {
-			"TRAKMETER_MULTI=1",
-			"JucePlugin_Build_LV2=1",
-			"JucePlugin_Build_Standalone=0",
-			"JucePlugin_Build_VST=0"
-		}
-
-		files {
-			  "../JuceLibraryCode/juce_audio_plugin_client_LV2.cpp"
-		}
-
-		excludes {
-			"../Source/standalone_application.h",
-			"../Source/standalone_application.cpp"
-		}
-
-		configuration {"linux"}
-			defines {
-				"LINUX=1",
-				"JUCE_USE_XSHM=1",
-				"JUCE_ALSA=0",
-				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
-				"JUCE_WASAPI=0",
-				"JUCE_DIRECTSOUND=0"
-			}
-
-			includedirs {
-				"/usr/include",
-				"/usr/include/freetype2"
-			}
-
-			links {
-				"dl",
-				"freetype",
-				"pthread",
-				"rt",
-				"X11",
-				"Xext"
-			}
-
-		configuration "Debug"
-			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_debug")
-
-		configuration "Release"
-			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_release")
-
---------------------------------------------------------------------------------
-
 	project ("trakmeter_vst_stereo")
 		kind "SharedLib"
-		location (os.get() .. "/vst_stereo")
-		targetname "trakmeter_stereo_vst"
-		targetprefix ""
+
+		configuration { "linux" }
+			targetname "trakmeter_stereo_vst"
 
 		defines {
 			"TRAKMETER_STEREO=1",
 			"JucePlugin_Build_LV2=0",
 			"JucePlugin_Build_Standalone=0",
 			"JucePlugin_Build_VST=1"
-		}
-
-		includedirs {
-			"../libraries/vstsdk3.6.5"
 		}
 
 		files {
@@ -336,30 +219,17 @@ solution "trakmeter"
 			"../Source/standalone_application.cpp"
 		}
 
-		configuration {"linux"}
-			defines {
-				"LINUX=1",
-				"JUCE_USE_XSHM=1",
-				"JUCE_ALSA=0",
-				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
-				"JUCE_WASAPI=0",
-				"JUCE_DIRECTSOUND=0"
-			}
+		defines {
+			"JUCE_ALSA=0",
+			"JUCE_JACK=0",
+			"JUCE_ASIO=0",
+			"JUCE_WASAPI=0",
+			"JUCE_DIRECTSOUND=0"
+		}
 
-			includedirs {
-				"/usr/include",
-				"/usr/include/freetype2"
-			}
-
-			links {
-				"dl",
-				"freetype",
-				"pthread",
-				"rt",
-				"X11",
-				"Xext"
-			}
+		includedirs {
+			"../libraries/vstsdk3.6.5"
+		}
 
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_stereo_debug")
@@ -371,19 +241,15 @@ solution "trakmeter"
 
 	project ("trakmeter_vst_multi")
 		kind "SharedLib"
-		location (os.get() .. "/vst_multi")
-		targetname "trakmeter_multi_vst"
-		targetprefix ""
+
+		configuration { "linux" }
+			targetname "trakmeter_multi_vst"
 
 		defines {
 			"TRAKMETER_MULTI=1",
 			"JucePlugin_Build_LV2=0",
 			"JucePlugin_Build_Standalone=0",
 			"JucePlugin_Build_VST=1"
-		}
-
-		includedirs {
-			"../libraries/vstsdk3.6.5"
 		}
 
 		files {
@@ -395,33 +261,97 @@ solution "trakmeter"
 			"../Source/standalone_application.cpp"
 		}
 
-		configuration {"linux"}
-			defines {
-				"LINUX=1",
-				"JUCE_USE_XSHM=1",
-				"JUCE_ALSA=0",
-				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
-				"JUCE_WASAPI=0",
-				"JUCE_DIRECTSOUND=0"
-			}
+		defines {
+			"JUCE_ALSA=0",
+			"JUCE_JACK=0",
+			"JUCE_ASIO=0",
+			"JUCE_WASAPI=0",
+			"JUCE_DIRECTSOUND=0"
+		}
 
-			includedirs {
-				"/usr/include",
-				"/usr/include/freetype2"
-			}
-
-			links {
-				"dl",
-				"freetype",
-				"pthread",
-				"rt",
-				"X11",
-				"Xext"
-			}
+		includedirs {
+			"../libraries/vstsdk3.6.5"
+		}
 
 		configuration "Debug"
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_multi_debug")
 
 		configuration "Release"
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_multi_release")
+
+--------------------------------------------------------------------------------
+
+	project ("trakmeter_lv2_stereo")
+		kind "SharedLib"
+
+		configuration { "linux" }
+			targetname "trakmeter_stereo_lv2"
+
+		defines {
+			"TRAKMETER_STEREO=1",
+			"JucePlugin_Build_LV2=1",
+			"JucePlugin_Build_Standalone=0",
+			"JucePlugin_Build_VST=0"
+		}
+
+		files {
+			  "../JuceLibraryCode/juce_audio_plugin_client_LV2.cpp"
+		}
+
+		excludes {
+			"../Source/standalone_application.h",
+			"../Source/standalone_application.cpp"
+		}
+
+		defines {
+			"JUCE_ALSA=0",
+			"JUCE_JACK=0",
+			"JUCE_ASIO=0",
+			"JUCE_WASAPI=0",
+			"JUCE_DIRECTSOUND=0"
+		}
+
+		configuration "Debug"
+			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_debug")
+
+		configuration "Release"
+			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_release")
+
+--------------------------------------------------------------------------------
+
+	project ("trakmeter_lv2_multi")
+		kind "SharedLib"
+
+		configuration { "linux" }
+			targetname "trakmeter_multi_lv2"
+
+		defines {
+			"TRAKMETER_MULTI=1",
+			"JucePlugin_Build_LV2=1",
+			"JucePlugin_Build_Standalone=0",
+			"JucePlugin_Build_VST=0"
+		}
+
+		files {
+			  "../JuceLibraryCode/juce_audio_plugin_client_LV2.cpp"
+		}
+
+		excludes {
+			"../Source/standalone_application.h",
+			"../Source/standalone_application.cpp"
+		}
+
+		defines {
+			"JUCE_ALSA=0",
+			"JUCE_JACK=0",
+			"JUCE_ASIO=0",
+			"JUCE_WASAPI=0",
+			"JUCE_DIRECTSOUND=0"
+		}
+
+		configuration "Debug"
+			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_debug")
+
+		configuration "Release"
+			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_release")
+
