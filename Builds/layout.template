@@ -25,29 +25,41 @@
 
 {% import 'premake4.template' as render %}
 
-{{ render.solution('traKmeter', 'trakmeter') }}
+{% set name = {'real': 'traKmeter', 'short': 'trakmeter'} -%}
+
+{% set variants = ({'real': 'Stereo', 'short': 'stereo'},
+                   {'real': 'Multi', 'short': 'multi'}) -%}
+
+
+
+{{ render.solution(name) -}}
+
+
+
+{% for variant in variants %}
 
 --------------------------------------------------------------------------------
 
-{{ render.standalone('traKmeter', 'trakmeter', 'Stereo', 'stereo') }}
+{{ render.standalone(name, variant) -}}
+
+{% endfor -%}
+
+
+
+{% for variant in variants %}
 
 --------------------------------------------------------------------------------
 
-{{ render.standalone('traKmeter', 'trakmeter', 'Multi', 'multi') }}
+{{ render.vst(name, variant) -}}
+
+{% endfor -%}
+
+
+
+{% for variant in variants %}
 
 --------------------------------------------------------------------------------
 
-{{ render.vst('traKmeter', 'trakmeter', 'Stereo', 'stereo') }}
+{{ render.lv2(name, variant) -}}
 
---------------------------------------------------------------------------------
-
-{{ render.vst('traKmeter', 'trakmeter', 'Multi', 'multi') }}
-
---------------------------------------------------------------------------------
-
-{{ render.lv2('traKmeter', 'trakmeter', 'Stereo', 'stereo') }}
-
---------------------------------------------------------------------------------
-
-{{ render.lv2('traKmeter', 'trakmeter', 'Multi', 'multi') }}
-
+{% endfor -%}
