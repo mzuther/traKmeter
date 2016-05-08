@@ -140,7 +140,7 @@ bool AudioFilePlayer::isPlaying()
 }
 
 
-void AudioFilePlayer::fillBufferChunk(AudioSampleBuffer *buffer)
+void AudioFilePlayer::fillBufferChunk(AudioBuffer<float> *buffer)
 {
     // report old meter readings
     if (bReports)

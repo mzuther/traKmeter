@@ -400,7 +400,7 @@ void TraKmeterAudioProcessor::releaseResources()
 }
 
 
-void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer &midiMessages)
+void TraKmeterAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages)
 {
     // This is the place where you'd normally do the guts of your
     // plug-in's audio processing...
@@ -459,7 +459,7 @@ void TraKmeterAudioProcessor::processBlock(AudioSampleBuffer &buffer, MidiBuffer
 }
 
 
-void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
+void TraKmeterAudioProcessor::processBufferChunk(AudioBuffer<float> &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
 {
     // silence input if validation window is open
     if (isSilent)
@@ -501,7 +501,7 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioSampleBuffer &buffer, cons
         sendActionMessage("UM");
     }
 
-    AudioSampleBuffer TempAudioBuffer = AudioSampleBuffer(nNumInputChannels, uChunkSize);
+    AudioBuffer<float> TempAudioBuffer(nNumInputChannels, uChunkSize);
     pRingBufferInput->copyToBuffer(TempAudioBuffer, 0, uChunkSize, 0);
 }
 

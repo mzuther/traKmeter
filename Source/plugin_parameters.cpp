@@ -116,7 +116,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
         new frut::parameter::ParSwitch();
     ParameterValidationSelectedChannel->setName("Validation audio channel");
 
-    // values correspond to the channel index in AudioSampleBuffer
+    // values correspond to the channel index in "AudioBuffer"
     ParameterValidationSelectedChannel->addPreset(-1.0f, "All");
     ParameterValidationSelectedChannel->addPreset(0.0f,   "1");
     ParameterValidationSelectedChannel->addPreset(1.0f,   "2");
