@@ -500,9 +500,6 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioBuffer<float> &buffer, con
         // "UM" --> update meters
         sendActionMessage("UM");
     }
-
-    AudioBuffer<float> TempAudioBuffer(nNumInputChannels, uChunkSize);
-    pRingBufferInput->copyToBuffer(TempAudioBuffer, 0, uChunkSize, 0);
 }
 
 
