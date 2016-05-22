@@ -47,7 +47,6 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
     frut::Frut::printVersionNumbers();
 
     bSampleRateIsValid = false;
-    nNumInputChannels = 0;
     fProcessedSeconds = 0.0f;
 
     setLatencySamples(0);
@@ -305,12 +304,6 @@ double TraKmeterAudioProcessor::getTailLengthSeconds() const
 }
 
 
-int TraKmeterAudioProcessor::getNumChannels()
-{
-    return nNumInputChannels;
-}
-
-
 int TraKmeterAudioProcessor::getNumPrograms()
 {
     return 0;
@@ -359,22 +352,12 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     }
 
     isSilent = false;
-    nNumInputChannels = getMainBusNumInputChannels();
+    int numInputChannels = getMainBusNumInputChannels();
 
-    if (nNumInputChannels <= 0)
-    {
-        Logger::outputDebugString("[traKmeter] no input channels detected, correcting this");
-        nNumInputChannels = JucePlugin_MaxNumInputChannels;
-    }
-    else if (nNumInputChannels < JucePlugin_MaxNumInputChannels)
-    {
-        Logger::outputDebugString("[traKmeter] only " +  String(nNumInputChannels) + " input channel(s) detected, correcting this");
-        nNumInputChannels = JucePlugin_MaxNumInputChannels;
-    }
+    Logger::outputDebugString("[traKmeter] number of input channels: " + String(numInputChannels));
+    Logger::outputDebugString("[traKmeter] number of output channels: " + String(getMainBusNumOutputChannels()));
 
-    Logger::outputDebugString("[traKmeter] number of input channels: " + String(nNumInputChannels));
-
-    pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
+    pMeterBallistics = new MeterBallistics(numInputChannels, nCrestFactor, true, false, bTransientMode);
 
     // make sure that ring buffer can hold at least
     // nTrakmeterBufferSize samples and is large enough to receive a
@@ -382,7 +365,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     nSamplesInBuffer = 0;
     unsigned int uRingBufferSize = (samplesPerBlock > nTrakmeterBufferSize) ? samplesPerBlock : nTrakmeterBufferSize;
 
-    pRingBufferInput = new frut::audio::RingBuffer("Input ring buffer", nNumInputChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
+    pRingBufferInput = new frut::audio::RingBuffer("Input ring buffer", numInputChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
     pRingBufferInput->setCallbackClass(this);
 }
 
@@ -417,9 +400,9 @@ void TraKmeterAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffe
         return;
     }
 
-    if (nNumInputChannels < 1)
+    if (getMainBusNumInputChannels() < 1)
     {
-        Logger::outputDebugString("[traKmeter] nNumInputChannels < 1");
+        Logger::outputDebugString("[traKmeter] no input channels!");
         return;
     }
 
@@ -427,7 +410,7 @@ void TraKmeterAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffe
     // output channels that didn't contain input data, because these
     // aren't guaranteed to be empty -- they may contain garbage.
 
-    for (int nChannel = nNumInputChannels; nChannel < getMainBusNumOutputChannels(); ++nChannel)
+    for (int nChannel = getMainBusNumInputChannels(); nChannel < getMainBusNumOutputChannels(); ++nChannel)
     {
         buffer.clear(nChannel, 0, nNumSamples);
     }
@@ -478,7 +461,7 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioBuffer<float> &buffer, con
         // (1024 samples / 44100 samples/s = 23.2 ms)
         fProcessedSeconds = (float) uChunkSize / (float) getSampleRate();
 
-        for (int nChannel = 0; nChannel < nNumInputChannels; ++nChannel)
+        for (int nChannel = 0; nChannel < getMainBusNumInputChannels(); ++nChannel)
         {
             // determine peak level for uChunkSize samples (use
             // pre-delay)
@@ -605,7 +588,7 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
 
         if (pMeterBallistics)
         {
-            pMeterBallistics = new MeterBallistics(nNumInputChannels, nCrestFactor, true, false, bTransientMode);
+            pMeterBallistics = new MeterBallistics(getMainBusNumInputChannels(), nCrestFactor, true, false, bTransientMode);
         }
     }
 }
@@ -647,14 +630,7 @@ AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
         pMeterBallistics->reset();
     }
 
-    if (nNumInputChannels > 0)
-    {
-        return new TraKmeterAudioProcessorEditor(this, &pluginParameters, nNumInputChannels, nCrestFactor);
-    }
-    else
-    {
-        return new TraKmeterAudioProcessorEditor(this, &pluginParameters, JucePlugin_MaxNumInputChannels, nCrestFactor);
-    }
+    return new TraKmeterAudioProcessorEditor(this, &pluginParameters, getMainBusNumInputChannels(), nCrestFactor);
 }
 
 

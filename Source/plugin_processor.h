@@ -98,7 +98,6 @@ public:
 
     //==========================================================================
     int getNumPrograms();
-    int getNumChannels();
 
     int getCurrentProgram();
     void setCurrentProgram(int nIndex);
@@ -125,7 +124,6 @@ private:
     TraKmeterPluginParameters pluginParameters;
     frut::audio::Dither dither;
 
-    int nNumInputChannels;
     bool bSampleRateIsValid;
     bool isSilent;
 
