@@ -45,12 +45,16 @@
 ---------------------------------------------------------------------------- */
 
 #ifdef TRAKMETER_MULTI
+  #define JucePlugin_PluginCode             'traK'
+
   #ifdef DEBUG
     #define JucePlugin_Name                 "traKmeter (Multi, Debug)"
   #else
     #define JucePlugin_Name                 "traKmeter (Multi)"
   #endif
 #else
+  #define JucePlugin_PluginCode             'trkS'
+
   #ifdef DEBUG
     #define JucePlugin_Name                 "traKmeter (Stereo, Debug)"
   #else
@@ -329,7 +333,7 @@
  #define JucePlugin_ManufacturerCode       'MZut'
 #endif
 #ifndef  JucePlugin_PluginCode
- #define JucePlugin_PluginCode             'trak'
+ #define JucePlugin_PluginCode             'traK'
 #endif
 #ifndef  JucePlugin_IsSynth
  #define JucePlugin_IsSynth                0

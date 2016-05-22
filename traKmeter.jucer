@@ -4,7 +4,7 @@
               bundleIdentifier="de.mzuther.traKmeter" buildVST="1" buildRTAS="0"
               buildAU="0" pluginName="traKmeter" pluginDesc="Loudness meter for correctly setting up tracking and mixing levels"
               pluginManufacturer="Martin Zuther" pluginManufacturerCode="MZut"
-              pluginCode="trak" pluginChannelConfigs="{2, 2}" pluginIsSynth="0"
+              pluginCode="traK" pluginChannelConfigs="{2, 2}" pluginIsSynth="0"
               pluginWantsMidiIn="0" pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="1"
               pluginTailLength="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="traKmeterAU"
               pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="ePlugInCategory_None"
