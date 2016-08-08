@@ -494,16 +494,30 @@ void TraKmeterAudioProcessor::silenceInput(bool isSilentNew)
 
 void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChannel, bool bReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel)
 {
-    audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, nCrestFactor);
-    audioFilePlayer->setReporters(nSelectedChannel, bReportCSV, bAverageMeterLevel, bPeakMeterLevel);
-
     // reset all meters before we start the validation
     pMeterBallistics->reset();
 
     isSilent = false;
 
-    // refresh editor; "V+" --> validation started
-    sendActionMessage("V+");
+    audioFilePlayer = new AudioFilePlayer(fileAudio, (int) getSampleRate(), pMeterBallistics, nCrestFactor);
+
+    if (audioFilePlayer->matchingSampleRates())
+    {
+        audioFilePlayer->setReporters(nSelectedChannel, bReportCSV, bAverageMeterLevel, bPeakMeterLevel);
+
+        // refresh editor; "V+" --> validation started
+        sendActionMessage("V+");
+    }
+    else
+    {
+        stopValidation();
+
+        AlertWindow::showMessageBoxAsync(
+            AlertWindow::WarningIcon,
+            "Validation error",
+            "Sample rates of host and validation file do not match.");
+    }
+
 }
 
 
