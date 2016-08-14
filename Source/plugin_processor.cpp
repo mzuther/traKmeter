@@ -292,12 +292,6 @@ bool TraKmeterAudioProcessor::producesMidi() const
 }
 
 
-bool TraKmeterAudioProcessor::silenceInProducesSilenceOut() const
-{
-    return true;
-}
-
-
 double TraKmeterAudioProcessor::getTailLengthSeconds() const
 {
     return 0.0;
