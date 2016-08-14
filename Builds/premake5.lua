@@ -39,7 +39,7 @@ else
 end
 
 
-solution "trakmeter"
+workspace "trakmeter"
 	language "C++"
 	platforms { "x32", "x64" }
 	configurations { "Debug", "Release" }
@@ -79,7 +79,7 @@ solution "trakmeter"
 		"../libraries/"
 	}
 
-	configuration { "linux" }
+	filter { "system:linux" }
 		defines {
 			"LINUX=1"
 		}
@@ -103,20 +103,24 @@ solution "trakmeter"
 			"Xext"
 		}
 
-	configuration { "windows" }
+	flags {
+		"C++11"
+	}
+
+	filter { "system:windows" }
 		defines {
 			"_WINDOWS=1",
 			"_USE_MATH_DEFINES=1",
 		}
 
 		flags {
-				"EnableSSE",
-				"EnableSSE2",
-				"NoMinimalRebuild",
-				"StaticRuntime",
-				"Unicode",
-				"WinMain"
+			"NoMinimalRebuild",
+			"StaticRuntime",
+			"Unicode",
+			"WinMain"
 		}
+
+		vectorextensions "AVX"
 
 		links {
 			"kernel32",
@@ -133,58 +137,65 @@ solution "trakmeter"
 			"odbccp32"
 		 }
 
-	configuration { "windows", "x32" }
+	filter { "platforms:x32" }
+		architecture "x86"
+
+	filter { "platforms:x64" }
+		architecture "x86_64"
+
+	filter { "system:windows", "platforms:x32" }
 		defines {
 			"WIN32=1",
 		}
 
-	configuration { "windows", "x64" }
+	filter { "system:windows", "platforms:x64" }
 		defines {
 			"WIN64=1",
 		}
 
-	configuration { "Debug*" }
+	filter { "configurations:Debug" }
 		defines { "_DEBUG=1", "DEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=1" }
 		flags { "Symbols" }
 
-	configuration { "linux", "Debug*" }
-		flags { "ExtraWarnings" }
-		buildoptions { "-fno-inline", "-ggdb", "-std=c++11" }
+	filter { "system:linux", "configurations:Debug" }
+		warnings "Extra"
+		buildoptions { "-fno-inline", "-ggdb" }
 
-	configuration { "linux", "Debug", "x32" }
+	filter { "system:linux", "configurations:Debug", "platforms:x32" }
 		targetsuffix "_debug"
 
-	configuration { "linux", "Debug", "x64" }
+	filter { "system:linux", "configurations:Debug", "platforms:x64" }
 		targetsuffix "_debug_x64"
 
-	configuration { "windows", "Debug", "x32" }
+	filter { "system:windows", "configurations:Debug", "platforms:x32" }
 		targetsuffix ", Debug)"
 
-	configuration { "windows", "Debug", "x64" }
+	filter { "system:windows", "configurations:Debug", "platforms:x64" }
 		targetsuffix " x64, Debug)"
 
-	configuration { "Release*" }
+	filter { "configurations:Release" }
 		defines { "NDEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=0" }
-		flags { "OptimizeSpeed", "NoFramePointer" }
+		flags { "NoFramePointer" }
+		optimize "Speed"
 
-	configuration { "linux", "Release*" }
-		flags { "ExtraWarnings" }
-		buildoptions { "-fvisibility=hidden", "-pipe", "-std=c++11" }
+	filter { "system:linux", "configurations:Release" }
+		warnings "Extra"
+		buildoptions { "-fvisibility=hidden", "-pipe" }
 
-	configuration { "linux", "Release", "x32" }
+	filter { "system:linux", "configurations:Release", "platforms:x32" }
 		targetsuffix ""
 
-	configuration { "linux", "Release", "x64" }
+	filter { "system:linux", "configurations:Release", "platforms:x64" }
 		targetsuffix "_x64"
 
-	configuration { "windows", "Release*" }
+	filter { "system:windows", "configurations:Release" }
 		flags { "NoManifest" }
 		buildoptions { "/Zi" }
 
-	configuration { "windows", "Release", "x32" }
+	filter { "system:windows", "configurations:Release", "platforms:x32" }
 		targetsuffix ")"
 
-	configuration { "windows", "Release", "x64" }
+	filter { "system:windows", "configurations:Release", "platforms:x64" }
 		targetsuffix " x64)"
 
 --------------------------------------------------------------------------------
@@ -196,11 +207,10 @@ solution "trakmeter"
 			"TRAKMETER_STEREO=1",
 			"JucePlugin_Build_LV2=0",
 			"JucePlugin_Build_Standalone=1",
-			"JucePlugin_Build_VST=0",
-			"JucePlugin_Build_VST3=0"
+			"JucePlugin_Build_VST=0"
 		}
 
-		configuration { "linux" }
+		filter { "system:linux" }
 			targetname "trakmeter_stereo"
 
 			defines {
@@ -215,7 +225,7 @@ solution "trakmeter"
 				"asound"
 			}
 
-		configuration { "windows" }
+		filter { "system:windows" }
 			targetname "traKmeter (Stereo"
 
 			defines {
@@ -230,10 +240,10 @@ solution "trakmeter"
 				"../libraries/asiosdk2.3/common"
 			}
 
-		configuration "Debug"
+		filter { "configurations:Debug" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_stereo_debug")
 
-		configuration "Release"
+		filter { "configurations:Release" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_stereo_release")
 
 --------------------------------------------------------------------------------
@@ -245,11 +255,10 @@ solution "trakmeter"
 			"TRAKMETER_MULTI=1",
 			"JucePlugin_Build_LV2=0",
 			"JucePlugin_Build_Standalone=1",
-			"JucePlugin_Build_VST=0",
-			"JucePlugin_Build_VST3=0"
+			"JucePlugin_Build_VST=0"
 		}
 
-		configuration { "linux" }
+		filter { "system:linux" }
 			targetname "trakmeter_multi"
 
 			defines {
@@ -264,7 +273,7 @@ solution "trakmeter"
 				"asound"
 			}
 
-		configuration { "windows" }
+		filter { "system:windows" }
 			targetname "traKmeter (Multi"
 
 			defines {
@@ -279,10 +288,10 @@ solution "trakmeter"
 				"../libraries/asiosdk2.3/common"
 			}
 
-		configuration "Debug"
+		filter { "configurations:Debug" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_multi_debug")
 
-		configuration "Release"
+		filter { "configurations:Release" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/standalone_multi_release")
 
 --------------------------------------------------------------------------------
@@ -294,8 +303,7 @@ solution "trakmeter"
 			"TRAKMETER_STEREO=1",
 			"JucePlugin_Build_LV2=0",
 			"JucePlugin_Build_Standalone=0",
-			"JucePlugin_Build_VST=1",
-			"JucePlugin_Build_VST3=0"
+			"JucePlugin_Build_VST=1"
 		}
 
 		files {
@@ -319,16 +327,16 @@ solution "trakmeter"
 			"../libraries/vstsdk3.6.5"
 		}
 
-		configuration { "linux" }
+		filter { "system:linux" }
 			targetname "trakmeter_stereo_vst"
 
-		configuration { "windows" }
+		filter { "system:windows" }
 			targetname "traKmeter (Stereo"
 
-		configuration "Debug"
+		filter { "configurations:Debug" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_stereo_debug")
 
-		configuration "Release"
+		filter { "configurations:Release" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_stereo_release")
 
 --------------------------------------------------------------------------------
@@ -340,8 +348,7 @@ solution "trakmeter"
 			"TRAKMETER_MULTI=1",
 			"JucePlugin_Build_LV2=0",
 			"JucePlugin_Build_Standalone=0",
-			"JucePlugin_Build_VST=1",
-			"JucePlugin_Build_VST3=0"
+			"JucePlugin_Build_VST=1"
 		}
 
 		files {
@@ -365,16 +372,16 @@ solution "trakmeter"
 			"../libraries/vstsdk3.6.5"
 		}
 
-		configuration { "linux" }
+		filter { "system:linux" }
 			targetname "trakmeter_multi_vst"
 
-		configuration { "windows" }
+		filter { "system:windows" }
 			targetname "traKmeter (Multi"
 
-		configuration "Debug"
+		filter { "configurations:Debug" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_multi_debug")
 
-		configuration "Release"
+		filter { "configurations:Release" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/vst_multi_release")
 
 --------------------------------------------------------------------------------
@@ -389,8 +396,7 @@ if os.get() == "linux" then
 			"TRAKMETER_STEREO=1",
 			"JucePlugin_Build_LV2=1",
 			"JucePlugin_Build_Standalone=0",
-			"JucePlugin_Build_VST=0",
-			"JucePlugin_Build_VST3=0"
+			"JucePlugin_Build_VST=0"
 		}
 
 		files {
@@ -410,13 +416,13 @@ if os.get() == "linux" then
 			"JUCE_DIRECTSOUND=0"
 		}
 
-		configuration { "linux" }
+		filter { "system:linux" }
 			targetname "trakmeter_stereo_lv2"
 
-		configuration "Debug"
+		filter { "configurations:Debug" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_debug")
 
-		configuration "Release"
+		filter { "configurations:Release" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_stereo_release")
 
 -- create LV2 projects on Linux only
@@ -434,8 +440,7 @@ if os.get() == "linux" then
 			"TRAKMETER_MULTI=1",
 			"JucePlugin_Build_LV2=1",
 			"JucePlugin_Build_Standalone=0",
-			"JucePlugin_Build_VST=0",
-			"JucePlugin_Build_VST3=0"
+			"JucePlugin_Build_VST=0"
 		}
 
 		files {
@@ -455,13 +460,13 @@ if os.get() == "linux" then
 			"JUCE_DIRECTSOUND=0"
 		}
 
-		configuration { "linux" }
+		filter { "system:linux" }
 			targetname "trakmeter_multi_lv2"
 
-		configuration "Debug"
+		filter { "configurations:Debug" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_debug")
 
-		configuration "Release"
+		filter { "configurations:Release" }
 			objdir ("../bin/intermediate_" .. os.get() .. "/lv2_multi_release")
 
 -- create LV2 projects on Linux only
