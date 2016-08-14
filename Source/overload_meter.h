@@ -37,7 +37,7 @@ class OverloadMeter :
     public frut::widget::StateLabel
 {
 public:
-    OverloadMeter(float fThreshold, int nCrestFactor);
+    OverloadMeter(float fThreshold);
 
     void setLevels(float fLevel, float fMaximumLevelNew);
 
@@ -45,7 +45,6 @@ private:
     JUCE_LEAK_DETECTOR(OverloadMeter);
 
     float fThreshold;
-    int nCrestFactor;
 
     float fMaximumLevel;
     bool bActiveOverload;

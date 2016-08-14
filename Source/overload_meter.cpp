@@ -26,7 +26,7 @@
 #include "overload_meter.h"
 
 
-OverloadMeter::OverloadMeter(float Threshold, int CrestFactor)
+OverloadMeter::OverloadMeter(float Threshold)
 {
     // threshold, meter segment will be dark below and fully lit above
     // this level

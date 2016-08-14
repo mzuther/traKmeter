@@ -209,6 +209,8 @@ void TraKmeterAudioProcessorEditor::applySkin()
 
 void TraKmeterAudioProcessorEditor::windowAboutCallback(int modalResult)
 {
+    UNUSED(modalResult);
+
     // manually deactivate about button
     ButtonAbout.setToggleState(false, dontSendNotification);
 }
@@ -230,6 +232,8 @@ void TraKmeterAudioProcessorEditor::windowSkinCallback(int modalResult)
 
 void TraKmeterAudioProcessorEditor::windowValidationCallback(int modalResult)
 {
+    UNUSED(modalResult);
+
     audioProcessor->silenceInput(false);
     validationDialogOpen = false;
 
@@ -370,9 +374,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         levelMeterColours.add(Colour(0.30f, 1.0f, 1.0f, 1.0f));  // fine
         levelMeterColours.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // signal
 
-        trakmeter = new TraKmeter(10,
-                                  10,
-                                  crestFactor,
+        trakmeter = new TraKmeter(crestFactor,
                                   numberOfInputChannels,
                                   segmentHeight,
                                   discreteMeter,

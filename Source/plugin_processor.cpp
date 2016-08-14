@@ -318,18 +318,24 @@ int TraKmeterAudioProcessor::getCurrentProgram()
 
 void TraKmeterAudioProcessor::setCurrentProgram(int nIndex)
 {
+    UNUSED(nIndex);
 }
 
 
 const String TraKmeterAudioProcessor::getProgramName(int nIndex)
 {
+    UNUSED(nIndex);
+
     return String::empty;
 }
 
 
 void TraKmeterAudioProcessor::changeProgramName(int nIndex, const String &newName)
 {
+    UNUSED(nIndex);
+    UNUSED(newName);
 }
+
 
 //==============================================================================
 
@@ -385,6 +391,8 @@ void TraKmeterAudioProcessor::releaseResources()
 
 void TraKmeterAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages)
 {
+    UNUSED(midiMessages);
+
     // This is the place where you'd normally do the guts of your
     // plug-in's audio processing...
 
@@ -444,6 +452,9 @@ void TraKmeterAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffe
 
 void TraKmeterAudioProcessor::processBufferChunk(AudioBuffer<float> &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
 {
+    UNUSED(uBufferPosition);
+    UNUSED(uProcessedSamples);
+
     // silence input if validation window is open
     if (isSilent)
     {

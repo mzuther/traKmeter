@@ -25,7 +25,7 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels,
+TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
                      int segment_height, bool discreteMeter, int meter_type,
                      const Array<Colour> &averageMeterColours,
                      const Array<Colour> &peakMeterColours)
@@ -79,7 +79,7 @@ TraKmeter::TraKmeter(int posX, int posY, int nCrestFactor, int nNumChannels,
         addAndMakeVisible(pMeterBarAverage);
 
         OverloadMeter *overloadMeter = new OverloadMeter(
-            nThreshold * 0.1f, nCrestFactor);
+            nThreshold * 0.1f);
         addAndMakeVisible(overloadMeter);
 
         p_arrOverloadMeters.add(overloadMeter);
