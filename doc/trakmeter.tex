@@ -713,8 +713,8 @@ Thanks for using free software.  I hope you'll enjoy it!
 To build traKmeter yourself, I recommend setting up a \texttt{chroot}
 environment.  This is fast and easy to do on Debian-based systems and
 might save you a \textbf{lot} of trouble.  At the time of writing, I'm
-using Linux Mint 17, but the procedure should be similar on
-your distribution of choice.
+using Linux Mint 18, but the procedure should be similar on your
+distribution of choice.
 
 Start by installing the necessary packages:
 
@@ -723,21 +723,20 @@ Start by installing the necessary packages:
 \end{VerbatimBoth}
 
 Then install the \texttt{chroot} base system, execute the following
-statements (please change \path{http://ftp.de.debian.org/debian/} to a
-\href{http://www.debian.org/mirror/list}{mirror} close to you):
+statements:
 
 \begin{Verbatim32}
   sudo debootstrap --variant=buildd \
     --arch i386 stable \
     /srv/chroot/stable_i386 \
-    http://ftp.de.debian.org/debian/
+    http://httpredir.debian.org/debian
 \end{Verbatim32}
 
 \begin{Verbatim64}
   sudo debootstrap --variant=buildd \
     --arch amd64 stable \
     /srv/chroot/stable_amd64 \
-    http://ftp.de.debian.org/debian/
+    http://httpredir.debian.org/debian
 \end{Verbatim64}
 
 Running \path{debootstrap} will take some time.  Meanwhile, add the
@@ -749,24 +748,23 @@ column):
   [stable-i386]
   description=Debian stable (i386)
   directory=/srv/chroot/stable_i386
+  profile=default
   personality=linux32
-  root-users=username
   type=directory
-  users=username,another_user
+  users=username
 
   [stable-amd64]
   description=Debian stable (amd64)
   directory=/srv/chroot/stable_amd64
+  profile=default
   personality=linux
-  root-users=username
   type=directory
-  users=username,another_user
+  users=username
 \end{VerbatimBoth}
 
-Please make the necessary changes to \texttt{username}.  You may also
-add additional users, like \texttt{another\_user}.  If you experience
-problems, try to change \texttt{stable} to a release name such as
-\texttt{wheezy}.
+Please make the necessary changes to \texttt{username}.  If you
+experience problems, you can try to change \texttt{stable} to a
+release name such as \texttt{wheezy}.
 
 When \path{debootstrap} is done, log in as superuser:
 
@@ -844,7 +842,7 @@ the necessary dependencies and run the Python script
   \hspace*{6em}\=\=\kill
 
   Importance:  \> required \\
-  Version:     \> 4.2.2 \\
+  Version:     \> 4.2.3 \\
   License:     \> ISC and GPL v3 (among others) \\
   Homepage:    \> \href{http://www.juce.com/}{www.juce.com}
 \end{tabbing}
@@ -862,7 +860,7 @@ If you want to build the LV2 plug-in, please extract the archive
   \hspace*{6em}\=\=\kill
 
   Importance:  \> optional \\
-  Version:     \> 3.6.5 \\
+  Version:     \> 3.6.6 \\
   License:     \> proprietary \\
   Homepage:    \> \href{http://ygrabit.steinberg.de/}{ygrabit.steinberg.de}
 \end{tabbing}
@@ -870,7 +868,7 @@ If you want to build the LV2 plug-in, please extract the archive
 \subsubsection{Installation}
 
 Just extract the archive into the directory
-\path{libraries/vstsdk3.6.5}.
+\path{libraries/vst}.
 
 \subsection{Audio Streaming Input Output SDK}
 
@@ -886,7 +884,7 @@ Just extract the archive into the directory
 \subsubsection{Installation}
 
 Simply extract the archive into the directory
-\path{libraries/asiosdk2.3}.
+\path{libraries/asio}.
 
 \subsection{Python}
 
@@ -900,15 +898,11 @@ Simply extract the archive into the directory
 \end{tabbing}
 
 You'll only need Python if you want to change the premake file (see
-\ref{sec:dependencies_premake}) using Jinja templates or for building
-\num{64}-bit versions of traKmeter using Visual Studio Express.
+\ref{sec:dependencies_premake}) using Jinja templates.
 
 \subsubsection{Installation (Windows)}
 
-You can download an installer from the website.  Please also install
-the \href{http://msdn.microsoft.com/windows/bb980924.aspx}{Windows
-  SDK} and change \path{run_premake.bat} to reflect the SDK's version
-number.
+You can download an installer from the website.
 
 \subsection{Jinja}
 
@@ -994,6 +988,7 @@ The compiled binaries will end up in the directory \path{bin}.
 %%% mode: latex
 %%% mode: outline-minor
 %%% TeX-command-default: "Rubber"
+%%% TeX-master: t
 %%% TeX-PDF-mode: t
 %%% ispell-local-dictionary: "british"
 %%% End:
