@@ -195,7 +195,7 @@ as that!
 \label{sec:tracking_with_trakmeter}
 
 Open up an instance of traKmeter and set it up so that it measures
-your audio input.  That can be done either by starting the standalone
+your audio input.  That can be done either by starting the stand-alone
 version and connecting it to one or more input channels of your sound
 card, or by inserting a plug-in instance into an input channel of your
 digital audio workstation.
@@ -204,7 +204,7 @@ In the second case, take care that your digital audio workstation
 doesn't add additional headroom and that no processing takes place
 before traKmeter.  This can be ascertained by feeding calibration
 tones into your sound card or by directly comparing the readouts of
-standalone and plug-in version.
+stand-alone and plug-in version.
 
 \begin{wrapfigure}{r}{0.45\linewidth}
 \includegraphics[scale=0.45,clip]{include/images/trakmeter_optimal.png}
@@ -258,7 +258,7 @@ then have to move the extracted files to your respective plug-in
 folder (\path{~/.lv2}, \path{~/.vst}, \path{C:\Program
   Files\Steinberg\VstPlugins\} or the like).
 
-Should the standalone version ever fail to start, you can reset its
+Should the stand-alone version ever fail to start, you can reset its
 settings by deleting \path{trakmeter_stereo.ini} or
 \path{trakmeter_surround.ini}.  These files are located in
 \path{~/.config} (GNU/Linux) or \path{%appdata%\.config\} (Windows).
@@ -375,11 +375,11 @@ light up and clicking it will stop validation early.
   into your DAW of choice and use a traKmeter plug-in.}
 
 On Linux, dumped data will be written to \path{stderr}, so just start
-the traKmeter standalone or your VST host from the shell and watch the
-output coming.  On other systems, have a look at your VST host's log
-files (I have successfully used Ableton Live for this).  If that
-doesn't work, you might have to start either the traKmeter standalone
-or your VST host from a debugger.
+the traKmeter stand-alone or your VST host from the shell and watch
+the output coming.  On Windows, you can also use DebugView by
+Sysinternals (stand-alone) or have a look at Ableton Live's log files
+(VST plug-in).  If none of that works, you might have to start either
+the stand-alone or your VST host from a debugger.
 
 As a side note, \textbf{SMA(50)} designates the simple moving average
 of 50 values, a neat way to emphasise trends and eliminate short-term
