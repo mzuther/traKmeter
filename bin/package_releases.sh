@@ -32,17 +32,6 @@ include_dir="trakmeter"
 release_dir="releases"
 
 
-function finalise_executable
-{
-	filename=$1
-
-	if [ -f "./$filename" ]; then
-		echo "  Finalising: $filename"
-		mv "./$filename" "./$executable_dir"
-	fi
-}
-
-
 function archive_create
 {
 	rm -rf "/tmp/$archive_dir"
@@ -145,44 +134,7 @@ function archive_store
 
 # ----- General -----
 
-echo
-echo "  === Finalising executables ==="
-echo
-
-finalise_executable "trakmeter_stereo"
-finalise_executable "trakmeter_multi"
-
-finalise_executable "trakmeter_stereo_lv2.so"
-finalise_executable "trakmeter_multi_lv2.so"
-
-finalise_executable "trakmeter_stereo_vst.so"
-finalise_executable "trakmeter_multi_vst.so"
-
-finalise_executable "trakmeter_stereo_x64"
-finalise_executable "trakmeter_multi_x64"
-
-finalise_executable "trakmeter_stereo_lv2_x64.so"
-finalise_executable "trakmeter_multi_lv2_x64.so"
-
-finalise_executable "trakmeter_stereo_vst_x64.so"
-finalise_executable "trakmeter_multi_vst_x64.so"
-
-finalise_executable "traKmeter (Stereo).exe"
-finalise_executable "traKmeter (Multi).exe"
-
-finalise_executable "traKmeter (Stereo).dll"
-finalise_executable "traKmeter (Multi).dll"
-
-finalise_executable "traKmeter (Stereo x64).exe"
-finalise_executable "traKmeter (Multi x64).exe"
-
-finalise_executable "traKmeter (Stereo x64).dll"
-finalise_executable "traKmeter (Multi x64).dll"
-
-echo "  Done."
-echo
-echo
-
+./finalise_executables
 
 # ----- GNU/Linux Standalone (32 bit) -----
 

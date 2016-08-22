@@ -722,8 +722,8 @@ Start by installing the necessary packages:
   sudo apt-get install debootstrap schroot
 \end{VerbatimBoth}
 
-Then install the \texttt{chroot} base system, execute the following
-statements:
+Then install the \texttt{chroot} base system by executing the
+following statements:
 
 \begin{Verbatim32}
   sudo debootstrap --variant=buildd \
@@ -949,10 +949,10 @@ environment, change into the directory \path{build} and execute
   make config=CFG TARGET
 \end{VerbatimBoth}
 
-where \application{CFG} is one of \application{debug32},
-\application{debug64}, \application{release32} and
-\application{release64}, and \application{TARGET} is the version you
-want to compile, such as \application{linux\_standalone\_stereo}.
+where \application{CFG} is one of \application{debug\_x32},
+\application{debug\_x64}, \application{release\_x32} and
+\application{release\_x64}, and \application{TARGET} is the version
+you want to compile, such as \application{linux\_standalone\_stereo}.
 
 The compiled binaries will end up in the directory \path{bin}.
 

@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# ----------------------------------------------------------------------------
+#
+#  traKmeter
+#  =========
+#  Loudness meter for correctly setting up tracking and mixing levels
+#
+#  Copyright (c) 2012-2016 Martin Zuther (http://www.mzuther.de/)
+#
+#  This program is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#  Thank you for using free software!
+#
+# ----------------------------------------------------------------------------
+
+executable_dir="final"
+
+
+function finalise_executable
+{
+	filename=$1
+
+	if [ -f "./$filename" ]; then
+		echo "  Finalising: $filename"
+		mv "./$filename" "./$executable_dir"
+	fi
+}
+
+
+echo
+echo "  === Finalising executables ==="
+echo
+
+finalise_executable "trakmeter_stereo"
+finalise_executable "trakmeter_multi"
+
+finalise_executable "trakmeter_stereo_lv2.so"
+finalise_executable "trakmeter_multi_lv2.so"
+
+finalise_executable "trakmeter_stereo_vst.so"
+finalise_executable "trakmeter_multi_vst.so"
+
+finalise_executable "trakmeter_stereo_x64"
+finalise_executable "trakmeter_multi_x64"
+
+finalise_executable "trakmeter_stereo_lv2_x64.so"
+finalise_executable "trakmeter_multi_lv2_x64.so"
+
+finalise_executable "trakmeter_stereo_vst_x64.so"
+finalise_executable "trakmeter_multi_vst_x64.so"
+
+finalise_executable "traKmeter (Stereo).exe"
+finalise_executable "traKmeter (Multi).exe"
+
+finalise_executable "traKmeter (Stereo).dll"
+finalise_executable "traKmeter (Multi).dll"
+
+finalise_executable "traKmeter (Stereo x64).exe"
+finalise_executable "traKmeter (Multi x64).exe"
+
+finalise_executable "traKmeter (Stereo x64).dll"
+finalise_executable "traKmeter (Multi x64).dll"
+
+echo "  Done."
+echo
+echo
