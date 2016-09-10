@@ -41,7 +41,7 @@ void MeterBarPeak::create(
     if (showCombinedMeters)
     {
         trueLowerThreshold = -90;
-        numberOfBars = 26;
+        numberOfBars = 21;
     }
     else
     {
@@ -91,6 +91,12 @@ void MeterBarPeak::create(
         }
 
         int segmentHeight = mainSegmentHeight;
+
+        if (showCombinedMeters)
+        {
+            segmentHeight += 2;
+        }
+
         bool hasHighestLevel;
 
         if (showCombinedMeters)
@@ -125,11 +131,12 @@ void MeterBarPeak::create(
             addContinuousSegment(
                 lowerThreshold * 0.1f,
                 thresholdDifference * 0.1f,
+                (thresholdDifference * 0.1f) / segmentHeight,
                 hasHighestLevel,
                 segmentHeight,
                 spacingBefore,
                 segmentColours[colourId],
-                segmentColours[colourId].withMultipliedBrightness(0.7f));
+                Colours::white);
         }
     }
 

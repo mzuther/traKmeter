@@ -181,28 +181,28 @@
     <stereo_combined>
         <meter_peak_1
             x="50"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_2
             x="92"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_average_1
             x="56"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_2
             x="77"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
@@ -238,7 +238,7 @@
 
         <meter_graduation
             x="15"
-            y="40"
+            y="44"
             image="backgrounds/stereo/graduation_stereo_combined_k20.png"
         />
     </stereo_combined_k20>
@@ -249,7 +249,7 @@
 
         <meter_graduation
             x="15"
-            y="40"
+            y="44"
             image="backgrounds/stereo/graduation_stereo_combined_normal.png"
         />
     </stereo_combined_normal>
@@ -699,112 +699,112 @@
 
         <meter_peak_1
             x="50"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_2
             x="92"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_3
             x="113"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_4
             x="155"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_5
             x="176"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_6
             x="218"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_7
             x="239"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_peak_8
             x="281"
-            y="36"
+            y="38"
             segment_width="6"
             vertical="true"
             image="meters/meter_bar_combined_peak.png" />
 
         <meter_average_1
             x="56"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_2
             x="77"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_3
             x="119"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_4
             x="140"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_5
             x="182"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_6
             x="203"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_7
             x="245"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
 
         <meter_average_8
             x="266"
-            y="36"
+            y="38"
             segment_width="15"
             vertical="true"
             image="meters/meter_bar_combined_average.png" />
@@ -912,7 +912,7 @@
 
         <meter_graduation
             x="15"
-            y="40"
+            y="44"
             image="backgrounds/multi/graduation_multi_combined_k20.png" />
     </multi_combined_k20>
 
@@ -922,7 +922,7 @@
 
         <meter_graduation
             x="15"
-            y="40"
+            y="44"
             image="backgrounds/multi/graduation_multi_combined_normal.png" />
     </multi_combined_normal>
 

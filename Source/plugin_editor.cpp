@@ -365,7 +365,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         }
 
         int nMeterType = audioProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
-        bool discreteMeter = true;
+        bool discreteMeter = !nMeterType;
 
         Array<Colour> levelMeterColours;
 
