@@ -141,7 +141,7 @@ function archive_store
 echo "  === GNU/Linux Standalone $version (32 bit) ==="
 echo
 
-archive_dir="trakmeter-standalone_$version"
+archive_dir="trakmeter-standalone_i386_$version"
 
 archive_create
 
@@ -153,7 +153,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
-archive_store "gzip" "$release_dir/linux32"
+archive_store "gzip" "$release_dir/linux"
 
 
 # ----- GNU/Linux LV2 (32 bit) -----
@@ -161,7 +161,7 @@ archive_store "gzip" "$release_dir/linux32"
 echo "  === GNU/Linux LV2 $version (32 bit) ==="
 echo
 
-archive_dir="trakmeter-lv2_$version"
+archive_dir="trakmeter-lv2_i386_$version"
 lv2_dir="trakmeter_lv2"
 
 archive_create
@@ -178,7 +178,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
-archive_store "gzip" "$release_dir/linux32"
+archive_store "gzip" "$release_dir/linux"
 
 
 # ----- GNU/Linux VST (32 bit) -----
@@ -186,7 +186,7 @@ archive_store "gzip" "$release_dir/linux32"
 echo "  === GNU/Linux VST $version (32 bit) ==="
 echo
 
-archive_dir="trakmeter-vst_$version"
+archive_dir="trakmeter-vst_i386_$version"
 
 archive_create
 
@@ -198,7 +198,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
-archive_store "gzip" "$release_dir/linux32"
+archive_store "gzip" "$release_dir/linux"
 
 
 # ----- GNU/Linux Standalone (64 bit) -----
@@ -206,7 +206,7 @@ archive_store "gzip" "$release_dir/linux32"
 echo "  === GNU/Linux Standalone $version (64 bit) ==="
 echo
 
-archive_dir="trakmeter-standalone_$version"
+archive_dir="trakmeter-standalone_amd64_$version"
 
 archive_create
 
@@ -218,7 +218,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
-archive_store "gzip" "$release_dir/linux64"
+archive_store "gzip" "$release_dir/linux"
 
 
 # ----- GNU/Linux LV2 (64 bit) -----
@@ -226,7 +226,7 @@ archive_store "gzip" "$release_dir/linux64"
 echo "  === GNU/Linux LV2 $version (64 bit) ==="
 echo
 
-archive_dir="trakmeter-lv2_$version"
+archive_dir="trakmeter-lv2_amd64_$version"
 lv2_dir="trakmeter_lv2_x64"
 
 archive_create
@@ -243,7 +243,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
-archive_store "gzip" "$release_dir/linux64"
+archive_store "gzip" "$release_dir/linux"
 
 
 # ----- GNU/Linux VST (64 bit) -----
@@ -251,7 +251,7 @@ archive_store "gzip" "$release_dir/linux64"
 echo "  === GNU/Linux VST $version (64 bit) ==="
 echo
 
-archive_dir="trakmeter-vst_$version"
+archive_dir="trakmeter-vst_amd64_$version"
 
 archive_create
 
@@ -263,7 +263,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "gzip"
-archive_store "gzip" "$release_dir/linux64"
+archive_store "gzip" "$release_dir/linux"
 
 
 # ----- Windows Standalone (32 bit) -----
@@ -271,7 +271,7 @@ archive_store "gzip" "$release_dir/linux64"
 echo "  === Windows Standalone $version (32 bit) ==="
 echo
 
-archive_dir="trakmeter-standalone_$version"
+archive_dir="trakmeter-standalone_x86_$version"
 
 archive_create
 
@@ -283,7 +283,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "zip"
-archive_store "zip" "$release_dir/w32"
+archive_store "zip" "$release_dir/windows"
 
 
 # ----- Windows VST (32 bit) -----
@@ -291,7 +291,7 @@ archive_store "zip" "$release_dir/w32"
 echo "  === Windows VST $version (32 bit) ==="
 echo
 
-archive_dir="trakmeter-vst_$version"
+archive_dir="trakmeter-vst_x86_$version"
 
 archive_create
 
@@ -303,7 +303,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "zip"
-archive_store "zip" "$release_dir/w32"
+archive_store "zip" "$release_dir/windows"
 
 
 # ----- Windows Standalone (64 bit) -----
@@ -311,7 +311,7 @@ archive_store "zip" "$release_dir/w32"
 echo "  === Windows Standalone $version (64 bit) ==="
 echo
 
-archive_dir="trakmeter-standalone_$version"
+archive_dir="trakmeter-standalone_x64_$version"
 
 archive_create
 
@@ -323,7 +323,7 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "zip"
-archive_store "zip" "$release_dir/w64"
+archive_store "zip" "$release_dir/windows"
 
 
 # ----- Windows VST (64 bit) -----
@@ -331,7 +331,7 @@ archive_store "zip" "$release_dir/w64"
 echo "  === Windows VST $version (64 bit) ==="
 echo
 
-archive_dir="trakmeter-vst_$version"
+archive_dir="trakmeter-vst_x64_$version"
 
 archive_create
 
@@ -343,4 +343,4 @@ archive_add "$include_dir/skins/Default" "."
 archive_add "$include_dir/skins/Default.skin" "."
 
 archive_compress "zip"
-archive_store "zip" "$release_dir/w64"
+archive_store "zip" "$release_dir/windows"
