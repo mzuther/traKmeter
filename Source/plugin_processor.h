@@ -42,6 +42,8 @@ public:
     ~TraKmeterAudioProcessor();
 
     //==========================================================================
+    bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
+
     void prepareToPlay(double sampleRate, int samplesPerBlock);
     void releaseResources();
 
@@ -126,6 +128,7 @@ private:
     bool bSampleRateIsValid;
     bool isSilent;
 
+    int NumberOfChannels;
     int nSamplesInBuffer;
     float fProcessedSeconds;
 

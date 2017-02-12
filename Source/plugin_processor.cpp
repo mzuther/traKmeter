@@ -40,11 +40,37 @@ Flow of parameter processing:
 
 ==============================================================================*/
 
+#ifdef TRAKMETER_MULTI
+
 TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
+    AudioProcessor(BusesProperties()
+                   .withInput("Main In",
+                              AudioChannelSet::discreteChannels(8))
+                   .withOutput("Main Out",
+                               AudioChannelSet::discreteChannels(8))),
     nTrakmeterBufferSize(1024),
     dither(24)
+
+#else
+
+TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
+    AudioProcessor(BusesProperties()
+                   .withInput("Main In",
+                              AudioChannelSet::stereo())
+                   .withOutput("Main Out",
+                               AudioChannelSet::stereo())),
+    nTrakmeterBufferSize(1024),
+    dither(24)
+
+#endif
 {
     frut::Frut::printVersionNumbers();
+
+#ifdef TRAKMETER_MULTI
+    NumberOfChannels = 8;
+#else
+    NumberOfChannels = 2;
+#endif
 
     bSampleRateIsValid = false;
     fProcessedSeconds = 0.0f;
@@ -67,6 +93,56 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 
 
 //==============================================================================
+
+bool TraKmeterAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
+{
+    // main bus: do not allow differing input and output layouts
+    if (layouts.getMainInputChannelSet() != layouts.getMainOutputChannelSet())
+    {
+        return false;
+    }
+
+    // main bus: do not allow disabling channels
+    if (layouts.getMainInputChannelSet().isDisabled())
+    {
+        return false;
+    }
+
+#ifdef TRAKMETER_MULTI
+
+    // prefer main bus with eight input channels --> okay
+    if (layouts.getMainInputChannelSet().size() == 8)
+    {
+        return true;
+    }
+
+    // main bus with one to seven input channels --> okay
+    if ((layouts.getMainInputChannelSet().size() >= 1) &&
+            (layouts.getMainInputChannelSet().size() <= 7))
+    {
+        return true;
+    }
+
+#else
+
+    // main bus with mono input --> okay
+    if (layouts.getMainInputChannelSet() == AudioChannelSet::mono())
+    {
+        return true;
+    }
+
+    // main bus with stereo input --> okay
+    if (layouts.getMainInputChannelSet() == AudioChannelSet::stereo())
+    {
+        return true;
+    }
+
+#endif
+
+    // current channel layout is not allowed
+    return false;
+}
+
 
 const String TraKmeterAudioProcessor::getName() const
 {
@@ -352,12 +428,11 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     }
 
     isSilent = false;
-    int numInputChannels = getMainBusNumInputChannels();
 
-    Logger::outputDebugString("[traKmeter] number of input channels: " + String(numInputChannels));
+    Logger::outputDebugString("[traKmeter] number of input channels: " + String(getMainBusNumInputChannels()));
     Logger::outputDebugString("[traKmeter] number of output channels: " + String(getMainBusNumOutputChannels()));
 
-    pMeterBallistics = new MeterBallistics(numInputChannels, nCrestFactor, true, false, bTransientMode);
+    pMeterBallistics = new MeterBallistics(NumberOfChannels, nCrestFactor, true, false, bTransientMode);
 
     // make sure that ring buffer can hold at least
     // nTrakmeterBufferSize samples and is large enough to receive a
@@ -365,7 +440,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     nSamplesInBuffer = 0;
     unsigned int uRingBufferSize = (samplesPerBlock > nTrakmeterBufferSize) ? samplesPerBlock : nTrakmeterBufferSize;
 
-    pRingBufferInput = new frut::audio::RingBuffer("Input ring buffer", numInputChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
+    pRingBufferInput = new frut::audio::RingBuffer("Input ring buffer", NumberOfChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
     pRingBufferInput->setCallbackClass(this);
 }
 
@@ -607,7 +682,7 @@ void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
 
         if (pMeterBallistics)
         {
-            pMeterBallistics = new MeterBallistics(getMainBusNumInputChannels(), nCrestFactor, true, false, bTransientMode);
+            pMeterBallistics = new MeterBallistics(NumberOfChannels, nCrestFactor, true, false, bTransientMode);
         }
     }
 }
@@ -649,7 +724,7 @@ AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
         pMeterBallistics->reset();
     }
 
-    return new TraKmeterAudioProcessorEditor(this, &pluginParameters, getMainBusNumInputChannels(), nCrestFactor);
+    return new TraKmeterAudioProcessorEditor(this, &pluginParameters, NumberOfChannels, nCrestFactor);
 }
 
 

@@ -41,8 +41,8 @@
 namespace ProjectInfo
 {
     const char* const  projectName    = "traKmeter";
-    const char* const  versionString  = "2.2.2";
-    const int          versionNumber  = 0x20202;
+    const char* const  versionString  = "2.3.0";
+    const int          versionNumber  = 0x20300;
 }
 #endif
 
