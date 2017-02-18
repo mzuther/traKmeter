@@ -123,7 +123,7 @@ private:
     const int nTrakmeterBufferSize;
 
     TraKmeterPluginParameters pluginParameters;
-    frut::audio::Dither dither;
+    frut::dsp::Dither dither;
 
     bool bSampleRateIsValid;
     bool isSilent;
