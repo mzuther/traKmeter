@@ -43,22 +43,26 @@ Flow of parameter processing:
 #ifdef TRAKMETER_MULTI
 
 TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
+#ifndef JucePlugin_PreferredChannelConfigurations
     AudioProcessor(BusesProperties()
                    .withInput("Main In",
                               AudioChannelSet::discreteChannels(8))
                    .withOutput("Main Out",
                                AudioChannelSet::discreteChannels(8))),
+#endif
     nTrakmeterBufferSize(1024),
     dither(24)
 
 #else
 
 TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
+#ifndef JucePlugin_PreferredChannelConfigurations
     AudioProcessor(BusesProperties()
                    .withInput("Main In",
                               AudioChannelSet::stereo())
                    .withOutput("Main Out",
                                AudioChannelSet::stereo())),
+#endif
     nTrakmeterBufferSize(1024),
     dither(24)
 
@@ -94,6 +98,7 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 
 //==============================================================================
 
+#ifndef JucePlugin_PreferredChannelConfigurations
 bool TraKmeterAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
 {
     // main bus: do not allow differing input and output layouts
@@ -142,6 +147,7 @@ bool TraKmeterAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts)
     // current channel layout is not allowed
     return false;
 }
+#endif
 
 
 const String TraKmeterAudioProcessor::getName() const
