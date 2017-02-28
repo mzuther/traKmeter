@@ -159,7 +159,7 @@ workspace "trakmeter"
 
 	filter { "system:linux", "configurations:Debug" }
 		warnings "Extra"
-		buildoptions { "-fno-inline", "-ggdb" }
+		buildoptions { "-DHAVE_LROUND", "-fno-inline", "-ggdb" }
 
 	filter { "system:linux", "configurations:Debug", "platforms:x32" }
 		targetsuffix "_debug"
@@ -180,7 +180,7 @@ workspace "trakmeter"
 
 	filter { "system:linux", "configurations:Release" }
 		warnings "Extra"
-		buildoptions { "-fvisibility=hidden", "-pipe" }
+		buildoptions { "-DHAVE_LROUND", "-fvisibility=hidden", "-pipe" }
 
 	filter { "system:linux", "configurations:Release", "platforms:x32" }
 		targetsuffix ""
