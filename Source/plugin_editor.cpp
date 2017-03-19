@@ -209,7 +209,7 @@ void TraKmeterAudioProcessorEditor::applySkin()
 
 void TraKmeterAudioProcessorEditor::windowAboutCallback(int modalResult)
 {
-    UNUSED(modalResult);
+    ignoreUnused(modalResult);
 
     // manually deactivate about button
     ButtonAbout.setToggleState(false, dontSendNotification);
@@ -232,7 +232,7 @@ void TraKmeterAudioProcessorEditor::windowSkinCallback(int modalResult)
 
 void TraKmeterAudioProcessorEditor::windowValidationCallback(int modalResult)
 {
-    UNUSED(modalResult);
+    ignoreUnused(modalResult);
 
     audioProcessor->silenceInput(false);
     validationDialogOpen = false;
