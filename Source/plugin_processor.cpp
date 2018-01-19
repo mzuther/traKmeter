@@ -742,15 +742,28 @@ bool TraKmeterAudioProcessor::hasEditor() const
 
 void TraKmeterAudioProcessor::getStateInformation(MemoryBlock &destData)
 {
-    copyXmlToBinary(pluginParameters.storeAsXml(), destData);
+    XmlElement xmlParameters = pluginParameters.storeAsXml();
+
+    DBG("[traKmeter]");
+    DBG("[traKmeter] storing plug-in parameters:");
+    DBG("[traKmeter]");
+    DBG(String("[traKmeter]   ") + xmlParameters.createDocument("").replace(
+            "\n", "\n[traKmeter]   "));
+
+    copyXmlToBinary(xmlParameters, destData);
 }
 
 
 void TraKmeterAudioProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
-    ScopedPointer<XmlElement> xmlDocument(getXmlFromBinary(data, sizeInBytes));
-    pluginParameters.loadFromXml(xmlDocument);
+    ScopedPointer<XmlElement> xmlParameters(getXmlFromBinary(data, sizeInBytes));
 
+    DBG("[traKmeter] loading plug-in parameters:");
+    DBG("[traKmeter]");
+    DBG(String("[traKmeter]   ") + xmlParameters->createDocument("").replace(
+            "\n", "\n[traKmeter]   "));
+
+    pluginParameters.loadFromXml(xmlParameters);
     updateParameters(true);
 }
 
