@@ -181,23 +181,35 @@ void TraKmeterAudioProcessorEditor::applySkin()
 
     // moves background image to the back of the editor's z-plane;
     // will also resize plug-in editor
-    skin.setBackgroundImage(&BackgroundImage, this);
+    skin.setBackgroundImage(&BackgroundImage,
+                            this);
 
-    skin.placeAndSkinButton(&ButtonMeterType, "button_split");
-    skin.placeAndSkinButton(&ButtonCrestFactor, "button_k20");
-    skin.placeAndSkinButton(&ButtonTransientMode, "button_transient");
-    skin.placeAndSkinButton(&ButtonMixMode, "button_mixing");
+    skin.placeAndSkinButton("button_split",
+                            &ButtonMeterType);
+    skin.placeAndSkinButton("button_k20",
+                            &ButtonCrestFactor);
+    skin.placeAndSkinButton("button_transient",
+                            &ButtonTransientMode);
+    skin.placeAndSkinButton("button_mixing",
+                            &ButtonMixMode);
 
-    skin.placeAndSkinButton(&ButtonReset, "button_reset");
-    skin.placeAndSkinButton(&ButtonSkin, "button_skin");
+    skin.placeAndSkinButton("button_reset",
+                            &ButtonReset);
+    skin.placeAndSkinButton("button_skin",
+                            &ButtonSkin);
 
-    skin.placeAndSkinButton(&ButtonValidation, "button_validate");
-    skin.placeAndSkinButton(&ButtonAbout, "button_about");
+    skin.placeAndSkinButton("button_validate",
+                            &ButtonValidation);
+    skin.placeAndSkinButton("button_about",
+                            &ButtonAbout);
 
-    skin.placeComponent(SliderGain, "slider_gain");
+    XmlElement *xmlComponent = skin.getComponent("slider_gain");
+    skin.placeComponent(xmlComponent,
+                        SliderGain);
 
 #ifdef DEBUG
-    skin.placeAndSkinLabel(&LabelDebug, "label_debug");
+    skin.placeAndSkinLabel("label_debug",
+                           &LabelDebug);
 #endif
 
     if (trakmeter)

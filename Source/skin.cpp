@@ -37,7 +37,7 @@ bool Skin::loadSkin(
                crestFactor,
                meterType);
 
-    return loadFromXml(skinFile, "trakmeter-skin", "1.1");
+    return loadFromXml(skinFile, "trakmeter-skin", "1.2");
 }
 
 

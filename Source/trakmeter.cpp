@@ -120,14 +120,18 @@ void TraKmeter::applySkin(Skin *pSkin)
 {
     for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {
-        pSkin->placeMeterBar(p_arrAverageMeters[nChannel], "meter_average_" + String(nChannel + 1));
-        pSkin->placeMeterBar(p_arrPeakMeters[nChannel], "meter_peak_" + String(nChannel + 1));
+        pSkin->placeMeterBar("meter_average_" + String(nChannel + 1),
+                             p_arrAverageMeters[nChannel]);
+        pSkin->placeMeterBar("meter_peak_" + String(nChannel + 1),
+                             p_arrPeakMeters[nChannel]);
 
-        pSkin->placeAndSkinStateLabel(p_arrOverloadMeters[nChannel], "label_over_" + String(nChannel + 1));
+        pSkin->placeAndSkinStateLabel("label_over_" + String(nChannel + 1),
+                                      p_arrOverloadMeters[nChannel]);
 
         if (bShowSplitMeters)
         {
-            pSkin->placeAndSkinSignalLed(p_arrSignalLeds[nChannel], "label_signal_" + String(nChannel + 1));
+            pSkin->placeAndSkinSignalLed("label_signal_" + String(nChannel + 1),
+                                         p_arrSignalLeds[nChannel]);
         }
     }
 
