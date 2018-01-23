@@ -10,8 +10,7 @@
 
 */
 
-#ifndef __APPHEADERFILE_PTVFE5__
-#define __APPHEADERFILE_PTVFE5__
+#pragma once
 
 #include "AppConfig.h"
 
@@ -45,5 +44,3 @@ namespace ProjectInfo
     const int          versionNumber  = 0x20300;
 }
 #endif
-
-#endif   // __APPHEADERFILE_PTVFE5__
