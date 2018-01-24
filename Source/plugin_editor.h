@@ -75,6 +75,7 @@ private:
     int segmentHeight;
 
     TraKmeterAudioProcessor *audioProcessor;
+    ScopedPointer<juce::LookAndFeel> currentLookAndFeel_;
     ScopedPointer<TraKmeter> trakmeter;
 
     File skinDirectory;
