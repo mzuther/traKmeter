@@ -23,8 +23,7 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __TRAKMETER_H__
-#define __TRAKMETER_H__
+#pragma once
 
 #include "FrutHeader.h"
 #include "meter_ballistics.h"
@@ -34,9 +33,6 @@
 #include "skin.h"
 
 
-//==============================================================================
-/**
-*/
 class TraKmeter : public Component
 {
 public:
@@ -68,9 +64,6 @@ private:
 
     OwnedArray<frut::widget::SignalLed> p_arrSignalLeds;
 };
-
-
-#endif  // __TRAKMETER_H__
 
 
 // Local Variables:

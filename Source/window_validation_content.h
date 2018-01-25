@@ -23,8 +23,7 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __WINDOW_VALIDATION_CONTENT_H__
-#define __WINDOW_VALIDATION_CONTENT_H__
+#pragma once
 
 #include "FrutHeader.h"
 #include "plugin_processor.h"
@@ -63,9 +62,6 @@ private:
     ToggleButton buttonDumpAverageLevel_;
     ToggleButton buttonDumpPeakLevel_;
 };
-
-
-#endif  // __WINDOW_VALIDATION_CONTENT_H__
 
 
 // Local Variables:

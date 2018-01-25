@@ -23,16 +23,11 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __OVERLOAD_METER_H__
-#define __OVERLOAD_METER_H__
+#pragma once
 
 #include "FrutHeader.h"
 
 
-
-//==============================================================================
-/**
-*/
 class OverloadMeter :
     public frut::widget::StateLabel
 {
@@ -50,9 +45,6 @@ private:
     bool bActiveOverload;
     bool bOverloadsDetected;
 };
-
-
-#endif  // __OVERLOAD_METER_H__
 
 
 // Local Variables:

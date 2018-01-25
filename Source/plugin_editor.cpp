@@ -53,7 +53,6 @@ static void window_validation_callback(int modalResult, TraKmeterAudioProcessorE
 }
 
 
-//==============================================================================
 TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, TraKmeterPluginParameters *parameters, int nNumChannels, int CrestFactor)
     : AudioProcessorEditor(ownerFilter)
 {
@@ -407,7 +406,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
     }
 }
 
-//==============================================================================
+
 void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
 {
     if (button == &ButtonReset)

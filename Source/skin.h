@@ -23,8 +23,7 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __SKIN_H__
-#define __SKIN_H__
+#pragma once
 
 #include "FrutHeader.h"
 #include "plugin_parameters.h"
@@ -46,8 +45,6 @@ public:
 private:
     JUCE_LEAK_DETECTOR(Skin);
 };
-
-#endif   // __SKIN_H__
 
 
 // Local Variables:

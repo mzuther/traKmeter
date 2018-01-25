@@ -23,8 +23,7 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __METER_BAR_AVERAGE_H__
-#define __METER_BAR_AVERAGE_H__
+#pragma once
 
 #include "FrutHeader.h"
 
@@ -60,9 +59,6 @@ protected:
 private:
     JUCE_LEAK_DETECTOR(MeterBarAverage);
 };
-
-
-#endif  // __METER_BAR_AVERAGE_H__
 
 
 // Local Variables:

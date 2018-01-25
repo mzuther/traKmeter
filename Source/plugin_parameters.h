@@ -23,19 +23,15 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __PLUGIN_PARAMETERS_TRAKMETER_H__
-#define __PLUGIN_PARAMETERS_TRAKMETER_H__
+#pragma once
 
 #include "FrutHeader.h"
 
 
-//============================================================================
 class TraKmeterPluginParameters :
     public frut::parameter::Juggler
 {
 public:
-    //==========================================================================
-
     TraKmeterPluginParameters();
 
     File getValidationFile();
@@ -73,8 +69,6 @@ public:
 private:
     JUCE_LEAK_DETECTOR(TraKmeterPluginParameters);
 };
-
-#endif  // __PLUGIN_PARAMETERS_TRAKMETER_H__
 
 
 // Local Variables:

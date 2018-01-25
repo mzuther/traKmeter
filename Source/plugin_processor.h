@@ -23,8 +23,7 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __TRAKMETER_PLUGINPROCESSOR_H__
-#define __TRAKMETER_PLUGINPROCESSOR_H__
+#pragma once
 
 #include "FrutHeader.h"
 #include "audio_file_player.h"
@@ -32,16 +31,12 @@
 #include "plugin_parameters.h"
 
 
-//============================================================================
 class TraKmeterAudioProcessor : public AudioProcessor, public ActionBroadcaster, virtual public frut::audio::RingBufferProcessor
 {
 public:
-    //==========================================================================
-
     TraKmeterAudioProcessor();
     ~TraKmeterAudioProcessor();
 
-    //==========================================================================
 #ifndef JucePlugin_PreferredChannelConfigurations
     bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
 #endif
@@ -56,11 +51,9 @@ public:
     void stopValidation();
     bool isValidating();
 
-    //==========================================================================
     AudioProcessorEditor *createEditor();
     bool hasEditor() const;
 
-    //==========================================================================
     int getNumParameters();
     const String getParameterName(int nIndex);
     const String getParameterText(int nIndex);
@@ -82,7 +75,6 @@ public:
     bool getBoolean(int nIndex);
     int getRealInteger(int nIndex);
 
-    //==========================================================================
     const String getName() const;
 
     bool acceptsMidi() const;
@@ -99,7 +91,6 @@ public:
     int getCrestFactor();
     void setCrestFactor(const int crest_factor);
 
-    //==========================================================================
     int getNumPrograms();
 
     int getCurrentProgram();
@@ -108,11 +99,8 @@ public:
     const String getProgramName(int nIndex);
     void changeProgramName(int nIndex, const String &newName);
 
-    //==========================================================================
     void getStateInformation(MemoryBlock &destData);
     void setStateInformation(const void *data, int sizeInBytes);
-
-    //==========================================================================
 
 private:
     JUCE_LEAK_DETECTOR(TraKmeterAudioProcessor);
@@ -143,8 +131,6 @@ private:
 };
 
 AudioProcessor *JUCE_CALLTYPE createPluginFilter();
-
-#endif  // __TRAKMETER_PLUGINPROCESSOR_H__
 
 
 // Local Variables:

@@ -23,8 +23,7 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __AUDIO_FILE_PLAYER__
-#define __AUDIO_FILE_PLAYER__
+#pragma once
 
 #include "FrutHeader.h"
 #include "meter_ballistics.h"
@@ -79,8 +78,6 @@ private:
     void outputValue(const float fValue, frut::math::Averager &averager, const float fCorrectionFactor, const String &strPrefix, const String &strSuffix);
     void outputMessage(const String &strMessage);
 };
-
-#endif   // __AUDIO_FILE_PLAYER__
 
 
 // Local Variables:

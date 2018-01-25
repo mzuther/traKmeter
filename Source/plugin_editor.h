@@ -23,8 +23,7 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifndef __PLUGINEDITOR_TRAKMETER_H__
-#define __PLUGINEDITOR_TRAKMETER_H__
+#pragma once
 
 #include "FrutHeader.h"
 
@@ -35,9 +34,6 @@
 #include "window_validation_content.h"
 
 
-//==============================================================================
-/**
-*/
 class TraKmeterAudioProcessorEditor : public AudioProcessorEditor, public ButtonListener, public SliderListener, public ActionListener
 {
 public:
@@ -54,7 +50,6 @@ public:
     void windowSkinCallback(int modalResult);
     void windowValidationCallback(int modalResult);
 
-    //==============================================================================
     void resized();
 
 private:
@@ -101,9 +96,6 @@ private:
 
     ImageComponent BackgroundImage;
 };
-
-
-#endif  // __PLUGINEDITOR_TRAKMETER_H__
 
 
 // Local Variables:

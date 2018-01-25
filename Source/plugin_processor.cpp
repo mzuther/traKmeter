@@ -96,8 +96,6 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 }
 
 
-//==============================================================================
-
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool TraKmeterAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
 {
@@ -412,8 +410,6 @@ void TraKmeterAudioProcessor::changeProgramName(int nIndex, const String &newNam
 }
 
 
-//==============================================================================
-
 void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
@@ -717,8 +713,6 @@ void TraKmeterAudioProcessor::setCrestFactor(const int crest_factor)
 }
 
 
-//==============================================================================
-
 AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
 {
     //  meter ballistics are not updated when the editor is closed, so
@@ -737,8 +731,6 @@ bool TraKmeterAudioProcessor::hasEditor() const
     return true;
 }
 
-
-//==============================================================================
 
 void TraKmeterAudioProcessor::getStateInformation(MemoryBlock &destData)
 {
@@ -767,7 +759,6 @@ void TraKmeterAudioProcessor::setStateInformation(const void *data, int sizeInBy
     updateParameters(true);
 }
 
-//==============================================================================
 
 // This creates new instances of the plug-in.
 AudioProcessor *JUCE_CALLTYPE createPluginFilter()
