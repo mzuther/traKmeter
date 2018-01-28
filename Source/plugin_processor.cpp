@@ -40,33 +40,11 @@ Flow of parameter processing:
 
 ==============================================================================*/
 
-#ifdef TRAKMETER_MULTI
-
 TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
 #ifndef JucePlugin_PreferredChannelConfigurations
-    AudioProcessor(BusesProperties()
-                   .withInput("Main In",
-                              AudioChannelSet::discreteChannels(8))
-                   .withOutput("Main Out",
-                               AudioChannelSet::discreteChannels(8))),
+    AudioProcessor(getBusesProperties()),
 #endif
-    nTrakmeterBufferSize(1024),
-    dither(24)
-
-#else
-
-TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
-#ifndef JucePlugin_PreferredChannelConfigurations
-    AudioProcessor(BusesProperties()
-                   .withInput("Main In",
-                              AudioChannelSet::stereo())
-                   .withOutput("Main Out",
-                               AudioChannelSet::stereo())),
-#endif
-    nTrakmeterBufferSize(1024),
-    dither(24)
-
-#endif
+    nTrakmeterBufferSize(1024)
 {
     frut::Frut::printVersionNumbers();
 
@@ -96,6 +74,28 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 }
 
 
+AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
+{
+#ifdef TRAKMETER_MULTI
+
+    return BusesProperties()
+           .withInput("Main In",
+                      AudioChannelSet::discreteChannels(8))
+           .withOutput("Main Out",
+                       AudioChannelSet::discreteChannels(8));
+
+#else
+
+    return BusesProperties()
+           .withInput("Main In",
+                      AudioChannelSet::stereo())
+           .withOutput("Main Out",
+                       AudioChannelSet::stereo());
+
+#endif
+}
+
+
 #ifndef JucePlugin_PreferredChannelConfigurations
 bool TraKmeterAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
 {
@@ -105,7 +105,7 @@ bool TraKmeterAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts)
         return false;
     }
 
-    // main bus: do not allow disabling channels
+    // main bus: do not allow disabling of input channels
     if (layouts.getMainInputChannelSet().isDisabled())
     {
         return false;
@@ -433,6 +433,8 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     Logger::outputDebugString("[traKmeter] number of input channels: " + String(getMainBusNumInputChannels()));
     Logger::outputDebugString("[traKmeter] number of output channels: " + String(getMainBusNumOutputChannels()));
 
+    dither_.initialise(NumberOfChannels, 24);
+
     pMeterBallistics = new MeterBallistics(NumberOfChannels, nCrestFactor, true, false, bTransientMode);
 
     // make sure that ring buffer can hold at least
@@ -441,7 +443,7 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     nSamplesInBuffer = 0;
     unsigned int uRingBufferSize = (samplesPerBlock > nTrakmeterBufferSize) ? samplesPerBlock : nTrakmeterBufferSize;
 
-    pRingBufferInput = new frut::audio::RingBuffer("Input ring buffer", NumberOfChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
+    pRingBufferInput = new frut::audio::RingBuffer<float>("Input ring buffer", NumberOfChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
     pRingBufferInput->setCallbackClass(this);
 }
 
@@ -456,6 +458,14 @@ void TraKmeterAudioProcessor::releaseResources()
 
     pMeterBallistics = nullptr;
     audioFilePlayer = nullptr;
+}
+
+
+void TraKmeterAudioProcessor::reset()
+{
+    // Use this method as the place to clear any delay lines, buffers,
+    // etc, as it means there's been a break in the audio's
+    // continuity.
 }
 
 
@@ -507,7 +517,8 @@ void TraKmeterAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffe
             for (int nSample = 0; nSample < buffer.getNumSamples(); ++nSample)
             {
                 double dSampleValue = buffer.getSample(nChannel, nSample);
-                float fNewSampleValue = dither.dither(dSampleValue * dGain);
+                float fNewSampleValue = dither_.ditherSample(
+                                            nChannel, dSampleValue * dGain);
                 buffer.setSample(nChannel, nSample, fNewSampleValue);
             }
         }
@@ -635,7 +646,7 @@ bool TraKmeterAudioProcessor::isValidating()
 }
 
 
-int TraKmeterAudioProcessor::countOverflows(frut::audio::RingBuffer *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay)
+int TraKmeterAudioProcessor::countOverflows(frut::audio::RingBuffer<float> *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay)
 {
     // initialise number of overflows in this buffer
     int nOverflows = 0;

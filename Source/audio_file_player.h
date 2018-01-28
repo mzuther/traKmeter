@@ -32,7 +32,11 @@
 class AudioFilePlayer
 {
 public:
-    AudioFilePlayer(const File audioFile, int sample_rate, MeterBallistics *meter_ballistics, int crest_factor);
+    AudioFilePlayer(const File audioFile,
+                    int sample_rate,
+                    MeterBallistics *meter_ballistics,
+                    int crest_factor);
+
     ~AudioFilePlayer();
 
     bool isPlaying();
@@ -40,7 +44,8 @@ public:
 
     void fillBufferChunk(AudioBuffer<float> *buffer);
     void setCrestFactor(int crest_factor);
-    void setReporters(int nChannel, bool ReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel);
+    void setReporters(int nChannel, bool ReportCSV,
+                      bool bAverageMeterLevel, bool bPeakMeterLevel);
 
 private:
     JUCE_LEAK_DETECTOR(AudioFilePlayer);
@@ -75,7 +80,12 @@ private:
     String formatTime(void);
     String formatValue(const float fValue);
 
-    void outputValue(const float fValue, frut::math::Averager &averager, const float fCorrectionFactor, const String &strPrefix, const String &strSuffix);
+    void outputValue(const float fValue,
+                     frut::math::Averager &averager,
+                     const float fCorrectionFactor,
+                     const String &strPrefix,
+                     const String &strSuffix);
+
     void outputMessage(const String &strMessage);
 };
 

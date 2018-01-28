@@ -26,7 +26,11 @@
 #include "audio_file_player.h"
 
 
-AudioFilePlayer::AudioFilePlayer(const File audioFile, int sample_rate, MeterBallistics *meter_ballistics, int crest_factor)
+AudioFilePlayer::AudioFilePlayer(
+    const File audioFile,
+    int sample_rate,
+    MeterBallistics *meter_ballistics,
+    int crest_factor)
 {
     nReportChannel = -1;
     bReports = false;
@@ -100,14 +104,19 @@ AudioFilePlayer::~AudioFilePlayer()
 }
 
 
-void AudioFilePlayer::setCrestFactor(int crest_factor)
+void AudioFilePlayer::setCrestFactor(
+    int crest_factor)
 {
     fCrestFactor = float(crest_factor);
     fMeterMinimumDecibel = MeterBallistics::getMeterMinimumDecibel() + fCrestFactor;
 }
 
 
-void AudioFilePlayer::setReporters(int nChannel, bool ReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel)
+void AudioFilePlayer::setReporters(
+    int nChannel,
+    bool ReportCSV,
+    bool bAverageMeterLevel,
+    bool bPeakMeterLevel)
 {
     bReportCSV = ReportCSV;
 
@@ -149,7 +158,8 @@ bool AudioFilePlayer::matchingSampleRates()
 }
 
 
-void AudioFilePlayer::fillBufferChunk(AudioBuffer<float> *buffer)
+void AudioFilePlayer::fillBufferChunk(
+    AudioBuffer<float> *buffer)
 {
     // report old meter readings
     if (bReports)
@@ -177,7 +187,7 @@ void AudioFilePlayer::fillBufferChunk(AudioBuffer<float> *buffer)
 }
 
 
-void AudioFilePlayer::outputReportPlain(void)
+void AudioFilePlayer::outputReportPlain()
 {
     if (bReportAverageMeterLevel)
     {
@@ -225,7 +235,7 @@ void AudioFilePlayer::outputReportPlain(void)
 }
 
 
-void AudioFilePlayer::outputReportCSVHeader(void)
+void AudioFilePlayer::outputReportCSVHeader()
 {
     bHeaderIsWritten = true;
     String strOutput = "\"timecode\"\t";
@@ -264,7 +274,7 @@ void AudioFilePlayer::outputReportCSVHeader(void)
 }
 
 
-void AudioFilePlayer::outputReportCSVLine(void)
+void AudioFilePlayer::outputReportCSVLine()
 {
     String strOutput;
 
@@ -311,7 +321,7 @@ void AudioFilePlayer::outputReportCSVLine(void)
 }
 
 
-String AudioFilePlayer::formatTime(void)
+String AudioFilePlayer::formatTime()
 {
     float fTime = audioFileSource->getNextReadPosition() / fSampleRate;
 
@@ -332,7 +342,8 @@ String AudioFilePlayer::formatTime(void)
 }
 
 
-String AudioFilePlayer::formatValue(const float fValue)
+String AudioFilePlayer::formatValue(
+    const float fValue)
 {
     String strValue;
 
@@ -349,7 +360,12 @@ String AudioFilePlayer::formatValue(const float fValue)
 }
 
 
-void AudioFilePlayer::outputValue(const float fValue, frut::math::Averager &averager, const float fCorrectionFactor, const String &strPrefix, const String &strSuffix)
+void AudioFilePlayer::outputValue(
+    const float fValue,
+    frut::math::Averager &averager,
+    const float fCorrectionFactor,
+    const String &strPrefix,
+    const String &strSuffix)
 {
     String strValue;
 
@@ -384,7 +400,8 @@ void AudioFilePlayer::outputValue(const float fValue, frut::math::Averager &aver
 }
 
 
-void AudioFilePlayer::outputMessage(const String &strMessage)
+void AudioFilePlayer::outputMessage(
+    const String &strMessage)
 {
 
     Logger::outputDebugString("[Validation - " + formatTime() + "] " + strMessage);

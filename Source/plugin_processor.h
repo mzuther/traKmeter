@@ -31,7 +31,10 @@
 #include "plugin_parameters.h"
 
 
-class TraKmeterAudioProcessor : public AudioProcessor, public ActionBroadcaster, virtual public frut::audio::RingBufferProcessor
+class TraKmeterAudioProcessor :
+    public AudioProcessor,
+    public ActionBroadcaster,
+    virtual public frut::audio::RingBufferProcessor<float>
 {
 public:
     TraKmeterAudioProcessor();
@@ -41,26 +44,32 @@ public:
     bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
 #endif
 
-    void prepareToPlay(double sampleRate, int samplesPerBlock);
-    void releaseResources();
+    void prepareToPlay(double sampleRate, int samplesPerBlock) override;
+    void releaseResources() override;
+    void reset() override;
 
-    void processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages);
+    void processBlock(AudioBuffer<float> &buffer,
+                      MidiBuffer &midiMessages)  override;
 
     void silenceInput(bool isSilentNew);
-    void startValidation(File fileAudio, int nSelectedChannel, bool bReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel);
+
+    void startValidation(File fileAudio, int nSelectedChannel,
+                         bool bReportCSV, bool bAverageMeterLevel,
+                         bool bPeakMeterLevel);
+
     void stopValidation();
     bool isValidating();
 
-    AudioProcessorEditor *createEditor();
-    bool hasEditor() const;
+    AudioProcessorEditor *createEditor() override;
+    bool hasEditor() const override;
 
-    int getNumParameters();
-    const String getParameterName(int nIndex);
-    const String getParameterText(int nIndex);
+    int getNumParameters() override;
+    const String getParameterName(int nIndex) override;
+    const String getParameterText(int nIndex) override;
 
-    float getParameter(int nIndex);
+    float getParameter(int nIndex) override;
     void changeParameter(int nIndex, float fValue);
-    void setParameter(int nIndex, float fValue);
+    void setParameter(int nIndex, float fValue) override;
 
     void clearChangeFlag(int nIndex);
     bool hasChanged(int nIndex);
@@ -75,15 +84,19 @@ public:
     bool getBoolean(int nIndex);
     int getRealInteger(int nIndex);
 
-    const String getName() const;
+    const String getName() const override;
 
-    bool acceptsMidi() const;
-    bool producesMidi() const;
+    bool acceptsMidi() const override;
+    bool producesMidi() const override;
 
-    double getTailLengthSeconds() const;
+    double getTailLengthSeconds() const override;
 
     MeterBallistics *getLevels();
-    virtual void processBufferChunk(AudioBuffer<float> &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples);
+
+    virtual void processBufferChunk(AudioBuffer<float> &buffer,
+                                    const unsigned int uChunkSize,
+                                    const unsigned int uBufferPosition,
+                                    const unsigned int uProcessedSamples);
 
     bool getTransientMode();
     void setTransientMode(const bool transient_mode);
@@ -91,29 +104,32 @@ public:
     int getCrestFactor();
     void setCrestFactor(const int crest_factor);
 
-    int getNumPrograms();
+    int getNumPrograms() override;
 
-    int getCurrentProgram();
-    void setCurrentProgram(int nIndex);
+    int getCurrentProgram() override;
+    void setCurrentProgram(int nIndex) override;
 
-    const String getProgramName(int nIndex);
-    void changeProgramName(int nIndex, const String &newName);
+    const String getProgramName(int nIndex) override;
+    void changeProgramName(int nIndex, const String &newName) override;
 
-    void getStateInformation(MemoryBlock &destData);
-    void setStateInformation(const void *data, int sizeInBytes);
+    void getStateInformation(MemoryBlock &destData) override;
+    void setStateInformation(const void *data, int sizeInBytes) override;
 
 private:
     JUCE_LEAK_DETECTOR(TraKmeterAudioProcessor);
 
+    static BusesProperties getBusesProperties();
+
     ScopedPointer<AudioFilePlayer> audioFilePlayer;
-    ScopedPointer<frut::audio::RingBuffer> pRingBufferInput;
+    ScopedPointer<frut::audio::RingBuffer<float>> pRingBufferInput;
 
     ScopedPointer<MeterBallistics> pMeterBallistics;
 
-    const int nTrakmeterBufferSize;
-
     TraKmeterPluginParameters pluginParameters;
-    frut::dsp::Dither dither;
+
+    frut::dsp::Dither dither_;
+
+    const int nTrakmeterBufferSize;
 
     bool bSampleRateIsValid;
     bool isSilent;
@@ -127,7 +143,10 @@ private:
     int nDecibels;
     double dGain;
 
-    int countOverflows(frut::audio::RingBuffer *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay);
+    int countOverflows(frut::audio::RingBuffer<float> *ring_buffer,
+                       const unsigned int channel,
+                       const unsigned int length,
+                       const unsigned int pre_delay);
 };
 
 AudioProcessor *JUCE_CALLTYPE createPluginFilter();
