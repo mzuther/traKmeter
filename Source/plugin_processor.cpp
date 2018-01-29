@@ -610,34 +610,30 @@ void TraKmeterAudioProcessor::processBufferChunk(
 {
     ignoreUnused(uBufferPosition, uProcessedSamples);
 
-    bool hasOpenEditor = (getActiveEditor() != nullptr);
+    unsigned int uPreDelay = uChunkSize / 2;
 
-    if (hasOpenEditor)
+    // length of buffer chunk in fractional seconds
+    // (1024 samples / 44100 samples/s = 23.2 ms)
+    fProcessedSeconds = (float) uChunkSize / (float) getSampleRate();
+
+    for (int nChannel = 0; nChannel < getMainBusNumInputChannels(); ++nChannel)
     {
-        unsigned int uPreDelay = uChunkSize / 2;
+        // determine peak level for uChunkSize samples (use pre-delay)
+        float fPeakLevels = pRingBufferInput->getMagnitude(
+                                nChannel, uChunkSize, uPreDelay);
 
-        // length of buffer chunk in fractional seconds
-        // (1024 samples / 44100 samples/s = 23.2 ms)
-        fProcessedSeconds = (float) uChunkSize / (float) getSampleRate();
+        // determine peak level for uChunkSize samples (use pre-delay)
+        float fRmsLevels = pRingBufferInput->getRMSLevel(
+                               nChannel, uChunkSize, uPreDelay);
 
-        for (int nChannel = 0; nChannel < getMainBusNumInputChannels(); ++nChannel)
-        {
-            // determine peak level for uChunkSize samples (use
-            // pre-delay)
-            float fPeakLevels = pRingBufferInput->getMagnitude(nChannel, uChunkSize, uPreDelay);
+        // determine overflows for uChunkSize samples (use pre-delay)
+        int nOverflows = countOverflows(
+                             pRingBufferInput, nChannel, uChunkSize, uPreDelay);
 
-            // determine peak level for uChunkSize samples (use
-            // pre-delay)
-            float fRmsLevels = pRingBufferInput->getRMSLevel(nChannel, uChunkSize, uPreDelay);
-
-            // determine overflows for uChunkSize samples (use
-            // pre-delay)
-            int nOverflows = countOverflows(pRingBufferInput, nChannel, uChunkSize, uPreDelay);
-
-            // apply meter ballistics and store values so that the
-            // editor can access them
-            pMeterBallistics->updateChannel(nChannel, fProcessedSeconds, fPeakLevels, fRmsLevels, nOverflows);
-        }
+        // apply meter ballistics and store values so that the editor
+        // can access them
+        pMeterBallistics->updateChannel(
+            nChannel, fProcessedSeconds, fPeakLevels, fRmsLevels, nOverflows);
 
         // "UM" --> update meters
         sendActionMessage("UM");
