@@ -26,7 +26,9 @@
 #include "plugin_editor.h"
 
 
-static void window_about_callback(int modalResult, TraKmeterAudioProcessorEditor *pEditor)
+static void window_about_callback(
+    int modalResult,
+    TraKmeterAudioProcessorEditor *pEditor)
 {
     if (pEditor != nullptr)
     {
@@ -35,7 +37,9 @@ static void window_about_callback(int modalResult, TraKmeterAudioProcessorEditor
 }
 
 
-static void window_skin_callback(int modalResult, TraKmeterAudioProcessorEditor *pEditor)
+static void window_skin_callback(
+    int modalResult,
+    TraKmeterAudioProcessorEditor *pEditor)
 {
     if (pEditor != nullptr)
     {
@@ -44,7 +48,9 @@ static void window_skin_callback(int modalResult, TraKmeterAudioProcessorEditor 
 }
 
 
-static void window_validation_callback(int modalResult, TraKmeterAudioProcessorEditor *pEditor)
+static void window_validation_callback(
+    int modalResult,
+    TraKmeterAudioProcessorEditor *pEditor)
 {
     if (pEditor != nullptr)
     {
@@ -53,8 +59,11 @@ static void window_validation_callback(int modalResult, TraKmeterAudioProcessorE
 }
 
 
-TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, TraKmeterPluginParameters *parameters, int nNumChannels, int CrestFactor)
-    : AudioProcessorEditor(ownerFilter)
+TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
+    TraKmeterAudioProcessor *ownerFilter,
+    int nNumChannels,
+    int CrestFactor) :
+    AudioProcessorEditor(ownerFilter)
 {
     // load look and feel
     currentLookAndFeel_ = new frut::skin::LookAndFeel_Frut_V3;
@@ -89,16 +98,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
     ButtonTransientMode.addListener(this);
     addAndMakeVisible(ButtonTransientMode);
 
-    ButtonMixMode.addListener(this);
-    addAndMakeVisible(ButtonMixMode);
-
-    int nIndex = TraKmeterPluginParameters::selGain;
-    SliderGain = new frut::widget::SliderSwitch(parameters, nIndex);
-    SliderGain->setSliderColour(Colours::red);
-
-    SliderGain->addListener(this);
-    addChildComponent(SliderGain);
-
     ButtonReset.addListener(this);
     addAndMakeVisible(ButtonReset);
 
@@ -125,8 +124,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(TraKmeterAudioProce
 
     updateParameter(TraKmeterPluginParameters::selTransientMode);
     updateParameter(TraKmeterPluginParameters::selCrestFactor);
-    updateParameter(TraKmeterPluginParameters::selMixMode);
-    updateParameter(TraKmeterPluginParameters::selGain);
     updateParameter(TraKmeterPluginParameters::selMeterType);
 
     // locate directory containing the skins
@@ -193,8 +190,6 @@ void TraKmeterAudioProcessorEditor::applySkin()
                             &ButtonCrestFactor);
     skin.placeAndSkinButton("button_transient",
                             &ButtonTransientMode);
-    skin.placeAndSkinButton("button_mixing",
-                            &ButtonMixMode);
 
     skin.placeAndSkinButton("button_reset",
                             &ButtonReset);
@@ -205,10 +200,6 @@ void TraKmeterAudioProcessorEditor::applySkin()
                             &ButtonValidation);
     skin.placeAndSkinButton("button_about",
                             &ButtonAbout);
-
-    XmlElement *xmlComponent = skin.getComponent("slider_gain");
-    skin.placeComponent(xmlComponent,
-                        SliderGain);
 
 #ifdef DEBUG
     skin.placeAndSkinLabel("label_debug",
@@ -222,7 +213,8 @@ void TraKmeterAudioProcessorEditor::applySkin()
 }
 
 
-void TraKmeterAudioProcessorEditor::windowAboutCallback(int modalResult)
+void TraKmeterAudioProcessorEditor::windowAboutCallback(
+    int modalResult)
 {
     ignoreUnused(modalResult);
 
@@ -231,7 +223,8 @@ void TraKmeterAudioProcessorEditor::windowAboutCallback(int modalResult)
 }
 
 
-void TraKmeterAudioProcessorEditor::windowSkinCallback(int modalResult)
+void TraKmeterAudioProcessorEditor::windowSkinCallback(
+    int modalResult)
 {
     // manually deactivate skin button
     ButtonSkin.setToggleState(false, dontSendNotification);
@@ -245,7 +238,8 @@ void TraKmeterAudioProcessorEditor::windowSkinCallback(int modalResult)
 }
 
 
-void TraKmeterAudioProcessorEditor::windowValidationCallback(int modalResult)
+void TraKmeterAudioProcessorEditor::windowValidationCallback(
+    int modalResult)
 {
     ignoreUnused(modalResult);
 
@@ -257,7 +251,8 @@ void TraKmeterAudioProcessorEditor::windowValidationCallback(int modalResult)
 }
 
 
-void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &strMessage)
+void TraKmeterAudioProcessorEditor::actionListenerCallback(
+    const String &strMessage)
 {
     // "PC" --> parameter changed, followed by a hash and the
     // parameter's ID
@@ -310,7 +305,8 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(const String &strMess
 }
 
 
-void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
+void TraKmeterAudioProcessorEditor::updateParameter(
+    int nIndex)
 {
     audioProcessor->clearChangeFlag(nIndex);
 
@@ -339,22 +335,6 @@ void TraKmeterAudioProcessorEditor::updateParameter(int nIndex)
     {
         bool bTransientMode = audioProcessor->getBoolean(nIndex);
         ButtonTransientMode.setToggleState(bTransientMode, dontSendNotification);
-    }
-    break;
-
-    case TraKmeterPluginParameters::selMixMode:
-    {
-        bool bMixMode = audioProcessor->getBoolean(nIndex);
-        ButtonMixMode.setToggleState(bMixMode, dontSendNotification);
-
-        SliderGain->setVisible(bMixMode);
-    }
-    break;
-
-    case TraKmeterPluginParameters::selGain:
-    {
-        float fValue = audioProcessor->getParameter(nIndex);
-        SliderGain->setValue(fValue, dontSendNotification);
     }
     break;
     }
@@ -407,7 +387,8 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
 }
 
 
-void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
+void TraKmeterAudioProcessorEditor::buttonClicked(
+    Button *button)
 {
     if (button == &ButtonReset)
     {
@@ -440,10 +421,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
     else if (button == &ButtonTransientMode)
     {
         audioProcessor->changeParameter(TraKmeterPluginParameters::selTransientMode, !button->getToggleState());
-    }
-    else if (button == &ButtonMixMode)
-    {
-        audioProcessor->changeParameter(TraKmeterPluginParameters::selMixMode, !button->getToggleState());
     }
     else if (button == &ButtonSkin)
     {
@@ -584,16 +561,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
 
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowValidation, ModalCallbackFunction::forComponent(window_validation_callback, this));
-    }
-}
-
-
-void TraKmeterAudioProcessorEditor::sliderValueChanged(Slider *slider)
-{
-    if (slider == SliderGain)
-    {
-        float fValue = (float) slider->getValue();
-        audioProcessor->changeParameter(TraKmeterPluginParameters::selGain, fValue);
     }
 }
 

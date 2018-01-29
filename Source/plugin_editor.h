@@ -34,14 +34,18 @@
 #include "window_validation_content.h"
 
 
-class TraKmeterAudioProcessorEditor : public AudioProcessorEditor, public ButtonListener, public SliderListener, public ActionListener
+class TraKmeterAudioProcessorEditor :
+    public AudioProcessorEditor,
+    public ButtonListener,
+    public ActionListener
 {
 public:
-    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter, TraKmeterPluginParameters *parameters, int nNumChannels, int CrestFactor);
+    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter,
+                                  int nNumChannels,
+                                  int CrestFactor);
     ~TraKmeterAudioProcessorEditor();
 
     void buttonClicked(Button *button);
-    void sliderValueChanged(Slider *slider);
 
     void actionListenerCallback(const String &strMessage);
     void updateParameter(int nIndex);
@@ -82,13 +86,10 @@ private:
     ImageButton ButtonMeterType;
     ImageButton ButtonCrestFactor;
     ImageButton ButtonTransientMode;
-    ImageButton ButtonMixMode;
 
     ImageButton ButtonSkin;
     ImageButton ButtonValidation;
     ImageButton ButtonAbout;
-
-    ScopedPointer<frut::widget::SliderSwitch> SliderGain;
 
 #ifdef DEBUG
     ImageComponent LabelDebug;

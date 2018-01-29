@@ -7,7 +7,7 @@
     path="Default"
     orientation="vertical"
     origin_of_y="bottom"
-    version="1.2">
+    version="1.3">
 
     <default>
         <button_split
@@ -32,14 +32,6 @@
             image_on="buttons/button_transient_on.png"
             image_over="buttons/button_transient_over.png"
             image_off="buttons/button_transient_off.png"
-        />
-
-        <button_mixing
-            x="152"
-            y="183"
-            image_on="buttons/button_mixing_on.png"
-            image_over="buttons/button_mixing_over.png"
-            image_off="buttons/button_mixing_off.png"
         />
 
         <button_skin
@@ -72,14 +64,6 @@
             image_on="buttons/button_about_on.png"
             image_over="buttons/button_about_over.png"
             image_off="buttons/button_about_off.png"
-        />
-
-        <slider_gain
-            x="157"
-            y="128"
-            width="50"
-            height="50"
-            image="sliders/slider_gain.png"
         />
 
         <label_debug
@@ -280,14 +264,6 @@
             image_off="buttons/button_transient_off.png"
         />
 
-        <button_mixing
-            x="340"
-            y="183"
-            image_on="buttons/button_mixing_on.png"
-            image_over="buttons/button_mixing_over.png"
-            image_off="buttons/button_mixing_off.png"
-        />
-
         <button_skin
             x="340"
             y="96"
@@ -318,14 +294,6 @@
             image_on="buttons/button_about_on.png"
             image_over="buttons/button_about_over.png"
             image_off="buttons/button_about_off.png"
-        />
-
-        <slider_gain
-            x="345"
-            y="128"
-            width="50"
-            height="50"
-            image="sliders/slider_gain.png"
         />
 
         <label_debug
@@ -644,14 +612,6 @@
             image_off="buttons/button_transient_off.png"
         />
 
-        <button_mixing
-            x="340"
-            y="183"
-            image_on="buttons/button_mixing_on.png"
-            image_over="buttons/button_mixing_over.png"
-            image_off="buttons/button_mixing_off.png"
-        />
-
         <button_skin
             x="340"
             y="96"
@@ -682,14 +642,6 @@
             image_on="buttons/button_about_on.png"
             image_over="buttons/button_about_over.png"
             image_off="buttons/button_about_off.png"
-        />
-
-        <slider_gain
-            x="345"
-            y="128"
-            width="50"
-            height="50"
-            image="sliders/slider_gain.png"
         />
 
         <label_debug

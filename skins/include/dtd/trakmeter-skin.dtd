@@ -2,12 +2,10 @@
           "button_split,
            button_k20,
            button_transient,
-           button_mixing,
            button_skin,
            button_reset,
            button_validate,
            button_about,
-           slider_gain,
            label_debug
 ">
 
@@ -15,12 +13,10 @@
           "button_split?,
            button_k20?,
            button_transient?,
-           button_mixing?,
            button_skin?,
            button_reset?,
            button_validate?,
            button_about?,
-           slider_gain?,
            label_debug?
 ">
 
@@ -178,7 +174,7 @@
               orientation (vertical | horizontal) #REQUIRED
               origin_of_y (top| bottom) #REQUIRED
               path CDATA #REQUIRED
-              version CDATA "1.2"
+              version CDATA "1.3"
     >
 
     <!ELEMENT default (%main_components;)>
@@ -215,9 +211,6 @@
         <!ELEMENT button_transient (#PCDATA)>
             <!ATTLIST button_transient %attrs_button;>
 
-        <!ELEMENT button_mixing (#PCDATA)>
-            <!ATTLIST button_mixing %attrs_button;>
-
         <!ELEMENT button_skin (#PCDATA)>
             <!ATTLIST button_skin %attrs_button;>
 
@@ -229,9 +222,6 @@
 
         <!ELEMENT button_about (#PCDATA)>
             <!ATTLIST button_about %attrs_button;>
-
-        <!ELEMENT slider_gain (#PCDATA)>
-            <!ATTLIST slider_gain %attrs_slider;>
 
         <!ELEMENT label_debug (#PCDATA)>
             <!ATTLIST label_debug %attrs_label;>

@@ -54,47 +54,6 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    frut::parameter::ParBoolean *ParameterMixMode =
-        new frut::parameter::ParBoolean("On", "Off");
-    ParameterMixMode->setName("Mixing mode");
-    ParameterMixMode->setDefaultBoolean(false, true);
-    add(ParameterMixMode, selMixMode);
-
-
-    frut::parameter::ParSwitch *ParameterGain =
-        new frut::parameter::ParSwitch();
-    ParameterGain->setName("Gain");
-
-    ParameterGain->addPreset(-12.0f, "-12 dB");
-    ParameterGain->addPreset(-11.0f, "-11 dB");
-    ParameterGain->addPreset(-10.0f, "-10 dB");
-    ParameterGain->addPreset(-9.0f,   "-9 dB");
-    ParameterGain->addPreset(-8.0f,   "-8 dB");
-    ParameterGain->addPreset(-7.0f,   "-7 dB");
-    ParameterGain->addPreset(-6.0f,   "-6 dB");
-    ParameterGain->addPreset(-5.0f,   "-5 dB");
-    ParameterGain->addPreset(-4.0f,   "-4 dB");
-    ParameterGain->addPreset(-3.0f,   "-3 dB");
-    ParameterGain->addPreset(-2.0f,   "-2 dB");
-    ParameterGain->addPreset(-1.0f,   "-1 dB");
-    ParameterGain->addPreset(0.0f,     "0 dB");
-    ParameterGain->addPreset(+1.0f,   "+1 dB");
-    ParameterGain->addPreset(+2.0f,   "+2 dB");
-    ParameterGain->addPreset(+3.0f,   "+3 dB");
-    ParameterGain->addPreset(+4.0f,   "+4 dB");
-    ParameterGain->addPreset(+5.0f,   "+5 dB");
-    ParameterGain->addPreset(+6.0f,   "+6 dB");
-    ParameterGain->addPreset(+7.0f,   "+7 dB");
-    ParameterGain->addPreset(+8.0f,   "+8 dB");
-    ParameterGain->addPreset(+9.0f,   "+9 dB");
-    ParameterGain->addPreset(+10.0f, "+10 dB");
-    ParameterGain->addPreset(+11.0f, "+11 dB");
-    ParameterGain->addPreset(+12.0f, "+12 dB");
-
-    ParameterGain->setDefaultRealFloat(0.0f, true);
-    add(ParameterGain, selGain);
-
-
     frut::parameter::ParSwitch *ParameterMeterType =
         new frut::parameter::ParSwitch();
     ParameterMeterType->setName("Meter type");

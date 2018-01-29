@@ -62,9 +62,6 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
     // depend on "TraKmeterPluginParameters"!
     bTransientMode = getBoolean(TraKmeterPluginParameters::selTransientMode);
     nCrestFactor = getRealInteger(TraKmeterPluginParameters::selCrestFactor);
-
-    nDecibels = getRealInteger(TraKmeterPluginParameters::selGain);
-    dGain = MeterBallistics::decibel2level_double(nDecibels);
 }
 
 
@@ -97,7 +94,8 @@ AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
 
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool TraKmeterAudioProcessor::isBusesLayoutSupported(const BusesLayout &layouts) const
+bool TraKmeterAudioProcessor::isBusesLayoutSupported(
+    const BusesLayout &layouts) const
 {
     // main bus: do not allow differing input and output layouts
     if (layouts.getMainInputChannelSet() != layouts.getMainOutputChannelSet())
@@ -160,19 +158,22 @@ int TraKmeterAudioProcessor::getNumParameters()
 }
 
 
-const String TraKmeterAudioProcessor::getParameterName(int nIndex)
+const String TraKmeterAudioProcessor::getParameterName(
+    int nIndex)
 {
     return pluginParameters.getName(nIndex);
 }
 
 
-const String TraKmeterAudioProcessor::getParameterText(int nIndex)
+const String TraKmeterAudioProcessor::getParameterText(
+    int nIndex)
 {
     return pluginParameters.getText(nIndex);
 }
 
 
-float TraKmeterAudioProcessor::getParameter(int nIndex)
+float TraKmeterAudioProcessor::getParameter(
+    int nIndex)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -183,7 +184,9 @@ float TraKmeterAudioProcessor::getParameter(int nIndex)
 }
 
 
-void TraKmeterAudioProcessor::changeParameter(int nIndex, float fValue)
+void TraKmeterAudioProcessor::changeParameter(
+    int nIndex,
+    float fValue)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -198,7 +201,9 @@ void TraKmeterAudioProcessor::changeParameter(int nIndex, float fValue)
 }
 
 
-void TraKmeterAudioProcessor::setParameter(int nIndex, float fValue)
+void TraKmeterAudioProcessor::setParameter(
+    int nIndex,
+    float fValue)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -217,11 +222,6 @@ void TraKmeterAudioProcessor::setParameter(int nIndex, float fValue)
     else if (nIndex == TraKmeterPluginParameters::selCrestFactor)
     {
         setCrestFactor(getRealInteger(nIndex));
-    }
-    else if (nIndex == TraKmeterPluginParameters::selGain)
-    {
-        nDecibels = getRealInteger(TraKmeterPluginParameters::selGain);
-        dGain = MeterBallistics::decibel2level_double(nDecibels);
     }
 
     // notify plug-in editor of parameter change
@@ -245,19 +245,22 @@ void TraKmeterAudioProcessor::setParameter(int nIndex, float fValue)
 }
 
 
-void TraKmeterAudioProcessor::clearChangeFlag(int nIndex)
+void TraKmeterAudioProcessor::clearChangeFlag(
+    int nIndex)
 {
     pluginParameters.clearChangeFlag(nIndex);
 }
 
 
-bool TraKmeterAudioProcessor::hasChanged(int nIndex)
+bool TraKmeterAudioProcessor::hasChanged(
+    int nIndex)
 {
     return pluginParameters.hasChanged(nIndex);
 }
 
 
-void TraKmeterAudioProcessor::updateParameters(bool bIncludeHiddenParameters)
+void TraKmeterAudioProcessor::updateParameters(
+    bool bIncludeHiddenParameters)
 {
     int nNumParameters = pluginParameters.getNumParameters(false);
 
@@ -286,7 +289,8 @@ void TraKmeterAudioProcessor::updateParameters(bool bIncludeHiddenParameters)
 }
 
 
-bool TraKmeterAudioProcessor::getBoolean(int nIndex)
+bool TraKmeterAudioProcessor::getBoolean(
+    int nIndex)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -297,7 +301,8 @@ bool TraKmeterAudioProcessor::getBoolean(int nIndex)
 }
 
 
-int TraKmeterAudioProcessor::getRealInteger(int nIndex)
+int TraKmeterAudioProcessor::getRealInteger(
+    int nIndex)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -319,7 +324,8 @@ File TraKmeterAudioProcessor::getParameterValidationFile()
 }
 
 
-void TraKmeterAudioProcessor::setParameterValidationFile(const File &fileValidation)
+void TraKmeterAudioProcessor::setParameterValidationFile(
+    const File &fileValidation)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -341,7 +347,8 @@ String TraKmeterAudioProcessor::getParameterSkinName()
 }
 
 
-void TraKmeterAudioProcessor::setParameterSkinName(const String &strSkinName)
+void TraKmeterAudioProcessor::setParameterSkinName(
+    const String &strSkinName)
 {
     // This method will be called by the host, probably on the audio
     // thread, so it's absolutely time-critical. Don't use critical
@@ -390,13 +397,15 @@ int TraKmeterAudioProcessor::getCurrentProgram()
 }
 
 
-void TraKmeterAudioProcessor::setCurrentProgram(int nIndex)
+void TraKmeterAudioProcessor::setCurrentProgram(
+    int nIndex)
 {
     ignoreUnused(nIndex);
 }
 
 
-const String TraKmeterAudioProcessor::getProgramName(int nIndex)
+const String TraKmeterAudioProcessor::getProgramName(
+    int nIndex)
 {
     ignoreUnused(nIndex);
 
@@ -404,13 +413,17 @@ const String TraKmeterAudioProcessor::getProgramName(int nIndex)
 }
 
 
-void TraKmeterAudioProcessor::changeProgramName(int nIndex, const String &newName)
+void TraKmeterAudioProcessor::changeProgramName(
+    int nIndex,
+    const String &newName)
 {
     ignoreUnused(nIndex, newName);
 }
 
 
-void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
+void TraKmeterAudioProcessor::prepareToPlay(
+    double sampleRate,
+    int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -443,7 +456,13 @@ void TraKmeterAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlo
     nSamplesInBuffer = 0;
     unsigned int uRingBufferSize = (samplesPerBlock > nTrakmeterBufferSize) ? samplesPerBlock : nTrakmeterBufferSize;
 
-    pRingBufferInput = new frut::audio::RingBuffer<float>("Input ring buffer", NumberOfChannels, uRingBufferSize, nTrakmeterBufferSize, nTrakmeterBufferSize);
+    pRingBufferInput = new frut::audio::RingBuffer<float>(
+        "Input ring buffer",
+        NumberOfChannels,
+        uRingBufferSize,
+        nTrakmeterBufferSize,
+        nTrakmeterBufferSize);
+
     pRingBufferInput->setCallbackClass(this);
 }
 
@@ -469,20 +488,23 @@ void TraKmeterAudioProcessor::reset()
 }
 
 
-void TraKmeterAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffer &midiMessages)
+void TraKmeterAudioProcessor::processBlock(
+    AudioBuffer<float> &buffer,
+    MidiBuffer &midiMessages)
 {
+    jassert(!isUsingDoublePrecision());
     ignoreUnused(midiMessages);
 
     // This is the place where you'd normally do the guts of your
     // plug-in's audio processing...
 
-    int nNumSamples = buffer.getNumSamples();
+    int NumberOfSamples = buffer.getNumSamples();
 
     if (!bSampleRateIsValid)
     {
         for (int nChannel = 0; nChannel < getMainBusNumOutputChannels(); ++nChannel)
         {
-            buffer.clear(nChannel, 0, nNumSamples);
+            buffer.clear(nChannel, 0, NumberOfSamples);
         }
 
         return;
@@ -500,47 +522,93 @@ void TraKmeterAudioProcessor::processBlock(AudioBuffer<float> &buffer, MidiBuffe
 
     for (int nChannel = getMainBusNumInputChannels(); nChannel < getMainBusNumOutputChannels(); ++nChannel)
     {
-        buffer.clear(nChannel, 0, nNumSamples);
+        buffer.clear(nChannel, 0, NumberOfSamples);
     }
 
     if (audioFilePlayer)
     {
-        audioFilePlayer->fillBufferChunk(&buffer);
+        audioFilePlayer->fillBufferChunk(buffer);
     }
-
-    bool bMixMode = getBoolean(TraKmeterPluginParameters::selMixMode);
-
-    if (bMixMode && (nDecibels != 0))
+    // silence input if validation window is open
+    else if (isSilent)
     {
-        for (int nChannel = 0; nChannel < buffer.getNumChannels(); ++nChannel)
-        {
-            for (int nSample = 0; nSample < buffer.getNumSamples(); ++nSample)
-            {
-                double dSampleValue = buffer.getSample(nChannel, nSample);
-                float fNewSampleValue = dither_.ditherSample(
-                                            nChannel, dSampleValue * dGain);
-                buffer.setSample(nChannel, nSample, fNewSampleValue);
-            }
-        }
+        buffer.clear();
     }
 
-    pRingBufferInput->addSamples(buffer, 0, nNumSamples);
+    // process input samples
+    pRingBufferInput->addSamples(buffer, 0, NumberOfSamples);
 
-    nSamplesInBuffer += nNumSamples;
+    nSamplesInBuffer += NumberOfSamples;
     nSamplesInBuffer %= nTrakmeterBufferSize;
 }
 
 
-void TraKmeterAudioProcessor::processBufferChunk(AudioBuffer<float> &buffer, const unsigned int uChunkSize, const unsigned int uBufferPosition, const unsigned int uProcessedSamples)
+void TraKmeterAudioProcessor::processBlock(
+    AudioBuffer<double> &buffer,
+    MidiBuffer &midiMessages)
 {
-    ignoreUnused(uBufferPosition, uProcessedSamples);
+    jassert(isUsingDoublePrecision());
+    ignoreUnused(midiMessages);
 
+    // This is the place where you'd normally do the guts of your
+    // plug-in's audio processing...
+
+    int NumberOfSamples = buffer.getNumSamples();
+
+    if (!bSampleRateIsValid)
+    {
+        for (int nChannel = 0; nChannel < getMainBusNumOutputChannels(); ++nChannel)
+        {
+            buffer.clear(nChannel, 0, NumberOfSamples);
+        }
+
+        return;
+    }
+
+    if (getMainBusNumInputChannels() < 1)
+    {
+        Logger::outputDebugString("[traKmeter] no input channels!");
+        return;
+    }
+
+    // In case we have more outputs than inputs, we'll clear any
+    // output channels that didn't contain input data, because these
+    // aren't guaranteed to be empty -- they may contain garbage.
+
+    for (int nChannel = getMainBusNumInputChannels(); nChannel < getMainBusNumOutputChannels(); ++nChannel)
+    {
+        buffer.clear(nChannel, 0, NumberOfSamples);
+    }
+
+    if (audioFilePlayer)
+    {
+        audioFilePlayer->fillBufferChunk(buffer);
+    }
     // silence input if validation window is open
-    if (isSilent)
+    else if (isSilent)
     {
         buffer.clear();
-        pRingBufferInput->clear();
     }
+
+    // the process buffer is not going to be heard, so truncate
+    // samples!
+    AudioBuffer<float> processBuffer(NumberOfChannels, NumberOfSamples);
+    dither_.truncateToFloat(buffer, processBuffer);
+
+    // process input samples
+    pRingBufferInput->addSamples(processBuffer, 0, NumberOfSamples);
+
+    nSamplesInBuffer += NumberOfSamples;
+    nSamplesInBuffer %= nTrakmeterBufferSize;
+}
+
+
+void TraKmeterAudioProcessor::processBufferChunk(
+    const unsigned int uChunkSize,
+    const unsigned int uBufferPosition,
+    const unsigned int uProcessedSamples)
+{
+    ignoreUnused(uBufferPosition, uProcessedSamples);
 
     bool hasOpenEditor = (getActiveEditor() != nullptr);
 
@@ -577,13 +645,19 @@ void TraKmeterAudioProcessor::processBufferChunk(AudioBuffer<float> &buffer, con
 }
 
 
-void TraKmeterAudioProcessor::silenceInput(bool isSilentNew)
+void TraKmeterAudioProcessor::silenceInput(
+    bool isSilentNew)
 {
     isSilent = isSilentNew;
 }
 
 
-void TraKmeterAudioProcessor::startValidation(File fileAudio, int nSelectedChannel, bool bReportCSV, bool bAverageMeterLevel, bool bPeakMeterLevel)
+void TraKmeterAudioProcessor::startValidation(
+    File fileAudio,
+    int nSelectedChannel,
+    bool bReportCSV,
+    bool bAverageMeterLevel,
+    bool bPeakMeterLevel)
 {
     // reset all meters before we start the validation
     pMeterBallistics->reset();
@@ -646,7 +720,11 @@ bool TraKmeterAudioProcessor::isValidating()
 }
 
 
-int TraKmeterAudioProcessor::countOverflows(frut::audio::RingBuffer<float> *ring_buffer, const unsigned int channel, const unsigned int length, const unsigned int pre_delay)
+int TraKmeterAudioProcessor::countOverflows(
+    frut::audio::RingBuffer<float> *ring_buffer,
+    const unsigned int channel,
+    const unsigned int length,
+    const unsigned int pre_delay)
 {
     // initialise number of overflows in this buffer
     int nOverflows = 0;
@@ -685,7 +763,8 @@ bool TraKmeterAudioProcessor::getTransientMode()
 }
 
 
-void TraKmeterAudioProcessor::setTransientMode(const bool transient_mode)
+void TraKmeterAudioProcessor::setTransientMode(
+    const bool transient_mode)
 {
     if (transient_mode != bTransientMode)
     {
@@ -705,7 +784,8 @@ int TraKmeterAudioProcessor::getCrestFactor()
 }
 
 
-void TraKmeterAudioProcessor::setCrestFactor(const int crest_factor)
+void TraKmeterAudioProcessor::setCrestFactor(
+    const int crest_factor)
 {
     if (crest_factor != nCrestFactor)
     {
@@ -733,7 +813,8 @@ AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
         pMeterBallistics->reset();
     }
 
-    return new TraKmeterAudioProcessorEditor(this, &pluginParameters, NumberOfChannels, nCrestFactor);
+    return new TraKmeterAudioProcessorEditor(
+               this, NumberOfChannels, nCrestFactor);
 }
 
 
@@ -743,7 +824,8 @@ bool TraKmeterAudioProcessor::hasEditor() const
 }
 
 
-void TraKmeterAudioProcessor::getStateInformation(MemoryBlock &destData)
+void TraKmeterAudioProcessor::getStateInformation(
+    MemoryBlock &destData)
 {
     XmlElement xmlParameters = pluginParameters.storeAsXml();
 
@@ -757,7 +839,9 @@ void TraKmeterAudioProcessor::getStateInformation(MemoryBlock &destData)
 }
 
 
-void TraKmeterAudioProcessor::setStateInformation(const void *data, int sizeInBytes)
+void TraKmeterAudioProcessor::setStateInformation(
+    const void *data,
+    int sizeInBytes)
 {
     ScopedPointer<XmlElement> xmlParameters(getXmlFromBinary(data, sizeInBytes));
 

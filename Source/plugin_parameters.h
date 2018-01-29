@@ -45,8 +45,6 @@ public:
     {
         selTransientMode = 0,
         selCrestFactor,
-        selMixMode,
-        selGain,
         selMeterType,
 
         numberOfParametersRevealed,

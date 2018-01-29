@@ -168,7 +168,7 @@ Type RingBuffer<Type>::getSample(
 
 template <typename Type>
 unsigned int RingBuffer<Type>::addSamples(
-    AudioBuffer<Type> &source,
+    const AudioBuffer<Type> &source,
     const unsigned int sourceStartSample,
     const unsigned int numSamples)
 {
@@ -216,8 +216,7 @@ unsigned int RingBuffer<Type>::addSamples(
         // buffer is full
         if (uSamplesInBuffer == uChunkSize)
         {
-            triggerFullBuffer(source,
-                              uChunkSize,
+            triggerFullBuffer(uChunkSize,
                               sourceStartSample + uSamplesFinished,
                               uProcessedSamples);
 
@@ -362,15 +361,13 @@ void RingBuffer<Type>::clearCallbackClass()
 
 template <typename Type>
 void RingBuffer<Type>::triggerFullBuffer(
-    AudioBuffer<Type> &buffer,
     const unsigned int uChunkSize,
     const unsigned int uBufferPosition,
     const unsigned int uProcessedSamples)
 {
     if (callbackClass_)
     {
-        callbackClass_->processBufferChunk(buffer,
-                                           uChunkSize,
+        callbackClass_->processBufferChunk(uChunkSize,
                                            uBufferPosition,
                                            uProcessedSamples);
     }

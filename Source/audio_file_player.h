@@ -42,7 +42,9 @@ public:
     bool isPlaying();
     bool matchingSampleRates();
 
-    void fillBufferChunk(AudioBuffer<float> *buffer);
+    void fillBufferChunk(AudioBuffer<float> &buffer);
+    void fillBufferChunk(AudioBuffer<double> &buffer);
+
     void setCrestFactor(int crest_factor);
     void setReporters(int nChannel, bool ReportCSV,
                       bool bAverageMeterLevel, bool bPeakMeterLevel);
@@ -69,6 +71,8 @@ private:
 
     Array<frut::math::Averager> arrAverager_AverageMeterLevels;
     Array<frut::math::Averager> arrAverager_PeakMeterLevels;
+
+    frut::dsp::Dither dither_;
 
     ScopedPointer<AudioFormatReaderSource> audioFileSource;
     MeterBallistics *pMeterBallistics;

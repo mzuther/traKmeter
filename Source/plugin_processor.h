@@ -49,7 +49,9 @@ public:
     void reset() override;
 
     void processBlock(AudioBuffer<float> &buffer,
-                      MidiBuffer &midiMessages)  override;
+                      MidiBuffer &midiMessages) override;
+    void processBlock(AudioBuffer<double> &buffer,
+                      MidiBuffer &midiMessages) override;
 
     void silenceInput(bool isSilentNew);
 
@@ -93,8 +95,7 @@ public:
 
     MeterBallistics *getLevels();
 
-    virtual void processBufferChunk(AudioBuffer<float> &buffer,
-                                    const unsigned int uChunkSize,
+    virtual void processBufferChunk(const unsigned int uChunkSize,
                                     const unsigned int uBufferPosition,
                                     const unsigned int uProcessedSamples);
 
@@ -140,8 +141,6 @@ private:
 
     bool bTransientMode;
     int nCrestFactor;
-    int nDecibels;
-    double dGain;
 
     int countOverflows(frut::audio::RingBuffer<float> *ring_buffer,
                        const unsigned int channel,

@@ -54,7 +54,7 @@ public:
                    const unsigned int relative_position,
                    const unsigned int pre_delay);
 
-    unsigned int addSamples(AudioBuffer<Type> &source,
+    unsigned int addSamples(const AudioBuffer<Type> &source,
                             const unsigned int sourceStartSample,
                             const unsigned int numSamples);
 
@@ -74,8 +74,7 @@ public:
 protected:
     void clearCallbackClass();
 
-    void triggerFullBuffer(AudioBuffer<Type> &buffer,
-                           const unsigned int uChunkSize,
+    void triggerFullBuffer(const unsigned int uChunkSize,
                            const unsigned int uBufferPosition,
                            const unsigned int uProcessedSamples);
 
@@ -106,8 +105,7 @@ template <typename Type>
 class RingBufferProcessor
 {
 public:
-    virtual void processBufferChunk(AudioBuffer<Type> &buffer,
-                                    const unsigned int uChunkSize,
+    virtual void processBufferChunk(const unsigned int uChunkSize,
                                     const unsigned int uBufferPosition,
                                     const unsigned int uProcessedSamples) = 0;
 };
