@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio 15
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_standalone_stereo", "trakmeter_standalone_stereo.vcxproj", "{EDBB5C05-59C9-8AEB-E2AF-86D64EBC56A2}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_standalone_multi", "trakmeter_standalone_multi.vcxproj", "{265B68AA-126B-147B-7B24-799967530314}"
