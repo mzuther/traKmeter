@@ -95,15 +95,15 @@ public:
 
     MeterBallistics *getLevels();
 
-    virtual void processBufferChunk(const unsigned int uChunkSize,
-                                    const unsigned int uBufferPosition,
-                                    const unsigned int uProcessedSamples);
+    virtual void processBufferChunk(const int chunkSize,
+                                    const int bufferPosition,
+                                    const int processedSamples) override;
 
     bool getTransientMode();
-    void setTransientMode(const bool transient_mode);
+    void setTransientMode(const bool transientMode);
 
     int getCrestFactor();
-    void setCrestFactor(const int crest_factor);
+    void setCrestFactor(const int crestFactor);
 
     int getNumPrograms() override;
 
@@ -121,31 +121,31 @@ private:
 
     static BusesProperties getBusesProperties();
 
-    ScopedPointer<AudioFilePlayer> audioFilePlayer;
-    ScopedPointer<frut::audio::RingBuffer<float>> pRingBufferInput;
+    int countOverflows(frut::audio::RingBuffer<float> *ringBuffer,
+                       const int channel,
+                       const int length,
+                       const int preDelay);
 
-    ScopedPointer<MeterBallistics> pMeterBallistics;
+    ScopedPointer<AudioFilePlayer> audioFilePlayer_;
+    ScopedPointer<frut::audio::RingBuffer<float>> ringBufferInput_;
 
-    TraKmeterPluginParameters pluginParameters;
+    ScopedPointer<MeterBallistics> meterBallistics_;
+
+    TraKmeterPluginParameters pluginParameters_;
 
     frut::dsp::Dither dither_;
 
-    const int nTrakmeterBufferSize;
+    const int trakmeterBufferSize_;
 
-    bool bSampleRateIsValid;
+    bool sampleRateIsValid_;
     bool isSilent;
 
-    int NumberOfChannels;
-    int nSamplesInBuffer;
-    float fProcessedSeconds;
+    int numberOfChannels_;
+    int samplesInBuffer_;
+    float processedSeconds_;
 
-    bool bTransientMode;
-    int nCrestFactor;
-
-    int countOverflows(frut::audio::RingBuffer<float> *ring_buffer,
-                       const unsigned int channel,
-                       const unsigned int length,
-                       const unsigned int pre_delay);
+    bool transientMode_;
+    int crestFactor_;
 };
 
 AudioProcessor *JUCE_CALLTYPE createPluginFilter();

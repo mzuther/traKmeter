@@ -147,7 +147,7 @@ workspace "trakmeter"
 		}
 
 	flags {
-		"C++11"
+		"C++14"
 	}
 
 	filter { "system:windows" }
@@ -199,6 +199,10 @@ workspace "trakmeter"
 	filter { "configurations:Debug" }
 		defines { "_DEBUG=1", "DEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=1" }
 		symbols "On"
+
+	filter { "system:linux", "configurations:Debug" }
+		warnings "Extra"
+		buildoptions { "-fmessage-length=78" }
 
 	filter { "system:linux", "configurations:Debug" }
 		warnings "Extra"

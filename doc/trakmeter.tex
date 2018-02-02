@@ -183,8 +183,8 @@ the digital domain.
 
 A fully lit yellow LED on the peak meter's top end corresponds to a
 level of \textbf{\SI[addsign=all]{+11}{\dB}} (or \SI{-9}{\dBFS}).
-Again, this number should be familiar: peak levels in the digital
-domain shouldn't exceed this level.
+Again, this number should be familiar: during digital recording, peak
+levels shouldn't exceed this level.
 
 Thus, by keeping the meter's readout in the green areas and from
 entering the yellow and especially the red areas on top of each meter,
@@ -227,9 +227,9 @@ might want to adjust them to optimal loudness so that your upcoming
 mix is not ruined.
 
 \emph{If the original recordings were made with poor equipment and you
-  have the time, it may well be worth to \textbf{re-record} all tracks
-  through a really good preamp and adjust their loudness at the same
-  time.  Depending on the preamp, the results can be stunning!}
+  have got the time, it may well be worth to \textbf{re-record} all
+  tracks through a really good preamp and adjust their loudness at the
+  same time.  Depending on the preamp, the results can be stunning!}
 
 In any case, mixing levels will now be much lower than what you are
 used to.  This can easily be corrected by either adjusting the output
@@ -503,27 +503,15 @@ may not know some of them, so read ahead \dots
   (floating point) to avoid accumulation of the above-mentioned
   artifacts.
 
-\item[Avoid sample rate conversion.]  Sample rate conversion usually
-  degrades audio (especially small changes of a few \si{\kilo\hertz}),
-  so try to record at the target sample rate.  For instance, tracking
-  for a CD release should be carried out at \SI{44.1}{\kilo\hertz}
-  instead of \SI{48}{\kilo\hertz}.
+\item[Try different sample rates.]  Recording at certain sample rates
+  may sound better, so experiment and get to know your converters.
+  But try to keep the sample rate to exact multiples of the target
+  sample rate.  For instance, it makes sense to track at
+  \SI{44.1}{\kilo\hertz} or \SI{88.2}{\kilo\hertz} for a CD release
+  instead of using \SI{48}{\kilo\hertz}.
 
-  There are of course exceptions to the rule, for instance you may
-  prefer to track on a professional DAT machine (\SI{48}{\kilo\hertz})
-  when your only other choice is using a consumer audio interface.
-
-  For tracking at higher sample rates, it pays to use exact multiples
-  of your target sample rate (such as \SI{88.2}{\kilo\hertz} instead
-  of \SI{96}{\kilo\hertz}) if your hardware and software permit.
-  Please note that some professionals actually advise against using
-  higher sample rates due to the possible build-up of noise beyond
-  \SI{20}{\kilo\hertz}.  It is also much more demanding on your
-  computer, audio equipment and plug-ins -- and may not be worth the
-  hassle.  Try changing from recording at 16 bit to 24 bit first.
-
-  Finally, only use professional software for sample rate conversion.
-  This is by no means a trivial task.
+  Only use professional software for sample rate conversion.  This is
+  by no means a trivial task.
 
 \item[Concentrate on recording.]  When tracking, try to not interfere
   with the flow of the session.  This is easily done by keeping
@@ -752,7 +740,7 @@ are optional, but might come in handy:
 
 \begin{VerbatimBoth}
   apt-get update
-  apt-get -y install bash-completion \
+  apt-get -y install bash-completion clang \
     libasound2-dev libjack-jackd2-dev \
     mesa-common-dev xorg-dev less vim
   apt-get clean

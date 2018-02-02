@@ -32,6 +32,7 @@ class MeterBarPeak :
     public frut::widget::MeterBar
 {
 public:
+    using frut::widget::MeterBar::create;
     void create(int crestFactor,
                 frut::widget::Orientation orientation,
                 bool discreteMeter,
