@@ -201,20 +201,15 @@ void WindowValidationContent::applySkin()
     // call method of super class
     frut::widget::WindowValidationContent::applySkin();
 
+
     // style button for selecting the validation output format
-    buttonDumpCSV_.setColour(
-        ToggleButton::textColourId,
-        Colours::black);
+    styleButton(buttonDumpCSV_);
 
     // style button for average level logging
-    buttonDumpAverageLevel_.setColour(
-        ToggleButton::textColourId,
-        Colours::black);
+    styleButton(buttonDumpAverageLevel_);
 
     // style button for peak level logging
-    buttonDumpPeakLevel_.setColour(
-        ToggleButton::textColourId,
-        Colours::black);
+    styleButton(buttonDumpPeakLevel_);
 
 
     // place the components
