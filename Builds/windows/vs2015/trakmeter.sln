@@ -9,6 +9,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_vst_stereo", "tra
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_vst_multi", "trakmeter_vst_multi.vcxproj", "{DAD014C5-4632-F2D2-CF9F-38853B002992}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_vst3_stereo", "trakmeter_vst3_stereo.vcxproj", "{F4F26A88-605F-2683-2953-BEE0957E48EB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_vst3_multi", "trakmeter_vst3_multi.vcxproj", "{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -49,6 +53,22 @@ Global
 		{DAD014C5-4632-F2D2-CF9F-38853B002992}.Release|Win32.Build.0 = Release|Win32
 		{DAD014C5-4632-F2D2-CF9F-38853B002992}.Release|x64.ActiveCfg = Release|x64
 		{DAD014C5-4632-F2D2-CF9F-38853B002992}.Release|x64.Build.0 = Release|x64
+		{F4F26A88-605F-2683-2953-BEE0957E48EB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F4F26A88-605F-2683-2953-BEE0957E48EB}.Debug|Win32.Build.0 = Debug|Win32
+		{F4F26A88-605F-2683-2953-BEE0957E48EB}.Debug|x64.ActiveCfg = Debug|x64
+		{F4F26A88-605F-2683-2953-BEE0957E48EB}.Debug|x64.Build.0 = Debug|x64
+		{F4F26A88-605F-2683-2953-BEE0957E48EB}.Release|Win32.ActiveCfg = Release|Win32
+		{F4F26A88-605F-2683-2953-BEE0957E48EB}.Release|Win32.Build.0 = Release|Win32
+		{F4F26A88-605F-2683-2953-BEE0957E48EB}.Release|x64.ActiveCfg = Release|x64
+		{F4F26A88-605F-2683-2953-BEE0957E48EB}.Release|x64.Build.0 = Release|x64
+		{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}.Debug|Win32.Build.0 = Debug|Win32
+		{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}.Debug|x64.ActiveCfg = Debug|x64
+		{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}.Debug|x64.Build.0 = Debug|x64
+		{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}.Release|Win32.ActiveCfg = Release|Win32
+		{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}.Release|Win32.Build.0 = Release|Win32
+		{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}.Release|x64.ActiveCfg = Release|x64
+		{4D4D780B-39DC-01D5-E2FA-15D0CE68127B}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

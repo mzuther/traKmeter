@@ -23,12 +23,12 @@ ifeq ($(config),debug_x32)
   TARGETDIR = ../../../bin
   TARGET = $(TARGETDIR)/trakmeter_stereo_vst_debug.so
   OBJDIR = ../../../bin/intermediate_linux/vst_stereo_debug/x32
-  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_STEREO=1 -DJucePlugin_Build_LV2=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=1 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
+  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_STEREO=1 -DJucePlugin_Build_LV2=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../libraries/juce/modules -I../../../Source/common -I../../../libraries -I/usr/include/at-spi-2.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/dbus-1.0 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/gio-unix-2.0 -I/usr/include/glib-2.0 -I/usr/include/gtk-3.0 -I/usr/include/harfbuzz -I/usr/include/libpng12 -I/usr/include/libsoup-2.4 -I/usr/include/libxml2 -I/usr/include/mirclient -I/usr/include/mircookie -I/usr/include/mircore -I/usr/include/pango-1.0 -I/usr/include/pixman-1 -I/usr/include/webkitgtk-4.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I../../../libraries/vst
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -fPIC -g -Wall -Wextra -fmessage-length=78 -DHAVE_LROUND -fno-inline -ggdb
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m32 -fPIC -g -Wall -Wextra -std=c++14 -fmessage-length=78 -DHAVE_LROUND -fno-inline -ggdb
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -fPIC -g -Wall -Wextra -fmessage-length=78 -fno-inline -ggdb
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m32 -fPIC -g -Wall -Wextra -std=c++14 -fmessage-length=78 -fno-inline -ggdb
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -lX11 -lXext -lXinerama -latk-1.0 -lcairo -lcairo-gobject -lcurl -ldl -lfreetype -lgdk-3 -lgdk_pixbuf-2.0 -lgio-2.0 -lglib-2.0 -lgobject-2.0 -lgtk-3 -ljavascriptcoregtk-4.0 -lpango-1.0 -lpangocairo-1.0 -lpthread -lrt -lsoup-2.4 -lwebkit2gtk-4.0
   LDDEPS +=
@@ -58,12 +58,12 @@ ifeq ($(config),debug_x64)
   TARGETDIR = ../../../bin
   TARGET = $(TARGETDIR)/trakmeter_stereo_vst_debug_x64.so
   OBJDIR = ../../../bin/intermediate_linux/vst_stereo_debug/x64
-  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_STEREO=1 -DJucePlugin_Build_LV2=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=1 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
+  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_STEREO=1 -DJucePlugin_Build_LV2=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../libraries/juce/modules -I../../../Source/common -I../../../libraries -I/usr/include/at-spi-2.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/dbus-1.0 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/gio-unix-2.0 -I/usr/include/glib-2.0 -I/usr/include/gtk-3.0 -I/usr/include/harfbuzz -I/usr/include/libpng12 -I/usr/include/libsoup-2.4 -I/usr/include/libxml2 -I/usr/include/mirclient -I/usr/include/mircookie -I/usr/include/mircore -I/usr/include/pango-1.0 -I/usr/include/pixman-1 -I/usr/include/webkitgtk-4.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I../../../libraries/vst
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC -g -Wall -Wextra -fmessage-length=78 -DHAVE_LROUND -fno-inline -ggdb
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC -g -Wall -Wextra -std=c++14 -fmessage-length=78 -DHAVE_LROUND -fno-inline -ggdb
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC -g -Wall -Wextra -fmessage-length=78 -fno-inline -ggdb
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -fPIC -g -Wall -Wextra -std=c++14 -fmessage-length=78 -fno-inline -ggdb
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -lX11 -lXext -lXinerama -latk-1.0 -lcairo -lcairo-gobject -lcurl -ldl -lfreetype -lgdk-3 -lgdk_pixbuf-2.0 -lgio-2.0 -lglib-2.0 -lgobject-2.0 -lgtk-3 -ljavascriptcoregtk-4.0 -lpango-1.0 -lpangocairo-1.0 -lpthread -lrt -lsoup-2.4 -lwebkit2gtk-4.0
   LDDEPS +=
@@ -93,12 +93,12 @@ ifeq ($(config),release_x32)
   TARGETDIR = ../../../bin
   TARGET = $(TARGETDIR)/trakmeter_stereo_vst.so
   OBJDIR = ../../../bin/intermediate_linux/vst_stereo_release/x32
-  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_STEREO=1 -DJucePlugin_Build_LV2=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=1 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
+  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_STEREO=1 -DJucePlugin_Build_LV2=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../libraries/juce/modules -I../../../Source/common -I../../../libraries -I/usr/include/at-spi-2.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/dbus-1.0 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/gio-unix-2.0 -I/usr/include/glib-2.0 -I/usr/include/gtk-3.0 -I/usr/include/harfbuzz -I/usr/include/libpng12 -I/usr/include/libsoup-2.4 -I/usr/include/libxml2 -I/usr/include/mirclient -I/usr/include/mircookie -I/usr/include/mircore -I/usr/include/pango-1.0 -I/usr/include/pixman-1 -I/usr/include/webkitgtk-4.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I../../../libraries/vst
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -DHAVE_LROUND -fvisibility=hidden -pipe
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m32 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -std=c++14 -DHAVE_LROUND -fvisibility=hidden -pipe
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m32 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -fvisibility=hidden -pipe
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m32 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -std=c++14 -fvisibility=hidden -pipe
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -lX11 -lXext -lXinerama -latk-1.0 -lcairo -lcairo-gobject -lcurl -ldl -lfreetype -lgdk-3 -lgdk_pixbuf-2.0 -lgio-2.0 -lglib-2.0 -lgobject-2.0 -lgtk-3 -ljavascriptcoregtk-4.0 -lpango-1.0 -lpangocairo-1.0 -lpthread -lrt -lsoup-2.4 -lwebkit2gtk-4.0
   LDDEPS +=
@@ -128,12 +128,12 @@ ifeq ($(config),release_x64)
   TARGETDIR = ../../../bin
   TARGET = $(TARGETDIR)/trakmeter_stereo_vst_x64.so
   OBJDIR = ../../../bin/intermediate_linux/vst_stereo_release/x64
-  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_STEREO=1 -DJucePlugin_Build_LV2=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=1 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
+  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_STEREO=1 -DJucePlugin_Build_LV2=0 -DJucePlugin_Build_Standalone=0 -DJucePlugin_Build_VST=1 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=0 -DJUCE_JACK=0 -DJUCE_ASIO=0 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../libraries/juce/modules -I../../../Source/common -I../../../libraries -I/usr/include/at-spi-2.0 -I/usr/include/at-spi2-atk/2.0 -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/dbus-1.0 -I/usr/include/freetype2 -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/gio-unix-2.0 -I/usr/include/glib-2.0 -I/usr/include/gtk-3.0 -I/usr/include/harfbuzz -I/usr/include/libpng12 -I/usr/include/libsoup-2.4 -I/usr/include/libxml2 -I/usr/include/mirclient -I/usr/include/mircookie -I/usr/include/mircore -I/usr/include/pango-1.0 -I/usr/include/pixman-1 -I/usr/include/webkitgtk-4.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I../../../libraries/vst
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
-  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -DHAVE_LROUND -fvisibility=hidden -pipe
-  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -std=c++14 -DHAVE_LROUND -fvisibility=hidden -pipe
+  ALL_CFLAGS += $(CFLAGS) $(ALL_CPPFLAGS) -m64 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -fvisibility=hidden -pipe
+  ALL_CXXFLAGS += $(CXXFLAGS) $(ALL_CPPFLAGS) -m64 -fomit-frame-pointer -O3 -fPIC -Wall -Wextra -std=c++14 -fvisibility=hidden -pipe
   ALL_RESFLAGS += $(RESFLAGS) $(DEFINES) $(INCLUDES)
   LIBS += -lX11 -lXext -lXinerama -latk-1.0 -lcairo -lcairo-gobject -lcurl -ldl -lfreetype -lgdk-3 -lgdk_pixbuf-2.0 -lgio-2.0 -lglib-2.0 -lgobject-2.0 -lgtk-3 -ljavascriptcoregtk-4.0 -lpango-1.0 -lpangocairo-1.0 -lpthread -lrt -lsoup-2.4 -lwebkit2gtk-4.0
   LDDEPS +=
