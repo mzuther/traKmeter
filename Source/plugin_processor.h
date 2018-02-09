@@ -95,9 +95,8 @@ public:
 
     MeterBallistics *getLevels();
 
-    virtual void processBufferChunk(const int chunkSize,
-                                    const int bufferPosition,
-                                    const int processedSamples) override;
+    virtual void processBufferChunk(frut::audio::RingBuffer<float> *ringBuffer,
+                                    const int chunkSize) override;
 
     bool getTransientMode();
     void setTransientMode(const bool transientMode);
@@ -123,8 +122,7 @@ private:
 
     int countOverflows(frut::audio::RingBuffer<float> *ringBuffer,
                        const int channel,
-                       const int length,
-                       const int preDelay);
+                       const int length);
 
     ScopedPointer<AudioFilePlayer> audioFilePlayer_;
     ScopedPointer<frut::audio::RingBuffer<float>> ringBufferInput_;

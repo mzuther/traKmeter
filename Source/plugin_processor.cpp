@@ -459,19 +459,21 @@ void TraKmeterAudioProcessor::prepareToPlay(
                                            false,
                                            transientMode_);
 
+    samplesInBuffer_ = 0;
+
     // make sure that ring buffer can hold at least
     // trakmeterBufferSize_ samples and is large enough to receive a
     // full block of audio
-    samplesInBuffer_ = 0;
-    int ringBufferSize = (samplesPerBlock > trakmeterBufferSize_) ?
-                         samplesPerBlock : trakmeterBufferSize_;
+    int ringBufferSize = jmax(samplesPerBlock, trakmeterBufferSize_);
+
+    int preDelay = trakmeterBufferSize_;
+    int chunkSize = trakmeterBufferSize_;
 
     ringBufferInput_ = new frut::audio::RingBuffer<float>(
-        "Input ring buffer",
         numberOfChannels_,
         ringBufferSize,
-        trakmeterBufferSize_,
-        trakmeterBufferSize_);
+        preDelay,
+        chunkSize);
 
     ringBufferInput_->setCallbackClass(this);
 }
@@ -610,13 +612,10 @@ void TraKmeterAudioProcessor::processBlock(
 
 
 void TraKmeterAudioProcessor::processBufferChunk(
-    const int chunkSize,
-    const int bufferPosition,
-    const int processedSamples)
+    frut::audio::RingBuffer<float> *ringBuffer,
+    const int chunkSize)
 {
-    ignoreUnused(bufferPosition, processedSamples);
-
-    int preDelay = chunkSize / 2;
+    ignoreUnused(ringBuffer);
 
     // length of buffer chunk in fractional seconds
     // (1024 samples / 44100 samples/s = 23.2 ms)
@@ -626,15 +625,15 @@ void TraKmeterAudioProcessor::processBufferChunk(
     {
         // determine peak level for chunkSize samples (use pre-delay)
         float fPeakLevels = ringBufferInput_->getMagnitude(
-                                nChannel, chunkSize, preDelay);
+                                nChannel, chunkSize);
 
         // determine peak level for chunkSize samples (use pre-delay)
         float fRmsLevels = ringBufferInput_->getRMSLevel(
-                               nChannel, chunkSize, preDelay);
+                               nChannel, chunkSize);
 
         // determine overflows for chunkSize samples (use pre-delay)
         int nOverflows = countOverflows(
-                             ringBufferInput_, nChannel, chunkSize, preDelay);
+                             ringBufferInput_, nChannel, chunkSize);
 
         // apply meter ballistics and store values so that the editor
         // can access them
@@ -729,8 +728,7 @@ bool TraKmeterAudioProcessor::isValidating()
 int TraKmeterAudioProcessor::countOverflows(
     frut::audio::RingBuffer<float> *ringBuffer,
     const int channel,
-    const int length,
-    const int preDelay)
+    const int length)
 {
     // initialise number of overflows in this buffer
     int overflows = 0;
@@ -739,7 +737,7 @@ int TraKmeterAudioProcessor::countOverflows(
     for (int sample = 0; sample < length; ++sample)
     {
         // get current sample value
-        float sampleValue = ringBuffer->getSample(channel, sample, preDelay);
+        float sampleValue = ringBuffer->getSample(channel, sample, true);
 
         // count all samples above -0.001 dBFS as overflow
         if (fabsf(sampleValue) > 0.99885f)
