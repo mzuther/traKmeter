@@ -2,8 +2,54 @@ Git HEAD
 ========
 
 
+v2.4.0 (2018-02-10)
+===================
+
+* VST3 plug-in
+
+* support 64-bit signal chains
+
+* removed "mixing" button and knob
+
+* measure when editor is closed
+
+* optimized dithering
+
+* updated documentation
+
+* re-factored code
+
+* updated JUCE framework to 5.1.2
+
+* updated VST library to 3.6.7
+
+* use Clang on Linux (C++14)
+
+* support Visual Studio 2017
+
+
+
+v2.3.0 (2017-02-12)
+===================
+
+* changed plug-in ID for multi mode
+
+* moved to JUCE's new multi-bus API
+
+* updated and deleted skins
+
+* re-structured, reviewed and beautified code
+
+* updated JUCE framework to 4.3.1
+
+* updated libraries and tools
+
+* support for Visual C++ 2015
+
+
+
 v2.0.0 (2015-12-24)
-==================
+===================
 
 * completely changed parameter handling
 
@@ -24,8 +70,9 @@ v2.0.0 (2015-12-24)
 * validation: updated documents
 
 
+
 v1.9.0 (2015-02-28)
-==================
+===================
 
 * lots of internal changes
 
