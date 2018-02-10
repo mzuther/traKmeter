@@ -95,9 +95,6 @@ void MeterBallistics::reset()
 
         // set overall maximum peak level to meter's minimum
         arrMaximumPeakLevels.set(nChannel, fMeterMinimumDecibel);
-
-        // reset number of registered overflows
-        arrNumberOfOverflows.set(nChannel, 0);
     }
 }
 
@@ -287,24 +284,8 @@ float MeterBallistics::getMaximumPeakLevel(int nChannel)
 }
 
 
-int MeterBallistics::getNumberOfOverflows(int nChannel)
-/*  Get number of overflows of an audio channel.
-
-    nChannel (integer): selected audio channel
-
-    return value (integer): returns the number of overflows that has
-    been registered on the given audio channel
-*/
-{
-    jassert(nChannel >= 0);
-    jassert(nChannel < nNumberOfChannels);
-
-    return arrNumberOfOverflows[nChannel];
-}
-
-
-void MeterBallistics::updateChannel(int nChannel, float fTimePassed, float fPeak, float fRms, int nOverflows)
-/*  Update audio levels, overflows and apply meter ballistics.
+void MeterBallistics::updateChannel(int nChannel, float fTimePassed, float fPeak, float fRms)
+/*  Update audio levels and apply meter ballistics.
 
     nChannel (integer): audio input channel to update
 
@@ -314,8 +295,6 @@ void MeterBallistics::updateChannel(int nChannel, float fTimePassed, float fPeak
     fPeak (float): current peak meter level (linear scale)
 
     fRms (float): current RMS level (linear scale)
-
-    nOverflows (integer): number of overflows in buffer chunk
 
     return value: none
 */
@@ -348,9 +327,6 @@ void MeterBallistics::updateChannel(int nChannel, float fTimePassed, float fPeak
     // peak mark
     AverageMeterBallistics(nChannel, fTimePassed, fRms);
     arrAverageMeterPeakLevels.set(nChannel, AverageMeterPeakBallistics(fTimePassed, arrAverageMeterPeakLastChanged.getReference(nChannel), arrAverageMeterLevels[nChannel], arrAverageMeterPeakLevels[nChannel]));
-
-    // update registered number of overflows
-    arrNumberOfOverflows.set(nChannel, arrNumberOfOverflows[nChannel] + nOverflows);
 }
 
 

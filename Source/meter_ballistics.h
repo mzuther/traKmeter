@@ -50,9 +50,8 @@ public:
 
     float getSignalMeterReadout(int nChannel);
     float getMaximumPeakLevel(int nChannel);
-    int getNumberOfOverflows(int nChannel);
 
-    void updateChannel(int nChannel, float fTimePassed, float fPeak, float fRms, int nOverflows);
+    void updateChannel(int nChannel, float fTimePassed, float fPeak, float fRms);
 
     static float level2decibel(float fLevel);
     static float decibel2level(float fDecibels);
@@ -77,7 +76,6 @@ private:
 
     Array<float> arrSignalMeterReadouts;
     Array<float> arrMaximumPeakLevels;
-    Array<int> arrNumberOfOverflows;
 
     Array<float> arrPeakMeterPeakLastChanged;
     Array<float> arrAverageMeterPeakLastChanged;

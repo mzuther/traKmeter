@@ -120,10 +120,6 @@ private:
 
     static BusesProperties getBusesProperties();
 
-    int countOverflows(frut::audio::RingBuffer<float> *ringBuffer,
-                       const int channel,
-                       const int length);
-
     ScopedPointer<AudioFilePlayer> audioFilePlayer_;
     ScopedPointer<frut::audio::RingBuffer<float>> ringBufferInput_;
 

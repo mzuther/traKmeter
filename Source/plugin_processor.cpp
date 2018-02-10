@@ -623,22 +623,18 @@ void TraKmeterAudioProcessor::processBufferChunk(
 
     for (int nChannel = 0; nChannel < getMainBusNumInputChannels(); ++nChannel)
     {
-        // determine peak level for chunkSize samples (use pre-delay)
+        // determine peak level for chunkSize samples
         float fPeakLevels = ringBufferInput_->getMagnitude(
                                 nChannel, chunkSize);
 
-        // determine peak level for chunkSize samples (use pre-delay)
+        // determine peak level for chunkSize samples
         float fRmsLevels = ringBufferInput_->getRMSLevel(
                                nChannel, chunkSize);
-
-        // determine overflows for chunkSize samples (use pre-delay)
-        int nOverflows = countOverflows(
-                             ringBufferInput_, nChannel, chunkSize);
 
         // apply meter ballistics and store values so that the editor
         // can access them
         meterBallistics_->updateChannel(
-            nChannel, processedSeconds_, fPeakLevels, fRmsLevels, nOverflows);
+            nChannel, processedSeconds_, fPeakLevels, fRmsLevels);
 
         // "UM" --> update meters
         sendActionMessage("UM");
@@ -722,32 +718,6 @@ bool TraKmeterAudioProcessor::isValidating()
             return false;
         }
     }
-}
-
-
-int TraKmeterAudioProcessor::countOverflows(
-    frut::audio::RingBuffer<float> *ringBuffer,
-    const int channel,
-    const int length)
-{
-    // initialise number of overflows in this buffer
-    int overflows = 0;
-
-    // loop through samples of buffer
-    for (int sample = 0; sample < length; ++sample)
-    {
-        // get current sample value
-        float sampleValue = ringBuffer->getSample(channel, sample, true);
-
-        // count all samples above -0.001 dBFS as overflow
-        if (fabsf(sampleValue) > 0.99885f)
-        {
-            ++overflows;
-        }
-    }
-
-    // return number of overflows in this buffer
-    return overflows;
 }
 
 
