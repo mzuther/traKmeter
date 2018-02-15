@@ -45,7 +45,6 @@ workspace "trakmeter"
     configurations { "Debug", "Release" }
 
     location (os.target() .. "/" .. _ACTION .. "/")
-    targetdir "../bin/"
     targetprefix ""
 
     files {
@@ -157,11 +156,9 @@ workspace "trakmeter"
         systemversion "10.0.16299.0"
 
         flags {
-            "NoMinimalRebuild",
             "StaticRuntime"
         }
 
-        characterset "Unicode"
         vectorextensions "AVX"
 
         links {
@@ -201,11 +198,7 @@ workspace "trakmeter"
 
     filter { "system:linux", "configurations:Debug" }
         warnings "Extra"
-        buildoptions { "-fmessage-length=78" }
-
-    filter { "system:linux", "configurations:Debug" }
-        warnings "Extra"
-        buildoptions { "-fno-inline", "-ggdb" }
+        buildoptions { "-fmessage-length=78", "-fno-inline", "-ggdb" }
 
     filter { "system:linux", "configurations:Debug", "platforms:x32" }
         targetsuffix "_debug"
@@ -237,10 +230,6 @@ workspace "trakmeter"
     filter { "system:linux", "configurations:Release", "platforms:x64" }
         targetsuffix "_x64"
 
-    filter { "system:windows", "configurations:Release" }
-        flags { "NoManifest" }
-        buildoptions { "/Zi" }
-
     filter { "system:windows", "configurations:Release", "platforms:x32" }
         targetsuffix ")"
 
@@ -251,6 +240,7 @@ workspace "trakmeter"
 
     project ("trakmeter_standalone_stereo")
         kind "WindowedApp"
+        targetdir "../bin/standalone/"
 
         defines {
             "TRAKMETER_STEREO=1",
@@ -307,6 +297,7 @@ workspace "trakmeter"
 
     project ("trakmeter_standalone_multi")
         kind "WindowedApp"
+        targetdir "../bin/standalone/"
 
         defines {
             "TRAKMETER_MULTI=1",
@@ -363,6 +354,7 @@ workspace "trakmeter"
 
     project ("trakmeter_vst_stereo")
         kind "SharedLib"
+        targetdir "../bin/vst/"
 
         defines {
             "TRAKMETER_STEREO=1",
@@ -405,6 +397,7 @@ workspace "trakmeter"
 
     project ("trakmeter_vst_multi")
         kind "SharedLib"
+        targetdir "../bin/vst/"
 
         defines {
             "TRAKMETER_MULTI=1",
@@ -448,8 +441,9 @@ workspace "trakmeter"
 -- create VST3 projects on Windows only
 if os.target() == "windows" then
 
-   project ("trakmeter_vst3_stereo")
+    project ("trakmeter_vst3_stereo")
         kind "SharedLib"
+        targetdir "../bin/vst3/"
 
         defines {
             "TRAKMETER_STEREO=1",
@@ -493,8 +487,9 @@ end
 -- create VST3 projects on Windows only
 if os.target() == "windows" then
 
-   project ("trakmeter_vst3_multi")
+    project ("trakmeter_vst3_multi")
         kind "SharedLib"
+        targetdir "../bin/vst3/"
 
         defines {
             "TRAKMETER_MULTI=1",
@@ -540,6 +535,7 @@ if os.target() == "linux" then
 
     project ("trakmeter_lv2_stereo")
         kind "SharedLib"
+        targetdir "../bin/lv2/"
 
         defines {
             "TRAKMETER_STEREO=1",
@@ -580,6 +576,7 @@ if os.target() == "linux" then
 
     project ("trakmeter_lv2_multi")
         kind "SharedLib"
+        targetdir "../bin/lv2/"
 
         defines {
             "TRAKMETER_MULTI=1",

@@ -11,14 +11,18 @@
 .vs
 .Rhistory
 
-bin/*.dll
-bin/*.exe
-bin/*.so
-bin/*.vst3
-bin/trakmeter/skins/default_skin.ini
-bin/trakmeter_multi_*
-bin/trakmeter_stereo_*
 bin/intermediate_*
+
+bin/lv2/trakmeter_*.so
+
+bin/standalone/traKmeter*.exe
+bin/standalone/trakmeter_*
+
+bin/vst/traKmeter*.dll
+bin/vst/trakmeter_*.so
+
+bin/vst3/traKmeter*.vst3
+bin/vst3/trakmeter_*.so
 
 skins/default_skin.ini
 
