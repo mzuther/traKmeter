@@ -69,28 +69,28 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\..\bin\standalone\</OutDir>
-    <IntDir>..\..\..\bin\intermediate_windows\standalone_multi_debug\x32\</IntDir>
+    <IntDir>..\..\..\bin\.intermediate_windows\standalone_multi_debug\x32\</IntDir>
     <TargetName>traKmeter (Multi, Debug)</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>..\..\..\bin\standalone\</OutDir>
-    <IntDir>..\..\..\bin\intermediate_windows\standalone_multi_debug\x64\</IntDir>
+    <IntDir>..\..\..\bin\.intermediate_windows\standalone_multi_debug\x64\</IntDir>
     <TargetName>traKmeter (Multi x64, Debug)</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\..\bin\standalone\</OutDir>
-    <IntDir>..\..\..\bin\intermediate_windows\standalone_multi_release\x32\</IntDir>
+    <IntDir>..\..\..\bin\.intermediate_windows\standalone_multi_release\x32\</IntDir>
     <TargetName>traKmeter (Multi)</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>..\..\..\bin\standalone\</OutDir>
-    <IntDir>..\..\..\bin\intermediate_windows\standalone_multi_release\x64\</IntDir>
+    <IntDir>..\..\..\bin\.intermediate_windows\standalone_multi_release\x64\</IntDir>
     <TargetName>traKmeter (Multi x64)</TargetName>
     <TargetExt>.exe</TargetExt>
   </PropertyGroup>
