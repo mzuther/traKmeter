@@ -45,8 +45,3 @@ private:
     bool bActiveOverload;
     bool bOverloadsDetected;
 };
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

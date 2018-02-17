@@ -92,8 +92,3 @@ private:
 
     void outputMessage(const String &strMessage);
 };
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

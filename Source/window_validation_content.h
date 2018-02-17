@@ -62,8 +62,3 @@ private:
     ToggleButton buttonDumpAverageLevel_;
     ToggleButton buttonDumpPeakLevel_;
 };
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

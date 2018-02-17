@@ -64,8 +64,3 @@ private:
 
     OwnedArray<frut::widget::SignalLed> p_arrSignalLeds;
 };
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

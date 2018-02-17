@@ -835,8 +835,3 @@ AudioProcessor *JUCE_CALLTYPE createPluginFilter()
 {
     return new TraKmeterAudioProcessor();
 }
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

@@ -67,8 +67,3 @@ public:
 private:
     JUCE_LEAK_DETECTOR(TraKmeterPluginParameters);
 };
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

@@ -134,8 +134,3 @@ void MeterBarAverage::create(
     // set orientation here to save some processing power
     setOrientation(orientation);
 }
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

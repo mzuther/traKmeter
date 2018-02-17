@@ -90,8 +90,3 @@ private:
 
     void LogMeterBallistics(float fMeterInertia, float fTimePassed, float fLevel, float &fReadout);
 };
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

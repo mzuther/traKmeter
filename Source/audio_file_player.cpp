@@ -418,8 +418,3 @@ void AudioFilePlayer::outputMessage(
 
     Logger::outputDebugString("[Validation - " + formatTime() + "] " + strMessage);
 }
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

@@ -103,8 +103,3 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
         setState(frut::widget::StateLabel::State::off);
     }
 }
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

@@ -580,8 +580,3 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
 void TraKmeterAudioProcessorEditor::resized()
 {
 }
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

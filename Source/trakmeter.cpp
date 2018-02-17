@@ -172,8 +172,3 @@ void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
         }
     }
 }
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:

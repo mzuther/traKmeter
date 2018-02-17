@@ -320,8 +320,3 @@ void WindowValidationContent::selectValidationFile(const File &validationFile)
         validationFile_.getFileName(),
         dontSendNotification);
 }
-
-
-// Local Variables:
-// ispell-local-dictionary: "british"
-// End:
