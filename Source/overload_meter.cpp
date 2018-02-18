@@ -91,15 +91,15 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
     {
         if (bActiveOverload)
         {
-            setState(frut::widget::StateLabel::State::active);
+            setState(frut::widgets::StateLabel::State::active);
         }
         else
         {
-            setState(frut::widget::StateLabel::State::on);
+            setState(frut::widgets::StateLabel::State::on);
         }
     }
     else
     {
-        setState(frut::widget::StateLabel::State::off);
+        setState(frut::widgets::StateLabel::State::off);
     }
 }

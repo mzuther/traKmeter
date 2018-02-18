@@ -23,13 +23,14 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
+#ifndef TRAKMETER_OVERLOAD_METER_H
+#define TRAKMETER_OVERLOAD_METER_H
 
 #include "FrutHeader.h"
 
 
 class OverloadMeter :
-    public frut::widget::StateLabel
+    public frut::widgets::StateLabel
 {
 public:
     OverloadMeter(float fThreshold);
@@ -45,3 +46,5 @@ private:
     bool bActiveOverload;
     bool bOverloadsDetected;
 };
+
+#endif  // TRAKMETER_OVERLOAD_METER_H

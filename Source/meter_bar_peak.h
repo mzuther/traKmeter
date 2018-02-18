@@ -23,18 +23,19 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
+#ifndef TRAKMETER_METER_BAR_PEAK_H
+#define TRAKMETER_METER_BAR_PEAK_H
 
 #include "FrutHeader.h"
 
 
 class MeterBarPeak :
-    public frut::widget::MeterBar
+    public frut::widgets::MeterBar
 {
 public:
-    using frut::widget::MeterBar::create;
+    using frut::widgets::MeterBar::create;
     void create(int crestFactor,
-                frut::widget::Orientation orientation,
+                frut::widgets::Orientation orientation,
                 bool discreteMeter,
                 bool showCombinedMeters,
                 int mainSegmentHeight,
@@ -60,3 +61,5 @@ protected:
 private:
     JUCE_LEAK_DETECTOR(MeterBarPeak);
 };
+
+#endif  // TRAKMETER_METER_BAR_PEAK_H

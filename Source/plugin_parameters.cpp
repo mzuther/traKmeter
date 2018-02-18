@@ -34,17 +34,17 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
             numberOfParametersRevealed)
 {
     // parameters created here will be deleted in
-    // "frut::parameter::Juggler"!
+    // "frut::parameters::Juggler"!
 
-    frut::parameter::ParBoolean *ParameterTransientMode =
-        new frut::parameter::ParBoolean("On", "Off");
+    frut::parameters::ParBoolean *ParameterTransientMode =
+        new frut::parameters::ParBoolean("On", "Off");
     ParameterTransientMode->setName("Transient mode");
     ParameterTransientMode->setDefaultBoolean(true, true);
     add(ParameterTransientMode, selTransientMode);
 
 
-    frut::parameter::ParSwitch *ParameterCrestFactor =
-        new frut::parameter::ParSwitch();
+    frut::parameters::ParSwitch *ParameterCrestFactor =
+        new frut::parameters::ParSwitch();
     ParameterCrestFactor->setName("Crest factor");
 
     ParameterCrestFactor->addPreset(0.0f,  "0 dB (digital full-scale)");
@@ -54,8 +54,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    frut::parameter::ParSwitch *ParameterMeterType =
-        new frut::parameter::ParSwitch();
+    frut::parameters::ParSwitch *ParameterMeterType =
+        new frut::parameters::ParSwitch();
     ParameterMeterType->setName("Meter type");
 
     ParameterMeterType->addPreset(selSplitMeters,     "Split");
@@ -65,14 +65,14 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterMeterType, selMeterType);
 
 
-    frut::parameter::ParString *ParameterValidationFileName =
-        new frut::parameter::ParString(String::empty);
+    frut::parameters::ParString *ParameterValidationFileName =
+        new frut::parameters::ParString(String::empty);
     ParameterValidationFileName->setName("Validation file");
     add(ParameterValidationFileName, selValidationFileName);
 
 
-    frut::parameter::ParSwitch *ParameterValidationSelectedChannel =
-        new frut::parameter::ParSwitch();
+    frut::parameters::ParSwitch *ParameterValidationSelectedChannel =
+        new frut::parameters::ParSwitch();
     ParameterValidationSelectedChannel->setName("Validation audio channel");
 
     // values correspond to the channel index in "AudioBuffer"
@@ -92,22 +92,22 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterValidationSelectedChannel, selValidationSelectedChannel);
 
 
-    frut::parameter::ParBoolean *ParameterValidationAverageMeterLevel =
-        new frut::parameter::ParBoolean("On", "Off");
+    frut::parameters::ParBoolean *ParameterValidationAverageMeterLevel =
+        new frut::parameters::ParBoolean("On", "Off");
     ParameterValidationAverageMeterLevel->setName("Validate average meter level");
     ParameterValidationAverageMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationAverageMeterLevel, selValidationAverageMeterLevel);
 
 
-    frut::parameter::ParBoolean *ParameterValidationPeakMeterLevel =
-        new frut::parameter::ParBoolean("On", "Off");
+    frut::parameters::ParBoolean *ParameterValidationPeakMeterLevel =
+        new frut::parameters::ParBoolean("On", "Off");
     ParameterValidationPeakMeterLevel->setName("Validate peak meter level");
     ParameterValidationPeakMeterLevel->setDefaultBoolean(true, true);
     add(ParameterValidationPeakMeterLevel, selValidationPeakMeterLevel);
 
 
-    frut::parameter::ParBoolean *ParameterValidationCSVFormat =
-        new frut::parameter::ParBoolean("CSV", "Full");
+    frut::parameters::ParBoolean *ParameterValidationCSVFormat =
+        new frut::parameters::ParBoolean("CSV", "Full");
     ParameterValidationCSVFormat->setName("Validation output format");
     ParameterValidationCSVFormat->setDefaultBoolean(false, true);
     add(ParameterValidationCSVFormat, selValidationCSVFormat);
@@ -132,8 +132,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     // load name of default skin from file
     String defaultSkinName = defaultSkinFile.loadFileAsString();
 
-    frut::parameter::ParString *ParameterSkinName =
-        new frut::parameter::ParString(defaultSkinName);
+    frut::parameters::ParString *ParameterSkinName =
+        new frut::parameters::ParString(defaultSkinName);
     ParameterSkinName->setName("Skin");
     add(ParameterSkinName, selSkinName);
 }

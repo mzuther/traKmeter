@@ -429,7 +429,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         button->setToggleState(true, dontSendNotification);
 
         // prepare and launch dialog window
-        DialogWindow *windowSkin = frut::widget::WindowSkinContent::createDialogWindow(
+        DialogWindow *windowSkin = frut::widgets::WindowSkinContent::createDialogWindow(
                                        this, &currentSkinName, skinDirectory);
 
         // attach callback to dialog window
@@ -552,7 +552,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         int width = 270;
         int height = 540;
 
-        DialogWindow *windowAbout = frut::widget::WindowAboutContent::createDialogWindow(
+        DialogWindow *windowAbout = frut::widgets::WindowAboutContent::createDialogWindow(
                                         this, width, height, arrChapters);
 
         // attach callback to dialog window

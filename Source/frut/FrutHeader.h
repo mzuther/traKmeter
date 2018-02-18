@@ -23,8 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
-
+#ifndef FRUT_HEADER_H
+#define FRUT_HEADER_H
 
 // external includes
 #include "JuceHeader.h"
@@ -91,8 +91,10 @@ public:
 #include "amalgamated/include_frut_audio.h"
 #include "amalgamated/include_frut_dsp.h"
 #include "amalgamated/include_frut_math.h"
-#include "amalgamated/include_frut_parameter.h"
-#include "amalgamated/include_frut_widget.h"
+#include "amalgamated/include_frut_parameters.h"
+#include "amalgamated/include_frut_widgets.h"
 
 // post includes
 #include "amalgamated/include_frut_skin.h"
+
+#endif  // FRUT_HEADER_H

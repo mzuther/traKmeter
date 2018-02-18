@@ -23,7 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
+#ifndef TRAKMETER_AUDIO_FILE_PLAYER_H
+#define TRAKMETER_AUDIO_FILE_PLAYER_H
 
 #include "FrutHeader.h"
 #include "meter_ballistics.h"
@@ -92,3 +93,5 @@ private:
 
     void outputMessage(const String &strMessage);
 };
+
+#endif  // TRAKMETER_AUDIO_FILE_PLAYER_H

@@ -23,7 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
+#ifndef TRAKMETER_METER_BALLISTICS_H
+#define TRAKMETER_METER_BALLISTICS_H
 
 #include "FrutHeader.h"
 
@@ -90,3 +91,5 @@ private:
 
     void LogMeterBallistics(float fMeterInertia, float fTimePassed, float fLevel, float &fReadout);
 };
+
+#endif  // TRAKMETER_METER_BALLISTICS_H

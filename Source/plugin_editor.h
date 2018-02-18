@@ -23,7 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
+#ifndef TRAKMETER_PLUGIN_EDITOR_H
+#define TRAKMETER_PLUGIN_EDITOR_H
 
 #include "FrutHeader.h"
 
@@ -97,3 +98,5 @@ private:
 
     ImageComponent BackgroundImage;
 };
+
+#endif  // TRAKMETER_PLUGIN_EDITOR_H

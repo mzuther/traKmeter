@@ -23,7 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
+#ifndef TRAKMETER_WINDOW_VALIDATION_CONTENT_H
+#define TRAKMETER_WINDOW_VALIDATION_CONTENT_H
 
 #include "FrutHeader.h"
 #include "plugin_processor.h"
@@ -32,7 +33,7 @@
 /// Customized dialog window for validation settings.
 ///
 class WindowValidationContent :
-    public frut::widget::WindowValidationContent
+    public frut::widgets::WindowValidationContent
 {
 public:
     WindowValidationContent(TraKmeterAudioProcessor *processor);
@@ -62,3 +63,5 @@ private:
     ToggleButton buttonDumpAverageLevel_;
     ToggleButton buttonDumpPeakLevel_;
 };
+
+#endif  // TRAKMETER_WINDOW_VALIDATION_CONTENT_H

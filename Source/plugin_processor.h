@@ -23,7 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
+#ifndef TRAKMETER_PLUGIN_PROCESSOR_H
+#define TRAKMETER_PLUGIN_PROCESSOR_H
 
 #include "FrutHeader.h"
 #include "audio_file_player.h"
@@ -143,3 +144,5 @@ private:
 };
 
 AudioProcessor *JUCE_CALLTYPE createPluginFilter();
+
+#endif  // TRAKMETER_PLUGIN_PROCESSOR_H

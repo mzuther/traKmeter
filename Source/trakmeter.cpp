@@ -58,7 +58,7 @@ TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
                                           new MeterBarPeak());
 
         pMeterBarPeak->create(nCrestFactor,
-                              frut::widget::Orientation::vertical,
+                              frut::widgets::Orientation::vertical,
                               discreteMeter,
                               !bShowSplitMeters,
                               nSegmentHeight,
@@ -70,7 +70,7 @@ TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
                                                 new MeterBarAverage());
 
         pMeterBarAverage->create(nCrestFactor,
-                                 frut::widget::Orientation::vertical,
+                                 frut::widgets::Orientation::vertical,
                                  discreteMeter,
                                  !bShowSplitMeters,
                                  nSegmentHeight,
@@ -107,7 +107,7 @@ TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
                 strLabel = String(nChannel + 1);
             }
 
-            frut::widget::SignalLed *signalLed = new frut::widget::SignalLed();
+            frut::widgets::SignalLed *signalLed = new frut::widgets::SignalLed();
             addAndMakeVisible(signalLed);
 
             p_arrSignalLeds.add(signalLed);

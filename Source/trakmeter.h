@@ -23,7 +23,8 @@
 
 ---------------------------------------------------------------------------- */
 
-#pragma once
+#ifndef TRAKMETER_TRAKMETER_H
+#define TRAKMETER_TRAKMETER_H
 
 #include "FrutHeader.h"
 #include "meter_ballistics.h"
@@ -62,5 +63,7 @@ private:
     OwnedArray<MeterBarPeak> p_arrPeakMeters;
     OwnedArray<OverloadMeter> p_arrOverloadMeters;
 
-    OwnedArray<frut::widget::SignalLed> p_arrSignalLeds;
+    OwnedArray<frut::widgets::SignalLed> p_arrSignalLeds;
 };
+
+#endif  // TRAKMETER_TRAKMETER_H
