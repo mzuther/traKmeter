@@ -1,44 +1,55 @@
 @echo off
+setlocal
 
-@setlocal
-@set rsync_path=E:\Documents\System\Tools\rsync\bin
-@set rsync_cmd=%rsync_path%\rsync.exe --archive
+set rsync_path=E:\Documents\System\Tools\rsync\bin
+set rsync_cmd=%rsync_path%\rsync.exe --archive
 
-@set destination=/cygdrive/d/Vst/32bit/radix/
-@echo %destination%
-@%rsync_cmd% --delete "vst/trakmeter"                    "%destination%"
-@%rsync_cmd%          "vst/traKmeter (Stereo).dll"       "%destination%"
-@%rsync_cmd%          "vst/traKmeter (Multi).dll"        "%destination%"
+set vst2_32=/cygdrive/c/Program Files (x86)/Steinberg/VSTPlugins/radix/
+set vst3_32=/cygdrive/c/Program Files (x86)/Common Files/VST3/radix/
+set vst2_64=/cygdrive/c/Program Files/Steinberg/VSTPlugins/radix/
+set vst3_64=/cygdrive/c/Program Files/Common Files/VST3/radix/
 
-@set destination=/cygdrive/d/Vst/Categories/Analyzer/Meter/
-@echo %destination%
-@%rsync_cmd% --delete "vst/trakmeter"                    "%destination%"
-@%rsync_cmd%          "vst/traKmeter (Stereo).dll"       "%destination%"
-@%rsync_cmd%          "vst/traKmeter (Multi).dll"        "%destination%"
+call :CopyVst ^
+ "%vst2_32%" ^
+ "vst/traKmeter (Stereo).dll" ^
+ "vst/traKmeter (Multi).dll" ^
+ "vst/trakmeter"
 
-@set destination=/cygdrive/d/Plugins/VST2 (32 bit)/radix/
-@echo %destination%
-@%rsync_cmd% --delete "vst/trakmeter"                    "%destination%"
-@%rsync_cmd%          "vst/traKmeter (Stereo).dll"       "%destination%"
-@%rsync_cmd%          "vst/traKmeter (Multi).dll"        "%destination%"
+call :CopyVst ^
+ "%vst3_32%" ^
+ "vst/traKmeter (Stereo).vst3" ^
+ "vst/traKmeter (Multi).vst3" ^
+ "vst/trakmeter"
 
-@set destination=/cygdrive/d/Plugins/VST2 (64 bit)/radix/
-@echo %destination%
-@%rsync_cmd% --delete "vst/trakmeter"                    "%destination%"
-@%rsync_cmd%          "vst/traKmeter (Stereo x64).dll"   "%destination%"
-@%rsync_cmd%          "vst/traKmeter (Multi x64).dll"    "%destination%"
+call :CopyVst ^
+ "%vst2_64%" ^
+ "vst/traKmeter (Stereo x64).dll" ^
+ "vst/traKmeter (Multi x64).dll" ^
+ "vst/trakmeter"
 
-@set destination=/cygdrive/d/Plugins/VST3 (32 bit)/radix/
-@echo %destination%
-@%rsync_cmd% --delete "vst3/trakmeter"                    "%destination%"
-@%rsync_cmd%          "vst3/traKmeter (Stereo).vst3"      "%destination%"
-@%rsync_cmd%          "vst3/traKmeter (Multi).vst3"       "%destination%"
+call :CopyVst ^
+ "%vst3_64%" ^
+ "vst/traKmeter (Stereo x64).vst3" ^
+ "vst/traKmeter (Multi x64).vst3" ^
+ "vst/trakmeter"
 
-@set destination=/cygdrive/d/Plugins/VST3 (64 bit)/radix/
-@echo %destination%
-@%rsync_cmd% --delete "vst3/trakmeter"                    "%destination%"
-@%rsync_cmd%          "vst3/traKmeter (Stereo x64).vst3"  "%destination%"
-@%rsync_cmd%          "vst3/traKmeter (Multi x64).vst3"   "%destination%"
+pause
+exit /b %errorlevel%
 
-@echo.
-@pause
+
+:CopyVst
+set destination=%1
+set dll_1=%2
+set dll_2=%3
+set aux_dir=%4
+
+echo %destination%
+
+if not exist %dll_1% exit /b 1
+if not exist %dll_2% exit /b 2
+
+%rsync_cmd% --delete %aux_dir% %destination%
+%rsync_cmd%          %dll_1%   %destination%
+%rsync_cmd%          %dll_2%   %destination%
+
+exit /b 0
