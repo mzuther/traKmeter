@@ -22,7 +22,9 @@ Contributors
 Beta testing
 ============
 
+* Aldo D. Sudak
+
 * Rickard (http://www.interfearingsounds.com/)
 
 
-(note: do not forget to update "src/window_about.cpp"!)
+(note: do not forget to update "src/plugin_editor.cpp"!)

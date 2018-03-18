@@ -478,6 +478,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
 
         arrChapters.set(
             "Beta testing",
+            L"Aldo D. Sudak\n"
             L"Rickard (Interfearing Sounds)\n");
 
         arrChapters.set(
