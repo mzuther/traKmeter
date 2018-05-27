@@ -37,7 +37,7 @@
 
 class TraKmeterAudioProcessorEditor :
     public AudioProcessorEditor,
-    public ButtonListener,
+    public Button::Listener,
     public ActionListener
 {
 public:

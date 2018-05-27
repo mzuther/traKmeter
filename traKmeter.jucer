@@ -8,7 +8,7 @@
               pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="1" pluginTailLength="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="traKmeterAU"
               pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="ePlugInCategory_None"
-              jucerVersion="5.1.2" companyName="Martin Zuther" aaxIdentifier="de.mzuther.traKmeter"
+              jucerVersion="5.2.1" companyName="Martin Zuther" aaxIdentifier="de.mzuther.traKmeter"
               pluginAAXCategory="AAX_ePlugInCategory_None" includeBinaryInAppConfig="1"
               buildVST3="0" buildAAX="0" pluginManufacturerEmail="support@yourcompany.com"
               companyWebsite="http://code.mzuther.de/" pluginVSTCategory="kPlugCategAnalysis"
@@ -51,61 +51,73 @@
     </LINUX_MAKE>
   </EXPORTFORMATS>
   <MAINGROUP id="icjBJ4" name="traKmeter">
-    <GROUP id="{338D4952-4282-055F-0D2A-75A0D411D8DC}" name="common">
-      <FILE id="pvz7Lu" name="FrutHeader.h" compile="0" resource="0" file="Source/common/FrutHeader.h"/>
-      <GROUP id="{0607C8C2-E215-0159-86DE-1B75D0F1B476}" name="amalgamated">
-        <FILE id="Is6qcY" name="frut_audio.cpp" compile="1" resource="0" file="Source/common/amalgamated/frut_audio.cpp"/>
-        <FILE id="v9kNQM" name="frut_audio.h" compile="0" resource="0" file="Source/common/amalgamated/frut_audio.h"/>
-        <FILE id="GCSGjY" name="frut_math.cpp" compile="1" resource="0" file="Source/common/amalgamated/frut_math.cpp"/>
-        <FILE id="CwLfWO" name="frut_math.h" compile="0" resource="0" file="Source/common/amalgamated/frut_math.h"/>
-        <FILE id="jNqErT" name="frut_parameter.cpp" compile="1" resource="0"
-              file="Source/common/amalgamated/frut_parameter.cpp"/>
-        <FILE id="CmHbTM" name="frut_parameter.h" compile="0" resource="0"
-              file="Source/common/amalgamated/frut_parameter.h"/>
-        <FILE id="YowOsk" name="frut_skin.cpp" compile="1" resource="0" file="Source/common/amalgamated/frut_skin.cpp"/>
-        <FILE id="ALJysj" name="frut_skin.h" compile="0" resource="0" file="Source/common/amalgamated/frut_skin.h"/>
-        <FILE id="FFdOIl" name="frut_widget.cpp" compile="1" resource="0" file="Source/common/amalgamated/frut_widget.cpp"/>
-        <FILE id="htqtdh" name="frut_widget.h" compile="0" resource="0" file="Source/common/amalgamated/frut_widget.h"/>
+    <GROUP id="{CC25BD2A-9EA1-DD92-F201-B4708EBA34EC}" name="frut">
+      <GROUP id="{C5E5AA18-4756-0A5B-2C64-8EDD2733325F}" name="amalgamated">
+        <FILE id="XRdpKQ" name="include_frut_audio.cpp" compile="1" resource="0"
+              file="Source/frut/amalgamated/include_frut_audio.cpp"/>
+        <FILE id="AWpm1N" name="include_frut_audio.h" compile="0" resource="0"
+              file="Source/frut/amalgamated/include_frut_audio.h"/>
+        <FILE id="HHXurT" name="include_frut_dsp.cpp" compile="1" resource="0"
+              file="Source/frut/amalgamated/include_frut_dsp.cpp"/>
+        <FILE id="WyPWlj" name="include_frut_dsp.h" compile="0" resource="0"
+              file="Source/frut/amalgamated/include_frut_dsp.h"/>
+        <FILE id="hCeKHE" name="include_frut_math.cpp" compile="1" resource="0"
+              file="Source/frut/amalgamated/include_frut_math.cpp"/>
+        <FILE id="pWNyGk" name="include_frut_math.h" compile="0" resource="0"
+              file="Source/frut/amalgamated/include_frut_math.h"/>
+        <FILE id="Bzs4VN" name="include_frut_parameters.cpp" compile="1" resource="0"
+              file="Source/frut/amalgamated/include_frut_parameters.cpp"/>
+        <FILE id="DB3TBw" name="include_frut_parameters.h" compile="0" resource="0"
+              file="Source/frut/amalgamated/include_frut_parameters.h"/>
+        <FILE id="eBUK8y" name="include_frut_skin.cpp" compile="1" resource="0"
+              file="Source/frut/amalgamated/include_frut_skin.cpp"/>
+        <FILE id="pNnrLn" name="include_frut_skin.h" compile="0" resource="0"
+              file="Source/frut/amalgamated/include_frut_skin.h"/>
+        <FILE id="kjFCpK" name="include_frut_widgets.cpp" compile="1" resource="0"
+              file="Source/frut/amalgamated/include_frut_widgets.cpp"/>
+        <FILE id="RaiDnM" name="include_frut_widgets.h" compile="0" resource="0"
+              file="Source/frut/amalgamated/include_frut_widgets.h"/>
       </GROUP>
+      <FILE id="HX9cjO" name="FrutHeader.h" compile="0" resource="0" file="Source/frut/FrutHeader.h"/>
     </GROUP>
-    <FILE id="bkCtNj" name="audio_file_player.cpp" compile="1" resource="0"
+    <FILE id="w3qTCo" name="audio_file_player.cpp" compile="1" resource="0"
           file="Source/audio_file_player.cpp"/>
-    <FILE id="IOhyCT" name="audio_file_player.h" compile="0" resource="0"
+    <FILE id="XDLxZG" name="audio_file_player.h" compile="0" resource="0"
           file="Source/audio_file_player.h"/>
-    <FILE id="YbvchS" name="meter_ballistics.cpp" compile="1" resource="0"
+    <FILE id="pX4Elh" name="meter_ballistics.cpp" compile="1" resource="0"
           file="Source/meter_ballistics.cpp"/>
-    <FILE id="ePzRc9" name="meter_ballistics.h" compile="0" resource="0"
+    <FILE id="VtuYT7" name="meter_ballistics.h" compile="0" resource="0"
           file="Source/meter_ballistics.h"/>
-    <FILE id="K14FTN" name="meter_bar_average.cpp" compile="1" resource="0"
+    <FILE id="YFNXXJ" name="meter_bar_average.cpp" compile="1" resource="0"
           file="Source/meter_bar_average.cpp"/>
-    <FILE id="fdFFb6" name="meter_bar_average.h" compile="0" resource="0"
+    <FILE id="fGjEzv" name="meter_bar_average.h" compile="0" resource="0"
           file="Source/meter_bar_average.h"/>
-    <FILE id="mDaIK7" name="meter_bar_peak.cpp" compile="1" resource="0"
+    <FILE id="QN5T1a" name="meter_bar_peak.cpp" compile="1" resource="0"
           file="Source/meter_bar_peak.cpp"/>
-    <FILE id="m2xwlz" name="meter_bar_peak.h" compile="0" resource="0"
+    <FILE id="ANHDYc" name="meter_bar_peak.h" compile="0" resource="0"
           file="Source/meter_bar_peak.h"/>
-    <FILE id="c1VzzY" name="overload_meter.cpp" compile="1" resource="0"
+    <FILE id="zNAFhA" name="overload_meter.cpp" compile="1" resource="0"
           file="Source/overload_meter.cpp"/>
-    <FILE id="bS884a" name="overload_meter.h" compile="0" resource="0"
+    <FILE id="VaOwmc" name="overload_meter.h" compile="0" resource="0"
           file="Source/overload_meter.h"/>
-    <FILE id="UE7TRS" name="plugin_editor.cpp" compile="1" resource="0"
+    <FILE id="sTWOpQ" name="plugin_editor.cpp" compile="1" resource="0"
           file="Source/plugin_editor.cpp"/>
-    <FILE id="Ilpvco" name="plugin_editor.h" compile="0" resource="0" file="Source/plugin_editor.h"/>
-    <FILE id="qpyhZt" name="plugin_parameters.cpp" compile="1" resource="0"
+    <FILE id="AdydJL" name="plugin_editor.h" compile="0" resource="0" file="Source/plugin_editor.h"/>
+    <FILE id="loWX0l" name="plugin_parameters.cpp" compile="1" resource="0"
           file="Source/plugin_parameters.cpp"/>
-    <FILE id="RxSztK" name="plugin_parameters.h" compile="0" resource="0"
+    <FILE id="aHF3bA" name="plugin_parameters.h" compile="0" resource="0"
           file="Source/plugin_parameters.h"/>
-    <FILE id="o9VXgK" name="plugin_processor.cpp" compile="1" resource="0"
+    <FILE id="oFXzPU" name="plugin_processor.cpp" compile="1" resource="0"
           file="Source/plugin_processor.cpp"/>
-    <FILE id="jsLVvn" name="plugin_processor.h" compile="0" resource="0"
+    <FILE id="zvTz1O" name="plugin_processor.h" compile="0" resource="0"
           file="Source/plugin_processor.h"/>
-    <FILE id="eBvKOw" name="skin.cpp" compile="1" resource="0" file="Source/skin.cpp"/>
-    <FILE id="gN7wbh" name="skin.h" compile="0" resource="0" file="Source/skin.h"/>
-    <FILE id="z7JQPD" name="trakmeter.cpp" compile="1" resource="0" file="Source/trakmeter.cpp"/>
-    <FILE id="CpjVI9" name="trakmeter.h" compile="0" resource="0" file="Source/trakmeter.h"/>
-    <FILE id="RL1kDv" name="window_validation_content.cpp" compile="1"
+    <FILE id="ilderk" name="skin.cpp" compile="1" resource="0" file="Source/skin.cpp"/>
+    <FILE id="mBCzq8" name="skin.h" compile="0" resource="0" file="Source/skin.h"/>
+    <FILE id="B9CK5o" name="trakmeter.cpp" compile="1" resource="0" file="Source/trakmeter.cpp"/>
+    <FILE id="ORkTVE" name="trakmeter.h" compile="0" resource="0" file="Source/trakmeter.h"/>
+    <FILE id="fMn2I4" name="window_validation_content.cpp" compile="1"
           resource="0" file="Source/window_validation_content.cpp"/>
-    <FILE id="VI3xgK" name="window_validation_content.h" compile="0" resource="0"
+    <FILE id="dnqumN" name="window_validation_content.h" compile="0" resource="0"
           file="Source/window_validation_content.h"/>
   </MAINGROUP>
   <MODULES>
