@@ -66,7 +66,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
 
 
     frut::parameters::ParString *ParameterValidationFileName =
-        new frut::parameters::ParString(String::empty);
+        new frut::parameters::ParString(String());
     ParameterValidationFileName->setName("Validation file");
     add(ParameterValidationFileName, selValidationFileName);
 
@@ -149,7 +149,7 @@ File TraKmeterPluginParameters::getValidationFile()
     }
     else
     {
-        return File::nonexistent;
+        return File();
     }
 }
 

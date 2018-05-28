@@ -80,7 +80,7 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
         }
         else
         {
-            strMaximumLevel = String::empty;
+            strMaximumLevel = String();
             bOverloadsDetected = false;
         }
 

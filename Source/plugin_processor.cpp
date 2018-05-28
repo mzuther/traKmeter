@@ -409,7 +409,7 @@ const String TraKmeterAudioProcessor::getProgramName(
 {
     ignoreUnused(nIndex);
 
-    return String::empty;
+    return String();
 }
 
 

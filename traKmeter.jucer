@@ -7,14 +7,15 @@
               pluginCode="traK" pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="1" pluginTailLength="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="traKmeterAU"
-              pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="ePlugInCategory_None"
-              jucerVersion="5.2.1" companyName="Martin Zuther" aaxIdentifier="de.mzuther.traKmeter"
-              pluginAAXCategory="AAX_ePlugInCategory_None" includeBinaryInAppConfig="1"
-              buildVST3="0" buildAAX="0" pluginManufacturerEmail="support@yourcompany.com"
+              pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="0" jucerVersion="5.3.2"
+              companyName="Martin Zuther" aaxIdentifier="de.mzuther.traKmeter"
+              pluginAAXCategory="0" includeBinaryInAppConfig="1" buildVST3="0"
+              buildAAX="0" pluginManufacturerEmail="support@yourcompany.com"
               companyWebsite="http://code.mzuther.de/" pluginVSTCategory="kPlugCategAnalysis"
               pluginIsMidiEffectPlugin="0" buildAUv3="0" displaySplashScreen="0"
               reportAppUsage="0" splashScreenColour="Dark" buildStandalone="0"
-              enableIAA="0" cppLanguageStandard="11">
+              enableIAA="0" cppLanguageStandard="11" pluginFormats="buildVST"
+              pluginVST3Category="Analyzer">
   <EXPORTFORMATS>
     <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/Documents/code/cpp/trakmeter/libraries/vst"
                 extraCompilerFlags="" cppLanguageStandard="-std=c++11" externalLibraries="dl&#10;freetype&#10;pthread&#10;rt&#10;X11&#10;Xext&#10;asound"
@@ -137,4 +138,7 @@
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
   <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
+  <LIVE_SETTINGS>
+    <LINUX/>
+  </LIVE_SETTINGS>
 </JUCERPROJECT>

@@ -78,14 +78,14 @@ AudioFilePlayer::AudioFilePlayer(
         {
             bSampleRatesMatch = false;
 
-            outputMessage(String::empty);
+            outputMessage(String());
             outputMessage("WARNING: sample rate mismatch (host: " + String(sample_rate) + " Hz)!");
-            outputMessage(String::empty);
+            outputMessage(String());
         }
 
-        outputMessage(String::empty);
+        outputMessage(String());
         outputMessage("Starting validation ...");
-        outputMessage(String::empty);
+        outputMessage(String());
     }
     else
     {
@@ -243,7 +243,7 @@ void AudioFilePlayer::outputReportPlain()
         }
     }
 
-    outputMessage(String::empty);
+    outputMessage(String());
 }
 
 
