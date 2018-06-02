@@ -136,7 +136,6 @@ private:
     bool isSilent;
 
     int numberOfChannels_;
-    int samplesInBuffer_;
     float processedSeconds_;
 
     bool transientMode_;

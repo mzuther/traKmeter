@@ -459,8 +459,6 @@ void TraKmeterAudioProcessor::prepareToPlay(
                                            false,
                                            transientMode_);
 
-    samplesInBuffer_ = 0;
-
     // make sure that ring buffer can hold at least
     // trakmeterBufferSize_ samples and is large enough to receive a
     // full block of audio
@@ -489,6 +487,8 @@ void TraKmeterAudioProcessor::releaseResources()
 
     meterBallistics_ = nullptr;
     audioFilePlayer_ = nullptr;
+
+    ringBufferInput_ = nullptr;
 }
 
 
@@ -545,9 +545,6 @@ void TraKmeterAudioProcessor::processBlock(
 
     // process input samples
     ringBufferInput_->addSamples(buffer, 0, NumberOfSamples);
-
-    samplesInBuffer_ += NumberOfSamples;
-    samplesInBuffer_ %= trakmeterBufferSize_;
 }
 
 
@@ -605,9 +602,6 @@ void TraKmeterAudioProcessor::processBlock(
 
     // process input samples
     ringBufferInput_->addSamples(processBuffer, 0, NumberOfSamples);
-
-    samplesInBuffer_ += NumberOfSamples;
-    samplesInBuffer_ %= trakmeterBufferSize_;
 }
 
 
@@ -615,8 +609,6 @@ void TraKmeterAudioProcessor::processBufferChunk(
     frut::audio::RingBuffer<float> *ringBuffer,
     const int chunkSize)
 {
-    ignoreUnused(ringBuffer);
-
     // length of buffer chunk in fractional seconds
     // (1024 samples / 44100 samples/s = 23.2 ms)
     processedSeconds_ = (float) chunkSize / (float) getSampleRate();
@@ -624,11 +616,11 @@ void TraKmeterAudioProcessor::processBufferChunk(
     for (int nChannel = 0; nChannel < getMainBusNumInputChannels(); ++nChannel)
     {
         // determine peak level for chunkSize samples
-        float fPeakLevels = ringBufferInput_->getMagnitude(
+        float fPeakLevels = ringBuffer->getMagnitude(
                                 nChannel, chunkSize);
 
         // determine peak level for chunkSize samples
-        float fRmsLevels = ringBufferInput_->getRMSLevel(
+        float fRmsLevels = ringBuffer->getRMSLevel(
                                nChannel, chunkSize);
 
         // apply meter ballistics and store values so that the editor
