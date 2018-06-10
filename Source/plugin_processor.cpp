@@ -57,6 +57,7 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
     sampleRateIsValid_ = false;
     processedSeconds_ = 0.0f;
 
+    // this is a meter for recording: do not introduce latency!
     setLatencySamples(0);
 
     // depend on "TraKmeterPluginParameters"!
@@ -464,16 +465,17 @@ void TraKmeterAudioProcessor::prepareToPlay(
     // full block of audio
     int ringBufferSize = jmax(samplesPerBlock, trakmeterBufferSize_);
 
-    int preDelay = trakmeterBufferSize_;
+    // this is a meter for recording: do not use pre-delay!
+    int preDelay = 0;
     int chunkSize = trakmeterBufferSize_;
 
-    ringBufferInput_ = new frut::audio::RingBuffer<float>(
+    ringBuffer_ = new frut::audio::RingBuffer<float>(
         numberOfChannels_,
         ringBufferSize,
         preDelay,
         chunkSize);
 
-    ringBufferInput_->setCallbackClass(this);
+    ringBuffer_->setCallbackClass(this);
 }
 
 
@@ -488,7 +490,7 @@ void TraKmeterAudioProcessor::releaseResources()
     meterBallistics_ = nullptr;
     audioFilePlayer_ = nullptr;
 
-    ringBufferInput_ = nullptr;
+    ringBuffer_ = nullptr;
 }
 
 
@@ -510,7 +512,7 @@ void TraKmeterAudioProcessor::processBlock(
     // This is the place where you'd normally do the guts of your
     // plug-in's audio processing...
 
-    int NumberOfSamples = buffer.getNumSamples();
+    int numberOfSamples = buffer.getNumSamples();
 
     if (!sampleRateIsValid_)
     {
@@ -528,14 +530,15 @@ void TraKmeterAudioProcessor::processBlock(
     // output channels that didn't contain input data, because these
     // aren't guaranteed to be empty -- they may contain garbage.
 
-    for (int nChannel = getMainBusNumInputChannels(); nChannel < getMainBusNumOutputChannels(); ++nChannel)
+    for (int channel = getMainBusNumInputChannels(); channel < getMainBusNumOutputChannels(); ++channel)
     {
-        buffer.clear(nChannel, 0, NumberOfSamples);
+        buffer.clear(channel, 0, numberOfSamples);
     }
 
+    // copy validation audio samples to input buffer
     if (audioFilePlayer_)
     {
-        audioFilePlayer_->fillBufferChunk(buffer);
+        audioFilePlayer_->copyTo(buffer);
     }
     // silence input if validation window is open
     else if (isSilent)
@@ -543,8 +546,15 @@ void TraKmeterAudioProcessor::processBlock(
         buffer.clear();
     }
 
-    // process input samples
-    ringBufferInput_->addSamples(buffer, 0, NumberOfSamples);
+    // copy input buffer to ring buffer
+    //
+    // calls "processBufferChunk" each time chunkSize samples have
+    // been added!
+    ringBuffer_->addFrom(buffer, 0, numberOfSamples);
+
+    // simulate read in ring buffer (move read pointer to prevent the
+    // "overwriting unread data" debug message from appearing)
+    ringBuffer_->removeToNull(numberOfSamples);
 }
 
 
@@ -558,15 +568,11 @@ void TraKmeterAudioProcessor::processBlock(
     // This is the place where you'd normally do the guts of your
     // plug-in's audio processing...
 
-    int NumberOfSamples = buffer.getNumSamples();
+    int numberOfSamples = buffer.getNumSamples();
 
     if (!sampleRateIsValid_)
     {
-        for (int nChannel = 0; nChannel < getMainBusNumOutputChannels(); ++nChannel)
-        {
-            buffer.clear(nChannel, 0, NumberOfSamples);
-        }
-
+        buffer.clear();
         return;
     }
 
@@ -580,57 +586,78 @@ void TraKmeterAudioProcessor::processBlock(
     // output channels that didn't contain input data, because these
     // aren't guaranteed to be empty -- they may contain garbage.
 
-    for (int nChannel = getMainBusNumInputChannels(); nChannel < getMainBusNumOutputChannels(); ++nChannel)
+    for (int channel = getMainBusNumInputChannels(); channel < getMainBusNumOutputChannels(); ++channel)
     {
-        buffer.clear(nChannel, 0, NumberOfSamples);
+        buffer.clear(channel, 0, numberOfSamples);
     }
 
+    // create temporary buffer
+    AudioBuffer<float> processBuffer(numberOfChannels_, numberOfSamples);
+
+    // copy validation audio samples to temporary buffer
     if (audioFilePlayer_)
     {
-        audioFilePlayer_->fillBufferChunk(buffer);
+        audioFilePlayer_->copyTo(processBuffer);
     }
     // silence input if validation window is open
     else if (isSilent)
     {
-        buffer.clear();
+        processBuffer.clear();
+    }
+    else
+    {
+        // copy input to temporary buffer and convert to float; the
+        // process buffer is not going to be heard, so we may truncate
+        // the sample values
+        dither_.truncateToFloat(buffer, processBuffer);
     }
 
-    // the process buffer is not going to be heard, so truncate
-    // samples!
-    AudioBuffer<float> processBuffer(numberOfChannels_, NumberOfSamples);
-    dither_.truncateToFloat(buffer, processBuffer);
+    // copy temporary buffer to ring buffer
+    //
+    // calls "processBufferChunk" each time chunkSize samples have
+    // been added!
+    ringBuffer_->addFrom(processBuffer, 0, numberOfSamples);
 
-    // process input samples
-    ringBufferInput_->addSamples(processBuffer, 0, NumberOfSamples);
+    // simulate read in ring buffer (move read pointer to prevent the
+    // "overwriting unread data" debug message from appearing)
+    ringBuffer_->removeToNull(numberOfSamples);
+
+    // copy temporary buffer to output and convert to double
+    dither_.convertToDouble(processBuffer, buffer);
 }
 
 
-void TraKmeterAudioProcessor::processBufferChunk(
-    frut::audio::RingBuffer<float> *ringBuffer,
-    const int chunkSize)
+bool TraKmeterAudioProcessor::processBufferChunk(
+    AudioBuffer<float> &buffer)
 {
+    int chunkSize = buffer.getNumSamples();
+
     // length of buffer chunk in fractional seconds
     // (1024 samples / 44100 samples/s = 23.2 ms)
-    processedSeconds_ = (float) chunkSize / (float) getSampleRate();
+    processedSeconds_ = static_cast<float>(chunkSize) /
+                        static_cast<float>(getSampleRate());
 
-    for (int nChannel = 0; nChannel < getMainBusNumInputChannels(); ++nChannel)
+    for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
     {
         // determine peak level for chunkSize samples
-        float fPeakLevels = ringBuffer->getMagnitude(
-                                nChannel, chunkSize);
+        float peakLevels = buffer.getMagnitude(channel, 0, chunkSize);
 
         // determine peak level for chunkSize samples
-        float fRmsLevels = ringBuffer->getRMSLevel(
-                               nChannel, chunkSize);
+        float rmsLevels = buffer.getRMSLevel(channel, 0, chunkSize);
 
         // apply meter ballistics and store values so that the editor
         // can access them
-        meterBallistics_->updateChannel(
-            nChannel, processedSeconds_, fPeakLevels, fRmsLevels);
+        meterBallistics_->updateChannel(channel,
+                                        processedSeconds_,
+                                        peakLevels,
+                                        rmsLevels);
 
         // "UM" --> update meters
         sendActionMessage("UM");
     }
+
+    // keep ring buffer contents
+    return false;
 }
 
 

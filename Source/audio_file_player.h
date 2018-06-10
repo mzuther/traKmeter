@@ -43,8 +43,7 @@ public:
     bool isPlaying();
     bool matchingSampleRates();
 
-    void fillBufferChunk(AudioBuffer<float> &buffer);
-    void fillBufferChunk(AudioBuffer<double> &buffer);
+    void copyTo(AudioBuffer<float> &buffer);
 
     void setCrestFactor(int crest_factor);
     void setReporters(int nChannel, bool ReportCSV,

@@ -96,8 +96,7 @@ public:
 
     MeterBallistics *getLevels();
 
-    virtual void processBufferChunk(frut::audio::RingBuffer<float> *ringBuffer,
-                                    const int chunkSize) override;
+    virtual bool processBufferChunk(AudioBuffer<float> &buffer) override;
 
     bool getTransientMode();
     void setTransientMode(const bool transientMode);
@@ -122,7 +121,7 @@ private:
     static BusesProperties getBusesProperties();
 
     ScopedPointer<AudioFilePlayer> audioFilePlayer_;
-    ScopedPointer<frut::audio::RingBuffer<float>> ringBufferInput_;
+    ScopedPointer<frut::audio::RingBuffer<float>> ringBuffer_;
 
     ScopedPointer<MeterBallistics> meterBallistics_;
 
