@@ -55,6 +55,8 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
 #endif
 
     sampleRateIsValid_ = false;
+    isSilent = false;
+
     processedSeconds_ = 0.0f;
 
     // this is a meter for recording: do not introduce latency!
