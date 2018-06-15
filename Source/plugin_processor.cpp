@@ -522,19 +522,21 @@ void TraKmeterAudioProcessor::processBlock(
         return;
     }
 
-    if (getMainBusNumInputChannels() < 1)
-    {
-        Logger::outputDebugString("[traKmeter] no input channels!");
-        return;
-    }
-
     // In case we have more outputs than inputs, we'll clear any
     // output channels that didn't contain input data, because these
     // aren't guaranteed to be empty -- they may contain garbage.
 
-    for (int channel = getMainBusNumInputChannels(); channel < getMainBusNumOutputChannels(); ++channel)
+    for (int channel = getMainBusNumInputChannels();
+            channel < getMainBusNumOutputChannels();
+            ++channel)
     {
         buffer.clear(channel, 0, numberOfSamples);
+    }
+
+    if (getMainBusNumInputChannels() < 1)
+    {
+        Logger::outputDebugString("[traKmeter] no input channels!");
+        return;
     }
 
     // copy validation audio samples to input buffer
@@ -554,8 +556,9 @@ void TraKmeterAudioProcessor::processBlock(
     // been added!
     ringBuffer_->addFrom(buffer, 0, numberOfSamples);
 
-    // simulate read in ring buffer (move read pointer to prevent the
-    // "overwriting unread data" debug message from appearing)
+    // the processed buffer data is not needed, so simulate reading
+    // the ring buffer (move read pointer to prevent the "overwriting
+    // unread data" debug message from appearing)
     ringBuffer_->removeToNull(numberOfSamples);
 }
 
@@ -578,19 +581,21 @@ void TraKmeterAudioProcessor::processBlock(
         return;
     }
 
-    if (getMainBusNumInputChannels() < 1)
-    {
-        Logger::outputDebugString("[traKmeter] no input channels!");
-        return;
-    }
-
     // In case we have more outputs than inputs, we'll clear any
     // output channels that didn't contain input data, because these
     // aren't guaranteed to be empty -- they may contain garbage.
 
-    for (int channel = getMainBusNumInputChannels(); channel < getMainBusNumOutputChannels(); ++channel)
+    for (int channel = getMainBusNumInputChannels();
+            channel < getMainBusNumOutputChannels();
+            ++channel)
     {
         buffer.clear(channel, 0, numberOfSamples);
+    }
+
+    if (getMainBusNumInputChannels() < 1)
+    {
+        Logger::outputDebugString("[traKmeter] no input channels!");
+        return;
     }
 
     // create temporary buffer
@@ -600,10 +605,14 @@ void TraKmeterAudioProcessor::processBlock(
     if (audioFilePlayer_)
     {
         audioFilePlayer_->copyTo(processBuffer);
+
+        // overwrite output buffer
+        dither_.convertToDouble(processBuffer, buffer);
     }
     // silence input if validation window is open
     else if (isSilent)
     {
+        buffer.clear();
         processBuffer.clear();
     }
     else
@@ -620,12 +629,10 @@ void TraKmeterAudioProcessor::processBlock(
     // been added!
     ringBuffer_->addFrom(processBuffer, 0, numberOfSamples);
 
-    // simulate read in ring buffer (move read pointer to prevent the
-    // "overwriting unread data" debug message from appearing)
+    // the processed buffer data is not needed, so simulate reading
+    // the ring buffer (move read pointer to prevent the "overwriting
+    // unread data" debug message from appearing)
     ringBuffer_->removeToNull(numberOfSamples);
-
-    // copy temporary buffer to output and convert to double
-    dither_.convertToDouble(processBuffer, buffer);
 }
 
 
