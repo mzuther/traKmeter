@@ -114,13 +114,13 @@ bool TraKmeterAudioProcessor::isBusesLayoutSupported(
 
 #ifdef TRAKMETER_MULTI
 
-    // prefer main bus with eight input channels --> okay
+    // prefer main bus with eight input channels ==> okay
     if (layouts.getMainInputChannelSet().size() == 8)
     {
         return true;
     }
 
-    // main bus with one to seven input channels --> okay
+    // main bus with one to seven input channels ==> okay
     if ((layouts.getMainInputChannelSet().size() >= 1) &&
             (layouts.getMainInputChannelSet().size() <= 7))
     {
@@ -129,13 +129,13 @@ bool TraKmeterAudioProcessor::isBusesLayoutSupported(
 
 #else
 
-    // main bus with mono input --> okay
+    // main bus with mono input ==> okay
     if (layouts.getMainInputChannelSet() == AudioChannelSet::mono())
     {
         return true;
     }
 
-    // main bus with stereo input --> okay
+    // main bus with stereo input ==> okay
     if (layouts.getMainInputChannelSet() == AudioChannelSet::stereo())
     {
         return true;
@@ -234,7 +234,7 @@ void TraKmeterAudioProcessor::setParameter(
         // will also clear the change flag)
         if (nIndex < pluginParameters_.getNumParameters(false))
         {
-            // "PC" --> parameter changed, followed by a hash and the
+            // "PC" ==> parameter changed, followed by a hash and the
             // parameter's ID
             sendActionMessage("PC#" + String(nIndex));
         }
@@ -654,7 +654,7 @@ bool TraKmeterAudioProcessor::processBufferChunk(
                                         peakLevels,
                                         rmsLevels);
 
-        // "UM" --> update meters
+        // "UM" ==> update meters
         sendActionMessage("UM");
     }
 
@@ -692,7 +692,7 @@ void TraKmeterAudioProcessor::startValidation(
         audioFilePlayer_->setReporters(nSelectedChannel, bReportCSV,
                                        bAverageMeterLevel, bPeakMeterLevel);
 
-        // refresh editor; "V+" --> validation started
+        // refresh editor; "V+" ==> validation started
         sendActionMessage("V+");
     }
     else
@@ -716,7 +716,7 @@ void TraKmeterAudioProcessor::stopValidation()
     // reset all meters after the validation
     meterBallistics_->reset();
 
-    // refresh editor; "V-" --> validation stopped
+    // refresh editor; "V-" ==> validation stopped
     sendActionMessage("V-");
 }
 

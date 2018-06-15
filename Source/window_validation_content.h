@@ -36,7 +36,7 @@ class WindowValidationContent :
     public frut::widgets::WindowValidationContent
 {
 public:
-    WindowValidationContent(TraKmeterAudioProcessor *processor);
+    explicit WindowValidationContent(TraKmeterAudioProcessor *processor);
 
     static DialogWindow *createDialogWindow(
         AudioProcessorEditor *pluginEditor,

@@ -33,7 +33,7 @@ class OverloadMeter :
     public frut::widgets::StateLabel
 {
 public:
-    OverloadMeter(float fThreshold);
+    explicit OverloadMeter(float fThreshold);
 
     void setLevels(float fLevel, float fMaximumLevelNew);
 

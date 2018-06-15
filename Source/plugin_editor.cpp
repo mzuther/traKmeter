@@ -254,7 +254,7 @@ void TraKmeterAudioProcessorEditor::windowValidationCallback(
 void TraKmeterAudioProcessorEditor::actionListenerCallback(
     const String &strMessage)
 {
-    // "PC" --> parameter changed, followed by a hash and the
+    // "PC" ==> parameter changed, followed by a hash and the
     // parameter's ID
     if (strMessage.startsWith("PC#"))
     {
@@ -268,7 +268,7 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(
             updateParameter(nIndex);
         }
     }
-    // "UM" --> update meters
+    // "UM" ==> update meters
     else if (!strMessage.compare("UM"))
     {
         MeterBallistics *pMeterBallistics = audioProcessor->getLevels();
@@ -283,12 +283,12 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(
             isValidating = false;
         }
     }
-    // "V+" --> validation started
+    // "V+" ==> validation started
     else if ((!strMessage.compare("V+")) && audioProcessor->isValidating())
     {
         isValidating = true;
     }
-    // "V-" --> validation stopped
+    // "V-" ==> validation stopped
     else if (!strMessage.compare("V-"))
     {
         if (!validationDialogOpen)
