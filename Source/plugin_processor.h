@@ -98,9 +98,6 @@ public:
 
     virtual bool processBufferChunk(AudioBuffer<float> &buffer) override;
 
-    bool getTransientMode();
-    void setTransientMode(const bool transientMode);
-
     int getCrestFactor();
     void setCrestFactor(const int crestFactor);
 
@@ -137,7 +134,6 @@ private:
     int numberOfChannels_;
     float processedSeconds_;
 
-    bool transientMode_;
     int crestFactor_;
 };
 

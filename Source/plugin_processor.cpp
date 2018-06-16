@@ -63,7 +63,6 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
     setLatencySamples(0);
 
     // depend on "TraKmeterPluginParameters"!
-    transientMode_ = getBoolean(TraKmeterPluginParameters::selTransientMode);
     crestFactor_ = getRealInteger(TraKmeterPluginParameters::selCrestFactor);
 }
 
@@ -218,11 +217,7 @@ void TraKmeterAudioProcessor::setParameter(
 
     pluginParameters_.setFloat(nIndex, fValue);
 
-    if (nIndex == TraKmeterPluginParameters::selTransientMode)
-    {
-        setTransientMode(getBoolean(nIndex));
-    }
-    else if (nIndex == TraKmeterPluginParameters::selCrestFactor)
+    if (nIndex == TraKmeterPluginParameters::selCrestFactor)
     {
         setCrestFactor(getRealInteger(nIndex));
     }
@@ -459,8 +454,7 @@ void TraKmeterAudioProcessor::prepareToPlay(
     meterBallistics_ = new MeterBallistics(numberOfChannels_,
                                            crestFactor_,
                                            true,
-                                           false,
-                                           transientMode_);
+                                           false);
 
     // make sure that ring buffer can hold at least
     // trakmeterBufferSize_ samples and is large enough to receive a
@@ -752,31 +746,6 @@ bool TraKmeterAudioProcessor::isValidating()
 MeterBallistics *TraKmeterAudioProcessor::getLevels()
 {
     return meterBallistics_;
-}
-
-
-bool TraKmeterAudioProcessor::getTransientMode()
-{
-    return transientMode_;
-}
-
-
-void TraKmeterAudioProcessor::setTransientMode(
-    const bool transientMode)
-{
-    if (transientMode != transientMode_)
-    {
-        transientMode_ = transientMode;
-
-        if (meterBallistics_)
-        {
-            meterBallistics_ = new MeterBallistics(numberOfChannels_,
-                                                   crestFactor_,
-                                                   true,
-                                                   false,
-                                                   transientMode_);
-        }
-    }
 }
 
 

@@ -35,8 +35,7 @@ public:
     MeterBallistics(int nChannels,
                     int CrestFactor,
                     bool bPeakMeterInfiniteHold,
-                    bool bAverageMeterInfiniteHold,
-                    bool transient_mode);
+                    bool bAverageMeterInfiniteHold);
 
     void setPeakMeterInfiniteHold(bool bInfiniteHold);
     void setAverageMeterInfiniteHold(bool bInfiniteHold);
@@ -71,7 +70,6 @@ private:
 
     int nNumberOfChannels;
     int nCrestFactor;
-    bool bTransientMode;
 
     static float fMeterMinimumDecibel;
     static float fPeakToAverageCorrection;

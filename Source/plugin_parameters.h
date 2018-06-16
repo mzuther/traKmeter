@@ -44,8 +44,7 @@ public:
 
     enum Parameters  // public namespace!
     {
-        selTransientMode = 0,
-        selCrestFactor,
+        selCrestFactor = 0,
         selMeterType,
 
         numberOfParametersRevealed,

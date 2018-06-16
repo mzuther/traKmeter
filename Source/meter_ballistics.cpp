@@ -42,8 +42,7 @@ MeterBallistics::MeterBallistics(
     int nChannels,
     int CrestFactor,
     bool bPeakMeterInfiniteHold,
-    bool bAverageMeterInfiniteHold,
-    bool transient_mode)
+    bool bAverageMeterInfiniteHold)
 /*  Constructor.
 
     nChannels (integer): number of audio input channels
@@ -54,9 +53,6 @@ MeterBallistics::MeterBallistics(
     bAverageMeterInfiniteHold (Boolean): selects "infinite peak hold"
     (true) or "falling peaks" mode (false) for average meter
 
-    transient_mode (Boolean): selects "transient mode" (true) or
-    "averaging mode" (false) for average meter
-
     return value: none
 */
 {
@@ -65,9 +61,6 @@ MeterBallistics::MeterBallistics(
 
     // store meter's crest factor
     setCrestFactor(CrestFactor);
-
-    // store setting for transient mode
-    bTransientMode = transient_mode;
 
     // select "infinite peak hold" or "falling peaks" mode
     setPeakMeterInfiniteHold(bPeakMeterInfiniteHold);
@@ -590,39 +583,9 @@ void MeterBallistics::AverageMeterBallistics(
     return value: none
 */
 {
-    // in "transient mode", the meter rises to 99% of the final
-    // reading in 10 ms (logarithmic) and has a fall time of 6 dB per
-    // second (linear)
-    if (bTransientMode)
-    {
-        // meter is falling
-        if (fAverageLevelCurrent < arrAverageMeterLevels[nChannel])
-        {
-            // fall time: 6 dB per second (linear)
-            float fReleaseCoef = 6.0f * fTimePassed;
-
-            // apply fall time
-            arrAverageMeterLevels.set(nChannel, arrAverageMeterLevels[nChannel] - fReleaseCoef);
-
-            // make sure that meter doesn't fall below current level
-            if (fAverageLevelCurrent > arrAverageMeterLevels[nChannel])
-            {
-                arrAverageMeterLevels.set(nChannel, fAverageLevelCurrent);
-            }
-        }
-        // meter is rising
-        else
-        {
-            // meter reaches 99% of the final reading in 10 ms
-            LogMeterBallistics(0.010f, fTimePassed, fAverageLevelCurrent, arrAverageMeterLevels.getReference(nChannel));
-        }
-    }
-    // in "classic mode", the meter reaches 99% of the final reading
-    // in 300 ms (logarithmic)
-    else
-    {
-        LogMeterBallistics(0.300f, fTimePassed, fAverageLevelCurrent, arrAverageMeterLevels.getReference(nChannel));
-    }
+    // the meter reaches 99% of the final reading in 300 ms
+    // (logarithmic)
+    LogMeterBallistics(0.300f, fTimePassed, fAverageLevelCurrent, arrAverageMeterLevels.getReference(nChannel));
 }
 
 

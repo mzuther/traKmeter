@@ -36,13 +36,6 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     // parameters created here will be deleted in
     // "frut::parameters::Juggler"!
 
-    frut::parameters::ParBoolean *ParameterTransientMode =
-        new frut::parameters::ParBoolean("On", "Off");
-    ParameterTransientMode->setName("Transient mode");
-    ParameterTransientMode->setDefaultBoolean(true, true);
-    add(ParameterTransientMode, selTransientMode);
-
-
     frut::parameters::ParSwitch *ParameterCrestFactor =
         new frut::parameters::ParSwitch();
     ParameterCrestFactor->setName("Crest factor");

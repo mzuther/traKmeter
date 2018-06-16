@@ -86,7 +86,6 @@ private:
 
     ImageButton ButtonMeterType;
     ImageButton ButtonCrestFactor;
-    ImageButton ButtonTransientMode;
 
     ImageButton ButtonSkin;
     ImageButton ButtonValidation;

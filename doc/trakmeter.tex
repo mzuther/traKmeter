@@ -212,7 +212,7 @@ stand-alone and plug-in version.
 
 Now, feed the signal you want to record into an audio input channel
 and adjust its level (in the analog domain!) using traKmeter.  Try to
-set the input level so that transients fall into the average meter's
+set the input level so that it falls into the average meter's
 \textbf{\SI{0}{\dB} RMS} area.  Make sure that peak levels never
 exceed \textbf{\SI[addsign=all]{+11}{\dB}}.  In case both conditions
 cannot be met simultaneously, adjust the peak level only.  See the
@@ -292,32 +292,6 @@ relative to digital full-scale (crest factor of \SI{0}{\dB}).
   by no means a K-System meter.}
 
 \newpage %% layout
-
-\section{Transient button}
-\label{sec:transient_button}
-
-\begin{wrapfigure}{r}{0.14\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_transient_on.png}
-\newline \vspace{-0.9\baselineskip}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_transient_off.png}
-\end{wrapfigure}
-
-This button changes the RMS meter's ballistics from ``transient'' mode
-to ``classic'' mode.
-
-I find that ``transient'' mode with its fast attack and slow release
-times is well suited to setting up levels.  It works fine for both
-transient audio sources (drums, percussion, piano) and more ``static''
-ones (pads, bass and so on).
-
-If you are used to VU meters, however, ``classic'' mode with its
-equally slow attack and release times may feel more comfortable to
-you.
-
-\emph{\underline{Note:} I don't use ``classic'' mode myself, so you
-  may find that the RMS meter scale needs adjusting.  Please don't
-  hesitate to notify me, it's really easy to change this.}
-
 
 \section{Select a skin}
 
@@ -402,14 +376,6 @@ meters.
 
 Peaks will be held for \SI{10}{\second} and then fall with a speed of
 \SI{8.67}{\dB\per\second}.
-
-\subsection{Transient mode}
-
-On rising levels, it takes \SI{10}{\milli\second} for the meter to
-reach \SI{99}{\percent} of the final reading.  On falling levels, the
-meter switches to a linear fall time of \SI{6}{\dB\per\second}.
-
-\subsection{Classic mode}
 
 Similar to VU meters, it takes \SI{300}{\milli\second} for the meter
 to reach \SI{99}{\percent} of the final reading.  This meter exhibits

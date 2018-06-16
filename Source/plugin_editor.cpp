@@ -95,9 +95,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     ButtonCrestFactor.addListener(this);
     addAndMakeVisible(ButtonCrestFactor);
 
-    ButtonTransientMode.addListener(this);
-    addAndMakeVisible(ButtonTransientMode);
-
     ButtonReset.addListener(this);
     addAndMakeVisible(ButtonReset);
 
@@ -122,7 +119,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     // that it doesn't overlay (and thus block) any other components
     addAndMakeVisible(BackgroundImage, 0);
 
-    updateParameter(TraKmeterPluginParameters::selTransientMode);
     updateParameter(TraKmeterPluginParameters::selCrestFactor);
     updateParameter(TraKmeterPluginParameters::selMeterType);
 
@@ -188,8 +184,6 @@ void TraKmeterAudioProcessorEditor::applySkin()
                             &ButtonMeterType);
     skin.placeAndSkinButton("button_k20",
                             &ButtonCrestFactor);
-    skin.placeAndSkinButton("button_transient",
-                            &ButtonTransientMode);
 
     skin.placeAndSkinButton("button_reset",
                             &ButtonReset);
@@ -330,13 +324,6 @@ void TraKmeterAudioProcessorEditor::updateParameter(
         needsMeterReload = true;
     }
     break;
-
-    case TraKmeterPluginParameters::selTransientMode:
-    {
-        bool bTransientMode = audioProcessor->getBoolean(nIndex);
-        ButtonTransientMode.setToggleState(bTransientMode, dontSendNotification);
-    }
-    break;
     }
 
     // prevent meter reload during initialisation
@@ -417,10 +404,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         // will also apply skin to plug-in editor
         needsMeterReload = true;
         reloadMeters();
-    }
-    else if (button == &ButtonTransientMode)
-    {
-        audioProcessor->changeParameter(TraKmeterPluginParameters::selTransientMode, !button->getToggleState());
     }
     else if (button == &ButtonSkin)
     {

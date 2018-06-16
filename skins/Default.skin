@@ -7,7 +7,7 @@
     path="Default"
     orientation="vertical"
     origin_of_y="bottom"
-    version="1.3">
+    version="1.4">
 
     <default>
         <button_split
@@ -24,14 +24,6 @@
             image_on="buttons/button_k20_on.png"
             image_over="buttons/button_k20_over.png"
             image_off="buttons/button_k20_off.png"
-        />
-
-        <button_transient
-            x="152"
-            y="208"
-            image_on="buttons/button_transient_on.png"
-            image_over="buttons/button_transient_over.png"
-            image_off="buttons/button_transient_off.png"
         />
 
         <button_skin
@@ -254,14 +246,6 @@
             image_on="buttons/button_k20_on.png"
             image_over="buttons/button_k20_over.png"
             image_off="buttons/button_k20_off.png"
-        />
-
-        <button_transient
-            x="340"
-            y="208"
-            image_on="buttons/button_transient_on.png"
-            image_over="buttons/button_transient_over.png"
-            image_off="buttons/button_transient_off.png"
         />
 
         <button_skin
@@ -602,14 +586,6 @@
             image_on="buttons/button_k20_on.png"
             image_over="buttons/button_k20_over.png"
             image_off="buttons/button_k20_off.png"
-        />
-
-        <button_transient
-            x="340"
-            y="208"
-            image_on="buttons/button_transient_on.png"
-            image_over="buttons/button_transient_over.png"
-            image_off="buttons/button_transient_off.png"
         />
 
         <button_skin
