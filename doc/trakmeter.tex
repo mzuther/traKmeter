@@ -71,15 +71,16 @@ bliss \dots
 \label{sec:gain_staging}
 
 Professional analog audio equipment is designed to be run at a nominal
-level of \textbf{\SI[addsign=all]{+4}{\dBu}} (\SI{1.23}{\VRMS}) and
-leaves a headroom for peaks of about \SI{20}{\dB}.  This in turn is
-consistent with the maximum crest factor of analog audio signals.
+level of \textbf{\SI[retain-explicit-plus]{+4}{\dBu}}
+(\SI{1.23}{\VRMS}) and leaves a headroom for peaks of about
+\SI{20}{\dB}.  This in turn is consistent with the maximum crest
+factor of analog audio signals.
 
-Thus, driving all analog audio equipment at \SI[addsign=all]{+4}{\dBu}
-ensures an optimal signal-to-noise ratio while preventing clipping and
-keeping all transients intact.  The process of setting audio devices
-to run at optimal input and output levels is called \emph{gain
-  staging}.
+Thus, driving all analog audio equipment at
+\SI[retain-explicit-plus]{+4}{\dBu} ensures an optimal signal-to-noise
+ratio while preventing clipping and keeping all transients intact.
+The process of setting audio devices to run at optimal input and
+output levels is called \emph{gain staging}.
 
 Now let's transfer this to the digital domain.  As the maximum crest
 factor of analog audio signals amounts to \SI{20}{\dB}, we'll adjust
@@ -106,10 +107,11 @@ card definitely suffered from this.  So lowering your input levels as
 described above may also improve your overall sound.
 
 Finally, we'll emphasise the newly designated headroom and shift the
-meter scales by \SI[addsign=all]{+20}{\dB}.  Thus, the optimal average
-audio level is designated \textbf{\SI{0}{\dB} RMS}, while the maximum
-peak audio level becomes \textbf{\SI[addsign=all]{+11}{\dB}}.  As a
-nice side effect, our new scale corresponds to Bob Katz's
+meter scales by \SI[retain-explicit-plus]{+20}{\dB}.  Thus, the
+optimal average audio level is designated \textbf{\SI{0}{\dB} RMS},
+while the maximum peak audio level becomes
+\textbf{\SI[retain-explicit-plus]{+11}{\dB}}.  As a nice side effect,
+our new scale corresponds to Bob Katz's
 \textbf{\href{http://www.digido.com/level-practices-part-2-includes-the-k-system.html}{K-20
     scale}}.
 
@@ -136,11 +138,11 @@ even talking of 24 bit.
 
 If you don't believe me yet, take a look at my professional 16-bit
 hard disk recorder (Otari PD-80): its analog inputs and outputs are
-aligned to ``\SI[addsign=all]{+4}{\dBu} (\textbf{\SI{-15}{\dB}} from
-digital full-scale)''.  The manufacturer has even marked this level on
-the meter bridge (small triangle on the photo).  Although I admit that
-the mark is only useful for audio alignment, given that it sits on a
-peak meter \dots
+aligned to ``\SI[retain-explicit-plus]{+4}{\dBu}
+(\textbf{\SI{-15}{\dB}} from digital full-scale)''.  The manufacturer
+has even marked this level on the meter bridge (small triangle on the
+photo).  Although I admit that the mark is only useful for audio
+alignment, given that it sits on a peak meter \dots
 
 There is also a great thread over at Gearslutz (``The Reason Most ITB
 mixes don’t Sound as good as Analog mixes'') well worth reading.  Here
@@ -181,10 +183,10 @@ vaguely familiar.  Remember, it corresponds to \SI{-20}{\dBFS} RMS,
 the level we have determined to be the optimal average audio level in
 the digital domain.
 
-A fully lit yellow LED on the peak meter's top end corresponds to a
-level of \textbf{\SI[addsign=all]{+11}{\dB}} (or \SI{-9}{\dBFS}).
-Again, this number should be familiar: during digital recording, peak
-levels shouldn't exceed this level.
+The highest green LED on the peak meter's top end corresponds to a
+level of \textbf{\SI[retain-explicit-plus]{+11}{\dB}} (or
+\SI{-9}{\dBFS}).  Again, this number should be familiar: during
+digital recording, peak levels shouldn't exceed this level.
 
 Thus, by keeping the meter's readout in the green areas and from
 entering the yellow and especially the red areas on top of each meter,
@@ -213,10 +215,10 @@ stand-alone and plug-in version.
 Now, feed the signal you want to record into an audio input channel
 and adjust its level (in the analog domain!) using traKmeter.  Try to
 set the input level so that it falls into the average meter's
-\textbf{\SI{0}{\dB} RMS} area.  Make sure that peak levels never
-exceed \textbf{\SI[addsign=all]{+11}{\dB}}.  In case both conditions
-cannot be met simultaneously, adjust the peak level only.  See the
-image to the right for a visual clue.
+\textbf{\SI{0}{\dB} RMS} area.  Make sure that peak levels very rarely
+(if ever) exceed \textbf{\SI[retain-explicit-plus]{+11}{\dB}}.  In
+case both conditions cannot be met simultaneously, adjust the peak
+level only.  See the image to the right for a visual clue.
 
 \section{Mixing with traKmeter}
 \label{sec:mixing_with_trakmeter}
@@ -239,9 +241,9 @@ track.
 To preserve all transients, the final loudness of your mix should stay
 within \textbf{\SI{-20}{\dBFS} RMS} and \textbf{\SI{-16}{\dBFS} RMS}
 (or between \textbf{\SI{0}{\dB} RMS} and
-\textbf{\SI[addsign=all]{+4}{\dB} RMS} on the K-20 scale).  Remember
-that smashed transients will be gone forever, whereas you can always
-bring up the volume during mastering!  My plug-in
+\textbf{\SI[retain-explicit-plus]{+4}{\dB} RMS} on the K-20 scale).
+Remember that smashed transients will be gone forever, whereas you can
+always bring up the volume during mastering!  My plug-in
 \href{http://code.mzuther.de/}{\textbf{K-Meter}} and its K-20 scale
 may help you with setting up correct mixing levels.
 
@@ -373,7 +375,7 @@ of 1.0 reads \SI{0}{\dBFS} thus corresponding to
 \href{http://www.aes.org/publications/standards/search.cfm?docID=21}{AES17-2015}.
 The meter has a rise time of one sample and a fall time of
 \SI{8.67}{\dB\per\second}.  A red LED marked ``OVR'' detects levels
-exceeding \SI{-9}{\dBFS} and should never light.
+exceeding \SI{-6}{\dBFS} and should never light.
 
 Peaks will be indefinitely held until the meter is reset.
 
@@ -388,9 +390,9 @@ Peaks will be indefinitely held until the meter is reset.
 The average level meter uses an averaging period of \num{1024}
 samples.  It has been calibrated so that sine wave signals read the
 same on both peak and average meters (AES17
-\SI[addsign=all]{3.01}{\dBFS}).  Similar to a VU meter, the meter
-takes \SI{300}{\milli\second} to reach \SI{99}{\percent} of the final
-reading.  It exhibits no overshoot, however.
+\SI[retain-explicit-plus]{+3.01}{\dBFS}).  Similar to a VU meter, the
+meter takes \SI{300}{\milli\second} to reach \SI{99}{\percent} of the
+final reading.  It exhibits no overshoot, however.
 
 Peaks will be held for \SI{10}{\second} and then fall with a speed of
 \SI{8.67}{\dB\per\second}.
@@ -425,9 +427,9 @@ may not know some of them, so read ahead \dots
   result in even more noise!  Also see \ref{sec:gain_staging}.
 
 \item[Avoid unballanced equipment.]  Run all signals on balanced lines
-  with a nominal level of \SI[addsign=all]{+4}{\dBu}.  If you can't,
-  use DI boxes or transformers and read the previous sentence again
-  \dots
+  with a nominal level of \SI[retain-explicit-plus]{+4}{\dBu}.  If you
+  can't, use DI boxes or transformers and read the previous sentence
+  again \dots
 
 \item[Use short audio chains.]  All equipment adds noise or may
   otherwise degrade audio, so keep your audio recording chains as

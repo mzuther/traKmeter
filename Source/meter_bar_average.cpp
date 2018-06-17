@@ -42,13 +42,13 @@ void MeterBarAverage::create(
 
     if (showCombinedMeters)
     {
-        trueLowerThreshold = -90;
-        numberOfBars = 21;
+        trueLowerThreshold = -60;
+        numberOfBars = 32;
     }
     else
     {
-        trueLowerThreshold = -160;
-        numberOfBars = 8;
+        trueLowerThreshold = -140;
+        numberOfBars = 14;
     }
 
     int lowerThreshold = trueLowerThreshold + crestFactor;
@@ -57,13 +57,13 @@ void MeterBarAverage::create(
     {
         int thresholdDifference;
 
-        if (trueLowerThreshold > -260)
+        if (trueLowerThreshold > -350)
         {
             thresholdDifference = 10;
         }
-        else if (trueLowerThreshold > -300)
+        else if (trueLowerThreshold > -400)
         {
-            thresholdDifference = 40;
+            thresholdDifference = 50;
         }
         else
         {
@@ -75,7 +75,7 @@ void MeterBarAverage::create(
 
         int colourId;
 
-        if (trueLowerThreshold >= -170)
+        if (trueLowerThreshold >= -160)
         {
             colourId = colourSelector::overload;
         }
@@ -100,7 +100,6 @@ void MeterBarAverage::create(
         }
 
         bool hasHighestLevel = (n == 0) ? true : false;
-        float autoFadeFactor = 0.975f;
 
         if (discreteMeter)
         {
@@ -111,7 +110,7 @@ void MeterBarAverage::create(
             addDiscreteSegment(
                 lowerThreshold * 0.1f,
                 thresholdDifference * 0.1f,
-                autoFadeFactor,
+                0.0f,
                 hasHighestLevel,
                 segmentHeight,
                 spacingBefore,

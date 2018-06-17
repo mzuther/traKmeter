@@ -42,13 +42,13 @@ void MeterBarPeak::create(
 
     if (showCombinedMeters)
     {
-        trueLowerThreshold = -90;
-        numberOfBars = 21;
+        trueLowerThreshold = -60;
+        numberOfBars = 32;
     }
     else
     {
-        trueLowerThreshold = -90;
-        numberOfBars = 9;
+        trueLowerThreshold = -60;
+        numberOfBars = 15;
     }
 
     int lowerThreshold = trueLowerThreshold + crestFactor;
@@ -57,13 +57,13 @@ void MeterBarPeak::create(
     {
         int thresholdDifference;
 
-        if (trueLowerThreshold > -260)
+        if (trueLowerThreshold > -350)
         {
             thresholdDifference = 10;
         }
-        else if (trueLowerThreshold > -300)
+        else if (trueLowerThreshold > -400)
         {
-            thresholdDifference = 40;
+            thresholdDifference = 50;
         }
         else
         {
@@ -75,15 +75,15 @@ void MeterBarPeak::create(
 
         int colourId;
 
-        if (trueLowerThreshold >= -90)
+        if (trueLowerThreshold >= -70)
         {
             colourId = colourSelector::overload;
         }
-        else if (trueLowerThreshold >= -100)
+        else if (trueLowerThreshold >= -90)
         {
             colourId = colourSelector::warning;
         }
-        else if (trueLowerThreshold >= -160)
+        else if (trueLowerThreshold >= -150)
         {
             colourId = colourSelector::fine;
         }
@@ -110,8 +110,6 @@ void MeterBarPeak::create(
             hasHighestLevel = false;
         }
 
-        float autoFadeFactor = 0.975f;
-
         if (discreteMeter)
         {
             // meter segment outlines overlap
@@ -121,7 +119,7 @@ void MeterBarPeak::create(
             addDiscreteSegment(
                 lowerThreshold * 0.1f,
                 thresholdDifference * 0.1f,
-                autoFadeFactor,
+                0.0f,
                 hasHighestLevel,
                 segmentHeight,
                 spacingBefore,

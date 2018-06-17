@@ -12,7 +12,7 @@
     <default>
         <button_split
             x="152"
-            y="258"
+            y="378"
             image_on="buttons/button_split_on.png"
             image_over="buttons/button_split_over.png"
             image_off="buttons/button_split_off.png"
@@ -20,7 +20,7 @@
 
         <button_k20
             x="152"
-            y="233"
+            y="353"
             image_on="buttons/button_k20_on.png"
             image_over="buttons/button_k20_over.png"
             image_off="buttons/button_k20_off.png"
@@ -68,14 +68,14 @@
     <stereo_split>
         <meter_peak_1
             x="49"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_2
             x="77"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
@@ -96,7 +96,7 @@
 
         <label_over_1
             x="49"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -108,7 +108,7 @@
 
         <label_over_2
             x="77"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -120,14 +120,14 @@
 
         <label_signal_1
             x="47"
-            y="126"
+            y="186"
             image_off="labels/label_signal_left_off.png"
             image_low="labels/label_signal_left_low.png"
             image_high="labels/label_signal_left_high.png" />
 
         <label_signal_2
             x="75"
-            y="126"
+            y="186"
             image_off="labels/label_signal_right_off.png"
             image_low="labels/label_signal_right_low.png"
             image_high="labels/label_signal_right_high.png" />
@@ -186,7 +186,7 @@
 
         <label_over_1
             x="49"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -198,7 +198,7 @@
 
         <label_over_2
             x="77"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -234,7 +234,7 @@
     <multi_split>
         <button_split
             x="340"
-            y="258"
+            y="378"
             image_on="buttons/button_split_on.png"
             image_over="buttons/button_split_over.png"
             image_off="buttons/button_split_off.png"
@@ -242,7 +242,7 @@
 
         <button_k20
             x="340"
-            y="233"
+            y="353"
             image_on="buttons/button_k20_on.png"
             image_over="buttons/button_k20_over.png"
             image_off="buttons/button_k20_off.png"
@@ -288,56 +288,56 @@
 
         <meter_peak_1
             x="49"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_2
             x="77"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_3
             x="112"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_4
             x="140"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_5
             x="175"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_6
             x="203"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_7
             x="238"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
 
         <meter_peak_8
             x="266"
-            y="150"
+            y="210"
             segment_width="22"
             vertical="true"
             image="meters/meter_bar_split_peak.png" />
@@ -400,7 +400,7 @@
 
         <label_over_1
             x="49"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -412,7 +412,7 @@
 
         <label_over_2
             x="77"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -424,7 +424,7 @@
 
         <label_over_3
             x="112"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -436,7 +436,7 @@
 
         <label_over_4
             x="140"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -448,7 +448,7 @@
 
         <label_over_5
             x="175"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -460,7 +460,7 @@
 
         <label_over_6
             x="203"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -472,7 +472,7 @@
 
         <label_over_7
             x="238"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -484,7 +484,7 @@
 
         <label_over_8
             x="266"
-            y="240"
+            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -496,56 +496,56 @@
 
         <label_signal_1
             x="47"
-            y="126"
+            y="186"
             image_off="labels/label_signal_1_off.png"
             image_low="labels/label_signal_1_low.png"
             image_high="labels/label_signal_1_high.png" />
 
         <label_signal_2
             x="75"
-            y="126"
+            y="186"
             image_off="labels/label_signal_2_off.png"
             image_low="labels/label_signal_2_low.png"
             image_high="labels/label_signal_2_high.png" />
 
         <label_signal_3
             x="110"
-            y="126"
+            y="186"
             image_off="labels/label_signal_3_off.png"
             image_low="labels/label_signal_3_low.png"
             image_high="labels/label_signal_3_high.png" />
 
         <label_signal_4
             x="138"
-            y="126"
+            y="186"
             image_off="labels/label_signal_4_off.png"
             image_low="labels/label_signal_4_low.png"
             image_high="labels/label_signal_4_high.png" />
 
         <label_signal_5
             x="173"
-            y="126"
+            y="186"
             image_off="labels/label_signal_5_off.png"
             image_low="labels/label_signal_5_low.png"
             image_high="labels/label_signal_5_high.png" />
 
         <label_signal_6
             x="201"
-            y="126"
+            y="186"
             image_off="labels/label_signal_6_off.png"
             image_low="labels/label_signal_6_low.png"
             image_high="labels/label_signal_6_high.png" />
 
         <label_signal_7
             x="236"
-            y="126"
+            y="186"
             image_off="labels/label_signal_7_off.png"
             image_low="labels/label_signal_7_low.png"
             image_high="labels/label_signal_7_high.png" />
 
         <label_signal_8
             x="264"
-            y="126"
+            y="186"
             image_off="labels/label_signal_8_off.png"
             image_low="labels/label_signal_8_low.png"
             image_high="labels/label_signal_8_high.png" />
@@ -574,7 +574,7 @@
     <multi_combined>
         <button_split
             x="340"
-            y="258"
+            y="378"
             image_on="buttons/button_split_on.png"
             image_over="buttons/button_split_over.png"
             image_off="buttons/button_split_off.png"
@@ -582,7 +582,7 @@
 
         <button_k20
             x="340"
-            y="233"
+            y="353"
             image_on="buttons/button_k20_on.png"
             image_over="buttons/button_k20_over.png"
             image_off="buttons/button_k20_off.png"
@@ -740,7 +740,7 @@
 
         <label_over_1
             x="49"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -752,7 +752,7 @@
 
         <label_over_2
             x="77"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -764,7 +764,7 @@
 
         <label_over_3
             x="112"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -776,7 +776,7 @@
 
         <label_over_4
             x="140"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -788,7 +788,7 @@
 
         <label_over_5
             x="175"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -800,7 +800,7 @@
 
         <label_over_6
             x="203"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -812,7 +812,7 @@
 
         <label_over_7
             x="238"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
@@ -824,7 +824,7 @@
 
         <label_over_8
             x="266"
-            y="260"
+            y="380"
             font_size="11"
             spacing_left="2"
             spacing_top="0"

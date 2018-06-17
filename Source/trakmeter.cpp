@@ -38,9 +38,6 @@ TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
     nMeterType = meter_type;
     bShowSplitMeters = (nMeterType == TraKmeterPluginParameters::selSplitMeters);
 
-    int nThreshold = -90;
-    nThreshold += nCrestFactor * 10;
-
     int nSegmentHeight;
 
     if (bShowSplitMeters)
@@ -77,6 +74,9 @@ TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
                                  averageMeterColours);
 
         addAndMakeVisible(pMeterBarAverage);
+
+        int nThreshold = -60;
+        nThreshold += nCrestFactor * 10;
 
         OverloadMeter *overloadMeter = new OverloadMeter(
             nThreshold * 0.1f);
