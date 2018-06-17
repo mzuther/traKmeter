@@ -61,9 +61,11 @@ public:
                        float fRms);
 
     static float level2decibel(float fLevel);
-    static float decibel2level(float fDecibels);
     static double level2decibel_double(double dLevel);
+
+    static float decibel2level(float fDecibels);
     static double decibel2level_double(double dDecibels);
+
     static float getMeterMinimumDecibel();
 private:
     JUCE_LEAK_DETECTOR(MeterBallistics);

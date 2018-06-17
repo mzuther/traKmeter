@@ -110,6 +110,8 @@ void MeterBarPeak::create(
             hasHighestLevel = false;
         }
 
+        float autoFadeFactor = 0.85f;
+
         if (discreteMeter)
         {
             // meter segment outlines overlap
@@ -119,6 +121,7 @@ void MeterBarPeak::create(
             addDiscreteSegment(
                 lowerThreshold * 0.1f,
                 thresholdDifference * 0.1f,
+                autoFadeFactor,
                 hasHighestLevel,
                 segmentHeight,
                 spacingBefore,

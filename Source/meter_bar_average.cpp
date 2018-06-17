@@ -100,6 +100,7 @@ void MeterBarAverage::create(
         }
 
         bool hasHighestLevel = (n == 0) ? true : false;
+        float autoFadeFactor = 0.85f;
 
         if (discreteMeter)
         {
@@ -110,6 +111,7 @@ void MeterBarAverage::create(
             addDiscreteSegment(
                 lowerThreshold * 0.1f,
                 thresholdDifference * 0.1f,
+                autoFadeFactor,
                 hasHighestLevel,
                 segmentHeight,
                 spacingBefore,
