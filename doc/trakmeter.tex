@@ -362,6 +362,23 @@ All meters possess a completely flat frequency response.  Meter scales
 can be adjusted using the ``Crest factor'' button (see
 \ref{sec:crest_factor_button}).
 
+\section{Peak level meter}
+
+\begin{wrapfigure}{r}{0.21\linewidth}
+\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_peak.png}
+\end{wrapfigure}
+
+The peak level meter has been calibrated so that an input sample value
+of 1.0 reads \SI{0}{\dBFS} thus corresponding to
+\href{http://www.aes.org/publications/standards/search.cfm?docID=21}{AES17-2015}.
+The meter has a rise time of one sample and a fall time of
+\SI{8.67}{\dB\per\second}.  A red LED marked ``OVR'' detects levels
+exceeding \SI{-9}{\dBFS} and should never light.
+
+Peaks will be indefinitely held until the meter is reset.
+
+\newpage %% layout
+
 \section{Average level meter}
 
 \begin{wrapfigure}{r}{0.21\linewidth}
@@ -369,29 +386,14 @@ can be adjusted using the ``Crest factor'' button (see
 \end{wrapfigure}
 
 The average level meter uses an averaging period of \num{1024}
-samples.  It has been calibrated according to
-\href{http://www.aes.org/publications/standards/search.cfm?docID=21}{AES17-1998}
-so that sine wave signals read the same on both peak and average
-meters.
+samples.  It has been calibrated so that sine wave signals read the
+same on both peak and average meters (AES17
+\SI[addsign=all]{3.01}{\dBFS}).  Similar to a VU meter, the meter
+takes \SI{300}{\milli\second} to reach \SI{99}{\percent} of the final
+reading.  It exhibits no overshoot, however.
 
 Peaks will be held for \SI{10}{\second} and then fall with a speed of
 \SI{8.67}{\dB\per\second}.
-
-Similar to VU meters, it takes \SI{300}{\milli\second} for the meter
-to reach \SI{99}{\percent} of the final reading.  This meter exhibits
-no overshoot, however.
-
-\section{Peak level meter}
-
-\begin{wrapfigure}{r}{0.21\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_peak.png}
-\end{wrapfigure}
-
-The peak level meter has a rise time of one sample and a fall time of
-\SI{8.67}{\dB\per\second}.  The red LED marked ``OVR'' detects levels
-exceeding \SI{-9}{\dBFS} and should never light.
-
-Peaks will be indefinitely held until the meter is reset.
 
 \section{Signal meter}
 

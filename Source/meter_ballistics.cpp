@@ -29,13 +29,15 @@
 // RMS peak-to-average gain correction; this is simply the difference
 // between peak and average meter readings during validation, measured
 // using pure sines
-float MeterBallistics::fPeakToAverageCorrection = MeterBallistics::level2decibel(sqrtf(2.0f));
+float MeterBallistics::fPeakToAverageCorrection = MeterBallistics::level2decibel(
+            sqrtf(2.0f));
 
 // logarithmic levels have no minimum level, so let's define one:
 // (90 dB meter range + 0.01 to make sure that the minimum level is
 // below the meter's threshold + 20 dB maximum crest factor +
 // peak-to-average gain correction)
-float MeterBallistics::fMeterMinimumDecibel = -(90.01f + 20.0f + fPeakToAverageCorrection);
+float MeterBallistics::fMeterMinimumDecibel = -(90.01f + 20.0f +
+        fPeakToAverageCorrection);
 
 
 MeterBallistics::MeterBallistics(

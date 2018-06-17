@@ -65,11 +65,8 @@ MeterSegmentDiscrete::MeterSegmentDiscrete() :
     attenuatedColour_(Colours::black.brighter(0.15f).withAlpha(0.6f))
 
 {
-    // initialise segment's brightness modifier
-    segmentBrightnessModifier_ = 0.0f;
-
-    // initialise outline's brightness modifier
-    outlineBrightnessModifier_ = 0.0f;
+    // initialise segment's brightness (ranging from 0 to 1)
+    brightness_ = 0.0f;
 
     // lowest level of a 24-bit-signal in decibels
     float initialLevel = -144.0f;
@@ -151,17 +148,22 @@ void MeterSegmentDiscrete::paint(
     Graphics &g)
 
 {
+    // to look well, meter segments should be left with some
+    // colour and not have maximum brightness
+    float segmentBrightnessModifier = brightness_ * 0.80f + 0.20f;
+    float outlineBrightnessModifier = brightness_ * 0.70f + 0.25f;
+
     // get meter segment's dimensions
     int width = getWidth();
     int height = getHeight();
 
     // initialise segment colour from brightness modifier
     Colour segmentColour = segmentColour_.withMultipliedBrightness(
-                               segmentBrightnessModifier_);
+                               segmentBrightnessModifier);
 
     // initialise outline colour from brightness modifier
     Colour outlineColour = segmentColour_.withMultipliedBrightness(
-                               outlineBrightnessModifier_);
+                               outlineBrightnessModifier);
 
     // set segment colour
     g.setColour(segmentColour);
@@ -218,43 +220,35 @@ void MeterSegmentDiscrete::setLevels(
     float discreteLevel, float discreteLevelPeak)
 
 {
-    // store old brightness modifier and peak marker value
-    float segmentBrightnessModifierOld = segmentBrightnessModifier_;
+    // store old brightness and peak marker value
+    float brightnessOld = brightness_;
     bool displayPeakMarkerOld = displayPeakMarker_;
 
     // normal level lies on or above upper threshold, so fully light
     // meter segment
     if (normalLevel >= upperThreshold_)
     {
-        segmentBrightnessModifier_ = 1.00f;
-        outlineBrightnessModifier_ = 0.95f;
+        brightness_ = 1.0f;
     }
     // discrete level lies within thresholds or on lower threshold, so
     // fully light meter segment
     else if ((discreteLevel >= lowerThreshold_) &&
              (discreteLevel < upperThreshold_))
     {
-        segmentBrightnessModifier_ = 1.00f;
-        outlineBrightnessModifier_ = 0.95f;
+        brightness_ = 1.0f;
     }
     // normal level lies below lower threshold, so set meter segment
     // to dark
     else if (normalLevel < lowerThreshold_)
     {
-        segmentBrightnessModifier_ = 0.20f;
-        outlineBrightnessModifier_ = 0.25f;
+        brightness_ = 0.0f;
     }
     // normal level lies within thresholds or on lower threshold, so
     // calculate brightness from current level
     else
     {
-        float brightnessModifier = (normalLevel - lowerThreshold_) /
-                                   thresholdRange_;
-
-        // to look well, meter segments should be left with some
-        // colour and not have maximum brightness
-        segmentBrightnessModifier_ = brightnessModifier * 0.80f + 0.20f;
-        outlineBrightnessModifier_ = brightnessModifier * 0.70f + 0.25f;
+        brightness_ = (normalLevel - lowerThreshold_) /
+                      thresholdRange_;
     }
 
     // there is no meter segment beyond this; light peak marker if
@@ -302,7 +296,7 @@ void MeterSegmentDiscrete::setLevels(
 
     // re-paint meter segment only when brightness modifier or peak
     // marker have changed
-    if ((segmentBrightnessModifier_ != segmentBrightnessModifierOld) ||
+    if ((brightness_ != brightnessOld) ||
             (displayPeakMarker_ != displayPeakMarkerOld))
     {
         repaint();

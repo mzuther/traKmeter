@@ -68,8 +68,7 @@ protected:
     Colour peakMarkerColour_;
     Colour attenuatedColour_;
 
-    float segmentBrightnessModifier_;
-    float outlineBrightnessModifier_;
+    float brightness_;
 
     bool displayPeakMarker_;
     bool isTopmost_;
