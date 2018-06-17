@@ -654,10 +654,10 @@ bool TraKmeterAudioProcessor::processBufferChunk(
                                         processedSeconds_,
                                         peakLevels,
                                         rmsLevels);
-
-        // "UM" ==> update meters
-        sendActionMessage("UM");
     }
+
+    // "UM" ==> update meters
+    sendActionMessage("UM");
 
     // keep ring buffer contents
     return false;
