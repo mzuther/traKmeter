@@ -100,7 +100,7 @@ void MeterBarAverage::create(
         }
 
         bool hasHighestLevel = (n == 0) ? true : false;
-        float autoFadeFactor = 0.85f;
+        float autoFadeFactor = 0.975f;
 
         if (discreteMeter)
         {

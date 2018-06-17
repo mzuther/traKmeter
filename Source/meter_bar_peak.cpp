@@ -110,7 +110,7 @@ void MeterBarPeak::create(
             hasHighestLevel = false;
         }
 
-        float autoFadeFactor = 0.85f;
+        float autoFadeFactor = 0.975f;
 
         if (discreteMeter)
         {
