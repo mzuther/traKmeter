@@ -35,6 +35,7 @@ class MeterBarPeak :
 public:
     using frut::widgets::MeterBar::create;
     void create(int crestFactor,
+                float autoFadeFactor,
                 frut::widgets::Orientation orientation,
                 bool discreteMeter,
                 bool showCombinedMeters,

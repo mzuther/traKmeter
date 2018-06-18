@@ -25,7 +25,7 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
+TraKmeter::TraKmeter(int nCrestFactor, float autoFadeFactor, int nNumChannels,
                      int segment_height, bool discreteMeter, int meter_type,
                      const Array<Colour> &averageMeterColours,
                      const Array<Colour> &peakMeterColours)
@@ -55,6 +55,7 @@ TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
                                           new MeterBarPeak());
 
         pMeterBarPeak->create(nCrestFactor,
+                              autoFadeFactor,
                               frut::widgets::Orientation::vertical,
                               discreteMeter,
                               !bShowSplitMeters,
@@ -67,6 +68,7 @@ TraKmeter::TraKmeter(int nCrestFactor, int nNumChannels,
                                                 new MeterBarAverage());
 
         pMeterBarAverage->create(nCrestFactor,
+                                 autoFadeFactor,
                                  frut::widgets::Orientation::vertical,
                                  discreteMeter,
                                  !bShowSplitMeters,

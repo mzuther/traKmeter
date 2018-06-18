@@ -28,6 +28,7 @@
 
 void MeterBarPeak::create(
     int crestFactor,
+    float autoFadeFactor,
     frut::widgets::Orientation orientation,
     bool discreteMeter,
     bool showCombinedMeters,
@@ -119,7 +120,7 @@ void MeterBarPeak::create(
             addDiscreteSegment(
                 lowerThreshold * 0.1f,
                 thresholdDifference * 0.1f,
-                0.0f,
+                autoFadeFactor,
                 hasHighestLevel,
                 segmentHeight,
                 spacingBefore,

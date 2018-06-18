@@ -41,6 +41,7 @@ public:
     static const int TRAKMETER_SEGMENT_WIDTH = 22;
 
     TraKmeter(int nCrestFactor,
+              float autoFadeFactor,
               int nNumChannels,
               int segment_height,
               bool discreteMeter,

@@ -348,6 +348,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
 
         int nMeterType = audioProcessor->getRealInteger(TraKmeterPluginParameters::selMeterType);
         bool discreteMeter = !nMeterType;
+        float autoFadeFactor = 0.0f;
 
         Array<Colour> levelMeterColours;
 
@@ -357,6 +358,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         levelMeterColours.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // signal
 
         trakmeter = new TraKmeter(crestFactor,
+                                  autoFadeFactor,
                                   numberOfInputChannels,
                                   segmentHeight,
                                   discreteMeter,
