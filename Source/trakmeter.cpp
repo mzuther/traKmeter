@@ -77,7 +77,7 @@ TraKmeter::TraKmeter(int nCrestFactor, float autoFadeFactor, int nNumChannels,
 
         addAndMakeVisible(pMeterBarAverage);
 
-        int nThreshold = -60;
+        int nThreshold = -90;
         nThreshold += nCrestFactor * 10;
 
         OverloadMeter *overloadMeter = new OverloadMeter(

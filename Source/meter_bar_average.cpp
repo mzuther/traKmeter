@@ -43,7 +43,7 @@ void MeterBarAverage::create(
 
     if (showCombinedMeters)
     {
-        trueLowerThreshold = -60;
+        trueLowerThreshold = -100;
         numberOfBars = 32;
     }
     else
@@ -58,13 +58,9 @@ void MeterBarAverage::create(
     {
         int thresholdDifference;
 
-        if (trueLowerThreshold > -350)
+        if (trueLowerThreshold > -400)
         {
             thresholdDifference = 10;
-        }
-        else if (trueLowerThreshold > -400)
-        {
-            thresholdDifference = 50;
         }
         else
         {

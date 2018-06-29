@@ -43,12 +43,12 @@ void MeterBarPeak::create(
 
     if (showCombinedMeters)
     {
-        trueLowerThreshold = -60;
+        trueLowerThreshold = -100;
         numberOfBars = 32;
     }
     else
     {
-        trueLowerThreshold = -60;
+        trueLowerThreshold = -90;
         numberOfBars = 15;
     }
 
@@ -58,13 +58,9 @@ void MeterBarPeak::create(
     {
         int thresholdDifference;
 
-        if (trueLowerThreshold > -350)
+        if (trueLowerThreshold > -400)
         {
             thresholdDifference = 10;
-        }
-        else if (trueLowerThreshold > -400)
-        {
-            thresholdDifference = 50;
         }
         else
         {
@@ -76,15 +72,15 @@ void MeterBarPeak::create(
 
         int colourId;
 
-        if (trueLowerThreshold >= -70)
+        if (trueLowerThreshold >= -100)
         {
             colourId = colourSelector::overload;
         }
-        else if (trueLowerThreshold >= -90)
+        else if (trueLowerThreshold >= -120)
         {
             colourId = colourSelector::warning;
         }
-        else if (trueLowerThreshold >= -150)
+        else if (trueLowerThreshold >= -180)
         {
             colourId = colourSelector::fine;
         }
