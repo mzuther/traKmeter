@@ -54,8 +54,13 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
     numberOfChannels_ = 2;
 #endif
 
+    ringBuffer_ = nullptr;
+    audioFilePlayer_ = nullptr;
+    meterBallistics_ = nullptr;
+
     sampleRateIsValid_ = false;
-    isSilent = false;
+    isSilent_ = false;
+    hasStopped_ = true;
 
     processedSeconds_ = 0.0f;
 
@@ -440,7 +445,8 @@ void TraKmeterAudioProcessor::prepareToPlay(
         sampleRateIsValid_ = true;
     }
 
-    isSilent = false;
+    isSilent_ = false;
+    hasStopped_ = true;
 
     Logger::outputDebugString("[traKmeter] number of input channels: " +
                               String(getMainBusNumInputChannels()));
@@ -483,6 +489,8 @@ void TraKmeterAudioProcessor::releaseResources()
     Logger::outputDebugString("[traKmeter] releasing resources");
     Logger::outputDebugString("");
 
+    hasStopped_ = true;
+
     meterBallistics_ = nullptr;
     audioFilePlayer_ = nullptr;
 
@@ -495,6 +503,10 @@ void TraKmeterAudioProcessor::reset()
     // Use this method as the place to clear any delay lines, buffers,
     // etc, as it means there's been a break in the audio's
     // continuity.
+
+    hasStopped_ = true;
+    processedSeconds_ = 0.0f;
+    ringBuffer_->clear();
 }
 
 
@@ -533,13 +545,15 @@ void TraKmeterAudioProcessor::processBlock(
         return;
     }
 
-    // copy validation audio samples to input buffer
+    // reset meters if playback has started
+    resetOnPlay();
+
     if (audioFilePlayer_)
     {
         audioFilePlayer_->copyTo(buffer);
     }
     // silence input if validation window is open
-    else if (isSilent)
+    else if (isSilent_)
     {
         buffer.clear();
     }
@@ -592,6 +606,9 @@ void TraKmeterAudioProcessor::processBlock(
         return;
     }
 
+    // reset meters if playback has started
+    resetOnPlay();
+
     // create temporary buffer
     AudioBuffer<float> processBuffer(numberOfChannels_, numberOfSamples);
 
@@ -604,7 +621,7 @@ void TraKmeterAudioProcessor::processBlock(
         dither_.convertToDouble(processBuffer, buffer);
     }
     // silence input if validation window is open
-    else if (isSilent)
+    else if (isSilent_)
     {
         buffer.clear();
         processBuffer.clear();
@@ -664,10 +681,43 @@ bool TraKmeterAudioProcessor::processBufferChunk(
 }
 
 
+void TraKmeterAudioProcessor::resetOnPlay()
+{
+    // get play head
+    AudioPlayHead *playHead = AudioProcessor::getPlayHead();
+
+    // check success
+    if (playHead != nullptr)
+    {
+        AudioPlayHead::CurrentPositionInfo currentPosition;
+
+        // get current position of play head (and check success)
+        if (playHead->getCurrentPosition(currentPosition))
+        {
+            // check whether sequencer is currently playing
+            bool isPlayingAgain = currentPosition.isPlaying;
+
+            // check whether playback has just started
+            if (hasStopped_ && isPlayingAgain)
+            {
+                // clear meters
+                if (meterBallistics_ != nullptr)
+                {
+                    meterBallistics_->reset();
+                }
+            }
+
+            // update play state
+            hasStopped_ = !isPlayingAgain;
+        }
+    }
+}
+
+
 void TraKmeterAudioProcessor::silenceInput(
     bool isSilentNew)
 {
-    isSilent = isSilentNew;
+    isSilent_ = isSilentNew;
 }
 
 
@@ -681,7 +731,7 @@ void TraKmeterAudioProcessor::startValidation(
     // reset all meters before we start the validation
     meterBallistics_->reset();
 
-    isSilent = false;
+    isSilent_ = false;
 
     audioFilePlayer_ = new AudioFilePlayer(fileAudio,
                                            (int) getSampleRate(),
@@ -711,7 +761,7 @@ void TraKmeterAudioProcessor::startValidation(
 
 void TraKmeterAudioProcessor::stopValidation()
 {
-    isSilent = false;
+    isSilent_ = false;
     audioFilePlayer_ = nullptr;
 
     // reset all meters after the validation

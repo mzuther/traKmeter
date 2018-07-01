@@ -116,6 +116,7 @@ private:
     JUCE_LEAK_DETECTOR(TraKmeterAudioProcessor);
 
     static BusesProperties getBusesProperties();
+    void resetOnPlay();
 
     ScopedPointer<AudioFilePlayer> audioFilePlayer_;
     ScopedPointer<frut::audio::RingBuffer<float>> ringBuffer_;
@@ -129,7 +130,8 @@ private:
     const int trakmeterBufferSize_;
 
     bool sampleRateIsValid_;
-    bool isSilent;
+    bool isSilent_;
+    bool hasStopped_;
 
     int numberOfChannels_;
     float processedSeconds_;
