@@ -7,23 +7,23 @@
     path="Default"
     orientation="vertical"
     origin_of_y="bottom"
-    version="1.4">
+    version="1.5">
 
     <default>
-        <button_split
-            x="152"
-            y="378"
-            image_on="buttons/button_split_on.png"
-            image_over="buttons/button_split_over.png"
-            image_off="buttons/button_split_off.png"
-        />
-
         <button_k20
             x="152"
-            y="353"
+            y="378"
             image_on="buttons/button_k20_on.png"
             image_over="buttons/button_k20_over.png"
             image_off="buttons/button_k20_off.png"
+        />
+
+        <button_paranoid
+            x="152"
+            y="353"
+            image_on="buttons/button_paranoid_on.png"
+            image_over="buttons/button_paranoid_over.png"
+            image_off="buttons/button_paranoid_off.png"
         />
 
         <button_skin
@@ -65,34 +65,34 @@
         />
     </default>
 
-    <stereo_split>
+    <stereo>
         <meter_peak_1
             x="49"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_peak_2
             x="77"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_average_1
             x="49"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <meter_average_2
             x="77"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <label_over_1
             x="49"
@@ -131,121 +131,67 @@
             image_off="labels/label_signal_right_off.png"
             image_low="labels/label_signal_right_low.png"
             image_high="labels/label_signal_right_high.png" />
-    </stereo_split>
+    </stereo>
 
-    <stereo_split_k20>
+    <stereo_k20>
         <background
-            image="backgrounds/stereo/background_stereo_split.png" />
+            image="backgrounds/stereo/background_stereo.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/stereo/graduation_stereo_split_k20.png"
+            image="backgrounds/stereo/graduation_stereo_k20.png"
         />
-    </stereo_split_k20>
+    </stereo_k20>
 
-    <stereo_split_normal>
+    <stereo_k20_paranoid>
         <background
-            image="backgrounds/stereo/background_stereo_split.png" />
+            image="backgrounds/stereo/background_stereo.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/stereo/graduation_stereo_split_normal.png"
+            image="backgrounds/stereo/graduation_stereo_k20_paranoid.png"
         />
-    </stereo_split_normal>
+    </stereo_k20_paranoid>
 
-    <stereo_combined>
-        <meter_peak_1
-            x="50"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_peak_2
-            x="92"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_average_1
-            x="56"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <meter_average_2
-            x="77"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <label_over_1
-            x="49"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-
-        <label_over_2
-            x="77"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-    </stereo_combined>
-
-    <stereo_combined_k20>
+    <stereo_normal>
         <background
-            image="backgrounds/stereo/background_stereo_combined.png" />
+            image="backgrounds/stereo/background_stereo.png" />
 
         <meter_graduation
-            x="15"
-            y="14"
-            image="backgrounds/stereo/graduation_stereo_combined_k20.png"
+            x="13"
+            y="38"
+            image="backgrounds/stereo/graduation_stereo_normal.png"
         />
-    </stereo_combined_k20>
+    </stereo_normal>
 
-    <stereo_combined_normal>
+    <stereo_normal_paranoid>
         <background
-            image="backgrounds/stereo/background_stereo_combined.png" />
+            image="backgrounds/stereo/background_stereo.png" />
 
         <meter_graduation
-            x="15"
-            y="14"
-            image="backgrounds/stereo/graduation_stereo_combined_normal.png"
+            x="13"
+            y="38"
+            image="backgrounds/stereo/graduation_stereo_normal_paranoid.png"
         />
-    </stereo_combined_normal>
+    </stereo_normal_paranoid>
 
-    <multi_split>
-        <button_split
-            x="340"
-            y="378"
-            image_on="buttons/button_split_on.png"
-            image_over="buttons/button_split_over.png"
-            image_off="buttons/button_split_off.png"
-        />
-
+    <multi>
         <button_k20
             x="340"
-            y="353"
+            y="378"
             image_on="buttons/button_k20_on.png"
             image_over="buttons/button_k20_over.png"
             image_off="buttons/button_k20_off.png"
+        />
+
+        <button_paranoid
+            x="340"
+            y="353"
+            image_on="buttons/button_paranoid_on.png"
+            image_over="buttons/button_paranoid_over.png"
+            image_off="buttons/button_paranoid_off.png"
         />
 
         <button_skin
@@ -291,112 +237,112 @@
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_peak_2
             x="77"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_peak_3
             x="112"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_peak_4
             x="140"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_peak_5
             x="175"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_peak_6
             x="203"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_peak_7
             x="238"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_peak_8
             x="266"
             y="210"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_peak.png" />
+            image="meters/meter_bar_peak.png" />
 
         <meter_average_1
             x="49"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <meter_average_2
             x="77"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <meter_average_3
             x="112"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <meter_average_4
             x="140"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <meter_average_5
             x="175"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <meter_average_6
             x="203"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <meter_average_7
             x="238"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <meter_average_8
             x="266"
             y="38"
             segment_width="22"
             vertical="true"
-            image="meters/meter_bar_split_average.png" />
+            image="meters/meter_bar_average.png" />
 
         <label_over_1
             x="49"
@@ -549,310 +495,46 @@
             image_off="labels/label_signal_8_off.png"
             image_low="labels/label_signal_8_low.png"
             image_high="labels/label_signal_8_high.png" />
-    </multi_split>
+    </multi>
 
-    <multi_split_k20>
+    <multi_k20>
         <background
-            image="backgrounds/multi/background_multi_split.png" />
+            image="backgrounds/multi/background_multi.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/multi/graduation_multi_split_k20.png" />
-    </multi_split_k20>
+            image="backgrounds/multi/graduation_multi_k20.png" />
+    </multi_k20>
 
-    <multi_split_normal>
+    <multi_k20_paranoid>
         <background
-            image="backgrounds/multi/background_multi_split.png" />
+            image="backgrounds/multi/background_multi.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/multi/graduation_multi_split_normal.png" />
-    </multi_split_normal>
+            image="backgrounds/multi/graduation_multi_k20_paranoid.png" />
+    </multi_k20_paranoid>
 
-    <multi_combined>
-        <button_split
-            x="340"
-            y="378"
-            image_on="buttons/button_split_on.png"
-            image_over="buttons/button_split_over.png"
-            image_off="buttons/button_split_off.png"
-        />
-
-        <button_k20
-            x="340"
-            y="353"
-            image_on="buttons/button_k20_on.png"
-            image_over="buttons/button_k20_over.png"
-            image_off="buttons/button_k20_off.png"
-        />
-
-        <button_skin
-            x="340"
-            y="96"
-            image_on="buttons/button_skin_on.png"
-            image_over="buttons/button_skin_over.png"
-            image_off="buttons/button_skin_off.png"
-        />
-
-        <button_reset
-            x="340"
-            y="71"
-            image_on="buttons/button_reset_on.png"
-            image_over="buttons/button_reset_over.png"
-            image_off="buttons/button_reset_off.png"
-        />
-
-        <button_validate
-            x="340"
-            y="36"
-            image_on="buttons/button_validate_on.png"
-            image_over="buttons/button_validate_over.png"
-            image_off="buttons/button_validate_off.png"
-        />
-
-        <button_about
-            x="340"
-            y="11"
-            image_on="buttons/button_about_on.png"
-            image_over="buttons/button_about_over.png"
-            image_off="buttons/button_about_off.png"
-        />
-
-        <label_debug
-            x="350"
-            y="123"
-            image="labels/label_debug.png"
-        />
-
-        <meter_peak_1
-            x="50"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_peak_2
-            x="92"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_peak_3
-            x="113"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_peak_4
-            x="155"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_peak_5
-            x="176"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_peak_6
-            x="218"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_peak_7
-            x="239"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_peak_8
-            x="281"
-            y="20"
-            segment_width="6"
-            vertical="true"
-            image="meters/meter_bar_combined_peak.png" />
-
-        <meter_average_1
-            x="56"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <meter_average_2
-            x="77"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <meter_average_3
-            x="119"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <meter_average_4
-            x="140"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <meter_average_5
-            x="182"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <meter_average_6
-            x="203"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <meter_average_7
-            x="245"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <meter_average_8
-            x="266"
-            y="20"
-            segment_width="15"
-            vertical="true"
-            image="meters/meter_bar_combined_average.png" />
-
-        <label_over_1
-            x="49"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-
-        <label_over_2
-            x="77"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-
-        <label_over_3
-            x="112"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-
-        <label_over_4
-            x="140"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-
-        <label_over_5
-            x="175"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-
-        <label_over_6
-            x="203"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-
-        <label_over_7
-            x="238"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-
-        <label_over_8
-            x="266"
-            y="380"
-            font_size="11"
-            spacing_left="2"
-            spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
-    </multi_combined>
-
-    <multi_combined_k20>
+    <multi_normal>
         <background
-            image="backgrounds/multi/background_multi_combined.png" />
+            image="backgrounds/multi/background_multi.png" />
 
         <meter_graduation
-            x="15"
-            y="14"
-            image="backgrounds/multi/graduation_multi_combined_k20.png" />
-    </multi_combined_k20>
+            x="13"
+            y="38"
+            image="backgrounds/multi/graduation_multi_normal.png" />
+    </multi_normal>
 
-    <multi_combined_normal>
+    <multi_normal_paranoid>
         <background
-            image="backgrounds/multi/background_multi_combined.png" />
+            image="backgrounds/multi/background_multi.png" />
 
         <meter_graduation
-            x="15"
-            y="14"
-            image="backgrounds/multi/graduation_multi_combined_normal.png" />
-    </multi_combined_normal>
+            x="13"
+            y="38"
+            image="backgrounds/multi/graduation_multi_normal_paranoid.png" />
+    </multi_normal_paranoid>
 
 </trakmeter-skin>

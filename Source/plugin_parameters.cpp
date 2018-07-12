@@ -47,15 +47,11 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    frut::parameters::ParSwitch *ParameterMeterType =
-        new frut::parameters::ParSwitch();
-    ParameterMeterType->setName("Meter type");
-
-    ParameterMeterType->addPreset(selSplitMeters,     "Split");
-    ParameterMeterType->addPreset(selCombinedMeters,  "Combined");
-
-    ParameterMeterType->setDefaultRealFloat(selSplitMeters, true);
-    add(ParameterMeterType, selMeterType);
+    frut::parameters::ParBoolean *ParameterParanoidMode =
+        new frut::parameters::ParBoolean("On", "Off");
+    ParameterParanoidMode->setName("Paranoid mode");
+    ParameterParanoidMode->setDefaultBoolean(false, true);
+    add(ParameterParanoidMode, selParanoidMode);
 
 
     frut::parameters::ParString *ParameterValidationFileName =

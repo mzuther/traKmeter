@@ -30,20 +30,20 @@ bool Skin::loadSkin(
     File &skinFile,
     int numberOfChannels,
     int crestFactor,
-    int meterType)
+    bool paranoidMode)
 
 {
     updateSkin(numberOfChannels,
                crestFactor,
-               meterType);
+               paranoidMode);
 
-    return loadFromXml(skinFile, "trakmeter-skin", "1.4");
+    return loadFromXml(skinFile, "trakmeter-skin", "1.5");
 }
 
 
 void Skin::updateSkin(int numberOfChannels,
                       int crestFactor,
-                      int meterType)
+                      bool paranoidMode)
 
 {
     jassert(numberOfChannels > 0);
@@ -59,15 +59,6 @@ void Skin::updateSkin(int numberOfChannels,
         currentFallbackName_ = "multi";
     }
 
-    if (meterType == TraKmeterPluginParameters::selSplitMeters)
-    {
-        currentFallbackName_ += "_split";
-    }
-    else
-    {
-        currentFallbackName_ += "_combined";
-    }
-
     if (crestFactor == 20)
     {
         currentGroupName_ = currentFallbackName_ + "_k20";
@@ -75,6 +66,11 @@ void Skin::updateSkin(int numberOfChannels,
     else
     {
         currentGroupName_ = currentFallbackName_ + "_normal";
+    }
+
+    if (paranoidMode)
+    {
+        currentGroupName_ += "_paranoid";
     }
 
     if (document_ != nullptr)

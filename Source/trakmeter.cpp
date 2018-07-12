@@ -26,7 +26,7 @@
 #include "trakmeter.h"
 
 TraKmeter::TraKmeter(int nCrestFactor, float autoFadeFactor, int nNumChannels,
-                     int segment_height, bool discreteMeter, int meter_type,
+                     int segment_height, bool discreteMeter, bool paranoidMode,
                      const Array<Colour> &averageMeterColours,
                      const Array<Colour> &peakMeterColours)
 
@@ -35,19 +35,16 @@ TraKmeter::TraKmeter(int nCrestFactor, float autoFadeFactor, int nNumChannels,
     setOpaque(false);
 
     nInputChannels = nNumChannels;
-    nMeterType = meter_type;
-    bShowSplitMeters = (nMeterType == TraKmeterPluginParameters::selSplitMeters);
+    int nSegmentHeight = segment_height;
 
-    int nSegmentHeight;
+    int nThreshold = -90;
 
-    if (bShowSplitMeters)
+    if (paranoidMode)
     {
-        nSegmentHeight = segment_height;
+        nThreshold -= 100;
     }
-    else
-    {
-        nSegmentHeight = segment_height - 1;
-    }
+
+    nThreshold += nCrestFactor * 10;
 
     for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {
@@ -58,7 +55,7 @@ TraKmeter::TraKmeter(int nCrestFactor, float autoFadeFactor, int nNumChannels,
                               autoFadeFactor,
                               frut::widgets::Orientation::vertical,
                               discreteMeter,
-                              !bShowSplitMeters,
+                              paranoidMode,
                               nSegmentHeight,
                               peakMeterColours);
 
@@ -71,14 +68,11 @@ TraKmeter::TraKmeter(int nCrestFactor, float autoFadeFactor, int nNumChannels,
                                  autoFadeFactor,
                                  frut::widgets::Orientation::vertical,
                                  discreteMeter,
-                                 !bShowSplitMeters,
+                                 paranoidMode,
                                  nSegmentHeight,
                                  averageMeterColours);
 
         addAndMakeVisible(pMeterBarAverage);
-
-        int nThreshold = -90;
-        nThreshold += nCrestFactor * 10;
 
         OverloadMeter *overloadMeter = new OverloadMeter(
             nThreshold * 0.1f);
@@ -87,33 +81,30 @@ TraKmeter::TraKmeter(int nCrestFactor, float autoFadeFactor, int nNumChannels,
         p_arrOverloadMeters.add(overloadMeter);
     }
 
-    if (bShowSplitMeters)
-    {
-        String strLabel;
+    String strLabel;
 
-        for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
+    for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
+    {
+        if (nInputChannels == 2)
         {
-            if (nInputChannels == 2)
+            if (nChannel == 0)
             {
-                if (nChannel == 0)
-                {
-                    strLabel = "L";
-                }
-                else
-                {
-                    strLabel = "R";
-                }
+                strLabel = "L";
             }
             else
             {
-                strLabel = String(nChannel + 1);
+                strLabel = "R";
             }
-
-            frut::widgets::SignalLed *signalLed = new frut::widgets::SignalLed();
-            addAndMakeVisible(signalLed);
-
-            p_arrSignalLeds.add(signalLed);
         }
+        else
+        {
+            strLabel = String(nChannel + 1);
+        }
+
+        frut::widgets::SignalLed *signalLed = new frut::widgets::SignalLed();
+        addAndMakeVisible(signalLed);
+
+        p_arrSignalLeds.add(signalLed);
     }
 }
 
@@ -130,11 +121,8 @@ void TraKmeter::applySkin(Skin *pSkin)
         pSkin->placeAndSkinStateLabel("label_over_" + String(nChannel + 1),
                                       p_arrOverloadMeters[nChannel]);
 
-        if (bShowSplitMeters)
-        {
-            pSkin->placeAndSkinSignalLed("label_signal_" + String(nChannel + 1),
-                                         p_arrSignalLeds[nChannel]);
-        }
+        pSkin->placeAndSkinSignalLed("label_signal_" + String(nChannel + 1),
+                                     p_arrSignalLeds[nChannel]);
     }
 
     Component *parent = getParentComponent();
@@ -167,10 +155,7 @@ void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
             pMeterBallistics->getPeakMeterLevel(nChannel),
             pMeterBallistics->getMaximumPeakLevel(nChannel));
 
-        if (bShowSplitMeters)
-        {
-            p_arrSignalLeds[nChannel]->setLevel(
-                pMeterBallistics->getSignalMeterReadout(nChannel));
-        }
+        p_arrSignalLeds[nChannel]->setLevel(
+            pMeterBallistics->getSignalMeterReadout(nChannel));
     }
 }

@@ -37,11 +37,11 @@ public:
     bool loadSkin(File &skinFile,
                   int numberOfChannels,
                   int crestFactor,
-                  int meterType);
+                  bool paranoidMode);
 
     void updateSkin(int numberOfChannels,
                     int crestFactor,
-                    int meterType);
+                    bool paranoidMode);
 
 private:
     JUCE_LEAK_DETECTOR(Skin);

@@ -84,8 +84,8 @@ private:
 
     ImageButton ButtonReset;
 
-    ImageButton ButtonMeterType;
     ImageButton ButtonCrestFactor;
+    ImageButton ButtonParanoidMode;
 
     ImageButton ButtonSkin;
     ImageButton ButtonValidation;

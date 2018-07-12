@@ -45,7 +45,7 @@ public:
     enum Parameters  // public namespace!
     {
         selCrestFactor = 0,
-        selMeterType,
+        selParanoidMode,
 
         numberOfParametersRevealed,
 
@@ -57,11 +57,6 @@ public:
         selSkinName,
 
         numberOfParametersComplete,
-
-        selSplitMeters = 0,
-        selCombinedMeters,
-
-        nNumMeterTypes,
     };
 
 private:

@@ -1,6 +1,6 @@
 <!ENTITY % main_components
-          "button_split,
-           button_k20,
+          "button_k20,
+           button_paranoid,
            button_skin,
            button_reset,
            button_validate,
@@ -9,8 +9,8 @@
 ">
 
 <!ENTITY % main_components_optional
-          "button_split?,
-           button_k20?,
+          "button_k20?,
+           button_paranoid?,
            button_skin?,
            button_reset?,
            button_validate?,
@@ -163,10 +163,8 @@
 ">
 
 <!ELEMENT trakmeter-skin (default,
-                       stereo_split?, stereo_split_k20, stereo_split_normal,
-                       stereo_combined?, stereo_combined_k20, stereo_combined_normal,
-                       multi_split?, multi_split_k20, multi_split_normal,
-                       multi_combined?, multi_combined_k20, multi_combined_normal)>
+                       stereo?, stereo_k20, stereo_k20_paranoid, stereo_normal, stereo_normal_paranoid,
+                       multi?, multi_k20, multi_k20_paranoid, multi_normal, multi_normal_paranoid)>
     <!ATTLIST trakmeter-skin
               name CDATA #REQUIRED
               orientation (vertical | horizontal) #REQUIRED
@@ -177,22 +175,18 @@
 
     <!ELEMENT default (%main_components;)>
 
-    <!ELEMENT stereo_split (%main_components_optional;, %trakmeter_components_stereo;, %split_components_stereo;)>
-    <!ELEMENT stereo_combined (%main_components_optional;, %trakmeter_components_stereo;)>
-    <!ELEMENT multi_split (%main_components_optional;, %trakmeter_components_multi;, %split_components_multi;)>
-    <!ELEMENT multi_combined (%main_components_optional;, %trakmeter_components_multi;)>
+    <!ELEMENT stereo (%main_components_optional;, %trakmeter_components_stereo;, %split_components_stereo;)>
+    <!ELEMENT multi (%main_components_optional;, %trakmeter_components_multi;, %split_components_multi;)>
 
-    <!ELEMENT stereo_split_k20 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
-    <!ELEMENT stereo_split_normal (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+    <!ELEMENT stereo_k20 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+    <!ELEMENT stereo_k20_paranoid (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+    <!ELEMENT stereo_normal (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+    <!ELEMENT stereo_normal_paranoid (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
 
-    <!ELEMENT stereo_combined_k20 (%trakmeter_background;, %main_components_optional;)>
-    <!ELEMENT stereo_combined_normal (%trakmeter_background;, %main_components_optional;)>
-
-    <!ELEMENT multi_split_k20 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
-    <!ELEMENT multi_split_normal (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
-
-    <!ELEMENT multi_combined_k20 (%trakmeter_background;, %main_components_optional;)>
-    <!ELEMENT multi_combined_normal (%trakmeter_background;, %main_components_optional;)>
+    <!ELEMENT multi_k20 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
+    <!ELEMENT multi_k20_paranoid (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
+    <!ELEMENT multi_normal (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
+    <!ELEMENT multi_normal_paranoid (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
 
         <!ELEMENT background (#PCDATA)>
             <!ATTLIST background %attrs_background;>
@@ -200,11 +194,11 @@
         <!ELEMENT meter_graduation (#PCDATA)>
             <!ATTLIST meter_graduation %attrs_meter_graduation;>
 
-        <!ELEMENT button_split (#PCDATA)>
-            <!ATTLIST button_split %attrs_button;>
-
         <!ELEMENT button_k20 (#PCDATA)>
             <!ATTLIST button_k20 %attrs_button;>
+
+        <!ELEMENT button_paranoid (#PCDATA)>
+            <!ATTLIST button_paranoid %attrs_button;>
 
         <!ELEMENT button_skin (#PCDATA)>
             <!ATTLIST button_skin %attrs_button;>

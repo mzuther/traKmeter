@@ -31,56 +31,49 @@ void MeterBarAverage::create(
     float autoFadeFactor,
     frut::widgets::Orientation orientation,
     bool discreteMeter,
-    bool showCombinedMeters,
+    bool paranoidMode,
     int mainSegmentHeight,
     const Array<Colour> &segmentColours)
 {
     frut::widgets::MeterBar::create();
 
+    int numberOfBars = 14;
+
+    int trueLowerThreshold = -140;
+    int overloadLevel = -160;
+    int warningLevel = -180;
+    int fineLevel = -220;
+
+    if (paranoidMode)
+    {
+        int paranoidLevelDifference = 100;
+
+        trueLowerThreshold -= paranoidLevelDifference;
+        overloadLevel -= paranoidLevelDifference;
+        warningLevel -= paranoidLevelDifference;
+        fineLevel -= paranoidLevelDifference;
+    }
+
     crestFactor *= 10;
-    int trueLowerThreshold;
-    int numberOfBars;
-
-    if (showCombinedMeters)
-    {
-        trueLowerThreshold = -100;
-        numberOfBars = 32;
-    }
-    else
-    {
-        trueLowerThreshold = -140;
-        numberOfBars = 14;
-    }
-
     int lowerThreshold = trueLowerThreshold + crestFactor;
+    int thresholdDifference = 10;
 
     for (int n = 0; n < numberOfBars; ++n)
     {
-        int thresholdDifference;
-
-        if (trueLowerThreshold > -400)
-        {
-            thresholdDifference = 10;
-        }
-        else
-        {
-            thresholdDifference = 100;
-        }
-
         trueLowerThreshold -= thresholdDifference;
         lowerThreshold = trueLowerThreshold + crestFactor;
 
         int colourId;
 
-        if (trueLowerThreshold >= -160)
+        if (trueLowerThreshold >= overloadLevel)
         {
             colourId = colourSelector::overload;
         }
-        else if (trueLowerThreshold >= -180)
+        else if (trueLowerThreshold >= warningLevel)
         {
             colourId = colourSelector::warning;
         }
-        else if (trueLowerThreshold >= -220)
+        else if (trueLowerThreshold >= fineLevel)
         {
             colourId = colourSelector::fine;
         }
@@ -89,20 +82,13 @@ void MeterBarAverage::create(
             colourId = colourSelector::signal;
         }
 
-        int segmentHeight = mainSegmentHeight;
-
-        if (showCombinedMeters)
-        {
-            segmentHeight += 2;
-        }
-
         bool hasHighestLevel = (n == 0) ? true : false;
 
         if (discreteMeter)
         {
             // meter segment outlines overlap
             int spacingBefore = -1;
-            segmentHeight += 1;
+            int segmentHeight = mainSegmentHeight - spacingBefore;
 
             addDiscreteSegment(
                 lowerThreshold * 0.1f,
@@ -118,6 +104,7 @@ void MeterBarAverage::create(
         {
             // meter segment outlines must not overlap
             int spacingBefore = 0;
+            int segmentHeight = mainSegmentHeight - spacingBefore;
 
             addContinuousSegment(
                 lowerThreshold * 0.1f,

@@ -45,7 +45,7 @@ public:
               int nNumChannels,
               int segment_height,
               bool discreteMeter,
-              int meter_type,
+              bool paranoidMode,
               const Array<Colour> &averageMeterColours,
               const Array<Colour> &peakMeterColours);
 
@@ -57,8 +57,6 @@ private:
     JUCE_LEAK_DETECTOR(TraKmeter);
 
     int nInputChannels;
-    int nMeterType;
-    bool bShowSplitMeters;
 
     OwnedArray<MeterBarAverage> p_arrAverageMeters;
     OwnedArray<MeterBarPeak> p_arrPeakMeters;
