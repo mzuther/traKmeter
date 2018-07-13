@@ -31,7 +31,7 @@ void MeterBarAverage::create(
     float autoFadeFactor,
     frut::widgets::Orientation orientation,
     bool discreteMeter,
-    bool paranoidMode,
+    int targetRecordingLevel,
     int mainSegmentHeight,
     const Array<Colour> &segmentColours)
 {
@@ -39,22 +39,14 @@ void MeterBarAverage::create(
 
     int numberOfBars = 14;
 
-    int trueLowerThreshold = -140;
-    int overloadLevel = -160;
-    int warningLevel = -180;
-    int fineLevel = -220;
-
-    if (paranoidMode)
-    {
-        int paranoidLevelDifference = 100;
-
-        trueLowerThreshold -= paranoidLevelDifference;
-        overloadLevel -= paranoidLevelDifference;
-        warningLevel -= paranoidLevelDifference;
-        fineLevel -= paranoidLevelDifference;
-    }
-
     crestFactor *= 10;
+    targetRecordingLevel *= 10;
+
+    int trueLowerThreshold = targetRecordingLevel - 40;
+    int overloadLevel = targetRecordingLevel - 60;
+    int warningLevel = targetRecordingLevel - 80;
+    int fineLevel = targetRecordingLevel - 120;
+
     int lowerThreshold = trueLowerThreshold + crestFactor;
     int thresholdDifference = 10;
 

@@ -47,11 +47,15 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     add(ParameterCrestFactor, selCrestFactor);
 
 
-    frut::parameters::ParBoolean *ParameterParanoidMode =
-        new frut::parameters::ParBoolean("On", "Off");
-    ParameterParanoidMode->setName("Paranoid mode");
-    ParameterParanoidMode->setDefaultBoolean(false, true);
-    add(ParameterParanoidMode, selParanoidMode);
+    frut::parameters::ParSwitch *ParameterTargetRecordingLevel =
+        new frut::parameters::ParSwitch();
+    ParameterTargetRecordingLevel->setName("Target recording level");
+
+    ParameterTargetRecordingLevel->addPreset(-10.0f, "-10 dB FS peak");
+    ParameterTargetRecordingLevel->addPreset(-20.0f, "-20 dB FS peak");
+
+    ParameterTargetRecordingLevel->setDefaultRealFloat(-10.0f, true);
+    add(ParameterTargetRecordingLevel, selTargetRecordingLevel);
 
 
     frut::parameters::ParString *ParameterValidationFileName =

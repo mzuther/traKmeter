@@ -30,12 +30,12 @@ bool Skin::loadSkin(
     File &skinFile,
     int numberOfChannels,
     int crestFactor,
-    bool paranoidMode)
+    int targetRecordingLevel)
 
 {
     updateSkin(numberOfChannels,
                crestFactor,
-               paranoidMode);
+               targetRecordingLevel);
 
     return loadFromXml(skinFile, "trakmeter-skin", "1.5");
 }
@@ -43,7 +43,7 @@ bool Skin::loadSkin(
 
 void Skin::updateSkin(int numberOfChannels,
                       int crestFactor,
-                      bool paranoidMode)
+                      int targetRecordingLevel)
 
 {
     jassert(numberOfChannels > 0);
@@ -68,9 +68,17 @@ void Skin::updateSkin(int numberOfChannels,
         currentGroupName_ = currentFallbackName_ + "_normal";
     }
 
-    if (paranoidMode)
+    if (targetRecordingLevel == -10)
     {
-        currentGroupName_ += "_paranoid";
+        currentGroupName_ += "_10";
+    }
+    else if (targetRecordingLevel == -20)
+    {
+        currentGroupName_ += "_20";
+    }
+    else
+    {
+        Logger::outputDebugString("[Skin] invalid target recording level");
     }
 
     if (document_ != nullptr)

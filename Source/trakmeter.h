@@ -45,7 +45,7 @@ public:
               int nNumChannels,
               int segment_height,
               bool discreteMeter,
-              bool paranoidMode,
+              int targetRecordingLevel,
               const Array<Colour> &averageMeterColours,
               const Array<Colour> &peakMeterColours);
 

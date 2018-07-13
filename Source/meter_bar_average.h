@@ -38,7 +38,7 @@ public:
                 float autoFadeFactor,
                 frut::widgets::Orientation orientation,
                 bool discreteMeter,
-                bool paranoidMode,
+                int targetRecordingLevel,
                 int mainSegmentHeight,
                 const Array<Colour> &segmentColours);
 

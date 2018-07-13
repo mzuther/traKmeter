@@ -92,8 +92,8 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     ButtonCrestFactor.addListener(this);
     addAndMakeVisible(ButtonCrestFactor);
 
-    ButtonParanoidMode.addListener(this);
-    addAndMakeVisible(ButtonParanoidMode);
+    ButtonRecordingLevel.addListener(this);
+    addAndMakeVisible(ButtonRecordingLevel);
 
     ButtonReset.addListener(this);
     addAndMakeVisible(ButtonReset);
@@ -120,7 +120,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     addAndMakeVisible(BackgroundImage, 0);
 
     updateParameter(TraKmeterPluginParameters::selCrestFactor);
-    updateParameter(TraKmeterPluginParameters::selParanoidMode);
+    updateParameter(TraKmeterPluginParameters::selTargetRecordingLevel);
 
     // locate directory containing the skins
     skinDirectory = TraKmeterPluginParameters::getSkinDirectory();
@@ -154,8 +154,12 @@ void TraKmeterAudioProcessorEditor::loadSkin()
 
     audioProcessor->setParameterSkinName(currentSkinName);
 
-    bool paranoidMode = audioProcessor->getBoolean(TraKmeterPluginParameters::selParanoidMode);
-    skin.loadSkin(fileSkin, numberOfInputChannels, crestFactor, paranoidMode);
+    int recordingLevel = audioProcessor->getRealInteger(
+                             TraKmeterPluginParameters::selTargetRecordingLevel);
+    skin.loadSkin(fileSkin,
+                  numberOfInputChannels,
+                  crestFactor,
+                  recordingLevel);
 
     // will also apply skin to plug-in editor
     needsMeterReload = true;
@@ -172,8 +176,11 @@ void TraKmeterAudioProcessorEditor::applySkin()
     }
 
     // update skin
-    bool paranoidMode = audioProcessor->getBoolean(TraKmeterPluginParameters::selParanoidMode);
-    skin.updateSkin(numberOfInputChannels, crestFactor, paranoidMode);
+    int recordingLevel = audioProcessor->getRealInteger(
+                             TraKmeterPluginParameters::selTargetRecordingLevel);
+    skin.updateSkin(numberOfInputChannels,
+                    crestFactor,
+                    recordingLevel);
 
     // moves background image to the back of the editor's z-plane;
     // will also resize plug-in editor
@@ -182,8 +189,8 @@ void TraKmeterAudioProcessorEditor::applySkin()
 
     skin.placeAndSkinButton("button_k20",
                             &ButtonCrestFactor);
-    skin.placeAndSkinButton("button_paranoid",
-                            &ButtonParanoidMode);
+    skin.placeAndSkinButton("button_recording_level",
+                            &ButtonRecordingLevel);
 
     skin.placeAndSkinButton("button_reset",
                             &ButtonReset);
@@ -315,10 +322,11 @@ void TraKmeterAudioProcessorEditor::updateParameter(
     }
     break;
 
-    case TraKmeterPluginParameters::selParanoidMode:
+    case TraKmeterPluginParameters::selTargetRecordingLevel:
     {
-        bool paranoidMode = audioProcessor->getBoolean(nIndex);
-        ButtonParanoidMode.setToggleState(paranoidMode, dontSendNotification);
+        int recordingLevel = audioProcessor->getRealInteger(
+                                 TraKmeterPluginParameters::selTargetRecordingLevel);
+        ButtonRecordingLevel.setToggleState(recordingLevel == -20, dontSendNotification);
 
         // will also apply skin to plug-in editor
         needsMeterReload = true;
@@ -346,7 +354,8 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
             removeChildComponent(trakmeter);
         }
 
-        bool paranoidMode = audioProcessor->getBoolean(TraKmeterPluginParameters::selParanoidMode);
+        int targetRecordingLevel = audioProcessor->getRealInteger(
+                                       TraKmeterPluginParameters::selTargetRecordingLevel);
         bool discreteMeter = true;
         float autoFadeFactor = 0.0f;
 
@@ -362,7 +371,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
                                   numberOfInputChannels,
                                   segmentHeight,
                                   discreteMeter,
-                                  paranoidMode,
+                                  targetRecordingLevel,
                                   levelMeterColours,
                                   levelMeterColours);
 
@@ -399,9 +408,10 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         needsMeterReload = true;
         reloadMeters();
     }
-    else if (button == &ButtonParanoidMode)
+    else if (button == &ButtonRecordingLevel)
     {
-        audioProcessor->changeParameter(TraKmeterPluginParameters::selParanoidMode, !button->getToggleState());
+        float recordingLevel = button->getToggleState() ? 0.0f : 1.0f;
+        audioProcessor->changeParameter(TraKmeterPluginParameters::selTargetRecordingLevel, recordingLevel);
 
         // will also apply skin to plug-in editor
         needsMeterReload = true;
