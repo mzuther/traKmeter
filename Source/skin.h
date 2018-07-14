@@ -36,11 +36,9 @@ class Skin :
 public:
     bool loadSkin(File &skinFile,
                   int numberOfChannels,
-                  int crestFactor,
                   int targetRecordingLevel);
 
     void updateSkin(int numberOfChannels,
-                    int crestFactor,
                     int targetRecordingLevel);
 
 private:

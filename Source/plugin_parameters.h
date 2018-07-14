@@ -44,8 +44,7 @@ public:
 
     enum Parameters  // public namespace!
     {
-        selCrestFactor = 0,
-        selTargetRecordingLevel,
+        selTargetRecordingLevel = 0,
 
         numberOfParametersRevealed,
 

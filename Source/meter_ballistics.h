@@ -33,7 +33,6 @@ class MeterBallistics
 {
 public:
     MeterBallistics(int nChannels,
-                    int CrestFactor,
                     bool bPeakMeterInfiniteHold,
                     bool bAverageMeterInfiniteHold);
 
@@ -42,9 +41,6 @@ public:
     void reset();
 
     int getNumberOfChannels();
-
-    int getCrestFactor();
-    void setCrestFactor(int CrestFactor);
 
     float getPeakMeterLevel(int nChannel);
     float getPeakMeterPeakLevel(int nChannel);
@@ -71,7 +67,6 @@ private:
     JUCE_LEAK_DETECTOR(MeterBallistics);
 
     int nNumberOfChannels;
-    int nCrestFactor;
 
     static float fMeterMinimumDecibel;
     static float fPeakToAverageCorrection;

@@ -42,7 +42,6 @@ float MeterBallistics::fMeterMinimumDecibel = -(90.01f + 20.0f +
 
 MeterBallistics::MeterBallistics(
     int nChannels,
-    int CrestFactor,
     bool bPeakMeterInfiniteHold,
     bool bAverageMeterInfiniteHold)
 /*  Constructor.
@@ -60,9 +59,6 @@ MeterBallistics::MeterBallistics(
 {
     // store the number of audio input channels
     nNumberOfChannels = nChannels;
-
-    // store meter's crest factor
-    setCrestFactor(CrestFactor);
 
     // select "infinite peak hold" or "falling peaks" mode
     setPeakMeterInfiniteHold(bPeakMeterInfiniteHold);
@@ -168,29 +164,6 @@ int MeterBallistics::getNumberOfChannels()
 }
 
 
-int MeterBallistics::getCrestFactor()
-/*  Get current crest factor.
-
-    return value (integer): returns the current crest factor in decibel
-*/
-{
-    return nCrestFactor;
-}
-
-
-void MeterBallistics::setCrestFactor(
-    int CrestFactor)
-/*  Set current crest factor.
-
-    CrestFactor (integer): current crest factor in decibel
-
-    return value: none
-*/
-{
-    nCrestFactor = CrestFactor;
-}
-
-
 float MeterBallistics::getPeakMeterLevel(
     int nChannel)
 /*  Get current level of an audio channel's peak level meter.
@@ -204,7 +177,7 @@ float MeterBallistics::getPeakMeterLevel(
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return arrPeakMeterLevels[nChannel] + nCrestFactor;
+    return arrPeakMeterLevels[nChannel];
 }
 
 
@@ -221,7 +194,7 @@ float MeterBallistics::getPeakMeterPeakLevel(
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return arrPeakMeterPeakLevels[nChannel] + nCrestFactor;
+    return arrPeakMeterPeakLevels[nChannel];
 }
 
 
@@ -238,7 +211,7 @@ float MeterBallistics::getAverageMeterLevel(
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return arrAverageMeterLevels[nChannel] + nCrestFactor;
+    return arrAverageMeterLevels[nChannel];
 }
 
 
@@ -255,7 +228,7 @@ float MeterBallistics::getAverageMeterPeakLevel(
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return arrAverageMeterPeakLevels[nChannel] + nCrestFactor;
+    return arrAverageMeterPeakLevels[nChannel];
 }
 
 
@@ -289,7 +262,7 @@ float MeterBallistics::getMaximumPeakLevel(
     jassert(nChannel >= 0);
     jassert(nChannel < nNumberOfChannels);
 
-    return arrMaximumPeakLevels[nChannel] + nCrestFactor;
+    return arrMaximumPeakLevels[nChannel];
 }
 
 

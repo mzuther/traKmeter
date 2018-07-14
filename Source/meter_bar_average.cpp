@@ -27,7 +27,6 @@
 
 
 void MeterBarAverage::create(
-    int crestFactor,
     float autoFadeFactor,
     frut::widgets::Orientation orientation,
     bool discreteMeter,
@@ -39,7 +38,6 @@ void MeterBarAverage::create(
 
     int numberOfBars = 14;
 
-    crestFactor *= 10;
     targetRecordingLevel *= 10;
 
     int trueLowerThreshold = targetRecordingLevel - 40;
@@ -47,13 +45,13 @@ void MeterBarAverage::create(
     int warningLevel = targetRecordingLevel - 80;
     int fineLevel = targetRecordingLevel - 120;
 
-    int lowerThreshold = trueLowerThreshold + crestFactor;
+    int lowerThreshold = trueLowerThreshold;
     int thresholdDifference = 10;
 
     for (int n = 0; n < numberOfBars; ++n)
     {
         trueLowerThreshold -= thresholdDifference;
-        lowerThreshold = trueLowerThreshold + crestFactor;
+        lowerThreshold = trueLowerThreshold;
 
         int colourId;
 

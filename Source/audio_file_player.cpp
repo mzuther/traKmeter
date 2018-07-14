@@ -29,8 +29,7 @@
 AudioFilePlayer::AudioFilePlayer(
     const File audioFile,
     int sample_rate,
-    MeterBallistics *meter_ballistics,
-    int crest_factor)
+    MeterBallistics *meter_ballistics)
 {
     nReportChannel = -1;
     bReports = false;
@@ -40,7 +39,6 @@ AudioFilePlayer::AudioFilePlayer(
 
     bSampleRatesMatch = true;
     bHeaderIsWritten = false;
-    setCrestFactor(crest_factor);
 
     pMeterBallistics = meter_ballistics;
 
@@ -48,10 +46,12 @@ AudioFilePlayer::AudioFilePlayer(
     nSamplesMovingAverage = 50;
     nNumberOfChannels = pMeterBallistics->getNumberOfChannels();
 
+    float meterMinimumDecibel = MeterBallistics::getMeterMinimumDecibel();
+
     for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
     {
-        arrAverager_AverageMeterLevels.add(frut::math::Averager(nSamplesMovingAverage, fMeterMinimumDecibel));
-        arrAverager_PeakMeterLevels.add(frut::math::Averager(nSamplesMovingAverage, fMeterMinimumDecibel));
+        arrAverager_AverageMeterLevels.add(frut::math::Averager(nSamplesMovingAverage, meterMinimumDecibel));
+        arrAverager_PeakMeterLevels.add(frut::math::Averager(nSamplesMovingAverage, meterMinimumDecibel));
     }
 
     AudioFormatManager formatManager;
@@ -101,14 +101,6 @@ AudioFilePlayer::~AudioFilePlayer()
     {
         outputMessage("Stopping validation ...");
     }
-}
-
-
-void AudioFilePlayer::setCrestFactor(
-    int crest_factor)
-{
-    fCrestFactor = float(crest_factor);
-    fMeterMinimumDecibel = MeterBallistics::getMeterMinimumDecibel() + fCrestFactor;
 }
 
 
@@ -198,7 +190,7 @@ void AudioFilePlayer::outputReportPlain()
                 float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel(nChannel);
                 String strPrefix = "average level (ch. " + String(nChannel + 1) + "):  ";
                 String strSuffix = " dB";
-                outputValue(fAverageMeterLevel, arrAverager_AverageMeterLevels.getReference(nChannel), fCrestFactor, strPrefix, strSuffix);
+                outputValue(fAverageMeterLevel, arrAverager_AverageMeterLevels.getReference(nChannel), strPrefix, strSuffix);
             }
         }
         else
@@ -206,7 +198,7 @@ void AudioFilePlayer::outputReportPlain()
             float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel(nReportChannel);
             String strPrefix = "average level (ch. " + String(nReportChannel + 1) + "):  ";
             String strSuffix = " dB";
-            outputValue(fAverageMeterLevel, arrAverager_AverageMeterLevels.getReference(nReportChannel), fCrestFactor, strPrefix, strSuffix);
+            outputValue(fAverageMeterLevel, arrAverager_AverageMeterLevels.getReference(nReportChannel), strPrefix, strSuffix);
         }
     }
 
@@ -219,7 +211,7 @@ void AudioFilePlayer::outputReportPlain()
                 float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel(nChannel);
                 String strPrefix = "peak level (ch. " + String(nChannel + 1) + "):     ";
                 String strSuffix = " dB";
-                outputValue(fPeakMeterLevel, arrAverager_PeakMeterLevels.getReference(nChannel), fCrestFactor, strPrefix, strSuffix);
+                outputValue(fPeakMeterLevel, arrAverager_PeakMeterLevels.getReference(nChannel), strPrefix, strSuffix);
             }
         }
         else
@@ -227,7 +219,7 @@ void AudioFilePlayer::outputReportPlain()
             float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel(nReportChannel);
             String strPrefix = "peak level (ch. " + String(nReportChannel + 1) + "):     ";
             String strSuffix = " dB";
-            outputValue(fPeakMeterLevel, arrAverager_PeakMeterLevels.getReference(nReportChannel), fCrestFactor, strPrefix, strSuffix);
+            outputValue(fPeakMeterLevel, arrAverager_PeakMeterLevels.getReference(nReportChannel), strPrefix, strSuffix);
         }
     }
 
@@ -363,7 +355,6 @@ String AudioFilePlayer::formatValue(
 void AudioFilePlayer::outputValue(
     const float fValue,
     frut::math::Averager &averager,
-    const float fCorrectionFactor,
     const String &strPrefix,
     const String &strSuffix)
 {
@@ -380,11 +371,11 @@ void AudioFilePlayer::outputValue(
 
     String strSimpleMovingAverage;
 
-    averager.addSample(fValue - fCorrectionFactor);
+    averager.addSample(fValue);
 
     if (averager.isValid())
     {
-        float fSimpleMovingAverage = averager.getSimpleMovingAverage() + fCorrectionFactor;
+        float fSimpleMovingAverage = averager.getSimpleMovingAverage();
 
         if (fSimpleMovingAverage < 0.0f)
         {

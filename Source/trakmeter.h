@@ -40,10 +40,9 @@ public:
     static const int TRAKMETER_LABEL_WIDTH = 38;
     static const int TRAKMETER_SEGMENT_WIDTH = 22;
 
-    TraKmeter(int nCrestFactor,
-              float autoFadeFactor,
-              int nNumChannels,
+    TraKmeter(int nNumChannels,
               int segment_height,
+              float autoFadeFactor,
               bool discreteMeter,
               int targetRecordingLevel,
               const Array<Colour> &averageMeterColours,

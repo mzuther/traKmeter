@@ -98,9 +98,6 @@ public:
 
     virtual bool processBufferChunk(AudioBuffer<float> &buffer) override;
 
-    int getCrestFactor();
-    void setCrestFactor(const int crestFactor);
-
     int getNumPrograms() override;
 
     int getCurrentProgram() override;
@@ -135,8 +132,6 @@ private:
 
     int numberOfChannels_;
     float processedSeconds_;
-
-    int crestFactor_;
 };
 
 AudioProcessor *JUCE_CALLTYPE createPluginFilter();

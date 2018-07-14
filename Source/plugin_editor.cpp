@@ -61,8 +61,7 @@ static void window_validation_callback(
 
 TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     TraKmeterAudioProcessor *ownerFilter,
-    int nNumChannels,
-    int CrestFactor) :
+    int nNumChannels) :
     AudioProcessorEditor(ownerFilter)
 {
     // load look and feel
@@ -80,7 +79,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     validationDialogOpen = false;
 
     numberOfInputChannels = nNumChannels;
-    crestFactor = CrestFactor;
     segmentHeight = 10;
 
     // The plug-in editor's size as well as the location of buttons
@@ -88,9 +86,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
 
     audioProcessor = ownerFilter;
     audioProcessor->addActionListener(this);
-
-    ButtonCrestFactor.addListener(this);
-    addAndMakeVisible(ButtonCrestFactor);
 
     ButtonRecordingLevel_10.setRadioGroupId(1);
     ButtonRecordingLevel_10.addListener(this);
@@ -128,7 +123,6 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     // that it doesn't overlay (and thus block) any other components
     addAndMakeVisible(BackgroundImage, 0);
 
-    updateParameter(TraKmeterPluginParameters::selCrestFactor);
     updateParameter(TraKmeterPluginParameters::selTargetRecordingLevel);
 
     // locate directory containing the skins
@@ -167,7 +161,6 @@ void TraKmeterAudioProcessorEditor::loadSkin()
                              TraKmeterPluginParameters::selTargetRecordingLevel);
     skin.loadSkin(fileSkin,
                   numberOfInputChannels,
-                  crestFactor,
                   recordingLevel);
 
     // will also apply skin to plug-in editor
@@ -188,7 +181,6 @@ void TraKmeterAudioProcessorEditor::applySkin()
     int recordingLevel = audioProcessor->getRealInteger(
                              TraKmeterPluginParameters::selTargetRecordingLevel);
     skin.updateSkin(numberOfInputChannels,
-                    crestFactor,
                     recordingLevel);
 
     // moves background image to the back of the editor's z-plane;
@@ -196,8 +188,6 @@ void TraKmeterAudioProcessorEditor::applySkin()
     skin.setBackgroundImage(&BackgroundImage,
                             this);
 
-    skin.placeAndSkinButton("button_k20",
-                            &ButtonCrestFactor);
     skin.placeAndSkinButton("button_recording_level_10",
                             &ButtonRecordingLevel_10);
     skin.placeAndSkinButton("button_recording_level_15",
@@ -326,15 +316,6 @@ void TraKmeterAudioProcessorEditor::updateParameter(
 
     switch (nIndex)
     {
-    case TraKmeterPluginParameters::selCrestFactor:
-    {
-        crestFactor = audioProcessor->getRealInteger(nIndex);
-        ButtonCrestFactor.setToggleState(crestFactor != 0, dontSendNotification);
-
-        needsMeterReload = true;
-    }
-    break;
-
     case TraKmeterPluginParameters::selTargetRecordingLevel:
     {
         int recordingLevel = audioProcessor->getRealInteger(
@@ -401,10 +382,9 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         levelMeterColours.add(Colour(0.30f, 1.0f, 1.0f, 1.0f));  // fine
         levelMeterColours.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // signal
 
-        trakmeter = new TraKmeter(crestFactor,
-                                  autoFadeFactor,
-                                  numberOfInputChannels,
+        trakmeter = new TraKmeter(numberOfInputChannels,
                                   segmentHeight,
+                                  autoFadeFactor,
                                   discreteMeter,
                                   targetRecordingLevel,
                                   levelMeterColours,
@@ -434,10 +414,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
 
         // apply skin to plug-in editor
         loadSkin();
-    }
-    else if (button == &ButtonCrestFactor)
-    {
-        audioProcessor->changeParameter(TraKmeterPluginParameters::selCrestFactor, !button->getToggleState());
     }
     else if (button == &ButtonRecordingLevel_10)
     {

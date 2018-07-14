@@ -27,7 +27,6 @@
 
 
 void MeterBarPeak::create(
-    int crestFactor,
     float autoFadeFactor,
     frut::widgets::Orientation orientation,
     bool discreteMeter,
@@ -40,7 +39,6 @@ void MeterBarPeak::create(
     int numberOfBars = 15;
     bool hasHighestLevel = false;
 
-    crestFactor *= 10;
     targetRecordingLevel *= 10;
 
     int trueLowerThreshold = targetRecordingLevel + 10;
@@ -48,13 +46,13 @@ void MeterBarPeak::create(
     int warningLevel = targetRecordingLevel - 20;
     int fineLevel = targetRecordingLevel - 80;
 
-    int lowerThreshold = trueLowerThreshold + crestFactor;
+    int lowerThreshold = trueLowerThreshold;
     int thresholdDifference = 10;
 
     for (int n = 0; n < numberOfBars; ++n)
     {
         trueLowerThreshold -= thresholdDifference;
-        lowerThreshold = trueLowerThreshold + crestFactor;
+        lowerThreshold = trueLowerThreshold;
 
         int colourId;
 

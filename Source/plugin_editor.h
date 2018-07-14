@@ -42,8 +42,7 @@ class TraKmeterAudioProcessorEditor :
 {
 public:
     TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter,
-                                  int nNumChannels,
-                                  int CrestFactor);
+                                  int nNumChannels);
     ~TraKmeterAudioProcessorEditor();
 
     void buttonClicked(Button *button);
@@ -69,7 +68,6 @@ private:
     bool validationDialogOpen;
     bool isInitialising;
 
-    int crestFactor;
     int numberOfInputChannels;
 
     int segmentHeight;
@@ -84,7 +82,6 @@ private:
 
     ImageButton ButtonReset;
 
-    ImageButton ButtonCrestFactor;
     ImageButton ButtonRecordingLevel_10;
     ImageButton ButtonRecordingLevel_15;
     ImageButton ButtonRecordingLevel_20;

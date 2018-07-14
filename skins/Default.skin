@@ -10,14 +10,6 @@
     version="1.5">
 
     <default>
-        <button_k20
-            x="152"
-            y="293"
-            image_on="buttons/button_k20_on.png"
-            image_over="buttons/button_k20_over.png"
-            image_off="buttons/button_k20_off.png"
-        />
-
         <button_recording_level_10
             x="152"
             y="328"
@@ -149,81 +141,40 @@
             image_high="labels/label_signal_right_high.png" />
     </stereo>
 
-    <stereo_k20_10>
+    <stereo_10>
         <background
             image="backgrounds/stereo/background_stereo.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/stereo/graduation_stereo_k20_10.png"
+            image="backgrounds/stereo/graduation_stereo_10.png"
         />
-    </stereo_k20_10>
+    </stereo_10>
 
-    <stereo_k20_15>
+    <stereo_15>
         <background
             image="backgrounds/stereo/background_stereo.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/stereo/graduation_stereo_k20_15.png"
+            image="backgrounds/stereo/graduation_stereo_15.png"
         />
-    </stereo_k20_15>
+    </stereo_15>
 
-    <stereo_k20_20>
+    <stereo_20>
         <background
             image="backgrounds/stereo/background_stereo.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/stereo/graduation_stereo_k20_20.png"
+            image="backgrounds/stereo/graduation_stereo_20.png"
         />
-    </stereo_k20_20>
-
-    <stereo_normal_10>
-        <background
-            image="backgrounds/stereo/background_stereo.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/stereo/graduation_stereo_normal_10.png"
-        />
-    </stereo_normal_10>
-
-    <stereo_normal_15>
-        <background
-            image="backgrounds/stereo/background_stereo.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/stereo/graduation_stereo_normal_15.png"
-        />
-    </stereo_normal_15>
-
-    <stereo_normal_20>
-        <background
-            image="backgrounds/stereo/background_stereo.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/stereo/graduation_stereo_normal_20.png"
-        />
-    </stereo_normal_20>
+    </stereo_20>
 
     <multi>
-        <button_k20
-            x="340"
-            y="293"
-            image_on="buttons/button_k20_on.png"
-            image_over="buttons/button_k20_over.png"
-            image_off="buttons/button_k20_off.png"
-        />
-
         <button_recording_level_10
             x="340"
             y="328"
@@ -551,64 +502,34 @@
             image_high="labels/label_signal_8_high.png" />
     </multi>
 
-    <multi_k20_10>
+    <multi_10>
         <background
             image="backgrounds/multi/background_multi.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/multi/graduation_multi_k20_10.png" />
-    </multi_k20_10>
+            image="backgrounds/multi/graduation_multi_10.png" />
+    </multi_10>
 
-    <multi_k20_15>
+    <multi_15>
         <background
             image="backgrounds/multi/background_multi.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/multi/graduation_multi_k20_15.png" />
-    </multi_k20_15>
+            image="backgrounds/multi/graduation_multi_15.png" />
+    </multi_15>
 
-    <multi_k20_20>
+    <multi_20>
         <background
             image="backgrounds/multi/background_multi.png" />
 
         <meter_graduation
             x="13"
             y="38"
-            image="backgrounds/multi/graduation_multi_k20_20.png" />
-    </multi_k20_20>
-
-    <multi_normal_10>
-        <background
-            image="backgrounds/multi/background_multi.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/multi/graduation_multi_normal_10.png" />
-    </multi_normal_10>
-
-    <multi_normal_15>
-        <background
-            image="backgrounds/multi/background_multi.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/multi/graduation_multi_normal_15.png" />
-    </multi_normal_15>
-
-    <multi_normal_20>
-        <background
-            image="backgrounds/multi/background_multi.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/multi/graduation_multi_normal_20.png" />
-    </multi_normal_20>
+            image="backgrounds/multi/graduation_multi_20.png" />
+    </multi_20>
 
 </trakmeter-skin>

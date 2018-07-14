@@ -29,12 +29,10 @@
 bool Skin::loadSkin(
     File &skinFile,
     int numberOfChannels,
-    int crestFactor,
     int targetRecordingLevel)
 
 {
     updateSkin(numberOfChannels,
-               crestFactor,
                targetRecordingLevel);
 
     return loadFromXml(skinFile, "trakmeter-skin", "1.5");
@@ -42,7 +40,6 @@ bool Skin::loadSkin(
 
 
 void Skin::updateSkin(int numberOfChannels,
-                      int crestFactor,
                       int targetRecordingLevel)
 
 {
@@ -59,14 +56,7 @@ void Skin::updateSkin(int numberOfChannels,
         currentFallbackName_ = "multi";
     }
 
-    if (crestFactor == 20)
-    {
-        currentGroupName_ = currentFallbackName_ + "_k20";
-    }
-    else
-    {
-        currentGroupName_ = currentFallbackName_ + "_normal";
-    }
+    currentGroupName_ = currentFallbackName_;
 
     if (targetRecordingLevel == -10)
     {

@@ -66,9 +66,6 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
 
     // this is a meter for recording: do not introduce latency!
     setLatencySamples(0);
-
-    // depend on "TraKmeterPluginParameters"!
-    crestFactor_ = getRealInteger(TraKmeterPluginParameters::selCrestFactor);
 }
 
 
@@ -221,11 +218,6 @@ void TraKmeterAudioProcessor::setParameter(
     // values!
 
     pluginParameters_.setFloat(nIndex, fValue);
-
-    if (nIndex == TraKmeterPluginParameters::selCrestFactor)
-    {
-        setCrestFactor(getRealInteger(nIndex));
-    }
 
     // notify plug-in editor of parameter change
     if (pluginParameters_.hasChanged(nIndex))
@@ -458,7 +450,6 @@ void TraKmeterAudioProcessor::prepareToPlay(
                        24);
 
     meterBallistics_ = new MeterBallistics(numberOfChannels_,
-                                           crestFactor_,
                                            true,
                                            false);
 
@@ -735,8 +726,7 @@ void TraKmeterAudioProcessor::startValidation(
 
     audioFilePlayer_ = new AudioFilePlayer(fileAudio,
                                            (int) getSampleRate(),
-                                           meterBallistics_,
-                                           crestFactor_);
+                                           meterBallistics_);
 
     if (audioFilePlayer_->matchingSampleRates())
     {
@@ -799,32 +789,6 @@ MeterBallistics *TraKmeterAudioProcessor::getLevels()
 }
 
 
-int TraKmeterAudioProcessor::getCrestFactor()
-{
-    return crestFactor_;
-}
-
-
-void TraKmeterAudioProcessor::setCrestFactor(
-    const int crestFactor)
-{
-    if (crestFactor != crestFactor_)
-    {
-        crestFactor_ = crestFactor;
-
-        if (meterBallistics_)
-        {
-            meterBallistics_->setCrestFactor(crestFactor_);
-        }
-
-        if (audioFilePlayer_)
-        {
-            audioFilePlayer_->setCrestFactor(crestFactor_);
-        }
-    }
-}
-
-
 AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
 {
     //  meter ballistics are not updated when the editor is closed, so
@@ -835,7 +799,7 @@ AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
     }
 
     return new TraKmeterAudioProcessorEditor(
-               this, numberOfChannels_, crestFactor_);
+               this, numberOfChannels_);
 }
 
 

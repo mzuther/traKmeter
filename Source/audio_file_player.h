@@ -35,8 +35,7 @@ class AudioFilePlayer
 public:
     AudioFilePlayer(const File audioFile,
                     int sample_rate,
-                    MeterBallistics *meter_ballistics,
-                    int crest_factor);
+                    MeterBallistics *meter_ballistics);
 
     ~AudioFilePlayer();
 
@@ -45,7 +44,6 @@ public:
 
     void copyTo(AudioBuffer<float> &buffer);
 
-    void setCrestFactor(int crest_factor);
     void setReporters(int nChannel, bool ReportCSV,
                       bool bAverageMeterLevel, bool bPeakMeterLevel);
 
@@ -59,8 +57,6 @@ private:
     int nSamplesMovingAverage;
     int64 nNumberOfSamples;
     float fSampleRate;
-    float fCrestFactor;
-    float fMeterMinimumDecibel;
 
     int nNumberOfChannels;
     int nReportChannel;
@@ -86,7 +82,6 @@ private:
 
     void outputValue(const float fValue,
                      frut::math::Averager &averager,
-                     const float fCorrectionFactor,
                      const String &strPrefix,
                      const String &strSuffix);
 

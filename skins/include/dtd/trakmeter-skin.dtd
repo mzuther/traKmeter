@@ -1,6 +1,5 @@
 <!ENTITY % main_components
-          "button_k20,
-           button_recording_level_10,
+          "button_recording_level_10,
            button_recording_level_15,
            button_recording_level_20,
            button_skin,
@@ -11,8 +10,7 @@
 ">
 
 <!ENTITY % main_components_optional
-          "button_k20?,
-           button_recording_level_10?,
+          "button_recording_level_10?,
            button_recording_level_15?,
            button_recording_level_20?,
            button_skin?,
@@ -167,12 +165,8 @@
 ">
 
 <!ELEMENT trakmeter-skin (default,
-                       stereo?,
-                       stereo_k20_10, stereo_k20_15, stereo_k20_20,
-                       stereo_normal_10, stereo_normal_15, stereo_normal_20,
-                       multi?,
-                       multi_k20_10, multi_k20_15, multi_k20_20,
-                       multi_normal_10, multi_normal_15, multi_normal_20)>
+                       stereo?, stereo_10, stereo_15, stereo_20,
+                       multi?, multi_10, multi_15, multi_20)>
     <!ATTLIST trakmeter-skin
               name CDATA #REQUIRED
               orientation (vertical | horizontal) #REQUIRED
@@ -184,32 +178,20 @@
     <!ELEMENT default (%main_components;)>
 
     <!ELEMENT stereo (%main_components_optional;, %trakmeter_components_stereo;, %split_components_stereo;)>
+    <!ELEMENT stereo_10 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+    <!ELEMENT stereo_15 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+    <!ELEMENT stereo_20 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
+
     <!ELEMENT multi (%main_components_optional;, %trakmeter_components_multi;, %split_components_multi;)>
-
-    <!ELEMENT stereo_k20_10 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
-    <!ELEMENT stereo_k20_15 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
-    <!ELEMENT stereo_k20_20 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
-
-    <!ELEMENT stereo_normal_10 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
-    <!ELEMENT stereo_normal_15 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
-    <!ELEMENT stereo_normal_20 (%trakmeter_background;, %main_components_optional;, %split_components_stereo_optional;)>
-
-    <!ELEMENT multi_k20_10 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
-    <!ELEMENT multi_k20_15 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
-    <!ELEMENT multi_k20_20 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
-
-    <!ELEMENT multi_normal_10 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
-    <!ELEMENT multi_normal_15 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
-    <!ELEMENT multi_normal_20 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
+    <!ELEMENT multi_10 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
+    <!ELEMENT multi_15 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
+    <!ELEMENT multi_20 (%trakmeter_background;, %main_components_optional;, %split_components_multi_optional;)>
 
         <!ELEMENT background (#PCDATA)>
             <!ATTLIST background %attrs_background;>
 
         <!ELEMENT meter_graduation (#PCDATA)>
             <!ATTLIST meter_graduation %attrs_meter_graduation;>
-
-        <!ELEMENT button_k20 (#PCDATA)>
-            <!ATTLIST button_k20 %attrs_button;>
 
         <!ELEMENT button_recording_level_10 (#PCDATA)>
             <!ATTLIST button_recording_level_10 %attrs_button;>

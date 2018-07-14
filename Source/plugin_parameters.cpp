@@ -36,17 +36,6 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     // parameters created here will be deleted in
     // "frut::parameters::Juggler"!
 
-    frut::parameters::ParSwitch *ParameterCrestFactor =
-        new frut::parameters::ParSwitch();
-    ParameterCrestFactor->setName("Crest factor");
-
-    ParameterCrestFactor->addPreset(0.0f,  "0 dB (digital full-scale)");
-    ParameterCrestFactor->addPreset(20.0f, "20 dB (K-20 scale)");
-
-    ParameterCrestFactor->setDefaultRealFloat(20.0f, true);
-    add(ParameterCrestFactor, selCrestFactor);
-
-
     frut::parameters::ParSwitch *ParameterTargetRecordingLevel =
         new frut::parameters::ParSwitch();
     ParameterTargetRecordingLevel->setName("Target recording level");
@@ -55,7 +44,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     ParameterTargetRecordingLevel->addPreset(-15.0f, "-15 dB FS peak");
     ParameterTargetRecordingLevel->addPreset(-20.0f, "-20 dB FS peak");
 
-    ParameterTargetRecordingLevel->setDefaultRealFloat(-10.0f, true);
+    ParameterTargetRecordingLevel->setDefaultRealFloat(-15.0f, true);
     add(ParameterTargetRecordingLevel, selTargetRecordingLevel);
 
 

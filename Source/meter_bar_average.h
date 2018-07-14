@@ -34,8 +34,7 @@ class MeterBarAverage :
 {
 public:
     using frut::widgets::MeterBar::create;
-    void create(int crestFactor,
-                float autoFadeFactor,
+    void create(float autoFadeFactor,
                 frut::widgets::Orientation orientation,
                 bool discreteMeter,
                 int targetRecordingLevel,
