@@ -92,8 +92,17 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     ButtonCrestFactor.addListener(this);
     addAndMakeVisible(ButtonCrestFactor);
 
-    ButtonRecordingLevel.addListener(this);
-    addAndMakeVisible(ButtonRecordingLevel);
+    ButtonRecordingLevel_10.setRadioGroupId(1);
+    ButtonRecordingLevel_10.addListener(this);
+    addAndMakeVisible(ButtonRecordingLevel_10);
+
+    ButtonRecordingLevel_15.setRadioGroupId(1);
+    ButtonRecordingLevel_15.addListener(this);
+    addAndMakeVisible(ButtonRecordingLevel_15);
+
+    ButtonRecordingLevel_20.setRadioGroupId(1);
+    ButtonRecordingLevel_20.addListener(this);
+    addAndMakeVisible(ButtonRecordingLevel_20);
 
     ButtonReset.addListener(this);
     addAndMakeVisible(ButtonReset);
@@ -189,8 +198,12 @@ void TraKmeterAudioProcessorEditor::applySkin()
 
     skin.placeAndSkinButton("button_k20",
                             &ButtonCrestFactor);
-    skin.placeAndSkinButton("button_recording_level",
-                            &ButtonRecordingLevel);
+    skin.placeAndSkinButton("button_recording_level_10",
+                            &ButtonRecordingLevel_10);
+    skin.placeAndSkinButton("button_recording_level_15",
+                            &ButtonRecordingLevel_15);
+    skin.placeAndSkinButton("button_recording_level_20",
+                            &ButtonRecordingLevel_20);
 
     skin.placeAndSkinButton("button_reset",
                             &ButtonReset);
@@ -326,10 +339,32 @@ void TraKmeterAudioProcessorEditor::updateParameter(
     {
         int recordingLevel = audioProcessor->getRealInteger(
                                  TraKmeterPluginParameters::selTargetRecordingLevel);
-        ButtonRecordingLevel.setToggleState(recordingLevel == -20, dontSendNotification);
 
-        // will also apply skin to plug-in editor
-        needsMeterReload = true;
+        if (recordingLevel == -10)
+        {
+            ButtonRecordingLevel_10.setToggleState(true, dontSendNotification);
+
+            // will also apply skin to plug-in editor
+            needsMeterReload = true;
+        }
+        else if (recordingLevel == -15)
+        {
+            ButtonRecordingLevel_15.setToggleState(true, dontSendNotification);
+
+            // will also apply skin to plug-in editor
+            needsMeterReload = true;
+        }
+        else if (recordingLevel == -20)
+        {
+            ButtonRecordingLevel_20.setToggleState(true, dontSendNotification);
+
+            // will also apply skin to plug-in editor
+            needsMeterReload = true;
+        }
+        else
+        {
+            DBG("[K-Meter] invalid recording level");
+        }
     }
     break;
     }
@@ -403,19 +438,27 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
     else if (button == &ButtonCrestFactor)
     {
         audioProcessor->changeParameter(TraKmeterPluginParameters::selCrestFactor, !button->getToggleState());
-
-        // will also apply skin to plug-in editor
-        needsMeterReload = true;
-        reloadMeters();
     }
-    else if (button == &ButtonRecordingLevel)
+    else if (button == &ButtonRecordingLevel_10)
     {
-        float recordingLevel = button->getToggleState() ? 0.0f : 1.0f;
-        audioProcessor->changeParameter(TraKmeterPluginParameters::selTargetRecordingLevel, recordingLevel);
-
-        // will also apply skin to plug-in editor
-        needsMeterReload = true;
-        reloadMeters();
+        audioProcessor->changeParameter(
+            TraKmeterPluginParameters::selTargetRecordingLevel,
+            TraKmeterPluginParameters::selRecordingLevel_10 /
+            float(TraKmeterPluginParameters::nNumRecordingLevels - 1));
+    }
+    else if (button == &ButtonRecordingLevel_15)
+    {
+        audioProcessor->changeParameter(
+            TraKmeterPluginParameters::selTargetRecordingLevel,
+            TraKmeterPluginParameters::selRecordingLevel_15 /
+            float(TraKmeterPluginParameters::nNumRecordingLevels - 1));
+    }
+    else if (button == &ButtonRecordingLevel_20)
+    {
+        audioProcessor->changeParameter(
+            TraKmeterPluginParameters::selTargetRecordingLevel,
+            TraKmeterPluginParameters::selRecordingLevel_20 /
+            float(TraKmeterPluginParameters::nNumRecordingLevels - 1));
     }
     else if (button == &ButtonSkin)
     {

@@ -57,6 +57,12 @@ public:
         selSkinName,
 
         numberOfParametersComplete,
+
+        selRecordingLevel_10 = 0,
+        selRecordingLevel_15,
+        selRecordingLevel_20,
+
+        nNumRecordingLevels,
     };
 
 private:

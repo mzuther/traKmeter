@@ -76,6 +76,10 @@ void Skin::updateSkin(int numberOfChannels,
     {
         currentGroupName_ += "_20";
     }
+    else if (targetRecordingLevel == -15)
+    {
+        currentGroupName_ += "_15";
+    }
     else
     {
         Logger::outputDebugString("[Skin] invalid target recording level");

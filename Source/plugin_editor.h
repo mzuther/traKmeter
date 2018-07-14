@@ -85,7 +85,9 @@ private:
     ImageButton ButtonReset;
 
     ImageButton ButtonCrestFactor;
-    ImageButton ButtonRecordingLevel;
+    ImageButton ButtonRecordingLevel_10;
+    ImageButton ButtonRecordingLevel_15;
+    ImageButton ButtonRecordingLevel_20;
 
     ImageButton ButtonSkin;
     ImageButton ButtonValidation;
