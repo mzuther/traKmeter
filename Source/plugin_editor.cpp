@@ -506,9 +506,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
 #ifdef LINUX
             L"ALSA\n"
 #endif
-#if JUCE_ASIO
-            L"ASIO\n"
-#endif
 #ifdef LINUX
             L"FreeType\n"
             L"JACK\n"
@@ -534,13 +531,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         arrChapters.set(
             "Trademarks",
             L"VST PlugIn Technology by Steinberg Media Technologies\n");
-#endif
-
-#if JUCE_ASIO
-        // display trademarks (but only when necessary)
-        arrChapters.set(
-            "Trademarks",
-            L"ASIO Driver Technology by Steinberg Media Technologies\n");
 #endif
 
         arrChapters.set(

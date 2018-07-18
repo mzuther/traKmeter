@@ -12,9 +12,9 @@ v2.4.1 (2018-06-15)
 
 * re-factored and optimized code
 
-* updated JUCE framework to 5.3.2
+* updated JUCE framework
 
-* updated VST library to 3.6.8
+* updated libraries
 
 * show CPU information on start-up
 
@@ -39,9 +39,9 @@ v2.4.0 (2018-02-10)
 
 * re-factored code
 
-* updated JUCE framework to 5.1.2
+* updated JUCE framework
 
-* updated VST library to 3.6.7
+* updated libraries
 
 * use Clang on Linux (C++14)
 
@@ -60,7 +60,7 @@ v2.3.0 (2017-02-12)
 
 * re-structured, reviewed and beautified code
 
-* updated JUCE framework to 4.3.1
+* updated JUCE framework
 
 * updated libraries and tools
 
@@ -81,7 +81,7 @@ v2.0.0 (2015-12-24)
 
 * moved skins and documentation to subdirectory "trakmeter"
 
-* updated framework to JUCE v3.2.0
+* updated JUCE framework
 
 * simplified packaging
 
@@ -129,7 +129,7 @@ v1.06 (2015-02-02)
 
 * LV2: renamed debug versions
 
-* updated framework to JUCE 3.1.1
+* updated JUCE framework
 
 
 
@@ -144,7 +144,7 @@ v1.05 (2013-05-30)
 
 * validation: full re-calibration
 
-* updated framework to JUCE v2.40
+* updated JUCE framework
 
 
 
