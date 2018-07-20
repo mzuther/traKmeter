@@ -146,16 +146,11 @@ solution "traKmeter"
 			"JUCE_USE_VSTSDK_2_4=0"
 		}
 
-		includedirs {
-			"../libraries/asiosdk2.2/common"
-		}
-
 		configuration {"windows"}
 			defines {
 				"JUCE_USE_XSHM=0",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
-				"JUCE_ASIO=1",
 				"JUCE_WASAPI=1",
 				"JUCE_DIRECTSOUND=1"
 			}
@@ -179,16 +174,11 @@ solution "traKmeter"
 			"JUCE_USE_VSTSDK_2_4=0"
 		}
 
-		includedirs {
-			"../libraries/asiosdk2.2/common"
-		}
-
 		configuration {"windows"}
 			defines {
 				"JUCE_USE_XSHM=0",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
-				"JUCE_ASIO=1",
 				"JUCE_WASAPI=1",
 				"JUCE_DIRECTSOUND=1"
 			}
@@ -231,7 +221,6 @@ solution "traKmeter"
 				"JUCE_USE_XSHM=0",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
 				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
@@ -274,7 +263,6 @@ solution "traKmeter"
 				"JUCE_USE_XSHM=0",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
 				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}

@@ -73,12 +73,12 @@ solution "trakmeter"
 	configuration { "Debug*" }
 		defines { "_DEBUG=1", "DEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=1" }
 		flags { "Symbols", "ExtraWarnings" }
-		buildoptions { "-fno-inline", "-ggdb", "-std=c++11" }
+		buildoptions { "-DHAVE_LROUND", "-fno-inline", "-ggdb", "-std=c++11" }
 
 	configuration { "Release*" }
 		defines { "NDEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=0" }
 		flags { "OptimizeSpeed", "NoFramePointer", "ExtraWarnings" }
-		buildoptions { "-fvisibility=hidden", "-pipe", "-std=c++11" }
+		buildoptions { "-DHAVE_LROUND", "-fvisibility=hidden", "-pipe", "-std=c++11" }
 
 	configuration { "Debug", "x32" }
 		targetsuffix "_debug"
@@ -112,7 +112,6 @@ solution "trakmeter"
 				"JUCE_USE_XSHM=1",
 				"JUCE_ALSA=1",
 				"JUCE_JACK=1",
-				"JUCE_ASIO=0",
 				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
@@ -159,7 +158,6 @@ solution "trakmeter"
 				"JUCE_USE_XSHM=1",
 				"JUCE_ALSA=1",
 				"JUCE_JACK=1",
-				"JUCE_ASIO=0",
 				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
@@ -215,7 +213,6 @@ solution "trakmeter"
 				"JUCE_USE_XSHM=1",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
 				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
@@ -270,7 +267,6 @@ solution "trakmeter"
 				"JUCE_USE_XSHM=1",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
 				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
@@ -329,7 +325,6 @@ solution "trakmeter"
 				"JUCE_USE_XSHM=1",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
 				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}
@@ -388,7 +383,6 @@ solution "trakmeter"
 				"JUCE_USE_XSHM=1",
 				"JUCE_ALSA=0",
 				"JUCE_JACK=0",
-				"JUCE_ASIO=0",
 				"JUCE_WASAPI=0",
 				"JUCE_DIRECTSOUND=0"
 			}

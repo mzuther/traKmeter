@@ -19,7 +19,7 @@
 		</ProjectConfiguration>
 	</ItemGroup>
 	<PropertyGroup Label="Globals">
-		<ProjectGuid>{5324FAA5-1F49-0987-02EA-85255B22C1AF}</ProjectGuid>
+		<ProjectGuid>{CC445CC0-9452-FD25-2C3D-C653E8CB20B7}</ProjectGuid>
 		<RootNamespace>trakmeter VST (Multi)</RootNamespace>
 		<Keyword>Win32Proj</Keyword>
 		<PlatformToolset>Windows7.1SDK</PlatformToolset>
@@ -93,7 +93,7 @@
 			<AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
 			<Optimization>Disabled</Optimization>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\vstsdk2.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<MinimalRebuild>false</MinimalRebuild>
 			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
 			<RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -104,7 +104,7 @@
 			<DebugInformationFormat>EditAndContinue</DebugInformationFormat>
 		</ClCompile>
 		<ResourceCompile>
-			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\vstsdk2.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ResourceCompile>
 		<Link>
@@ -123,7 +123,7 @@
 			<AdditionalOptions> %(AdditionalOptions)</AdditionalOptions>
 			<Optimization>Disabled</Optimization>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\vstsdk2.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<MinimalRebuild>false</MinimalRebuild>
 			<BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
 			<RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -134,7 +134,7 @@
 			<DebugInformationFormat>OldStyle</DebugInformationFormat>
 		</ClCompile>
 		<ResourceCompile>
-			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\vstsdk2.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ResourceCompile>
 		<Link>
@@ -153,7 +153,7 @@
 			<AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
 			<Optimization>MaxSpeed</Optimization>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\vstsdk2.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<MinimalRebuild>false</MinimalRebuild>
 			<StringPooling>true</StringPooling>
 			<RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -165,7 +165,7 @@
 			<OmitFramePointers>true</OmitFramePointers>
 		</ClCompile>
 		<ResourceCompile>
-			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\vstsdk2.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ResourceCompile>
 		<Link>
@@ -185,7 +185,7 @@
 			<AdditionalOptions>/Zi %(AdditionalOptions)</AdditionalOptions>
 			<Optimization>MaxSpeed</Optimization>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\vstsdk2.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<MinimalRebuild>false</MinimalRebuild>
 			<StringPooling>true</StringPooling>
 			<RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -197,7 +197,7 @@
 			<OmitFramePointers>true</OmitFramePointers>
 		</ClCompile>
 		<ResourceCompile>
-			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_ASIO=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+			<PreprocessorDefinitions>NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;TRAKMETER_VST_PLUGIN=1;TRAKMETER_MULTI=1;JUCE_USE_VSTSDK_2_4=1;JUCE_USE_XSHM=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
 			<AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\vstsdk2.4;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
 		</ResourceCompile>
 		<Link>
@@ -213,118 +213,118 @@
 		</Link>
 	</ItemDefinitionGroup>
 	<ItemGroup>
-		<ClInclude Include="..\..\..\Source\window_validation.h" />
+		<ClInclude Include="..\..\..\Source\meter_bar_peak.h" />
+		<ClInclude Include="..\..\..\Source\meter_signal_led.h" />
+		<ClInclude Include="..\..\..\Source\audio_file_player.h" />
 		<ClInclude Include="..\..\..\Source\meter_bar_average.h" />
 		<ClInclude Include="..\..\..\Source\trakmeter.h" />
 		<ClInclude Include="..\..\..\Source\overload_meter.h" />
-		<ClInclude Include="..\..\..\Source\meter_bar_peak.h" />
-		<ClInclude Include="..\..\..\Source\audio_file_player.h" />
-		<ClInclude Include="..\..\..\Source\plugin_parameters.h" />
-		<ClInclude Include="..\..\..\Source\skin.h" />
-		<ClInclude Include="..\..\..\Source\meter_signal_led.h" />
-		<ClInclude Include="..\..\..\Source\plugin_processor.h" />
 		<ClInclude Include="..\..\..\Source\meter_ballistics.h" />
+		<ClInclude Include="..\..\..\Source\plugin_processor.h" />
+		<ClInclude Include="..\..\..\Source\skin.h" />
+		<ClInclude Include="..\..\..\Source\window_validation.h" />
 		<ClInclude Include="..\..\..\Source\plugin_editor.h" />
+		<ClInclude Include="..\..\..\Source\plugin_parameters.h" />
 		<ClInclude Include="..\..\..\Source\common\mz_juce_common.h" />
+		<ClInclude Include="..\..\..\Source\common\skin\generic_skin.h" />
 		<ClInclude Include="..\..\..\Source\common\math\averager.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\generic_plugin_standalone.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\slider_continuous.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_about.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\generic_channel_slider.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\slider_combined.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\generic_meter_bar.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_skin.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\slider_switch.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\generic_horizontal_meter.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\generic_state_label.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\generic_meter_segment.h" />
-		<ClInclude Include="..\..\..\Source\common\widgets\resources\resources.h" />
 		<ClInclude Include="..\..\..\Source\common\audio\audio_ring_buffer.h" />
 		<ClInclude Include="..\..\..\Source\common\audio\dither.h" />
-		<ClInclude Include="..\..\..\Source\common\skin\generic_skin.h" />
 		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter.h" />
+		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_continuous.h" />
+		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_combined.h" />
+		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_string.h" />
+		<ClInclude Include="..\..\..\Source\common\parameter_juggler\parameter_juggler.h" />
 		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_boolean.h" />
 		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_switch.h" />
-		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_combined.h" />
-		<ClInclude Include="..\..\..\Source\common\parameter_juggler\parameter_juggler.h" />
-		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_continuous.h" />
-		<ClInclude Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_string.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_channel_slider.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_about.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\slider_continuous.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_plugin_standalone.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_horizontal_meter.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\slider_combined.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_state_label.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\slider_switch.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_window_skin.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_meter_bar.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\generic_meter_segment.h" />
+		<ClInclude Include="..\..\..\Source\common\widgets\resources\resources.h" />
 	</ItemGroup>
 	<ItemGroup>
-		<ClCompile Include="..\..\..\Source\plugin_processor.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\meter_bar_peak.cpp">
-		</ClCompile>
 		<ClCompile Include="..\..\..\Source\plugin_parameters.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\skin.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\main.cpp">
+		<ClCompile Include="..\..\..\Source\audio_file_player.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_bar_average.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\main.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\meter_signal_led.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\window_validation.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\meter_ballistics.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\plugin_editor.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\audio_file_player.cpp">
+		<ClCompile Include="..\..\..\Source\plugin_processor.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\trakmeter.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\overload_meter.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\math\averager.cpp">
+		<ClCompile Include="..\..\..\Source\skin.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\generic_horizontal_meter.cpp">
+		<ClCompile Include="..\..\..\Source\meter_bar_peak.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\slider_combined.cpp">
+		<ClCompile Include="..\..\..\Source\plugin_editor.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\slider_switch.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\generic_meter_segment.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\generic_window_skin.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\generic_window_about.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\slider_continuous.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\generic_channel_slider.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\generic_plugin_standalone.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\generic_state_label.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\generic_meter_bar.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\widgets\resources\resources.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\audio\audio_ring_buffer.cpp">
-		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\audio\dither.cpp">
+		<ClCompile Include="..\..\..\Source\meter_ballistics.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\skin\generic_skin.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_switch.cpp">
+		<ClCompile Include="..\..\..\Source\common\math\averager.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\parameter_juggler\parameter_juggler.cpp">
+		<ClCompile Include="..\..\..\Source\common\audio\dither.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\audio\audio_ring_buffer.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_switch.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_boolean.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter.cpp">
 		</ClCompile>
-		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_string.cpp">
-		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_combined.cpp">
 		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\parameter_juggler\parameter_juggler.cpp">
+		</ClCompile>
 		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_continuous.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\parameter_juggler\plugin_parameter_string.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_window_skin.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_horizontal_meter.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_window_about.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\slider_switch.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\slider_switch_linear_bar.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\slider_combined.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_meter_segment.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_state_label.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_plugin_standalone.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_meter_bar.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\slider_continuous.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\generic_channel_slider.cpp">
+		</ClCompile>
+		<ClCompile Include="..\..\..\Source\common\widgets\resources\resources.cpp">
 		</ClCompile>
 		<ClCompile Include="..\..\..\libraries\juce\modules\juce_audio_basics\juce_audio_basics.cpp">
 		</ClCompile>

@@ -441,13 +441,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(Button *button)
             L"VST PlugIn Technology by Steinberg\n");
 #endif
 
-#if (JUCE_ASIO != 0)
-        // display trademarks (but only when necessary)
-        arrChapters.set(
-            "Trademarks",
-            L"ASIO Technology by Steinberg Media Technologies GmbH\n");
-#endif
-
         arrChapters.set(
             "License",
             L"This program is free software: you can redistribute it "
