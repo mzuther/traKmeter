@@ -42,7 +42,8 @@ public:
 
     TraKmeter(int nNumChannels,
               int segment_height,
-              float autoFadeFactor,
+              float retainSignalFactor,
+              float newSignalFactor,
               bool discreteMeter,
               int targetRecordingLevel,
               const Array<Colour> &averageMeterColours,

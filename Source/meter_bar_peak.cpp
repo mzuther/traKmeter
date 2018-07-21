@@ -27,7 +27,8 @@
 
 
 void MeterBarPeak::create(
-    float autoFadeFactor,
+    float retainSignalFactor,
+    float newSignalFactor,
     frut::widgets::Orientation orientation,
     bool discreteMeter,
     int targetRecordingLevel,
@@ -82,7 +83,8 @@ void MeterBarPeak::create(
             addDiscreteSegment(
                 lowerThreshold * 0.1f,
                 thresholdDifference * 0.1f,
-                autoFadeFactor,
+                retainSignalFactor,
+                newSignalFactor,
                 hasHighestLevel,
                 segmentHeight,
                 spacingBefore,
