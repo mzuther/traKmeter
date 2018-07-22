@@ -532,7 +532,8 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         // display trademarks (but only when necessary)
         arrChapters.set(
             "Trademarks",
-            L"VST PlugIn Technology by Steinberg Media Technologies\n");
+            L"VST is a trademark of Steinberg Media Technologies GmbH, "
+            L"registered in Europe and other countries.\n");
 #endif
 
         arrChapters.set(
