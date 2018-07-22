@@ -25,9 +25,9 @@ call :CopyVst ^
 
 call :CopyVst ^
  "%vst3_32%" ^
- "vst/traKmeter (Stereo).vst3" ^
- "vst/traKmeter (Multi).vst3" ^
- "vst/trakmeter"
+ "vst3/traKmeter (Stereo).vst3" ^
+ "vst3/traKmeter (Multi).vst3" ^
+ "vst3/trakmeter"
 
 call :CopyVst ^
  "%vst2_64%" ^
@@ -37,9 +37,9 @@ call :CopyVst ^
 
 call :CopyVst ^
  "%vst3_64%" ^
- "vst/traKmeter (Stereo x64).vst3" ^
- "vst/traKmeter (Multi x64).vst3" ^
- "vst/trakmeter"
+ "vst3/traKmeter (Stereo x64).vst3" ^
+ "vst3/traKmeter (Multi x64).vst3" ^
+ "vst3/trakmeter"
 
 pause
 exit /b %errorlevel%
