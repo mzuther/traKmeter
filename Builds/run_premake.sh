@@ -2,11 +2,11 @@
 
 # ----------------------------------------------------------------------------
 #
-#  K-Meter
-#  =======
-#  Implementation of a K-System meter according to Bob Katz' specifications
+#  traKmeter
+#  =========
+#  Loudness meter for correctly setting up tracking and mixing levels
 #
-#  Copyright (c) 2010-2018 Martin Zuther (http://www.mzuther.de/)
+#  Copyright (c) 2012-2018 Martin Zuther (http://www.mzuther.de/)
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -40,5 +40,8 @@ premake5 --os=windows vs2017
 
 echo
 premake5 --cc=clang --os=linux gmake
+
+# echo
+# premake5 --cc=gcc --os=linux gmake
 
 echo
