@@ -68,20 +68,20 @@ to digital and \emph{vice versa} leads to additional degradation.
 Finally, changes in bit depth and sample rate, jitter and inter-sample
 peaks are nothing for the weak of heart.
 
-However, most of these obstacles can be overcome easily by proper gain
-staging, minimising the crossing of domains and choosing appropriate
-bit depths and sample rates.  If you also learn how to properly test
-and operate your equipment, you're well on your way to pure audio
-bliss \dots
+However, most of these obstacles can be easily overcome by proper gain
+staging, dithering, minimising the crossing of domains and choosing
+appropriate bit depths and sample rates.  If you also learn how to
+properly test and operate your equipment, you're well on your way to
+pure audio bliss \dots
 
 \section{Gain staging}
 \label{sec:gain_staging}
 
 Professional analog audio equipment is designed to be run at a nominal
 level of \textbf{\SI[retain-explicit-plus]{+4}{\dBu}}
-(\SI{1.23}{\VRMS}) and leaves a headroom for peaks of about
-\SI{20}{\dB}.  This in turn is consistent with the maximum crest
-factor of analog audio signals.
+(\SI{1.23}{\VRMS}) or below.  This leaves a headroom for peaks of at
+least \SI{20}{\dB} to the clipping point -- consistent with the
+maximum crest factor of analog audio signals.
 
 Thus, driving all analog audio equipment at
 \SI[retain-explicit-plus]{+4}{\dBu} ensures an optimal signal-to-noise
@@ -99,37 +99,33 @@ clipping.  Maybe even more important, this level also drives (most of)
 your digital audio equipment and plug-ins at their respective ``sweet
 spot''.
 
-Another recommendation (which many radio stations have been following
-for reasons outside the scope of this document) is that peak levels
-should not exceed \textbf{\SI{-9}{\dBFS}}.  For recording, this will
-leave enough space for sudden jumps in level and also for inter-sample
-peaks -- audio peaks that lie \emph{in between} two successive samples
-and may lead to unpredictable clipping during digital-to-analog
-conversion.
+Another recommendation is that peak levels should not exceed
+\textbf{\SI{-10}{\dBFS}}.  This will leave enough space for sudden
+jumps in level and for inter-sample peaks -- audio peaks that lie
+\emph{in between} two successive samples and may lead to unpredictable
+clipping during digital-to-analog conversion.
 
-Some analog-to-digital converters also degrade audio when fed with
-input levels close to digital full-scale (\SI{0}{\dBFS}), resulting in
-the ``harshness'' often attributed to digital audio -- my first sound
-card definitely suffered from this.  So lowering your input levels as
-described above may also improve your overall sound.
+Keeping input peak levels low will also improve the sound of
+less-than-ideal analog-to-digital converters.  Such converters degrade
+audio when fed with input levels close to digital full-scale
+(\SI{0}{\dBFS}), resulting in the ``harshness'' that is often
+attributed to digital audio.  My first ``prosumer'' sound card
+definitely suffered from this \dots
 
-Finally, we'll emphasise the newly designated headroom and shift the
-meter scales by \SI[retain-explicit-plus]{+20}{\dB}.  Thus, the
-optimal average audio level is designated \textbf{\SI{0}{\dB} RMS},
-while the maximum peak audio level becomes
-\textbf{\SI[retain-explicit-plus]{+11}{\dB}}.  As a nice side effect,
-our new scale corresponds to Bob Katz's
-\textbf{\href{http://www.digido.com/level-practices-part-2-includes-the-k-system.html}{K-20
-    scale}}.
+Lower recording levels also simplify the initial setup of a mixing
+session.
+
+Taken together, proper gain staging instantly lead me to better
+recordings and better mixes!
 
 \section{Digital audio myths}
 \label{sec:digital_audio_myths}
 
 I can almost hear you: you have heard that digital recordings should
 be performed at peak levels close to but not exceeding \SI{0}{\dBFS}
-(digital full-scale).  Heck, this misinformation has ended up in the
-manuals of some professional audio equipment.  But for the reasons
-given above it is plain wrong.
+(digital full-scale).  Unfortunately, this misinformation has ended up
+in lots of manuals for professional audio equipment.  But for the
+reasons given above it is plain wrong.
 
 Let's look at a worst-case scenario: even if your recordings
 \emph{peak} at \SI{-20}{\dBFS} and you discard the least significant
@@ -139,26 +135,19 @@ of 16 bit would still leave you with a signal-to-noise ratio of
 professional analog tape machines and recording desks -- and we're not
 even talking of 24 bit.
 
-\begin{wrapfigure}{r}{0pt}
-\includegraphics[scale=0.24,clip]{include/images/level_meter_otari.png}
-\end{wrapfigure}
+To back me up, here are two Gearslutz posts regarding the
+\href{https://www.gearslutz.com/board/showpost.php?p=5063154&postcount=219}
+{\SI{-20}{\dBFS} RMS} and
+\href{https://www.gearslutz.com/board/showpost.php?p=10739624&postcount=9}{\SI{-10}{\dBFS}
+  peak} levels.  There is also a great
+\href{http://www.gearslutz.com/board/5062929-post1.html}{thread} well
+worth reading.  And the highly regarded manufacturer Harrison Audio
+recommends a maximum recording level of
+\href{http://www.harrisonconsoles.com/mixbus/mixbus4-live-manual/1/en/topic/gain-staging}{\SI{-15}{\dBFS}
+  peak} for the Mixbus DAW.
 
-If you don't believe me yet, take a look at my professional 16-bit
-hard disk recorder (Otari PD-80): its analog inputs and outputs are
-aligned to ``\SI[retain-explicit-plus]{+4}{\dBu}
-(\textbf{\SI{-15}{\dB}} from digital full-scale)''.  The manufacturer
-has even marked this level on the meter bridge (small triangle on the
-photo).  Although I admit that the mark is only useful for audio
-alignment, given that it sits on a peak meter \dots
 
-There is also a great thread over at Gearslutz (``The Reason Most ITB
-mixes don’t Sound as good as Analog mixes'') well worth reading.  Here
-are links to the
-\href{http://www.gearslutz.com/board/5062929-post1.html}{first post}
-and two other selected posts
-(\href{http://www.gearslutz.com/board/5064831-post1874.html}{\#1874}
-and
-\href{http://www.gearslutz.com/board/5609740-post3614.html}{\#3614}).
+
 
 \section{Introducing traKmeter}
 \label{sec:introducing_trakmeter}
