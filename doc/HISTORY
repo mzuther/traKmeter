@@ -7,6 +7,8 @@ HEAD
 
 * changed target recording levels (-10 / -15 / -20 dB FS)
 
+* changed meter bar display
+
 * extended meter bar scales
 
 * removed transient mode
