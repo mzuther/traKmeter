@@ -70,96 +70,89 @@ peaks are nothing for the weak of heart.
 
 However, most of these obstacles can be easily overcome by proper gain
 staging, dithering, minimising the crossing of domains and choosing
-appropriate bit depths and sample rates.  If you also learn how to
-properly test and operate your equipment, you're well on your way to
-pure audio bliss \dots
+appropriate bit depths and sample rates.  And if you carefully choose,
+test and operate your equipment, you're well on your way to pure audio
+bliss \dots
 
 \section{Gain staging}
 \label{sec:gain_staging}
 
-Professional analog audio equipment is designed to be run at a nominal
-level of \textbf{\SI[retain-explicit-plus]{+4}{\dBu}}
-(\SI{1.23}{\VRMS}) or below.  This leaves a headroom for peaks of at
-least \SI{20}{\dB} to the clipping point -- consistent with the
-maximum crest factor of analog audio signals.
-
-Thus, driving all analog audio equipment at
-\SI[retain-explicit-plus]{+4}{\dBu} ensures an optimal signal-to-noise
-ratio while preventing clipping and keeping all transients intact.
 The process of setting audio devices to run at optimal input and
 output levels is called \emph{gain staging}.
 
-Now let's transfer this to the digital domain.  As the maximum crest
-factor of analog audio signals amounts to \SI{20}{\dB}, we'll adjust
-the headroom accordingly by setting our average input and output
-levels to \textbf{\SI{-20}{\dBFS} RMS}.
+Professional analog audio equipment is designed to be run at a nominal
+level of \textbf{\SI[retain-explicit-plus]{+4}{\dBu}}
+(\SI{1.23}{\VRMS}).  This leaves a headroom for peaks of at least
+\SI{20}{\dB} to the clipping point.  Thus, driving all analog audio
+equipment at \SI[retain-explicit-plus]{+4}{\dBu} ensures an optimal
+signal-to-noise ratio while preventing clipping and keeping all
+transients intact.
 
-Again, this ensures a good signal-to-noise ratio while preventing
-clipping.  Maybe even more important, this level also drives (most of)
-your digital audio equipment and plug-ins at their respective ``sweet
-spot''.
+Now let's transfer this to the digital domain.  We'll adjust the
+headroom by setting our average input and output levels to
+\textbf{\SI{-20}{\dBFS} RMS}.  Again, this ensures a good
+signal-to-noise ratio while preventing clipping.  In addition, this
+level drives your outboard equipment and most of your plug-ins at
+their respective ``sweet spot''.
 
-Another recommendation is that peak levels should not exceed
-\textbf{\SI{-10}{\dBFS}}.  This will leave enough space for sudden
-jumps in level and for inter-sample peaks -- audio peaks that lie
-\emph{in between} two successive samples and may lead to unpredictable
-clipping during digital-to-analog conversion.
+There is another thing to consider: digital peak levels should not
+exceed \textbf{\SI{-10}{\dBFS}}.  This will leave enough space for
+sudden jumps in level and for inter-sample peaks -- audio peaks that
+lie \emph{in-between} two successive samples and can lead to clipping
+during digital-to-analog conversion.
 
-Keeping input peak levels low will also improve the sound of
-less-than-ideal analog-to-digital converters.  Such converters degrade
-audio when fed with input levels close to digital full-scale
-(\SI{0}{\dBFS}), resulting in the ``harshness'' that is often
-attributed to digital audio.  My first ``prosumer'' sound card
-definitely suffered from this \dots
+Keeping input peak levels low may also improve the sound of mediocre
+analog-to-digital converters.  Such converters can degrade audio when
+fed with input levels close to digital full-scale (\SI{0}{\dBFS}),
+resulting in the ``harshness'' that is often attributed to digital
+audio.  My first \emph{prosumer} sound card definitely suffered from
+this \dots
 
-Lower recording levels also simplify the initial setup of a mixing
-session.
-
-Taken together, proper gain staging instantly lead me to better
-recordings and better mixes!
+Speaking of me, once I transitioned to proper gain staging, my
+recordings and mixes instantly got better.  If that is not worth some
+consideration, I don't know what is.
 
 \section{Digital audio myths}
 \label{sec:digital_audio_myths}
 
-I can almost hear you: you have heard that digital recordings should
-be performed at peak levels close to but not exceeding \SI{0}{\dBFS}
-(digital full-scale).  Unfortunately, this misinformation has ended up
-in lots of manuals for professional audio equipment.  But for the
-reasons given above it is plain wrong.
+I can almost hear you: digital recordings should be done at peak
+levels close to but not exceeding \SI{0}{\dBFS} (digital full-scale).
+Unfortunately, this misinformation has ended up in lots of manuals for
+professional audio equipment.  But for the reasons given above it is
+plain wrong.
 
 Let's look at a worst-case scenario: even if your recordings
 \emph{peak} at \SI{-20}{\dBFS} and you discard the least significant
-bit (some people claim that it mostly consists of errors), a bit depth
+bit (which mostly consists of errors and dithering noise), a bit depth
 of 16 bit would still leave you with a signal-to-noise ratio of
 \SI{70}{\dB}.  That is about what you can expect from some of the best
 professional analog tape machines and recording desks -- and we're not
 even talking of 24 bit.
 
-To back me up, here are two Gearslutz posts regarding the
-\href{https://www.gearslutz.com/board/showpost.php?p=5063154&postcount=219}
-{\SI{-20}{\dBFS} RMS} and
-\href{https://www.gearslutz.com/board/showpost.php?p=10739624&postcount=9}{\SI{-10}{\dBFS}
-  peak} levels.  There is also a great
+To back me up, here are two Gearslutz posts written by a renowned
+engineer:
+\href{https://www.gearslutz.com/board/showpost.php?p=10739624&postcount=9}{\#1}
+and
+\href{https://www.gearslutz.com/board/showpost.php?p=9909382&postcount=96}{\#2}.
+There is also a great
 \href{http://www.gearslutz.com/board/5062929-post1.html}{thread} well
 worth reading.  And the highly regarded manufacturer Harrison Audio
 recommends a maximum recording level of
 \href{http://www.harrisonconsoles.com/mixbus/mixbus4-live-manual/1/en/topic/gain-staging}{\SI{-15}{\dBFS}
   peak} for the Mixbus DAW.
 
-
-
-
 \section{Introducing traKmeter}
 \label{sec:introducing_trakmeter}
 
-Most digital audio equipment sadly only has peak meters.  This is
+Sadly, most digital audio equipment only has peak meters.  This is
 readily understandable as you want to avoid digital clippings by all
-means.  However, the lack of average meters makes correct gain staging
-almost impossible.
+means.  However, badly chosen meter ranges and scales often render
+these meters useless.  And the lack of average meters does not exactly
+facilitate gain staging.
 
-For gain staging, you need average meters or -- even better -- a
-combination of peak and average meters.  And this is were traKmeter
-comes in.
+At the moment I realised this, I started coding traKmeter.  It has
+evolved with my growing knowledge and recording experience, but the
+underlying ideas haven't changed at all.
 
 \chapter{traKmeter}
 \label{chap:trakmeter}
