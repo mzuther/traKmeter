@@ -15,7 +15,7 @@
         tracking and mixing levels
         \vfill
         \vspace{1.5em}
-        \includegraphics[scale=0.45,clip]{include/images/trakmeter.png}
+        \includegraphics[scale=0.375,clip]{include/images/trakmeter.png}
         \vfill
       }}}
 }
@@ -88,25 +88,30 @@ equipment at \SI[retain-explicit-plus]{+4}{\dBu} ensures an optimal
 signal-to-noise ratio while preventing clipping and keeping all
 transients intact.
 
-Now let's transfer this to the digital domain.  We'll adjust the
-headroom by setting our average input and output levels to
+Now let's transfer this to the digital domain.  First, choose a
+\href{https://www.digido.com/portfolio-item/level-practices-part-1/}{sane
+  analogue reference level} for your converter (for me,
+\SI[retain-explicit-plus]{+4}{\dBu} = \SI{0}{VU} = \SI{-15}{\dBFS}
+works well).  Then, record with an average input level of
 \textbf{\SI{-20}{\dBFS} RMS}.  Again, this ensures a good
 signal-to-noise ratio while preventing clipping.  In addition, this
 level drives your outboard equipment and most of your plug-ins at
 their respective ``sweet spot''.
 
-There is another thing to consider: digital peak levels should not
-exceed \textbf{\SI{-10}{\dBFS}}.  This will leave enough space for
-sudden jumps in level and for inter-sample peaks -- audio peaks that
-lie \emph{in-between} two successive samples and can lead to clipping
+I also recommend that digital recording levels should not peak above
+\textbf{\SI{-10}{\dBFS}}.  This will leave enough space for sudden
+jumps in level and for inter-sample peaks -- audio peaks that lie
+\emph{in-between} two successive samples and can lead to clipping
 during digital-to-analog conversion.
 
-Keeping input peak levels low may also improve the sound of mediocre
-analog-to-digital converters.  Such converters can degrade audio when
-fed with input levels close to digital full-scale (\SI{0}{\dBFS}),
-resulting in the ``harshness'' that is often attributed to digital
-audio.  My first \emph{prosumer} sound card definitely suffered from
-this \dots
+Keeping peak levels low may also improve the sound of your
+analog-to-digital converters.  Many converters degrade audio when fed
+with levels close to digital full-scale (\SI{0}{\dBFS}), resulting in
+the ``harshness'' that is often attributed to digital audio.
+
+Try this experiment: record a sine wave and increase its level while
+checking the input with a spectrum meter.  It is quite possible that
+overtones appear at levels way below the clipping point.
 
 Speaking of me, once I transitioned to proper gain staging, my
 recordings and mixes instantly got better.  If that is not worth some
@@ -127,7 +132,7 @@ bit (which mostly consists of errors and dithering noise), a bit depth
 of 16 bit would still leave you with a signal-to-noise ratio of
 \SI{70}{\dB}.  That is about what you can expect from some of the best
 professional analog tape machines and recording desks -- and we're not
-even talking of 24 bit.
+even talking of 24 bits!
 
 To back me up, here are two Gearslutz posts written by a renowned
 engineer:
@@ -158,7 +163,7 @@ underlying ideas haven't changed at all.
 \label{chap:trakmeter}
 
 \begin{wrapfigure}{r}{0.21\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_complete.png}
+\includegraphics[scale=0.69,clip]{include/images/level_meter_complete.png}
 \end{wrapfigure}
 
 traKmeter consists of two meters, a peak meter on top and an average
@@ -166,21 +171,19 @@ meter below.  The meters are separated by an orange signal LED and
 consist of an area of green LEDs that is enclosed by either blue ones
 (lower levels) or yellow and then red ones (higher levels).
 
-You may have noticed that the average meter's green area is centred
-around the \textbf{\SI{0}{\dB} RMS} mark.  This number should be
-vaguely familiar.  Remember, it corresponds to \SI{-20}{\dBFS} RMS,
-the level we have determined to be the optimal average audio level in
-the digital domain.
+You may have noticed that the \textbf{average} meter's green area is
+centred around the \textbf{\SI{-20}{\dBFS}} mark.  This number should
+be vaguely familiar.  Remember, this is the level we have determined
+to be the optimal average recording level in the digital domain.
 
-The highest green LED on the peak meter's top end corresponds to a
-level of \textbf{\SI[retain-explicit-plus]{+11}{\dB}} (or
-\SI{-9}{\dBFS}).  Again, this number should be familiar: during
-digital recording, peak levels shouldn't exceed this level.
+The highest yellow LED on the \textbf{peak} meter's top end
+corresponds to a level of \textbf{\SI{-10}{\dBFS}}.  Again, this
+number should be familiar: peak levels shouldn't exceed this level in
+digital recordings.
 
-Thus, by keeping the meter's readout in the green areas and from
-entering the yellow and especially the red areas on top of each meter,
-you will automatically track at optimal audio levels.  It's as simple
-as that!
+Thus, by keeping the meter's readout \textbf{in the green} areas and
+\textbf{out of the red} areas, you will automatically track at optimal
+audio levels.  It's as simple as that!
 
 \section{Tracking with traKmeter}
 \label{sec:tracking_with_trakmeter}
@@ -197,44 +200,36 @@ before traKmeter.  This can be ascertained by feeding calibration
 tones into your sound card or by directly comparing the readouts of
 stand-alone and plug-in version.
 
-\begin{wrapfigure}{r}{0.45\linewidth}
-\includegraphics[scale=0.45,clip]{include/images/trakmeter_optimal.png}
+\begin{wrapfigure}{r}{0.425\linewidth}
+\includegraphics[scale=0.425,clip]{include/images/trakmeter_optimal.png}
 \end{wrapfigure}
 
 Now, feed the signal you want to record into an audio input channel
 and adjust its level (in the analog domain!) using traKmeter.  Try to
 set the input level so that it falls into the average meter's
-\textbf{\SI{0}{\dB} RMS} area.  Make sure that peak levels very rarely
-(if ever) exceed \textbf{\SI[retain-explicit-plus]{+11}{\dB}}.  In
-case both conditions cannot be met simultaneously, adjust the peak
-level only.  See the image to the right for a visual clue.
+\textbf{\SI{-20}{\dBFS}} area.  Make sure that peak levels very rarely
+(if ever) exceed \textbf{\SI{+10}{\dBFS}}.  In case both conditions
+cannot be met simultaneously, adjust the peak level only.  See the
+image to the right for a visual clue.
 
 \section{Mixing with traKmeter}
 \label{sec:mixing_with_trakmeter}
 
 When you get someone else's tracks for mixing, chances are that they
 have been recorded far too hot.  While you can't change that, you
-might want to adjust them to optimal loudness so that your upcoming
-mix is not ruined.
+might want to adjust them to optimal loudness using traKmeter so that
+your upcoming mix is not ruined.
 
-\emph{If the original recordings were made with poor equipment and you
-  have got the time, it may well be worth to \textbf{re-record} all
-  tracks through a really good preamp and adjust their loudness at the
-  same time.  Depending on the preamp, the results can be stunning!}
-
-In any case, mixing levels will now be much lower than what you are
-used to.  This can easily be corrected by either adjusting the output
-gain of your subgroups or by inserting a gain plug-in in your master
-track.
+Mixing levels will now be much lower than what you are used to.  This
+can easily be corrected by either adjusting the output gain of your
+subgroups or by inserting a gain plug-in in your master track.
 
 To preserve all transients, the final loudness of your mix should stay
-within \textbf{\SI{-20}{\dBFS} RMS} and \textbf{\SI{-16}{\dBFS} RMS}
-(or between \textbf{\SI{0}{\dB} RMS} and
-\textbf{\SI[retain-explicit-plus]{+4}{\dB} RMS} on the K-20 scale).
-Remember that smashed transients will be gone forever, whereas you can
-always bring up the volume during mastering!  My plug-in
-\href{http://code.mzuther.de/}{\textbf{K-Meter}} and its K-20 scale
-may help you with setting up correct mixing levels.
+within a certain average level ranges.  My plug-in
+\href{http://code.mzuther.de/}{\textbf{K-Meter}} may help you with
+setting up correct mixing levels.  Remember that smashed transients
+will be gone forever, whereas you can always bring up the volume
+during mastering!
 
 \chapter{Installation}
 \label{chap:installation}
