@@ -102,26 +102,26 @@ The process of setting audio devices to run at optimal input and
 output levels is called \emph{gain staging}.
 
 Professional analogue audio equipment is designed to be run at a
-nominal level of \textbf{\SI[retain-explicit-plus]{+4}{\dBu}}.  This
-leaves a headroom for peaks of at least \SI{20}{\dB} to the clipping
+nominal level of \SI[retain-explicit-plus]{+4}{\dBu}.  This leaves a
+headroom for peaks of at least \textbf{\SI{20}{\dB}} to the clipping
 point.  Thus, driving all analogue audio equipment at
 \SI[retain-explicit-plus]{+4}{\dBu} ensures an optimal signal-to-noise
 ratio while preventing clipping and keeping all transients intact.
 
 Now let's transfer this to the digital domain.  First, choose an
-analogue reference level for your converter\footnote{For more
+analogue reference level for your converter.\footnote{For more
   information, see
   \href{https://www.digido.com/portfolio-item/level-practices-part-1/}{Level
     Practices (Part 1)} by Bob Katz.  A reference level of
   \SI[retain-explicit-plus]{+4}{\dBu} = \SI{-15}{\dBFS} works well for
-  me.}.  Then, record with an average input level of
+  me.}  Then, record with an average input level of
 \textbf{\SI{-20}{\dBFS} RMS}.  Again, this ensures a good
 signal-to-noise ratio while preventing clipping.  In addition, this
 level drives your outboard equipment and most of your plug-ins at
 their ``sweet spot''.
 
-I also recommend that digital recording levels should not register
-above \textbf{\SI{-10}{\dBFS} peak}.  This will leave enough space for
+I also recommend recording with a maximum level of
+\textbf{\SI{-10}{\dBFS} peak}.  This will leave enough space for
 sudden jumps in level and may also improve the sound of your
 recordings.  Some analogue-to-digital converters degrade audio when
 fed with levels close to digital full-scale (\SI{0}{\dBFS}), resulting
@@ -131,6 +131,18 @@ Try this experiment: record a sine wave and increase its level while
 checking the input with a spectrum meter.  It is quite possible that
 overtones appear at levels way below the clipping point.
 
+Gain staging doesn't stop here.  Set up your mixer so that channel
+levels are lower than subgroup levels, which in turn should be lower
+than the master output levels.  No clipping should occur anywhere in
+the mixer, which is especially important if you want to insert
+external analogue gear.\footnote{For mixer inserts, I recommend
+  maximum input and output levels of \textbf{\SI{-10}{\dBFS} peak} for
+  the same reasons mentioned above.}  Do not overload effects or
+plug-ins and (if possible) try to match their input and output
+volume.\footnote{Today, digital signal processors use floating-point
+  calculations and most handle clipping gracefully.  But I wouldn't
+  rely on that \dots}
+
 Speaking of me, once I transitioned to proper gain staging, my
 recordings and mixes got much better.  And apart from coding
 traKmeter, the effort involved was pretty small.
@@ -138,7 +150,7 @@ traKmeter, the effort involved was pretty small.
 \section{Digital audio myths}
 \label{sec:digital_audio_myths}
 
-I can almost hear you: digital recordings should be done at peak
+I can almost hear you: digital recordings should be made at peak
 levels close to but not exceeding \SI{0}{\dBFS}.  Unfortunately, this
 misinformation has ended up in many manuals for professional audio
 equipment.  But that doesn't make it any truer.
@@ -231,8 +243,7 @@ and adjust its level (in the analogue domain!) using traKmeter.  Try
 to set the input level so that it falls into the average meter's
 \textbf{\SI{-20}{\dBFS}} area.  Make sure that peak levels very rarely
 (if ever) exceed \textbf{\SI{-10}{\dBFS}}.  In case both conditions
-cannot be met simultaneously, adjust the peak level only.  See the
-image to the right for an example.
+cannot be met simultaneously, adjust the peak level only.
 
 \section{Mixing with traKmeter}
 \label{sec:mixing_with_trakmeter}
@@ -263,9 +274,10 @@ traKmeter files from the downloaded archive.  For the plug-ins, you'll
 then have to move the extracted files to your respective plug-in
 folder.
 
-On Windows, you might also have to install the
+traKmeter requires a processor which supports the SSE2 instruction
+set.  On Windows, you might also have to install the
 \href{https://www.visualstudio.com/downloads/}{Visual C++
-  Redistributable für Visual Studio 2017}.
+  Redistributable for Visual Studio 2017}.
 
 Should the stand-alone version ever fail to start, you can reset its
 settings by deleting \path{trakmeter_stereo.ini} or
@@ -287,24 +299,6 @@ settings by deleting \path{trakmeter_stereo.ini} or
 Click on this button to reset all meters.  This action will also
 reload the current skin and re-draw everything.
 
-\section{Crest factor button}
-\label{sec:crest_factor_button}
-
-\begin{wrapfigure}{r}{0.14\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_crest_factor_on.png}
-\newline \vspace{-0.9\baselineskip}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_crest_factor_off.png}
-\end{wrapfigure}
-
-When this button is pressed, meter readout uses the K-20 scale (crest
-factor of \SI{20}{\dB}).  Disengage the button to change to decibels
-relative to digital full-scale (crest factor of \SI{0}{\dB}).
-
-\emph{Please note that although this meter uses the K-20 scale, it is
-  by no means a K-System meter.}
-
-\newpage %% layout
-
 \section{Select a skin}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
@@ -316,6 +310,8 @@ relative to digital full-scale (crest factor of \SI{0}{\dB}).
 Click on this button to select the currently used traKmeter skin.  You
 can also set a default skin that will be loaded when new plug-ins are
 instantiated.
+
+\newpage %% layout
 
 \section{Validation button}
 \label{sec:validation_button}
