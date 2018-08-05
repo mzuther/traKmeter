@@ -74,6 +74,27 @@ appropriate bit depths and sample rates.  And if you carefully choose,
 test and operate your equipment, you're well on your way to pure audio
 bliss \dots
 
+\section{Definitions}
+\label{sec:definitions}
+
+\begin{tabular}{p{0.325 \textwidth}p{0.575 \textwidth}}
+
+  \textbf{RMS} \newline
+  \emph{root mean square} &
+  statistical method used for calculating an average from alternating
+  values \\[0.5em]
+
+  \textbf{\si{dBu}} \newline
+  \emph{unloaded decibel} &
+  analogue level ratio with a reference level of \SI{0.7746}{\VRMS} \\[0.5em]
+
+  \textbf{\si{dBFS}} \newline
+  \emph{decibel relative to digital full-scale} &
+  digital level ratio with a reference level equal to the maximum
+  representable value in a system \\[0.25em]
+
+\end{tabular}
+
 \section{Gain staging}
 \label{sec:gain_staging}
 
@@ -81,31 +102,28 @@ The process of setting audio devices to run at optimal input and
 output levels is called \emph{gain staging}.
 
 Professional analogue audio equipment is designed to be run at a
-nominal level of \textbf{\SI[retain-explicit-plus]{+4}{\dBu}}
-(\SI{1.23}{\VRMS}).  This leaves a headroom for peaks of at least
-\SI{20}{\dB} to the clipping point.  Thus, driving all analogue audio
-equipment at \SI[retain-explicit-plus]{+4}{\dBu} ensures an optimal
-signal-to-noise ratio while preventing clipping and keeping all
-transients intact.
+nominal level of \textbf{\SI[retain-explicit-plus]{+4}{\dBu}}.  This
+leaves a headroom for peaks of at least \SI{20}{\dB} to the clipping
+point.  Thus, driving all analogue audio equipment at
+\SI[retain-explicit-plus]{+4}{\dBu} ensures an optimal signal-to-noise
+ratio while preventing clipping and keeping all transients intact.
 
-Now let's transfer this to the digital domain.  First, choose a
-\href{https://www.digido.com/portfolio-item/level-practices-part-1/}{sane
-  analogue reference level} for your converter (for me,
-\SI[retain-explicit-plus]{+4}{\dBu} = \SI{0}{VU} = \SI{-15}{\dBFS}
-works well).  Then, record with an average input level of
+Now let's transfer this to the digital domain.  First, choose an
+analogue reference level for your converter\footnote{For more
+  information, see
+  \href{https://www.digido.com/portfolio-item/level-practices-part-1/}{Level
+    Practices (Part 1)} by Bob Katz.  A reference level of
+  \SI[retain-explicit-plus]{+4}{\dBu} = \SI{-15}{\dBFS} works well for
+  me.}.  Then, record with an average input level of
 \textbf{\SI{-20}{\dBFS} RMS}.  Again, this ensures a good
 signal-to-noise ratio while preventing clipping.  In addition, this
 level drives your outboard equipment and most of your plug-ins at
-their respective ``sweet spot''.
+their ``sweet spot''.
 
-I also recommend that digital recording levels should not peak above
-\textbf{\SI{-10}{\dBFS}}.  This will leave enough space for sudden
-jumps in level and for inter-sample peaks -- audio peaks that lie
-\emph{in-between} two successive samples and can lead to clipping
-during digital-to-analogue conversion.
-
-Keeping peak levels low may also improve the sound of your
-analogue-to-digital converters.  Some converters degrade audio when
+I also recommend that digital recording levels should not register
+above \textbf{\SI{-10}{\dBFS} peak}.  This will leave enough space for
+sudden jumps in level and may also improve the sound of your
+recordings.  Some analogue-to-digital converters degrade audio when
 fed with levels close to digital full-scale (\SI{0}{\dBFS}), resulting
 in the ``harshness'' that is often attributed to digital audio.
 
@@ -121,12 +139,11 @@ traKmeter, the effort involved was pretty small.
 \label{sec:digital_audio_myths}
 
 I can almost hear you: digital recordings should be done at peak
-levels close to but not exceeding \SI{0}{\dBFS} (decibel relative to
-digital full-scale).  Unfortunately, this misinformation has ended up
-in many manuals for professional audio equipment.  But that doesn't
-make it any truer.
+levels close to but not exceeding \SI{0}{\dBFS}.  Unfortunately, this
+misinformation has ended up in many manuals for professional audio
+equipment.  But that doesn't make it any truer.
 
-Even if you let your recordings \emph{peak} at \SI{-20}{\dBFS} and you
+Even if you record at \emph{peak} levels of \SI{-20}{\dBFS} and you
 discard the least significant bit (which mostly consists of errors and
 dithering noise), a bit depth of 16 bits would still leave you with a
 signal-to-noise ratio of \SI{70}{\dB}.  That is about what you can
@@ -137,7 +154,8 @@ bits\footnote{In the real world, all analogue circuits are
   converters.  Among other factors, the amount of thermal noise
   depends on temperature and sampling frequency -- see
   \href{http://www.sengpielaudio.com/calculator-noise.htm}{here} for
-  more information.}  that you can capture with good converters \dots
+  more information.}  that you can capture with modern converters
+\dots
 
 You don't have to take my word -- read these three Gearslutz posts
 written by a renowned engineer:
@@ -146,9 +164,9 @@ written by a renowned engineer:
 and
 \href{https://www.gearslutz.com/board/showpost.php?p=9909382&postcount=96}{\#3}.
 Also, the highly regarded manufacturer Harrison Audio recommends a
-maximum recording level of
-\href{http://www.harrisonconsoles.com/mixbus/mixbus4-live-manual/1/en/topic/gain-staging}{\SI{-15}{\dBFS}
-  peak} for the Mixbus DAW.
+maximum peak recording level of
+\href{http://www.harrisonconsoles.com/mixbus/mixbus32c-4-live-manual/1/en/topic/gain-staging}{\SI{-15}{\dBFS}}
+for the Mixbus 32C digital audio workstation.
 
 \section{Introducing traKmeter}
 \label{sec:introducing_trakmeter}
@@ -175,19 +193,19 @@ meter below.  The meters are separated by an orange signal LED and
 consist of an area of green LEDs that is enclosed by either blue ones
 (lower levels) or yellow and then red ones (higher levels).
 
-You may have noticed that the \textbf{average} meter's green area is
-centred around the \textbf{\SI{-20}{\dBFS}} mark.  This number should
-be vaguely familiar.  Remember, this is the level we have determined
-to be the optimal average recording level in the digital domain.
+You may have noticed that the average meter's green area is centred
+around the \textbf{\SI{-20}{\dBFS} RMS} mark.  This number should be
+vaguely familiar.  Remember, this is the level we have determined to
+be the optimal average recording level in the digital domain.
 
-The highest yellow LED on the \textbf{peak} meter's top end
-corresponds to a level of \textbf{\SI{-10}{\dBFS}}.  Again, this
-number should be familiar: peak levels shouldn't exceed this level in
-digital recordings.
+The highest yellow LED on the peak meter's top end corresponds to a
+level of \textbf{\SI{-10}{\dBFS} peak}.  Again, this number should be
+familiar: peak levels shouldn't exceed this level in digital
+recordings.
 
-Thus, by keeping the meter's readout \textbf{in the green} areas and
-\textbf{out of the red} areas, you will automatically track at optimal
-audio levels.  It's as simple as that!
+Thus, by keeping the meter's readout \textbf{in the green} and yellow
+areas and \textbf{out of the red} areas, you will automatically track
+at optimal audio levels.  It's as simple as that!
 
 \section{Tracking with traKmeter}
 \label{sec:tracking_with_trakmeter}
@@ -221,16 +239,17 @@ image to the right for an example.
 
 When you get someone else's tracks for mixing, chances are that they
 have been recorded far too hot.  While you can't change that, you
-should adjust the tracks to optimal loudness using traKmeter and a
-(good!) gain plug-in.  Make sure that the gain treatment precedes all
-other processing.
+should adjust the tracks to optimal loudness in the gain staging
+phase.  This is easily accomplished using traKmeter and a (good!) gain
+plug-in.  Just make sure that the gain treatment precedes all other
+processing you will apply later.
 
-Mixing levels will now be much lower than what you are used to.  This
-can easily be corrected by either adjusting the output gain of your
-subgroups or by inserting a gain plug-in in your master track.
+Mixing levels will now be much lower than what you might be used to.
+This can easily be corrected by either adjusting the output gain of
+your subgroups or by inserting a gain plug-in in your master track.
 
 To preserve all transients, the final loudness of your mix should stay
-within a certain average level ranges.  My plug-in
+within certain average level ranges.  My plug-in
 \href{http://code.mzuther.de/}{\textbf{K-Meter}} may help you with
 setting up correct mixing levels.  Remember that smashed transients
 will be gone forever, whereas you can always bring up the volume
