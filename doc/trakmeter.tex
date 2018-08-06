@@ -287,6 +287,22 @@ settings by deleting \path{trakmeter_stereo.ini} or
 \chapter{Controls}
 \label{chap:controls}
 
+\section{Recording level buttons}
+\label{sec:headroom_buttons}
+
+\begin{wrapfigure}{r}{0.14\linewidth}
+\includegraphics[scale=\screenshotscale,clip]{include/images/button_recording_level.png}
+\end{wrapfigure}
+
+Select your preferred maximum peak recording level with these buttons.
+To follow my advice set out in \ref{sec:gain_staging}, all you have to
+do is stick with the default setting of \textbf{\SI{-10}{dBFS}}.
+
+If you record very dynamic material or have problems getting a clean
+signal, you should try the other two settings.  They will add
+additional headroom by shifting the scales down by either \SI{5}{dB}
+or \SI{10}{dB}.
+
 \section{Reset button}
 \label{sec:reset_button}
 
@@ -310,8 +326,6 @@ reload the current skin and re-draw everything.
 Click on this button to select the currently used traKmeter skin.  You
 can also set a default skin that will be loaded when new plug-ins are
 instantiated.
-
-\newpage %% layout
 
 \section{Validation button}
 \label{sec:validation_button}
@@ -367,8 +381,8 @@ the license's website in your web browser \dots
 \label{chap:meters}
 
 All meters possess a completely flat frequency response.  Meter scales
-can be adjusted using the ``Crest factor'' button (see
-\ref{sec:crest_factor_button}).
+can be adjusted using the ``Recording level'' buttons (see
+\ref{sec:headroom_buttons}).
 
 \section{Peak level meter}
 
@@ -479,6 +493,8 @@ may not know some of them, so read ahead \dots
   (floating point) to avoid accumulation of the above-mentioned
   artifacts.
 
+  \href{http://www.aes.org/par/d/\#data_converter_bits}{AES}
+
 \item[Try different sample rates.]  Recording at certain sample rates
   may sound better, so experiment and get to know your converters.
   But try to keep the sample rate to exact multiples of the target
@@ -488,6 +504,9 @@ may not know some of them, so read ahead \dots
 
   Only use professional software for sample rate conversion.  This is
   by no means a trivial task.
+
+  \href{http://www.lavryengineering.com/pdfs/lavry-white-paper-the_optimal_sample_rate_for_quality_audio.pdf}{Lavry
+    Engineering}
 
 \item[Concentrate on recording.]  When tracking, try to not interfere
   with the flow of the session.  This is easily done by keeping

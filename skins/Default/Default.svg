@@ -26,11 +26,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.92118102"
-     inkscape:cx="1089.7471"
-     inkscape:cy="260.3895"
+     inkscape:zoom="1"
+     inkscape:cx="603.81062"
+     inkscape:cy="258.21837"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="webslicer-layer"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1028"
@@ -8165,7 +8165,8 @@
      id="layer1"
      inkscape:groupmode="layer"
      inkscape:label="Widgets"
-     style="display:inline">
+     style="display:inline"
+     sodipodi:insensitive="true">
     <g
        transform="translate(0.015625,0)"
        id="g3769" />
@@ -8192,7 +8193,7 @@
            sodipodi:role="line"
            id="tspan3092"
            x="399.94415"
-           y="621.25623">-20 dB</tspan></text>
+           y="621.25623">-10 dB</tspan></text>
     </g>
     <g
        transform="translate(-1,413)"
@@ -8217,7 +8218,7 @@
            x="400.94415"
            id="tspan3116"
            sodipodi:role="line"
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000">-20 dB</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000">-10 dB</tspan></text>
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.6;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
          id="rect3136"
@@ -9693,7 +9694,7 @@
            sodipodi:role="line"
            id="tspan5580"
            x="400.94415"
-           y="428.2562">-20 dB</tspan></text>
+           y="428.2562">-10 dB</tspan></text>
       <rect
          rx="8"
          ry="8"
@@ -9960,189 +9961,189 @@
       </g>
     </g>
     <g
-       transform="translate(70,15)"
-       id="g5156">
-      <rect
-         rx="9"
-         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#232323;fill-opacity:1;fill-rule:nonzero;stroke:#505050;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-         id="rect5158"
-         width="58"
-         height="18"
-         x="371"
-         y="863.36218"
-         ry="9" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#999999;fill-opacity:1;stroke:none"
-         x="400.23666"
-         y="876.25623"
-         id="text5160"
-         sodipodi:linespacing="125%"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#999999;fill-opacity:1"
-           sodipodi:role="line"
-           id="tspan5162"
-           x="400.23666"
-           y="876.25623">-10 dB</tspan></text>
-    </g>
-    <g
-       id="g5164"
-       transform="translate(-1,209)">
+       transform="translate(70,245)"
+       id="g5956">
       <rect
          rx="9"
          ry="9"
-         y="669.36218"
-         x="372"
-         height="18"
-         width="58"
-         id="rect5166"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#a04b00;fill-opacity:1;stroke:#a04b00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
-      <text
-         sodipodi:linespacing="125%"
-         id="text5168"
-         y="682.25623"
-         x="401.23666"
-         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-         xml:space="preserve"><tspan
-           y="682.25623"
-           x="401.23666"
-           id="tspan5170"
-           sodipodi:role="line"
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000">-10 dB</tspan></text>
-      <rect
-         rx="8"
-         ry="8"
-         y="670.36218"
-         x="373"
-         height="16"
-         width="56"
-         id="rect5172"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.6;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
-    </g>
-    <g
-       transform="translate(-71,209)"
-       id="g5174">
-      <rect
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ff7800;fill-opacity:1;stroke:#ff7800;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect5176"
-         width="58"
-         height="18"
-         x="372"
-         y="669.36218"
-         ry="9"
-         rx="9" />
-      <text
-         xml:space="preserve"
-         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-         x="401.23666"
-         y="682.25623"
-         id="text5178"
-         sodipodi:linespacing="125%"><tspan
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000"
-           sodipodi:role="line"
-           id="tspan5180"
-           x="401.23666"
-           y="682.25623">-10 dB</tspan></text>
-      <rect
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.6;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect5182"
-         width="56"
-         height="16"
-         x="373"
-         y="670.36218"
-         ry="8"
-         rx="8" />
-    </g>
-    <g
-       id="g5184"
-       transform="translate(70,-10)">
-      <rect
-         ry="9"
-         y="863.36218"
+         y="608.36218"
          x="371"
          height="18"
          width="58"
-         id="rect5186"
-         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#232323;fill-opacity:1;fill-rule:nonzero;stroke:#505050;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
-         rx="9" />
+         id="rect5958"
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#232323;fill-opacity:1;fill-rule:nonzero;stroke:#505050;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate" />
       <text
          sodipodi:linespacing="125%"
-         id="text5188"
-         y="876.25623"
-         x="400.23666"
+         id="text5960"
+         y="621.25623"
+         x="399.94415"
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#999999;fill-opacity:1;stroke:none"
          xml:space="preserve"><tspan
-           y="876.25623"
-           x="400.23666"
-           id="tspan5190"
+           y="621.25623"
+           x="399.94415"
+           id="tspan5962"
            sodipodi:role="line"
            style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#999999;fill-opacity:1">-15 dB</tspan></text>
     </g>
     <g
-       transform="translate(-1,184)"
-       id="g5192">
+       id="g5964"
+       transform="translate(-1,438)">
       <rect
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#a09e00;fill-opacity:1;stroke:#a09e00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect5194"
+         rx="9"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#00a000;fill-opacity:1;fill-rule:nonzero;stroke:#00a000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="rect5966"
          width="58"
          height="18"
          x="372"
-         y="669.36218"
-         ry="9"
-         rx="9" />
+         y="415.36218"
+         ry="9" />
       <text
          xml:space="preserve"
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-         x="401.23666"
-         y="682.25623"
-         id="text5196"
+         x="400.94415"
+         y="428.2562"
+         id="text5968"
          sodipodi:linespacing="125%"><tspan
            style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000"
            sodipodi:role="line"
-           id="tspan5198"
-           x="401.23666"
-           y="682.25623">-15 dB</tspan></text>
+           id="tspan5970"
+           x="400.94415"
+           y="428.2562">-15 dB</tspan></text>
+      <rect
+         rx="8"
+         ry="8"
+         y="416.36218"
+         x="373"
+         height="16"
+         width="56"
+         id="rect5972"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.6;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+    </g>
+    <g
+       transform="translate(-71,438)"
+       id="g5974">
+      <rect
+         ry="9"
+         y="415.36218"
+         x="372"
+         height="18"
+         width="58"
+         id="rect5976"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#00ff00;fill-opacity:1;fill-rule:nonzero;stroke:#00ff00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         rx="9" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text5978"
+         y="428.2562"
+         x="400.94415"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         xml:space="preserve"><tspan
+           y="428.2562"
+           x="400.94415"
+           id="tspan5980"
+           sodipodi:role="line"
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000">-15 dB</tspan></text>
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.6;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect5200"
+         id="rect5982"
          width="56"
          height="16"
          x="373"
-         y="670.36218"
+         y="416.36218"
          ry="8"
          rx="8" />
     </g>
     <g
-       id="g5202"
-       transform="translate(-71,184)">
+       id="g5984"
+       transform="translate(70,270)">
       <rect
-         rx="9"
+         style="color:#000000;clip-rule:nonzero;display:inline;overflow:visible;visibility:visible;opacity:1;isolation:auto;mix-blend-mode:normal;color-interpolation:sRGB;color-interpolation-filters:linearRGB;solid-color:#000000;solid-opacity:1;fill:#232323;fill-opacity:1;fill-rule:nonzero;stroke:#505050;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;color-rendering:auto;image-rendering:auto;shape-rendering:auto;text-rendering:auto;enable-background:accumulate"
+         id="rect5986"
+         width="58"
+         height="18"
+         x="371"
+         y="608.36218"
          ry="9"
-         y="669.36218"
+         rx="9" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#999999;fill-opacity:1;stroke:none"
+         x="399.94415"
+         y="621.25623"
+         id="text5988"
+         sodipodi:linespacing="125%"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#999999;fill-opacity:1"
+           sodipodi:role="line"
+           id="tspan5990"
+           x="399.94415"
+           y="621.25623">-20 dB</tspan></text>
+    </g>
+    <g
+       transform="translate(-1,463)"
+       id="g5992">
+      <rect
+         ry="9"
+         y="415.36218"
          x="372"
          height="18"
          width="58"
-         id="rect5204"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#fffc00;fill-opacity:1;stroke:#fffc00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+         id="rect5994"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#00a000;fill-opacity:1;fill-rule:nonzero;stroke:#00a000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         rx="9" />
       <text
          sodipodi:linespacing="125%"
-         id="text5206"
-         y="682.25623"
-         x="401.23666"
+         id="text5996"
+         y="428.2562"
+         x="400.94415"
          style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
          xml:space="preserve"><tspan
-           y="682.25623"
-           x="401.23666"
-           id="tspan5208"
+           y="428.2562"
+           x="400.94415"
+           id="tspan5998"
            sodipodi:role="line"
-           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000">-15 dB</tspan></text>
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000">-20 dB</tspan></text>
+      <rect
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.6;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="rect6001"
+         width="56"
+         height="16"
+         x="373"
+         y="416.36218"
+         ry="8"
+         rx="8" />
+    </g>
+    <g
+       id="g6004"
+       transform="translate(-71,463)">
+      <rect
+         rx="9"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#00ff00;fill-opacity:1;fill-rule:nonzero;stroke:#00ff00;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="rect6006"
+         width="58"
+         height="18"
+         x="372"
+         y="415.36218"
+         ry="9" />
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:12px;line-height:125%;font-family:Sans;-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+         x="400.94415"
+         y="428.2562"
+         id="text6008"
+         sodipodi:linespacing="125%"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;font-size:11px;font-family:'Avenir Next LT Pro';-inkscape-font-specification:'Avenir Next LT Pro Semi-Bold';fill:#000000"
+           sodipodi:role="line"
+           id="tspan6010"
+           x="400.94415"
+           y="428.2562">-20 dB</tspan></text>
       <rect
          rx="8"
          ry="8"
-         y="670.36218"
+         y="416.36218"
          x="373"
          height="16"
          width="56"
-         id="rect5210"
+         id="rect6012"
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.6;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
     </g>
   </g>
@@ -10169,7 +10170,7 @@ layout-position-anchor: tl</desc>
     <rect
        height="20"
        width="60"
-       y="502"
+       y="452"
        x="300"
        id="button_reclevel_10_on"
        style="opacity:0.5;fill:#ff0000">
@@ -10196,7 +10197,7 @@ layout-position-anchor: tl</desc>
        style="opacity:0.5;fill:#ff0000"
        id="button_reclevel_20_on"
        x="300"
-       y="452"
+       y="502"
        width="60"
        height="20">
       <desc
@@ -10738,7 +10739,7 @@ layout-position-anchor: tl</desc>
        inkscape:label="#button_reclevel_10_over"
        height="20"
        width="60"
-       y="502"
+       y="452"
        x="370"
        id="button_reclevel_10_over"
        style="opacity:0.5;fill:#ff0000">
@@ -10766,7 +10767,7 @@ layout-position-anchor: tl</desc>
        style="opacity:0.5;fill:#ff0000"
        id="button_reclevel_20_over"
        x="370"
-       y="452"
+       y="502"
        width="60"
        height="20"
        inkscape:label="#button_reclevel_20_over">
@@ -10836,7 +10837,7 @@ layout-position-anchor: tl</desc>
        style="opacity:0.5;fill:#ff0000"
        id="button_reclevel_10_off"
        x="440"
-       y="502"
+       y="452"
        width="60"
        height="20"
        inkscape:label="#button_reclevel_10_off">
@@ -10864,7 +10865,7 @@ layout-position-anchor: tl</desc>
        inkscape:label="#button_reclevel_20_off"
        height="20"
        width="60"
-       y="452"
+       y="502"
        x="440"
        id="button_reclevel_20_off"
        style="opacity:0.5;fill:#ff0000">
