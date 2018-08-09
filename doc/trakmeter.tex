@@ -295,13 +295,14 @@ settings by deleting \path{trakmeter_stereo.ini} or
 \end{wrapfigure}
 
 Select your preferred maximum peak recording level with these buttons.
-To follow my advice set out in \ref{sec:gain_staging}, all you have to
-do is stick with the default setting of \textbf{\SI{-10}{dBFS}}.
+To follow the advice in \ref{sec:gain_staging}, leave this at the
+default setting of \textbf{\SI{-10}{dBFS}}.
 
 If you record very dynamic material or have problems getting a clean
-signal, you should try the other two settings.  They will add
-additional headroom by shifting the scales down by either \SI{5}{dB}
-or \SI{10}{dB}.
+signal, you can try the other settings.  They shift the meter scales
+down by \SI{5}{dB} to \SI{10}{dB} and add additional headroom at the
+cost of a higher noise floor.  However, the signal-to-noise ratio of
+modern converters is so great that you probably won't even notice.
 
 \section{Reset button}
 \label{sec:reset_button}
@@ -343,7 +344,7 @@ light up and clicking it will stop validation early.
 
 On Linux, dumped data will be written to \path{stderr}, so just start
 the traKmeter stand-alone or your plug-in host from the shell and
-watch the output coming.  On Windows, you can also use DebugView by
+watch the output coming.  On Windows, you can use DebugView by
 Sysinternals (stand-alone) or have a look at Ableton Live's log files
 (plug-in).  If none of that works, you might have to start either the
 stand-alone or your plug-in host from a debugger.
@@ -390,14 +391,14 @@ can be adjusted using the ``Recording level'' buttons (see
 \includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_peak.png}
 \end{wrapfigure}
 
-The peak level meter has been calibrated so that an input sample value
-of 1.0 reads \SI{0}{\dBFS} thus corresponding to
-\href{http://www.aes.org/publications/standards/search.cfm?docID=21}{AES17-2015}.
-The meter has a rise time of one sample and a fall time of
-\SI{8.67}{\dB\per\second}.  A red LED marked ``OVR'' detects levels
-exceeding \SI{-6}{\dBFS} and should never light.
+This meter shows the peak level in \si{\dBFS} and has been calibrated
+so that an input sample value of 1.0 reads \SI{0}{\dBFS}.  Rise time
+is one sample and fall time is \SI{8.67}{\dB\per\second}.  Should a
+meter overflow occur, the red LED marked ``OVR'' will display the
+corresponding peak level.
 
-Peaks will be indefinitely held until the meter is reset.
+The highest encountered peak level will be held indefinitely until the
+meter is reset.
 
 \newpage %% layout
 
@@ -409,8 +410,7 @@ Peaks will be indefinitely held until the meter is reset.
 
 The average level meter uses an averaging period of \num{1024}
 samples.  It has been calibrated so that sine wave signals read the
-same on both peak and average meters (AES17
-\SI[retain-explicit-plus]{+3.01}{\dBFS}).  Similar to a VU meter, the
+same on both peak and average meters.  Similar to a VU meter, the
 meter takes \SI{300}{\milli\second} to reach \SI{99}{\percent} of the
 final reading.  It exhibits no overshoot, however.
 
@@ -424,8 +424,8 @@ Peaks will be held for \SI{10}{\second} and then fall with a speed of
 \end{wrapfigure}
 
 The orange signal meter detects peak levels of \SI{-60}{\dBFS} and
-above.  It has a rise time of one sample and simply fades out if the
-level falls below the threshold.
+above.  It has a rise time of one sample and fades out when the level
+falls below the threshold.
 
 \chapter{Recording tips}
 \label{chap:recording_tips}
