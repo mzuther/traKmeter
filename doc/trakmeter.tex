@@ -65,14 +65,14 @@ And while digital audio can be transferred without loss in quality, it
 is degraded by each and every calculation, be it a simple change in
 level, equalisation or a fancy effect.  Crossing domains from analogue
 to digital and \emph{vice versa} leads to additional degradation.
-Finally, changes in bit depth and sample rate, jitter and inter-sample
-peaks are nothing for the weak of heart.
+Finally, changes in bit depth and sampling rate, jitter and
+inter-sample peaks are nothing for the weak of heart.
 
 However, most of these obstacles can be easily overcome by proper gain
 staging, dithering, minimising the crossing of domains and choosing
-appropriate bit depths and sample rates.  And if you carefully choose,
-test and operate your equipment, you're well on your way to pure audio
-bliss \dots
+appropriate bit depths and sampling rates.  And if you carefully
+choose, test and operate your equipment, you're well on your way to
+pure audio bliss \dots
 
 \section{Definitions}
 \label{sec:definitions}
@@ -157,11 +157,11 @@ equipment.  But that doesn't make it any truer.
 
 Even if you record at \emph{peak} levels of \SI{-20}{\dBFS} and you
 discard the least significant bit (which mostly consists of errors and
-dithering noise), a bit depth of 16 bits would still leave you with a
-signal-to-noise ratio of \SI{70}{\dB}.  That is about what you can
-expect from some of the best professional analogue tape machines and
-recording desks!  And we're not even talking of the 20
-bits\footnote{In the real world, all analogue circuits are
+dithering noise), a bit depth of \SI{16}{bits} would still leave you
+with a signal-to-noise ratio of \SI{70}{\dB}.  That is about what you
+can expect from some of the best professional analogue tape machines
+and recording desks!  And we're not even talking of the
+\SI{20}{bits}\footnote{In the real world, all analogue circuits are
   contaminated with thermal noise which limits the usable bit depth of
   converters.  Among other factors, the amount of thermal noise
   depends on temperature and sampling frequency -- see
@@ -288,7 +288,7 @@ settings by deleting \path{trakmeter_stereo.ini} or
 \label{chap:controls}
 
 \section{Recording level buttons}
-\label{sec:headroom_buttons}
+\label{sec:recording_level_buttons}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
 \includegraphics[scale=\screenshotscale,clip]{include/images/button_recording_level.png}
@@ -299,10 +299,10 @@ To follow the advice in \ref{sec:gain_staging}, leave this at the
 default setting of \textbf{\SI{-10}{dBFS}}.
 
 If you record very dynamic material or have problems getting a clean
-signal, you can try the other settings.  They shift the meter scales
+signal, you can try the other settings.  They shift both meter scales
 down by \SI{5}{dB} to \SI{10}{dB} and add additional headroom at the
-cost of a higher noise floor.  However, the signal-to-noise ratio of
-modern converters is so great that you probably won't even notice.
+cost of a higher noise floor.  Which you probably won't even notice,
+as the signal-to-noise ratio of modern converters is so great.
 
 \section{Reset button}
 \label{sec:reset_button}
@@ -381,9 +381,9 @@ the license's website in your web browser \dots
 \chapter{Meters}
 \label{chap:meters}
 
-All meters possess a completely flat frequency response.  Meter scales
-can be adjusted using the ``Recording level'' buttons (see
-\ref{sec:headroom_buttons}).
+All meters possess a flat frequency response.  Meter scales can be
+adjusted using the ``Recording level'' buttons (see
+\ref{sec:recording_level_buttons}).
 
 \section{Peak level meter}
 
@@ -410,9 +410,9 @@ meter is reset.
 
 The average level meter uses an averaging period of \num{1024}
 samples.  It has been calibrated so that sine wave signals read the
-same on both peak and average meters.  Similar to a VU meter, the
-meter takes \SI{300}{\milli\second} to reach \SI{99}{\percent} of the
-final reading.  It exhibits no overshoot, however.
+same on both peak and average meters.  Similar to a VU meter, it takes
+\SI{300}{\milli\second} for the meter to reach \SI{99}{\percent} of
+the final reading.  There is no overshoot, however.
 
 Peaks will be held for \SI{10}{\second} and then fall with a speed of
 \SI{8.67}{\dB\per\second}.
@@ -423,117 +423,105 @@ Peaks will be held for \SI{10}{\second} and then fall with a speed of
 \includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_signal.png}
 \end{wrapfigure}
 
-The orange signal meter detects peak levels of \SI{-60}{\dBFS} and
-above.  It has a rise time of one sample and fades out when the level
-falls below the threshold.
+The orange signal meter detects peak levels at a threshold of
+\SI{-60}{\dBFS}.  It has a rise time of one sample and fades out when
+the level falls below the threshold.
 
-\chapter{Recording tips}
-\label{chap:recording_tips}
+\chapter{Recording advice}
+\label{chap:recording_advice}
 
-Over the years, I have accumulated a couple of recording tips.  You
-may not know some of them, so read ahead \dots
+Over the years, I have learned a lot about how to and how not to
+record.  This seems like a good place to summarise my knowledge.
 
 \begin{description}
 
-\item[Use a good preamp.]  ``Good'' doesn't mean your preamp has to
-  have a lot of channels or features.  To the contrary!  Go for a
-  simple design and invest your money in professional quality instead.
-  Recordings made with a good preamp make mixing much easier -- the
-  tracks simply seem to fall into place.
+\item[Use a good pre-amplifier.]  ``Good'' doesn't mean your
+  pre-amplifier has to have a lot of channels or features.  To the
+  contrary!  Go for a simple design and invest your money in
+  professional quality instead.  Recordings made with a good
+  pre-amplifier sound better and make mixing much easier -- the tracks
+  simply seem to fall into place.
 
-\item[ Use the preamp's gain control.]  If necessary, crank up the
-  preamp to yield the needed output level.  Do not fear the preamp's
-  internal noise -- making up for low gain in later stages will likely
-  result in even more noise!  Also see \ref{sec:gain_staging}.
+\item[ Use the pre-amplifier's gain control.]  If necessary, crank up
+  the pre-amplifier to yield the needed output level.  Do not fear the
+  pre-amplifier's internal noise -- making up for low gain in later
+  stages will likely result in even more noise!  Also see
+  \ref{sec:gain_staging}.
 
-\item[Avoid unballanced equipment.]  Run all signals on balanced lines
+\item[Avoid unbalanced equipment.]  Run all signals on balanced lines
   with a nominal level of \SI[retain-explicit-plus]{+4}{\dBu}.  If you
-  can't, use DI boxes or transformers and read the previous sentence
-  again \dots
+  can't, use DI boxes and transformers to convert the signals as early
+  in the audio chain as possible.
 
 \item[Use short audio chains.]  All equipment adds noise or may
-  otherwise degrade audio, so keep your audio recording chains as
-  short as possible.
+  otherwise degrade audio, so keep your audio recording chains short.
+  In addition, short audio chains will not distract you from recording
+  the artist.
 
-  For example, instead of routing your mixer between preamp and hard
-  disk recorder, connect the mixer to your hard disk recorder's
+  Here is an example: instead of routing your mixer between
+  pre-amplifier and converter, connect the mixer to your converter's
   \emph{outputs}.  This simple change can lead to much better
-  recordings (especially with cheap mixers) and you'll still be able
-  to hear yourself and other tracks during recording.
+  recordings (especially with cheap mixers) and the artists will still
+  be able to hear themselves and the playback during recording.
 
-\item[Record at lower levels.]  Record digital audio at
-  \textbf{\SI{-20}{\dBFS} RMS} with peak levels not exceeding
-  \textbf{\SI{-9}{\dBFS}}.  For an in-depth explanation, see
-  \ref{sec:gain_staging}.
+\item[Record at lower levels.]  During recording, peak levels should
+  not exceed \textbf{\SI{-10}{\dBFS}}.  For an in-depth explanation,
+  see \ref{sec:gain_staging}.
 
 \item[Record in mono.]  Most audio sources do not contain stereo
   information that is useful in a mixing context (notable exceptions
-  are audience recordings, string sections and sometimes pianos).  The
-  pseudo-stereo effects of some synthesisers may even cause phasing
-  issues in the mixing stage.
+  are audience recordings, orchestras and sometimes pianos).  The
+  pseudo-stereo effects of synthesisers may even cause phasing issues
+  in the mixing stage.
 
   Recording these sources in stereo will only waste space on your hard
-  disk and make you miserable during mixing.  So why not record them
-  in mono in the first place?
+  disk and make you miserable during mixing.  So don't.
 
-\item[Use high bit depths.]  Do yourself a favour and record at bit
-  depths of 24 bit instead of 16 bit.  Although most digital audio
-  converters only provide 20 bits of \emph{noise-free} audio, the
-  additional bits still provide an incredible amount of extra detail
-  and you can record at lower levels without losing information.  When
-  properly dithered, changing to a lower bit depth even preserves
-  quite a bit of that detail.
+\item[Use high bit depths.]  Do yourself a favour and record at a bit
+  depth of \SI{24}{bits} instead of \SI{16}{bits}.  The additional
+  bits allow recording at lower levels and provide an incredible
+  amount of extra detail.  Always choose more (true) bits over a
+  higher sampling rate!  See the
+  \href{http://www.aes.org/par/d/\#data_converter_bits}{AES Pro Audio
+    Reference} for more information.
 
-  Also, if you edit audio files or apply effects, calculation errors
-  are inevitable.  At 24 bit, however, most of these artifacts are
-  \SI{48}{\dB} lower in level (and thus inaudible) compared to 16 bit
-  audio files.
+  The usable bit depth of converters is limited to approximately 20
+  bits by thermal noise.  However, the mixer in your digital audio
+  workstation should use floating point numbers with \SI{32}{bits} or
+  more.  Calculation errors are inevitable in digital signal
+  processing, and more bits mean smaller (and thus quieter) errors.
 
-  Your digital audio workstation's bus should use at least 32 bits
-  (floating point) to avoid accumulation of the above-mentioned
-  artifacts.
-
-  \href{http://www.aes.org/par/d/\#data_converter_bits}{AES}
-
-\item[Try different sample rates.]  Recording at certain sample rates
-  may sound better, so experiment and get to know your converters.
-  But try to keep the sample rate to exact multiples of the target
-  sample rate.  For instance, it makes sense to track at
-  \SI{44.1}{\kilo\hertz} or \SI{88.2}{\kilo\hertz} for a CD release
-  instead of using \SI{48}{\kilo\hertz}.
-
-  Only use professional software for sample rate conversion.  This is
-  by no means a trivial task.
-
-  \href{http://www.lavryengineering.com/pdfs/lavry-white-paper-the_optimal_sample_rate_for_quality_audio.pdf}{Lavry
-    Engineering}
+\item[Use sensible sampling rates.]  According to a
+  \href{http://www.lavryengineering.com/pdfs/lavry-white-paper-the_optimal_sample_rate_for_quality_audio.pdf}{famous
+    paper} by Dan Lavry, manufacturer of high-quality converters,
+  \SI{88.1}{\kilo\hertz} and \SI{96}{\kilo\hertz} are the preferred
+  rates for recording audio.  Support for \SI{88.1}{\kilo\hertz} can
+  be limited, so I prefer to work at \SI{96}{\kilo\hertz}.
 
 \item[Concentrate on recording.]  When tracking, try to not interfere
   with the flow of the session.  This is easily done by keeping
   editing and mixing to the bare minimum.
 
-  For example, I currently track using an old hard disk recorder, as
-  digital audio workstations tend to distract me too much.
+\item[Avoid copy'n'paste.]  Quite a lot of today's music sounds like
+  (and actually is) one short loop that was ``arranged'' by
+  occasionally muting some of its tracks.  This takes away all the
+  small inaccuracies of human players and makes these songs boring and
+  lifeless.
 
-\item[Avoid copy'n'paste.]  Quite a lot of today's electronic music
-  sounds like (and actually is) one short loop that was ``arranged''
-  by occasionally muting some of its tracks.  This takes away all the
-  small inaccuracies that happen when humans play instruments.  It
-  also makes such tracks sound absolutely lifeless.
-
-  So instead of looping a track, record a couple of takes and comp the
+  So think of a good arrangement before you even start recording.  And
+  instead of looping a track, record a couple of takes and comp the
   best ones.  You'll be surprised at the difference it makes!
 
-\item[Do not fix things later.]  A bad recording is a bad recording is
-  a bad recording.  You can't really ``fix it in the mix''.  So tools
-  like Auto-Tune, extreme EQ or the edit button should be seen as a
-  last resort.  It's easy to kill all of a track's vibe in the
-  process.
+\item[Do not fix things later.]  Contrary to popular belief, you
+  cannot ``fix it in the mix'' -- a bad recording is nothing more than
+  a bad recording.  So editing and tools like Auto-Tune and extreme EQ
+  should be seen as a last resort.  Apart from the time you lose with
+  editing, it's easy to kill all of a track's vibe in the process.
 
-  Instead, record a few more takes.  Treat your room (acoustically and
-  in terms of positive vibe).  Experiment with microphone placement.
-  Try everything you can to help the musicians perform better.  Maybe
-  you even have to look for better musicians \dots
+  Instead, keep recording until you capture a great take.  Treat your
+  room acoustically and in terms of positive vibe.  Experiment with
+  microphone placement.  And try absolutely everything you can to help
+  the musicians perform better!
 
 \end{description}
 
@@ -560,8 +548,9 @@ Begin by starting traKmeter.  If in a Bash shell, try this:
 After opening the \textbf{validation window} (see
 \ref{sec:validation_button}), click on the ellipsis button (the one
 with the dots) to select an audio file for playback through traKmeter.
-Please make sure that the sample rates of your host (\textbf{Host SR})
-and the audio file match, otherwise the results will not be correct.
+Please make sure that the sampling rates of your host (\textbf{Host
+  SR}) and the audio file match, otherwise the results will not be
+correct.
 
 Now, select which \textbf{variables} (if any) should be dumped.  You
 may also restrict dumped data to a specific audio \textbf{channel}.
