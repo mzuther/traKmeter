@@ -430,8 +430,9 @@ the level falls below the threshold.
 \chapter{Recording advice}
 \label{chap:recording_advice}
 
-Over the years, I have learned a lot about how to and how not to
-record.  This seems like a good place to summarise my knowledge.
+Over the years, I have learned how to and how not to record, and this
+seems like a good place to summarise my knowledge.  For controversial
+advice, I will try to reference the opinion of professionals.
 
 \begin{description}
 
@@ -443,10 +444,9 @@ record.  This seems like a good place to summarise my knowledge.
   simply seem to fall into place.
 
 \item[ Use the pre-amplifier's gain control.]  If necessary, crank up
-  the pre-amplifier to yield the needed output level.  Do not fear the
-  pre-amplifier's internal noise -- making up for low gain in later
-  stages will likely result in even more noise!  Also see
-  \ref{sec:gain_staging}.
+  the gain control to yield the correct output level.  Do not fear the
+  pre-amplifier's internal noise -- boosting a low-gain recording in
+  later stages will likely result in even more noise.
 
 \item[Avoid unbalanced equipment.]  Run all signals on balanced lines
   with a nominal level of \SI[retain-explicit-plus]{+4}{\dBu}.  If you
@@ -454,74 +454,77 @@ record.  This seems like a good place to summarise my knowledge.
   in the audio chain as possible.
 
 \item[Use short audio chains.]  All equipment adds noise or may
-  otherwise degrade audio, so keep your audio recording chains short.
-  In addition, short audio chains will not distract you from recording
-  the artist.
+  otherwise degrade audio, so keep your audio recording chains short
+  and simple.  This has the additional benefit that you can focus on
+  recording the artist.
 
   Here is an example: instead of routing your mixer between
   pre-amplifier and converter, connect the mixer to your converter's
-  \emph{outputs}.  This simple change can lead to much better
-  recordings (especially with cheap mixers) and the artists will still
-  be able to hear themselves and the playback during recording.
+  outputs.  This simple change can lead to much better recordings
+  (especially with cheap mixers) and the artist will still be able to
+  hear playback and herself during recording.
 
-\item[Record at lower levels.]  During recording, peak levels should
-  not exceed \textbf{\SI{-10}{\dBFS}}.  For an in-depth explanation,
-  see \ref{sec:gain_staging}.
+\item[Work at a defined reference level.]  See the article
+  \href{https://www.digido.com/portfolio-item/level-practices-part-1/}{Level
+    Practices (Part 1)} by Bob Katz.
+
+\item[Record at lower levels.]  During recording, do not let peak
+  levels exceed \textbf{\SI{-10}{\dBFS}}.  For an in-depth explanation
+  and references, see \ref{sec:gain_staging}.
 
 \item[Record in mono.]  Most audio sources do not contain stereo
   information that is useful in a mixing context (notable exceptions
-  are audience recordings, orchestras and sometimes pianos).  The
-  pseudo-stereo effects of synthesisers may even cause phasing issues
-  in the mixing stage.
+  are audience recordings, orchestras and occasionally pianos).  The
+  pseudo-stereo effects of synthesisers may even cause phasing issues.
 
-  Recording these sources in stereo will only waste space on your hard
-  disk and make you miserable during mixing.  So don't.
+  Recording such sources in stereo will only waste space on your hard
+  disk.  So don't!
 
 \item[Use high bit depths.]  Do yourself a favour and record at a bit
   depth of \SI{24}{bits} instead of \SI{16}{bits}.  The additional
   bits allow recording at lower levels and provide an incredible
-  amount of extra detail.  Always choose more (true) bits over a
-  higher sampling rate!  See the
+  amount of extra detail.  When disk space runs low, choose more
+  (true) bits over a higher sampling rate.  See the
   \href{http://www.aes.org/par/d/\#data_converter_bits}{AES Pro Audio
     Reference} for more information.
 
   The usable bit depth of converters is limited to approximately 20
   bits by thermal noise.  However, the mixer in your digital audio
-  workstation should use floating point numbers with \SI{32}{bits} or
-  more.  Calculation errors are inevitable in digital signal
+  workstation should use floating point numbers with at least
+  \SI{32}{bits}.  Calculation errors are inevitable in digital signal
   processing, and more bits mean smaller (and thus quieter) errors.
 
 \item[Use sensible sampling rates.]  According to a
   \href{http://www.lavryengineering.com/pdfs/lavry-white-paper-the_optimal_sample_rate_for_quality_audio.pdf}{famous
     paper} by Dan Lavry, manufacturer of high-quality converters,
   \SI{88.1}{\kilo\hertz} and \SI{96}{\kilo\hertz} are the preferred
-  rates for recording audio.  Support for \SI{88.1}{\kilo\hertz} can
-  be limited, so I prefer to work at \SI{96}{\kilo\hertz}.
+  rates for recording audio.  Support for \SI{88.1}{\kilo\hertz} is
+  limited, so I prefer to work at \SI{96}{\kilo\hertz}.
 
 \item[Concentrate on recording.]  When tracking, try to not interfere
-  with the flow of the session.  This is easily done by keeping
-  editing and mixing to the bare minimum.
+  with the flow of the session.  Just keep editing and mixing to the
+  bare minimum.
 
-\item[Avoid copy'n'paste.]  Quite a lot of today's music sounds like
-  (and actually is) one short loop that was ``arranged'' by
-  occasionally muting some of its tracks.  This takes away all the
-  small inaccuracies of human players and makes these songs boring and
-  lifeless.
-
-  So think of a good arrangement before you even start recording.  And
-  instead of looping a track, record a couple of takes and comp the
-  best ones.  You'll be surprised at the difference it makes!
-
-\item[Do not fix things later.]  Contrary to popular belief, you
-  cannot ``fix it in the mix'' -- a bad recording is nothing more than
-  a bad recording.  So editing and tools like Auto-Tune and extreme EQ
-  should be seen as a last resort.  Apart from the time you lose with
-  editing, it's easy to kill all of a track's vibe in the process.
+\item[Fix it now.]  Contrary to popular belief, you cannot ``fix it in
+  the mix'' -- a bad recording is nothing more than a bad recording.
+  So editing and tools like Auto-Tune and extreme EQ should be seen as
+  a last resort.  Apart from the time you lose with editing, it's easy
+  to kill all of a track's vibe in the process.
 
   Instead, keep recording until you capture a great take.  Treat your
   room acoustically and in terms of positive vibe.  Experiment with
   microphone placement.  And try absolutely everything you can to help
   the musicians perform better!
+
+\item[Make it exciting.]  A lot of today's music sounds like (and
+  actually is) one short loop that was ``arranged'' by muting
+  different tracks at different times.  This takes away all the small
+  inaccuracies of human players and often makes these songs boring and
+  lifeless.
+
+  So think of a good arrangement before you even start recording.  And
+  instead of looping a track, record a couple of takes and comp the
+  best ones.  You'll be surprised at the difference it makes!
 
 \end{description}
 
@@ -637,109 +640,8 @@ Thanks for using free software.  I hope you'll enjoy it!
 \chapter{How to build traKmeter}
 \label{chap:build_trakmeter}
 
-\section{Preparing GNU/Linux}
-
-To build traKmeter yourself, I recommend setting up a \texttt{chroot}
-environment.  This is fast and easy to do on Debian-based systems and
-might save you a \textbf{lot} of trouble.  At the time of writing, I'm
-using Linux Mint 18, but the procedure should be similar on your
-distribution of choice.
-
-Start by installing the necessary packages:
-
-\begin{VerbatimBoth}
-  sudo apt-get install debootstrap schroot
-\end{VerbatimBoth}
-
-Then install the \texttt{chroot} base system by executing the
-following statements:
-
-\begin{Verbatim32}
-  sudo debootstrap --variant=buildd \
-    --arch i386 stable \
-    /srv/chroot/stable_i386 \
-    http://httpredir.debian.org/debian
-\end{Verbatim32}
-
-\begin{Verbatim64}
-  sudo debootstrap --variant=buildd \
-    --arch amd64 stable \
-    /srv/chroot/stable_amd64 \
-    http://httpredir.debian.org/debian
-\end{Verbatim64}
-
-Running \path{debootstrap} will take some time.  Meanwhile, add the
-following lines to \path{/etc/schroot/schroot.conf} (make sure you
-remove all preceding white space so that each line begins in the first
-column):
-
-\begin{VerbatimBoth}
-  [stable-i386]
-  description=Debian stable (i386)
-  directory=/srv/chroot/stable_i386
-  profile=default
-  personality=linux32
-  type=directory
-  users=username
-
-  [stable-amd64]
-  description=Debian stable (amd64)
-  directory=/srv/chroot/stable_amd64
-  profile=default
-  personality=linux
-  type=directory
-  users=username
-\end{VerbatimBoth}
-
-Please make the necessary changes to \texttt{username}.  If you
-experience problems, you can try to change \texttt{stable} to a
-release name such as \texttt{wheezy}.
-
-When \path{debootstrap} is done, log in as superuser:
-
-\begin{Verbatim32}
-  schroot -c stable-i386 -u root
-\end{Verbatim32}
-
-\begin{Verbatim64}
-  schroot -c stable-amd64 -u root
-\end{Verbatim64}
-
-You'll have to install a few packages -- \path{less} and \path{vim}
-are optional, but might come in handy:
-
-\begin{VerbatimBoth}
-  apt-get update
-  apt-get -y install bash-completion clang \
-    libasound2-dev libjack-jackd2-dev \
-    mesa-common-dev xorg-dev less vim
-  apt-get clean
-\end{VerbatimBoth}
-
-If you like \path{bash} completion, you might also want to open the
-file \path{/etc/bash.bashrc} and unquote these lines:
-
-\begin{VerbatimBoth}
-  # enable bash completion in interactive shells
-  if [...]
-    [a couple of lines...]
-  fi
-\end{VerbatimBoth}
-
-Finally, log out and log in as normal user:
-
-\begin{Verbatim32}
-  schroot -c stable-i386
-\end{Verbatim32}
-
-\begin{Verbatim64}
-  schroot -c stable-amd64
-\end{Verbatim64}
-
-In this \path{chroot} shell, install the dependencies (see below).
-Congratulations -- you are now ready to build traKmeter!
-
 \section{Dependencies}
+\label{sec:dependencies}
 
 \subsection{premake}
 \label{sec:dependencies_premake}
@@ -851,10 +753,127 @@ Place the binary somewhere in your \path{PATH}.  Depending on your
 platform, you should run \path{astyle} using the scripts
 \path{Source/format_code.sh} or \path{Source/format_code.bat}.
 
-\section{Building on GNU/Linux}
+\newpage %% layout
+
+\section{GNU/Linux}
+
+\subsection{Environment}
+
+To build traKmeter yourself, I recommend setting up a \texttt{chroot}
+environment.  This is fast and easy to do on Debian-based systems and
+might save you a \textbf{lot} of trouble.  At the time of writing, I'm
+using Linux Mint 18, but the procedure should be similar on your
+distribution of choice.
+
+Start by installing the necessary packages:
+
+\begin{VerbatimBoth}
+  sudo apt-get install debootstrap schroot
+\end{VerbatimBoth}
+
+Then install the \texttt{chroot} base system by executing the
+following statements:
+
+\begin{Verbatim32}
+  sudo debootstrap --variant=buildd \
+    --arch i386 stable \
+    /srv/chroot/stable_i386 \
+    http://httpredir.debian.org/debian
+\end{Verbatim32}
+
+\begin{Verbatim64}
+  sudo debootstrap --variant=buildd \
+    --arch amd64 stable \
+    /srv/chroot/stable_amd64 \
+    http://httpredir.debian.org/debian
+\end{Verbatim64}
+
+Running \path{debootstrap} will take some time.  Meanwhile, add the
+following lines to \path{/etc/schroot/schroot.conf} (make sure you
+remove all preceding white space so that each line begins in the first
+column):
+
+\begin{VerbatimBoth}
+  [stable-i386]
+  description=Debian stable (i386)
+  directory=/srv/chroot/stable_i386
+  profile=default
+  personality=linux32
+  type=directory
+  users=username
+
+  [stable-amd64]
+  description=Debian stable (amd64)
+  directory=/srv/chroot/stable_amd64
+  profile=default
+  personality=linux
+  type=directory
+  users=username
+\end{VerbatimBoth}
+
+Please make the necessary changes to \texttt{username}.  If you
+experience problems, you can try to change \texttt{stable} to a
+release name such as \texttt{wheezy}.
+
+When \path{debootstrap} is done, log in as superuser:
+
+\begin{Verbatim32}
+  schroot -c stable-i386 -u root
+\end{Verbatim32}
+
+\begin{Verbatim64}
+  schroot -c stable-amd64 -u root
+\end{Verbatim64}
+
+You'll have to install a few packages -- \path{less} and \path{vim}
+are optional, but might come in handy:
+
+\begin{VerbatimBoth}
+  apt-get update
+  apt-get -y install bash-completion clang \
+    libasound2-dev libjack-jackd2-dev \
+    mesa-common-dev xorg-dev less vim
+  apt-get clean
+\end{VerbatimBoth}
+
+If you like \path{bash} completion, you might also want to open the
+file \path{/etc/bash.bashrc} and unquote these lines:
+
+\begin{VerbatimBoth}
+  # enable bash completion in interactive shells
+  if [...]
+    [a couple of lines...]
+  fi
+\end{VerbatimBoth}
+
+Finally, log out and log in as normal user:
+
+\begin{Verbatim32}
+  schroot -c stable-i386
+\end{Verbatim32}
+
+\begin{Verbatim64}
+  schroot -c stable-amd64
+\end{Verbatim64}
+
+In this \path{chroot} shell, install the dependencies
+(\ref{sec:dependencies}).  Congratulations -- you are now ready to
+build traKmeter!
+
+\subsection{Build}
 
 After preparing the dependencies, start your \texttt{chroot}
-environment, change into the directory \path{build} and execute
+environment
+
+\begin{Verbatim32}
+  schroot -c stable-i386
+\end{Verbatim32}
+
+\begin{Verbatim64}
+  schroot -c stable-amd64
+\end{Verbatim64}
+
+change into the directory \path{build} and execute
 
 \begin{VerbatimBoth}
   ./run_premake.sh
@@ -872,7 +891,11 @@ and using the premake options \texttt{--cc=clang} or
 
 The compiled binaries will end up in the directory \path{bin}.
 
-\section{Building on Microsoft Windows}
+\newpage %% layout
+
+\section{Microsoft Windows}
+
+\subsection{Build}
 
 After preparing the dependencies, change into the directory
 \path{build} and execute
