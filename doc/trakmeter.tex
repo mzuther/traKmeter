@@ -51,10 +51,10 @@
 \chapter{Digital recordings}
 \label{chap:digital_recordings}
 
-The digital revolution brought a lot of advantages to the field of
-audio processing such as higher fidelity, less noise and non-degrading
-copies.  Unfortunately, however, digital audio also introduced some
-problems of its own.
+The digital revolution brought many advantages to the field of audio
+processing: higher fidelity, less noise, non-degrading copies and the
+endless possibilities of digital signal processing.  Unfortunately,
+however, digital audio also introduced some problems of its own.
 
 Whereas the analogue domain is relatively inert against very high
 levels (overdriving some analogue equipment actually sounds pretty
@@ -65,10 +65,10 @@ And while digital audio can be transferred without loss in quality, it
 is degraded by each and every calculation, be it a simple change in
 level, equalisation or a fancy effect.  Crossing domains from analogue
 to digital and \emph{vice versa} leads to additional degradation.
-Finally, changes in bit depth and sampling rate, jitter and
+Finally, changes in bit depth or sampling rate, jitter and
 inter-sample peaks are nothing for the weak of heart.
 
-However, most of these obstacles can be easily overcome by proper gain
+However, most of these obstacles can easily be overcome by proper gain
 staging, dithering, minimising the crossing of domains and choosing
 appropriate bit depths and sampling rates.  And if you carefully
 choose, test and operate your equipment, you're well on your way to
@@ -77,21 +77,21 @@ pure audio bliss \dots
 \section{Definitions}
 \label{sec:definitions}
 
-\begin{tabular}{p{0.325 \textwidth}p{0.575 \textwidth}}
+\begin{tabular}{p{0.375 \textwidth}p{0.525 \textwidth}}
 
   \textbf{RMS} \newline
   \emph{root mean square} &
-  statistical method used for calculating an average from alternating
+  statistical method used for calculating an average from fluctuating
   values \\[0.5em]
 
-  \textbf{\si{dBu}} \newline
-  \emph{unloaded decibel} &
+  \textbf{\si{\dBu}} \newline
+  \emph{decibel unterminated} &
   analogue level ratio with a reference level of \SI{0.7746}{\VRMS} \\[0.5em]
 
-  \textbf{\si{dBFS}} \newline
-  \emph{decibel relative to digital full-scale} &
+  \textbf{\si{\dBFS}} \newline
+  \emph{decibel relative to \newline digital full-scale} &
   digital level ratio with a reference level equal to the maximum
-  representable value in a system \\[0.25em]
+  representable value \\[0.25em]
 
 \end{tabular}
 
@@ -123,9 +123,10 @@ their ``sweet spot''.
 I also recommend recording with a maximum level of
 \textbf{\SI{-10}{\dBFS} peak}.  This will leave enough space for
 sudden jumps in level and may also improve the sound of your
-recordings.  Some analogue-to-digital converters degrade audio when
-fed with levels close to digital full-scale (\SI{0}{\dBFS}), resulting
-in the ``harshness'' that is often attributed to digital audio.
+recordings.  Some analogue-to-digital converters already degrade audio
+when fed with levels close to digital full-scale (\SI{0}{\dBFS}),
+resulting in the ``harshness'' that is often attributed to digital
+audio.
 
 Try this experiment: record a sine wave and increase its level while
 checking the input with a spectrum meter.  It is quite possible that
@@ -139,9 +140,9 @@ external analogue gear.\footnote{For mixer inserts, I recommend
   maximum input and output levels of \textbf{\SI{-10}{\dBFS} peak} for
   the same reasons mentioned above.}  Do not overload effects or
 plug-ins and (if possible) try to match their input and output
-volume.\footnote{Today, digital signal processors use floating-point
-  calculations and most handle clipping gracefully.  But I wouldn't
-  rely on that \dots}
+volume.\footnote{Today, most digital signal processors use
+  floating-point calculations and handle clipping gracefully.  But I
+  wouldn't rely on that \dots}
 
 Speaking of me, once I transitioned to proper gain staging, my
 recordings and mixes got much better.  And apart from coding
@@ -157,11 +158,11 @@ equipment.  But that doesn't make it any truer.
 
 Even if you record at \emph{peak} levels of \SI{-20}{\dBFS} and you
 discard the least significant bit (which mostly consists of errors and
-dithering noise), a bit depth of \SI{16}{bits} would still leave you
+dithering noise), a bit depth of \SI{16}{\bits} would still leave you
 with a signal-to-noise ratio of \SI{70}{\dB}.  That is about what you
 can expect from some of the best professional analogue tape machines
 and recording desks!  And we're not even talking of the
-\SI{20}{bits}\footnote{In the real world, all analogue circuits are
+\SI{20}{\bits}\footnote{In the real world, all analogue circuits are
   contaminated with thermal noise which limits the usable bit depth of
   converters.  Among other factors, the amount of thermal noise
   depends on temperature and sampling frequency -- see
@@ -197,7 +198,7 @@ ideas haven't changed at all.
 \label{chap:trakmeter}
 
 \begin{wrapfigure}{r}{0.21\linewidth}
-\includegraphics[scale=0.69,clip]{include/images/level_meter_complete.png}
+\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_complete.png}
 \end{wrapfigure}
 
 traKmeter consists of two meters, a peak meter on top and an average
@@ -205,15 +206,14 @@ meter below.  The meters are separated by an orange signal LED and
 consist of an area of green LEDs that is enclosed by either blue ones
 (lower levels) or yellow and then red ones (higher levels).
 
-You may have noticed that the average meter's green area is centred
-around the \textbf{\SI{-20}{\dBFS} RMS} mark.  This number should be
-vaguely familiar.  Remember, this is the level we have determined to
-be the optimal average recording level in the digital domain.
+The average meter's green area is centred around the
+\textbf{\SI{-20}{\dBFS} RMS} mark.  This number should be vaguely
+familiar: this is the level we have determined to be the optimal
+average recording level in the digital domain.
 
 The highest yellow LED on the peak meter's top end corresponds to a
 level of \textbf{\SI{-10}{\dBFS} peak}.  Again, this number should be
-familiar: peak levels shouldn't exceed this level in digital
-recordings.
+familiar: peak levels shouldn't exceed this level.
 
 Thus, by keeping the meter's readout \textbf{in the green} and yellow
 areas and \textbf{out of the red} areas, you will automatically track
@@ -226,7 +226,8 @@ Open up an instance of traKmeter and set it up so that it measures
 your audio input.  That can be done either by starting the stand-alone
 version and connecting it to one or more input channels of your
 analogue-to-digital converter, or by inserting a plug-in instance into
-an input channel of your digital audio workstation.
+an input channel of your digital audio workstation (no latency is
+added).
 
 In the second case, take care that your digital audio workstation
 doesn't add additional headroom and that no processing takes place
@@ -234,7 +235,7 @@ before traKmeter.  This can be ascertained by feeding calibration
 tones into your converter or by directly comparing the readouts of
 stand-alone and plug-in version.
 
-\begin{wrapfigure}{r}{0.425\linewidth}
+\begin{wrapfigure}{r}{0.42\linewidth}
 \includegraphics[scale=0.425,clip]{include/images/trakmeter_optimal.png}
 \end{wrapfigure}
 
@@ -251,9 +252,9 @@ cannot be met simultaneously, adjust the peak level only.
 When you get someone else's tracks for mixing, chances are that they
 have been recorded far too hot.  While you can't change that, you
 should adjust the tracks to optimal loudness in the gain staging
-phase.  This is easily accomplished using traKmeter and a (good!) gain
-plug-in.  Just make sure that the gain treatment precedes all other
-processing you will apply later.
+phase.  This is easily accomplished using traKmeter and either the
+mixer's trim knob or a (properly dithered!) gain plug-in.  Just make
+sure that the gain change precedes all future processing.
 
 Mixing levels will now be much lower than what you might be used to.
 This can easily be corrected by either adjusting the output gain of
@@ -296,13 +297,13 @@ settings by deleting \path{trakmeter_stereo.ini} or
 
 Select your preferred maximum peak recording level with these buttons.
 To follow the advice in \ref{sec:gain_staging}, leave this at the
-default setting of \textbf{\SI{-10}{dBFS}}.
+default setting of \textbf{\SI{-10}{\dBFS}}.
 
 If you record very dynamic material or have problems getting a clean
 signal, you can try the other settings.  They shift both meter scales
-down by \SI{5}{dB} to \SI{10}{dB} and add additional headroom at the
-cost of a higher noise floor.  Which you probably won't even notice,
-as the signal-to-noise ratio of modern converters is so great.
+down by \SIrange{5}{10}{\dB} and add additional headroom at the cost
+of a higher noise floor.  Which you probably won't even notice, as the
+signal-to-noise ratio of modern converters is extremely high.
 
 \section{Reset button}
 \label{sec:reset_button}
@@ -340,7 +341,7 @@ instantiated.
 Click on this button to open the \textbf{validation window} (see
 \ref{chap:validation}) which allows you to play an audio file through
 traKmeter and dump internal data.  During validation, the button will
-light up and clicking it will stop validation early.
+light up and clicking on it will stop validation early.
 
 On Linux, dumped data will be written to \path{stderr}, so just start
 the traKmeter stand-alone or your plug-in host from the shell and
@@ -349,9 +350,9 @@ Sysinternals (stand-alone) or have a look at Ableton Live's log files
 (plug-in).  If none of that works, you might have to start either the
 stand-alone or your plug-in host from a debugger.
 
-As a side note, \textbf{SMA(50)} designates the moving average of 50
-values, a neat way to emphasise trends and eliminate short-term
-fluctuations.
+As a side note, \textbf{SMA(50)} designates the simple moving average
+of \num{50} values, a neat way to emphasise trends and eliminate
+short-term fluctuations.
 
 \section{About button}
 
@@ -392,9 +393,9 @@ adjusted using the ``Recording level'' buttons (see
 \end{wrapfigure}
 
 This meter shows the peak level in \si{\dBFS} and has been calibrated
-so that an input sample value of 1.0 reads \SI{0}{\dBFS}.  Rise time
-is one sample and fall time is \SI{8.67}{\dB\per\second}.  Should a
-meter overflow occur, the red LED marked ``OVR'' will display the
+so that an input sample value of \num{1.0} reads \SI{0}{\dBFS}.  Rise
+time is one sample and fall time is \SI{8.67}{\dB\per\second}.  Should
+a meter overflow occur, the red LED marked ``OVR'' will display the
 corresponding peak level.
 
 The highest encountered peak level will be held indefinitely until the
@@ -456,7 +457,7 @@ advice, I will try to reference the opinion of professionals.
 \item[Use short audio chains.]  All equipment adds noise or may
   otherwise degrade audio, so keep your audio recording chains short
   and simple.  This has the additional benefit that you can focus on
-  recording the artist.
+  recording.
 
   Here is an example: instead of routing your mixer between
   pre-amplifier and converter, connect the mixer to your converter's
@@ -481,25 +482,25 @@ advice, I will try to reference the opinion of professionals.
   disk.  So don't!
 
 \item[Use high bit depths.]  Do yourself a favour and record at a bit
-  depth of \SI{24}{bits} instead of \SI{16}{bits}.  The additional
+  depth of \SI{24}{\bits} instead of \SI{16}{\bits}.  The additional
   bits allow recording at lower levels and provide an incredible
-  amount of extra detail.  When disk space runs low, choose more
-  (true) bits over a higher sampling rate.  See the
+  amount of extra detail.  When disk space runs low, choose more bits
+  over a higher sampling rate.  See the
   \href{http://www.aes.org/par/d/\#data_converter_bits}{AES Pro Audio
     Reference} for more information.
 
   The usable bit depth of converters is limited to approximately 20
   bits by thermal noise.  However, the mixer in your digital audio
   workstation should use floating point numbers with at least
-  \SI{32}{bits}.  Calculation errors are inevitable in digital signal
+  \SI{32}{\bits}.  Calculation errors are inevitable in digital signal
   processing, and more bits mean smaller (and thus quieter) errors.
 
 \item[Use sensible sampling rates.]  According to a
-  \href{http://www.lavryengineering.com/pdfs/lavry-white-paper-the_optimal_sample_rate_for_quality_audio.pdf}{famous
+  \href{http://www.lavryengineering.com/pdfs/lavry-white-paper-the_optimal_sample_rate_for_quality_audio.pdf}{white
     paper} by Dan Lavry, manufacturer of high-quality converters,
   \SI{88.1}{\kilo\hertz} and \SI{96}{\kilo\hertz} are the preferred
-  rates for recording audio.  Support for \SI{88.1}{\kilo\hertz} is
-  limited, so I prefer to work at \SI{96}{\kilo\hertz}.
+  rates for recording audio.  As support for \SI{88.1}{\kilo\hertz} is
+  limited, I prefer to work at \SI{96}{\kilo\hertz}.
 
 \item[Concentrate on recording.]  When tracking, try to not interfere
   with the flow of the session.  Just keep editing and mixing to the
@@ -508,22 +509,22 @@ advice, I will try to reference the opinion of professionals.
 \item[Fix it now.]  Contrary to popular belief, you cannot ``fix it in
   the mix'' -- a bad recording is nothing more than a bad recording.
   So editing and tools like Auto-Tune and extreme EQ should be seen as
-  a last resort.  Apart from the time you lose with editing, it's easy
-  to kill all of a track's vibe in the process.
+  a last resort.  Apart from the precious time lost in editing, it's
+  easy to kill all of a track's vibe in the process.
 
   Instead, keep recording until you capture a great take.  Treat your
   room acoustically and in terms of positive vibe.  Experiment with
-  microphone placement.  And try absolutely everything you can to help
-  the musicians perform better!
+  microphone placement.  And try absolutely everything that may help
+  the artist in achieving a stunning performance!
 
 \item[Make it exciting.]  A lot of today's music sounds like (and
   actually is) one short loop that was ``arranged'' by muting
   different tracks at different times.  This takes away all the small
-  inaccuracies of human players and often makes these songs boring and
-  lifeless.
+  inaccuracies of human players and often leads to boring and lifeless
+  songs.
 
-  So think of a good arrangement before you even start recording.  And
-  instead of looping a track, record a couple of takes and comp the
+  So think of a good arrangement before you even start recording.
+  Instead of looping a track, record a couple of takes and comp the
   best ones.  You'll be surprised at the difference it makes!
 
 \end{description}
@@ -624,8 +625,8 @@ Although coding traKmeter has been a lot of fun, it has also been a
 lot of work.  So if you like traKmeter, why not send me a short email
 and tell me so?  Write a few words about yourself, send suggestions
 for future updates or volunteer to create a nice skin.  I also really
-enjoy listening to music that you may have produced using my
-software\dots
+enjoy listening to music that you have produced using my software
+\dots
 
 Here is my email address (please remove ``\texttt{-nospam}''):
 
