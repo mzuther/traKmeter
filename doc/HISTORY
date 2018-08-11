@@ -2,8 +2,8 @@ Git HEAD
 ========
 
 
-HEAD
-====
+v2.4.5 (2018-08-11)
+===================
 
 * changed target recording levels (-10 / -15 / -20 dB FS)
 
@@ -20,6 +20,10 @@ HEAD
 * reset meters on start of playback
 
 * updated manual
+
+* validation: full re-calibration
+
+* validation: updated documents
 
 
 
