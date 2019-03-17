@@ -110,4 +110,4 @@ help:
 	@echo "   trakmeter_lv2_stereo"
 	@echo "   trakmeter_lv2_multi"
 	@echo ""
-	@echo "For more information, see http://industriousone.com/premake/quick-start"
+	@echo "For more information, see https://github.com/premake/premake-core/wiki"
