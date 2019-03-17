@@ -508,8 +508,8 @@ void TraKmeterAudioProcessor::processBlock(
     jassert(!isUsingDoublePrecision());
     ignoreUnused(midiMessages);
 
-    // This is the place where you'd normally do the guts of your
-    // plug-in's audio processing...
+    // temporarily disable denormals
+    ScopedNoDenormals noDenormals;
 
     int numberOfSamples = buffer.getNumSamples();
 
@@ -569,8 +569,8 @@ void TraKmeterAudioProcessor::processBlock(
     jassert(isUsingDoublePrecision());
     ignoreUnused(midiMessages);
 
-    // This is the place where you'd normally do the guts of your
-    // plug-in's audio processing...
+    // temporarily disable denormals
+    ScopedNoDenormals noDenormals;
 
     int numberOfSamples = buffer.getNumSamples();
 
