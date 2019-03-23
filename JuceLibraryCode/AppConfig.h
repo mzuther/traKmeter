@@ -24,7 +24,7 @@
    =========
    Loudness meter for correctly setting up tracking and mixing levels
 
-   Copyright (c) 2012-2018 Martin Zuther (http://www.mzuther.de/)
+   Copyright (c) 2012-2019 Martin Zuther (http://www.mzuther.de/)
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -423,13 +423,13 @@
  #define JucePlugin_EditorRequiresKeyboardFocus  0
 #endif
 #ifndef  JucePlugin_Version
- #define JucePlugin_Version                2.4.5
+ #define JucePlugin_Version                2.4.6
 #endif
 #ifndef  JucePlugin_VersionCode
- #define JucePlugin_VersionCode            0x20405
+ #define JucePlugin_VersionCode            0x20406
 #endif
 #ifndef  JucePlugin_VersionString
- #define JucePlugin_VersionString          "2.4.5"
+ #define JucePlugin_VersionString          "2.4.6"
 #endif
 #ifndef  JucePlugin_VSTUniqueID
  #define JucePlugin_VSTUniqueID            JucePlugin_PluginCode
