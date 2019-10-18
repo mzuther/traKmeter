@@ -1,7 +1,15 @@
-traKmeter
-=========
+# traKmeter
 
 Loudness meter for correctly setting up tracking and mixing levels
+
+![Screenshot](./doc/include/images/trakmeter.png)
+
+## Documentation
+
+For documentation and further information, please see the directory
+[doc][2], especially the file [trakmeter.pdf][3].
+
+## License
 
 Copyright (c) 2012-2019 [Martin Zuther][1]
 
@@ -19,12 +27,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Thank you for using free software!
-
-Documentation
--------------
-
-For documentation and further information, please see the directory
-[doc][2], especially the file [trakmeter.pdf][3].
 
 
 [1]: http://www.mzuther.de/
