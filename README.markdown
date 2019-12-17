@@ -7,11 +7,16 @@ Loudness meter for correctly setting up tracking and mixing levels
 ## Documentation
 
 For documentation and further information, please see the directory
-[doc][2], especially the file [trakmeter.pdf][3].
+[doc][], especially the [manual][].
+
+## Code of conduct
+
+Please read the [code of conduct][COC] before asking for help, filing
+bug reports or contributing to this project.  Thanks!
 
 ## License
 
-Copyright (c) 2012-2019 [Martin Zuther][1]
+Copyright (c) 2012-2019 [Martin Zuther][]
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -29,6 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 Thank you for using free software!
 
 
-[1]: http://www.mzuther.de/
-[2]: https://github.com/mzuther/trakmeter/tree/master/doc/
-[3]: https://github.com/mzuther/trakmeter/raw/master/doc/trakmeter.pdf
+[Martin Zuther]:  http://www.mzuther.de/
+[COC]:            https://github.com/mzuther/traKmeter/tree/master/CODE_OF_CONDUCT.markdown
+[doc]:            https://github.com/mzuther/traKmeter/tree/master/doc/
+[manual]:         https://github.com/mzuther/traKmeter/raw/master/doc/trakmeter.pdf
