@@ -373,6 +373,10 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         int targetRecordingLevel = audioProcessor->getRealInteger(
                                        TraKmeterPluginParameters::selTargetRecordingLevel);
         bool discreteMeter = true;
+
+        // setting "remainSignalFactor" to 0.0f will prevent segments
+        // from automatically fading out and light all segments with
+        // lower thresholds
         float retainSignalFactor = 0.975f;
         float newSignalFactor = 0.20f;
 
