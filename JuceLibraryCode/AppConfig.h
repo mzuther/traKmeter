@@ -67,6 +67,8 @@
   #endif
 #endif
 
+#define JUCE_JACK_CLIENT_NAME JucePlugin_Name
+
 #define JucePlugin_LV2Category "AnalyserPlugin"
 
 #define JucePlugin_WantsLV2FixedBlockSize  0
