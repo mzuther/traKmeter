@@ -13,6 +13,10 @@ set categories_32=/cygdrive/d/Plugins/32-bit/Categories/Tools/Analyzer/Meter
 set categories_64=/cygdrive/d/Plugins/64-bit/Categories/Tools/Analyzer/Meter
 
 
+echo.
+echo "VST2 (32-bit)"
+echo.
+
 call :CopyVst ^
  "%vst2_32%" ^
  "vst/traKmeter (Stereo).dll" ^
@@ -25,12 +29,19 @@ call :CopyVst ^
  "vst/traKmeter (Multi).dll" ^
  "vst/trakmeter"
 
+echo.
+echo "VST3 (32-bit)"
+echo.
+
 call :CopyVst ^
  "%vst3_32%" ^
  "vst3/traKmeter (Stereo).vst3" ^
  "vst3/traKmeter (Multi).vst3" ^
  "vst3/trakmeter"
 
+echo.
+echo "VST2 (64-bit)"
+echo.
 
 call :CopyVst ^
  "%vst2_64%" ^
@@ -44,12 +55,17 @@ call :CopyVst ^
  "vst/traKmeter (Multi x64).dll" ^
  "vst/trakmeter"
 
+echo.
+echo "VST3 (64-bit)"
+echo.
+
 call :CopyVst ^
  "%vst3_64%" ^
  "vst3/traKmeter (Stereo x64).vst3" ^
  "vst3/traKmeter (Multi x64).vst3" ^
  "vst3/trakmeter"
 
+echo.
 pause
 exit /b %errorlevel%
 
