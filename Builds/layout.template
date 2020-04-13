@@ -27,9 +27,15 @@
 
 {% set name = {'real': 'traKmeter', 'short': 'trakmeter'} -%}
 
-{% set variants = ({'real': 'Stereo', 'short': 'stereo'},
-                   {'real': 'Multi', 'short': 'multi'}) -%}
+{% set variants = [{'real':    'Stereo',
+                    'short':   'stereo',
+                    'defines': ['TRAKMETER_STEREO=1']},
 
+                   {'real':    'Multi',
+                    'short':   'multi',
+                    'defines': ['TRAKMETER_MULTI=1']}] -%}
+
+{% set variants_vst2 = variants -%}
 
 
 {{ render.solution(name, "", windows_sdk) -}}
@@ -46,11 +52,11 @@
 
 
 
-{% for variant in variants %}
+{% for variant in variants_vst2 %}
 
 --------------------------------------------------------------------------------
 
-{{ render.vst(name, variant) -}}
+{{ render.vst2(name, variant) -}}
 
 {% endfor -%}
 
