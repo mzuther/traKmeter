@@ -14,8 +14,6 @@
 
 bin/.intermediate_*
 
-bin/lv2/trakmeter_*.so
-
 bin/standalone/traKmeter*.exe
 bin/standalone/trakmeter_*
 

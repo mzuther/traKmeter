@@ -449,9 +449,10 @@ void TraKmeterAudioProcessor::prepareToPlay(
                             getMainBusNumOutputChannels()),
                        24);
 
-    meterBallistics_ = new MeterBallistics(numberOfChannels_,
-                                           true,
-                                           false);
+    meterBallistics_ = std::make_shared<MeterBallistics>(
+                           numberOfChannels_,
+                           true,
+                           false);
 
     // make sure that ring buffer can hold at least
     // trakmeterBufferSize_ samples and is large enough to receive a
@@ -462,11 +463,11 @@ void TraKmeterAudioProcessor::prepareToPlay(
     int preDelay = 0;
     int chunkSize = trakmeterBufferSize_;
 
-    ringBuffer_ = new frut::audio::RingBuffer<float>(
-        numberOfChannels_,
-        ringBufferSize,
-        preDelay,
-        chunkSize);
+    ringBuffer_ = std::make_unique<frut::audio::RingBuffer<float>>(
+                      numberOfChannels_,
+                      ringBufferSize,
+                      preDelay,
+                      chunkSize);
 
     ringBuffer_->setCallbackClass(this);
 }
@@ -724,9 +725,10 @@ void TraKmeterAudioProcessor::startValidation(
 
     isSilent_ = false;
 
-    audioFilePlayer_ = new AudioFilePlayer(fileAudio,
-                                           (int) getSampleRate(),
-                                           meterBallistics_);
+    audioFilePlayer_ = std::make_unique<AudioFilePlayer>(
+                           fileAudio,
+                           (int) getSampleRate(),
+                           meterBallistics_);
 
     if (audioFilePlayer_->matchingSampleRates())
     {
@@ -783,9 +785,18 @@ bool TraKmeterAudioProcessor::isValidating()
 }
 
 
-MeterBallistics *TraKmeterAudioProcessor::getLevels()
+std::shared_ptr<MeterBallistics> TraKmeterAudioProcessor::getLevels()
 {
     return meterBallistics_;
+}
+
+
+void TraKmeterAudioProcessor::resetMeters()
+{
+    if (meterBallistics_)
+    {
+        meterBallistics_->reset();
+    }
 }
 
 
@@ -817,7 +828,7 @@ void TraKmeterAudioProcessor::getStateInformation(
     DBG("[traKmeter]");
     DBG("[traKmeter] storing plug-in parameters:");
     DBG("[traKmeter]");
-    DBG(String("[traKmeter]   ") + xmlParameters.createDocument("").replace(
+    DBG(String("[traKmeter]   ") + xmlParameters.toString().replace(
             "\n", "\n[traKmeter]   "));
 
     copyXmlToBinary(xmlParameters, destData);
@@ -828,15 +839,14 @@ void TraKmeterAudioProcessor::setStateInformation(
     const void *data,
     int sizeInBytes)
 {
-    ScopedPointer<XmlElement> xmlParameters(
-        getXmlFromBinary(data, sizeInBytes));
+    std::unique_ptr<XmlElement> xmlParameters(getXmlFromBinary(data, sizeInBytes));
 
     DBG("[traKmeter] loading plug-in parameters:");
     DBG("[traKmeter]");
-    DBG(String("[traKmeter]   ") + xmlParameters->createDocument("").replace(
+    DBG(String("[traKmeter]   ") + xmlParameters->toString().replace(
             "\n", "\n[traKmeter]   "));
 
-    pluginParameters_.loadFromXml(xmlParameters);
+    pluginParameters_.loadFromXml(xmlParameters.get());
     updateParameters(true);
 }
 

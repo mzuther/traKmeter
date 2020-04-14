@@ -133,7 +133,7 @@ void TraKmeter::resized()
 }
 
 
-void TraKmeter::setLevels(MeterBallistics *pMeterBallistics)
+void TraKmeter::setLevels(std::shared_ptr<MeterBallistics> pMeterBallistics)
 {
     for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {

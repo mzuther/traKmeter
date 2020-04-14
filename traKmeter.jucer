@@ -7,7 +7,7 @@
               pluginCode="traK" pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="1" pluginTailLength="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="traKmeterAU"
-              pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="0" jucerVersion="5.3.2"
+              pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="0" jucerVersion="5.4.7"
               companyName="Martin Zuther" aaxIdentifier="de.mzuther.traKmeter"
               pluginAAXCategory="0" includeBinaryInAppConfig="1" buildVST3="0"
               buildAAX="0" pluginManufacturerEmail="support@yourcompany.com"
@@ -19,7 +19,7 @@
   <EXPORTFORMATS>
     <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/Documents/code/cpp/trakmeter/libraries/vst"
                 extraCompilerFlags="" cppLanguageStandard="-std=c++11" externalLibraries="dl&#10;freetype&#10;pthread&#10;rt&#10;X11&#10;Xext&#10;asound"
-                extraDefs="JucePlugin_Build_LV2=0&#10;JucePlugin_Build_Standalone=0&#10;JucePlugin_Build_VST=1&#10;JucePlugin_Build_VST3=0&#10;TRAKMETER_STEREO=1&#10;LINUX=1"
+                extraDefs="JucePlugin_Build_Standalone=0&#10;JucePlugin_Build_VST=1&#10;JucePlugin_Build_VST3=0&#10;TRAKMETER_STEREO=1&#10;LINUX=1"
                 userNotes="Add &quot;Source/standalone_application.*&quot; when building the stand-alone."
                 extraLinkerFlags="">
       <CONFIGURATIONS>
@@ -137,7 +137,7 @@
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
     <MODULE id="juce_video" showAllCode="1" useLocalCopy="0"/>
   </MODULES>
-  <JUCEOPTIONS JUCE_QUICKTIME="disabled" JUCE_WEB_BROWSER="0"/>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled"/>
   <LIVE_SETTINGS>
     <LINUX/>
   </LIVE_SETTINGS>

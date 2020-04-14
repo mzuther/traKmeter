@@ -68,17 +68,11 @@ echo
 finalise_executable "standalone/trakmeter_stereo"
 finalise_executable "standalone/trakmeter_multi"
 
-finalise_executable "lv2/trakmeter_stereo_lv2.so"
-finalise_executable "lv2/trakmeter_multi_lv2.so"
-
 finalise_executable "vst/trakmeter_stereo_vst.so"
 finalise_executable "vst/trakmeter_multi_vst.so"
 
 finalise_executable "standalone/trakmeter_stereo_x64"
 finalise_executable "standalone/trakmeter_multi_x64"
-
-finalise_executable "lv2/trakmeter_stereo_lv2_x64.so"
-finalise_executable "lv2/trakmeter_multi_lv2_x64.so"
 
 finalise_executable "vst/trakmeter_stereo_vst_x64.so"
 finalise_executable "vst/trakmeter_multi_vst_x64.so"

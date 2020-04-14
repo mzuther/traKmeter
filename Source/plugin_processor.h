@@ -94,7 +94,8 @@ public:
 
     double getTailLengthSeconds() const override;
 
-    MeterBallistics *getLevels();
+    std::shared_ptr<MeterBallistics> getLevels();
+    void resetMeters();
 
     virtual bool processBufferChunk(AudioBuffer<float> &buffer) override;
 
@@ -115,10 +116,10 @@ private:
     static BusesProperties getBusesProperties();
     void resetOnPlay();
 
-    ScopedPointer<AudioFilePlayer> audioFilePlayer_;
-    ScopedPointer<frut::audio::RingBuffer<float>> ringBuffer_;
+    std::unique_ptr<AudioFilePlayer> audioFilePlayer_;
+    std::unique_ptr<frut::audio::RingBuffer<float>> ringBuffer_;
 
-    ScopedPointer<MeterBallistics> meterBallistics_;
+    std::shared_ptr<MeterBallistics> meterBallistics_;
 
     TraKmeterPluginParameters pluginParameters_;
 

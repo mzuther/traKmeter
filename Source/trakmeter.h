@@ -49,7 +49,7 @@ public:
               const Array<Colour> &averageMeterColours,
               const Array<Colour> &peakMeterColours);
 
-    void setLevels(MeterBallistics *pMeterBallistics);
+    void setLevels(std::shared_ptr<MeterBallistics> pMeterBallistics);
     void applySkin(Skin *pSkin);
     void resized();
 

@@ -65,8 +65,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     AudioProcessorEditor(ownerFilter)
 {
     // load look and feel
-    currentLookAndFeel_ = new frut::skin::LookAndFeel_Frut_V3;
-    setLookAndFeel(currentLookAndFeel_);
+    setLookAndFeel(&customLookAndFeel_);
 
     // the editor window does not have any transparent areas
     // (increases performance on redrawing)
@@ -210,9 +209,9 @@ void TraKmeterAudioProcessorEditor::applySkin()
                            &LabelDebug);
 #endif
 
-    if (trakmeter)
+    if (trakmeter_)
     {
-        trakmeter->applySkin(&skin);
+        trakmeter_->applySkin(&skin);
     }
 }
 
@@ -275,12 +274,7 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(
     // "UM" ==> update meters
     else if (!strMessage.compare("UM"))
     {
-        MeterBallistics *pMeterBallistics = audioProcessor->getLevels();
-
-        if (pMeterBallistics)
-        {
-            trakmeter->setLevels(pMeterBallistics);
-        }
+        trakmeter_->setLevels(audioProcessor->getLevels());
 
         if (isValidating && !audioProcessor->isValidating())
         {
@@ -365,9 +359,9 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
     {
         needsMeterReload = false;
 
-        if (trakmeter)
+        if (trakmeter_)
         {
-            removeChildComponent(trakmeter);
+            removeChildComponent(trakmeter_.get());
         }
 
         int targetRecordingLevel = audioProcessor->getRealInteger(
@@ -387,18 +381,19 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
         levelMeterColours.add(Colour(0.30f, 1.0f, 1.0f, 1.0f));  // fine
         levelMeterColours.add(Colour(0.58f, 1.0f, 1.0f, 1.0f));  // signal
 
-        trakmeter = new TraKmeter(numberOfInputChannels,
-                                  segmentHeight,
-                                  retainSignalFactor,
-                                  newSignalFactor,
-                                  discreteMeter,
-                                  targetRecordingLevel,
-                                  levelMeterColours,
-                                  levelMeterColours);
+        trakmeter_ = std::make_unique<TraKmeter>(
+                         numberOfInputChannels,
+                         segmentHeight,
+                         retainSignalFactor,
+                         newSignalFactor,
+                         discreteMeter,
+                         targetRecordingLevel,
+                         levelMeterColours,
+                         levelMeterColours);
 
         // moves traKmeter to the back of the editor's z-plane so that
         // it doesn't overlay (and thus block) any other components
-        addAndMakeVisible(trakmeter, 0);
+        addAndMakeVisible(trakmeter_.get(), 0);
 
         // moves background image to the back of the editor's z-plane
         applySkin();
@@ -411,12 +406,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
 {
     if (button == &ButtonReset)
     {
-        MeterBallistics *pMeterBallistics = audioProcessor->getLevels();
-
-        if (pMeterBallistics)
-        {
-            pMeterBallistics->reset();
-        }
+        audioProcessor->resetMeters();
 
         // apply skin to plug-in editor
         loadSkin();
@@ -471,10 +461,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         pluginNameAndVersion += " (Audio Unit)";
 #endif
 
-#if JucePlugin_Build_LV2
-        pluginNameAndVersion += " (LV2)";
-#endif
-
 #if JucePlugin_Build_VST
         pluginNameAndVersion += " (VST)";
 #endif
@@ -517,9 +503,6 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
             L"JACK\n"
 #endif
             L"JUCE\n"
-#if JucePlugin_Build_LV2
-            L"LV2\n"
-#endif
 #ifdef LINUX
             L"POSIX Threads\n"
 #endif

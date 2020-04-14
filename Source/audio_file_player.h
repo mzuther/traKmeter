@@ -35,7 +35,7 @@ class AudioFilePlayer
 public:
     AudioFilePlayer(const File audioFile,
                     int sample_rate,
-                    MeterBallistics *meter_ballistics);
+                    std::shared_ptr<MeterBallistics> meter_ballistics);
 
     ~AudioFilePlayer();
 
@@ -70,8 +70,8 @@ private:
 
     frut::dsp::Dither dither_;
 
-    ScopedPointer<AudioFormatReaderSource> audioFileSource;
-    MeterBallistics *pMeterBallistics;
+    std::unique_ptr<AudioFormatReaderSource> audioFileSource;
+    std::shared_ptr<MeterBallistics> pMeterBallistics;
 
     void outputReportPlain(void);
     void outputReportCSVHeader(void);

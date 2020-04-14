@@ -213,7 +213,6 @@ workspace "trakmeter"
 
         defines {
             "TRAKMETER_STEREO=1",
-            "JucePlugin_Build_LV2=0",
             "JucePlugin_Build_Standalone=1",
             "JucePlugin_Build_VST=0",
             "JucePlugin_Build_VST3=0"
@@ -264,7 +263,6 @@ workspace "trakmeter"
 
         defines {
             "TRAKMETER_MULTI=1",
-            "JucePlugin_Build_LV2=0",
             "JucePlugin_Build_Standalone=1",
             "JucePlugin_Build_VST=0",
             "JucePlugin_Build_VST3=0"
@@ -315,7 +313,6 @@ workspace "trakmeter"
 
         defines {
             "TRAKMETER_STEREO=1",
-            "JucePlugin_Build_LV2=0",
             "JucePlugin_Build_Standalone=0",
             "JucePlugin_Build_VST=1",
             "JucePlugin_Build_VST3=0"
@@ -333,7 +330,7 @@ workspace "trakmeter"
         }
 
         includedirs {
-            "../libraries/vst"
+            "../libraries/vst2/VST2_SDK"
         }
 
         filter { "system:linux" }
@@ -357,7 +354,6 @@ workspace "trakmeter"
 
         defines {
             "TRAKMETER_MULTI=1",
-            "JucePlugin_Build_LV2=0",
             "JucePlugin_Build_Standalone=0",
             "JucePlugin_Build_VST=1",
             "JucePlugin_Build_VST3=0"
@@ -375,7 +371,7 @@ workspace "trakmeter"
         }
 
         includedirs {
-            "../libraries/vst"
+            "../libraries/vst2/VST2_SDK"
         }
 
         filter { "system:linux" }
@@ -402,7 +398,6 @@ if os.target() == "windows" then
 
         defines {
             "TRAKMETER_STEREO=1",
-            "JucePlugin_Build_LV2=0",
             "JucePlugin_Build_Standalone=0",
             "JucePlugin_Build_VST=0",
             "JucePlugin_Build_VST3=1"
@@ -420,7 +415,8 @@ if os.target() == "windows" then
         }
 
         includedirs {
-            "../libraries/vst/VST3_SDK"
+            "../libraries/vst2/VST2_SDK",
+            "../libraries/vst3"
         }
 
         filter { "system:windows" }
@@ -447,7 +443,6 @@ if os.target() == "windows" then
 
         defines {
             "TRAKMETER_MULTI=1",
-            "JucePlugin_Build_LV2=0",
             "JucePlugin_Build_Standalone=0",
             "JucePlugin_Build_VST=0",
             "JucePlugin_Build_VST3=1"
@@ -465,7 +460,8 @@ if os.target() == "windows" then
         }
 
         includedirs {
-            "../libraries/vst/VST3_SDK"
+            "../libraries/vst2/VST2_SDK",
+            "../libraries/vst3"
         }
 
         filter { "system:windows" }
@@ -479,84 +475,4 @@ if os.target() == "windows" then
             objdir ("../bin/.intermediate_" .. os.target() .. "/vst3_multi_release")
 
 -- create VST3 projects on Windows only
-end
-
---------------------------------------------------------------------------------
-
--- create LV2 projects on Linux only
-if os.target() == "linux" then
-
-    project ("trakmeter_lv2_stereo")
-        kind "SharedLib"
-        targetdir "../bin/lv2/"
-
-        defines {
-            "TRAKMETER_STEREO=1",
-            "JucePlugin_Build_LV2=1",
-            "JucePlugin_Build_Standalone=0",
-            "JucePlugin_Build_VST=0",
-            "JucePlugin_Build_VST3=0"
-        }
-
-        files {
-              "../JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp"
-        }
-
-        defines {
-            "JUCE_ALSA=0",
-            "JUCE_JACK=0",
-            "JUCE_WASAPI=0",
-            "JUCE_DIRECTSOUND=0"
-        }
-
-        filter { "system:linux" }
-            targetname "trakmeter_stereo_lv2"
-
-        filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/lv2_stereo_debug")
-
-        filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/lv2_stereo_release")
-
--- create LV2 projects on Linux only
-end
-
---------------------------------------------------------------------------------
-
--- create LV2 projects on Linux only
-if os.target() == "linux" then
-
-    project ("trakmeter_lv2_multi")
-        kind "SharedLib"
-        targetdir "../bin/lv2/"
-
-        defines {
-            "TRAKMETER_MULTI=1",
-            "JucePlugin_Build_LV2=1",
-            "JucePlugin_Build_Standalone=0",
-            "JucePlugin_Build_VST=0",
-            "JucePlugin_Build_VST3=0"
-        }
-
-        files {
-              "../JuceLibraryCode/include_juce_audio_plugin_client_LV2.cpp"
-        }
-
-        defines {
-            "JUCE_ALSA=0",
-            "JUCE_JACK=0",
-            "JUCE_WASAPI=0",
-            "JUCE_DIRECTSOUND=0"
-        }
-
-        filter { "system:linux" }
-            targetname "trakmeter_multi_lv2"
-
-        filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/lv2_multi_debug")
-
-        filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/lv2_multi_release")
-
--- create LV2 projects on Linux only
 end
