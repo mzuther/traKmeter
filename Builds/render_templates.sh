@@ -2,11 +2,11 @@
 
 # ----------------------------------------------------------------------------
 #
-#  traKmeter
-#  =========
-#  Loudness meter for correctly setting up tracking and mixing levels
+#  Squeezer
+#  ========
+#  Flexible general-purpose audio compressor with a touch of citrus
 #
-#  Copyright (c) 2012-2020 Martin Zuther (http://www.mzuther.de/)
+#  Copyright (c) 2013-2020 Martin Zuther (http://www.mzuther.de/)
 #
 #  This program is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -25,15 +25,12 @@
 #
 # ----------------------------------------------------------------------------
 
-windows_sdk="10.0.17763.0"
-
-
-cd $(dirname $0)
-
-python3 create_premake.py $windows_sdk
+cd "$(dirname "$0")" || exit
 
 echo
-premake5 --os=windows vs2015
+echo "=== Rendering templates ==="
+python3 "../Source/frut/jinja/render_templates.py"
+
 
 echo
 premake5 --os=windows vs2017

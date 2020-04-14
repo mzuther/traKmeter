@@ -1,27 +1,34 @@
---------------------------------------------------------------------------------
---
+--  ----------------------------------------------------------------------------
+--  
 --  traKmeter
 --  =========
 --  Loudness meter for correctly setting up tracking and mixing levels
---
+--  
 --  Copyright (c) 2012-2020 Martin Zuther (http://www.mzuther.de/)
---
+--  
 --  This program is free software: you can redistribute it and/or modify
 --  it under the terms of the GNU General Public License as published by
 --  the Free Software Foundation, either version 3 of the License, or
 --  (at your option) any later version.
---
+--  
 --  This program is distributed in the hope that it will be useful,
 --  but WITHOUT ANY WARRANTY; without even the implied warranty of
 --  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 --  GNU General Public License for more details.
---
+--  
 --  You should have received a copy of the GNU General Public License
 --  along with this program.  If not, see <http://www.gnu.org/licenses/>.
---
+--  
 --  Thank you for using free software!
+--  
+--  ----------------------------------------------------------------------------
+
+
+-- #############################################################################
 --
---------------------------------------------------------------------------------
+-- WARNING: this file is auto-generated, please do not edit!
+--
+-- #############################################################################
 
 
 if not _ACTION then
@@ -307,9 +314,9 @@ workspace "trakmeter"
 
 --------------------------------------------------------------------------------
 
-    project ("trakmeter_vst_stereo")
+    project ("trakmeter_vst2_stereo")
         kind "SharedLib"
-        targetdir "../bin/vst/"
+        targetdir "../bin/vst2/"
 
         defines {
             "TRAKMETER_STEREO=1",
@@ -334,23 +341,23 @@ workspace "trakmeter"
         }
 
         filter { "system:linux" }
-            targetname "trakmeter_stereo_vst"
+            targetname "trakmeter_stereo_vst2"
 
         filter { "system:windows" }
             targetname "traKmeter (Stereo"
             targetextension (".dll")
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst_stereo_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/vst2_stereo_debug")
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst_stereo_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/vst2_stereo_release")
 
 --------------------------------------------------------------------------------
 
-    project ("trakmeter_vst_multi")
+    project ("trakmeter_vst2_multi")
         kind "SharedLib"
-        targetdir "../bin/vst/"
+        targetdir "../bin/vst2/"
 
         defines {
             "TRAKMETER_MULTI=1",
@@ -375,17 +382,17 @@ workspace "trakmeter"
         }
 
         filter { "system:linux" }
-            targetname "trakmeter_multi_vst"
+            targetname "trakmeter_multi_vst2"
 
         filter { "system:windows" }
             targetname "traKmeter (Multi"
             targetextension (".dll")
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst_multi_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/vst2_multi_debug")
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst_multi_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/vst2_multi_release")
 
 --------------------------------------------------------------------------------
 

@@ -11,29 +11,29 @@ endif
 ifeq ($(config),debug_x32)
   trakmeter_standalone_stereo_config = debug_x32
   trakmeter_standalone_multi_config = debug_x32
-  trakmeter_vst_stereo_config = debug_x32
-  trakmeter_vst_multi_config = debug_x32
+  trakmeter_vst2_stereo_config = debug_x32
+  trakmeter_vst2_multi_config = debug_x32
 endif
 ifeq ($(config),debug_x64)
   trakmeter_standalone_stereo_config = debug_x64
   trakmeter_standalone_multi_config = debug_x64
-  trakmeter_vst_stereo_config = debug_x64
-  trakmeter_vst_multi_config = debug_x64
+  trakmeter_vst2_stereo_config = debug_x64
+  trakmeter_vst2_multi_config = debug_x64
 endif
 ifeq ($(config),release_x32)
   trakmeter_standalone_stereo_config = release_x32
   trakmeter_standalone_multi_config = release_x32
-  trakmeter_vst_stereo_config = release_x32
-  trakmeter_vst_multi_config = release_x32
+  trakmeter_vst2_stereo_config = release_x32
+  trakmeter_vst2_multi_config = release_x32
 endif
 ifeq ($(config),release_x64)
   trakmeter_standalone_stereo_config = release_x64
   trakmeter_standalone_multi_config = release_x64
-  trakmeter_vst_stereo_config = release_x64
-  trakmeter_vst_multi_config = release_x64
+  trakmeter_vst2_stereo_config = release_x64
+  trakmeter_vst2_multi_config = release_x64
 endif
 
-PROJECTS := trakmeter_standalone_stereo trakmeter_standalone_multi trakmeter_vst_stereo trakmeter_vst_multi
+PROJECTS := trakmeter_standalone_stereo trakmeter_standalone_multi trakmeter_vst2_stereo trakmeter_vst2_multi
 
 .PHONY: all clean help $(PROJECTS) 
 
@@ -51,23 +51,23 @@ ifneq (,$(trakmeter_standalone_multi_config))
 	@${MAKE} --no-print-directory -C . -f trakmeter_standalone_multi.make config=$(trakmeter_standalone_multi_config)
 endif
 
-trakmeter_vst_stereo:
-ifneq (,$(trakmeter_vst_stereo_config))
-	@echo "==== Building trakmeter_vst_stereo ($(trakmeter_vst_stereo_config)) ===="
-	@${MAKE} --no-print-directory -C . -f trakmeter_vst_stereo.make config=$(trakmeter_vst_stereo_config)
+trakmeter_vst2_stereo:
+ifneq (,$(trakmeter_vst2_stereo_config))
+	@echo "==== Building trakmeter_vst2_stereo ($(trakmeter_vst2_stereo_config)) ===="
+	@${MAKE} --no-print-directory -C . -f trakmeter_vst2_stereo.make config=$(trakmeter_vst2_stereo_config)
 endif
 
-trakmeter_vst_multi:
-ifneq (,$(trakmeter_vst_multi_config))
-	@echo "==== Building trakmeter_vst_multi ($(trakmeter_vst_multi_config)) ===="
-	@${MAKE} --no-print-directory -C . -f trakmeter_vst_multi.make config=$(trakmeter_vst_multi_config)
+trakmeter_vst2_multi:
+ifneq (,$(trakmeter_vst2_multi_config))
+	@echo "==== Building trakmeter_vst2_multi ($(trakmeter_vst2_multi_config)) ===="
+	@${MAKE} --no-print-directory -C . -f trakmeter_vst2_multi.make config=$(trakmeter_vst2_multi_config)
 endif
 
 clean:
 	@${MAKE} --no-print-directory -C . -f trakmeter_standalone_stereo.make clean
 	@${MAKE} --no-print-directory -C . -f trakmeter_standalone_multi.make clean
-	@${MAKE} --no-print-directory -C . -f trakmeter_vst_stereo.make clean
-	@${MAKE} --no-print-directory -C . -f trakmeter_vst_multi.make clean
+	@${MAKE} --no-print-directory -C . -f trakmeter_vst2_stereo.make clean
+	@${MAKE} --no-print-directory -C . -f trakmeter_vst2_multi.make clean
 
 help:
 	@echo "Usage: make [config=name] [target]"
@@ -83,7 +83,7 @@ help:
 	@echo "   clean"
 	@echo "   trakmeter_standalone_stereo"
 	@echo "   trakmeter_standalone_multi"
-	@echo "   trakmeter_vst_stereo"
-	@echo "   trakmeter_vst_multi"
+	@echo "   trakmeter_vst2_stereo"
+	@echo "   trakmeter_vst2_multi"
 	@echo ""
 	@echo "For more information, see https://github.com/premake/premake-core/wiki"

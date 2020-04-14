@@ -65,12 +65,12 @@ case $1 in
 		EXECUTABLE="trakmeter_multi"
 		;;
 	3)
-		MAKEFILE="trakmeter_vst_stereo"
-		MAKEFILE_PRINT="VST plug-in (Stereo)"
+		MAKEFILE="trakmeter_vst2_stereo"
+		MAKEFILE_PRINT="VST2 plug-in (Stereo)"
 		;;
 	4)
-		MAKEFILE="trakmeter_vst_multi"
-		MAKEFILE_PRINT="VST plug-in (Multi)"
+		MAKEFILE="trakmeter_vst2_multi"
+		MAKEFILE_PRINT="VST2 plug-in (Multi)"
 		;;
 	*)
 		echo "  Target:    ..."
@@ -81,8 +81,8 @@ case $1 in
 		echo "  1: Standalone (Stereo)"
 		echo "  2: Standalone (Multi)"
 		echo
-		echo "  3: VST plug-in (Stereo)"
-		echo "  4: VST plug-in (Multi)"
+		echo "  3: VST2 plug-in (Stereo)"
+		echo "  4: VST2 plug-in (Multi)"
 		echo
 		exit
 esac
