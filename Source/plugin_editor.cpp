@@ -139,6 +139,9 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
 TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 {
     audioProcessor->removeActionListener(this);
+
+    // release look and feel
+    setLookAndFeel(nullptr);
 }
 
 
