@@ -113,36 +113,11 @@ bool TraKmeterAudioProcessor::isBusesLayoutSupported(
         return false;
     }
 
-#ifdef TRAKMETER_MULTI
-
-    // prefer main bus with eight input channels ==> okay
-    if (layouts.getMainInputChannelSet().size() == 8)
+    // allow main bus with predefined number of input channels ==> // okay
+    if (layouts.getMainInputChannelSet().size() == numberOfChannels_)
     {
         return true;
     }
-
-    // main bus with one to seven input channels ==> okay
-    if ((layouts.getMainInputChannelSet().size() >= 1) &&
-            (layouts.getMainInputChannelSet().size() <= 7))
-    {
-        return true;
-    }
-
-#else
-
-    // main bus with mono input ==> okay
-    if (layouts.getMainInputChannelSet() == AudioChannelSet::mono())
-    {
-        return true;
-    }
-
-    // main bus with stereo input ==> okay
-    if (layouts.getMainInputChannelSet() == AudioChannelSet::stereo())
-    {
-        return true;
-    }
-
-#endif
 
     // current channel layout is not allowed
     return false;
