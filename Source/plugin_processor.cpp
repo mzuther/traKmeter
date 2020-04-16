@@ -81,9 +81,9 @@ AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
 
     return BusesProperties()
            .withInput("Main In",
-                      AudioChannelSet::discreteChannels(8))
+                      AudioChannelSet::canonicalChannelSet(8))
            .withOutput("Main Out",
-                       AudioChannelSet::discreteChannels(8));
+                       AudioChannelSet::canonicalChannelSet(8));
 
 #else
 
