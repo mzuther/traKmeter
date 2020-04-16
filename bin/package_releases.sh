@@ -32,9 +32,9 @@
 #
 ###############################################################################
 
-version="2.4.6"
+version="2.4.7"
 
-executable_dir="./final"
+binary_dir="./final"
 release_dir="releases"
 
 
@@ -145,7 +145,7 @@ function archive_store
 
 # ----- General -----
 
-./finalise_executables.sh
+./finalise_binaries.sh
 
 mkdir -p "./releases/linux/i386"
 mkdir -p "./releases/linux/amd64"
@@ -164,12 +164,12 @@ archive_dir="trakmeter-linux32-standalone_$version"
 
 archive_create
 
-archive_add "trakmeter_stereo" "$executable_dir"
-archive_add "trakmeter_multi" "$executable_dir"
+archive_add "trakmeter_stereo" "$binary_dir"
+archive_add "trakmeter_multi" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux"
@@ -184,12 +184,12 @@ archive_dir="trakmeter-linux32-vst2_$version"
 
 archive_create
 
-archive_add "trakmeter_stereo_vst2.so" "$executable_dir"
-archive_add "trakmeter_multi_vst2.so" "$executable_dir"
+archive_add "trakmeter_stereo_vst2.so" "$binary_dir"
+archive_add "trakmeter_multi_vst2.so" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux"
@@ -204,12 +204,12 @@ archive_dir="trakmeter-linux64-standalone_$version"
 
 archive_create
 
-archive_add "trakmeter_stereo_x64" "$executable_dir"
-archive_add "trakmeter_multi_x64" "$executable_dir"
+archive_add "trakmeter_stereo_x64" "$binary_dir"
+archive_add "trakmeter_multi_x64" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux"
@@ -224,12 +224,12 @@ archive_dir="trakmeter-linux64-vst2_$version"
 
 archive_create
 
-archive_add "trakmeter_stereo_vst2_x64.so" "$executable_dir"
-archive_add "trakmeter_multi_vst2_x64.so" "$executable_dir"
+archive_add "trakmeter_stereo_vst2_x64.so" "$binary_dir"
+archive_add "trakmeter_multi_vst2_x64.so" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "gzip"
 archive_store "gzip" "$release_dir/linux"
@@ -244,12 +244,12 @@ archive_dir="trakmeter-w32-standalone_$version"
 
 archive_create
 
-archive_add "traKmeter (Stereo).exe" "$executable_dir"
-archive_add "traKmeter (Multi).exe" "$executable_dir"
+archive_add "traKmeter (Stereo).exe" "$binary_dir"
+archive_add "traKmeter (Multi).exe" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/windows"
@@ -264,12 +264,12 @@ archive_dir="trakmeter-w32-vst2_$version"
 
 archive_create
 
-archive_add "traKmeter (Stereo).dll" "$executable_dir"
-archive_add "traKmeter (Multi).dll" "$executable_dir"
+archive_add "traKmeter (Stereo).dll" "$binary_dir"
+archive_add "traKmeter (Multi).dll" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/windows"
@@ -284,12 +284,12 @@ archive_dir="trakmeter-w32-vst3_$version"
 
 archive_create
 
-archive_add "traKmeter (Stereo).vst3" "$executable_dir"
-archive_add "traKmeter (Multi).vst3" "$executable_dir"
+archive_add "traKmeter (Stereo).vst3" "$binary_dir"
+archive_add "traKmeter (Multi).vst3" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/windows"
@@ -304,12 +304,12 @@ archive_dir="trakmeter-w64-standalone_$version"
 
 archive_create
 
-archive_add "traKmeter (Stereo x64).exe" "$executable_dir"
-archive_add "traKmeter (Multi x64).exe" "$executable_dir"
+archive_add "traKmeter (Stereo x64).exe" "$binary_dir"
+archive_add "traKmeter (Multi x64).exe" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/windows"
@@ -324,12 +324,12 @@ archive_dir="trakmeter-w64-vst2_$version"
 
 archive_create
 
-archive_add "traKmeter (Stereo x64).dll" "$executable_dir"
-archive_add "traKmeter (Multi x64).dll" "$executable_dir"
+archive_add "traKmeter (Stereo x64).dll" "$binary_dir"
+archive_add "traKmeter (Multi x64).dll" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/windows"
@@ -344,12 +344,12 @@ archive_dir="trakmeter-w64-vst3_$version"
 
 archive_create
 
-archive_add "traKmeter (Stereo x64).vst3" "$executable_dir"
-archive_add "traKmeter (Multi x64).vst3" "$executable_dir"
+archive_add "traKmeter (Stereo x64).vst3" "$binary_dir"
+archive_add "traKmeter (Multi x64).vst3" "$binary_dir"
 
-archive_add "trakmeter/doc" "$executable_dir"
-archive_add "trakmeter/skins/Default" "$executable_dir"
-archive_add "trakmeter/skins/Default.skin" "$executable_dir"
+archive_add "trakmeter/doc" "$binary_dir"
+archive_add "trakmeter/skins/Default" "$binary_dir"
+archive_add "trakmeter/skins/Default.skin" "$binary_dir"
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/windows"
@@ -364,9 +364,9 @@ archive_dir="debug-symbols_$version"
 
 archive_create
 
-archive_add "standalone" "$executable_dir/debug_symbols"
-archive_add "vst2" "$executable_dir/debug_symbols"
-archive_add "vst3" "$executable_dir/debug_symbols"
+archive_add "standalone" "$binary_dir/debug_symbols"
+archive_add "vst2" "$binary_dir/debug_symbols"
+archive_add "vst3" "$binary_dir/debug_symbols"
 
 archive_compress "zip"
 archive_store "zip" "$release_dir/windows"

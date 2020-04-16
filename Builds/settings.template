@@ -29,7 +29,7 @@
 ] %}
 
 
-{% set version = '2.4.6' %}
+{% set version = '2.4.7' %}
 {% set vst2_category = 'Tools/Analyzer/Meter' %}
 {% set windows_sdk = '10.0.17763.0' %}
 
@@ -54,8 +54,8 @@
 
 {% set additions_copyvst = {
   'default': [
-    'archive_add "trakmeter/doc" "$executable_dir"',
-    'archive_add "trakmeter/skins/Default" "$executable_dir"',
-    'archive_add "trakmeter/skins/Default.skin" "$executable_dir"'
+    'archive_add "trakmeter/doc" "$binary_dir"',
+    'archive_add "trakmeter/skins/Default" "$binary_dir"',
+    'archive_add "trakmeter/skins/Default.skin" "$binary_dir"'
   ]
 } %}

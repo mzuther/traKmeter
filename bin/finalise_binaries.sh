@@ -32,21 +32,23 @@
 #
 ###############################################################################
 
-executable_dir="final"
+binary_dir="final"
 
 
-function finalise_executable
+function finalise_binary
 {
     filepath=$1
     filename=$(basename "$1")
 
     if [ -f "./$filepath" ]; then
-        echo "  Finalising:  $filepath -->"
-        echo "               $executable_dir/$filename"
+        if [ ! -f "$binary_dir/$filename" ] || [ "./$filepath" -nt "$binary_dir/$filename" ]; then
+            echo "  Finalising:  $filepath -->"
+            echo "               $binary_dir/$filename"
 
-        mv "./$filepath" "./$executable_dir/$filename"
+            cp "./$filepath" "./$binary_dir/$filename"
 
-        echo
+            echo
+        fi
     fi
 }
 
@@ -57,61 +59,63 @@ function finalise_symbols
     filename=$(basename "$1")
 
     if [ -f "./$filepath" ]; then
-        echo "  Finalising:  $filepath -->"
-        echo "               $executable_dir/debug_symbols/$filepath"
+        if [ ! -f "$binary_dir/debug_symbols/$filepath" ] || [ "./$filepath" -nt "$binary_dir/debug_symbols/$filepath" ]; then
+            echo "  Finalising:  $filepath -->"
+            echo "               $binary_dir/debug_symbols/$filepath"
 
-        mkdir -p "$(dirname "./$executable_dir/debug_symbols/$filepath")"
-        mv "./$filepath" "./$executable_dir/debug_symbols/$filepath"
+            mkdir -p "$(dirname "./$binary_dir/debug_symbols/$filepath")"
+            cp "./$filepath" "./$binary_dir/debug_symbols/$filepath"
 
-        echo
+            echo
+        fi
     fi
 }
 
 
 echo
-echo "  === Finalising executables ==="
+echo "  === Finalising binaries ==="
 echo
 
-finalise_executable "standalone/trakmeter_stereo"
-finalise_executable "standalone/trakmeter_multi"
+finalise_binary "standalone/trakmeter_stereo"
+finalise_binary "standalone/trakmeter_multi"
 
-finalise_executable "vst2/trakmeter_stereo_vst2.so"
-finalise_executable "vst2/trakmeter_multi_vst2.so"
+finalise_binary "vst2/trakmeter_stereo_vst2.so"
+finalise_binary "vst2/trakmeter_multi_vst2.so"
 
-finalise_executable "standalone/trakmeter_stereo_x64"
-finalise_executable "standalone/trakmeter_multi_x64"
+finalise_binary "standalone/trakmeter_stereo_x64"
+finalise_binary "standalone/trakmeter_multi_x64"
 
-finalise_executable "vst2/trakmeter_stereo_vst2_x64.so"
-finalise_executable "vst2/trakmeter_multi_vst2_x64.so"
+finalise_binary "vst2/trakmeter_stereo_vst2_x64.so"
+finalise_binary "vst2/trakmeter_multi_vst2_x64.so"
 
-finalise_executable "standalone/traKmeter (Stereo).exe"
+finalise_binary "standalone/traKmeter (Stereo).exe"
 finalise_symbols    "standalone/traKmeter (Stereo).pdb"
-finalise_executable "standalone/traKmeter (Multi).exe"
+finalise_binary "standalone/traKmeter (Multi).exe"
 finalise_symbols    "standalone/traKmeter (Multi).pdb"
 
-finalise_executable "vst2/traKmeter (Stereo).dll"
+finalise_binary "vst2/traKmeter (Stereo).dll"
 finalise_symbols    "vst2/traKmeter (Stereo).pdb"
-finalise_executable "vst2/traKmeter (Multi).dll"
+finalise_binary "vst2/traKmeter (Multi).dll"
 finalise_symbols    "vst2/traKmeter (Multi).pdb"
 
-finalise_executable "vst3/traKmeter (Stereo).vst3"
+finalise_binary "vst3/traKmeter (Stereo).vst3"
 finalise_symbols    "vst3/traKmeter (Stereo).pdb"
-finalise_executable "vst3/traKmeter (Multi).vst3"
+finalise_binary "vst3/traKmeter (Multi).vst3"
 finalise_symbols    "vst3/traKmeter (Multi).pdb"
 
-finalise_executable "standalone/traKmeter (Stereo x64).exe"
+finalise_binary "standalone/traKmeter (Stereo x64).exe"
 finalise_symbols    "standalone/traKmeter (Stereo x64).pdb"
-finalise_executable "standalone/traKmeter (Multi x64).exe"
+finalise_binary "standalone/traKmeter (Multi x64).exe"
 finalise_symbols    "standalone/traKmeter (Multi x64).pdb"
 
-finalise_executable "vst2/traKmeter (Stereo x64).dll"
+finalise_binary "vst2/traKmeter (Stereo x64).dll"
 finalise_symbols    "vst2/traKmeter (Stereo x64).pdb"
-finalise_executable "vst2/traKmeter (Multi x64).dll"
+finalise_binary "vst2/traKmeter (Multi x64).dll"
 finalise_symbols    "vst2/traKmeter (Multi x64).pdb"
 
-finalise_executable "vst3/traKmeter (Stereo x64).vst3"
+finalise_binary "vst3/traKmeter (Stereo x64).vst3"
 finalise_symbols    "vst3/traKmeter (Stereo x64).pdb"
-finalise_executable "vst3/traKmeter (Multi x64).vst3"
+finalise_binary "vst3/traKmeter (Multi x64).vst3"
 finalise_symbols    "vst3/traKmeter (Multi x64).pdb"
 
 echo "  Done."
