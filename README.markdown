@@ -6,8 +6,8 @@ Loudness meter for correctly setting up tracking and mixing levels
 
 ## Documentation
 
-For documentation and further information, please see the directory
-[doc][], especially the [manual][].
+For documentation and further information, please see the [manual][]
+and the directory [doc][].
 
 ## Code of conduct
 

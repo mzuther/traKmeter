@@ -167,6 +167,7 @@ archive_create
 archive_add "trakmeter_stereo" "$binary_dir"
 archive_add "trakmeter_multi" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -187,6 +188,7 @@ archive_create
 archive_add "trakmeter_stereo_vst2.so" "$binary_dir"
 archive_add "trakmeter_multi_vst2.so" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -207,6 +209,7 @@ archive_create
 archive_add "trakmeter_stereo_x64" "$binary_dir"
 archive_add "trakmeter_multi_x64" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -227,6 +230,7 @@ archive_create
 archive_add "trakmeter_stereo_vst2_x64.so" "$binary_dir"
 archive_add "trakmeter_multi_vst2_x64.so" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -247,6 +251,7 @@ archive_create
 archive_add "traKmeter (Stereo).exe" "$binary_dir"
 archive_add "traKmeter (Multi).exe" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -267,6 +272,7 @@ archive_create
 archive_add "traKmeter (Stereo).dll" "$binary_dir"
 archive_add "traKmeter (Multi).dll" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -287,6 +293,7 @@ archive_create
 archive_add "traKmeter (Stereo).vst3" "$binary_dir"
 archive_add "traKmeter (Multi).vst3" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -307,6 +314,7 @@ archive_create
 archive_add "traKmeter (Stereo x64).exe" "$binary_dir"
 archive_add "traKmeter (Multi x64).exe" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -327,6 +335,7 @@ archive_create
 archive_add "traKmeter (Stereo x64).dll" "$binary_dir"
 archive_add "traKmeter (Multi x64).dll" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"
@@ -347,6 +356,7 @@ archive_create
 archive_add "traKmeter (Stereo x64).vst3" "$binary_dir"
 archive_add "traKmeter (Multi x64).vst3" "$binary_dir"
 
+archive_add "trakmeter.pdf" "$binary_dir"
 archive_add "trakmeter/doc" "$binary_dir"
 archive_add "trakmeter/skins/Default" "$binary_dir"
 archive_add "trakmeter/skins/Default.skin" "$binary_dir"

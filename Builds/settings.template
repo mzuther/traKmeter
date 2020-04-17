@@ -54,6 +54,7 @@
 
 {% set additions_copyvst = {
   'default': [
+    'archive_add "trakmeter.pdf" "$binary_dir"',
     'archive_add "trakmeter/doc" "$binary_dir"',
     'archive_add "trakmeter/skins/Default" "$binary_dir"',
     'archive_add "trakmeter/skins/Default.skin" "$binary_dir"'
