@@ -44,7 +44,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     ParameterTargetRecordingLevel->addPreset(-15.0f, "-15 dB FS peak");
     ParameterTargetRecordingLevel->addPreset(-20.0f, "-20 dB FS peak");
 
-    ParameterTargetRecordingLevel->setDefaultRealFloat(-10.0f, true);
+    ParameterTargetRecordingLevel->setDefaultRealFloat(-15.0f, true);
     add(ParameterTargetRecordingLevel, selTargetRecordingLevel);
 
 

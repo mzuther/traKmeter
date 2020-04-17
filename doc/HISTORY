@@ -1,6 +1,24 @@
 Git HEAD
 ========
 
+* change default target recording level to -15 dB FS
+
+* fix channel-related VST3 issues
+
+* customize Jack daemon client name
+
+* drop support for LV2 (sorry, it's just too much hassle)
+        
+* minor fixes and improvements
+        
+* re-factor code
+
+* update JUCE framework and libraries
+        
+* update skin
+
+* add documentation
+
 
 
 v2.4.6 (2019-03-23)
