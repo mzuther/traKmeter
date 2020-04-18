@@ -106,7 +106,7 @@ void MeterBarAverage::create(
                 segmentHeight,
                 spacingBefore,
                 segmentColours[colourId],
-                Colours::white);
+                segmentColours[colourId]);
         }
     }
 
