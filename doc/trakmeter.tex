@@ -135,9 +135,12 @@ when fed with levels close to digital full-scale (\SI{0}{\dBFS}),
 resulting in the ``harshness'' that is often attributed to digital
 audio.
 
-Try this experiment: record a sine wave and increase its level while
-checking the input with a spectrum meter.  It is quite possible that
-overtones appear at levels way below the clipping point.
+\emph{Try this: record a clearly defined signal (such as a sine wave)
+  and increase its level while analysing the obtained signal with a
+  spectrum meter.  Overtones will probably appear at levels way below
+  clipping point (see \ref{sec:converter_clipping}).  Their individual
+  level may be low but will accumulate when you mix recordings -- and
+  our ears are sensitive for distortion.}
 
 Gain staging doesn't stop here.  Set up your mixer so that channel
 levels are lower than subgroup levels, which in turn should be lower
@@ -186,7 +189,6 @@ posts written by a renowned engineer:
 \href{https://www.gearslutz.com/board/showpost.php?p=5063154&postcount=219}{\#2}
 and
 \href{https://www.gearslutz.com/board/showpost.php?p=9909382&postcount=96}{\#3}.
-
 The highly regarded manufacturer \emph{Harrison Audio} recommends a
 maximum peak recording level of
 \href{http://www.harrisonconsoles.com/mixbus/mixbus32c-6-live-manual/1/en/topic/gain-staging}{\SI{-15}{\dBFS}}
@@ -208,11 +210,28 @@ When I had realised this, I started coding traKmeter.  It has evolved
 with my growing knowledge and recording experience, but the underlying
 ideas haven't changed at all.
 
+\section{Converter clipping}
+\label{sec:converter_clipping}
+
+This experiment was conducted with a \emph{RME Fireface 800} interface
+(\SI{96}{\kilo\hertz}, 24 bits, \SI{0}{\dBFS} set to
+\SI[retain-explicit-plus]{+19}{\dBu}).  Signals were sent to an output
+connected directly to an input (\textbf{red lines}).  A floating input
+served as reference (\textbf{blue lines}).
+
+\subsection{Single sine wave}
+
+\includegraphics[scale=0.19,clip]{include/images/clipping_sine_ff800.png}
+
+\subsection{Complex signal (several sine waves)}
+
+\includegraphics[scale=0.19,clip]{include/images/clipping_harmonics_ff800.png}
+
 \chapter{traKmeter}
 \label{chap:trakmeter}
 
 \begin{wrapfigure}{r}{0.21\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_complete.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_complete.png}
 \end{wrapfigure}
 
 traKmeter consists of two meters, a peak meter on top and an average
@@ -250,7 +269,7 @@ tones into your converter or by directly comparing the readouts of
 stand-alone and plug-in version.
 
 \begin{wrapfigure}{r}{0.42\linewidth}
-\includegraphics[scale=0.425,clip]{include/images/trakmeter_optimal.png}
+  \includegraphics[scale=0.425,clip]{include/images/trakmeter_optimal.png}
 \end{wrapfigure}
 
 Now, feed the signal you want to record into an audio input channel
@@ -306,7 +325,7 @@ settings by deleting \path{traKmeter (Stereo).settings} or
 \label{sec:recording_level_buttons}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_recording_level.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_recording_level.png}
 \end{wrapfigure}
 
 Select your preferred maximum peak recording level with these buttons.
@@ -323,9 +342,9 @@ signal-to-noise ratio of modern converters is extremely high.
 \label{sec:reset_button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_reset_on.png}
-\newline \vspace{-0.9\baselineskip}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_reset_off.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_reset_off.png}
 \end{wrapfigure}
 
 Click on this button to reset all meters.  This action will also
@@ -334,9 +353,9 @@ reload the current skin and re-draw everything.
 \section{Select a skin}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_skin_on.png}
-\newline \vspace{-0.9\baselineskip}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_skin_off.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_skin_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_skin_off.png}
 \end{wrapfigure}
 
 Click on this button to select the currently used traKmeter skin.  You
@@ -347,9 +366,9 @@ instances are started.
 \label{sec:validation_button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
-\newline \vspace{-0.9\baselineskip}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_validate_off.png}
 \end{wrapfigure}
 
 Click on this button to open the \textbf{validation window} (see
@@ -371,9 +390,9 @@ short-term fluctuations.
 \section{About button}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_about_on.png}
-\newline \vspace{-0.9\baselineskip}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_about_off.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_about_off.png}
 \end{wrapfigure}
 
 Clicking on this button will open the \textbf{about window} where you
@@ -383,9 +402,9 @@ GNU General Public License.
 \section{Display license}
 
 \begin{wrapfigure}{r}{0.15\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_on.png}
-\newline \vspace{-0.9\baselineskip}
-\includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_off.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_on.png}
+  \newline \vspace{-0.9\baselineskip}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/button_gpl_off.png}
 \end{wrapfigure}
 
 This button is located in the \textbf{about window} and does not only
@@ -403,7 +422,7 @@ adjusted using the ``Recording level'' buttons (see
 \section{Peak level meter}
 
 \begin{wrapfigure}{r}{0.21\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_peak.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_peak.png}
 \end{wrapfigure}
 
 This meter shows the peak level in \si{\dBFS} and has been calibrated
@@ -420,7 +439,7 @@ meter is reset.
 \section{Average level meter}
 
 \begin{wrapfigure}{r}{0.21\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_average.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_average.png}
 \end{wrapfigure}
 
 The average level meter uses an averaging period of \num{1024}
@@ -435,7 +454,7 @@ Peaks will be held for \SI{10}{\second} and then fall with a speed of
 \section{Signal meter}
 
 \begin{wrapfigure}{r}{0.21\linewidth}
-\includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_signal.png}
+  \includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_signal.png}
 \end{wrapfigure}
 
 The orange signal meter detects peak levels at a threshold of
@@ -560,7 +579,7 @@ Begin by starting traKmeter.  If in a Bash shell, try this:
 \end{VerbatimBoth}
 
 \begin{wrapfigure}{r}{0.32\linewidth}
-\includegraphics[scale=0.60,clip]{include/images/dialog_validation.png}
+  \includegraphics[scale=0.60,clip]{include/images/dialog_validation.png}
 \end{wrapfigure}
 
 After opening the \textbf{validation window} (see
