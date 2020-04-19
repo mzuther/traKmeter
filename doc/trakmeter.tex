@@ -70,9 +70,10 @@ inter-sample peaks are nothing for the weak of heart.
 
 However, most of these obstacles can easily be overcome by proper gain
 staging, dithering, minimising the crossing of domains and choosing
-appropriate bit depths and sampling rates.  And if you carefully
-choose, test and operate your equipment, you're well on your way to
-pure audio bliss \dots
+appropriate bit depths and sampling rates right from the beginning.
+
+If you carefully choose, test and operate your equipment, you're well
+on your way to pure audio bliss \dots
 
 \section{Definitions}
 \label{sec:definitions}
@@ -86,12 +87,18 @@ pure audio bliss \dots
 
   \textbf{\si{\dBu}} \newline
   \emph{decibel unterminated} &
-  analogue level ratio with a reference level of \SI{0.7746}{\VRMS} \\[0.5em]
+  level ratio with an analogue reference level of \SI{0.7746}{\VRMS}
+  \\[0.5em]
 
   \textbf{\si{\dBFS}} \newline
   \emph{decibel relative to \newline digital full-scale} &
-  digital level ratio with a reference level equal to the maximum
-  representable value \\[0.25em]
+  level ratio with a reference level equal to the maximum
+  representable value of a digital signal \\[0.5em]
+
+  \textbf{\si{\dBr}} \newline
+  \emph{decibel relative to \newline reference level} &
+  level ratio with an arbitrary reference level that must be specified;
+  for instance, \SI{0}{\dBr} may be equal to \SI{-20}{\dBFS} \\[0.25em]
 
 \end{tabular}
 
@@ -109,10 +116,10 @@ point.  Thus, driving all analogue audio equipment at
 ratio while preventing clipping and keeping all transients intact.
 
 Now let's transfer this to the digital domain.  First, choose an
-analogue reference level for your converter.\footnote{For more
+analogue reference level for your converter.\footnote{for more
   information, see
   \href{https://www.digido.com/portfolio-item/level-practices-part-1/}{Level
-    Practices (Part 1)} by Bob Katz.  A reference level of
+    Practices (Part 1)} by Bob Katz; a reference level of
   \SI[retain-explicit-plus]{+4}{\dBu} = \SI{-15}{\dBFS} works well for
   me.}  Then, record with an average input level of
 \textbf{\SI{-20}{\dBFS} RMS}.  Again, this ensures a good
@@ -136,17 +143,17 @@ Gain staging doesn't stop here.  Set up your mixer so that channel
 levels are lower than subgroup levels, which in turn should be lower
 than the master output levels.  No clipping should occur anywhere in
 the mixer, which is especially important if you want to insert
-external analogue gear.\footnote{For mixer inserts, I recommend
+external analogue gear.\footnote{for mixer inserts, I recommend
   maximum input and output levels of \textbf{\SI{-10}{\dBFS} peak} for
-  the same reasons mentioned above.}  Do not overload effects or
+  the same reasons mentioned above} Do not overload effects or
 plug-ins and (if possible) try to match their input and output
-volume.\footnote{Today, most digital signal processors use
-  floating-point calculations and handle clipping gracefully.  But I
-  wouldn't rely on that \dots}
+volume.\footnote{many digital signal processors use floating-point
+  calculations and handle clipping gracefully; others, especially
+  those modelling old analogue equipment, may clip badly}
 
 Speaking of me, once I transitioned to proper gain staging, my
-recordings and mixes got much better.  And apart from coding
-traKmeter, the effort involved was pretty small.
+recordings and mixes became much cleaner.  And the effort involved was
+pretty small!
 
 \section{Digital audio myths}
 \label{sec:digital_audio_myths}
@@ -154,35 +161,39 @@ traKmeter, the effort involved was pretty small.
 I can almost hear you: digital recordings should be made at peak
 levels close to but not exceeding \SI{0}{\dBFS}.  Unfortunately, this
 misinformation has ended up in many manuals for professional audio
-equipment.  But that doesn't make it any truer.
+equipment.  But that doesn't make it any truer \dots
 
-Even if you record at \emph{peak} levels of \SI{-20}{\dBFS} and you
-discard the least significant bit (which mostly consists of errors and
-dithering noise), a bit depth of \SI{16}{\bits} would still leave you
-with a signal-to-noise ratio of \SI{70}{\dB}.  That is about what you
-can expect from some of the best professional analogue tape machines
-and recording desks!  And we're not even talking of the
-\SI{20}{\bits}\footnote{In the real world, all analogue circuits are
-  contaminated with thermal noise which limits the usable bit depth of
-  converters.  Among other factors, the amount of thermal noise
-  depends on temperature and sampling frequency -- see
+Even if you record at \emph{peak} levels of \SI{-24}{\dBFS}, a bit
+depth of \SI{16}{\bits} would still leave you with a signal-to-noise
+ratio of \SI{72}{\dB}.  That is about what you can expect from some of
+the best professional analogue tape machines and recording desks!
+
+Now think of the \SI{20}{\bits}\footnote{you only record at
+  \SI{24}{\bits} because that's easier for your computer (and
+  manufacturers love big numbers in their specs) -- real-world
+  circuits are contaminated with thermal noise which limits the usable
+  bit depth of converters; see
   \href{http://www.sengpielaudio.com/calculator-noise.htm}{here} for
-  more information.}  that you can capture with modern converters
-\dots
+  more information} you can capture with modern converters.  Recording
+at peak levels of \SI{-24}{\dBFS} is \emph{fully equivalent} to using
+a bit depth of \SI{16}{\bits} and recording at levels close to
+clipping point.
 
-You don't have to take my word -- read these three Gearslutz posts
-written by a renowned engineer:
+These days, there really is no point in recording at extreme levels.
+You don't have to take my word, though -- read these three Gearslutz
+posts written by a renowned engineer:
 \href{https://www.gearslutz.com/board/showpost.php?p=10739624&postcount=9}{\#1},
 \href{https://www.gearslutz.com/board/showpost.php?p=5063154&postcount=219}{\#2}
 and
 \href{https://www.gearslutz.com/board/showpost.php?p=9909382&postcount=96}{\#3}.
-Also, the highly regarded manufacturer Harrison Audio recommends a
+
+The highly regarded manufacturer \emph{Harrison Audio} recommends a
 maximum peak recording level of
-\href{http://www.harrisonconsoles.com/mixbus/mixbus32c-4-live-manual/1/en/topic/gain-staging}{\SI{-15}{\dBFS}}
-for the Mixbus 32C digital audio workstation.  Finally, I highly
-recommend reading
+\href{http://www.harrisonconsoles.com/mixbus/mixbus32c-6-live-manual/1/en/topic/gain-staging}{\SI{-15}{\dBFS}}
+for their \emph{Mixbus 32C} digital audio workstation.  Finally, I
+highly recommend reading
 \href{https://www.soundonsound.com/techniques/gain-staging-your-daw-software}{this
-  article} in Sound On Sound.
+  article} in \emph{Sound On Sound}.
 
 \section{Introducing traKmeter}
 \label{sec:introducing_trakmeter}

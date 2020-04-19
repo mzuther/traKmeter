@@ -1,7 +1,7 @@
 Git HEAD
 ========
 
-* change default target recording level to -15 dB FS
+* use continuous meter and change color of peak hold indicator
 
 * fix channel-related VST3 issues
 
