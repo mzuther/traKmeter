@@ -236,17 +236,19 @@ served as reference (\textbf{blue lines}).
 
 traKmeter consists of two meters, a peak meter on top and an average
 meter below.  The meters are separated by an orange signal LED and
-consist of an area of green LEDs that is enclosed by either blue ones
-(lower levels) or yellow and then red ones (higher levels).
+consist of a green area that is enclosed by a blue one (lower levels)
+or a yellow and red one (higher levels).
 
 The average meter's green area is centred around the
-\textbf{\SI{-20}{\dBFS} RMS} mark.  This number should be vaguely
-familiar: this is the level we have determined to be the optimal
-average recording level in the digital domain.
+\textbf{\SI{-10}{\dBr} RMS} mark.  With a reference level of
+\SI{-10}{\dBFS}, this corresponds to the \textbf{\SI{-20}{\dBFS} RMS}
+we have determined to be the optimal average recording level in the
+digital domain.
 
-The highest yellow LED on the peak meter's top end corresponds to a
-level of \textbf{\SI{-10}{\dBFS} peak}.  Again, this number should be
-familiar: peak levels shouldn't exceed this level.
+The peak meter's yellow area reaches up to \textbf{\SI{0}{\dBr} peak}.
+Given the same reference level, this corresponds to
+\textbf{\SI{-10}{\dBFS} peak} and peak levels shouldn't exceed this
+level.
 
 Thus, by keeping the meter's readout \textbf{in the green} and yellow
 areas and \textbf{out of the red} areas, you will automatically track
@@ -273,11 +275,13 @@ stand-alone and plug-in version.
 \end{wrapfigure}
 
 Now, feed the signal you want to record into an audio input channel
-and adjust its level (in the analogue domain!) using traKmeter.  Try
-to set the input level so that it falls into the average meter's
-\textbf{\SI{-20}{\dBFS}} area.  Make sure that peak levels very rarely
-(if ever) exceed \textbf{\SI{-10}{\dBFS}}.  In case both conditions
-cannot be met simultaneously, adjust the peak level only.
+and adjust its level (in the analogue domain!).  Try to set the input
+level so that it falls into the average meter's
+\textbf{\SI{-10}{\dBr}} area.
+
+Make sure that peak levels very rarely (if ever) exceed
+\textbf{\SI{0}{\dBr}}.  In case both conditions cannot be met
+simultaneously, adjust the peak level only.
 
 \section{Mixing with traKmeter}
 \label{sec:mixing_with_trakmeter}
