@@ -121,7 +121,7 @@ analogue reference level for your converter.\footnote{for more
   \href{https://www.digido.com/portfolio-item/level-practices-part-1/}{Level
     Practices (Part 1)} by Bob Katz; a reference level of
   \SI[retain-explicit-plus]{+4}{\dBu} = \SI{-15}{\dBFS} works well for
-  me.}  Then, record with an average input level of
+  me} Then, record with an average input level of
 \textbf{\SI{-20}{\dBFS} RMS}.  Again, this ensures a good
 signal-to-noise ratio while preventing clipping.  In addition, this
 level drives your outboard equipment and most of your plug-ins at
@@ -163,24 +163,22 @@ pretty small!
 
 I can almost hear you: digital recordings should be made at peak
 levels close to but not exceeding \SI{0}{\dBFS}.  Unfortunately, this
-misinformation has ended up in many manuals for professional audio
-equipment.  But that doesn't make it any truer \dots
+misleading information has ended up in many manuals for professional
+audio equipment.  But that doesn't make it any truer \dots
 
-Even if you record at \emph{peak} levels of \SI{-24}{\dBFS}, a bit
-depth of \SI{16}{\bits} would still leave you with a signal-to-noise
-ratio of \SI{72}{\dB}.  That is about what you can expect from some of
-the best professional analogue tape machines and recording desks!
+Even if you record at \emph{peak} levels of \SI{-18}{\dBFS}, a bit
+depth of \SI{16}{\bits} will yield a signal-to-noise ratio of
+\SI{78}{\dB}.  That is about what you can expect from the best
+professional analogue tape machines and recording desks!
 
-Now think of the \SI{20}{\bits}\footnote{you only record at
-  \SI{24}{\bits} because that's easier for your computer (and
-  manufacturers love big numbers in their specs) -- real-world
-  circuits are contaminated with thermal noise which limits the usable
-  bit depth of converters; see
-  \href{http://www.sengpielaudio.com/calculator-noise.htm}{here} for
-  more information} you can capture with modern converters.  Recording
-at peak levels of \SI{-24}{\dBFS} is \emph{fully equivalent} to using
-a bit depth of \SI{16}{\bits} and recording at levels close to
-clipping point.
+But think of the approximately \SI{19}{\bits} modern converters can
+capture.\footnote{all real-world analogue circuits are contaminated
+  with thermal noise which limits the usable bit depth of converters;
+  you only record at \SI{24}{\bits} that's easier for your computer
+  (and because manufacturers simply \emph{love} big numbers in their
+  specs)} Now, recording at peak levels of \SI{-18}{\dBFS} is
+\emph{fully equivalent} to using a bit depth of \SI{16}{\bits} and
+recording at levels close to clipping point.
 
 These days, there really is no point in recording at extreme levels.
 You don't have to take my word, though -- read these three Gearslutz
@@ -189,6 +187,7 @@ posts written by a renowned engineer:
 \href{https://www.gearslutz.com/board/showpost.php?p=5063154&postcount=219}{\#2}
 and
 \href{https://www.gearslutz.com/board/showpost.php?p=9909382&postcount=96}{\#3}.
+
 The highly regarded manufacturer \emph{Harrison Audio} recommends a
 maximum peak recording level of
 \href{http://www.harrisonconsoles.com/mixbus/mixbus32c-6-live-manual/1/en/topic/gain-staging}{\SI{-15}{\dBFS}}
@@ -484,12 +483,20 @@ advice, I will try to reference the opinion of professionals.
 \item[ Use the pre-amplifier's gain control.]  If necessary, crank up
   the gain control to yield the correct output level.  Do not fear the
   pre-amplifier's internal noise -- boosting a low-gain recording in
-  later stages will likely result in even more noise.
+  later stages will result in even more noise!
 
 \item[Avoid unbalanced equipment.]  Run all signals on balanced lines
   with a nominal level of \SI[retain-explicit-plus]{+4}{\dBu}.  If you
   can't, use DI boxes and transformers to convert the signals as early
   in the audio chain as possible.
+
+  And do not even \emph{think} of buying equipment that has analogue
+  RCA connectors!\footnote{``I have a real aversion to anything that
+    calls itself `professional' and has RCA jacks on it.  That's just
+    contradictory.'' \\
+    \textbf{Whitlock B.}  \href{http://www.aes.org/live/?ID=218}{Audio
+      System Grounding \& Interfacing -- An Overview.} \emph{126th AES
+      Convention; Munich; May 2009.}}
 
 \item[Use short audio chains.]  All equipment adds noise or may
   otherwise degrade audio, so keep your audio recording chains short
@@ -515,39 +522,49 @@ advice, I will try to reference the opinion of professionals.
   are audience recordings, orchestras and occasionally pianos).  The
   pseudo-stereo effects of synthesisers may even cause phasing issues.
 
-  Recording such sources in stereo will only waste space on your hard
-  disk.  So don't!
+  Recording such sources in stereo wastes space on your hard disk --
+  and someone's time at a later stage.
 
 \item[Use high bit depths.]  Do yourself a favour and record at a bit
   depth of \SI{24}{\bits} instead of \SI{16}{\bits}.  The additional
   bits allow recording at lower levels and provide an incredible
   amount of extra detail.  When disk space runs low, choose more bits
-  over a higher sampling rate.  See the
-  \href{http://www.aes.org/par/d/\#data_converter_bits}{AES Pro Audio
-    Reference} for more information.
+  over a higher sampling rate.\footnote{see the
+    \href{http://www.aes.org/par/d/\#data_converter_bits}{AES Pro
+      Audio Reference} for more information}
 
-  The usable bit depth of converters is limited to approximately 20
-  bits by thermal noise.  However, the mixer in your digital audio
-  workstation should use floating point numbers with at least
-  \SI{32}{\bits}.  Calculation errors are inevitable in digital signal
-  processing, and more bits mean smaller (and thus quieter) errors.
+  The usable bit depth of converters is limited to approximately
+  \SI{20}{\bits} by thermal noise.  However, the mixer in your digital
+  audio workstation should use floating point numbers with
+  \SI{32}{\bits} \emph{at the very least}.  Calculation errors are
+  inevitable in digital signal processing, so more bits mean smaller
+  (and thus quieter) errors.
 
-\item[Use sensible sampling rates.]  According to a
-  \href{http://www.lavryengineering.com/pdfs/lavry-white-paper-the_optimal_sample_rate_for_quality_audio.pdf}{white
-    paper} by Dan Lavry, manufacturer of high-quality converters,
-  \SI{88.1}{\kilo\hertz} and \SI{96}{\kilo\hertz} are the preferred
-  rates for recording audio.  As support for \SI{88.1}{\kilo\hertz} is
-  limited, I prefer to work at \SI{96}{\kilo\hertz}.
+\item[Use sensible sampling rates.]  The preferred sampling rate for
+  recording audio is \SI{96}{\kilo\hertz} (\SI{88.1}{\kilo\hertz} is
+  just as good, but sees less support).\footnote{``Although
+    \SI{60}{\kilo\hertz} would [be ideal], \SI{88.2}{\kilo\hertz} and
+    \SI{96}{\kilo\hertz} are closest to the optimal sample rate.''  I
+    highly recommend
+    reading this paper! \\
+    \textbf{Lavry D.}
+    \href{http://www.lavryengineering.com/lavry-white-papers/}{The
+      Optimal Sample Rate For Quality Audio.} \emph{Lavry Engineering;
+      White Paper; May 2012.}}  Additionally, latency is lower at
+  higher sample rates, and many plug-ins that internally use
+  \SI{96}{\kilo\hertz} can bypass their oversampling.
 
 \item[Concentrate on recording.]  When tracking, try to not interfere
-  with the flow of the session.  Just keep editing and mixing to the
-  bare minimum.
+  with the flow of the session.  Keep editing and mixing to the bare
+  minimum!
 
 \item[Fix it now.]  Contrary to popular belief, you cannot ``fix it in
   the mix'' -- a bad recording is nothing more than a bad recording.
   So editing and tools like Auto-Tune and extreme EQ should be seen as
-  a last resort.  Apart from the precious time lost in editing, it's
-  easy to kill all of a track's vibe in the process.
+  a last resort.
+
+  Apart from the precious time lost in editing, it's easy to kill all
+  of a track's vibe in the process.
 
   Instead, keep recording until you capture a great take.  Treat your
   room acoustically and in terms of positive vibe.  Experiment with
@@ -560,8 +577,8 @@ advice, I will try to reference the opinion of professionals.
   inaccuracies of human players and often leads to boring and lifeless
   songs.
 
-  So think of a good arrangement before you even start recording.
-  Instead of looping a track, record a couple of takes and comp the
+  So think of a good arrangement before you even start recording.  And
+  instead of looping a track, record a couple of takes and comp the
   best ones.  You'll be surprised at the difference it makes!
 
 \end{description}
@@ -653,10 +670,12 @@ I want to thank \textbf{Rickard} of Interfearing Sounds for asking me
 how to use K-Meter for tracking.  This question and the following
 thoughts really got traKmeter started.  I'd like to thank
 \textbf{bram@smartelectronix} for his code to calculate logarithmic
-rise and fall times.  I must also thank the \textbf{beta testers} and
-\textbf{users of traKmeter} for sending kind words, suggestions and
-bug reports.  Finally, I want to thank the \textbf{open source
-  community} for making all of this possible.
+rise and fall times.
+
+I must also thank the \textbf{beta testers} and \textbf{users of
+  traKmeter} for sending kind words, suggestions and bug reports.
+Finally, I want to thank the \textbf{open source community} for making
+all of this possible.
 
 Although coding traKmeter has been a lot of fun, it has also been a
 lot of work.  So if you like traKmeter, why not
