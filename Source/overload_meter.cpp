@@ -65,17 +65,9 @@ void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
 
         if (fMaximumLevel >= fThreshold)
         {
-            int nMaximumLevel = frut::math::SimpleMath::round(fMaximumLevel);
+            int nRelativeMaximumLevel = frut::math::SimpleMath::roundUp(fMaximumLevel - fThreshold);
 
-            if (nMaximumLevel > 0)
-            {
-                strMaximumLevel = "+" + String(nMaximumLevel);
-            }
-            else
-            {
-                strMaximumLevel = String(nMaximumLevel);
-            }
-
+            strMaximumLevel = "+" + String(nRelativeMaximumLevel);
             bOverloadsDetected = true;
         }
         else

@@ -38,8 +38,6 @@ TraKmeter::TraKmeter(int nNumChannels, int segment_height,
     nInputChannels = nNumChannels;
     int nSegmentHeight = segment_height;
 
-    int nThreshold = (targetRecordingLevel * 10) + 10;
-
     for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
     {
         MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(
@@ -69,7 +67,7 @@ TraKmeter::TraKmeter(int nNumChannels, int segment_height,
         addAndMakeVisible(pMeterBarAverage);
 
         OverloadMeter *overloadMeter = new OverloadMeter(
-            nThreshold * 0.1f);
+            static_cast<float>(targetRecordingLevel));
         addAndMakeVisible(overloadMeter);
 
         p_arrOverloadMeters.add(overloadMeter);
