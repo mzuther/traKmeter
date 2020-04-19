@@ -1,9 +1,18 @@
 Git HEAD
 ========
 
-* use continuous meter and change color of peak hold indicator
+
+
+v2.4.7 (2020-04-19)
+===================
 
 * fix channel-related VST3 issues
+
+* use continuous meter
+
+* meters now display relative decibels (dBr)
+
+* change color of peak hold indicators
 
 * customize Jack daemon client name
 
