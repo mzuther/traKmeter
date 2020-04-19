@@ -325,16 +325,17 @@ settings by deleting \path{traKmeter (Stereo).settings} or
 \chapter{Controls}
 \label{chap:controls}
 
-\section{Recording level buttons}
-\label{sec:recording_level_buttons}
+\section{Reference level buttons}
+\label{sec:reference_level_buttons}
 
 \begin{wrapfigure}{r}{0.14\linewidth}
   \includegraphics[scale=\screenshotscale,clip]{include/images/button_recording_level.png}
 \end{wrapfigure}
 
-Select your preferred maximum peak recording level with these buttons.
-To follow the advice in \ref{sec:gain_staging}, leave this at the
-default setting of \textbf{\SI{-10}{\dBFS}}.
+Set your reference level (corresponding to the preferred maximum peak
+recording level) with these buttons.  To follow the advice in
+\ref{sec:gain_staging}, leave this at the default setting of
+\textbf{\SI{-10}{\dBFS}}.
 
 If you record very dynamic material or have problems getting a clean
 signal, you can try the other settings.  They shift both meter scales
@@ -419,21 +420,20 @@ the license's website in your web browser \dots
 \chapter{Meters}
 \label{chap:meters}
 
-All meters possess a flat frequency response.  Meter scales can be
-adjusted using the ``Recording level'' buttons (see
-\ref{sec:recording_level_buttons}).
+All meters possess a flat frequency response.  Meter scales are in
+\si{\dBr} and their reference level is adjustable (see
+\ref{sec:reference_level_buttons}).  This way, scales remain the same
+even when the reference level changes.
 
 \section{Peak level meter}
 
-\begin{wrapfigure}{r}{0.21\linewidth}
+\begin{wrapfigure}[6]{r}{0.21\linewidth} %% layout [number of narrow lines]
   \includegraphics[scale=\screenshotscale,clip]{include/images/level_meter_peak.png}
 \end{wrapfigure}
 
-This meter shows the peak level in \si{\dBFS} and has been calibrated
-so that an input sample value of \num{1.0} reads \SI{0}{\dBFS}.  Rise
-time is one sample and fall time is \SI{8.67}{\dB\per\second}.  Should
-a meter overflow occur, the red LED marked ``OVR'' will display the
-corresponding peak level.
+This meter shows the current peak level in \si{\dBr}.  Rise time is
+one sample and fall time is \SI{8.67}{\dB\per\second}.  Peak levels
+exceeding \SI{0}{\dBr} are displayed on the red LED marked ``OVR''.
 
 The highest encountered peak level will be held indefinitely until the
 meter is reset.
