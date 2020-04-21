@@ -355,6 +355,16 @@ double TraKmeterAudioProcessor::getTailLengthSeconds() const
 }
 
 
+StringArray TraKmeterAudioProcessor::getAlternateDisplayNames() const
+{
+    StringArray displayNames(JucePlugin_Name);
+    displayNames.add("traKmeter");
+    displayNames.add("trkm");
+
+    return displayNames;
+}
+
+
 int TraKmeterAudioProcessor::getNumPrograms()
 {
     return 0;

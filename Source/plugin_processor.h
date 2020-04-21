@@ -99,6 +99,8 @@ public:
 
     virtual bool processBufferChunk(AudioBuffer<float> &buffer) override;
 
+    StringArray getAlternateDisplayNames() const override;
+
     int getNumPrograms() override;
 
     int getCurrentProgram() override;
