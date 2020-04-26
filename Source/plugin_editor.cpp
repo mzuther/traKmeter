@@ -60,9 +60,10 @@ static void window_validation_callback(
 
 
 TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
-    TraKmeterAudioProcessor *ownerFilter,
+    TraKmeterAudioProcessor &processor,
     int nNumChannels) :
-    AudioProcessorEditor(ownerFilter)
+    AudioProcessorEditor(&processor),
+    audioProcessor(processor)
 {
     // load look and feel
     setLookAndFeel(&customLookAndFeel_);
@@ -83,8 +84,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     // The plug-in editor's size as well as the location of buttons
     // and labels will be set later on in this constructor.
 
-    audioProcessor = ownerFilter;
-    audioProcessor->addActionListener(this);
+    audioProcessor.addActionListener(this);
 
     ButtonRecordingLevel_10.setRadioGroupId(1);
     ButtonRecordingLevel_10.addListener(this);
@@ -131,14 +131,14 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     isInitialising = false;
 
     // apply skin to plug-in editor
-    currentSkinName = audioProcessor->getParameterSkinName();
+    currentSkinName = audioProcessor.getParameterSkinName();
     loadSkin();
 }
 
 
 TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 {
-    audioProcessor->removeActionListener(this);
+    audioProcessor.removeActionListener(this);
 
     // release look and feel
     setLookAndFeel(nullptr);
@@ -157,9 +157,9 @@ void TraKmeterAudioProcessorEditor::loadSkin()
         fileSkin = skinDirectory.getChildFile(currentSkinName + ".skin");
     }
 
-    audioProcessor->setParameterSkinName(currentSkinName);
+    audioProcessor.setParameterSkinName(currentSkinName);
 
-    int recordingLevel = audioProcessor->getRealInteger(
+    int recordingLevel = audioProcessor.getRealInteger(
                              TraKmeterPluginParameters::selTargetRecordingLevel);
     skin.loadSkin(fileSkin,
                   numberOfInputChannels,
@@ -180,7 +180,7 @@ void TraKmeterAudioProcessorEditor::applySkin()
     }
 
     // update skin
-    int recordingLevel = audioProcessor->getRealInteger(
+    int recordingLevel = audioProcessor.getRealInteger(
                              TraKmeterPluginParameters::selTargetRecordingLevel);
     skin.updateSkin(numberOfInputChannels,
                     recordingLevel);
@@ -249,7 +249,7 @@ void TraKmeterAudioProcessorEditor::windowValidationCallback(
 {
     ignoreUnused(modalResult);
 
-    audioProcessor->silenceInput(false);
+    audioProcessor.silenceInput(false);
     validationDialogOpen = false;
 
     // manually set button according to validation state
@@ -267,9 +267,9 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(
         String strIndex = strMessage.substring(3);
         int nIndex = strIndex.getIntValue();
         jassert(nIndex >= 0);
-        jassert(nIndex < audioProcessor->getNumParameters());
+        jassert(nIndex < audioProcessor.getNumParameters());
 
-        if (audioProcessor->hasChanged(nIndex))
+        if (audioProcessor.hasChanged(nIndex))
         {
             updateParameter(nIndex);
         }
@@ -277,15 +277,15 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(
     // "UM" ==> update meters
     else if (!strMessage.compare("UM"))
     {
-        trakmeter_->setLevels(audioProcessor->getLevels());
+        trakmeter_->setLevels(audioProcessor.getLevels());
 
-        if (isValidating && !audioProcessor->isValidating())
+        if (isValidating && !audioProcessor.isValidating())
         {
             isValidating = false;
         }
     }
     // "V+" ==> validation started
-    else if ((!strMessage.compare("V+")) && audioProcessor->isValidating())
+    else if ((!strMessage.compare("V+")) && audioProcessor.isValidating())
     {
         isValidating = true;
     }
@@ -309,13 +309,13 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(
 void TraKmeterAudioProcessorEditor::updateParameter(
     int nIndex)
 {
-    audioProcessor->clearChangeFlag(nIndex);
+    audioProcessor.clearChangeFlag(nIndex);
 
     switch (nIndex)
     {
     case TraKmeterPluginParameters::selTargetRecordingLevel:
     {
-        int recordingLevel = audioProcessor->getRealInteger(
+        int recordingLevel = audioProcessor.getRealInteger(
                                  TraKmeterPluginParameters::selTargetRecordingLevel);
 
         if (recordingLevel == -10)
@@ -367,7 +367,7 @@ void TraKmeterAudioProcessorEditor::reloadMeters()
             removeChildComponent(trakmeter_.get());
         }
 
-        int targetRecordingLevel = audioProcessor->getRealInteger(
+        int targetRecordingLevel = audioProcessor.getRealInteger(
                                        TraKmeterPluginParameters::selTargetRecordingLevel);
         bool discreteMeter = false;
 
@@ -409,28 +409,28 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
 {
     if (button == &ButtonReset)
     {
-        audioProcessor->resetMeters();
+        audioProcessor.resetMeters();
 
         // apply skin to plug-in editor
         loadSkin();
     }
     else if (button == &ButtonRecordingLevel_10)
     {
-        audioProcessor->changeParameter(
+        audioProcessor.changeParameter(
             TraKmeterPluginParameters::selTargetRecordingLevel,
             TraKmeterPluginParameters::selRecordingLevel_10 /
             float(TraKmeterPluginParameters::nNumRecordingLevels - 1));
     }
     else if (button == &ButtonRecordingLevel_15)
     {
-        audioProcessor->changeParameter(
+        audioProcessor.changeParameter(
             TraKmeterPluginParameters::selTargetRecordingLevel,
             TraKmeterPluginParameters::selRecordingLevel_15 /
             float(TraKmeterPluginParameters::nNumRecordingLevels - 1));
     }
     else if (button == &ButtonRecordingLevel_20)
     {
-        audioProcessor->changeParameter(
+        audioProcessor.changeParameter(
             TraKmeterPluginParameters::selTargetRecordingLevel,
             TraKmeterPluginParameters::selRecordingLevel_20 /
             float(TraKmeterPluginParameters::nNumRecordingLevels - 1));
@@ -562,12 +562,12 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         button->setToggleState(true, dontSendNotification);
 
         validationDialogOpen = true;
-        audioProcessor->stopValidation();
-        audioProcessor->silenceInput(true);
+        audioProcessor.stopValidation();
+        audioProcessor.silenceInput(true);
 
         // prepare and launch dialog window
         DialogWindow *windowValidation = WindowValidationContent::createDialogWindow(
-                                             this, audioProcessor);
+                                             *this, audioProcessor);
 
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowValidation, ModalCallbackFunction::forComponent(window_validation_callback, this));

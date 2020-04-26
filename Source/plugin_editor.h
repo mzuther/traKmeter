@@ -41,7 +41,7 @@ class TraKmeterAudioProcessorEditor :
     public ActionListener
 {
 public:
-    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor *ownerFilter,
+    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor &processor,
                                   int nNumChannels);
     ~TraKmeterAudioProcessorEditor();
 
@@ -72,7 +72,7 @@ private:
 
     int segmentHeight;
 
-    TraKmeterAudioProcessor *audioProcessor;
+    TraKmeterAudioProcessor &audioProcessor;
 
     frut::skin::LookAndFeel_Frut_V3 customLookAndFeel_;
     std::unique_ptr<TraKmeter> trakmeter_;

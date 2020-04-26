@@ -808,7 +808,7 @@ AudioProcessorEditor *TraKmeterAudioProcessor::createEditor()
     }
 
     return new TraKmeterAudioProcessorEditor(
-               this, numberOfChannels_);
+               *this, numberOfChannels_);
 }
 
 

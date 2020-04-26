@@ -36,11 +36,11 @@ class WindowValidationContent :
     public frut::widgets::WindowValidationContent
 {
 public:
-    explicit WindowValidationContent(TraKmeterAudioProcessor *processor);
+    explicit WindowValidationContent(TraKmeterAudioProcessor &processor);
 
     static DialogWindow *createDialogWindow(
-        AudioProcessorEditor *pluginEditor,
-        TraKmeterAudioProcessor *audioProcessor);
+        AudioProcessorEditor &pluginEditor,
+        TraKmeterAudioProcessor &processor);
 
     virtual void buttonClicked(Button *button);
     virtual void applySkin();
@@ -57,7 +57,7 @@ public:
 private:
     JUCE_LEAK_DETECTOR(WindowValidationContent);
 
-    TraKmeterAudioProcessor *audioProcessor;
+    TraKmeterAudioProcessor &audioProcessor;
 
     ToggleButton buttonDumpCSV_;
     ToggleButton buttonDumpAverageLevel_;
