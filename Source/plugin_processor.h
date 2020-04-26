@@ -91,6 +91,7 @@ public:
 
     bool acceptsMidi() const override;
     bool producesMidi() const override;
+    bool isMidiEffect() const override;
 
     double getTailLengthSeconds() const override;
 
@@ -113,7 +114,7 @@ public:
     void setStateInformation(const void *data, int sizeInBytes) override;
 
 private:
-    JUCE_LEAK_DETECTOR(TraKmeterAudioProcessor);
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TraKmeterAudioProcessor);
 
     static BusesProperties getBusesProperties();
     void resetOnPlay();

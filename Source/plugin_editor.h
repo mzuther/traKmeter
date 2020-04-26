@@ -45,19 +45,19 @@ public:
                                   int nNumChannels);
     ~TraKmeterAudioProcessorEditor();
 
-    void buttonClicked(Button *button);
+    void buttonClicked(Button *button) override;
 
-    void actionListenerCallback(const String &strMessage);
+    void actionListenerCallback(const String &strMessage) override;
     void updateParameter(int nIndex);
 
     void windowAboutCallback(int modalResult);
     void windowSkinCallback(int modalResult);
     void windowValidationCallback(int modalResult);
 
-    void resized();
+    void resized() override;
 
 private:
-    JUCE_LEAK_DETECTOR(TraKmeterAudioProcessorEditor);
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TraKmeterAudioProcessorEditor);
 
     void reloadMeters();
     void applySkin();
