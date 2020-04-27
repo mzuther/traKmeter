@@ -13,27 +13,31 @@ ifeq ($(config),debug_x32)
   trakmeter_standalone_multi_config = debug_x32
   trakmeter_vst2_stereo_config = debug_x32
   trakmeter_vst2_multi_config = debug_x32
+  unittest_config = debug_x32
 endif
 ifeq ($(config),debug_x64)
   trakmeter_standalone_stereo_config = debug_x64
   trakmeter_standalone_multi_config = debug_x64
   trakmeter_vst2_stereo_config = debug_x64
   trakmeter_vst2_multi_config = debug_x64
+  unittest_config = debug_x64
 endif
 ifeq ($(config),release_x32)
   trakmeter_standalone_stereo_config = release_x32
   trakmeter_standalone_multi_config = release_x32
   trakmeter_vst2_stereo_config = release_x32
   trakmeter_vst2_multi_config = release_x32
+  unittest_config = release_x32
 endif
 ifeq ($(config),release_x64)
   trakmeter_standalone_stereo_config = release_x64
   trakmeter_standalone_multi_config = release_x64
   trakmeter_vst2_stereo_config = release_x64
   trakmeter_vst2_multi_config = release_x64
+  unittest_config = release_x64
 endif
 
-PROJECTS := trakmeter_standalone_stereo trakmeter_standalone_multi trakmeter_vst2_stereo trakmeter_vst2_multi
+PROJECTS := trakmeter_standalone_stereo trakmeter_standalone_multi trakmeter_vst2_stereo trakmeter_vst2_multi unittest
 
 .PHONY: all clean help $(PROJECTS) 
 
@@ -63,11 +67,18 @@ ifneq (,$(trakmeter_vst2_multi_config))
 	@${MAKE} --no-print-directory -C . -f trakmeter_vst2_multi.make config=$(trakmeter_vst2_multi_config)
 endif
 
+unittest:
+ifneq (,$(unittest_config))
+	@echo "==== Building unittest ($(unittest_config)) ===="
+	@${MAKE} --no-print-directory -C . -f unittest.make config=$(unittest_config)
+endif
+
 clean:
 	@${MAKE} --no-print-directory -C . -f trakmeter_standalone_stereo.make clean
 	@${MAKE} --no-print-directory -C . -f trakmeter_standalone_multi.make clean
 	@${MAKE} --no-print-directory -C . -f trakmeter_vst2_stereo.make clean
 	@${MAKE} --no-print-directory -C . -f trakmeter_vst2_multi.make clean
+	@${MAKE} --no-print-directory -C . -f unittest.make clean
 
 help:
 	@echo "Usage: make [config=name] [target]"
@@ -85,5 +96,6 @@ help:
 	@echo "   trakmeter_standalone_multi"
 	@echo "   trakmeter_vst2_stereo"
 	@echo "   trakmeter_vst2_multi"
+	@echo "   unittest"
 	@echo ""
 	@echo "For more information, see https://github.com/premake/premake-core/wiki"

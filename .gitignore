@@ -13,6 +13,7 @@
 .Rhistory
 
 bin/.intermediate_*
+bin/unittest/
 
 bin/standalone/traKmeter*.exe
 bin/standalone/trakmeter_*
