@@ -2,11 +2,11 @@
 
 @rem ---------------------------------------------------------------------------
 @rem
-@rem  Squeezer
-@rem  ========
-@rem  Flexible general-purpose audio compressor with a touch of citrus
+@rem  traKmeter
+@rem  =========
+@rem  Loudness meter for correctly setting up tracking and mixing levels
 @rem
-@rem  Copyright (c) 2013-2020 Martin Zuther (http://www.mzuther.de/)
+@rem  Copyright (c) 2012-2020 Martin Zuther (http://www.mzuther.de/)
 @rem
 @rem  This program is free software: you can redistribute it and/or modify
 @rem  it under the terms of the GNU General Public License as published by
