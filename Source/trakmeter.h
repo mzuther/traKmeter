@@ -37,9 +37,6 @@
 class TraKmeter : public Component
 {
 public:
-    static const int TRAKMETER_LABEL_WIDTH = 38;
-    static const int TRAKMETER_SEGMENT_WIDTH = 22;
-
     TraKmeter(int nNumChannels,
               int segment_height,
               float retainSignalFactor,
