@@ -172,8 +172,7 @@ OBJECTS := \
 	$(OBJDIR)/include_frut_parameters.o \
 	$(OBJDIR)/include_frut_skin.o \
 	$(OBJDIR)/include_frut_widgets.o \
-	$(OBJDIR)/test_1.o \
-	$(OBJDIR)/test_2.o \
+	$(OBJDIR)/par_boolean_unittest.o \
 	$(OBJDIR)/meter_ballistics.o \
 	$(OBJDIR)/meter_bar_average.o \
 	$(OBJDIR)/meter_bar_peak.o \
@@ -305,10 +304,7 @@ $(OBJDIR)/include_frut_skin.o: ../../../Source/frut/amalgamated/include_frut_ski
 $(OBJDIR)/include_frut_widgets.o: ../../../Source/frut/amalgamated/include_frut_widgets.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/test_1.o: ../../../Source/frut/unittest/test_1.cpp
-	@echo $(notdir $<)
-	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/test_2.o: ../../../Source/frut/unittest/test_2.cpp
+$(OBJDIR)/par_boolean_unittest.o: ../../../Source/frut/parameters/par_boolean_unittest.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/meter_ballistics.o: ../../../Source/meter_ballistics.cpp
