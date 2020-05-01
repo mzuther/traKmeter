@@ -57,17 +57,17 @@ case $1 in
 	u)
 		MAKEFILE="unittest"
 		MAKEFILE_PRINT="Unit tests"
-		EXECUTABLE="unittest"
+		EXECUTABLE="unittest/unittest"
 		;;
 	1)
 		MAKEFILE="trakmeter_standalone_stereo"
 		MAKEFILE_PRINT="Standalone (Stereo)"
-		EXECUTABLE="trakmeter_stereo"
+		EXECUTABLE="standalone/trakmeter_stereo"
 		;;
 	2)
 		MAKEFILE="trakmeter_standalone_multi"
 		MAKEFILE_PRINT="Standalone (Multi)"
-		EXECUTABLE="trakmeter_multi"
+		EXECUTABLE="standalone/trakmeter_multi"
 		;;
 	3)
 		MAKEFILE="trakmeter_vst2_stereo"
@@ -121,21 +121,11 @@ make --directory=linux/gmake/ --no-print-directory config=$PLATFORM $MAKEFILE $*
 
 # compilation was successful
 if [ $? -eq 0 ]; then
-	echo $MAKEFILE | grep "_standalone_" > /dev/null
-
-	# target is standalone, so execute file
-	if [ $? -eq 0 ]; then
-        echo $EXECUTABLE$EXECUTABLE_EXTENSION
+	# execute file if possible
+    if [ -n "$EXECUTABLE" ]; then
 		echo
-		../bin/standalone/$EXECUTABLE$EXECUTABLE_EXTENSION
-	fi
-
-	echo $MAKEFILE | grep "unittest" > /dev/null
-
-	# target is unit test, so execute file
-	if [ $? -eq 0 ]; then
-        echo $EXECUTABLE$EXECUTABLE_EXTENSION
+        echo "Executing \"$EXECUTABLE$EXECUTABLE_EXTENSION\"..."
 		echo
-		../bin/unittest/$EXECUTABLE$EXECUTABLE_EXTENSION
+		../bin/$EXECUTABLE$EXECUTABLE_EXTENSION
 	fi
 fi
