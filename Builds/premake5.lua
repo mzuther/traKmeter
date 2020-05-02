@@ -122,8 +122,6 @@ workspace "trakmeter"
             "_USE_MATH_DEFINES=1",
         }
 
-        systemversion "10.0.17763.0"
-
         flags {
            "MultiProcessorCompile",
            "NoMinimalRebuild"
