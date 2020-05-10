@@ -71,7 +71,7 @@ echo.
 
 call :CopyVst       "vst3/traKmeter (Stereo).vst3" "%vst3_32%"
 call :CopyVst       "vst3/traKmeter (Multi).vst3" "%vst3_32%"
-call :CopyVst       "vst3/trakmeter.pdf" "%%"
+call :CopyVst       "vst3/trakmeter.pdf" "%vst3_32%"
 call :CopyVstDelete "vst3/trakmeter" "%vst3_32%"
 
 
@@ -100,7 +100,7 @@ echo.
 
 call :CopyVst       "vst3/traKmeter (Stereo x64).vst3" "%vst3_64%"
 call :CopyVst       "vst3/traKmeter (Multi x64).vst3" "%vst3_64%"
-call :CopyVst       "vst3/trakmeter.pdf" "%%"
+call :CopyVst       "vst3/trakmeter.pdf" "%vst3_64%"
 call :CopyVstDelete "vst3/trakmeter" "%vst3_64%"
 
 
