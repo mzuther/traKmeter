@@ -50,52 +50,58 @@ echo.
 echo VST2 (32 bit)
 echo.
 
-call :CopyVstDelete "vst2/trakmeter" "%vst2_32%"
 call :CopyVst       "vst2/traKmeter (Stereo).dll" "%vst2_32%"
 call :CopyVst       "vst2/traKmeter (Multi).dll" "%vst2_32%"
+call :CopyVst       "vst2/trakmeter.pdf" "%vst2_32%"
+call :CopyVstDelete "vst2/trakmeter" "%vst2_32%"
 
 echo.
 echo VST2 (32 bit, Categories)
 echo.
 
-call :CopyVstDelete "vst2/trakmeter" "%vst2_32_categories%"
 call :CopyVst       "vst2/traKmeter (Stereo).dll" "%vst2_32_categories%"
 call :CopyVst       "vst2/traKmeter (Multi).dll" "%vst2_32_categories%"
+call :CopyVst       "vst2/trakmeter.pdf" "%vst2_32_categories%"
+call :CopyVstDelete "vst2/trakmeter" "%vst2_32_categories%"
 
 
 echo.
 echo VST3 (32 bit)
 echo.
 
-call :CopyVstDelete "vst3/trakmeter" "%vst3_32%"
 call :CopyVst       "vst3/traKmeter (Stereo).vst3" "%vst3_32%"
 call :CopyVst       "vst3/traKmeter (Multi).vst3" "%vst3_32%"
+call :CopyVst       "vst3/trakmeter.pdf" "%%"
+call :CopyVstDelete "vst3/trakmeter" "%vst3_32%"
 
 
 echo.
 echo VST2 (64 bit)
 echo.
 
-call :CopyVstDelete "vst2/trakmeter" "%vst2_64%"
 call :CopyVst       "vst2/traKmeter (Stereo x64).dll" "%vst2_64%"
 call :CopyVst       "vst2/traKmeter (Multi x64).dll" "%vst2_64%"
+call :CopyVst       "vst2/trakmeter.pdf" "%vst2_64%"
+call :CopyVstDelete "vst2/trakmeter" "%vst2_64%"
 
 echo.
 echo VST2 (64 bit, Categories)
 echo.
 
-call :CopyVstDelete "vst2/trakmeter" "%vst2_64_categories%"
 call :CopyVst       "vst2/traKmeter (Stereo x64).dll" "%vst2_64_categories%"
 call :CopyVst       "vst2/traKmeter (Multi x64).dll" "%vst2_64_categories%"
+call :CopyVst       "vst2/trakmeter.pdf" "%vst2_64_categories%"
+call :CopyVstDelete "vst2/trakmeter" "%vst2_64_categories%"
 
 
 echo.
 echo VST3 (64 bit)
 echo.
 
-call :CopyVstDelete "vst3/trakmeter" "%vst3_64%"
 call :CopyVst       "vst3/traKmeter (Stereo x64).vst3" "%vst3_64%"
 call :CopyVst       "vst3/traKmeter (Multi x64).vst3" "%vst3_64%"
+call :CopyVst       "vst3/trakmeter.pdf" "%%"
+call :CopyVstDelete "vst3/trakmeter" "%vst3_64%"
 
 
 echo.
