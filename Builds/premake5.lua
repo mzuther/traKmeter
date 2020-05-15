@@ -118,6 +118,8 @@ workspace "trakmeter"
         }
 
     filter { "system:windows" }
+        systemversion "latest"
+
         defines {
             "_WINDOWS=1",
             "_USE_MATH_DEFINES=1",
