@@ -40,7 +40,7 @@ If applicable, add screenshots to help explain your problem.
  - DAW: [ Reaper v6.0.8 (32-bit), Ardour v5.12.0 (32-bit) ]
  - Plug-in: [ TraKmeter v2.4.6 VST2 (64-bit), TraKmeter v2.4.6 stand-alone (64-bit) ]
 
-Are traKmeter and the directory "trakmeter" located in the folder? [no]
+Are traKmeter and the directory "trakmeter" located in the same folder? [no]
 Did you compile TraKmeter yourself? [no]
 
 
