@@ -1,8 +1,22 @@
 # traKmeter
 
-Loudness meter for correctly setting up tracking and mixing levels
+*Loudness meter for correctly setting up tracking and mixing levels*
 
 ![Screenshot](./doc/include/images/trakmeter.png)
+
+## About
+
+Sadly, most digital audio equipment only has peak meters.  This is
+readily understandable as you want to avoid digital clippings by all
+means.  However, badly chosen meter ranges and scales often render
+these meters useless.  And the lack of average meters does not exactly
+facilitate gain staging.
+
+When I had realised this, I started coding traKmeter.  It has evolved
+with my growing knowledge and recording experience, but the underlying
+ideas haven't changed at all.
+
+*Please read the [manual][] for a more extensive introduction.*
 
 ## FAQ
 
