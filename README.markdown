@@ -9,6 +9,8 @@ Loudness meter for correctly setting up tracking and mixing levels
 For documentation and further information, please see the [manual][]
 and the directory [doc][].
 
+**Before reporting bugs, please read the [FAQ][wiki].  Thanks!**
+
 ## Code of conduct
 
 Please read the [code of conduct][COC] before asking for help, filing
@@ -38,3 +40,4 @@ Thank you for using free software!
 [COC]:            https://github.com/mzuther/traKmeter/tree/master/CODE_OF_CONDUCT.markdown
 [doc]:            https://github.com/mzuther/traKmeter/tree/master/doc/
 [manual]:         https://github.com/mzuther/traKmeter/raw/master/doc/trakmeter.pdf
+[wiki]:           https://github.com/mzuther/traKmeter/wiki
