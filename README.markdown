@@ -4,12 +4,18 @@ Loudness meter for correctly setting up tracking and mixing levels
 
 ![Screenshot](./doc/include/images/trakmeter.png)
 
+## FAQ
+
+### traKmeter crashes when the plug-in is loaded/opened
+
+traKmeter comes with a folder called `trakmeter`.  This folder must be
+located in the same folder as the plug-in, so please copy it along and
+try again!
+
 ## Documentation
 
 For documentation and further information, please see the [manual][]
 and the directory [doc][].
-
-**Before reporting bugs, please read the [FAQ][wiki].  Thanks!**
 
 ## Code of conduct
 
@@ -40,4 +46,3 @@ Thank you for using free software!
 [COC]:            https://github.com/mzuther/traKmeter/tree/master/CODE_OF_CONDUCT.markdown
 [doc]:            https://github.com/mzuther/traKmeter/tree/master/doc/
 [manual]:         https://github.com/mzuther/traKmeter/raw/master/doc/trakmeter.pdf
-[wiki]:           https://github.com/mzuther/traKmeter/wiki
