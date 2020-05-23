@@ -22,9 +22,14 @@ ideas haven't changed at all.
 
 ### traKmeter crashes when the plug-in is loaded/opened
 
-traKmeter comes with a folder called `trakmeter`.  This folder must be
-located in the same folder as the plug-in, so please copy it along and
-try again!
+1. traKmeter comes with a folder called `trakmeter`.  This folder must
+   be located in the same folder as the plug-in, so please copy it
+   along and try again!
+
+2. traKmeter requires a processor which supports the SSE2 instruction
+   set (if you run at Windows 8 and above, it does).  On Windows, you
+   might also have to install the [Visual C++ Redistributable for
+   Visual Studio 2017][VC++ Redist].
 
 ## Documentation
 
@@ -60,3 +65,4 @@ Thank you for using free software!
 [COC]:            https://github.com/mzuther/traKmeter/tree/master/CODE_OF_CONDUCT.markdown
 [doc]:            https://github.com/mzuther/traKmeter/tree/master/doc/
 [manual]:         https://github.com/mzuther/traKmeter/raw/master/doc/trakmeter.pdf
+[VC++ Redist]:    https://www.visualstudio.com/downloads/
