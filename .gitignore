@@ -21,8 +21,8 @@ bin/standalone/trakmeter_*
 bin/vst2/traKmeter*.dll
 bin/vst2/trakmeter_*.so
 
-bin/vst3/traKmeter*.vst3
-bin/vst3/trakmeter_*.so
+bin/vst3/**/traKmeter*.vst3
+bin/vst3/**/trakmeter_*.so
 
 skins/default_skin.ini
 

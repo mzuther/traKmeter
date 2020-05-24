@@ -134,9 +134,9 @@ void TraKmeterPluginParameters::setValidationFile(const File &validationFile)
 }
 
 
-const File TraKmeterPluginParameters::getSkinDirectory()
+const File TraKmeterPluginParameters::getResourceDirectory()
 {
-    // On all platforms we want the skins folder to be located with
+    // On all platforms we want the resource folder to be located with
     // the executable.  On Mac, the executable is *not* the same as
     // the application folder because what looks like an application
     // is really a package (i.e. a folder) with the executable being
@@ -144,8 +144,8 @@ const File TraKmeterPluginParameters::getSkinDirectory()
     //
     // When deploying on a Mac, right-click on the build target and
     // select "Show Package Contents".  Navigate through
-    // Contents/MacOS and you will find the K-Meter executable.  Put
-    // the kmeter folder here.
+    // Contents/MacOS and you will find the traKmeter executable.  Put
+    // the "trakmeter" folder here.
     //
     // Thanks to Tod Gentille!
 
@@ -159,7 +159,18 @@ const File TraKmeterPluginParameters::getSkinDirectory()
                                File::currentApplicationFile).getParentDirectory();
 #endif
 
-    return applicationDirectory.getChildFile("./trakmeter/skins/");
+#if JucePlugin_Build_VST3
+    return applicationDirectory.getChildFile("../Resources/");
+#else
+    return applicationDirectory.getChildFile("./trakmeter/");
+#endif
+}
+
+
+const File TraKmeterPluginParameters::getSkinDirectory()
+{
+    File resourceDirectory = TraKmeterPluginParameters::getResourceDirectory();
+    return resourceDirectory.getChildFile("./Skins/");
 }
 
 

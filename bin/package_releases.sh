@@ -35,7 +35,11 @@
 version="2.4.7"
 
 binary_dir="./final"
-release_dir="releases"
+release_dir="./releases"
+
+resource_dir_standalone="./standalone/trakmeter"
+resource_dir_vst2="./vst2/trakmeter"
+resource_dir_vst3="./vst3/trakmeter.vst3/Contents/Resources"
 
 
 function archive_is_missing
@@ -71,22 +75,22 @@ function archive_create
 
 function archive_add
 {
-    filename="$1"
-    source_dir="$2"
-    target_dir=$(dirname "/tmp/$archive_dir/$1")
+    source_file="$1"
+    source_file_display=$(realpath --relative-base . --no-symlinks "$source_file")
+    target_dir="/tmp/$archive_dir/$2"
 
     if [ ! -d "$target_dir" ]; then
         mkdir -p "$target_dir"
     fi
 
-    if [ -f "$source_dir/$filename" ]; then
-        printf "  [+] %s\n" "$filename"
-        cp --dereference "$source_dir/$filename" "/tmp/$archive_dir/$1"
-    elif [ -d "$source_dir/$filename" ]; then
-        printf "  [+] %s/*\n" "$filename"
-        cp --dereference --recursive "$source_dir/$filename/" "/tmp/$archive_dir/$1"
+    if [ -f "$source_file" ]; then
+        printf "  [+] %s\n" "$source_file_display"
+        cp --dereference "$source_file" "$target_dir"
+    elif [ -d "$source_file" ]; then
+        printf "  [+] %s/*\n" "$source_file_display"
+        cp --dereference --recursive "$source_file/" "$target_dir"
     else
-        printf "  [ ] %s  --> not added\n" "$filename"
+        printf "  [ ] %s  --> not added\n" "$source_file_display"
     fi
 }
 
@@ -168,12 +172,12 @@ function archive_store
 
 printf "  === Creating release directories ===\n\n"
 
-mkdir -p "./$release_dir/linux/i386"
-mkdir -p "./$release_dir/linux/amd64"
+mkdir -p "$release_dir/linux/i386"
+mkdir -p "$release_dir/linux/amd64"
 
-mkdir -p "./$release_dir/windows/x32"
-mkdir -p "./$release_dir/windows/x64"
-mkdir -p "./$release_dir/windows/debug_symbols"
+mkdir -p "$release_dir/windows/x32"
+mkdir -p "$release_dir/windows/x64"
+mkdir -p "$release_dir/windows/debug_symbols"
 
 printf "  Done.\n\n\n"
 
@@ -187,13 +191,13 @@ if archive_is_missing "gzip" "$release_dir/linux" ; then
 
     archive_create
 
-    archive_add "trakmeter_stereo" "$binary_dir"
-    archive_add "trakmeter_multi" "$binary_dir"
+    archive_add "$binary_dir/standalone/trakmeter_stereo" ""
+    archive_add "$binary_dir/standalone/trakmeter_multi" ""
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_standalone/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_standalone/Documentation" "trakmeter"
+    archive_add "$resource_dir_standalone/Skins/Default" "trakmeter/Skins"
+    archive_add "$resource_dir_standalone/Skins/Default.skin" "trakmeter/Skins"
 
     archive_compress "gzip"
     archive_store "gzip" "$release_dir/linux"
@@ -209,13 +213,13 @@ if archive_is_missing "gzip" "$release_dir/linux" ; then
 
     archive_create
 
-    archive_add "trakmeter_stereo_vst2.so" "$binary_dir"
-    archive_add "trakmeter_multi_vst2.so" "$binary_dir"
+    archive_add "$binary_dir/vst2/trakmeter_stereo_vst2.so" ""
+    archive_add "$binary_dir/vst2/trakmeter_multi_vst2.so" ""
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_vst2/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_vst2/Documentation" "trakmeter"
+    archive_add "$resource_dir_vst2/Skins/Default" "trakmeter/Skins"
+    archive_add "$resource_dir_vst2/Skins/Default.skin" "trakmeter/Skins"
 
     archive_compress "gzip"
     archive_store "gzip" "$release_dir/linux"
@@ -231,13 +235,13 @@ if archive_is_missing "gzip" "$release_dir/linux" ; then
 
     archive_create
 
-    archive_add "trakmeter_stereo_x64" "$binary_dir"
-    archive_add "trakmeter_multi_x64" "$binary_dir"
+    archive_add "$binary_dir/standalone/trakmeter_stereo_x64" ""
+    archive_add "$binary_dir/standalone/trakmeter_multi_x64" ""
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_standalone/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_standalone/Documentation" "trakmeter"
+    archive_add "$resource_dir_standalone/Skins/Default" "trakmeter/Skins"
+    archive_add "$resource_dir_standalone/Skins/Default.skin" "trakmeter/Skins"
 
     archive_compress "gzip"
     archive_store "gzip" "$release_dir/linux"
@@ -253,13 +257,13 @@ if archive_is_missing "gzip" "$release_dir/linux" ; then
 
     archive_create
 
-    archive_add "trakmeter_stereo_vst2_x64.so" "$binary_dir"
-    archive_add "trakmeter_multi_vst2_x64.so" "$binary_dir"
+    archive_add "$binary_dir/vst2/trakmeter_stereo_vst2_x64.so" ""
+    archive_add "$binary_dir/vst2/trakmeter_multi_vst2_x64.so" ""
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_vst2/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_vst2/Documentation" "trakmeter"
+    archive_add "$resource_dir_vst2/Skins/Default" "trakmeter/Skins"
+    archive_add "$resource_dir_vst2/Skins/Default.skin" "trakmeter/Skins"
 
     archive_compress "gzip"
     archive_store "gzip" "$release_dir/linux"
@@ -275,13 +279,13 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "traKmeter (Stereo).exe" "$binary_dir"
-    archive_add "traKmeter (Multi).exe" "$binary_dir"
+    archive_add "$binary_dir/standalone/traKmeter (Stereo).exe" ""
+    archive_add "$binary_dir/standalone/traKmeter (Multi).exe" ""
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_standalone/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_standalone/Documentation" "trakmeter"
+    archive_add "$resource_dir_standalone/Skins/Default" "trakmeter/Skins"
+    archive_add "$resource_dir_standalone/Skins/Default.skin" "trakmeter/Skins"
 
     archive_compress "zip"
     archive_store "zip" "$release_dir/windows"
@@ -297,13 +301,13 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "traKmeter (Stereo).dll" "$binary_dir"
-    archive_add "traKmeter (Multi).dll" "$binary_dir"
+    archive_add "$binary_dir/vst2/traKmeter (Stereo).dll" ""
+    archive_add "$binary_dir/vst2/traKmeter (Multi).dll" ""
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_vst2/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_vst2/Documentation" "trakmeter"
+    archive_add "$resource_dir_vst2/Skins/Default" "trakmeter/Skins"
+    archive_add "$resource_dir_vst2/Skins/Default.skin" "trakmeter/Skins"
 
     archive_compress "zip"
     archive_store "zip" "$release_dir/windows"
@@ -320,13 +324,13 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "traKmeter (Stereo).vst3" "$binary_dir"
-    archive_add "traKmeter (Multi).vst3" "$binary_dir"
+    archive_add "$binary_dir/vst3/trakmeter.vst3/Contents/x86-win/traKmeter (Stereo).vst3" "trakmeter.vst3/Contents/x86-win"
+    archive_add "$binary_dir/vst3/trakmeter.vst3/Contents/x86-win/traKmeter (Multi).vst3" "trakmeter.vst3/Contents/x86-win"
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_vst3/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_vst3/Documentation" "trakmeter.vst3/Contents/Resources"
+    archive_add "$resource_dir_vst3/Skins/Default" "trakmeter.vst3/Contents/Resources/Skins"
+    archive_add "$resource_dir_vst3/Skins/Default.skin" "trakmeter.vst3/Contents/Resources/Skins"
 
     archive_compress "zip"
     archive_store "zip" "$release_dir/windows"
@@ -342,13 +346,13 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "traKmeter (Stereo x64).exe" "$binary_dir"
-    archive_add "traKmeter (Multi x64).exe" "$binary_dir"
+    archive_add "$binary_dir/standalone/traKmeter (Stereo x64).exe" ""
+    archive_add "$binary_dir/standalone/traKmeter (Multi x64).exe" ""
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_standalone/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_standalone/Documentation" "trakmeter"
+    archive_add "$resource_dir_standalone/Skins/Default" "trakmeter/Skins"
+    archive_add "$resource_dir_standalone/Skins/Default.skin" "trakmeter/Skins"
 
     archive_compress "zip"
     archive_store "zip" "$release_dir/windows"
@@ -364,13 +368,13 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "traKmeter (Stereo x64).dll" "$binary_dir"
-    archive_add "traKmeter (Multi x64).dll" "$binary_dir"
+    archive_add "$binary_dir/vst2/traKmeter (Stereo x64).dll" ""
+    archive_add "$binary_dir/vst2/traKmeter (Multi x64).dll" ""
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_vst2/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_vst2/Documentation" "trakmeter"
+    archive_add "$resource_dir_vst2/Skins/Default" "trakmeter/Skins"
+    archive_add "$resource_dir_vst2/Skins/Default.skin" "trakmeter/Skins"
 
     archive_compress "zip"
     archive_store "zip" "$release_dir/windows"
@@ -387,13 +391,13 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "traKmeter (Stereo x64).vst3" "$binary_dir"
-    archive_add "traKmeter (Multi x64).vst3" "$binary_dir"
+    archive_add "$binary_dir/vst3/trakmeter.vst3/Contents/x86_64-win/traKmeter (Stereo x64).vst3" "trakmeter.vst3/Contents/x86_64-win"
+    archive_add "$binary_dir/vst3/trakmeter.vst3/Contents/x86_64-win/traKmeter (Multi x64).vst3" "trakmeter.vst3/Contents/x86_64-win"
 
-    archive_add "trakmeter.pdf" "$binary_dir"
-    archive_add "trakmeter/doc" "$binary_dir"
-    archive_add "trakmeter/skins/Default" "$binary_dir"
-    archive_add "trakmeter/skins/Default.skin" "$binary_dir"
+    archive_add "$resource_dir_vst3/Documentation/trakmeter.pdf" ""
+    archive_add "$resource_dir_vst3/Documentation" "trakmeter.vst3/Contents/Resources"
+    archive_add "$resource_dir_vst3/Skins/Default" "trakmeter.vst3/Contents/Resources/Skins"
+    archive_add "$resource_dir_vst3/Skins/Default.skin" "trakmeter.vst3/Contents/Resources/Skins"
 
     archive_compress "zip"
     archive_store "zip" "$release_dir/windows"
@@ -409,9 +413,9 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "standalone" "$binary_dir/debug_symbols"
-    archive_add "vst2" "$binary_dir/debug_symbols"
-    archive_add "vst3" "$binary_dir/debug_symbols"
+    archive_add "$binary_dir/debug_symbols/standalone" ""
+    archive_add "$binary_dir/debug_symbols/vst2" ""
+    archive_add "$binary_dir/debug_symbols/vst3" ""
 
     archive_compress "zip"
     archive_store "zip" "$release_dir/windows"
