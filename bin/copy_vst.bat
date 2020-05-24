@@ -52,7 +52,7 @@ echo.
 
 call :CopyVst       "vst2/traKmeter (Stereo).dll" "%vst2_32%"
 call :CopyVst       "vst2/traKmeter (Multi).dll" "%vst2_32%"
-call :CopyVst       "vst2/trakmeter.pdf" "%vst2_32%"
+call :CopyVst       "vst2/trakmeter/Documentation/trakmeter.pdf" "%vst2_32%"
 call :CopyVstDelete "vst2/trakmeter" "%vst2_32%"
 
 echo.
@@ -61,7 +61,7 @@ echo.
 
 call :CopyVst       "vst2/traKmeter (Stereo).dll" "%vst2_32_categories%"
 call :CopyVst       "vst2/traKmeter (Multi).dll" "%vst2_32_categories%"
-call :CopyVst       "vst2/trakmeter.pdf" "%vst2_32_categories%"
+call :CopyVst       "vst2/trakmeter/Documentation/trakmeter.pdf" "%vst2_32_categories%"
 call :CopyVstDelete "vst2/trakmeter" "%vst2_32_categories%"
 
 
@@ -78,7 +78,7 @@ echo.
 
 call :CopyVst       "vst2/traKmeter (Stereo x64).dll" "%vst2_64%"
 call :CopyVst       "vst2/traKmeter (Multi x64).dll" "%vst2_64%"
-call :CopyVst       "vst2/trakmeter.pdf" "%vst2_64%"
+call :CopyVst       "vst2/trakmeter/Documentation/trakmeter.pdf" "%vst2_64%"
 call :CopyVstDelete "vst2/trakmeter" "%vst2_64%"
 
 echo.
@@ -87,7 +87,7 @@ echo.
 
 call :CopyVst       "vst2/traKmeter (Stereo x64).dll" "%vst2_64_categories%"
 call :CopyVst       "vst2/traKmeter (Multi x64).dll" "%vst2_64_categories%"
-call :CopyVst       "vst2/trakmeter.pdf" "%vst2_64_categories%"
+call :CopyVst       "vst2/trakmeter/Documentation/trakmeter.pdf" "%vst2_64_categories%"
 call :CopyVstDelete "vst2/trakmeter" "%vst2_64_categories%"
 
 
