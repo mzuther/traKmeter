@@ -54,6 +54,7 @@ public:
     void windowSkinCallback(int modalResult);
     void windowValidationCallback(int modalResult);
 
+    virtual void paint(Graphics &g) override;
     void resized() override;
 
 private:
@@ -81,21 +82,21 @@ private:
     Skin skin;
     String currentSkinName;
 
-    ImageButton ButtonReset;
+    DrawableButton ButtonReset;
 
-    ImageButton ButtonRecordingLevel_10;
-    ImageButton ButtonRecordingLevel_15;
-    ImageButton ButtonRecordingLevel_20;
+    DrawableButton ButtonRecordingLevel_10;
+    DrawableButton ButtonRecordingLevel_15;
+    DrawableButton ButtonRecordingLevel_20;
 
-    ImageButton ButtonSkin;
-    ImageButton ButtonValidation;
-    ImageButton ButtonAbout;
+    DrawableButton ButtonSkin;
+    DrawableButton ButtonValidation;
+    DrawableButton ButtonAbout;
 
 #ifdef DEBUG
-    ImageComponent LabelDebug;
+    DrawableComposite LabelDebug;
 #endif
 
-    ImageComponent BackgroundImage;
+    DrawableComposite DrawableBackground;
 };
 
 #endif  // TRAKMETER_PLUGIN_EDITOR_H

@@ -63,7 +63,17 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     TraKmeterAudioProcessor &processor,
     int nNumChannels) :
     AudioProcessorEditor(&processor),
-    audioProcessor(processor)
+    audioProcessor(processor),
+
+    ButtonReset("Reset", DrawableButton::ButtonStyle::ImageRaw),
+
+    ButtonRecordingLevel_10("Recording Level 10", DrawableButton::ButtonStyle::ImageRaw),
+    ButtonRecordingLevel_15("Recording Level 15", DrawableButton::ButtonStyle::ImageRaw),
+    ButtonRecordingLevel_20("Recording Level 20", DrawableButton::ButtonStyle::ImageRaw),
+
+    ButtonSkin("Skin", DrawableButton::ButtonStyle::ImageRaw),
+    ButtonValidation("Validation", DrawableButton::ButtonStyle::ImageRaw),
+    ButtonAbout("About", DrawableButton::ButtonStyle::ImageRaw)
 {
     // load look and feel
     setLookAndFeel(&customLookAndFeel_);
@@ -116,11 +126,9 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     addAndMakeVisible(LabelDebug, 0);
 #endif
 
-    // prevent unnecessary redrawing of plugin editor
-    BackgroundImage.setOpaque(true);
     // moves background image to the back of the editor's z-plane to
     // that it doesn't overlay (and thus block) any other components
-    addAndMakeVisible(BackgroundImage, 0);
+    addAndMakeVisible(DrawableBackground, 0);
 
     updateParameter(TraKmeterPluginParameters::selTargetRecordingLevel);
 
@@ -187,8 +195,8 @@ void TraKmeterAudioProcessorEditor::applySkin()
 
     // moves background image to the back of the editor's z-plane;
     // will also resize plug-in editor
-    skin.setBackgroundImage(&BackgroundImage,
-                            this);
+    skin.setBackground(&DrawableBackground,
+                       this);
 
     skin.placeAndSkinButton("button_recording_level_10",
                             &ButtonRecordingLevel_10);
@@ -572,6 +580,12 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowValidation, ModalCallbackFunction::forComponent(window_validation_callback, this));
     }
+}
+
+
+void TraKmeterAudioProcessorEditor::paint(Graphics &g)
+{
+    g.fillAll(Colours::green);
 }
 
 
