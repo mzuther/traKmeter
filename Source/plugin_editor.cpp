@@ -124,7 +124,7 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
     // moves debug label to the back of the editor's z-plane to that
     // it doesn't overlay (and thus block) any other components
     addAndMakeVisible(LabelDebug, 0);
-#endif
+#endif // DEBUG
 
     // moves background image to the back of the editor's z-plane to
     // that it doesn't overlay (and thus block) any other components
@@ -218,7 +218,7 @@ void TraKmeterAudioProcessorEditor::applySkin()
 #ifdef DEBUG
     skin.placeAndSkinLabel("label_debug",
                            &LabelDebug);
-#endif
+#endif // DEBUG
 
     if (trakmeter_)
     {
@@ -470,15 +470,15 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
 
 #if JucePlugin_Build_AU
         pluginNameAndVersion += " (Audio Unit)";
-#endif
+#endif // JucePlugin_Build_AU
 
 #if JucePlugin_Build_VST
         pluginNameAndVersion += " (VST2)";
-#endif
+#endif // JucePlugin_Build_VST
 
 #if JucePlugin_Build_VST3
         pluginNameAndVersion += " (VST3)";
-#endif
+#endif // JucePlugin_Build_VST3
 
         arrChapters.set(
             pluginNameAndVersion,
@@ -508,22 +508,20 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
             "Libraries",
 #ifdef LINUX
             L"ALSA\n"
-#endif
-#ifdef LINUX
             L"FreeType\n"
             L"JACK\n"
-#endif
+#endif // LINUX
             L"JUCE\n"
 #ifdef LINUX
             L"POSIX Threads\n"
-#endif
+#endif // LINUX
 #if JucePlugin_Build_VST || JucePlugin_Build_VST3
             L"VST\n"
-#endif
+#endif // JucePlugin_Build_VST || JucePlugin_Build_VST3
 #ifdef LINUX
             L"Xlib\n"
             L"Xext\n"
-#endif
+#endif // LINUX
         );
 
 #if JucePlugin_Build_VST || JucePlugin_Build_VST3
@@ -532,7 +530,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
             "Trademarks",
             L"VST is a trademark of Steinberg Media Technologies GmbH, "
             L"registered in Europe and other countries.\n");
-#endif
+#endif // JucePlugin_Build_VST || JucePlugin_Build_VST3
 
         arrChapters.set(
             "License",

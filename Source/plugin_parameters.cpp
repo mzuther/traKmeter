@@ -69,7 +69,7 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     ParameterValidationSelectedChannel->addPreset(5.0f,   "6");
     ParameterValidationSelectedChannel->addPreset(6.0f,   "7");
     ParameterValidationSelectedChannel->addPreset(7.0f,   "8");
-#endif
+#endif // TRAKMETER_MULTI
 
     ParameterValidationSelectedChannel->setDefaultRealFloat(-1.0f, true);
     add(ParameterValidationSelectedChannel, selValidationSelectedChannel);
@@ -154,16 +154,16 @@ const File TraKmeterPluginParameters::getResourceDirectory()
 #ifdef __APPLE__
     applicationDirectory = File::getSpecialLocation(
                                File::currentExecutableFile).getParentDirectory();
-#else
+#else // __APPLE__
     applicationDirectory = File::getSpecialLocation(
                                File::currentApplicationFile).getParentDirectory();
-#endif
+#endif // __APPLE__
 
 #if JucePlugin_Build_VST3
     return applicationDirectory.getChildFile("../Resources/");
-#else
+#else // JucePlugin_Build_VST3
     return applicationDirectory.getChildFile("./trakmeter/");
-#endif
+#endif // JucePlugin_Build_VST3
 }
 
 

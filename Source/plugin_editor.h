@@ -94,7 +94,7 @@ private:
 
 #ifdef DEBUG
     DrawableComposite LabelDebug;
-#endif
+#endif // DEBUG
 
     DrawableComposite DrawableBackground;
 };

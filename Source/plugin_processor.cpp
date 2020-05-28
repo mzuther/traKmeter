@@ -43,16 +43,16 @@ Flow of parameter processing:
 TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
 #ifndef JucePlugin_PreferredChannelConfigurations
     AudioProcessor(getBusesProperties()),
-#endif
+#endif // JucePlugin_PreferredChannelConfigurations
     trakmeterBufferSize_(1024)
 {
     frut::Frut::printVersionNumbers();
 
 #ifdef TRAKMETER_MULTI
     numberOfChannels_ = 8;
-#else
+#else // TRAKMETER_MULTI
     numberOfChannels_ = 2;
-#endif
+#endif // TRAKMETER_MULTI
 
     ringBuffer_ = nullptr;
     audioFilePlayer_ = nullptr;
@@ -85,7 +85,7 @@ AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
            .withOutput("Main Out",
                        AudioChannelSet::canonicalChannelSet(8));
 
-#else
+#else // TRAKMETER_MULTI
 
     return BusesProperties()
            .withInput("Main In",
@@ -93,7 +93,7 @@ AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
            .withOutput("Main Out",
                        AudioChannelSet::stereo());
 
-#endif
+#endif // TRAKMETER_MULTI
 }
 
 
@@ -122,7 +122,7 @@ bool TraKmeterAudioProcessor::isBusesLayoutSupported(
     // current channel layout is not allowed
     return false;
 }
-#endif
+#endif // JucePlugin_PreferredChannelConfigurations
 
 
 const String TraKmeterAudioProcessor::getName() const
@@ -333,9 +333,9 @@ bool TraKmeterAudioProcessor::acceptsMidi() const
 {
 #if JucePlugin_WantsMidiInput
     return true;
-#else
+#else // JucePlugin_WantsMidiInput
     return false;
-#endif
+#endif // JucePlugin_WantsMidiInput
 }
 
 
@@ -343,9 +343,9 @@ bool TraKmeterAudioProcessor::producesMidi() const
 {
 #if JucePlugin_ProducesMidiOutput
     return true;
-#else
+#else // JucePlugin_ProducesMidiOutput
     return false;
-#endif
+#endif // JucePlugin_ProducesMidiOutput
 }
 
 
@@ -353,9 +353,9 @@ bool TraKmeterAudioProcessor::isMidiEffect() const
 {
 #if JucePlugin_IsMidiEffect
     return true;
-#else
+#else // JucePlugin_IsMidiEffect
     return false;
-#endif
+#endif // JucePlugin_IsMidiEffect
 }
 
 
