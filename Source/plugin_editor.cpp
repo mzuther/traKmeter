@@ -157,7 +157,7 @@ void TraKmeterAudioProcessorEditor::loadSkin()
 {
     File fileSkin = skinDirectory.getChildFile(currentSkinName + ".skin");
 
-    if (!fileSkin.existsAsFile())
+    if (! fileSkin.existsAsFile())
     {
         Logger::outputDebugString("[Skin] file \"" + fileSkin.getFileName() + "\" not found");
 
@@ -283,7 +283,7 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(
         }
     }
     // "UM" ==> update meters
-    else if (!strMessage.compare("UM"))
+    else if (! strMessage.compare("UM"))
     {
         trakmeter_->setLevels(audioProcessor.getLevels());
 
@@ -293,14 +293,14 @@ void TraKmeterAudioProcessorEditor::actionListenerCallback(
         }
     }
     // "V+" ==> validation started
-    else if ((!strMessage.compare("V+")) && audioProcessor.isValidating())
+    else if ((! strMessage.compare("V+")) && audioProcessor.isValidating())
     {
         isValidating = true;
     }
     // "V-" ==> validation stopped
-    else if (!strMessage.compare("V-"))
+    else if (! strMessage.compare("V-"))
     {
-        if (!validationDialogOpen)
+        if (! validationDialogOpen)
         {
             ButtonValidation.setToggleState(false, dontSendNotification);
         }
@@ -356,7 +356,7 @@ void TraKmeterAudioProcessorEditor::updateParameter(
     }
 
     // prevent meter reload during initialisation
-    if (!isInitialising)
+    if (! isInitialising)
     {
         // will also apply skin to plug-in editor
         reloadMeters();

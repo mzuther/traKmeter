@@ -504,7 +504,7 @@ void TraKmeterAudioProcessor::processBlock(
     AudioBuffer<float> &buffer,
     MidiBuffer &midiMessages)
 {
-    jassert(!isUsingDoublePrecision());
+    jassert(! isUsingDoublePrecision());
     ignoreUnused(midiMessages);
 
     // temporarily disable denormals
@@ -512,7 +512,7 @@ void TraKmeterAudioProcessor::processBlock(
 
     int numberOfSamples = buffer.getNumSamples();
 
-    if (!sampleRateIsValid_)
+    if (! sampleRateIsValid_)
     {
         buffer.clear();
         return;
@@ -573,7 +573,7 @@ void TraKmeterAudioProcessor::processBlock(
 
     int numberOfSamples = buffer.getNumSamples();
 
-    if (!sampleRateIsValid_)
+    if (! sampleRateIsValid_)
     {
         buffer.clear();
         return;
@@ -764,7 +764,7 @@ void TraKmeterAudioProcessor::stopValidation()
 
 bool TraKmeterAudioProcessor::isValidating()
 {
-    if (!audioFilePlayer_)
+    if (! audioFilePlayer_)
     {
         return false;
     }

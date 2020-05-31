@@ -109,6 +109,6 @@ void MeterBarPeak::create(
         }
     }
 
-    // set orientation here to save some processing power
+    // set orientation here to save some processing
     setOrientation(orientation);
 }

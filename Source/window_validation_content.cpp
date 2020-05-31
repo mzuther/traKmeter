@@ -239,7 +239,7 @@ void WindowValidationContent::buttonClicked(Button *button)
     if (button == &buttonValidation_)
     {
         // file name has not been set
-        if (!validationFile_.existsAsFile())
+        if (! validationFile_.existsAsFile())
         {
             DBG("[traKmeter] file name for validation not set.");
 

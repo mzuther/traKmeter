@@ -73,7 +73,7 @@ void MeterBarAverage::create(
             colourId = colourSelector::signal;
         }
 
-        bool hasHighestLevel = (n == 0) ? true : false;
+        bool hasHighestLevel = (n == 0);
 
         if (discreteMeter)
         {
@@ -110,6 +110,6 @@ void MeterBarAverage::create(
         }
     }
 
-    // set orientation here to save some processing power
+    // set orientation here to save some processing
     setOrientation(orientation);
 }
