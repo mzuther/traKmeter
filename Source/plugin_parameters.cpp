@@ -94,18 +94,6 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
     ParameterValidationCSVFormat->setName("Validation output format");
     ParameterValidationCSVFormat->setDefaultBoolean(false, true);
     add(ParameterValidationCSVFormat, selValidationCSVFormat);
-
-
-    // locate directory containing the skins
-    File skinDirectory = getSkinDirectory();
-
-    // load name of default skin from file
-    String defaultSkinName = frut::skin::Skin::getDefaultSkin(skinDirectory);
-
-    frut::parameters::ParString *ParameterSkinName =
-        new frut::parameters::ParString(defaultSkinName);
-    ParameterSkinName->setName("Skin");
-    add(ParameterSkinName, selSkinName);
 }
 
 
@@ -164,23 +152,4 @@ const File TraKmeterPluginParameters::getResourceDirectory()
 #else // JucePlugin_Build_VST3
     return applicationDirectory.getChildFile("./trakmeter/");
 #endif // JucePlugin_Build_VST3
-}
-
-
-const File TraKmeterPluginParameters::getSkinDirectory()
-{
-    File resourceDirectory = TraKmeterPluginParameters::getResourceDirectory();
-    return resourceDirectory.getChildFile("./Skins/");
-}
-
-
-String TraKmeterPluginParameters::getSkinName()
-{
-    return getText(selSkinName);
-}
-
-
-void TraKmeterPluginParameters::setSkinName(const String &strSkinName)
-{
-    setText(selSkinName, strSkinName);
 }

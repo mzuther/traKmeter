@@ -132,14 +132,10 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor(
 
     updateParameter(TraKmeterPluginParameters::selTargetRecordingLevel);
 
-    // locate directory containing the skins
-    skinDirectory = TraKmeterPluginParameters::getSkinDirectory();
-
     // force meter reload after initialisation ...
     isInitialising = false;
 
     // apply skin to plug-in editor
-    currentSkinName = audioProcessor.getParameterSkinName();
     loadSkin();
 }
 
@@ -155,22 +151,10 @@ TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 
 void TraKmeterAudioProcessorEditor::loadSkin()
 {
-    File fileSkin = skinDirectory.getChildFile(currentSkinName + ".skin");
-
-    if (! fileSkin.existsAsFile())
-    {
-        Logger::outputDebugString("[Skin] file \"" + fileSkin.getFileName() + "\" not found");
-
-        currentSkinName = "Default";
-        fileSkin = skinDirectory.getChildFile(currentSkinName + ".skin");
-    }
-
-    audioProcessor.setParameterSkinName(currentSkinName);
-
     int recordingLevel = audioProcessor.getRealInteger(
                              TraKmeterPluginParameters::selTargetRecordingLevel);
-    skin.loadSkin(fileSkin,
-                  numberOfInputChannels,
+
+    skin.loadSkin(numberOfInputChannels,
                   recordingLevel);
 
     // will also apply skin to plug-in editor
@@ -190,6 +174,7 @@ void TraKmeterAudioProcessorEditor::applySkin()
     // update skin
     int recordingLevel = audioProcessor.getRealInteger(
                              TraKmeterPluginParameters::selTargetRecordingLevel);
+
     skin.updateSkin(numberOfInputChannels,
                     recordingLevel);
 
@@ -450,8 +435,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         button->setToggleState(true, dontSendNotification);
 
         // prepare and launch dialog window
-        DialogWindow *windowSkin = frut::widgets::WindowSkinContent::createDialogWindow(
-                                       this, &currentSkinName, skinDirectory);
+        DialogWindow *windowSkin = frut::widgets::WindowSkinContent::createDialogWindow(this, &skin);
 
         // attach callback to dialog window
         ModalComponentManager::getInstance()->attachCallback(windowSkin, ModalCallbackFunction::forComponent(window_skin_callback, this));
