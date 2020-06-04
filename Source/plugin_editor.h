@@ -26,6 +26,8 @@
 #ifndef TRAKMETER_PLUGIN_EDITOR_H
 #define TRAKMETER_PLUGIN_EDITOR_H
 
+#include "build_id.h"
+
 #include "FrutHeader.h"
 
 #include "plugin_parameters.h"

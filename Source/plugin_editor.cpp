@@ -464,6 +464,8 @@ void TraKmeterAudioProcessorEditor::buttonClicked(
         pluginNameAndVersion += " (VST3)";
 #endif // JucePlugin_Build_VST3
 
+        pluginNameAndVersion += String(TRAKMETER_BUILD_ID);
+
         arrChapters.set(
             pluginNameAndVersion,
             String(JucePlugin_Desc) + ".\n");
