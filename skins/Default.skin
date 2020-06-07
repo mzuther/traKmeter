@@ -78,29 +78,25 @@
             x="49"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_peak_2
             x="77"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_average_1
             x="49"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <meter_average_2
             x="77"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <label_over_1
             x="49"
@@ -241,113 +237,97 @@
             x="49"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_peak_2
             x="77"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_peak_3
             x="112"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_peak_4
             x="140"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_peak_5
             x="175"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_peak_6
             x="203"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_peak_7
             x="238"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_peak_8
             x="266"
             y="210"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_peak.png" />
+            vertical="true" />
 
         <meter_average_1
             x="49"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <meter_average_2
             x="77"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <meter_average_3
             x="112"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <meter_average_4
             x="140"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <meter_average_5
             x="175"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <meter_average_6
             x="203"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <meter_average_7
             x="238"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <meter_average_8
             x="266"
             y="38"
             segment_width="22"
-            vertical="true"
-            image="meters/meter_bar_average.png" />
+            vertical="true" />
 
         <label_over_1
             x="49"
