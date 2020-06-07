@@ -31,20 +31,20 @@
 
 
 class Skin :
-    public frut::skin::Skin
+   public frut::skin::Skin
 {
 public:
-    bool loadSkin(int numberOfChannels,
-                  int targetRecordingLevel);
+   bool loadSkin( int numberOfChannels,
+                  int targetRecordingLevel );
 
-    void updateSkin(int numberOfChannels,
-                    int targetRecordingLevel);
+   void updateSkin( int numberOfChannels,
+                    int targetRecordingLevel );
 
-    virtual File getSkinDirectory() override;
-    virtual File getSettingsFile() override;
+   virtual File getSkinDirectory() override;
+   virtual File getSettingsFile() override;
 
 private:
-    JUCE_LEAK_DETECTOR(Skin);
+   JUCE_LEAK_DETECTOR( Skin );
 };
 
 #endif  // TRAKMETER_SKIN_H

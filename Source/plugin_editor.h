@@ -38,65 +38,65 @@
 
 
 class TraKmeterAudioProcessorEditor :
-    public AudioProcessorEditor,
-    public Button::Listener,
-    public ActionListener
+   public AudioProcessorEditor,
+   public Button::Listener,
+   public ActionListener
 {
 public:
-    TraKmeterAudioProcessorEditor(TraKmeterAudioProcessor &processor,
-                                  int nNumChannels);
-    ~TraKmeterAudioProcessorEditor();
+   TraKmeterAudioProcessorEditor( TraKmeterAudioProcessor& processor,
+                                  int nNumChannels );
+   ~TraKmeterAudioProcessorEditor();
 
-    void buttonClicked(Button *button) override;
+   void buttonClicked( Button* button ) override;
 
-    void actionListenerCallback(const String &strMessage) override;
-    void updateParameter(int nIndex);
+   void actionListenerCallback( const String& strMessage ) override;
+   void updateParameter( int nIndex );
 
-    void windowAboutCallback(int modalResult);
-    void windowSkinCallback(int modalResult);
-    void windowValidationCallback(int modalResult);
+   void windowAboutCallback( int modalResult );
+   void windowSkinCallback( int modalResult );
+   void windowValidationCallback( int modalResult );
 
-    virtual void paint(Graphics &g) override;
-    void resized() override;
+   virtual void paint( Graphics& g ) override;
+   void resized() override;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TraKmeterAudioProcessorEditor);
+   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( TraKmeterAudioProcessorEditor );
 
-    void reloadMeters();
-    void applySkin();
-    void loadSkin();
+   void reloadMeters();
+   void applySkin();
+   void loadSkin();
 
-    bool needsMeterReload;
-    bool isValidating;
-    bool validationDialogOpen;
-    bool isInitialising;
+   bool needsMeterReload;
+   bool isValidating;
+   bool validationDialogOpen;
+   bool isInitialising;
 
-    int numberOfInputChannels;
+   int numberOfInputChannels;
 
-    int segmentHeight;
+   int segmentHeight;
 
-    TraKmeterAudioProcessor &audioProcessor;
+   TraKmeterAudioProcessor& audioProcessor;
 
-    frut::skin::LookAndFeel_Frut_V3 customLookAndFeel_;
-    std::unique_ptr<TraKmeter> trakmeter_;
+   frut::skin::LookAndFeel_Frut_V3 customLookAndFeel_;
+   std::unique_ptr<TraKmeter> trakmeter_;
 
-    Skin skin;
+   Skin skin;
 
-    DrawableButton ButtonReset;
+   DrawableButton ButtonReset;
 
-    DrawableButton ButtonRecordingLevel_10;
-    DrawableButton ButtonRecordingLevel_15;
-    DrawableButton ButtonRecordingLevel_20;
+   DrawableButton ButtonRecordingLevel_10;
+   DrawableButton ButtonRecordingLevel_15;
+   DrawableButton ButtonRecordingLevel_20;
 
-    DrawableButton ButtonSkin;
-    DrawableButton ButtonValidation;
-    DrawableButton ButtonAbout;
+   DrawableButton ButtonSkin;
+   DrawableButton ButtonValidation;
+   DrawableButton ButtonAbout;
 
 #ifdef DEBUG
-    DrawableComposite LabelDebug;
+   DrawableComposite LabelDebug;
 #endif // DEBUG
 
-    DrawableComposite DrawableBackground;
+   DrawableComposite DrawableBackground;
 };
 
 #endif  // TRAKMETER_PLUGIN_EDITOR_H

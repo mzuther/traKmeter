@@ -33,108 +33,108 @@
 
 
 class TraKmeterAudioProcessor :
-    public AudioProcessor,
-    public ActionBroadcaster,
-    virtual public frut::audio::RingBufferProcessor<float>
+   public AudioProcessor,
+   public ActionBroadcaster,
+   virtual public frut::audio::RingBufferProcessor<float>
 {
 public:
-    TraKmeterAudioProcessor();
-    ~TraKmeterAudioProcessor();
+   TraKmeterAudioProcessor();
+   ~TraKmeterAudioProcessor();
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-    bool isBusesLayoutSupported(const BusesLayout &layouts) const override;
+   bool isBusesLayoutSupported( const BusesLayout& layouts ) const override;
 #endif // JucePlugin_PreferredChannelConfigurations
 
-    void prepareToPlay(double sampleRate, int samplesPerBlock) override;
-    void releaseResources() override;
-    void reset() override;
+   void prepareToPlay( double sampleRate, int samplesPerBlock ) override;
+   void releaseResources() override;
+   void reset() override;
 
-    void processBlock(AudioBuffer<float> &buffer,
-                      MidiBuffer &midiMessages) override;
-    void processBlock(AudioBuffer<double> &buffer,
-                      MidiBuffer &midiMessages) override;
+   void processBlock( AudioBuffer<float>& buffer,
+                      MidiBuffer& midiMessages ) override;
+   void processBlock( AudioBuffer<double>& buffer,
+                      MidiBuffer& midiMessages ) override;
 
-    void silenceInput(bool isSilentNew);
+   void silenceInput( bool isSilentNew );
 
-    void startValidation(File fileAudio, int nSelectedChannel,
+   void startValidation( File fileAudio, int nSelectedChannel,
                          bool bReportCSV, bool bAverageMeterLevel,
-                         bool bPeakMeterLevel);
+                         bool bPeakMeterLevel );
 
-    void stopValidation();
-    bool isValidating();
+   void stopValidation();
+   bool isValidating();
 
-    AudioProcessorEditor *createEditor() override;
-    bool hasEditor() const override;
+   AudioProcessorEditor* createEditor() override;
+   bool hasEditor() const override;
 
-    int getNumParameters() override;
-    const String getParameterName(int nIndex) override;
-    const String getParameterText(int nIndex) override;
+   int getNumParameters() override;
+   const String getParameterName( int nIndex ) override;
+   const String getParameterText( int nIndex ) override;
 
-    float getParameter(int nIndex) override;
-    void changeParameter(int nIndex, float fValue);
-    void setParameter(int nIndex, float fValue) override;
+   float getParameter( int nIndex ) override;
+   void changeParameter( int nIndex, float fValue );
+   void setParameter( int nIndex, float fValue ) override;
 
-    void clearChangeFlag(int nIndex);
-    bool hasChanged(int nIndex);
-    void updateParameters(bool bIncludeHiddenParameters);
+   void clearChangeFlag( int nIndex );
+   bool hasChanged( int nIndex );
+   void updateParameters( bool bIncludeHiddenParameters );
 
-    File getParameterValidationFile();
-    void setParameterValidationFile(const File &fileValidation);
+   File getParameterValidationFile();
+   void setParameterValidationFile( const File& fileValidation );
 
-    bool getBoolean(int nIndex);
-    int getRealInteger(int nIndex);
+   bool getBoolean( int nIndex );
+   int getRealInteger( int nIndex );
 
-    const String getName() const override;
+   const String getName() const override;
 
-    bool acceptsMidi() const override;
-    bool producesMidi() const override;
-    bool isMidiEffect() const override;
+   bool acceptsMidi() const override;
+   bool producesMidi() const override;
+   bool isMidiEffect() const override;
 
-    double getTailLengthSeconds() const override;
+   double getTailLengthSeconds() const override;
 
-    std::shared_ptr<MeterBallistics> getLevels();
-    void resetMeters();
+   std::shared_ptr<MeterBallistics> getLevels();
+   void resetMeters();
 
-    virtual bool processBufferChunk(AudioBuffer<float> &buffer) override;
+   virtual bool processBufferChunk( AudioBuffer<float>& buffer ) override;
 
-    StringArray getAlternateDisplayNames() const override;
+   StringArray getAlternateDisplayNames() const override;
 
-    int getNumPrograms() override;
+   int getNumPrograms() override;
 
-    int getCurrentProgram() override;
-    void setCurrentProgram(int nIndex) override;
+   int getCurrentProgram() override;
+   void setCurrentProgram( int nIndex ) override;
 
-    const String getProgramName(int nIndex) override;
-    void changeProgramName(int nIndex, const String &newName) override;
+   const String getProgramName( int nIndex ) override;
+   void changeProgramName( int nIndex, const String& newName ) override;
 
-    void getStateInformation(MemoryBlock &destData) override;
-    void setStateInformation(const void *data, int sizeInBytes) override;
+   void getStateInformation( MemoryBlock& destData ) override;
+   void setStateInformation( const void* data, int sizeInBytes ) override;
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(TraKmeterAudioProcessor);
+   JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( TraKmeterAudioProcessor );
 
-    static BusesProperties getBusesProperties();
-    void resetOnPlay();
+   static BusesProperties getBusesProperties();
+   void resetOnPlay();
 
-    std::unique_ptr<AudioFilePlayer> audioFilePlayer_;
-    std::unique_ptr<frut::audio::RingBuffer<float>> ringBuffer_;
+   std::unique_ptr<AudioFilePlayer> audioFilePlayer_;
+   std::unique_ptr<frut::audio::RingBuffer<float>> ringBuffer_;
 
-    std::shared_ptr<MeterBallistics> meterBallistics_;
+   std::shared_ptr<MeterBallistics> meterBallistics_;
 
-    TraKmeterPluginParameters pluginParameters_;
+   TraKmeterPluginParameters pluginParameters_;
 
-    frut::dsp::Dither dither_;
+   frut::dsp::Dither dither_;
 
-    const int trakmeterBufferSize_;
+   const int trakmeterBufferSize_;
 
-    bool sampleRateIsValid_;
-    bool isSilent_;
-    bool hasStopped_;
+   bool sampleRateIsValid_;
+   bool isSilent_;
+   bool hasStopped_;
 
-    int numberOfChannels_;
-    float processedSeconds_;
+   int numberOfChannels_;
+   float processedSeconds_;
 };
 
-AudioProcessor *JUCE_CALLTYPE createPluginFilter();
+AudioProcessor* JUCE_CALLTYPE createPluginFilter();
 
 #endif  // TRAKMETER_PLUGIN_PROCESSOR_H

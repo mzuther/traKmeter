@@ -30,37 +30,36 @@
 
 
 class MeterBarPeak :
-    public frut::widgets::MeterBar
+   public frut::widgets::MeterBar
 {
 public:
-    using frut::widgets::MeterBar::create;
-    void create(float retainSignalFactor,
+   using frut::widgets::MeterBar::create;
+   void create( float retainSignalFactor,
                 float newSignalFactor,
                 frut::widgets::Orientation orientation,
                 bool discreteMeter,
                 int targetRecordingLevel,
                 int mainSegmentHeight,
-                const Array<Colour> &segmentColours);
+                const Array<Colour>& segmentColours );
 
 protected:
-    /// Colour ID selector for meter segments.
-    enum colourSelector  // protected namespace
-    {
-        /// overload (usually red)
-        overload = 0,
+   /// Colour ID selector for meter segments.
+   enum colourSelector { // protected namespace
+      /// overload (usually red)
+      overload = 0,
 
-        /// warning (usually yellow)
-        warning,
+      /// warning (usually yellow)
+      warning,
 
-        /// fine (usually green)
-        fine,
+      /// fine (usually green)
+      fine,
 
-        /// signal (usually blue)
-        signal
-    };
+      /// signal (usually blue)
+      signal
+   };
 
 private:
-    JUCE_LEAK_DETECTOR(MeterBarPeak);
+   JUCE_LEAK_DETECTOR( MeterBarPeak );
 };
 
 #endif  // TRAKMETER_METER_BAR_PEAK_H

@@ -26,72 +26,60 @@
 #include "overload_meter.h"
 
 
-OverloadMeter::OverloadMeter(float Threshold)
+OverloadMeter::OverloadMeter( float Threshold )
 {
-    // threshold, meter segment will be dark below and fully lit above
-    // this level
-    fThreshold = Threshold;
+   // threshold, meter segment will be dark below and fully lit above
+   // this level
+   fThreshold = Threshold;
 
-    // is there an overload in this moment?
-    bActiveOverload = false;
+   // is there an overload in this moment?
+   bActiveOverload = false;
 
-    // were any overloads detected?
-    bOverloadsDetected = false;
+   // were any overloads detected?
+   bOverloadsDetected = false;
 
-    // initialise maximum level
-    fMaximumLevel = -9999.9f;
+   // initialise maximum level
+   fMaximumLevel = -9999.9f;
 
-    // make sure that segment is drawn after initialisation
-    setLevels(-9999.9f, -9999.9f);
+   // make sure that segment is drawn after initialisation
+   setLevels( -9999.9f, -9999.9f );
 }
 
 
-void OverloadMeter::setLevels(float fLevel, float fMaximumLevelNew)
+void OverloadMeter::setLevels( float fLevel,
+                               float fMaximumLevelNew )
 {
-    // current level lies below threshold
-    if (fLevel < fThreshold)
-    {
-        bActiveOverload = false;
-    }
-    else
-    {
-        bActiveOverload = true;
-    }
+   // current level lies below threshold
+   if ( fLevel < fThreshold ) {
+      bActiveOverload = false;
+   } else {
+      bActiveOverload = true;
+   }
 
-    if (fMaximumLevel != fMaximumLevelNew)
-    {
-        fMaximumLevel = fMaximumLevelNew;
-        String strMaximumLevel;
+   if ( fMaximumLevel != fMaximumLevelNew ) {
+      fMaximumLevel = fMaximumLevelNew;
+      String strMaximumLevel;
 
-        if (fMaximumLevel >= fThreshold)
-        {
-            int nRelativeMaximumLevel = frut::math::SimpleMath::roundDown(fMaximumLevel - fThreshold);
+      if ( fMaximumLevel >= fThreshold ) {
+         int nRelativeMaximumLevel = frut::math::SimpleMath::roundDown( fMaximumLevel - fThreshold );
 
-            strMaximumLevel = "+" + String(nRelativeMaximumLevel);
-            bOverloadsDetected = true;
-        }
-        else
-        {
-            strMaximumLevel = String();
-            bOverloadsDetected = false;
-        }
+         strMaximumLevel = "+" + String( nRelativeMaximumLevel );
+         bOverloadsDetected = true;
+      } else {
+         strMaximumLevel = String();
+         bOverloadsDetected = false;
+      }
 
-        setLabelText(String(strMaximumLevel));
-    }
+      setLabelText( String( strMaximumLevel ) );
+   }
 
-    if (bOverloadsDetected)
-    {
-        if (bActiveOverload)
-        {
-            setState(frut::widgets::StateLabel::State::active);
-        }
-        else
-        {
-            setState(frut::widgets::StateLabel::State::on);
-        }
-    }
-    else
-    {
-        setState(frut::widgets::StateLabel::State::off);
-    }
+   if ( bOverloadsDetected ) {
+      if ( bActiveOverload ) {
+         setState( frut::widgets::StateLabel::State::active );
+      } else {
+         setState( frut::widgets::StateLabel::State::on );
+      }
+   } else {
+      setState( frut::widgets::StateLabel::State::off );
+   }
 }

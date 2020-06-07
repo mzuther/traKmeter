@@ -37,29 +37,29 @@
 class TraKmeter : public Component
 {
 public:
-    TraKmeter(int nNumChannels,
+   TraKmeter( int nNumChannels,
               int segment_height,
               float retainSignalFactor,
               float newSignalFactor,
               bool discreteMeter,
               int targetRecordingLevel,
-              const Array<Colour> &averageMeterColours,
-              const Array<Colour> &peakMeterColours);
+              const Array<Colour>& averageMeterColours,
+              const Array<Colour>& peakMeterColours );
 
-    void setLevels(std::shared_ptr<MeterBallistics> pMeterBallistics);
-    void applySkin(Skin *pSkin);
-    void resized();
+   void setLevels( std::shared_ptr<MeterBallistics> pMeterBallistics );
+   void applySkin( Skin* pSkin );
+   void resized();
 
 private:
-    JUCE_LEAK_DETECTOR(TraKmeter);
+   JUCE_LEAK_DETECTOR( TraKmeter );
 
-    int nInputChannels;
+   int nInputChannels;
 
-    OwnedArray<MeterBarAverage> p_arrAverageMeters;
-    OwnedArray<MeterBarPeak> p_arrPeakMeters;
-    OwnedArray<OverloadMeter> p_arrOverloadMeters;
+   OwnedArray<MeterBarAverage> p_arrAverageMeters;
+   OwnedArray<MeterBarPeak> p_arrPeakMeters;
+   OwnedArray<OverloadMeter> p_arrOverloadMeters;
 
-    OwnedArray<frut::widgets::SignalLed> p_arrSignalLeds;
+   OwnedArray<frut::widgets::SignalLed> p_arrSignalLeds;
 };
 
 #endif  // TRAKMETER_TRAKMETER_H

@@ -25,104 +25,96 @@
 
 #include "trakmeter.h"
 
-TraKmeter::TraKmeter(int nNumChannels, int segment_height,
-                     float retainSignalFactor, float newSignalFactor,
-                     bool discreteMeter, int targetRecordingLevel,
-                     const Array<Colour> &averageMeterColours,
-                     const Array<Colour> &peakMeterColours)
-
+TraKmeter::TraKmeter( int nNumChannels,
+                      int segment_height,
+                      float retainSignalFactor,
+                      float newSignalFactor,
+                      bool discreteMeter,
+                      int targetRecordingLevel,
+                      const Array<Colour>& averageMeterColours,
+                      const Array<Colour>& peakMeterColours )
 {
-    // this component blends in with the background
-    setOpaque(false);
+   // this component blends in with the background
+   setOpaque( false );
 
-    nInputChannels = nNumChannels;
-    int nSegmentHeight = segment_height;
+   nInputChannels = nNumChannels;
+   int nSegmentHeight = segment_height;
 
-    for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
-    {
-        MeterBarPeak *pMeterBarPeak = p_arrPeakMeters.add(
-                                          new MeterBarPeak());
+   for ( int nChannel = 0; nChannel < nInputChannels; ++nChannel ) {
+      MeterBarPeak* pMeterBarPeak = p_arrPeakMeters.add(
+                                       new MeterBarPeak() );
 
-        pMeterBarPeak->create(retainSignalFactor,
-                              newSignalFactor,
-                              frut::widgets::Orientation::vertical,
-                              discreteMeter,
-                              targetRecordingLevel,
-                              nSegmentHeight,
-                              peakMeterColours);
+      pMeterBarPeak->create( retainSignalFactor,
+                             newSignalFactor,
+                             frut::widgets::Orientation::vertical,
+                             discreteMeter,
+                             targetRecordingLevel,
+                             nSegmentHeight,
+                             peakMeterColours );
 
-        addAndMakeVisible(pMeterBarPeak);
+      addAndMakeVisible( pMeterBarPeak );
 
-        MeterBarAverage *pMeterBarAverage = p_arrAverageMeters.add(
-                                                new MeterBarAverage());
+      MeterBarAverage* pMeterBarAverage = p_arrAverageMeters.add(
+                                             new MeterBarAverage() );
 
-        pMeterBarAverage->create(retainSignalFactor,
-                                 newSignalFactor,
-                                 frut::widgets::Orientation::vertical,
-                                 discreteMeter,
-                                 targetRecordingLevel,
-                                 nSegmentHeight,
-                                 averageMeterColours);
+      pMeterBarAverage->create( retainSignalFactor,
+                                newSignalFactor,
+                                frut::widgets::Orientation::vertical,
+                                discreteMeter,
+                                targetRecordingLevel,
+                                nSegmentHeight,
+                                averageMeterColours );
 
-        addAndMakeVisible(pMeterBarAverage);
+      addAndMakeVisible( pMeterBarAverage );
 
-        OverloadMeter *overloadMeter = new OverloadMeter(
-            static_cast<float>(targetRecordingLevel));
-        addAndMakeVisible(overloadMeter);
+      OverloadMeter* overloadMeter = new OverloadMeter(
+         static_cast<float>( targetRecordingLevel ) );
+      addAndMakeVisible( overloadMeter );
 
-        p_arrOverloadMeters.add(overloadMeter);
-    }
+      p_arrOverloadMeters.add( overloadMeter );
+   }
 
-    String strLabel;
+   String strLabel;
 
-    for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
-    {
-        if (nInputChannels == 2)
-        {
-            if (nChannel == 0)
-            {
-                strLabel = "L";
-            }
-            else
-            {
-                strLabel = "R";
-            }
-        }
-        else
-        {
-            strLabel = String(nChannel + 1);
-        }
+   for ( int nChannel = 0; nChannel < nInputChannels; ++nChannel ) {
+      if ( nInputChannels == 2 ) {
+         if ( nChannel == 0 ) {
+            strLabel = "L";
+         } else {
+            strLabel = "R";
+         }
+      } else {
+         strLabel = String( nChannel + 1 );
+      }
 
-        frut::widgets::SignalLed *signalLed = new frut::widgets::SignalLed();
-        addAndMakeVisible(signalLed);
+      frut::widgets::SignalLed* signalLed = new frut::widgets::SignalLed();
+      addAndMakeVisible( signalLed );
 
-        p_arrSignalLeds.add(signalLed);
-    }
+      p_arrSignalLeds.add( signalLed );
+   }
 }
 
 
-void TraKmeter::applySkin(Skin *pSkin)
+void TraKmeter::applySkin( Skin* pSkin )
 {
-    for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
-    {
-        pSkin->placeMeterBar("meter_average_" + String(nChannel + 1),
-                             p_arrAverageMeters[nChannel]);
-        pSkin->placeMeterBar("meter_peak_" + String(nChannel + 1),
-                             p_arrPeakMeters[nChannel]);
+   for ( int nChannel = 0; nChannel < nInputChannels; ++nChannel ) {
+      pSkin->placeMeterBar( "meter_average_" + String( nChannel + 1 ),
+                            p_arrAverageMeters[nChannel] );
+      pSkin->placeMeterBar( "meter_peak_" + String( nChannel + 1 ),
+                            p_arrPeakMeters[nChannel] );
 
-        pSkin->placeAndSkinStateLabel("label_over_" + String(nChannel + 1),
-                                      p_arrOverloadMeters[nChannel]);
+      pSkin->placeAndSkinStateLabel( "label_over_" + String( nChannel + 1 ),
+                                     p_arrOverloadMeters[nChannel] );
 
-        pSkin->placeAndSkinSignalLed("label_signal_" + String(nChannel + 1),
-                                     p_arrSignalLeds[nChannel]);
-    }
+      pSkin->placeAndSkinSignalLed( "label_signal_" + String( nChannel + 1 ),
+                                    p_arrSignalLeds[nChannel] );
+   }
 
-    Component *parent = getParentComponent();
+   Component* parent = getParentComponent();
 
-    if (parent != nullptr)
-    {
-        setBounds(0, 0, parent->getWidth(), parent->getHeight());
-    }
+   if ( parent != nullptr ) {
+      setBounds( 0, 0, parent->getWidth(), parent->getHeight() );
+   }
 }
 
 
@@ -131,23 +123,22 @@ void TraKmeter::resized()
 }
 
 
-void TraKmeter::setLevels(std::shared_ptr<MeterBallistics> pMeterBallistics)
+void TraKmeter::setLevels( std::shared_ptr<MeterBallistics> pMeterBallistics )
 {
-    for (int nChannel = 0; nChannel < nInputChannels; ++nChannel)
-    {
-        p_arrAverageMeters[nChannel]->setNormalLevels(
-            pMeterBallistics->getAverageMeterLevel(nChannel),
-            pMeterBallistics->getAverageMeterPeakLevel(nChannel));
+   for ( int nChannel = 0; nChannel < nInputChannels; ++nChannel ) {
+      p_arrAverageMeters[nChannel]->setNormalLevels(
+         pMeterBallistics->getAverageMeterLevel( nChannel ),
+         pMeterBallistics->getAverageMeterPeakLevel( nChannel ) );
 
-        p_arrPeakMeters[nChannel]->setNormalLevels(
-            pMeterBallistics->getPeakMeterLevel(nChannel),
-            pMeterBallistics->getPeakMeterPeakLevel(nChannel));
+      p_arrPeakMeters[nChannel]->setNormalLevels(
+         pMeterBallistics->getPeakMeterLevel( nChannel ),
+         pMeterBallistics->getPeakMeterPeakLevel( nChannel ) );
 
-        p_arrOverloadMeters[nChannel]->setLevels(
-            pMeterBallistics->getPeakMeterLevel(nChannel),
-            pMeterBallistics->getMaximumPeakLevel(nChannel));
+      p_arrOverloadMeters[nChannel]->setLevels(
+         pMeterBallistics->getPeakMeterLevel( nChannel ),
+         pMeterBallistics->getMaximumPeakLevel( nChannel ) );
 
-        p_arrSignalLeds[nChannel]->setLevel(
-            pMeterBallistics->getSignalMeterReadout(nChannel));
-    }
+      p_arrSignalLeds[nChannel]->setLevel(
+         pMeterBallistics->getSignalMeterReadout( nChannel ) );
+   }
 }

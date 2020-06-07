@@ -26,80 +26,64 @@
 #include "skin.h"
 
 
-bool Skin::loadSkin(
-    int numberOfChannels,
-    int targetRecordingLevel)
-
+bool Skin::loadSkin( int numberOfChannels,
+                     int targetRecordingLevel )
 {
-    updateSkin(numberOfChannels,
-               targetRecordingLevel);
+   updateSkin( numberOfChannels,
+               targetRecordingLevel );
 
-    return loadFromXml("trakmeter-skin", "1.5");
+   return loadFromXml( "trakmeter-skin", "1.5" );
 }
 
 
-void Skin::updateSkin(int numberOfChannels,
-                      int targetRecordingLevel)
-
+void Skin::updateSkin( int numberOfChannels,
+                       int targetRecordingLevel )
 {
-    jassert(numberOfChannels > 0);
+   jassert( numberOfChannels > 0 );
 
-    currentBackgroundName_ = "image";
+   currentBackgroundName_ = "image";
 
-    if (numberOfChannels <= 2)
-    {
-        currentFallbackName_ = "stereo";
-    }
-    else
-    {
-        currentFallbackName_ = "multi";
-    }
+   if ( numberOfChannels <= 2 ) {
+      currentFallbackName_ = "stereo";
+   } else {
+      currentFallbackName_ = "multi";
+   }
 
-    currentGroupName_ = currentFallbackName_;
+   currentGroupName_ = currentFallbackName_;
 
-    if (targetRecordingLevel == -10)
-    {
-        currentGroupName_ += "_10";
-    }
-    else if (targetRecordingLevel == -20)
-    {
-        currentGroupName_ += "_20";
-    }
-    else if (targetRecordingLevel == -15)
-    {
-        currentGroupName_ += "_15";
-    }
-    else
-    {
-        Logger::outputDebugString("[Skin] invalid target recording level");
-    }
+   if ( targetRecordingLevel == -10 ) {
+      currentGroupName_ += "_10";
+   } else if ( targetRecordingLevel == -20 ) {
+      currentGroupName_ += "_20";
+   } else if ( targetRecordingLevel == -15 ) {
+      currentGroupName_ += "_15";
+   } else {
+      Logger::outputDebugString( "[Skin] invalid target recording level" );
+   }
 
-    if (document_ != nullptr)
-    {
-        skinGroup_ = document_->getChildByName(currentGroupName_);
-        skinFallback_1_ = document_->getChildByName(currentFallbackName_);
-        skinFallback_2_ = document_->getChildByName("default");
-    }
-    else
-    {
-        skinGroup_ = nullptr;
-        skinFallback_1_ = nullptr;
-        skinFallback_2_ = nullptr;
-    }
+   if ( document_ != nullptr ) {
+      skinGroup_ = document_->getChildByName( currentGroupName_ );
+      skinFallback_1_ = document_->getChildByName( currentFallbackName_ );
+      skinFallback_2_ = document_->getChildByName( "default" );
+   } else {
+      skinGroup_ = nullptr;
+      skinFallback_1_ = nullptr;
+      skinFallback_2_ = nullptr;
+   }
 }
 
 
 File Skin::getSkinDirectory()
 {
-    auto resourceDirectory = TraKmeterPluginParameters::getResourceDirectory();
-    return resourceDirectory.getChildFile("./Skins/");
+   auto resourceDirectory = TraKmeterPluginParameters::getResourceDirectory();
+   return resourceDirectory.getChildFile( "./Skins/" );
 }
 
 
 File Skin::getSettingsFile()
 {
-    auto settingsDirectory = File::getSpecialLocation(File::userApplicationDataDirectory);
-    auto defaultSkinFile = settingsDirectory.getChildFile("traKmeter.skin");
+   auto settingsDirectory = File::getSpecialLocation( File::userApplicationDataDirectory );
+   auto defaultSkinFile = settingsDirectory.getChildFile( "traKmeter.skin" );
 
-    return defaultSkinFile;
+   return defaultSkinFile;
 }

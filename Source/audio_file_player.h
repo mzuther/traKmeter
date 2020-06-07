@@ -33,59 +33,59 @@
 class AudioFilePlayer
 {
 public:
-    AudioFilePlayer(const File audioFile,
+   AudioFilePlayer( const File audioFile,
                     int sample_rate,
-                    std::shared_ptr<MeterBallistics> meter_ballistics);
+                    std::shared_ptr<MeterBallistics> meter_ballistics );
 
-    ~AudioFilePlayer();
+   ~AudioFilePlayer();
 
-    bool isPlaying();
-    bool matchingSampleRates();
+   bool isPlaying();
+   bool matchingSampleRates();
 
-    void copyTo(AudioBuffer<float> &buffer);
+   void copyTo( AudioBuffer<float>& buffer );
 
-    void setReporters(int nChannel, bool ReportCSV,
-                      bool bAverageMeterLevel, bool bPeakMeterLevel);
+   void setReporters( int nChannel, bool ReportCSV,
+                      bool bAverageMeterLevel, bool bPeakMeterLevel );
 
 private:
-    JUCE_LEAK_DETECTOR(AudioFilePlayer);
+   JUCE_LEAK_DETECTOR( AudioFilePlayer );
 
-    bool bIsPlaying;
-    bool bSampleRatesMatch;
-    bool bHeaderIsWritten;
+   bool bIsPlaying;
+   bool bSampleRatesMatch;
+   bool bHeaderIsWritten;
 
-    int nSamplesMovingAverage;
-    int64 nNumberOfSamples;
-    float fSampleRate;
+   int nSamplesMovingAverage;
+   int64 nNumberOfSamples;
+   float fSampleRate;
 
-    int nNumberOfChannels;
-    int nReportChannel;
-    bool bReports;
-    bool bReportCSV;
-    bool bReportAverageMeterLevel;
-    bool bReportPeakMeterLevel;
+   int nNumberOfChannels;
+   int nReportChannel;
+   bool bReports;
+   bool bReportCSV;
+   bool bReportAverageMeterLevel;
+   bool bReportPeakMeterLevel;
 
-    Array<frut::math::Averager> arrAverager_AverageMeterLevels;
-    Array<frut::math::Averager> arrAverager_PeakMeterLevels;
+   Array<frut::math::Averager> arrAverager_AverageMeterLevels;
+   Array<frut::math::Averager> arrAverager_PeakMeterLevels;
 
-    frut::dsp::Dither dither_;
+   frut::dsp::Dither dither_;
 
-    std::unique_ptr<AudioFormatReaderSource> audioFileSource;
-    std::shared_ptr<MeterBallistics> pMeterBallistics;
+   std::unique_ptr<AudioFormatReaderSource> audioFileSource;
+   std::shared_ptr<MeterBallistics> pMeterBallistics;
 
-    void outputReportPlain(void);
-    void outputReportCSVHeader(void);
-    void outputReportCSVLine(void);
+   void outputReportPlain( void );
+   void outputReportCSVHeader( void );
+   void outputReportCSVLine( void );
 
-    String formatTime(void);
-    String formatValue(const float fValue);
+   String formatTime( void );
+   String formatValue( const float fValue );
 
-    void outputValue(const float fValue,
-                     frut::math::Averager &averager,
-                     const String &strPrefix,
-                     const String &strSuffix);
+   void outputValue( const float fValue,
+                     frut::math::Averager& averager,
+                     const String& strPrefix,
+                     const String& strSuffix );
 
-    void outputMessage(const String &strMessage);
+   void outputMessage( const String& strMessage );
 };
 
 #endif  // TRAKMETER_AUDIO_FILE_PLAYER_H

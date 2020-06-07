@@ -30,21 +30,21 @@
 
 
 class OverloadMeter :
-    public frut::widgets::StateLabel
+   public frut::widgets::StateLabel
 {
 public:
-    explicit OverloadMeter(float fThreshold);
+   explicit OverloadMeter( float fThreshold );
 
-    void setLevels(float fLevel, float fMaximumLevelNew);
+   void setLevels( float fLevel, float fMaximumLevelNew );
 
 private:
-    JUCE_LEAK_DETECTOR(OverloadMeter);
+   JUCE_LEAK_DETECTOR( OverloadMeter );
 
-    float fThreshold;
+   float fThreshold;
 
-    float fMaximumLevel;
-    bool bActiveOverload;
-    bool bOverloadsDetected;
+   float fMaximumLevel;
+   bool bActiveOverload;
+   bool bOverloadsDetected;
 };
 
 #endif  // TRAKMETER_OVERLOAD_METER_H

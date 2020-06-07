@@ -32,83 +32,83 @@
 class MeterBallistics
 {
 public:
-    MeterBallistics(int nChannels,
+   MeterBallistics( int nChannels,
                     bool bPeakMeterInfiniteHold,
-                    bool bAverageMeterInfiniteHold);
+                    bool bAverageMeterInfiniteHold );
 
-    void setPeakMeterInfiniteHold(bool bInfiniteHold);
-    void setAverageMeterInfiniteHold(bool bInfiniteHold);
-    void reset();
+   void setPeakMeterInfiniteHold( bool bInfiniteHold );
+   void setAverageMeterInfiniteHold( bool bInfiniteHold );
+   void reset();
 
-    int getNumberOfChannels();
+   int getNumberOfChannels();
 
-    float getPeakMeterLevel(int nChannel);
-    float getPeakMeterPeakLevel(int nChannel);
+   float getPeakMeterLevel( int nChannel );
+   float getPeakMeterPeakLevel( int nChannel );
 
-    float getAverageMeterLevel(int nChannel);
-    float getAverageMeterPeakLevel(int nChannel);
+   float getAverageMeterLevel( int nChannel );
+   float getAverageMeterPeakLevel( int nChannel );
 
-    float getSignalMeterReadout(int nChannel);
-    float getMaximumPeakLevel(int nChannel);
+   float getSignalMeterReadout( int nChannel );
+   float getMaximumPeakLevel( int nChannel );
 
-    void updateChannel(int nChannel,
+   void updateChannel( int nChannel,
                        float fTimePassed,
                        float fPeak,
-                       float fRms);
+                       float fRms );
 
-    static float level2decibel(float fLevel);
-    static double level2decibel_double(double dLevel);
+   static float level2decibel( float fLevel );
+   static double level2decibel_double( double dLevel );
 
-    static float decibel2level(float fDecibels);
-    static double decibel2level_double(double dDecibels);
+   static float decibel2level( float fDecibels );
+   static double decibel2level_double( double dDecibels );
 
-    static float getMeterMinimumDecibel();
+   static float getMeterMinimumDecibel();
 private:
-    JUCE_LEAK_DETECTOR(MeterBallistics);
+   JUCE_LEAK_DETECTOR( MeterBallistics );
 
-    int nNumberOfChannels;
+   int nNumberOfChannels;
 
-    static float fMeterMinimumDecibel;
-    static float fPeakToAverageCorrection;
+   static float fMeterMinimumDecibel;
+   static float fPeakToAverageCorrection;
 
-    Array<float> arrPeakMeterLevels;
-    Array<float> arrPeakMeterPeakLevels;
+   Array<float> arrPeakMeterLevels;
+   Array<float> arrPeakMeterPeakLevels;
 
-    Array<float> arrAverageMeterLevels;
-    Array<float> arrAverageMeterPeakLevels;
+   Array<float> arrAverageMeterLevels;
+   Array<float> arrAverageMeterPeakLevels;
 
-    Array<float> arrSignalMeterReadouts;
-    Array<float> arrMaximumPeakLevels;
+   Array<float> arrSignalMeterReadouts;
+   Array<float> arrMaximumPeakLevels;
 
-    Array<float> arrPeakMeterPeakLastChanged;
-    Array<float> arrAverageMeterPeakLastChanged;
+   Array<float> arrPeakMeterPeakLastChanged;
+   Array<float> arrAverageMeterPeakLastChanged;
 
-    float PeakMeterBallistics(float fTimePassed,
+   float PeakMeterBallistics( float fTimePassed,
                               float fPeakLevelCurrent,
-                              float fPeakLevelOld);
+                              float fPeakLevelOld );
 
-    float PeakMeterPeakBallistics(float fTimePassed,
-                                  float &fLastChanged,
+   float PeakMeterPeakBallistics( float fTimePassed,
+                                  float& fLastChanged,
                                   float fPeakLevelCurrent,
-                                  float fPeakLevelOld);
+                                  float fPeakLevelOld );
 
-    void AverageMeterBallistics(int nChannel,
+   void AverageMeterBallistics( int nChannel,
                                 float fTimePassed,
-                                float fAverageLevelCurrent);
+                                float fAverageLevelCurrent );
 
-    float AverageMeterPeakBallistics(float fTimePassed,
-                                     float &fLastChanged,
+   float AverageMeterPeakBallistics( float fTimePassed,
+                                     float& fLastChanged,
                                      float fAverageLevelCurrent,
-                                     float fAverageLevelOld);
+                                     float fAverageLevelOld );
 
-    void SignalMeterBallistics(int nChannel,
+   void SignalMeterBallistics( int nChannel,
                                float fTimePassed,
-                               float fPeakMeterSignalCurrent);
+                               float fPeakMeterSignalCurrent );
 
-    void LogMeterBallistics(float fMeterInertia,
+   void LogMeterBallistics( float fMeterInertia,
                             float fTimePassed,
                             float fLevel,
-                            float &fReadout);
+                            float& fReadout );
 };
 
 #endif  // TRAKMETER_METER_BALLISTICS_H

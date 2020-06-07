@@ -26,374 +26,309 @@
 #include "audio_file_player.h"
 
 
-AudioFilePlayer::AudioFilePlayer(
-    const File audioFile,
-    int sample_rate,
-    std::shared_ptr<MeterBallistics> meter_ballistics)
+AudioFilePlayer::AudioFilePlayer( const File audioFile,
+                                  int sample_rate,
+                                  std::shared_ptr<MeterBallistics> meter_ballistics )
 {
-    nReportChannel = -1;
-    bReports = false;
-    bReportCSV = false;
-    bReportAverageMeterLevel = false;
-    bReportPeakMeterLevel = false;
+   nReportChannel = -1;
+   bReports = false;
+   bReportCSV = false;
+   bReportAverageMeterLevel = false;
+   bReportPeakMeterLevel = false;
 
-    bSampleRatesMatch = true;
-    bHeaderIsWritten = false;
+   bSampleRatesMatch = true;
+   bHeaderIsWritten = false;
 
-    pMeterBallistics = meter_ballistics;
+   pMeterBallistics = meter_ballistics;
 
-    // try "300" for uncorrelated band-limited pink noise
-    nSamplesMovingAverage = 50;
-    nNumberOfChannels = pMeterBallistics->getNumberOfChannels();
+   // try "300" for uncorrelated band-limited pink noise
+   nSamplesMovingAverage = 50;
+   nNumberOfChannels = pMeterBallistics->getNumberOfChannels();
 
-    float meterMinimumDecibel = MeterBallistics::getMeterMinimumDecibel();
+   float meterMinimumDecibel = MeterBallistics::getMeterMinimumDecibel();
 
-    for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
-    {
-        arrAverager_AverageMeterLevels.add(frut::math::Averager(nSamplesMovingAverage, meterMinimumDecibel));
-        arrAverager_PeakMeterLevels.add(frut::math::Averager(nSamplesMovingAverage, meterMinimumDecibel));
-    }
+   for ( int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel ) {
+      arrAverager_AverageMeterLevels.add( frut::math::Averager( nSamplesMovingAverage, meterMinimumDecibel ) );
+      arrAverager_PeakMeterLevels.add( frut::math::Averager( nSamplesMovingAverage, meterMinimumDecibel ) );
+   }
 
-    AudioFormatManager formatManager;
-    formatManager.registerBasicFormats();
+   AudioFormatManager formatManager;
+   formatManager.registerBasicFormats();
 
-    // will be deleted by "audioFileSource"
-    AudioFormatReader *formatReader = formatManager.createReaderFor(audioFile);
+   // will be deleted by "audioFileSource"
+   AudioFormatReader* formatReader = formatManager.createReaderFor( audioFile );
 
-    if (formatReader)
-    {
-        audioFileSource = std::make_unique<AudioFormatReaderSource>(formatReader, true);
-        bIsPlaying = true;
+   if ( formatReader ) {
+      audioFileSource = std::make_unique<AudioFormatReaderSource>( formatReader, true );
+      bIsPlaying = true;
 
-        nNumberOfSamples = audioFileSource->getTotalLength();
-        // pause for twenty seconds after playback
-        nNumberOfSamples += 20 * sample_rate;
+      nNumberOfSamples = audioFileSource->getTotalLength();
+      // pause for twenty seconds after playback
+      nNumberOfSamples += 20 * sample_rate;
 
-        outputMessage("Audio file: \"" + audioFile.getFullPathName() + "\"");
-        outputMessage(String(formatReader->numChannels) + " channel(s), " + String(formatReader->sampleRate) + " Hz, " + String(formatReader->bitsPerSample) + " bit");
+      outputMessage( "Audio file: \"" + audioFile.getFullPathName() + "\"" );
+      outputMessage( String( formatReader->numChannels ) + " channel(s), " + String( formatReader->sampleRate ) + " Hz, " + String( formatReader->bitsPerSample ) + " bit" );
 
-        fSampleRate = (float) formatReader->sampleRate;
+      fSampleRate = ( float ) formatReader->sampleRate;
 
-        if (formatReader->sampleRate != sample_rate)
-        {
-            bSampleRatesMatch = false;
+      if ( formatReader->sampleRate != sample_rate ) {
+         bSampleRatesMatch = false;
 
-            outputMessage("");
-            outputMessage("WARNING: sample rate mismatch (host: " + String(sample_rate) + " Hz)!");
-            outputMessage("");
-        }
+         outputMessage( "" );
+         outputMessage( "WARNING: sample rate mismatch (host: " + String( sample_rate ) + " Hz)!" );
+         outputMessage( "" );
+      }
 
-        outputMessage("");
-        outputMessage("Starting validation ...");
-        outputMessage("");
-    }
-    else
-    {
-        bIsPlaying = false;
-        bReports = false;
-    }
+      outputMessage( "" );
+      outputMessage( "Starting validation ..." );
+      outputMessage( "" );
+   } else {
+      bIsPlaying = false;
+      bReports = false;
+   }
 }
 
 
 AudioFilePlayer::~AudioFilePlayer()
 {
-    if (isPlaying())
-    {
-        outputMessage("Stopping validation ...");
-    }
+   if ( isPlaying() ) {
+      outputMessage( "Stopping validation ..." );
+   }
 }
 
 
-void AudioFilePlayer::setReporters(
-    int nChannel,
-    bool ReportCSV,
-    bool bAverageMeterLevel,
-    bool bPeakMeterLevel)
+void AudioFilePlayer::setReporters( int nChannel,
+                                    bool ReportCSV,
+                                    bool bAverageMeterLevel,
+                                    bool bPeakMeterLevel )
 {
-    bReportCSV = ReportCSV;
+   bReportCSV = ReportCSV;
 
-    nReportChannel = nChannel;
-    bReportAverageMeterLevel = bAverageMeterLevel;
-    bReportPeakMeterLevel = bPeakMeterLevel;
+   nReportChannel = nChannel;
+   bReportAverageMeterLevel = bAverageMeterLevel;
+   bReportPeakMeterLevel = bPeakMeterLevel;
 
-    bReports = bReportAverageMeterLevel || bReportPeakMeterLevel;
+   bReports = bReportAverageMeterLevel || bReportPeakMeterLevel;
 }
 
 
 bool AudioFilePlayer::isPlaying()
 {
-    if (bIsPlaying)
-    {
-        if (audioFileSource->getNextReadPosition() < nNumberOfSamples)
-        {
-            return true;
-        }
-        else
-        {
-            outputMessage("Stopping validation ...");
+   if ( bIsPlaying ) {
+      if ( audioFileSource->getNextReadPosition() < nNumberOfSamples ) {
+         return true;
+      } else {
+         outputMessage( "Stopping validation ..." );
 
-            bIsPlaying = false;
-            bReports = false;
-            return false;
-        }
-    }
-    else
-    {
-        return false;
-    }
+         bIsPlaying = false;
+         bReports = false;
+         return false;
+      }
+   } else {
+      return false;
+   }
 }
 
 
 bool AudioFilePlayer::matchingSampleRates()
 {
-    return bSampleRatesMatch;
+   return bSampleRatesMatch;
 }
 
 
-void AudioFilePlayer::copyTo(
-    AudioBuffer<float> &buffer)
+void AudioFilePlayer::copyTo( AudioBuffer<float>& buffer )
 {
-    // report old meter readings
-    if (bReports)
-    {
-        if (bReportCSV)
-        {
-            outputReportCSVLine();
-        }
-        else
-        {
-            outputReportPlain();
-        }
-    }
+   // report old meter readings
+   if ( bReports ) {
+      if ( bReportCSV ) {
+         outputReportCSVLine();
+      } else {
+         outputReportPlain();
+      }
+   }
 
-    if (isPlaying())
-    {
-        AudioSourceChannelInfo channelInfo;
-        channelInfo.buffer = &buffer;
-        channelInfo.startSample = 0;
-        channelInfo.numSamples = buffer.getNumSamples();
+   if ( isPlaying() ) {
+      AudioSourceChannelInfo channelInfo;
+      channelInfo.buffer = &buffer;
+      channelInfo.startSample = 0;
+      channelInfo.numSamples = buffer.getNumSamples();
 
-        channelInfo.clearActiveBufferRegion();
-        audioFileSource->getNextAudioBlock(channelInfo);
-    }
+      channelInfo.clearActiveBufferRegion();
+      audioFileSource->getNextAudioBlock( channelInfo );
+   }
 }
 
 
 void AudioFilePlayer::outputReportPlain()
 {
-    if (bReportAverageMeterLevel)
-    {
-        if (nReportChannel < 0)
-        {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
-            {
-                float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel(nChannel);
-                String strPrefix = "average level (ch. " + String(nChannel + 1) + "):  ";
-                String strSuffix = " dB";
-                outputValue(fAverageMeterLevel, arrAverager_AverageMeterLevels.getReference(nChannel), strPrefix, strSuffix);
-            }
-        }
-        else
-        {
-            float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel(nReportChannel);
-            String strPrefix = "average level (ch. " + String(nReportChannel + 1) + "):  ";
+   if ( bReportAverageMeterLevel ) {
+      if ( nReportChannel < 0 ) {
+         for ( int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel ) {
+            float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel( nChannel );
+            String strPrefix = "average level (ch. " + String( nChannel + 1 ) + "):  ";
             String strSuffix = " dB";
-            outputValue(fAverageMeterLevel, arrAverager_AverageMeterLevels.getReference(nReportChannel), strPrefix, strSuffix);
-        }
-    }
+            outputValue( fAverageMeterLevel, arrAverager_AverageMeterLevels.getReference( nChannel ), strPrefix, strSuffix );
+         }
+      } else {
+         float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel( nReportChannel );
+         String strPrefix = "average level (ch. " + String( nReportChannel + 1 ) + "):  ";
+         String strSuffix = " dB";
+         outputValue( fAverageMeterLevel, arrAverager_AverageMeterLevels.getReference( nReportChannel ), strPrefix, strSuffix );
+      }
+   }
 
-    if (bReportPeakMeterLevel)
-    {
-        if (nReportChannel < 0)
-        {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
-            {
-                float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel(nChannel);
-                String strPrefix = "peak level (ch. " + String(nChannel + 1) + "):     ";
-                String strSuffix = " dB";
-                outputValue(fPeakMeterLevel, arrAverager_PeakMeterLevels.getReference(nChannel), strPrefix, strSuffix);
-            }
-        }
-        else
-        {
-            float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel(nReportChannel);
-            String strPrefix = "peak level (ch. " + String(nReportChannel + 1) + "):     ";
+   if ( bReportPeakMeterLevel ) {
+      if ( nReportChannel < 0 ) {
+         for ( int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel ) {
+            float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel( nChannel );
+            String strPrefix = "peak level (ch. " + String( nChannel + 1 ) + "):     ";
             String strSuffix = " dB";
-            outputValue(fPeakMeterLevel, arrAverager_PeakMeterLevels.getReference(nReportChannel), strPrefix, strSuffix);
-        }
-    }
+            outputValue( fPeakMeterLevel, arrAverager_PeakMeterLevels.getReference( nChannel ), strPrefix, strSuffix );
+         }
+      } else {
+         float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel( nReportChannel );
+         String strPrefix = "peak level (ch. " + String( nReportChannel + 1 ) + "):     ";
+         String strSuffix = " dB";
+         outputValue( fPeakMeterLevel, arrAverager_PeakMeterLevels.getReference( nReportChannel ), strPrefix, strSuffix );
+      }
+   }
 
-    outputMessage("");
+   outputMessage( "" );
 }
 
 
 void AudioFilePlayer::outputReportCSVHeader()
 {
-    bHeaderIsWritten = true;
-    String strOutput = "\"timecode\"\t";
+   bHeaderIsWritten = true;
+   String strOutput = "\"timecode\"\t";
 
-    if (bReportAverageMeterLevel)
-    {
-        if (nReportChannel < 0)
-        {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
-            {
-                strOutput += "\"avg_" + String(nChannel + 1) + "\"\t";
-            }
-        }
-        else
-        {
-            strOutput += "\"avg_" + String(nReportChannel + 1) + "\"\t";
-        }
-    }
+   if ( bReportAverageMeterLevel ) {
+      if ( nReportChannel < 0 ) {
+         for ( int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel ) {
+            strOutput += "\"avg_" + String( nChannel + 1 ) + "\"\t";
+         }
+      } else {
+         strOutput += "\"avg_" + String( nReportChannel + 1 ) + "\"\t";
+      }
+   }
 
-    if (bReportPeakMeterLevel)
-    {
-        if (nReportChannel < 0)
-        {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
-            {
-                strOutput += "\"pk_" + String(nChannel + 1) + "\"\t";
-            }
-        }
-        else
-        {
-            strOutput += "\"pk_" + String(nReportChannel + 1) + "\"\t";
-        }
-    }
+   if ( bReportPeakMeterLevel ) {
+      if ( nReportChannel < 0 ) {
+         for ( int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel ) {
+            strOutput += "\"pk_" + String( nChannel + 1 ) + "\"\t";
+         }
+      } else {
+         strOutput += "\"pk_" + String( nReportChannel + 1 ) + "\"\t";
+      }
+   }
 
-    Logger::outputDebugString(strOutput);
+   Logger::outputDebugString( strOutput );
 }
 
 
 void AudioFilePlayer::outputReportCSVLine()
 {
-    String strOutput;
+   String strOutput;
 
-    if (! bHeaderIsWritten)
-    {
-        outputReportCSVHeader();
-    }
+   if ( ! bHeaderIsWritten ) {
+      outputReportCSVHeader();
+   }
 
-    if (bReportAverageMeterLevel)
-    {
-        if (nReportChannel < 0)
-        {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
-            {
-                float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel(nChannel);
-                strOutput += formatValue(fAverageMeterLevel);
-            }
-        }
-        else
-        {
-            float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel(nReportChannel);
-            strOutput += formatValue(fAverageMeterLevel);
-        }
-    }
+   if ( bReportAverageMeterLevel ) {
+      if ( nReportChannel < 0 ) {
+         for ( int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel ) {
+            float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel( nChannel );
+            strOutput += formatValue( fAverageMeterLevel );
+         }
+      } else {
+         float fAverageMeterLevel = pMeterBallistics->getAverageMeterLevel( nReportChannel );
+         strOutput += formatValue( fAverageMeterLevel );
+      }
+   }
 
-    if (bReportPeakMeterLevel)
-    {
-        if (nReportChannel < 0)
-        {
-            for (int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel)
-            {
-                float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel(nChannel);
-                strOutput += formatValue(fPeakMeterLevel);
-            }
-        }
-        else
-        {
-            float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel(nReportChannel);
-            strOutput += formatValue(fPeakMeterLevel);
-        }
-    }
+   if ( bReportPeakMeterLevel ) {
+      if ( nReportChannel < 0 ) {
+         for ( int nChannel = 0; nChannel < nNumberOfChannels; ++nChannel ) {
+            float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel( nChannel );
+            strOutput += formatValue( fPeakMeterLevel );
+         }
+      } else {
+         float fPeakMeterLevel = pMeterBallistics->getPeakMeterLevel( nReportChannel );
+         strOutput += formatValue( fPeakMeterLevel );
+      }
+   }
 
-    Logger::outputDebugString("\"" + formatTime() + "\"\t" + strOutput);
+   Logger::outputDebugString( "\"" + formatTime() + "\"\t" + strOutput );
 }
 
 
 String AudioFilePlayer::formatTime()
 {
-    float fTime = audioFileSource->getNextReadPosition() / fSampleRate;
+   float fTime = audioFileSource->getNextReadPosition() / fSampleRate;
 
-    // check for NaN
-    if (fTime != fTime)
-    {
-        fTime = 0.0f;
-    }
+   // check for NaN
+   if ( fTime != fTime ) {
+      fTime = 0.0f;
+   }
 
-    int nTime = int(fTime);
-    int nMilliSeconds = int(1000.0f * (fTime - nTime) + 0.5f);
+   int nTime = int( fTime );
+   int nMilliSeconds = int( 1000.0f * ( fTime - nTime ) + 0.5f );
 
-    String strMinutes = String(nTime / 60).paddedLeft('0', 2);
-    String strSeconds = String(nTime % 60).paddedLeft('0', 2);
-    String strMilliSeconds = String(nMilliSeconds).paddedLeft('0', 3);
+   String strMinutes = String( nTime / 60 ).paddedLeft( '0', 2 );
+   String strSeconds = String( nTime % 60 ).paddedLeft( '0', 2 );
+   String strMilliSeconds = String( nMilliSeconds ).paddedLeft( '0', 3 );
 
-    return strMinutes + ":" + strSeconds + "." + strMilliSeconds;
+   return strMinutes + ":" + strSeconds + "." + strMilliSeconds;
 }
 
 
-String AudioFilePlayer::formatValue(
-    const float fValue)
+String AudioFilePlayer::formatValue( const float fValue )
 {
-    String strValue;
+   String strValue;
 
-    if (fValue < 0.0f)
-    {
-        strValue = String(fValue, 2);
-    }
-    else
-    {
-        strValue = "+" + String(fValue, 2);
-    }
+   if ( fValue < 0.0f ) {
+      strValue = String( fValue, 2 );
+   } else {
+      strValue = "+" + String( fValue, 2 );
+   }
 
-    return (strValue + "\t");
+   return ( strValue + "\t" );
 }
 
 
-void AudioFilePlayer::outputValue(
-    const float fValue,
-    frut::math::Averager &averager,
-    const String &strPrefix,
-    const String &strSuffix)
+void AudioFilePlayer::outputValue( const float fValue,
+                                   frut::math::Averager& averager,
+                                   const String& strPrefix,
+                                   const String& strSuffix )
 {
-    String strValue;
+   String strValue;
 
-    if (fValue < 0.0f)
-    {
-        strValue = String(fValue, 2) + strSuffix;
-    }
-    else
-    {
-        strValue = "+" + String(fValue, 2) + strSuffix;
-    }
+   if ( fValue < 0.0f ) {
+      strValue = String( fValue, 2 ) + strSuffix;
+   } else {
+      strValue = "+" + String( fValue, 2 ) + strSuffix;
+   }
 
-    String strSimpleMovingAverage;
+   String strSimpleMovingAverage;
 
-    averager.addSample(fValue);
+   averager.addSample( fValue );
 
-    if (averager.isValid())
-    {
-        float fSimpleMovingAverage = averager.getSimpleMovingAverage();
+   if ( averager.isValid() ) {
+      float fSimpleMovingAverage = averager.getSimpleMovingAverage();
 
-        if (fSimpleMovingAverage < 0.0f)
-        {
-            strSimpleMovingAverage = "   SMA(" + String(nSamplesMovingAverage) + "): " + String(fSimpleMovingAverage, 2) + strSuffix;
-        }
-        else
-        {
-            strSimpleMovingAverage = "   SMA(" + String(nSamplesMovingAverage) + "): +" + String(fSimpleMovingAverage, 2) + strSuffix;
-        }
-    }
+      if ( fSimpleMovingAverage < 0.0f ) {
+         strSimpleMovingAverage = "   SMA(" + String( nSamplesMovingAverage ) + "): " + String( fSimpleMovingAverage, 2 ) + strSuffix;
+      } else {
+         strSimpleMovingAverage = "   SMA(" + String( nSamplesMovingAverage ) + "): +" + String( fSimpleMovingAverage, 2 ) + strSuffix;
+      }
+   }
 
-    outputMessage(strPrefix + strValue + strSimpleMovingAverage);
+   outputMessage( strPrefix + strValue + strSimpleMovingAverage );
 }
 
 
-void AudioFilePlayer::outputMessage(
-    const String &strMessage)
+void AudioFilePlayer::outputMessage( const String& strMessage )
 {
 
-    Logger::outputDebugString("[Validation - " + formatTime() + "] " + strMessage);
+   Logger::outputDebugString( "[Validation - " + formatTime() + "] " + strMessage );
 }

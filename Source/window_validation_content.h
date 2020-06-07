@@ -33,35 +33,35 @@
 /// Customized dialog window for validation settings.
 ///
 class WindowValidationContent :
-    public frut::widgets::WindowValidationContent
+   public frut::widgets::WindowValidationContent
 {
 public:
-    explicit WindowValidationContent(TraKmeterAudioProcessor &processor);
+   explicit WindowValidationContent( TraKmeterAudioProcessor& processor );
 
-    static DialogWindow *createDialogWindow(
-        AudioProcessorEditor &pluginEditor,
-        TraKmeterAudioProcessor &processor);
+   static DialogWindow* createDialogWindow(
+      AudioProcessorEditor& pluginEditor,
+      TraKmeterAudioProcessor& processor );
 
-    virtual void buttonClicked(Button *button);
-    virtual void applySkin();
+   virtual void buttonClicked( Button* button );
+   virtual void applySkin();
 
-    virtual void initialise(int componentWidth,
+   virtual void initialise( int componentWidth,
                             int componentHeight,
                             int numberOfInputChannels,
                             int sampleRate,
                             int selectedChannel,
-                            const File &validationFile);
+                            const File& validationFile );
 
-    virtual void selectValidationFile(const File &validationFile);
+   virtual void selectValidationFile( const File& validationFile );
 
 private:
-    JUCE_LEAK_DETECTOR(WindowValidationContent);
+   JUCE_LEAK_DETECTOR( WindowValidationContent );
 
-    TraKmeterAudioProcessor &audioProcessor;
+   TraKmeterAudioProcessor& audioProcessor;
 
-    ToggleButton buttonDumpCSV_;
-    ToggleButton buttonDumpAverageLevel_;
-    ToggleButton buttonDumpPeakLevel_;
+   ToggleButton buttonDumpCSV_;
+   ToggleButton buttonDumpAverageLevel_;
+   ToggleButton buttonDumpPeakLevel_;
 };
 
 #endif  // TRAKMETER_WINDOW_VALIDATION_CONTENT_H

@@ -30,39 +30,38 @@
 
 
 class TraKmeterPluginParameters :
-    public frut::parameters::Juggler
+   public frut::parameters::Juggler
 {
 public:
-    TraKmeterPluginParameters();
+   TraKmeterPluginParameters();
 
-    File getValidationFile();
-    void setValidationFile(const File &fileValidation);
+   File getValidationFile();
+   void setValidationFile( const File& fileValidation );
 
-    static const File getResourceDirectory();
+   static const File getResourceDirectory();
 
-    enum Parameters  // public namespace!
-    {
-        selTargetRecordingLevel = 0,
+   enum Parameters { // public namespace!
+      selTargetRecordingLevel = 0,
 
-        numberOfParametersRevealed,
+      numberOfParametersRevealed,
 
-        selValidationFileName = numberOfParametersRevealed,
-        selValidationSelectedChannel,
-        selValidationAverageMeterLevel,
-        selValidationPeakMeterLevel,
-        selValidationCSVFormat,
+      selValidationFileName = numberOfParametersRevealed,
+      selValidationSelectedChannel,
+      selValidationAverageMeterLevel,
+      selValidationPeakMeterLevel,
+      selValidationCSVFormat,
 
-        numberOfParametersComplete,
+      numberOfParametersComplete,
 
-        selRecordingLevel_10 = 0,
-        selRecordingLevel_15,
-        selRecordingLevel_20,
+      selRecordingLevel_10 = 0,
+      selRecordingLevel_15,
+      selRecordingLevel_20,
 
-        nNumRecordingLevels,
-    };
+      nNumRecordingLevels,
+   };
 
 private:
-    JUCE_LEAK_DETECTOR(TraKmeterPluginParameters);
+   JUCE_LEAK_DETECTOR( TraKmeterPluginParameters );
 };
 
 #endif  // TRAKMETER_PLUGIN_PARAMETERS_H
