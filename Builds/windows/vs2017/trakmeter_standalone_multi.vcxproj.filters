@@ -18,6 +18,9 @@
     <ClInclude Include="..\..\..\Source\audio_file_player.h">
       <Filter>Source</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Source\build_id.h">
+      <Filter>Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\..\Source\frut\FrutHeader.h">
       <Filter>Source\frut</Filter>
     </ClInclude>

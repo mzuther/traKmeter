@@ -40,13 +40,15 @@ TraKmeter::TraKmeter( int nNumChannels,
    nInputChannels = nNumChannels;
    int nSegmentHeight = segment_height;
 
+   frut::widgets::Orientation meterOrientation;
+
    for ( int nChannel = 0; nChannel < nInputChannels; ++nChannel ) {
       MeterBarPeak* pMeterBarPeak = p_arrPeakMeters.add(
                                        new MeterBarPeak() );
 
       pMeterBarPeak->create( retainSignalFactor,
                              newSignalFactor,
-                             frut::widgets::Orientation::vertical,
+                             meterOrientation,
                              discreteMeter,
                              targetRecordingLevel,
                              nSegmentHeight,
@@ -59,7 +61,7 @@ TraKmeter::TraKmeter( int nNumChannels,
 
       pMeterBarAverage->create( retainSignalFactor,
                                 newSignalFactor,
-                                frut::widgets::Orientation::vertical,
+                                meterOrientation,
                                 discreteMeter,
                                 targetRecordingLevel,
                                 nSegmentHeight,

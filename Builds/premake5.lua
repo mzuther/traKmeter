@@ -84,6 +84,10 @@ workspace "trakmeter"
         "../JuceLibraryCode/include_juce_video.cpp"
     }
 
+    removefiles {
+        "../Source/*-COPY.*",
+    }
+
     includedirs {
         "../JuceLibraryCode/",
         "../libraries/",
