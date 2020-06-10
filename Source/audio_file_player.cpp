@@ -28,7 +28,8 @@
 
 AudioFilePlayer::AudioFilePlayer( const File audioFile,
                                   int sample_rate,
-                                  std::shared_ptr<MeterBallistics> meter_ballistics )
+                                  std::shared_ptr<MeterBallistics> meter_ballistics ) :
+   pMeterBallistics( meter_ballistics )
 {
    nReportChannel = -1;
    bReports = false;
@@ -38,8 +39,6 @@ AudioFilePlayer::AudioFilePlayer( const File audioFile,
 
    bSampleRatesMatch = true;
    bHeaderIsWritten = false;
-
-   pMeterBallistics = meter_ballistics;
 
    // try "300" for uncorrelated band-limited pink noise
    nSamplesMovingAverage = 50;
