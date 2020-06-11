@@ -40,7 +40,8 @@ TraKmeter::TraKmeter( int nNumChannels,
    nInputChannels = nNumChannels;
    int nSegmentHeight = segment_height;
 
-   frut::widgets::Orientation meterOrientation;
+   frut::widgets::Orientation meterOrientation (
+      frut::widgets::Orientation::bottomToTop );
 
    for ( int nChannel = 0; nChannel < nInputChannels; ++nChannel ) {
       MeterBarPeak* pMeterBarPeak = p_arrPeakMeters.add(
