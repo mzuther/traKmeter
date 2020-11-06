@@ -49,7 +49,7 @@
      style="display:inline">
     <path
        id="export-meter-average-right"
-       style="color:#000000;display:inline;overflow:visible;fill:#999999;stroke:none;stroke-width:0.999995;stroke-linecap:round;stop-color:#000000"
-       d="m 81,1005.3622 h 22 v 140 H 81 Z" />
+       style="color:#000000;display:inline;overflow:visible;fill:#999999;stroke:none;stroke-width:0.999992;stroke-linecap:round;stop-color:#000000"
+       d="m 82,1008.3622 h 20 v 140 H 82 Z" />
   </g>
 </svg>

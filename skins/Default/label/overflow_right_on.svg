@@ -49,7 +49,7 @@
      style="display:inline">
     <path
        id="export-label-overflow-right-on"
-       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#330000;fill-opacity:1;fill-rule:nonzero;stroke:#fd0000;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
-       d="m 81.5,804.86218 h 21 v 11 h -21 z" />
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#330000;fill-opacity:1;fill-rule:nonzero;stroke:#fd0000;stroke-width:0.999995;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker:none;enable-background:accumulate"
+       d="m 82.5,804.86218 h 19 v 11 h -19 z" />
   </g>
 </svg>

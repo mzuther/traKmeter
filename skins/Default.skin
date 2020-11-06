@@ -61,9 +61,9 @@
             image="meter/average_right.svg" />
 
         <label_over_1
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_left_active.svg"
@@ -71,9 +71,9 @@
             image_off="label/overflow_left_off.svg" />
 
         <label_over_2
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_right_active.svg"
@@ -195,9 +195,9 @@
             image="meter/average_8.svg" />
 
         <label_over_1
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_1_active.svg"
@@ -205,9 +205,9 @@
             image_off="label/overflow_1_off.svg" />
 
         <label_over_2
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_2_active.svg"
@@ -215,9 +215,9 @@
             image_off="label/overflow_2_off.svg" />
 
         <label_over_3
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_3_active.svg"
@@ -225,9 +225,9 @@
             image_off="label/overflow_3_off.svg" />
 
         <label_over_4
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_4_active.svg"
@@ -235,9 +235,9 @@
             image_off="label/overflow_4_off.svg" />
 
         <label_over_5
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_5_active.svg"
@@ -245,9 +245,9 @@
             image_off="label/overflow_5_off.svg" />
 
         <label_over_6
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_6_active.svg"
@@ -255,9 +255,9 @@
             image_off="label/overflow_6_off.svg" />
 
         <label_over_7
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_7_active.svg"
@@ -265,9 +265,9 @@
             image_off="label/overflow_7_off.svg" />
 
         <label_over_8
-            font_size="11"
+            font_size="10"
             spacing_left="2"
-            spacing_top="0"
+            spacing_top="1"
             text_colour_on="ff0000"
             text_colour_active="ffffff"
             image_active="label/overflow_8_active.svg"
