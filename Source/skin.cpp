@@ -32,7 +32,7 @@ bool Skin::loadSkin( int numberOfChannels,
    updateSkin( numberOfChannels,
                targetRecordingLevel );
 
-   return loadFromXml( "trakmeter-skin", "1.5" );
+   return loadFromXml( "trakmeter-skin", "1.6" );
 }
 
 
@@ -83,7 +83,7 @@ File Skin::getSkinDirectory()
 File Skin::getSettingsFile()
 {
    auto settingsDirectory = File::getSpecialLocation( File::userApplicationDataDirectory );
-   auto defaultSkinFile = settingsDirectory.getChildFile( "traKmeter.skin" );
+   auto defaultSettingsFile = settingsDirectory.getChildFile( "traKmeter.settings" );
 
-   return defaultSkinFile;
+   return defaultSettingsFile;
 }

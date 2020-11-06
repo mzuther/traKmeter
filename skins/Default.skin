@@ -1,515 +1,333 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE trakmeter-skin SYSTEM "include/dtd/trakmeter-skin.dtd">
-<?xml-stylesheet type="text/xsl" href="include/xslt/skin_svg.xslt"?>
 
 <trakmeter-skin
     name="Default"
     path="Default"
     orientation="vertical"
     origin_of_y="bottom"
-    version="1.5">
+    version="1.6">
 
     <default>
         <button_recording_level_10
-            x="152"
-            y="378"
-            image_on="buttons/button_reclevel_10_on.png"
-            image_over="buttons/button_reclevel_10_over.png"
-            image_off="buttons/button_reclevel_10_off.png"
-        />
+            image_on="button/reference_level_10_on.svg"
+            image_over="button/reference_level_10_over.svg"
+            image_off="button/reference_level_10_off.svg" />
 
         <button_recording_level_15
-            x="152"
-            y="353"
-            image_on="buttons/button_reclevel_15_on.png"
-            image_over="buttons/button_reclevel_15_over.png"
-            image_off="buttons/button_reclevel_15_off.png"
-        />
+            image_on="button/reference_level_15_on.svg"
+            image_over="button/reference_level_15_over.svg"
+            image_off="button/reference_level_15_off.svg" />
 
         <button_recording_level_20
-            x="152"
-            y="328"
-            image_on="buttons/button_reclevel_20_on.png"
-            image_over="buttons/button_reclevel_20_over.png"
-            image_off="buttons/button_reclevel_20_off.png"
-        />
+            image_on="button/reference_level_20_on.svg"
+            image_over="button/reference_level_20_over.svg"
+            image_off="button/reference_level_20_off.svg" />
 
         <button_skin
-            x="152"
-            y="96"
-            image_on="buttons/button_skin_on.png"
-            image_over="buttons/button_skin_over.png"
-            image_off="buttons/button_skin_off.png"
-        />
+            image_on="button/skin_on.svg"
+            image_over="button/skin_over.svg"
+            image_off="button/skin_off.svg" />
 
         <button_reset
-            x="152"
-            y="71"
-            image_on="buttons/button_reset_on.png"
-            image_over="buttons/button_reset_over.png"
-            image_off="buttons/button_reset_off.png"
-        />
+            image_on="button/reset_on.svg"
+            image_over="button/reset_over.svg"
+            image_off="button/reset_off.svg" />
 
         <button_validate
-            x="152"
-            y="36"
-            image_on="buttons/button_validate_on.png"
-            image_over="buttons/button_validate_over.png"
-            image_off="buttons/button_validate_off.png"
-        />
+            image_on="button/validate_on.svg"
+            image_over="button/validate_over.svg"
+            image_off="button/validate_off.svg" />
 
         <button_about
-            x="152"
-            y="11"
-            image_on="buttons/button_about_on.png"
-            image_over="buttons/button_about_over.png"
-            image_off="buttons/button_about_off.png"
-        />
+            image_on="button/about_on.svg"
+            image_over="button/about_over.svg"
+            image_off="button/about_off.svg" />
 
         <label_debug
-            x="162"
-            y="123"
-            image="labels/label_debug.png"
-        />
+            image="label/debug.svg" />
     </default>
 
     <stereo>
         <meter_peak_1
-            x="49"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_left.svg" />
 
         <meter_peak_2
-            x="77"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_right.svg" />
 
         <meter_average_1
-            x="49"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_left.svg" />
 
         <meter_average_2
-            x="77"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_right.svg" />
 
         <label_over_1
-            x="49"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_left_active.svg"
+            image_on="label/overflow_left_on.svg"
+            image_off="label/overflow_left_off.svg" />
 
         <label_over_2
-            x="77"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_right_active.svg"
+            image_on="label/overflow_right_on.svg"
+            image_off="label/overflow_right_off.svg" />
 
         <label_signal_1
-            x="47"
-            y="186"
-            image_off="labels/label_signal_left_off.png"
-            image_low="labels/label_signal_left_low.png"
-            image_high="labels/label_signal_left_high.png" />
+            image_off="label/signal_left_off.svg"
+            image_low="label/signal_left_low.svg"
+            image_high="label/signal_left_high.svg" />
 
         <label_signal_2
-            x="75"
-            y="186"
-            image_off="labels/label_signal_right_off.png"
-            image_low="labels/label_signal_right_low.png"
-            image_high="labels/label_signal_right_high.png" />
+            image_off="label/signal_right_off.svg"
+            image_low="label/signal_right_low.svg"
+            image_high="label/signal_right_high.svg" />
     </stereo>
 
     <stereo_10>
         <background
-            image="backgrounds/stereo/background_stereo.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/stereo/graduation_stereo_10.png"
-        />
+            image="background/stereo.svg" />
     </stereo_10>
 
     <stereo_15>
         <background
-            image="backgrounds/stereo/background_stereo.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/stereo/graduation_stereo_15.png"
-        />
+            image="background/stereo.svg" />
     </stereo_15>
 
     <stereo_20>
         <background
-            image="backgrounds/stereo/background_stereo.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/stereo/graduation_stereo_20.png"
-        />
+            image="background/stereo.svg" />
     </stereo_20>
 
     <multi>
         <button_recording_level_10
-            x="340"
-            y="378"
-            image_on="buttons/button_reclevel_10_on.png"
-            image_over="buttons/button_reclevel_10_over.png"
-            image_off="buttons/button_reclevel_10_off.png"
-        />
+            image_on="button/reference_level_10_on.svg"
+            image_over="button/reference_level_10_over.svg"
+            image_off="button/reference_level_10_off.svg" />
 
         <button_recording_level_15
-            x="340"
-            y="353"
-            image_on="buttons/button_reclevel_15_on.png"
-            image_over="buttons/button_reclevel_15_over.png"
-            image_off="buttons/button_reclevel_15_off.png"
-        />
+            image_on="button/reference_level_15_on.svg"
+            image_over="button/reference_level_15_over.svg"
+            image_off="button/reference_level_15_off.svg" />
 
         <button_recording_level_20
-            x="340"
-            y="328"
-            image_on="buttons/button_reclevel_20_on.png"
-            image_over="buttons/button_reclevel_20_over.png"
-            image_off="buttons/button_reclevel_20_off.png"
-        />
+            image_on="button/reference_level_20_on.svg"
+            image_over="button/reference_level_20_over.svg"
+            image_off="button/reference_level_20_off.svg" />
 
         <button_skin
-            x="340"
-            y="96"
-            image_on="buttons/button_skin_on.png"
-            image_over="buttons/button_skin_over.png"
-            image_off="buttons/button_skin_off.png"
-        />
+            image_on="button/skin_on.svg"
+            image_over="button/skin_over.svg"
+            image_off="button/skin_off.svg" />
 
         <button_reset
-            x="340"
-            y="71"
-            image_on="buttons/button_reset_on.png"
-            image_over="buttons/button_reset_over.png"
-            image_off="buttons/button_reset_off.png"
-        />
+            image_on="button/reset_on.svg"
+            image_over="button/reset_over.svg"
+            image_off="button/reset_off.svg" />
 
         <button_validate
-            x="340"
-            y="36"
-            image_on="buttons/button_validate_on.png"
-            image_over="buttons/button_validate_over.png"
-            image_off="buttons/button_validate_off.png"
-        />
+            image_on="button/validate_on.svg"
+            image_over="button/validate_over.svg"
+            image_off="button/validate_off.svg" />
 
         <button_about
-            x="340"
-            y="11"
-            image_on="buttons/button_about_on.png"
-            image_over="buttons/button_about_over.png"
-            image_off="buttons/button_about_off.png"
-        />
+            image_on="button/about_on.svg"
+            image_over="button/about_over.svg"
+            image_off="button/about_off.svg" />
 
         <label_debug
-            x="350"
-            y="123"
-            image="labels/label_debug.png"
+            image="label/debug.svg" />
         />
 
         <meter_peak_1
-            x="49"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_1.svg" />
 
         <meter_peak_2
-            x="77"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_2.svg" />
 
         <meter_peak_3
-            x="112"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_3.svg" />
 
         <meter_peak_4
-            x="140"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_4.svg" />
 
         <meter_peak_5
-            x="175"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_5.svg" />
 
         <meter_peak_6
-            x="203"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_6.svg" />
 
         <meter_peak_7
-            x="238"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_7.svg" />
 
         <meter_peak_8
-            x="266"
-            y="210"
-            segment_width="22"
-            vertical="true" />
+            image="meter/peak_8.svg" />
 
         <meter_average_1
-            x="49"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_1.svg" />
 
         <meter_average_2
-            x="77"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_2.svg" />
 
         <meter_average_3
-            x="112"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_3.svg" />
 
         <meter_average_4
-            x="140"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_4.svg" />
 
         <meter_average_5
-            x="175"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_5.svg" />
 
         <meter_average_6
-            x="203"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_6.svg" />
 
         <meter_average_7
-            x="238"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_7.svg" />
 
         <meter_average_8
-            x="266"
-            y="38"
-            segment_width="22"
-            vertical="true" />
+            image="meter/average_8.svg" />
 
         <label_over_1
-            x="49"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_1_active.svg"
+            image_on="label/overflow_1_on.svg"
+            image_off="label/overflow_1_off.svg" />
 
         <label_over_2
-            x="77"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_2_active.svg"
+            image_on="label/overflow_2_on.svg"
+            image_off="label/overflow_2_off.svg" />
 
         <label_over_3
-            x="112"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_3_active.svg"
+            image_on="label/overflow_3_on.svg"
+            image_off="label/overflow_3_off.svg" />
 
         <label_over_4
-            x="140"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_4_active.svg"
+            image_on="label/overflow_4_on.svg"
+            image_off="label/overflow_4_off.svg" />
 
         <label_over_5
-            x="175"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_5_active.svg"
+            image_on="label/overflow_5_on.svg"
+            image_off="label/overflow_5_off.svg" />
 
         <label_over_6
-            x="203"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_6_active.svg"
+            image_on="label/overflow_6_on.svg"
+            image_off="label/overflow_6_off.svg" />
 
         <label_over_7
-            x="238"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_7_active.svg"
+            image_on="label/overflow_7_on.svg"
+            image_off="label/overflow_7_off.svg" />
 
         <label_over_8
-            x="266"
-            y="360"
             font_size="11"
             spacing_left="2"
             spacing_top="0"
-            colour_on="ff0000"
-            colour_active="ffffff"
-            image_active="labels/label_over_active.png"
-            image_on="labels/label_over_on.png"
-            image_off="labels/label_over_off.png" />
+            text_colour_on="ff0000"
+            text_colour_active="ffffff"
+            image_active="label/overflow_8_active.svg"
+            image_on="label/overflow_8_on.svg"
+            image_off="label/overflow_8_off.svg" />
 
         <label_signal_1
-            x="47"
-            y="186"
-            image_off="labels/label_signal_1_off.png"
-            image_low="labels/label_signal_1_low.png"
-            image_high="labels/label_signal_1_high.png" />
+            image_off="label/signal_1_off.svg"
+            image_low="label/signal_1_low.svg"
+            image_high="label/signal_1_high.svg" />
 
         <label_signal_2
-            x="75"
-            y="186"
-            image_off="labels/label_signal_2_off.png"
-            image_low="labels/label_signal_2_low.png"
-            image_high="labels/label_signal_2_high.png" />
+            image_off="label/signal_2_off.svg"
+            image_low="label/signal_2_low.svg"
+            image_high="label/signal_2_high.svg" />
 
         <label_signal_3
-            x="110"
-            y="186"
-            image_off="labels/label_signal_3_off.png"
-            image_low="labels/label_signal_3_low.png"
-            image_high="labels/label_signal_3_high.png" />
+            image_off="label/signal_3_off.svg"
+            image_low="label/signal_3_low.svg"
+            image_high="label/signal_3_high.svg" />
 
         <label_signal_4
-            x="138"
-            y="186"
-            image_off="labels/label_signal_4_off.png"
-            image_low="labels/label_signal_4_low.png"
-            image_high="labels/label_signal_4_high.png" />
+            image_off="label/signal_4_off.svg"
+            image_low="label/signal_4_low.svg"
+            image_high="label/signal_4_high.svg" />
 
         <label_signal_5
-            x="173"
-            y="186"
-            image_off="labels/label_signal_5_off.png"
-            image_low="labels/label_signal_5_low.png"
-            image_high="labels/label_signal_5_high.png" />
+            image_off="label/signal_5_off.svg"
+            image_low="label/signal_5_low.svg"
+            image_high="label/signal_5_high.svg" />
 
         <label_signal_6
-            x="201"
-            y="186"
-            image_off="labels/label_signal_6_off.png"
-            image_low="labels/label_signal_6_low.png"
-            image_high="labels/label_signal_6_high.png" />
+            image_off="label/signal_6_off.svg"
+            image_low="label/signal_6_low.svg"
+            image_high="label/signal_6_high.svg" />
 
         <label_signal_7
-            x="236"
-            y="186"
-            image_off="labels/label_signal_7_off.png"
-            image_low="labels/label_signal_7_low.png"
-            image_high="labels/label_signal_7_high.png" />
+            image_off="label/signal_7_off.svg"
+            image_low="label/signal_7_low.svg"
+            image_high="label/signal_7_high.svg" />
 
         <label_signal_8
-            x="264"
-            y="186"
-            image_off="labels/label_signal_8_off.png"
-            image_low="labels/label_signal_8_low.png"
-            image_high="labels/label_signal_8_high.png" />
+            image_off="label/signal_8_off.svg"
+            image_low="label/signal_8_low.svg"
+            image_high="label/signal_8_high.svg" />
     </multi>
 
     <multi_10>
         <background
-            image="backgrounds/multi/background_multi.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/multi/graduation_multi_10.png" />
+            image="background/multi.svg" />
     </multi_10>
 
     <multi_15>
         <background
-            image="backgrounds/multi/background_multi.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/multi/graduation_multi_15.png" />
+            image="background/multi.svg" />
     </multi_15>
 
     <multi_20>
         <background
-            image="backgrounds/multi/background_multi.png" />
-
-        <meter_graduation
-            x="13"
-            y="38"
-            image="backgrounds/multi/graduation_multi_20.png" />
+            image="background/multi.svg" />
     </multi_20>
 
 </trakmeter-skin>

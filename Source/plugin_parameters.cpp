@@ -37,8 +37,8 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
    // parameters created here will be deleted in
    // "frut::parameters::Juggler"!
 
-   frut::parameters::ParSwitch* ParameterTargetRecordingLevel =
-      new frut::parameters::ParSwitch();
+   auto ParameterTargetRecordingLevel = new frut::parameters::ParSwitch();
+   ParameterTargetRecordingLevel->init();
    ParameterTargetRecordingLevel->setName( "Target recording level" );
 
    ParameterTargetRecordingLevel->addPreset( -10.0f, "-10 dB FS peak" );
@@ -49,14 +49,14 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
    add( ParameterTargetRecordingLevel, selTargetRecordingLevel );
 
 
-   frut::parameters::ParString* ParameterValidationFileName =
-      new frut::parameters::ParString( "" );
+   auto ParameterValidationFileName = new frut::parameters::ParString();
+   ParameterValidationFileName->init( "" );
    ParameterValidationFileName->setName( "Validation file" );
    add( ParameterValidationFileName, selValidationFileName );
 
 
-   frut::parameters::ParSwitch* ParameterValidationSelectedChannel =
-      new frut::parameters::ParSwitch();
+   auto ParameterValidationSelectedChannel = new frut::parameters::ParSwitch();
+   ParameterValidationSelectedChannel->init();
    ParameterValidationSelectedChannel->setName( "Validation audio channel" );
 
    // values correspond to the channel index in "AudioBuffer"
@@ -76,22 +76,22 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
    add( ParameterValidationSelectedChannel, selValidationSelectedChannel );
 
 
-   frut::parameters::ParBoolean* ParameterValidationAverageMeterLevel =
-      new frut::parameters::ParBoolean( "On", "Off" );
+   auto ParameterValidationAverageMeterLevel = new frut::parameters::ParBoolean();
+   ParameterValidationAverageMeterLevel->init( "On", "Off" );
    ParameterValidationAverageMeterLevel->setName( "Validate average meter level" );
    ParameterValidationAverageMeterLevel->setDefaultBoolean( true, true );
    add( ParameterValidationAverageMeterLevel, selValidationAverageMeterLevel );
 
 
-   frut::parameters::ParBoolean* ParameterValidationPeakMeterLevel =
-      new frut::parameters::ParBoolean( "On", "Off" );
+   auto ParameterValidationPeakMeterLevel = new frut::parameters::ParBoolean();
+   ParameterValidationPeakMeterLevel->init( "On", "Off" );
    ParameterValidationPeakMeterLevel->setName( "Validate peak meter level" );
    ParameterValidationPeakMeterLevel->setDefaultBoolean( true, true );
    add( ParameterValidationPeakMeterLevel, selValidationPeakMeterLevel );
 
 
-   frut::parameters::ParBoolean* ParameterValidationCSVFormat =
-      new frut::parameters::ParBoolean( "CSV", "Full" );
+   auto ParameterValidationCSVFormat = new frut::parameters::ParBoolean();
+   ParameterValidationCSVFormat->init( "CSV", "Full" );
    ParameterValidationCSVFormat->setName( "Validation output format" );
    ParameterValidationCSVFormat->setDefaultBoolean( false, true );
    add( ParameterValidationCSVFormat, selValidationCSVFormat );

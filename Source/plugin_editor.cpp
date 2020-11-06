@@ -170,10 +170,23 @@ void TraKmeterAudioProcessorEditor::applySkin()
    skin.updateSkin( numberOfInputChannels,
                     recordingLevel );
 
+   // update UI scale
+   Logger::outputDebugString(
+      String( "[Skin] scaling UI to " ) +
+      String( int ( 100.0f * skin.getUiScale() ) ) +
+      "%" );
+
+   // FIXME: should be fixed in JUCE by now (see
+   // https://forum.juce.com/t/ui-scaling/15930/15)
+   if ( PluginHostType::getPluginLoadedAs() == AudioProcessor::wrapperType_Standalone ) {
+      Desktop::getInstance().setGlobalScaleFactor( skin.getUiScale() );
+   } else {
+      setScaleFactor( skin.getUiScale() );
+   }
+
    // moves background image to the back of the editor's z-plane;
    // will also resize plug-in editor
-   skin.setBackground( &DrawableBackground,
-                       this );
+   skin.setBackground( &DrawableBackground, this );
 
    skin.placeAndSkinButton( "button_recording_level_10",
                             &ButtonRecordingLevel_10 );
@@ -219,6 +232,9 @@ void TraKmeterAudioProcessorEditor::windowSkinCallback( int modalResult )
 
    // user has selected a skin
    if ( modalResult > 0 ) {
+      // store new UI scale
+      skin.setUiScale( modalResult / 100.0f );
+
       // apply skin to plug-in editor
       loadSkin();
    }
@@ -387,8 +403,11 @@ void TraKmeterAudioProcessorEditor::buttonClicked( Button* button )
       // window callback)
       button->setToggleState( true, dontSendNotification );
 
+      // get and convert new UI scale
+      int scale = int ( 100.0f * skin.getUiScale() );
+
       // prepare and launch dialog window
-      DialogWindow* windowSkin = frut::widgets::WindowSkinContent::createDialogWindow( this, &skin );
+      DialogWindow* windowSkin = frut::widgets::WindowSkinContent::createDialogWindow( this, scale );
 
       // attach callback to dialog window
       ModalComponentManager::getInstance()->attachCallback( windowSkin, ModalCallbackFunction::forComponent( window_skin_callback, this ) );
@@ -491,7 +510,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked( Button* button )
 
       // prepare and launch dialog window
       int width = 270;
-      int height = 540;
+      int height = 410;
 
       DialogWindow* windowAbout = frut::widgets::WindowAboutContent::createDialogWindow(
                                      this, width, height, arrChapters );
