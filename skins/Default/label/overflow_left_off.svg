@@ -5,32 +5,12 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    width="228"
-   height="423"
+   height="427"
    id="svg2"
    version="1.1">
   <defs
-     id="defs4">
-    <pattern
-       xlink:href="#Strips1_1-7-5"
-       id="pattern9313-9-8"
-       patternTransform="matrix(0.78764254,1.3407155,-9.5105957,5.3962725,929.99999,-882.29318)" />
-    <pattern
-       id="Strips1_1-7-5"
-       patternTransform="translate(0,0) scale(10,10)"
-       height="1"
-       width="2"
-       patternUnits="userSpaceOnUse">
-      <rect
-         id="rect8592-4-2"
-         height="2"
-         width="1"
-         y="-0.5"
-         x="0"
-         style="fill:black;stroke:none" />
-    </pattern>
-  </defs>
+     id="defs4" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -50,6 +30,6 @@
     <path
        id="export-label-overflow-left-off"
        style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#330000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.999995;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.0404886;marker:none;enable-background:accumulate"
-       d="m 333.5,663.86218 h 19 v 11 h -19 z" />
+       d="m 380.5,870.86218 h 19 v 11 h -19 z" />
   </g>
 </svg>

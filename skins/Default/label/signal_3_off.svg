@@ -5,32 +5,12 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   width="228"
-   height="423"
+   width="423"
+   height="427"
    id="svg2"
    version="1.1">
   <defs
-     id="defs4">
-    <pattern
-       xlink:href="#Strips1_1-7-5"
-       id="pattern9313-9-8"
-       patternTransform="matrix(0.78764254,1.3407155,-9.5105957,5.3962725,929.99999,-882.29318)" />
-    <pattern
-       id="Strips1_1-7-5"
-       patternTransform="translate(0,0) scale(10,10)"
-       height="1"
-       width="2"
-       patternUnits="userSpaceOnUse">
-      <rect
-         id="rect8592-4-2"
-         height="2"
-         width="1"
-         y="-0.5"
-         x="0"
-         style="fill:black;stroke:none" />
-    </pattern>
-  </defs>
+     id="defs4" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -48,7 +28,7 @@
      id="layer1"
      style="display:inline">
     <g
-       transform="translate(0,261)"
+       transform="translate(-185,442.1)"
        id="export-label-signal-3-off">
       <path
          id="rect2729"
@@ -61,7 +41,7 @@
         <path
            d="m 312.03999,546.31018 h 0.32 c 0.8,0 1.83467,0.29867 1.83467,1.28001 0,0.90666 -0.72534,1.248 -1.38667,1.248 -0.8,0 -1.32267,-0.46934 -1.50401,-1.06667 l -1.19467,0.37333 c 0.40534,1.25867 1.47201,1.78134 2.74135,1.78134 1.28,0 2.63467,-0.75733 2.63467,-2.32534 0,-0.928 -0.64,-1.632 -1.55734,-1.81334 v -0.0213 c 0.82134,-0.20267 1.35467,-0.896 1.35467,-1.70667 0,-1.35467 -1.10933,-2.06934 -2.432,-2.06934 -1.20534,0 -2.19734,0.71467 -2.46401,1.728 l 1.20533,0.30934 c 0.14934,-0.576 0.58667,-0.97067 1.20534,-0.97067 0.64,0 1.19467,0.40533 1.19467,1.088 0,0.928 -0.85333,1.14134 -1.61067,1.14134 h -0.34133 z"
            style="font-size:10.6667px;line-height:1.25"
-           id="path108244" />
+           id="path75467" />
       </g>
     </g>
   </g>

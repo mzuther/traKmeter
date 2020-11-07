@@ -5,32 +5,12 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   width="228"
-   height="423"
+   width="423"
+   height="427"
    id="svg2"
    version="1.1">
   <defs
-     id="defs4">
-    <pattern
-       xlink:href="#Strips1_1-7-5"
-       id="pattern9313-9-8"
-       patternTransform="matrix(0.78764254,1.3407155,-9.5105957,5.3962725,929.99999,-882.29318)" />
-    <pattern
-       id="Strips1_1-7-5"
-       patternTransform="translate(0,0) scale(10,10)"
-       height="1"
-       width="2"
-       patternUnits="userSpaceOnUse">
-      <rect
-         id="rect8592-4-2"
-         height="2"
-         width="1"
-         y="-0.5"
-         x="0"
-         style="fill:black;stroke:none" />
-    </pattern>
-  </defs>
+     id="defs4" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -49,7 +29,7 @@
      style="display:inline">
     <g
        id="export-label-signal-6-high"
-       transform="translate(30,321)">
+       transform="translate(177,591)">
       <path
          id="rect2793"
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ff6600;fill-opacity:1;fill-rule:nonzero;stroke:#d25500;stroke-width:1;stroke-opacity:1;marker:none;enable-background:accumulate"
@@ -61,7 +41,7 @@
         <path
            d="m 312.92532,542.18217 -1.888,2.92267 c -0.49067,0.77867 -0.77867,1.36534 -0.77867,2.22934 0,1.46134 1.184,2.59201 2.76267,2.59201 1.54667,0 2.75201,-1.04533 2.75201,-2.64534 0,-1.376 -1.07734,-2.42134 -2.41067,-2.42134 -0.256,0 -0.59734,0.0427 -0.80001,0.128 l -0.0107,-0.0107 1.93067,-2.79467 z m -1.36534,5.18401 c 0,-0.88533 0.60801,-1.49333 1.47201,-1.49333 0.85334,0 1.42934,0.61866 1.42934,1.472 0,0.896 -0.58667,1.49334 -1.45067,1.49334 -0.88534,0 -1.45068,-0.68267 -1.45068,-1.47201 z"
            style="font-size:10.6667px;line-height:1.25"
-           id="path127876" />
+           id="path88190" />
       </g>
     </g>
   </g>

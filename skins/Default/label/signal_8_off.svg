@@ -5,32 +5,12 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   width="228"
-   height="423"
+   width="423"
+   height="427"
    id="svg2"
    version="1.1">
   <defs
-     id="defs4">
-    <pattern
-       xlink:href="#Strips1_1-7-5"
-       id="pattern9313-9-8"
-       patternTransform="matrix(0.78764254,1.3407155,-9.5105957,5.3962725,929.99999,-882.29318)" />
-    <pattern
-       id="Strips1_1-7-5"
-       patternTransform="translate(0,0) scale(10,10)"
-       height="1"
-       width="2"
-       patternUnits="userSpaceOnUse">
-      <rect
-         id="rect8592-4-2"
-         height="2"
-         width="1"
-         y="-0.5"
-         x="0"
-         style="fill:black;stroke:none" />
-    </pattern>
-  </defs>
+     id="defs4" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -48,7 +28,7 @@
      id="layer1"
      style="display:inline">
     <g
-       transform="translate(0,361)"
+       transform="translate(-29,442.1)"
        id="export-label-signal-8-off">
       <path
          id="rect2849"
@@ -62,7 +42,7 @@
         <path
            d="m 313.04221,541.97221 c -1.32262,0 -2.38925,0.8213 -2.38925,2.10126 0,0.87464 0.50132,1.40795 1.17329,1.65328 v 0.0213 c -0.73597,0.19199 -1.41861,0.8533 -1.41861,1.8346 0,1.50395 1.18396,2.32526 2.63457,2.32526 1.45062,0 2.63458,-0.82131 2.63458,-2.32526 0,-0.92797 -0.62931,-1.64261 -1.41862,-1.8346 v -0.0213 c 0.68264,-0.224 1.17329,-0.83198 1.17329,-1.70661 0,-1.27996 -1.06663,-2.04793 -2.38925,-2.04793 z m 0,1.05596 c 0.57598,0 1.09863,0.41599 1.09863,1.06663 0,0.60798 -0.49065,1.09863 -1.09863,1.09863 -0.66131,0 -1.08796,-0.49065 -1.08796,-1.09863 0,-0.65064 0.45865,-1.06663 1.08796,-1.06663 z m 0,3.25322 c 0.72531,0 1.30129,0.54399 1.30129,1.29063 0,0.7893 -0.56531,1.25862 -1.30129,1.25862 -0.74664,0 -1.31195,-0.46932 -1.31195,-1.25862 0,-0.76798 0.57598,-1.29063 1.31195,-1.29063 z"
            style="font-size:10.6663px;line-height:1.25;stroke-width:0.999997px"
-           id="path150304" />
+           id="path102722" />
       </g>
     </g>
   </g>

@@ -9,42 +9,42 @@
 
     <default>
         <button_recording_level_10
-            image_on="button/reference_level_10_on.svg"
+            image_on="button/reference_level_10_on_stereo.svg"
             image_over="button/reference_level_10_over.svg"
             image_off="button/reference_level_10_off.svg" />
 
         <button_recording_level_15
-            image_on="button/reference_level_15_on.svg"
+            image_on="button/reference_level_15_on_stereo.svg"
             image_over="button/reference_level_15_over.svg"
             image_off="button/reference_level_15_off.svg" />
 
         <button_recording_level_20
-            image_on="button/reference_level_20_on.svg"
+            image_on="button/reference_level_20_on_stereo.svg"
             image_over="button/reference_level_20_over.svg"
             image_off="button/reference_level_20_off.svg" />
 
         <button_skin
-            image_on="button/skin_on.svg"
+            image_on="button/skin_on_stereo.svg"
             image_over="button/skin_over.svg"
             image_off="button/skin_off.svg" />
 
         <button_reset
-            image_on="button/reset_on.svg"
+            image_on="button/reset_on_stereo.svg"
             image_over="button/reset_over.svg"
             image_off="button/reset_off.svg" />
 
         <button_validate
-            image_on="button/validate_on.svg"
+            image_on="button/validate_on_stereo.svg"
             image_over="button/validate_over.svg"
             image_off="button/validate_off.svg" />
 
         <button_about
-            image_on="button/about_on.svg"
+            image_on="button/about_on_stereo.svg"
             image_over="button/about_over.svg"
             image_off="button/about_off.svg" />
 
         <label_debug
-            image="label/debug.svg" />
+            image="label/debug_stereo.svg" />
     </default>
 
     <stereo>
@@ -108,42 +108,42 @@
 
     <multi>
         <button_recording_level_10
-            image_on="button/reference_level_10_on.svg"
+            image_on="button/reference_level_10_on_multi.svg"
             image_over="button/reference_level_10_over.svg"
             image_off="button/reference_level_10_off.svg" />
 
         <button_recording_level_15
-            image_on="button/reference_level_15_on.svg"
+            image_on="button/reference_level_15_on_multi.svg"
             image_over="button/reference_level_15_over.svg"
             image_off="button/reference_level_15_off.svg" />
 
         <button_recording_level_20
-            image_on="button/reference_level_20_on.svg"
+            image_on="button/reference_level_20_on_multi.svg"
             image_over="button/reference_level_20_over.svg"
             image_off="button/reference_level_20_off.svg" />
 
         <button_skin
-            image_on="button/skin_on.svg"
+            image_on="button/skin_on_multi.svg"
             image_over="button/skin_over.svg"
             image_off="button/skin_off.svg" />
 
         <button_reset
-            image_on="button/reset_on.svg"
+            image_on="button/reset_on_multi.svg"
             image_over="button/reset_over.svg"
             image_off="button/reset_off.svg" />
 
         <button_validate
-            image_on="button/validate_on.svg"
+            image_on="button/validate_on_multi.svg"
             image_over="button/validate_over.svg"
             image_off="button/validate_off.svg" />
 
         <button_about
-            image_on="button/about_on.svg"
+            image_on="button/about_on_multi.svg"
             image_over="button/about_over.svg"
             image_off="button/about_off.svg" />
 
         <label_debug
-            image="label/debug.svg" />
+            image="label/debug_multi.svg" />
         />
 
         <meter_peak_1
