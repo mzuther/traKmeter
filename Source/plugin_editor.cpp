@@ -173,15 +173,16 @@ void TraKmeterAudioProcessorEditor::applySkin()
    // update UI scale
    Logger::outputDebugString(
       String( "[Skin] scaling UI to " ) +
-      String( int ( 100.0f * skin.getUiScale() ) ) +
-      "%" );
+      String( skin.getUiScale() ) + "%" );
+
+   float scale = skin.getUiScale() / 100.0f;
 
    // FIXME: should be fixed in JUCE by now (see
    // https://forum.juce.com/t/ui-scaling/15930/15)
    if ( PluginHostType::getPluginLoadedAs() == AudioProcessor::wrapperType_Standalone ) {
-      Desktop::getInstance().setGlobalScaleFactor( skin.getUiScale() );
+      Desktop::getInstance().setGlobalScaleFactor( scale );
    } else {
-      setScaleFactor( skin.getUiScale() );
+      setScaleFactor( scale );
    }
 
    // moves background image to the back of the editor's z-plane;
@@ -233,7 +234,7 @@ void TraKmeterAudioProcessorEditor::windowSkinCallback( int modalResult )
    // user has selected a skin
    if ( modalResult > 0 ) {
       // store new UI scale
-      skin.setUiScale( modalResult / 100.0f );
+      skin.setUiScale( modalResult );
 
       // apply skin to plug-in editor
       loadSkin();
@@ -403,11 +404,9 @@ void TraKmeterAudioProcessorEditor::buttonClicked( Button* button )
       // window callback)
       button->setToggleState( true, dontSendNotification );
 
-      // get and convert new UI scale
-      int scale = int ( 100.0f * skin.getUiScale() );
-
       // prepare and launch dialog window
-      DialogWindow* windowSkin = frut::widgets::WindowSkinContent::createDialogWindow( this, scale );
+      DialogWindow* windowSkin = frut::widgets::WindowSkinContent::createDialogWindow(
+                                    this, skin.getUiScale() );
 
       // attach callback to dialog window
       ModalComponentManager::getInstance()->attachCallback( windowSkin, ModalCallbackFunction::forComponent( window_skin_callback, this ) );
