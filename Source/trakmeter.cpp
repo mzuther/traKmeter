@@ -77,19 +77,7 @@ TraKmeter::TraKmeter( int nNumChannels,
       p_arrOverloadMeters.add( overloadMeter );
    }
 
-   String strLabel;
-
    for ( int nChannel = 0; nChannel < nInputChannels; ++nChannel ) {
-      if ( nInputChannels == 2 ) {
-         if ( nChannel == 0 ) {
-            strLabel = "L";
-         } else {
-            strLabel = "R";
-         }
-      } else {
-         strLabel = String( nChannel + 1 );
-      }
-
       frut::widgets::SignalLed* signalLed = new frut::widgets::SignalLed();
       addAndMakeVisible( signalLed );
 

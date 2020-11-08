@@ -46,12 +46,10 @@ void MeterBarPeak::create( float retainSignalFactor,
    int warningLevel = targetRecordingLevel - 20;
    int fineLevel = targetRecordingLevel - 80;
 
-   int lowerThreshold = trueLowerThreshold;
    int thresholdDifference = 10;
 
    for ( int n = 0; n < numberOfBars; ++n ) {
       trueLowerThreshold -= thresholdDifference;
-      lowerThreshold = trueLowerThreshold;
 
       int colourId;
 
@@ -71,7 +69,7 @@ void MeterBarPeak::create( float retainSignalFactor,
          int segmentHeight = mainSegmentHeight - spacingBefore;
 
          addDiscreteSegment(
-            lowerThreshold * 0.1f,
+            trueLowerThreshold * 0.1f,
             thresholdDifference * 0.1f,
             retainSignalFactor,
             newSignalFactor,
@@ -86,7 +84,7 @@ void MeterBarPeak::create( float retainSignalFactor,
          int segmentHeight = mainSegmentHeight - spacingBefore;
 
          addContinuousSegment(
-            lowerThreshold * 0.1f,
+            trueLowerThreshold * 0.1f,
             thresholdDifference * 0.1f,
             ( thresholdDifference * 0.1f ) / segmentHeight,
             hasHighestLevel,

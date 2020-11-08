@@ -40,6 +40,11 @@
 WindowValidationContent::WindowValidationContent( TraKmeterAudioProcessor& processor ) :
    audioProcessor( processor )
 {
+}
+
+
+void WindowValidationContent::initialise()
+{
    // dimensions of content component
    int componentWidth = 170;
    int componentHeight = 190;
@@ -83,10 +88,11 @@ DialogWindow* WindowValidationContent::createDialogWindow( AudioProcessorEditor&
    DialogWindow::LaunchOptions windowValidationLauncher;
 
    // create content component
-   WindowValidationContent* contentComponent =
-      new WindowValidationContent( processor );
+   auto contentComponent = new WindowValidationContent( processor );
 
    // initialise dialog window settings
+   contentComponent->initialise();
+
    windowValidationLauncher.dialogTitle = String( "Validation" );
    windowValidationLauncher.dialogBackgroundColour = Colours::white;
    windowValidationLauncher.content.setOwned( contentComponent );
