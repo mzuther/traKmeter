@@ -13,7 +13,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="1.0.1 (1.0.1+r73)"
-   sodipodi:docname="Default (Stereo).svg"
+   sodipodi:docname="Default.svg"
    inkscape:export-filename="/home/martin/Dokumente/code/git/trakmeter/bin/trakmeter-skins/Default/backgrounds/background_stereo_combined_k20.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
@@ -24,7 +24,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.9458312"
+     inkscape:zoom="2.9125499"
      inkscape:cx="34.952774"
      inkscape:cy="213.495"
      inkscape:document-units="px"
@@ -1818,7 +1818,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Gitter"
+     inkscape:label="Background Hatches copy"
      style="display:none"
      sodipodi:insensitive="true">
     <g

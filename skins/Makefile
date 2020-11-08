@@ -6,8 +6,8 @@ default : Default/background/stereo.svg \
           Default/background/multi.svg
 
 
-Default/background/stereo.svg : Default/Default\ (Stereo).svg
-	@cd ${mkfile_dir} ; ./inkscape2skin.py "Default/Default (Stereo).svg" "Default/"
+Default/background/stereo.svg : Default/Default.svg
+	@cd ${mkfile_dir} ; ./inkscape2skin.py "Default/Default.svg" "Default/"
 
 
 Default/background/multi.svg : Default/Default\ (Multi).svg

@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
+     inkscape:zoom="2.704981"
      inkscape:cx="300"
-     inkscape:cy="213.49501"
+     inkscape:cy="213.49503"
      inkscape:document-units="px"
-     inkscape:current-layer="export-background-multi"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1028"
@@ -59,7 +59,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -2936,7 +2936,7 @@
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Gitter"
+     inkscape:label="Background Hatches copy"
      style="display:none"
      sodipodi:insensitive="true">
     <g
