@@ -94,7 +94,7 @@ DialogWindow* WindowValidationContent::createDialogWindow( AudioProcessorEditor&
    contentComponent->initialise();
 
    windowValidationLauncher.dialogTitle = String( "Validation" );
-   windowValidationLauncher.dialogBackgroundColour = Colours::white;
+   windowValidationLauncher.dialogBackgroundColour = Colours::black.brighter( 0.2f );
    windowValidationLauncher.content.setOwned( contentComponent );
    windowValidationLauncher.componentToCentreAround = &pluginEditor;
 
