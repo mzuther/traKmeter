@@ -231,7 +231,7 @@ void TraKmeterAudioProcessorEditor::windowSkinCallback( int modalResult )
    // manually deactivate skin button
    ButtonSkin.setToggleState( false, dontSendNotification );
 
-   // user has selected a skin
+   // user has selected a UI scale
    if ( modalResult > 0 ) {
       // store new UI scale
       skin.setUiScale( modalResult );
