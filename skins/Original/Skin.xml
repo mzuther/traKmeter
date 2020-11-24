@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 
 <trakmeter-skin
-    name="Default"
-    path="Default"
+    version="1.6"
     orientation="vertical"
-    origin_of_y="bottom"
-    version="1.6">
+    origin_of_y="bottom">
 
     <default>
         <button_recording_level_10
