@@ -30,7 +30,7 @@ Source/skin.h : Resources/background/stereo.svg \
                 Resources/background/multi.svg \
                 Resources/Skin.xml
 	@mkdir -p "${mkfile_dir}/Source"
-	@cd ${mkfile_dir} ; ./convert_resources.sh
+	@cd ${mkfile_dir} ; ../Source/frut/convert_resources.py "Resources" "Source" "skin"
 
 
 clean :

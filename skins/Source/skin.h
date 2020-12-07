@@ -1,570 +1,345 @@
-/* (Auto-generated binary data file). */
+// WARNING: this binary file was auto-generated, please do not edit!
 
 #pragma once
 
 namespace skin
 {
-  #ifdef METER
-    extern const char*  average_4_svg;
-    const int           average_4_svgSize = 1010;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_6_svg;
-    const int           peak_6_svgSize = 1007;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_2_svg;
-    const int           peak_2_svgSize = 1005;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_3_svg;
-    const int           average_3_svgSize = 1010;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_1_svg;
-    const int           peak_1_svgSize = 998;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_6_svg;
-    const int           average_6_svgSize = 1010;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_3_svg;
-    const int           peak_3_svgSize = 1000;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_5_svg;
-    const int           peak_5_svgSize = 1000;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_right_svg;
-    const int           average_right_svgSize = 1012;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_4_svg;
-    const int           peak_4_svgSize = 1007;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_8_svg;
-    const int           average_8_svgSize = 1010;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_7_svg;
-    const int           peak_7_svgSize = 1000;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_2_svg;
-    const int           average_2_svgSize = 1008;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_5_svg;
-    const int           average_5_svgSize = 1010;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_1_svg;
-    const int           average_1_svgSize = 1008;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_right_svg;
-    const int           peak_right_svgSize = 1009;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_left_svg;
-    const int           peak_left_svgSize = 1001;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_7_svg;
-    const int           average_7_svgSize = 1010;
-
-  #endif
-  #ifdef METER
-    extern const char*  average_left_svg;
-    const int           average_left_svgSize = 1011;
-
-  #endif
-  #ifdef METER
-    extern const char*  peak_8_svg;
-    const int           peak_8_svgSize = 1007;
-
-  #endif
     extern const char*  Skin_xml;
-    const int           Skin_xmlSize = 10103;
-
-  #ifdef LABEL
-    extern const char*  overflow_3_on_svg;
-    const int           overflow_3_on_svgSize = 1130;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_4_active_svg;
-    const int           overflow_4_active_svgSize = 1134;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_5_off_svg;
-    const int           overflow_5_off_svgSize = 1139;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_3_off_svg;
-    const int           overflow_3_off_svgSize = 1139;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_7_off_svg;
-    const int           overflow_7_off_svgSize = 1139;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_4_low_svg;
-    const int           signal_4_low_svgSize = 1980;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_8_low_svg;
-    const int           signal_8_low_svgSize = 2566;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_4_high_svg;
-    const int           signal_4_high_svgSize = 1939;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_7_low_svg;
-    const int           signal_7_low_svgSize = 1898;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_5_off_svg;
-    const int           signal_5_off_svgSize = 2203;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_right_active_svg;
-    const int           overflow_right_active_svgSize = 1138;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_8_off_svg;
-    const int           overflow_8_off_svgSize = 1139;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_1_active_svg;
-    const int           overflow_1_active_svgSize = 1134;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_left_low_svg;
-    const int           signal_left_low_svgSize = 1876;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_5_on_svg;
-    const int           overflow_5_on_svgSize = 1130;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_2_off_svg;
-    const int           signal_2_off_svgSize = 2128;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_7_active_svg;
-    const int           overflow_7_active_svgSize = 1134;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_6_on_svg;
-    const int           overflow_6_on_svgSize = 1130;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_6_off_svg;
-    const int           signal_6_off_svgSize = 2249;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_8_high_svg;
-    const int           signal_8_high_svgSize = 2524;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_7_high_svg;
-    const int           signal_7_high_svgSize = 1857;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_4_on_svg;
-    const int           overflow_4_on_svgSize = 1130;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_5_high_svg;
-    const int           signal_5_high_svgSize = 2201;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  debug_multi_svg;
-    const int           debug_multi_svgSize = 4100;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_left_off_svg;
-    const int           signal_left_off_svgSize = 1838;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_6_low_svg;
-    const int           signal_6_low_svgSize = 2289;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_left_off_svg;
-    const int           overflow_left_off_svgSize = 1142;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_1_off_svg;
-    const int           signal_1_off_svgSize = 1862;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_8_on_svg;
-    const int           overflow_8_on_svgSize = 1130;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_3_active_svg;
-    const int           overflow_3_active_svgSize = 1134;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_6_high_svg;
-    const int           signal_6_high_svgSize = 2248;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_7_off_svg;
-    const int           signal_7_off_svgSize = 1858;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_2_on_svg;
-    const int           overflow_2_on_svgSize = 1129;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_1_high_svg;
-    const int           signal_1_high_svgSize = 1860;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_2_active_svg;
-    const int           overflow_2_active_svgSize = 1134;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_right_off_svg;
-    const int           signal_right_off_svgSize = 2091;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_2_low_svg;
-    const int           signal_2_low_svgSize = 2167;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_5_low_svg;
-    const int           signal_5_low_svgSize = 2242;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_right_low_svg;
-    const int           signal_right_low_svgSize = 2129;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_3_high_svg;
-    const int           signal_3_high_svgSize = 2367;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_8_active_svg;
-    const int           overflow_8_active_svgSize = 1134;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_right_off_svg;
-    const int           overflow_right_off_svgSize = 1143;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_8_off_svg;
-    const int           signal_8_off_svgSize = 2636;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_4_off_svg;
-    const int           overflow_4_off_svgSize = 1139;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_left_high_svg;
-    const int           signal_left_high_svgSize = 1835;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_4_off_svg;
-    const int           signal_4_off_svgSize = 1941;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_2_high_svg;
-    const int           signal_2_high_svgSize = 2126;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_6_off_svg;
-    const int           overflow_6_off_svgSize = 1139;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  debug_stereo_svg;
-    const int           debug_stereo_svgSize = 4083;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_3_low_svg;
-    const int           signal_3_low_svgSize = 2408;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_1_low_svg;
-    const int           signal_1_low_svgSize = 1901;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_right_high_svg;
-    const int           signal_right_high_svgSize = 2088;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_left_active_svg;
-    const int           overflow_left_active_svgSize = 1137;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  signal_3_off_svg;
-    const int           signal_3_off_svgSize = 2369;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_1_off_svg;
-    const int           overflow_1_off_svgSize = 1139;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_7_on_svg;
-    const int           overflow_7_on_svgSize = 1130;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_5_active_svg;
-    const int           overflow_5_active_svgSize = 1134;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_6_active_svg;
-    const int           overflow_6_active_svgSize = 1134;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_2_off_svg;
-    const int           overflow_2_off_svgSize = 1139;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_right_on_svg;
-    const int           overflow_right_on_svgSize = 1133;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_left_on_svg;
-    const int           overflow_left_on_svgSize = 1132;
-
-  #endif
-  #ifdef LABEL
-    extern const char*  overflow_1_on_svg;
-    const int           overflow_1_on_svgSize = 1129;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_10_off_svg;
-    const int           reference_level_10_off_svgSize = 10025;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  validate_on_stereo_svg;
-    const int           validate_on_stereo_svgSize = 7334;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  skin_off_svg;
-    const int           skin_off_svgSize = 8715;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  about_over_svg;
-    const int           about_over_svgSize = 5245;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  about_off_svg;
-    const int           about_off_svgSize = 10159;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  about_on_multi_svg;
-    const int           about_on_multi_svgSize = 5249;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  skin_on_multi_svg;
-    const int           skin_on_multi_svgSize = 4607;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  skin_over_svg;
-    const int           skin_over_svgSize = 4603;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_20_on_stereo_svg;
-    const int           reference_level_20_on_stereo_svgSize = 5377;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  skin_on_stereo_svg;
-    const int           skin_on_stereo_svgSize = 4608;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  validate_off_svg;
-    const int           validate_off_svgSize = 14661;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_20_off_svg;
-    const int           reference_level_20_off_svgSize = 10302;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_15_on_multi_svg;
-    const int           reference_level_15_on_multi_svgSize = 5154;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_20_on_multi_svg;
-    const int           reference_level_20_on_multi_svgSize = 5371;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_15_over_svg;
-    const int           reference_level_15_over_svgSize = 5155;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_10_over_svg;
-    const int           reference_level_10_over_svgSize = 5100;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  validate_over_svg;
-    const int           validate_over_svgSize = 7329;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_10_on_stereo_svg;
-    const int           reference_level_10_on_stereo_svgSize = 5100;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reset_off_svg;
-    const int           reset_off_svgSize = 10763;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_20_over_svg;
-    const int           reference_level_20_over_svgSize = 5372;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_15_off_svg;
-    const int           reference_level_15_off_svgSize = 10088;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  validate_on_multi_svg;
-    const int           validate_on_multi_svgSize = 7333;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reset_over_svg;
-    const int           reset_over_svgSize = 5843;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_15_on_stereo_svg;
-    const int           reference_level_15_on_stereo_svgSize = 5160;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reset_on_multi_svg;
-    const int           reset_on_multi_svgSize = 5847;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reset_on_stereo_svg;
-    const int           reset_on_stereo_svgSize = 5848;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  about_on_stereo_svg;
-    const int           about_on_stereo_svgSize = 5250;
-
-  #endif
-  #ifdef BUTTON
-    extern const char*  reference_level_10_on_multi_svg;
-    const int           reference_level_10_on_multi_svgSize = 5099;
-
-  #endif
-  #ifdef BACKGROUND
-    extern const char*  multi_svg;
-    const int           multi_svgSize = 157291;
-
-  #endif
-  #ifdef BACKGROUND
-    extern const char*  stereo_svg;
-    const int           stereo_svgSize = 106856;
-
-  #endif
+    const int           Skin_xml_len = 10103;
+
+    extern const char*  background_multi_svg;
+    const int           background_multi_svg_len = 157291;
+
+    extern const char*  background_stereo_svg;
+    const int           background_stereo_svg_len = 106856;
+
+    extern const char*  button_about_off_svg;
+    const int           button_about_off_svg_len = 10159;
+
+    extern const char*  button_about_on_multi_svg;
+    const int           button_about_on_multi_svg_len = 5249;
+
+    extern const char*  button_about_on_stereo_svg;
+    const int           button_about_on_stereo_svg_len = 5250;
+
+    extern const char*  button_about_over_svg;
+    const int           button_about_over_svg_len = 5245;
+
+    extern const char*  button_reference_level_10_off_svg;
+    const int           button_reference_level_10_off_svg_len = 10025;
+
+    extern const char*  button_reference_level_10_on_multi_svg;
+    const int           button_reference_level_10_on_multi_svg_len = 5099;
+
+    extern const char*  button_reference_level_10_on_stereo_svg;
+    const int           button_reference_level_10_on_stereo_svg_len = 5100;
+
+    extern const char*  button_reference_level_10_over_svg;
+    const int           button_reference_level_10_over_svg_len = 5100;
+
+    extern const char*  button_reference_level_15_off_svg;
+    const int           button_reference_level_15_off_svg_len = 10088;
+
+    extern const char*  button_reference_level_15_on_multi_svg;
+    const int           button_reference_level_15_on_multi_svg_len = 5154;
+
+    extern const char*  button_reference_level_15_on_stereo_svg;
+    const int           button_reference_level_15_on_stereo_svg_len = 5160;
+
+    extern const char*  button_reference_level_15_over_svg;
+    const int           button_reference_level_15_over_svg_len = 5155;
+
+    extern const char*  button_reference_level_20_off_svg;
+    const int           button_reference_level_20_off_svg_len = 10302;
+
+    extern const char*  button_reference_level_20_on_multi_svg;
+    const int           button_reference_level_20_on_multi_svg_len = 5371;
+
+    extern const char*  button_reference_level_20_on_stereo_svg;
+    const int           button_reference_level_20_on_stereo_svg_len = 5377;
+
+    extern const char*  button_reference_level_20_over_svg;
+    const int           button_reference_level_20_over_svg_len = 5372;
+
+    extern const char*  button_reset_off_svg;
+    const int           button_reset_off_svg_len = 10763;
+
+    extern const char*  button_reset_on_multi_svg;
+    const int           button_reset_on_multi_svg_len = 5847;
+
+    extern const char*  button_reset_on_stereo_svg;
+    const int           button_reset_on_stereo_svg_len = 5848;
+
+    extern const char*  button_reset_over_svg;
+    const int           button_reset_over_svg_len = 5843;
+
+    extern const char*  button_skin_off_svg;
+    const int           button_skin_off_svg_len = 8715;
+
+    extern const char*  button_skin_on_multi_svg;
+    const int           button_skin_on_multi_svg_len = 4607;
+
+    extern const char*  button_skin_on_stereo_svg;
+    const int           button_skin_on_stereo_svg_len = 4608;
+
+    extern const char*  button_skin_over_svg;
+    const int           button_skin_over_svg_len = 4603;
+
+    extern const char*  button_validate_off_svg;
+    const int           button_validate_off_svg_len = 14661;
+
+    extern const char*  button_validate_on_multi_svg;
+    const int           button_validate_on_multi_svg_len = 7333;
+
+    extern const char*  button_validate_on_stereo_svg;
+    const int           button_validate_on_stereo_svg_len = 7334;
+
+    extern const char*  button_validate_over_svg;
+    const int           button_validate_over_svg_len = 7329;
+
+    extern const char*  label_debug_multi_svg;
+    const int           label_debug_multi_svg_len = 4100;
+
+    extern const char*  label_debug_stereo_svg;
+    const int           label_debug_stereo_svg_len = 4083;
+
+    extern const char*  label_overflow_1_active_svg;
+    const int           label_overflow_1_active_svg_len = 1134;
+
+    extern const char*  label_overflow_1_off_svg;
+    const int           label_overflow_1_off_svg_len = 1139;
+
+    extern const char*  label_overflow_1_on_svg;
+    const int           label_overflow_1_on_svg_len = 1129;
+
+    extern const char*  label_overflow_2_active_svg;
+    const int           label_overflow_2_active_svg_len = 1134;
+
+    extern const char*  label_overflow_2_off_svg;
+    const int           label_overflow_2_off_svg_len = 1139;
+
+    extern const char*  label_overflow_2_on_svg;
+    const int           label_overflow_2_on_svg_len = 1129;
+
+    extern const char*  label_overflow_3_active_svg;
+    const int           label_overflow_3_active_svg_len = 1134;
+
+    extern const char*  label_overflow_3_off_svg;
+    const int           label_overflow_3_off_svg_len = 1139;
+
+    extern const char*  label_overflow_3_on_svg;
+    const int           label_overflow_3_on_svg_len = 1130;
+
+    extern const char*  label_overflow_4_active_svg;
+    const int           label_overflow_4_active_svg_len = 1134;
+
+    extern const char*  label_overflow_4_off_svg;
+    const int           label_overflow_4_off_svg_len = 1139;
+
+    extern const char*  label_overflow_4_on_svg;
+    const int           label_overflow_4_on_svg_len = 1130;
+
+    extern const char*  label_overflow_5_active_svg;
+    const int           label_overflow_5_active_svg_len = 1134;
+
+    extern const char*  label_overflow_5_off_svg;
+    const int           label_overflow_5_off_svg_len = 1139;
+
+    extern const char*  label_overflow_5_on_svg;
+    const int           label_overflow_5_on_svg_len = 1130;
+
+    extern const char*  label_overflow_6_active_svg;
+    const int           label_overflow_6_active_svg_len = 1134;
+
+    extern const char*  label_overflow_6_off_svg;
+    const int           label_overflow_6_off_svg_len = 1139;
+
+    extern const char*  label_overflow_6_on_svg;
+    const int           label_overflow_6_on_svg_len = 1130;
+
+    extern const char*  label_overflow_7_active_svg;
+    const int           label_overflow_7_active_svg_len = 1134;
+
+    extern const char*  label_overflow_7_off_svg;
+    const int           label_overflow_7_off_svg_len = 1139;
+
+    extern const char*  label_overflow_7_on_svg;
+    const int           label_overflow_7_on_svg_len = 1130;
+
+    extern const char*  label_overflow_8_active_svg;
+    const int           label_overflow_8_active_svg_len = 1134;
+
+    extern const char*  label_overflow_8_off_svg;
+    const int           label_overflow_8_off_svg_len = 1139;
+
+    extern const char*  label_overflow_8_on_svg;
+    const int           label_overflow_8_on_svg_len = 1130;
+
+    extern const char*  label_overflow_left_active_svg;
+    const int           label_overflow_left_active_svg_len = 1137;
+
+    extern const char*  label_overflow_left_off_svg;
+    const int           label_overflow_left_off_svg_len = 1142;
+
+    extern const char*  label_overflow_left_on_svg;
+    const int           label_overflow_left_on_svg_len = 1132;
+
+    extern const char*  label_overflow_right_active_svg;
+    const int           label_overflow_right_active_svg_len = 1138;
+
+    extern const char*  label_overflow_right_off_svg;
+    const int           label_overflow_right_off_svg_len = 1143;
+
+    extern const char*  label_overflow_right_on_svg;
+    const int           label_overflow_right_on_svg_len = 1133;
+
+    extern const char*  label_signal_1_high_svg;
+    const int           label_signal_1_high_svg_len = 1860;
+
+    extern const char*  label_signal_1_low_svg;
+    const int           label_signal_1_low_svg_len = 1901;
+
+    extern const char*  label_signal_1_off_svg;
+    const int           label_signal_1_off_svg_len = 1862;
+
+    extern const char*  label_signal_2_high_svg;
+    const int           label_signal_2_high_svg_len = 2126;
+
+    extern const char*  label_signal_2_low_svg;
+    const int           label_signal_2_low_svg_len = 2167;
+
+    extern const char*  label_signal_2_off_svg;
+    const int           label_signal_2_off_svg_len = 2128;
+
+    extern const char*  label_signal_3_high_svg;
+    const int           label_signal_3_high_svg_len = 2367;
+
+    extern const char*  label_signal_3_low_svg;
+    const int           label_signal_3_low_svg_len = 2408;
+
+    extern const char*  label_signal_3_off_svg;
+    const int           label_signal_3_off_svg_len = 2369;
+
+    extern const char*  label_signal_4_high_svg;
+    const int           label_signal_4_high_svg_len = 1939;
+
+    extern const char*  label_signal_4_low_svg;
+    const int           label_signal_4_low_svg_len = 1980;
+
+    extern const char*  label_signal_4_off_svg;
+    const int           label_signal_4_off_svg_len = 1941;
+
+    extern const char*  label_signal_5_high_svg;
+    const int           label_signal_5_high_svg_len = 2201;
+
+    extern const char*  label_signal_5_low_svg;
+    const int           label_signal_5_low_svg_len = 2242;
+
+    extern const char*  label_signal_5_off_svg;
+    const int           label_signal_5_off_svg_len = 2203;
+
+    extern const char*  label_signal_6_high_svg;
+    const int           label_signal_6_high_svg_len = 2248;
+
+    extern const char*  label_signal_6_low_svg;
+    const int           label_signal_6_low_svg_len = 2289;
+
+    extern const char*  label_signal_6_off_svg;
+    const int           label_signal_6_off_svg_len = 2249;
+
+    extern const char*  label_signal_7_high_svg;
+    const int           label_signal_7_high_svg_len = 1857;
+
+    extern const char*  label_signal_7_low_svg;
+    const int           label_signal_7_low_svg_len = 1898;
+
+    extern const char*  label_signal_7_off_svg;
+    const int           label_signal_7_off_svg_len = 1858;
+
+    extern const char*  label_signal_8_high_svg;
+    const int           label_signal_8_high_svg_len = 2524;
+
+    extern const char*  label_signal_8_low_svg;
+    const int           label_signal_8_low_svg_len = 2566;
+
+    extern const char*  label_signal_8_off_svg;
+    const int           label_signal_8_off_svg_len = 2636;
+
+    extern const char*  label_signal_left_high_svg;
+    const int           label_signal_left_high_svg_len = 1835;
+
+    extern const char*  label_signal_left_low_svg;
+    const int           label_signal_left_low_svg_len = 1876;
+
+    extern const char*  label_signal_left_off_svg;
+    const int           label_signal_left_off_svg_len = 1838;
+
+    extern const char*  label_signal_right_high_svg;
+    const int           label_signal_right_high_svg_len = 2088;
+
+    extern const char*  label_signal_right_low_svg;
+    const int           label_signal_right_low_svg_len = 2129;
+
+    extern const char*  label_signal_right_off_svg;
+    const int           label_signal_right_off_svg_len = 2091;
+
+    extern const char*  meter_average_1_svg;
+    const int           meter_average_1_svg_len = 1008;
+
+    extern const char*  meter_average_2_svg;
+    const int           meter_average_2_svg_len = 1008;
+
+    extern const char*  meter_average_3_svg;
+    const int           meter_average_3_svg_len = 1010;
+
+    extern const char*  meter_average_4_svg;
+    const int           meter_average_4_svg_len = 1010;
+
+    extern const char*  meter_average_5_svg;
+    const int           meter_average_5_svg_len = 1010;
+
+    extern const char*  meter_average_6_svg;
+    const int           meter_average_6_svg_len = 1010;
+
+    extern const char*  meter_average_7_svg;
+    const int           meter_average_7_svg_len = 1010;
+
+    extern const char*  meter_average_8_svg;
+    const int           meter_average_8_svg_len = 1010;
+
+    extern const char*  meter_average_left_svg;
+    const int           meter_average_left_svg_len = 1011;
+
+    extern const char*  meter_average_right_svg;
+    const int           meter_average_right_svg_len = 1012;
+
+    extern const char*  meter_peak_1_svg;
+    const int           meter_peak_1_svg_len = 998;
+
+    extern const char*  meter_peak_2_svg;
+    const int           meter_peak_2_svg_len = 1005;
+
+    extern const char*  meter_peak_3_svg;
+    const int           meter_peak_3_svg_len = 1000;
+
+    extern const char*  meter_peak_4_svg;
+    const int           meter_peak_4_svg_len = 1007;
+
+    extern const char*  meter_peak_5_svg;
+    const int           meter_peak_5_svg_len = 1000;
+
+    extern const char*  meter_peak_6_svg;
+    const int           meter_peak_6_svg_len = 1007;
+
+    extern const char*  meter_peak_7_svg;
+    const int           meter_peak_7_svg_len = 1000;
+
+    extern const char*  meter_peak_8_svg;
+    const int           meter_peak_8_svg_len = 1007;
+
+    extern const char*  meter_peak_left_svg;
+    const int           meter_peak_left_svg_len = 1001;
+
+    extern const char*  meter_peak_right_svg;
+    const int           meter_peak_right_svg_len = 1009;
 }
