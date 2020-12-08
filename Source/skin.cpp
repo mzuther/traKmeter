@@ -24,11 +24,25 @@
 ---------------------------------------------------------------------------- */
 
 #include "skin.h"
+#include "../skins/Source/trakmeter_skin.h"
 
 
 bool Skin::loadSkin( int numberOfChannels,
-                     int targetRecordingLevel )
+                     int targetRecordingLevel,
+                     bool loadExternalResources )
 {
+   loadExternalResources_ = loadExternalResources;
+
+   if ( loadExternalResources_ ) {
+      Logger::outputDebugString( "" );
+      Logger::outputDebugString( "********************************************************************************" );
+      Logger::outputDebugString( "*                                                                              *" );
+      Logger::outputDebugString( "*  Loading resources from external file.  Please turn off before committing!   *" );
+      Logger::outputDebugString( "*                                                                              *" );
+      Logger::outputDebugString( "********************************************************************************" );
+      Logger::outputDebugString( "" );
+   }
+
    updateSkin( numberOfChannels,
                targetRecordingLevel );
 
@@ -40,6 +54,15 @@ void Skin::updateSkin( int numberOfChannels,
                        int targetRecordingLevel )
 {
    jassert( numberOfChannels > 0 );
+
+   if ( loadExternalResources_ && ! getSkinDirectory().isDirectory() ) {
+      Logger::outputDebugString(
+         String( "[Skin] directory \"" ) +
+         getSkinDirectory().getFullPathName() +
+         "\" not found" );
+
+      document_ = nullptr;
+   }
 
    currentBackgroundName_ = "image";
 
@@ -75,8 +98,10 @@ void Skin::updateSkin( int numberOfChannels,
 
 File Skin::getSkinDirectory()
 {
+   jassert( loadExternalResources_ );
+
    auto resourceDirectory = TraKmeterPluginParameters::getResourceDirectory();
-   return resourceDirectory.getChildFile( "./Skins/" );
+   return resourceDirectory.getChildFile( "./Skins/Resources/" );
 }
 
 
@@ -86,4 +111,38 @@ File Skin::getSettingsFile()
    auto defaultSettingsFile = settingsDirectory.getChildFile( "traKmeter.settings" );
 
    return defaultSettingsFile;
+}
+
+
+bool Skin::resourceExists( const String& strFilename )
+{
+   if ( loadExternalResources_ ) {
+      auto fileImage = getSkinDirectory().getChildFile( strFilename );
+      return fileImage.existsAsFile();
+   } else {
+      return trakmeter::skin::resourceExists( strFilename );
+   }
+}
+
+
+std::unique_ptr<Drawable> Skin::loadDrawable( const String& strFilename )
+{
+   if ( loadExternalResources_ ) {
+      auto fileImage = getSkinDirectory().getChildFile( strFilename );
+      return Drawable::createFromImageFile( fileImage );
+   } else {
+      return trakmeter::skin::getDrawable( strFilename );
+   }
+}
+
+
+std::unique_ptr<XmlElement> Skin::loadXML( const String& strFilename )
+{
+   if ( loadExternalResources_ ) {
+      auto skinFile = getSkinDirectory().getChildFile( strFilename );
+      return juce::parseXML( skinFile );
+   } else {
+      auto xmlData = trakmeter::skin::getStringUTF8( strFilename );
+      return juce::parseXML( xmlData );
+   }
 }

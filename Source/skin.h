@@ -35,13 +35,22 @@ class Skin :
 {
 public:
    bool loadSkin( int numberOfChannels,
-                  int targetRecordingLevel );
+                  int targetRecordingLevel,
+                  bool loadExternalResources );
 
    void updateSkin( int numberOfChannels,
                     int targetRecordingLevel );
 
    virtual File getSkinDirectory() override;
    virtual File getSettingsFile() override;
+
+protected:
+   bool loadExternalResources_;
+
+   virtual bool resourceExists( const String& strFilename ) override;
+
+   virtual std::unique_ptr<Drawable> loadDrawable( const String& strFilename ) override;
+   virtual std::unique_ptr<XmlElement> loadXML( const String& strFilename ) override;
 
 private:
    JUCE_LEAK_DETECTOR( Skin );

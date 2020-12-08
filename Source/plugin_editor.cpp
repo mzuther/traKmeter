@@ -147,8 +147,10 @@ void TraKmeterAudioProcessorEditor::loadSkin()
    int recordingLevel = audioProcessor.getRealInteger(
                            TraKmeterPluginParameters::selTargetRecordingLevel );
 
+   bool loadExternalResources = false;
    skin.loadSkin( numberOfInputChannels,
-                  recordingLevel );
+                  recordingLevel,
+                  loadExternalResources );
 
    // will also apply skin to plug-in editor
    needsMeterReload = true;
