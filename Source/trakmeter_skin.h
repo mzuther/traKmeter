@@ -8,6 +8,9 @@
 
 #include "FrutHeader.h"
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-variable"
+
 namespace trakmeter::skin
 {
 
@@ -470,3 +473,5 @@ const char* getResource( const String& resourceName, int& numberOfBytes );
 std::unique_ptr<Drawable> getDrawable( const String& resourceName );
 String getStringUTF8( const String& resourceName );
 }
+
+#pragma clang diagnostic pop

@@ -61,8 +61,6 @@ workspace "trakmeter"
 
     files {
         "../Source/frut/FrutHeader.h",
-        "../skins/Source/trakmeter_skin.h",
-        "../skins/Source/trakmeter_skin.cpp",
         "../Source/frut/amalgamated/*.h",
         "../Source/frut/amalgamated/*.cpp",
 

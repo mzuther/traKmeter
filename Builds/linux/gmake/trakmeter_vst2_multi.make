@@ -183,8 +183,8 @@ OBJECTS := \
 	$(OBJDIR)/plugin_processor.o \
 	$(OBJDIR)/skin.o \
 	$(OBJDIR)/trakmeter.o \
-	$(OBJDIR)/window_validation_content.o \
 	$(OBJDIR)/trakmeter_skin.o \
+	$(OBJDIR)/window_validation_content.o \
 
 RESOURCES := \
 
@@ -339,10 +339,10 @@ $(OBJDIR)/skin.o: ../../../Source/skin.cpp
 $(OBJDIR)/trakmeter.o: ../../../Source/trakmeter.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/window_validation_content.o: ../../../Source/window_validation_content.cpp
+$(OBJDIR)/trakmeter_skin.o: ../../../Source/trakmeter_skin.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
-$(OBJDIR)/trakmeter_skin.o: ../../../skins/Source/trakmeter_skin.cpp
+$(OBJDIR)/window_validation_content.o: ../../../Source/window_validation_content.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
