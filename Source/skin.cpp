@@ -24,7 +24,6 @@
 ---------------------------------------------------------------------------- */
 
 #include "skin.h"
-#include "../skins/Source/trakmeter_skin.h"
 
 
 bool Skin::loadSkin( int numberOfChannels,

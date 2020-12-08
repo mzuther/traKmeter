@@ -28,6 +28,7 @@
 
 #include "FrutHeader.h"
 #include "plugin_parameters.h"
+#include "../skins/Source/trakmeter_skin.h"
 
 
 class Skin :
