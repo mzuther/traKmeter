@@ -77,12 +77,6 @@ printf "\n  === Finalising binaries ===\n\n"
 
 mkdir -p "$binary_dir/debug_symbols"
 
-finalise_binary  "standalone/trakmeter_stereo"
-finalise_binary  "standalone/trakmeter_multi"
-
-finalise_binary  "vst2/trakmeter_stereo_vst2.so"
-finalise_binary  "vst2/trakmeter_multi_vst2.so"
-
 finalise_binary  "standalone/trakmeter_stereo_x64"
 finalise_binary  "standalone/trakmeter_multi_x64"
 
