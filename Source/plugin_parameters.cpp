@@ -147,6 +147,6 @@ const File TraKmeterPluginParameters::getResourceDirectory()
 #if JucePlugin_Build_VST3
    return applicationDirectory.getChildFile( "../Resources/" );
 #else // JucePlugin_Build_VST3
-   return applicationDirectory.getChildFile( "./trakmeter/" );
+   return applicationDirectory;
 #endif // JucePlugin_Build_VST3
 }
