@@ -7,14 +7,14 @@
               pluginCode="traK" pluginChannelConfigs="" pluginIsSynth="0" pluginWantsMidiIn="0"
               pluginProducesMidiOut="0" pluginSilenceInIsSilenceOut="1" pluginTailLength="0"
               pluginEditorRequiresKeys="0" pluginAUExportPrefix="traKmeterAU"
-              pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="0" jucerVersion="5.4.7"
-              companyName="Martin Zuther" aaxIdentifier="de.mzuther.traKmeter"
-              pluginAAXCategory="0" includeBinaryInAppConfig="1" pluginManufacturerEmail="support@yourcompany.com"
-              companyWebsite="http://code.mzuther.de/" pluginVSTCategory="kPlugCategAnalysis"
-              pluginIsMidiEffectPlugin="0" displaySplashScreen="0" reportAppUsage="0"
-              splashScreenColour="Dark" pluginVST3Category="Analyzer,Fx" pluginFormats="buildStandalone"
+              pluginAUViewClass="traKmeterAU_V1" pluginRTASCategory="0" companyName="Martin Zuther"
+              aaxIdentifier="de.mzuther.traKmeter" pluginAAXCategory="0" includeBinaryInAppConfig="1"
+              pluginManufacturerEmail="support@yourcompany.com" companyWebsite="http://code.mzuther.de/"
+              pluginVSTCategory="kPlugCategAnalysis" pluginIsMidiEffectPlugin="0"
+              displaySplashScreen="0" reportAppUsage="0" splashScreenColour="Dark"
+              pluginVST3Category="Analyzer,Fx" pluginFormats="buildStandalone"
               buildVST="0" buildVST3="0" buildAU="0" buildAUv3="0" buildRTAS="0"
-              buildAAX="0" buildStandalone="1" enableIAA="0">
+              buildAAX="0" buildStandalone="1" enableIAA="0" jucerFormatVersion="1">
   <EXPORTFORMATS>
     <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/Documents/code/cpp/trakmeter/libraries/vst2"
                 extraCompilerFlags="" externalLibraries="dl&#10;freetype&#10;pthread&#10;rt&#10;X11&#10;Xext&#10;asound"
