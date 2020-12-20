@@ -116,6 +116,10 @@ case $1 in
         MAKEFILE="trakmeter_vst2_multi"
         MAKEFILE_PRINT="VST2 plug-in (Multi)"
         ;;
+    5)
+        MAKEFILE="trakmeter_vst3"
+        MAKEFILE_PRINT="VST3 plug-in"
+        ;;
     *)
         print_line "  Target:    ..."
         print_line ""
@@ -128,6 +132,8 @@ case $1 in
         print_line ""
         print_line "  3: VST2 plug-in (Stereo)"
         print_line "  4: VST2 plug-in (Multi)"
+        print_line ""
+        print_line "  5: VST3 plug-in"
         print_line ""
 
         exit

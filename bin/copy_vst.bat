@@ -67,7 +67,7 @@ echo.
 echo VST3 (32 bit)
 echo.
 
-call :CopyVstDelete "vst3/trakmeter.vst3" "%vst3_32%"
+call :CopyVstDelete "vst3/traKmeter.vst3" "%vst3_32%"
 
 
 echo.
@@ -91,7 +91,7 @@ echo.
 echo VST3 (64 bit)
 echo.
 
-call :CopyVstDelete "vst3/trakmeter.vst3" "%vst3_64%"
+call :CopyVstDelete "vst3/traKmeter.vst3" "%vst3_64%"
 
 
 echo.

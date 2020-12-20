@@ -83,6 +83,8 @@ finalise_binary  "standalone/trakmeter_multi_x64"
 finalise_binary  "vst2/trakmeter_stereo_vst2_x64.so"
 finalise_binary  "vst2/trakmeter_multi_vst2_x64.so"
 
+finalise_binary  "vst3/traKmeter.vst3/Contents/x86_64-linux/traKmeter.so"
+
 finalise_binary  "standalone/traKmeter (Stereo).exe"
 finalise_symbols "standalone/traKmeter (Stereo).pdb"
 finalise_binary  "standalone/traKmeter (Multi).exe"
@@ -93,10 +95,8 @@ finalise_symbols "vst2/traKmeter (Stereo).pdb"
 finalise_binary  "vst2/traKmeter (Multi).dll"
 finalise_symbols "vst2/traKmeter (Multi).pdb"
 
-finalise_binary  "vst3/trakmeter.vst3/Contents/x86-win/traKmeter (Stereo).vst3"
-finalise_symbols "vst3/trakmeter.vst3/Contents/x86-win/traKmeter (Stereo).pdb"
-finalise_binary  "vst3/trakmeter.vst3/Contents/x86-win/traKmeter (Multi).vst3"
-finalise_symbols "vst3/trakmeter.vst3/Contents/x86-win/traKmeter (Multi).pdb"
+finalise_binary  "vst3/traKmeter.vst3/Contents/x86-win/traKmeter.vst3"
+finalise_symbols "vst3/traKmeter.vst3/Contents/x86-win/traKmeter.pdb"
 
 finalise_binary  "standalone/traKmeter (Stereo x64).exe"
 finalise_symbols "standalone/traKmeter (Stereo x64).pdb"
@@ -108,9 +108,7 @@ finalise_symbols "vst2/traKmeter (Stereo x64).pdb"
 finalise_binary  "vst2/traKmeter (Multi x64).dll"
 finalise_symbols "vst2/traKmeter (Multi x64).pdb"
 
-finalise_binary  "vst3/trakmeter.vst3/Contents/x86_64-win/traKmeter (Stereo x64).vst3"
-finalise_symbols "vst3/trakmeter.vst3/Contents/x86_64-win/traKmeter (Stereo x64).pdb"
-finalise_binary  "vst3/trakmeter.vst3/Contents/x86_64-win/traKmeter (Multi x64).vst3"
-finalise_symbols "vst3/trakmeter.vst3/Contents/x86_64-win/traKmeter (Multi x64).pdb"
+finalise_binary  "vst3/traKmeter.vst3/Contents/x86_64-win/traKmeter.vst3"
+finalise_symbols "vst3/traKmeter.vst3/Contents/x86_64-win/traKmeter.pdb"
 
 printf "  Done.\n\n\n"

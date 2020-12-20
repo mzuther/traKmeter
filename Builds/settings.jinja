@@ -33,13 +33,48 @@
 {% set name = {'real': 'traKmeter', 'short': 'trakmeter'} %}
 
 
-{% set variants = [{'real':    'Stereo',
-                    'short':   'stereo',
-                    'defines': ['TRAKMETER_STEREO=1']},
+{% set targets = {
+   'standalone': [
+      {'real':    'Stereo',
+       'short':   'stereo',
+       'defines': [
+          'TRAKMETER_STEREO=1',
+      ]},
 
-                   {'real':    'Multi',
-                    'short':   'multi',
-                    'defines': ['TRAKMETER_MULTI=1']}] %}
+      {'real':    'Multi',
+       'short':   'multi',
+       'defines': [
+          'TRAKMETER_MULTI=1',
+      ]},
+   ],
+   'unittest': [
+      {'real':    '(undefined)',
+       'short':   '(undefined)',
+       'defines': [
+          'TRAKMETER_STEREO=1',
+      ]},
+   ],
+   'vst2': [
+      {'real':    'Stereo',
+       'short':   'stereo',
+       'defines': [
+          'TRAKMETER_STEREO=1',
+      ]},
+
+      {'real':    'Multi',
+       'short':   'multi',
+       'defines': [
+          'TRAKMETER_MULTI=1',
+      ]},
+   ],
+   'vst3': [
+      {'real':    '(undefined)',
+       'short':   '(undefined)',
+       'defines': [
+          'TRAKMETER_MULTIBUS=1',
+      ]},
+   ],
+} %}
 
 
 {% set includes = {
