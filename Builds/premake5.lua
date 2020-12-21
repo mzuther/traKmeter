@@ -468,15 +468,20 @@ workspace "trakmeter"
             targetdir "../bin/vst3/traKmeter.vst3/Contents/x86_64-win/"
 
         filter { "configurations:Debug" }
-            targetsuffix " Debug"
             objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst3_debug")
 
+        filter { "system:linux", "configurations:Debug" }
+            targetsuffix "\\ Debug"
+
+        filter { "system:windows", "configurations:Debug" }
+            targetsuffix " Debug"
+
         filter { "system:windows", "configurations:Debug", "platforms:x32" }
-            targetdir "C:/Program Files (x86)/Common Files/VST3/radix/traKmeter.vst3/Contents/x86-win/"
+            targetdir "C:/Program Files (x86)/Common Files/VST3/mzuther/traKmeter.vst3/Contents/x86-win/"
             debugcommand "C:/Program Files (x86)/REAPER/reaper.exe"
 
         filter { "system:windows", "configurations:Debug", "platforms:x64" }
-            targetdir "C:/Program Files/Common Files/VST3/radix/traKmeter.vst3/Contents/x86_64-win/"
+            targetdir "C:/Program Files/Common Files/VST3/mzuther/traKmeter.vst3/Contents/x86_64-win/"
             debugcommand "C:/Program Files/REAPER (x64)/reaper.exe"
 
         filter { "configurations:Release" }
