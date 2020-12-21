@@ -196,7 +196,7 @@ if archive_is_missing "gzip" "$release_dir/linux" ; then
 
     archive_create
 
-    archive_add "$binary_dir/standalone/trakmeter_stereo_x64" ""
+    archive_add "$binary_dir/standalone/trakmeter_x64" ""
     archive_add "$binary_dir/standalone/trakmeter_multi_x64" ""
 
     archive_add "$binary_dir/Documentation" ""
@@ -215,8 +215,8 @@ if archive_is_missing "gzip" "$release_dir/linux" ; then
 
     archive_create
 
-    archive_add "$binary_dir/vst2/trakmeter_stereo_vst2_x64.so" ""
-    archive_add "$binary_dir/vst2/trakmeter_multi_vst2_x64.so" ""
+    archive_add "$binary_dir/vst2/trakmeter_vst2_x64.so" ""
+    archive_add "$binary_dir/vst2/trakmeter_vst2_multi_x64.so" ""
 
     archive_add "$binary_dir/Documentation" ""
 
@@ -253,8 +253,8 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "$binary_dir/standalone/traKmeter (Stereo).exe" ""
-    archive_add "$binary_dir/standalone/traKmeter (Multi).exe" ""
+    archive_add "$binary_dir/standalone/traKmeter.exe" ""
+    archive_add "$binary_dir/standalone/traKmeter (multi).exe" ""
 
     archive_add "$binary_dir/Documentation" ""
 
@@ -272,8 +272,8 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "$binary_dir/vst2/traKmeter (Stereo).dll" ""
-    archive_add "$binary_dir/vst2/traKmeter (Multi).dll" ""
+    archive_add "$binary_dir/vst2/traKmeter.dll" ""
+    archive_add "$binary_dir/vst2/traKmeter (multi).dll" ""
 
     archive_add "$binary_dir/Documentation" ""
 
@@ -310,8 +310,8 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "$binary_dir/standalone/traKmeter (Stereo x64).exe" ""
-    archive_add "$binary_dir/standalone/traKmeter (Multi x64).exe" ""
+    archive_add "$binary_dir/standalone/traKmeter x64.exe" ""
+    archive_add "$binary_dir/standalone/traKmeter (multi) x64.exe" ""
 
     archive_add "$binary_dir/Documentation" ""
 
@@ -329,8 +329,8 @@ if archive_is_missing "zip" "$release_dir/windows" ; then
 
     archive_create
 
-    archive_add "$binary_dir/vst2/traKmeter (Stereo x64).dll" ""
-    archive_add "$binary_dir/vst2/traKmeter (Multi x64).dll" ""
+    archive_add "$binary_dir/vst2/traKmeter x64.dll" ""
+    archive_add "$binary_dir/vst2/traKmeter (multi) x64.dll" ""
 
     archive_add "$binary_dir/Documentation" ""
 

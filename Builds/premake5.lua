@@ -183,7 +183,7 @@ workspace "trakmeter"
         targetsuffix "_debug"
 
     filter { "system:linux", "configurations:Debug", "platforms:x64" }
-        targetsuffix "_debug_x64"
+        targetsuffix "_x64_debug"
 
     filter { "system:windows", "configurations:Debug" }
        symbols "Full"
@@ -191,10 +191,10 @@ workspace "trakmeter"
        buildoptions { "/bigobj" }
 
     filter { "system:windows", "configurations:Debug", "platforms:x32" }
-        targetsuffix ", Debug)"
+        targetsuffix " Debug"
 
     filter { "system:windows", "configurations:Debug", "platforms:x64" }
-        targetsuffix " x64, Debug)"
+        targetsuffix " x64 Debug"
 
     filter { "configurations:Release" }
         defines { "NDEBUG=1", "JUCE_CHECK_MEMORY_LEAKS=0" }
@@ -217,10 +217,10 @@ workspace "trakmeter"
        buildoptions { "/wd4996" }
 
     filter { "system:windows", "configurations:Release", "platforms:x32" }
-        targetsuffix ")"
+        targetsuffix ""
 
     filter { "system:windows", "configurations:Release", "platforms:x64" }
-        targetsuffix " x64)"
+        targetsuffix " x64"
 
 --------------------------------------------------------------------------------
 
@@ -242,7 +242,7 @@ workspace "trakmeter"
         }
 
         filter { "system:linux" }
-            targetname "trakmeter_stereo"
+            targetname "trakmeter"
 
             defines {
                 "JUCE_ALSA=1",
@@ -256,7 +256,7 @@ workspace "trakmeter"
             }
 
         filter { "system:windows" }
-            targetname "traKmeter (Stereo"
+            targetname "traKmeter"
             targetextension (".exe")
 
             defines {
@@ -267,10 +267,10 @@ workspace "trakmeter"
             }
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/standalone_stereo_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_standalone_stereo_debug")
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/standalone_stereo_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_standalone_stereo_release")
 
 --------------------------------------------------------------------------------
 
@@ -306,7 +306,7 @@ workspace "trakmeter"
             }
 
         filter { "system:windows" }
-            targetname "traKmeter (Multi"
+            targetname "traKmeter (multi)"
             targetextension (".exe")
 
             defines {
@@ -317,10 +317,10 @@ workspace "trakmeter"
             }
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/standalone_multi_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_standalone_multi_debug")
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/standalone_multi_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_standalone_multi_release")
 
 --------------------------------------------------------------------------------
 
@@ -351,14 +351,14 @@ workspace "trakmeter"
         }
 
         filter { "system:linux" }
-            targetname "trakmeter_stereo_vst2"
+            targetname "trakmeter_vst2"
 
         filter { "system:windows" }
-            targetname "traKmeter (Stereo"
+            targetname "traKmeter"
             targetextension (".dll")
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst2_stereo_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst2_stereo_debug")
 
         filter { "system:windows", "configurations:Debug", "platforms:x32" }
             targetdir "D:/Plugins/32-bit/Categories/Tools/Analyzer/Meter"
@@ -369,7 +369,7 @@ workspace "trakmeter"
             debugcommand "C:/Program Files/REAPER (x64)/reaper.exe"
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst2_stereo_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst2_stereo_release")
 
 --------------------------------------------------------------------------------
 
@@ -400,14 +400,14 @@ workspace "trakmeter"
         }
 
         filter { "system:linux" }
-            targetname "trakmeter_multi_vst2"
+            targetname "trakmeter_vst2_multi"
 
         filter { "system:windows" }
-            targetname "traKmeter (Multi"
+            targetname "traKmeter (multi)"
             targetextension (".dll")
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst2_multi_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst2_multi_debug")
 
         filter { "system:windows", "configurations:Debug", "platforms:x32" }
             targetdir "D:/Plugins/32-bit/Categories/Tools/Analyzer/Meter"
@@ -418,7 +418,7 @@ workspace "trakmeter"
             debugcommand "C:/Program Files/REAPER (x64)/reaper.exe"
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst2_multi_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst2_multi_release")
 
 --------------------------------------------------------------------------------
 
@@ -468,7 +468,8 @@ workspace "trakmeter"
             targetdir "../bin/vst3/traKmeter.vst3/Contents/x86_64-win/"
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst3_debug")
+            targetsuffix " Debug"
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst3_debug")
 
         filter { "system:windows", "configurations:Debug", "platforms:x32" }
             targetdir "C:/Program Files (x86)/Common Files/VST3/radix/traKmeter.vst3/Contents/x86-win/"
@@ -478,21 +479,16 @@ workspace "trakmeter"
             targetdir "C:/Program Files/Common Files/VST3/radix/traKmeter.vst3/Contents/x86_64-win/"
             debugcommand "C:/Program Files/REAPER (x64)/reaper.exe"
 
-        filter { "system:linux", "configurations:Debug" }
-            targetsuffix " (Debug)"
-
-        filter { "system:linux", "configurations:Release" }
-            targetsuffix ""
-
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/vst3_release")
+            targetsuffix ""
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst3_release")
 
 --------------------------------------------------------------------------------
 
 -- create unit tests on Linux only
 if os.target() == "linux" then
 
-    project ("unittest")
+    project ("trakmeter_unittest")
         kind "ConsoleApp"
         targetdir "../bin/unittest/"
 
@@ -514,7 +510,7 @@ if os.target() == "linux" then
         }
 
         filter { "system:linux" }
-            targetname "unittest"
+            targetname "trakmeter_unittest"
 
             defines {
                 "JUCE_ALSA=0",
@@ -538,10 +534,10 @@ if os.target() == "linux" then
         }
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/unittest_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_unittest_debug")
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/unittest_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_unittest_release")
 
 -- create unit tests on Linux only
 end

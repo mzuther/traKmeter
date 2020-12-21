@@ -30,46 +30,67 @@
 {% set code_indentation = '3' %}
 
 
-{% set name = {'real': 'traKmeter', 'short': 'trakmeter'} %}
+{% set project = {
+   'name':       'traKmeter',
+   'name_lower': 'trakmeter'}
+%}
 
 
 {% set targets = {
    'standalone': [
-      {'real':    'Stereo',
-       'short':   'stereo',
+      {
+       'name':            'trakmeter_standalone_stereo',
+       'binary_linux':    'trakmeter',
+       'binary_windows':  'traKmeter',
+       'description':     'Standalone (stereo)',
        'defines': [
           'TRAKMETER_STEREO=1',
       ]},
 
-      {'real':    'Multi',
-       'short':   'multi',
+      {
+       'name':            'trakmeter_standalone_multi',
+       'binary_linux':    'trakmeter_multi',
+       'binary_windows':  'traKmeter (multi)',
+       'description':     'Standalone (multi)',
        'defines': [
           'TRAKMETER_MULTI=1',
       ]},
    ],
    'unittest': [
-      {'real':    '(undefined)',
-       'short':   '(undefined)',
+      {
+       'name':            'trakmeter_unittest',
+       'binary_linux':    'trakmeter_unittest',
+       'binary_windows':  'traKmeter (unit test)',
+       'description':     'Unittest',
        'defines': [
           'TRAKMETER_STEREO=1',
       ]},
    ],
    'vst2': [
-      {'real':    'Stereo',
-       'short':   'stereo',
+      {
+       'name':            'trakmeter_vst2_stereo',
+       'binary_linux':    'trakmeter_vst2',
+       'binary_windows':  'traKmeter',
+       'description':     'VST2 plug-in (stereo)',
        'defines': [
           'TRAKMETER_STEREO=1',
       ]},
 
-      {'real':    'Multi',
-       'short':   'multi',
+      {
+       'name':            'trakmeter_vst2_multi',
+       'binary_linux':    'trakmeter_vst2_multi',
+       'binary_windows':  'traKmeter (multi)',
+       'description':     'VST2 plug-in (multi)',
        'defines': [
           'TRAKMETER_MULTI=1',
       ]},
    ],
    'vst3': [
-      {'real':    '(undefined)',
-       'short':   '(undefined)',
+      {
+       'name':            'trakmeter_vst3',
+       'binary_linux':    'traKmeter',
+       'binary_windows':  'traKmeter',
+       'description':     'VST3 plug-in',
        'defines': [
           'TRAKMETER_MULTIBUS=1',
       ]},

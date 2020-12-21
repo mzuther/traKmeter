@@ -45,7 +45,7 @@
 
 #ifdef TRAKMETER_MULTI
   #define JucePlugin_PluginCode  'traK'
-  #define JucePlugin_Name        "traKmeter (Multi)"
+  #define JucePlugin_Name        "traKmeter"
 #else
   #define JucePlugin_PluginCode  'trkS'
   #define JucePlugin_Name        "traKmeter (Stereo)"

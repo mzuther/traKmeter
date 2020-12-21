@@ -100,21 +100,21 @@ case $1 in
         ;;
     1)
         MAKEFILE="trakmeter_standalone_stereo"
-        MAKEFILE_PRINT="Standalone (Stereo)"
-        EXECUTABLE="standalone/trakmeter_stereo"
+        MAKEFILE_PRINT="Standalone (stereo)"
+        EXECUTABLE="standalone/trakmeter"
         ;;
     2)
         MAKEFILE="trakmeter_standalone_multi"
-        MAKEFILE_PRINT="Standalone (Multi)"
+        MAKEFILE_PRINT="Standalone (multi)"
         EXECUTABLE="standalone/trakmeter_multi"
         ;;
     3)
         MAKEFILE="trakmeter_vst2_stereo"
-        MAKEFILE_PRINT="VST2 plug-in (Stereo)"
+        MAKEFILE_PRINT="VST2 plug-in (stereo)"
         ;;
     4)
         MAKEFILE="trakmeter_vst2_multi"
-        MAKEFILE_PRINT="VST2 plug-in (Multi)"
+        MAKEFILE_PRINT="VST2 plug-in (multi)"
         ;;
     5)
         MAKEFILE="trakmeter_vst3"
@@ -127,11 +127,11 @@ case $1 in
         print_line "  c: Clean targets"
         print_line "  u: Unit tests"
         print_line ""
-        print_line "  1: Standalone (Stereo)"
-        print_line "  2: Standalone (Multi)"
+        print_line "  1: Standalone (stereo)"
+        print_line "  2: Standalone (multi)"
         print_line ""
-        print_line "  3: VST2 plug-in (Stereo)"
-        print_line "  4: VST2 plug-in (Multi)"
+        print_line "  3: VST2 plug-in (stereo)"
+        print_line "  4: VST2 plug-in (multi)"
         print_line ""
         print_line "  5: VST3 plug-in"
         print_line ""
