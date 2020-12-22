@@ -107,7 +107,7 @@ File Skin::getSkinDirectory()
 File Skin::getSettingsFile()
 {
    auto settingsDirectory = File::getSpecialLocation( File::userApplicationDataDirectory );
-   auto defaultSettingsFile = settingsDirectory.getChildFile( "traKmeter.settings" );
+   auto defaultSettingsFile = settingsDirectory.getChildFile( "traKmeter.json" );
 
    return defaultSettingsFile;
 }
