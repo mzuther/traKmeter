@@ -19,33 +19,33 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8C107EBE-789F-0788-21BE-1B830D2C182E}</ProjectGuid>
+    <ProjectGuid>{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>trakmeter_vst2_multi</RootNamespace>
+    <RootNamespace>trakmeter_standalone_8ch</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v142</PlatformToolset>
@@ -68,38 +68,38 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>D:\Plugins\32-bit\Categories\Tools\Analyzer\Meter\</OutDir>
-    <IntDir>..\..\..\bin\.intermediate_windows\trakmeter_vst2_multi_debug\x32\</IntDir>
-    <TargetName>traKmeter (multi) Debug</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <OutDir>..\..\..\bin\standalone\</OutDir>
+    <IntDir>..\..\..\bin\.intermediate_windows\trakmeter_standalone_8ch_debug\x32\</IntDir>
+    <TargetName>traKmeter (8ch) Debug</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>D:\Plugins\64-bit\Categories\Tools\Analyzer\Meter\</OutDir>
-    <IntDir>..\..\..\bin\.intermediate_windows\trakmeter_vst2_multi_debug\x64\</IntDir>
-    <TargetName>traKmeter (multi) x64 Debug</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <OutDir>..\..\..\bin\standalone\</OutDir>
+    <IntDir>..\..\..\bin\.intermediate_windows\trakmeter_standalone_8ch_debug\x64\</IntDir>
+    <TargetName>traKmeter (8ch) x64 Debug</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\..\bin\vst2\</OutDir>
-    <IntDir>..\..\..\bin\.intermediate_windows\trakmeter_vst2_multi_release\x32\</IntDir>
-    <TargetName>traKmeter (multi)</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <OutDir>..\..\..\bin\standalone\</OutDir>
+    <IntDir>..\..\..\bin\.intermediate_windows\trakmeter_standalone_8ch_release\x32\</IntDir>
+    <TargetName>traKmeter (8ch)</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\..\..\bin\vst2\</OutDir>
-    <IntDir>..\..\..\bin\.intermediate_windows\trakmeter_vst2_multi_release\x64\</IntDir>
-    <TargetName>traKmeter (multi) x64</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <OutDir>..\..\..\bin\standalone\</OutDir>
+    <IntDir>..\..\..\bin\.intermediate_windows\trakmeter_standalone_8ch_release\x64\</IntDir>
+    <TargetName>traKmeter (8ch) x64</TargetName>
+    <TargetExt>.exe</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;TRAKMETER_MULTI=1;JucePlugin_Build_Standalone=0;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\juce\modules;..\..\..\Source\frut;..\..\..\libraries\vst2\VST2_SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;TRAKMETER_MULTICHANNEL=1;JucePlugin_Build_Standalone=1;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\juce\modules;..\..\..\Source\frut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -112,15 +112,15 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>D:\Plugins\32-bit\Categories\Tools\Analyzer\Meter\traKmeter (multi) Debug.lib</ImportLibrary>
+      <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;TRAKMETER_MULTI=1;JucePlugin_Build_Standalone=0;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\juce\modules;..\..\..\Source\frut;..\..\..\libraries\vst2\VST2_SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;_DEBUG=1;DEBUG=1;JUCE_CHECK_MEMORY_LEAKS=1;TRAKMETER_MULTICHANNEL=1;JucePlugin_Build_Standalone=1;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\juce\modules;..\..\..\Source\frut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <MinimalRebuild>false</MinimalRebuild>
@@ -132,15 +132,15 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>D:\Plugins\64-bit\Categories\Tools\Analyzer\Meter\traKmeter (multi) x64 Debug.lib</ImportLibrary>
+      <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;TRAKMETER_MULTI=1;JucePlugin_Build_Standalone=0;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\juce\modules;..\..\..\Source\frut;..\..\..\libraries\vst2\VST2_SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS=1;_USE_MATH_DEFINES=1;WIN32=1;NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;TRAKMETER_MULTICHANNEL=1;JucePlugin_Build_Standalone=1;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\juce\modules;..\..\..\Source\frut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -159,15 +159,15 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\..\..\bin\vst2\traKmeter (multi).lib</ImportLibrary>
+      <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;TRAKMETER_MULTI=1;JucePlugin_Build_Standalone=0;JucePlugin_Build_VST=1;JucePlugin_Build_VST3=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=0;JUCE_DIRECTSOUND=0;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\juce\modules;..\..\..\Source\frut;..\..\..\libraries\vst2\VST2_SDK;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_WINDOWS=1;_USE_MATH_DEFINES=1;WIN64=1;NDEBUG=1;JUCE_CHECK_MEMORY_LEAKS=0;TRAKMETER_MULTICHANNEL=1;JucePlugin_Build_Standalone=1;JucePlugin_Build_VST=0;JucePlugin_Build_VST3=0;JUCE_ALSA=0;JUCE_JACK=0;JUCE_WASAPI=1;JUCE_DIRECTSOUND=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\..\JuceLibraryCode;..\..\..\libraries;..\..\..\libraries\juce\modules;..\..\..\Source\frut;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -185,7 +185,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\..\..\bin\vst2\traKmeter (multi) x64.lib</ImportLibrary>
+      <EntryPointSymbol>WinMainCRTStartup</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -214,7 +214,7 @@
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_basics.cpp" />
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_devices.cpp" />
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_formats.cpp" />
-    <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_plugin_client_VST2.cpp" />
+    <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_plugin_client_Standalone.cpp" />
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_plugin_client_utils.cpp" />
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_processors.cpp" />
     <ClCompile Include="..\..\..\JuceLibraryCode\include_juce_audio_utils.cpp" />

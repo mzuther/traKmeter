@@ -51,7 +51,7 @@ echo VST2 (32 bit)
 echo.
 
 call :CopyVst       "vst2/traKmeter.dll" "%vst2_32%"
-call :CopyVst       "vst2/traKmeter (multi).dll" "%vst2_32%"
+call :CopyVst       "vst2/traKmeter (8ch).dll" "%vst2_32%"
 call :CopyVst       "vst2/Documentation/traKmeter.pdf" "%vst2_32%"
 
 echo.
@@ -59,7 +59,7 @@ echo VST2 (32 bit, Categories)
 echo.
 
 call :CopyVst       "vst2/traKmeter.dll" "%vst2_32_categories%"
-call :CopyVst       "vst2/traKmeter (multi).dll" "%vst2_32_categories%"
+call :CopyVst       "vst2/traKmeter (8ch).dll" "%vst2_32_categories%"
 call :CopyVst       "vst2/Documentation/traKmeter.pdf" "%vst2_32_categories%"
 
 
@@ -75,7 +75,7 @@ echo VST2 (64 bit)
 echo.
 
 call :CopyVst       "vst2/traKmeter x64.dll" "%vst2_64%"
-call :CopyVst       "vst2/traKmeter (multi) x64.dll" "%vst2_64%"
+call :CopyVst       "vst2/traKmeter (8ch) x64.dll" "%vst2_64%"
 call :CopyVst       "vst2/Documentation/traKmeter.pdf" "%vst2_64%"
 
 echo.
@@ -83,7 +83,7 @@ echo VST2 (64 bit, Categories)
 echo.
 
 call :CopyVst       "vst2/traKmeter x64.dll" "%vst2_64_categories%"
-call :CopyVst       "vst2/traKmeter (multi) x64.dll" "%vst2_64_categories%"
+call :CopyVst       "vst2/traKmeter (8ch) x64.dll" "%vst2_64_categories%"
 call :CopyVst       "vst2/Documentation/traKmeter.pdf" "%vst2_64_categories%"
 
 

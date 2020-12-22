@@ -104,17 +104,17 @@ case $1 in
         EXECUTABLE="standalone/trakmeter"
         ;;
     2)
-        MAKEFILE="trakmeter_standalone_multi"
-        MAKEFILE_PRINT="Standalone (multi)"
-        EXECUTABLE="standalone/trakmeter_multi"
+        MAKEFILE="trakmeter_standalone_8ch"
+        MAKEFILE_PRINT="Standalone (8 channels)"
+        EXECUTABLE="standalone/trakmeter_8ch"
         ;;
     3)
         MAKEFILE="trakmeter_vst2_stereo"
         MAKEFILE_PRINT="VST2 plug-in (stereo)"
         ;;
     4)
-        MAKEFILE="trakmeter_vst2_multi"
-        MAKEFILE_PRINT="VST2 plug-in (multi)"
+        MAKEFILE="trakmeter_vst2_8ch"
+        MAKEFILE_PRINT="VST2 plug-in (8 channels)"
         ;;
     5)
         MAKEFILE="trakmeter_vst3"
@@ -128,10 +128,10 @@ case $1 in
         print_line "  u: Unit tests"
         print_line ""
         print_line "  1: Standalone (stereo)"
-        print_line "  2: Standalone (multi)"
+        print_line "  2: Standalone (8 channels)"
         print_line ""
         print_line "  3: VST2 plug-in (stereo)"
-        print_line "  4: VST2 plug-in (multi)"
+        print_line "  4: VST2 plug-in (8 channels)"
         print_line ""
         print_line "  5: VST3 plug-in"
         print_line ""

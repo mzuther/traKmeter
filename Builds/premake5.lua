@@ -274,12 +274,12 @@ workspace "trakmeter"
 
 --------------------------------------------------------------------------------
 
-    project ("trakmeter_standalone_multi")
+    project ("trakmeter_standalone_8ch")
         kind "WindowedApp"
         targetdir "../bin/standalone/"
 
         defines {
-            "TRAKMETER_MULTI=1",
+            "TRAKMETER_MULTICHANNEL=1",
             "JucePlugin_Build_Standalone=1",
             "JucePlugin_Build_VST=0",
             "JucePlugin_Build_VST3=0"
@@ -292,7 +292,7 @@ workspace "trakmeter"
         }
 
         filter { "system:linux" }
-            targetname "trakmeter_multi"
+            targetname "trakmeter_8ch"
 
             defines {
                 "JUCE_ALSA=1",
@@ -306,7 +306,7 @@ workspace "trakmeter"
             }
 
         filter { "system:windows" }
-            targetname "traKmeter (multi)"
+            targetname "traKmeter (8ch)"
             targetextension (".exe")
 
             defines {
@@ -317,10 +317,10 @@ workspace "trakmeter"
             }
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_standalone_multi_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_standalone_8ch_debug")
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_standalone_multi_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_standalone_8ch_release")
 
 --------------------------------------------------------------------------------
 
@@ -373,12 +373,12 @@ workspace "trakmeter"
 
 --------------------------------------------------------------------------------
 
-    project ("trakmeter_vst2_multi")
+    project ("trakmeter_vst2_8ch")
         kind "SharedLib"
         targetdir "../bin/vst2/"
 
         defines {
-            "TRAKMETER_MULTI=1",
+            "TRAKMETER_MULTICHANNEL=1",
             "JucePlugin_Build_Standalone=0",
             "JucePlugin_Build_VST=1",
             "JucePlugin_Build_VST3=0"
@@ -400,14 +400,14 @@ workspace "trakmeter"
         }
 
         filter { "system:linux" }
-            targetname "trakmeter_vst2_multi"
+            targetname "trakmeter_vst2_8ch"
 
         filter { "system:windows" }
-            targetname "traKmeter (multi)"
+            targetname "traKmeter (8ch)"
             targetextension (".dll")
 
         filter { "configurations:Debug" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst2_multi_debug")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst2_8ch_debug")
 
         filter { "system:windows", "configurations:Debug", "platforms:x32" }
             targetdir "D:/Plugins/32-bit/Categories/Tools/Analyzer/Meter"
@@ -418,7 +418,7 @@ workspace "trakmeter"
             debugcommand "C:/Program Files/REAPER (x64)/reaper.exe"
 
         filter { "configurations:Release" }
-            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst2_multi_release")
+            objdir ("../bin/.intermediate_" .. os.target() .. "/trakmeter_vst2_8ch_release")
 
 --------------------------------------------------------------------------------
 
@@ -426,7 +426,7 @@ workspace "trakmeter"
         kind "SharedLib"
 
         defines {
-            "TRAKMETER_MULTIBUS=1",
+            "TRAKMETER_VARIBUS=1",
             "JucePlugin_Build_Standalone=0",
             "JucePlugin_Build_VST=0",
             "JucePlugin_Build_VST3=1"

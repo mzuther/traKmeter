@@ -78,35 +78,35 @@ printf "\n  === Finalising binaries ===\n\n"
 mkdir -p "$binary_dir/debug_symbols"
 
 finalise_binary  "standalone/trakmeter_x64"
-finalise_binary  "standalone/trakmeter_multi_x64"
+finalise_binary  "standalone/trakmeter_8ch_x64"
 
 finalise_binary  "vst2/trakmeter_vst2_x64.so"
-finalise_binary  "vst2/trakmeter_vst2_multi_x64.so"
+finalise_binary  "vst2/trakmeter_vst2_8ch_x64.so"
 
 finalise_binary  "vst3/traKmeter.vst3/Contents/x86_64-linux/traKmeter.so"
 
 finalise_binary  "standalone/traKmeter.exe"
 finalise_symbols "standalone/traKmeter.pdb"
-finalise_binary  "standalone/traKmeter (multi).exe"
-finalise_symbols "standalone/traKmeter (multi).pdb"
+finalise_binary  "standalone/traKmeter (8ch).exe"
+finalise_symbols "standalone/traKmeter (8ch).pdb"
 
 finalise_binary  "vst2/traKmeter.dll"
 finalise_symbols "vst2/traKmeter.pdb"
-finalise_binary  "vst2/traKmeter (multi).dll"
-finalise_symbols "vst2/traKmeter (multi).pdb"
+finalise_binary  "vst2/traKmeter (8ch).dll"
+finalise_symbols "vst2/traKmeter (8ch).pdb"
 
 finalise_binary  "vst3/traKmeter.vst3/Contents/x86-win/traKmeter.vst3"
 finalise_symbols "vst3/traKmeter.vst3/Contents/x86-win/traKmeter.pdb"
 
 finalise_binary  "standalone/traKmeter x64.exe"
 finalise_symbols "standalone/traKmeter x64.pdb"
-finalise_binary  "standalone/traKmeter (multi) x64.exe"
-finalise_symbols "standalone/traKmeter (multi) x64.pdb"
+finalise_binary  "standalone/traKmeter (8ch) x64.exe"
+finalise_symbols "standalone/traKmeter (8ch) x64.pdb"
 
 finalise_binary  "vst2/traKmeter x64.dll"
 finalise_symbols "vst2/traKmeter x64.pdb"
-finalise_binary  "vst2/traKmeter (multi) x64.dll"
-finalise_symbols "vst2/traKmeter (multi) x64.pdb"
+finalise_binary  "vst2/traKmeter (8ch) x64.dll"
+finalise_symbols "vst2/traKmeter (8ch) x64.pdb"
 
 finalise_binary  "vst3/traKmeter.vst3/Contents/x86_64-win/traKmeter.vst3"
 finalise_symbols "vst3/traKmeter.vst3/Contents/x86_64-win/traKmeter.pdb"

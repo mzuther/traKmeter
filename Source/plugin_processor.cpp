@@ -48,11 +48,11 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
 {
    frut::Frut::printVersionNumbers();
 
-#ifdef TRAKMETER_MULTI
+#ifdef TRAKMETER_MULTICHANNEL
    numberOfChannels_ = 8;
-#else // TRAKMETER_MULTI
+#else // TRAKMETER_MULTICHANNEL
    numberOfChannels_ = 2;
-#endif // TRAKMETER_MULTI
+#endif // TRAKMETER_MULTICHANNEL
 
    ringBuffer_ = nullptr;
    audioFilePlayer_ = nullptr;
@@ -77,7 +77,7 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 
 AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
 {
-#ifdef TRAKMETER_MULTI
+#ifdef TRAKMETER_MULTICHANNEL
 
    return BusesProperties()
           .withInput( "Main In",
@@ -85,7 +85,7 @@ AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
           .withOutput( "Main Out",
                        AudioChannelSet::canonicalChannelSet( 8 ) );
 
-#else // TRAKMETER_MULTI
+#else // TRAKMETER_MULTICHANNEL
 
    return BusesProperties()
           .withInput( "Main In",
@@ -93,7 +93,7 @@ AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
           .withOutput( "Main Out",
                        AudioChannelSet::stereo() );
 
-#endif // TRAKMETER_MULTI
+#endif // TRAKMETER_MULTICHANNEL
 }
 
 

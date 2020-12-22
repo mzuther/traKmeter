@@ -21,9 +21,9 @@ ifeq ($(config),debug_x32)
     AR = ar
   endif
   TARGETDIR = ../../../bin/standalone
-  TARGET = $(TARGETDIR)/trakmeter_multi_debug
-  OBJDIR = ../../../bin/.intermediate_linux/trakmeter_standalone_multi_debug/x32
-  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_MULTI=1 -DJucePlugin_Build_Standalone=1 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
+  TARGET = $(TARGETDIR)/trakmeter_8ch_debug
+  OBJDIR = ../../../bin/.intermediate_linux/trakmeter_standalone_8ch_debug/x32
+  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_MULTICHANNEL=1 -DJucePlugin_Build_Standalone=1 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../libraries -I../../../libraries/juce/modules -I../../../Source/frut -I/usr/include -I/usr/include/freetype2
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -56,9 +56,9 @@ ifeq ($(config),debug_x64)
     AR = ar
   endif
   TARGETDIR = ../../../bin/standalone
-  TARGET = $(TARGETDIR)/trakmeter_multi_x64_debug
-  OBJDIR = ../../../bin/.intermediate_linux/trakmeter_standalone_multi_debug/x64
-  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_MULTI=1 -DJucePlugin_Build_Standalone=1 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
+  TARGET = $(TARGETDIR)/trakmeter_8ch_x64_debug
+  OBJDIR = ../../../bin/.intermediate_linux/trakmeter_standalone_8ch_debug/x64
+  DEFINES += -DLINUX=1 -D_DEBUG=1 -DDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=1 -DTRAKMETER_MULTICHANNEL=1 -DJucePlugin_Build_Standalone=1 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../libraries -I../../../libraries/juce/modules -I../../../Source/frut -I/usr/include -I/usr/include/freetype2
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -91,9 +91,9 @@ ifeq ($(config),release_x32)
     AR = ar
   endif
   TARGETDIR = ../../../bin/standalone
-  TARGET = $(TARGETDIR)/trakmeter_multi
-  OBJDIR = ../../../bin/.intermediate_linux/trakmeter_standalone_multi_release/x32
-  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_MULTI=1 -DJucePlugin_Build_Standalone=1 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
+  TARGET = $(TARGETDIR)/trakmeter_8ch
+  OBJDIR = ../../../bin/.intermediate_linux/trakmeter_standalone_8ch_release/x32
+  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_MULTICHANNEL=1 -DJucePlugin_Build_Standalone=1 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../libraries -I../../../libraries/juce/modules -I../../../Source/frut -I/usr/include -I/usr/include/freetype2
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -126,9 +126,9 @@ ifeq ($(config),release_x64)
     AR = ar
   endif
   TARGETDIR = ../../../bin/standalone
-  TARGET = $(TARGETDIR)/trakmeter_multi_x64
-  OBJDIR = ../../../bin/.intermediate_linux/trakmeter_standalone_multi_release/x64
-  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_MULTI=1 -DJucePlugin_Build_Standalone=1 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
+  TARGET = $(TARGETDIR)/trakmeter_8ch_x64
+  OBJDIR = ../../../bin/.intermediate_linux/trakmeter_standalone_8ch_release/x64
+  DEFINES += -DLINUX=1 -DNDEBUG=1 -DJUCE_CHECK_MEMORY_LEAKS=0 -DTRAKMETER_MULTICHANNEL=1 -DJucePlugin_Build_Standalone=1 -DJucePlugin_Build_VST=0 -DJucePlugin_Build_VST3=0 -DJUCE_ALSA=1 -DJUCE_JACK=1 -DJUCE_WASAPI=0 -DJUCE_DIRECTSOUND=0
   INCLUDES += -I../../../JuceLibraryCode -I../../../libraries -I../../../libraries/juce/modules -I../../../Source/frut -I/usr/include -I/usr/include/freetype2
   FORCE_INCLUDE +=
   ALL_CPPFLAGS += $(CPPFLAGS) -MMD -MP $(DEFINES) $(INCLUDES)
@@ -196,7 +196,7 @@ ifeq (.exe,$(findstring .exe,$(ComSpec)))
 endif
 
 $(TARGET): $(GCH) ${CUSTOMFILES} $(OBJECTS) $(LDDEPS) $(RESOURCES) | $(TARGETDIR)
-	@echo Linking trakmeter_standalone_multi
+	@echo Linking trakmeter_standalone_8ch
 	$(SILENT) $(LINKCMD)
 	$(POSTBUILDCMDS)
 
@@ -219,7 +219,7 @@ else
 endif
 
 clean:
-	@echo Cleaning trakmeter_standalone_multi
+	@echo Cleaning trakmeter_standalone_8ch
 ifeq (posix,$(SHELLTYPE))
 	$(SILENT) rm -f  $(TARGET)
 	$(SILENT) rm -rf $(OBJDIR)

@@ -63,14 +63,14 @@ TraKmeterPluginParameters::TraKmeterPluginParameters() :
    ParameterValidationSelectedChannel->addPreset( -1.0f, "All" );
    ParameterValidationSelectedChannel->addPreset( 0.0f,   "1" );
    ParameterValidationSelectedChannel->addPreset( 1.0f,   "2" );
-#ifdef TRAKMETER_MULTI
+#ifdef TRAKMETER_MULTICHANNEL
    ParameterValidationSelectedChannel->addPreset( 2.0f,   "3" );
    ParameterValidationSelectedChannel->addPreset( 3.0f,   "4" );
    ParameterValidationSelectedChannel->addPreset( 4.0f,   "5" );
    ParameterValidationSelectedChannel->addPreset( 5.0f,   "6" );
    ParameterValidationSelectedChannel->addPreset( 6.0f,   "7" );
    ParameterValidationSelectedChannel->addPreset( 7.0f,   "8" );
-#endif // TRAKMETER_MULTI
+#endif // TRAKMETER_MULTICHANNEL
 
    ParameterValidationSelectedChannel->setDefaultRealFloat( -1.0f, true );
    add( ParameterValidationSelectedChannel, selValidationSelectedChannel );

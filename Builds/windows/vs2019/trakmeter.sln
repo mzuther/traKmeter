@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_standalone_multi", "trakmeter_standalone_multi.vcxproj", "{265B68AA-126B-147B-7B24-799967530314}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_standalone_8ch", "trakmeter_standalone_8ch.vcxproj", "{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_standalone_stereo", "trakmeter_standalone_stereo.vcxproj", "{EDBB5C05-59C9-8AEB-E2AF-86D64EBC56A2}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_vst2_multi", "trakmeter_vst2_multi.vcxproj", "{8C107EBE-789F-0788-21BE-1B830D2C182E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_vst2_8ch", "trakmeter_vst2_8ch.vcxproj", "{A4055D6F-90E9-1DC5-F949-1818E54C0847}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trakmeter_vst2_stereo", "trakmeter_vst2_stereo.vcxproj", "{131E299C-7F8A-E496-487E-7CF4B4A906FF}"
 EndProject
@@ -19,14 +19,14 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{265B68AA-126B-147B-7B24-799967530314}.Debug|Win32.ActiveCfg = Debug|Win32
-		{265B68AA-126B-147B-7B24-799967530314}.Debug|Win32.Build.0 = Debug|Win32
-		{265B68AA-126B-147B-7B24-799967530314}.Debug|x64.ActiveCfg = Debug|x64
-		{265B68AA-126B-147B-7B24-799967530314}.Debug|x64.Build.0 = Debug|x64
-		{265B68AA-126B-147B-7B24-799967530314}.Release|Win32.ActiveCfg = Release|Win32
-		{265B68AA-126B-147B-7B24-799967530314}.Release|Win32.Build.0 = Release|Win32
-		{265B68AA-126B-147B-7B24-799967530314}.Release|x64.ActiveCfg = Release|x64
-		{265B68AA-126B-147B-7B24-799967530314}.Release|x64.Build.0 = Release|x64
+		{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}.Debug|Win32.Build.0 = Debug|Win32
+		{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}.Debug|x64.ActiveCfg = Debug|x64
+		{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}.Debug|x64.Build.0 = Debug|x64
+		{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}.Release|Win32.ActiveCfg = Release|Win32
+		{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}.Release|Win32.Build.0 = Release|Win32
+		{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}.Release|x64.ActiveCfg = Release|x64
+		{BEE11F5F-AA06-6FDF-D351-546FBFD56DFD}.Release|x64.Build.0 = Release|x64
 		{EDBB5C05-59C9-8AEB-E2AF-86D64EBC56A2}.Debug|Win32.ActiveCfg = Debug|Win32
 		{EDBB5C05-59C9-8AEB-E2AF-86D64EBC56A2}.Debug|Win32.Build.0 = Debug|Win32
 		{EDBB5C05-59C9-8AEB-E2AF-86D64EBC56A2}.Debug|x64.ActiveCfg = Debug|x64
@@ -35,14 +35,14 @@ Global
 		{EDBB5C05-59C9-8AEB-E2AF-86D64EBC56A2}.Release|Win32.Build.0 = Release|Win32
 		{EDBB5C05-59C9-8AEB-E2AF-86D64EBC56A2}.Release|x64.ActiveCfg = Release|x64
 		{EDBB5C05-59C9-8AEB-E2AF-86D64EBC56A2}.Release|x64.Build.0 = Release|x64
-		{8C107EBE-789F-0788-21BE-1B830D2C182E}.Debug|Win32.ActiveCfg = Debug|Win32
-		{8C107EBE-789F-0788-21BE-1B830D2C182E}.Debug|Win32.Build.0 = Debug|Win32
-		{8C107EBE-789F-0788-21BE-1B830D2C182E}.Debug|x64.ActiveCfg = Debug|x64
-		{8C107EBE-789F-0788-21BE-1B830D2C182E}.Debug|x64.Build.0 = Debug|x64
-		{8C107EBE-789F-0788-21BE-1B830D2C182E}.Release|Win32.ActiveCfg = Release|Win32
-		{8C107EBE-789F-0788-21BE-1B830D2C182E}.Release|Win32.Build.0 = Release|Win32
-		{8C107EBE-789F-0788-21BE-1B830D2C182E}.Release|x64.ActiveCfg = Release|x64
-		{8C107EBE-789F-0788-21BE-1B830D2C182E}.Release|x64.Build.0 = Release|x64
+		{A4055D6F-90E9-1DC5-F949-1818E54C0847}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A4055D6F-90E9-1DC5-F949-1818E54C0847}.Debug|Win32.Build.0 = Debug|Win32
+		{A4055D6F-90E9-1DC5-F949-1818E54C0847}.Debug|x64.ActiveCfg = Debug|x64
+		{A4055D6F-90E9-1DC5-F949-1818E54C0847}.Debug|x64.Build.0 = Debug|x64
+		{A4055D6F-90E9-1DC5-F949-1818E54C0847}.Release|Win32.ActiveCfg = Release|Win32
+		{A4055D6F-90E9-1DC5-F949-1818E54C0847}.Release|Win32.Build.0 = Release|Win32
+		{A4055D6F-90E9-1DC5-F949-1818E54C0847}.Release|x64.ActiveCfg = Release|x64
+		{A4055D6F-90E9-1DC5-F949-1818E54C0847}.Release|x64.Build.0 = Release|x64
 		{131E299C-7F8A-E496-487E-7CF4B4A906FF}.Debug|Win32.ActiveCfg = Debug|Win32
 		{131E299C-7F8A-E496-487E-7CF4B4A906FF}.Debug|Win32.Build.0 = Debug|Win32
 		{131E299C-7F8A-E496-487E-7CF4B4A906FF}.Debug|x64.ActiveCfg = Debug|x64

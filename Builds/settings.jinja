@@ -48,12 +48,12 @@
       ]},
 
       {
-       'name':            'trakmeter_standalone_multi',
-       'binary_linux':    'trakmeter_multi',
-       'binary_windows':  'traKmeter (multi)',
-       'description':     'Standalone (multi)',
+       'name':            'trakmeter_standalone_8ch',
+       'binary_linux':    'trakmeter_8ch',
+       'binary_windows':  'traKmeter (8ch)',
+       'description':     'Standalone (8 channels)',
        'defines': [
-          'TRAKMETER_MULTI=1',
+          'TRAKMETER_MULTICHANNEL=1',
       ]},
    ],
    'unittest': [
@@ -77,12 +77,12 @@
       ]},
 
       {
-       'name':            'trakmeter_vst2_multi',
-       'binary_linux':    'trakmeter_vst2_multi',
-       'binary_windows':  'traKmeter (multi)',
-       'description':     'VST2 plug-in (multi)',
+       'name':            'trakmeter_vst2_8ch',
+       'binary_linux':    'trakmeter_vst2_8ch',
+       'binary_windows':  'traKmeter (8ch)',
+       'description':     'VST2 plug-in (8 channels)',
        'defines': [
-          'TRAKMETER_MULTI=1',
+          'TRAKMETER_MULTICHANNEL=1',
       ]},
    ],
    'vst3': [
@@ -92,7 +92,7 @@
        'binary_windows':  'traKmeter',
        'description':     'VST3 plug-in',
        'defines': [
-          'TRAKMETER_MULTIBUS=1',
+          'TRAKMETER_VARIBUS=1',
       ]},
    ],
 } %}
