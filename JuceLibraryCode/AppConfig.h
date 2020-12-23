@@ -50,7 +50,7 @@
 #endif // TRAKMETER_STEREO
 
 #ifdef TRAKMETER_MULTICHANNEL
-  #define JucePlugin_Name        "traKmeter (8ch)"
+  #define JucePlugin_Name        "traKmeter (8 channels)"
 #else // TRAKMETER_MULTICHANNEL
   #define JucePlugin_Name        "traKmeter"
 #endif // TRAKMETER_MULTICHANNEL

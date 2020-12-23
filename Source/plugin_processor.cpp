@@ -427,10 +427,12 @@ void TraKmeterAudioProcessor::prepareToPlay( double sampleRate,
    isSilent_ = false;
    hasStopped_ = true;
 
-   Logger::outputDebugString( "[traKmeter] number of input channels: " +
-                              String( getMainBusNumInputChannels() ) );
-   Logger::outputDebugString( "[traKmeter] number of output channels: " +
-                              String( getMainBusNumOutputChannels() ) );
+   Logger::outputDebugString( "[traKmeter] number of main/aux input channels:  " +
+                              String( getMainBusNumInputChannels() ) + "/" +
+                              String( getTotalNumInputChannels() - getMainBusNumInputChannels() ) );
+   Logger::outputDebugString( "[traKmeter] number of main/aux output channels: " +
+                              String( getMainBusNumOutputChannels() ) + "/" +
+                              String( getTotalNumOutputChannels() - getMainBusNumOutputChannels() ) );
 
    if ( reloadEditor_ ) {
       reloadEditor_ = false;
@@ -515,7 +517,7 @@ void TraKmeterAudioProcessor::processBlock( AudioBuffer<float>& buffer,
    // In case we have more main outputs than inputs, we'll clear any
    // output channels that didn't contain input data, because these
    // aren't guaranteed to be empty -- they may contain garbage.
-   for ( int channel = numberOfChannels_; channel < getMainBusNumOutputChannels(); ++channel ) {
+   for ( int channel = getMainBusNumInputChannels(); channel < getMainBusNumOutputChannels(); ++channel ) {
       buffer.clear( channel, 0, buffer.getNumSamples() );
    }
 
@@ -564,7 +566,7 @@ void TraKmeterAudioProcessor::processBlock( AudioBuffer<double>& buffer,
    // In case we have more main outputs than inputs, we'll clear any
    // output channels that didn't contain input data, because these
    // aren't guaranteed to be empty -- they may contain garbage.
-   for ( int channel = numberOfChannels_; channel < getMainBusNumOutputChannels(); ++channel ) {
+   for ( int channel = getMainBusNumInputChannels(); channel < getMainBusNumOutputChannels(); ++channel ) {
       buffer.clear( channel, 0, buffer.getNumSamples() );
    }
 
