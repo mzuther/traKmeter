@@ -48,11 +48,11 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
 {
    frut::Frut::printVersionNumbers();
 
-#ifdef TRAKMETER_MULTICHANNEL
-   numberOfChannels_ = 8;
-#else // TRAKMETER_MULTICHANNEL
+#ifdef TRAKMETER_STEREO
    numberOfChannels_ = 2;
-#endif // TRAKMETER_MULTICHANNEL
+#else // TRAKMETER_STEREO
+   numberOfChannels_ = 8;
+#endif // TRAKMETER_STEREO
 
    ringBuffer_ = nullptr;
    audioFilePlayer_ = nullptr;
@@ -61,6 +61,7 @@ TraKmeterAudioProcessor::TraKmeterAudioProcessor() :
    sampleRateIsValid_ = false;
    isSilent_ = false;
    hasStopped_ = true;
+   reloadEditor_ = false;
 
    processedSeconds_ = 0.0f;
 
@@ -77,47 +78,88 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 
 AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
 {
-#ifdef TRAKMETER_MULTICHANNEL
+#ifdef TRAKMETER_STEREO
 
    return BusesProperties()
-          .withInput( "Main In",
-                      AudioChannelSet::canonicalChannelSet( 8 ) )
-          .withOutput( "Main Out",
-                       AudioChannelSet::canonicalChannelSet( 8 ) );
-
-#else // TRAKMETER_MULTICHANNEL
-
-   return BusesProperties()
-          .withInput( "Main In",
+          .withInput( "Main",
                       AudioChannelSet::stereo() )
-          .withOutput( "Main Out",
+          .withOutput( "Main",
                        AudioChannelSet::stereo() );
 
-#endif // TRAKMETER_MULTICHANNEL
+#else // TRAKMETER_STEREO
+
+   return BusesProperties()
+          .withInput( "Main",
+                      AudioChannelSet::canonicalChannelSet( 8 ) )
+          .withOutput( "Main",
+                       AudioChannelSet::canonicalChannelSet( 8 ) );
+
+#endif // TRAKMETER_STEREO
 }
 
 
 #ifndef JucePlugin_PreferredChannelConfigurations
+
 bool TraKmeterAudioProcessor::isBusesLayoutSupported( const BusesLayout& layouts ) const
 {
-   // main bus: do not allow differing input and output layouts
-   if ( layouts.getMainInputChannelSet() != layouts.getMainOutputChannelSet() ) {
+#ifdef TRAKMETER_STEREO
+
+   // main output must be stereo
+   if ( layouts.getMainOutputChannelSet() != AudioChannelSet::stereo() ) {
       return false;
    }
 
-   // main bus: do not allow disabling of input channels
+#else // TRAKMETER_STEREO
+
+#ifdef TRAKMETER_MULTICHANNEL
+
+   // main output must have 8 channels
+   if ( layouts.getMainOutputChannelSet() != AudioChannelSet::canonicalChannelSet( 8 ) ) {
+      return false;
+   }
+
+#else // TRAKMETER_MULTICHANNEL
+
+   // main output may have up to 8 channels
+   if ( ( layouts.getMainOutputChannelSet().size() < 1 ) ||
+        ( layouts.getMainOutputChannelSet().size() > 8 ) ) {
+      return false;
+   }
+
+#endif // TRAKMETER_MULTICHANNEL
+
+#endif // TRAKMETER_STEREO
+
+   // main input must be enabled
    if ( layouts.getMainInputChannelSet().isDisabled() ) {
       return false;
    }
 
-   // allow main bus with predefined number of input channels ==> // okay
-   if ( layouts.getMainInputChannelSet().size() == numberOfChannels_ ) {
-      return true;
+   // main input and main output must be identical
+   if ( layouts.getMainInputChannelSet() != layouts.getMainOutputChannelSet() ) {
+      return false;
    }
 
-   // current channel layout is not allowed
-   return false;
+   // valid channel layout
+   return true;
 }
+
+#endif // JucePlugin_PreferredChannelConfigurations
+
+
+#ifndef JucePlugin_PreferredChannelConfigurations
+
+void TraKmeterAudioProcessor::processorLayoutsChanged()
+{
+   reloadEditor_ = true;
+
+   if ( getMainBusNumOutputChannels() <= 2 ) {
+      numberOfChannels_ = 2;
+   } else {
+      numberOfChannels_ = 8;
+   }
+}
+
 #endif // JucePlugin_PreferredChannelConfigurations
 
 
@@ -390,6 +432,15 @@ void TraKmeterAudioProcessor::prepareToPlay( double sampleRate,
    Logger::outputDebugString( "[traKmeter] number of output channels: " +
                               String( getMainBusNumOutputChannels() ) );
 
+   if ( reloadEditor_ ) {
+      reloadEditor_ = false;
+      auto editor = dynamic_cast<TraKmeterAudioProcessorEditor*>( getActiveEditor() );
+
+      if ( editor != nullptr ) {
+         editor->setNumberOfChannels( numberOfChannels_ );
+      }
+   }
+
    dither_.initialise( jmax( getMainBusNumInputChannels(),
                              getMainBusNumOutputChannels() ),
                        24 );
@@ -409,7 +460,7 @@ void TraKmeterAudioProcessor::prepareToPlay( double sampleRate,
    int chunkSize = trakmeterBufferSize_;
 
    ringBuffer_ = std::make_unique<frut::audio::RingBuffer<float>>(
-                    numberOfChannels_,
+                    getMainBusNumOutputChannels(),
                     ringBufferSize,
                     preDelay,
                     chunkSize );
@@ -456,21 +507,16 @@ void TraKmeterAudioProcessor::processBlock( AudioBuffer<float>& buffer,
    // temporarily disable denormals
    ScopedNoDenormals noDenormals;
 
-   int numberOfSamples = buffer.getNumSamples();
-
    if ( ! sampleRateIsValid_ ) {
       buffer.clear();
       return;
    }
 
-   // In case we have more outputs than inputs, we'll clear any
+   // In case we have more main outputs than inputs, we'll clear any
    // output channels that didn't contain input data, because these
    // aren't guaranteed to be empty -- they may contain garbage.
-
-   for ( int channel = getMainBusNumInputChannels();
-         channel < getMainBusNumOutputChannels();
-         ++channel ) {
-      buffer.clear( channel, 0, numberOfSamples );
+   for ( int channel = numberOfChannels_; channel < getMainBusNumOutputChannels(); ++channel ) {
+      buffer.clear( channel, 0, buffer.getNumSamples() );
    }
 
    if ( getMainBusNumInputChannels() < 1 ) {
@@ -492,12 +538,12 @@ void TraKmeterAudioProcessor::processBlock( AudioBuffer<float>& buffer,
    //
    // calls "processBufferChunk" each time chunkSize samples have
    // been added!
-   ringBuffer_->addFrom( buffer, 0, numberOfSamples );
+   ringBuffer_->addFrom( buffer, 0, buffer.getNumSamples() );
 
    // the processed buffer data is not needed, so simulate reading
    // the ring buffer (move read pointer to prevent the "overwriting
    // unread data" debug message from appearing)
-   ringBuffer_->removeToNull( numberOfSamples );
+   ringBuffer_->removeToNull( buffer.getNumSamples() );
 }
 
 
@@ -510,21 +556,16 @@ void TraKmeterAudioProcessor::processBlock( AudioBuffer<double>& buffer,
    // temporarily disable denormals
    ScopedNoDenormals noDenormals;
 
-   int numberOfSamples = buffer.getNumSamples();
-
    if ( ! sampleRateIsValid_ ) {
       buffer.clear();
       return;
    }
 
-   // In case we have more outputs than inputs, we'll clear any
+   // In case we have more main outputs than inputs, we'll clear any
    // output channels that didn't contain input data, because these
    // aren't guaranteed to be empty -- they may contain garbage.
-
-   for ( int channel = getMainBusNumInputChannels();
-         channel < getMainBusNumOutputChannels();
-         ++channel ) {
-      buffer.clear( channel, 0, numberOfSamples );
+   for ( int channel = numberOfChannels_; channel < getMainBusNumOutputChannels(); ++channel ) {
+      buffer.clear( channel, 0, buffer.getNumSamples() );
    }
 
    if ( getMainBusNumInputChannels() < 1 ) {
@@ -536,7 +577,7 @@ void TraKmeterAudioProcessor::processBlock( AudioBuffer<double>& buffer,
    resetOnPlay();
 
    // create temporary buffer
-   AudioBuffer<float> processBuffer( numberOfChannels_, numberOfSamples );
+   AudioBuffer<float> processBuffer( getMainBusNumOutputChannels(), buffer.getNumSamples() );
 
    // copy validation audio samples to temporary buffer
    if ( audioFilePlayer_ ) {
@@ -559,12 +600,12 @@ void TraKmeterAudioProcessor::processBlock( AudioBuffer<double>& buffer,
    //
    // calls "processBufferChunk" each time chunkSize samples have
    // been added!
-   ringBuffer_->addFrom( processBuffer, 0, numberOfSamples );
+   ringBuffer_->addFrom( processBuffer, 0, buffer.getNumSamples() );
 
    // the processed buffer data is not needed, so simulate reading
    // the ring buffer (move read pointer to prevent the "overwriting
    // unread data" debug message from appearing)
-   ringBuffer_->removeToNull( numberOfSamples );
+   ringBuffer_->removeToNull( buffer.getNumSamples() );
 }
 
 
@@ -579,17 +620,17 @@ bool TraKmeterAudioProcessor::processBufferChunk( AudioBuffer<float>& buffer )
 
    for ( int channel = 0; channel < buffer.getNumChannels(); ++channel ) {
       // determine peak level for chunkSize samples
-      float peakLevels = buffer.getMagnitude( channel, 0, chunkSize );
+      float peakLevel = buffer.getMagnitude( channel, 0, chunkSize );
 
       // determine peak level for chunkSize samples
-      float rmsLevels = buffer.getRMSLevel( channel, 0, chunkSize );
+      float rmsLevel = buffer.getRMSLevel( channel, 0, chunkSize );
 
       // apply meter ballistics and store values so that the editor
       // can access them
       meterBallistics_->updateChannel( channel,
                                        processedSeconds_,
-                                       peakLevels,
-                                       rmsLevels );
+                                       peakLevel,
+                                       rmsLevel );
    }
 
    // "UM" ==> update meters

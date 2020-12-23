@@ -77,11 +77,11 @@ TraKmeterAudioProcessorEditor::TraKmeterAudioProcessorEditor( TraKmeterAudioProc
 
    // prevent meter reload during initialisation
    isInitialising = true;
+   setNumberOfChannels( nNumChannels );
 
    isValidating = false;
    validationDialogOpen = false;
 
-   numberOfInputChannels = nNumChannels;
    segmentHeight = 10;
 
    // The plug-in editor's size as well as the location of buttons
@@ -139,6 +139,17 @@ TraKmeterAudioProcessorEditor::~TraKmeterAudioProcessorEditor()
 
    // release look and feel
    setLookAndFeel( nullptr );
+}
+
+
+void TraKmeterAudioProcessorEditor::setNumberOfChannels( int NumberOfChannels )
+{
+   numberOfInputChannels = NumberOfChannels;
+
+   if ( ! isInitialising ) {
+      // apply skin to plug-in editor
+      loadSkin();
+   }
 }
 
 

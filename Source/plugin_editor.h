@@ -47,6 +47,8 @@ public:
                                   int nNumChannels );
    ~TraKmeterAudioProcessorEditor();
 
+   void setNumberOfChannels( int NumberOfChannels );
+
    void buttonClicked( Button* button ) override;
 
    void actionListenerCallback( const String& strMessage ) override;

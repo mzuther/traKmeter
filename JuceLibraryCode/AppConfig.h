@@ -43,13 +43,17 @@
 
 ---------------------------------------------------------------------------- */
 
-#ifdef TRAKMETER_MULTICHANNEL
-  #define JucePlugin_PluginCode  'traK'
-  #define JucePlugin_Name        "traKmeter (8ch)"
-#else
+#ifdef TRAKMETER_STEREO
   #define JucePlugin_PluginCode  'trkS'
+#else // TRAKMETER_STEREO
+  #define JucePlugin_PluginCode  'traK'
+#endif // TRAKMETER_STEREO
+
+#ifdef TRAKMETER_MULTICHANNEL
+  #define JucePlugin_Name        "traKmeter (8ch)"
+#else // TRAKMETER_MULTICHANNEL
   #define JucePlugin_Name        "traKmeter"
-#endif
+#endif // TRAKMETER_MULTICHANNEL
 
 #define JUCE_JACK_CLIENT_NAME JucePlugin_Name
 #define JUCE_VST3_CAN_REPLACE_VST2 1
