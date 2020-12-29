@@ -76,6 +76,8 @@ TraKmeterAudioProcessor::~TraKmeterAudioProcessor()
 }
 
 
+#ifndef JucePlugin_PreferredChannelConfigurations
+
 AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
 {
 #ifdef TRAKMETER_STEREO
@@ -96,6 +98,8 @@ AudioProcessor::BusesProperties TraKmeterAudioProcessor::getBusesProperties()
 
 #endif // TRAKMETER_STEREO
 }
+
+#endif // JucePlugin_PreferredChannelConfigurations
 
 
 #ifndef JucePlugin_PreferredChannelConfigurations
@@ -120,8 +124,9 @@ bool TraKmeterAudioProcessor::isBusesLayoutSupported( const BusesLayout& layouts
 
 #else // TRAKMETER_MULTICHANNEL
 
-   // main output may have up to 8 channels
-   if ( ( layouts.getMainOutputChannelSet().size() < 1 ) ||
+   // main output may have from 2 to 8 channels (preventing mono
+   // layout keeps processorLayoutsChanged() simple)
+   if ( ( layouts.getMainOutputChannelSet().size() < 2 ) ||
         ( layouts.getMainOutputChannelSet().size() > 8 ) ) {
       return false;
    }

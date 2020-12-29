@@ -114,7 +114,10 @@ public:
 private:
    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR( TraKmeterAudioProcessor );
 
+#ifndef JucePlugin_PreferredChannelConfigurations
    static BusesProperties getBusesProperties();
+#endif // JucePlugin_PreferredChannelConfigurations
+
    void resetOnPlay();
 
    std::unique_ptr<AudioFilePlayer> audioFilePlayer_;
