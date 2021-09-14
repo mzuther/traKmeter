@@ -80,6 +80,7 @@ mkdir -p "$binary_dir/debug_symbols"
 finalise_binary  "standalone/trakmeter_x64"
 finalise_binary  "standalone/trakmeter_8ch_x64"
 
+
 finalise_binary  "vst2/trakmeter_vst2_x64.so"
 finalise_binary  "vst2/trakmeter_vst2_8ch_x64.so"
 

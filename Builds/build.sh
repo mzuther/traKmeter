@@ -130,6 +130,7 @@ case $1 in
         print_line "  1: Standalone (stereo)"
         print_line "  2: Standalone (8 channels)"
         print_line ""
+        print_line ""
         print_line "  3: VST2 plug-in (stereo)"
         print_line "  4: VST2 plug-in (8 channels)"
         print_line ""

@@ -560,6 +560,8 @@ void TraKmeterAudioProcessor::processBlock( AudioBuffer<double>& buffer,
    jassert( isUsingDoublePrecision() );
    ignoreUnused( midiMessages );
 
+   DBG( "[traKmeter] using double precision" );
+
    // temporarily disable denormals
    ScopedNoDenormals noDenormals;
 
