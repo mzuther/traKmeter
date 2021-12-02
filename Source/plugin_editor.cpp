@@ -4,7 +4,7 @@
    =========
    Loudness meter for correctly setting up tracking and mixing levels
 
-   Copyright (c) 2012-2020 Martin Zuther (http://www.mzuther.de/)
+   Copyright (c) 2012-2021 Martin Zuther (http://www.mzuther.de/)
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -447,7 +447,7 @@ void TraKmeterAudioProcessorEditor::buttonClicked( Button* button )
 
       arrChapters.set(
          "Copyright",
-         "(c) 2012-2020 Martin Zuther\n" );
+         "(c) 2012-2021 Martin Zuther\n" );
 
       arrChapters.set(
          "Contributors",
