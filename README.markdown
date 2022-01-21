@@ -1,6 +1,7 @@
 # traKmeter
 
-*Loudness meter for correctly setting up tracking and mixing levels*
+*Loudness meter for correctly setting up tracking and mixing levels
+(gain staging).*
 
 ![Screenshot](./doc/include/images/trakmeter.png)
 
@@ -20,16 +21,27 @@ ideas haven't changed at all.
 
 ## FAQ
 
-### traKmeter crashes when the plug-in is loaded/opened
+### traKmeter crashes when the plug-in is loaded / opened
 
-1. traKmeter comes with a folder called `trakmeter`.  This folder must
-   be located in the same folder as the plug-in, so please copy it
-   along and try again!
-
-2. traKmeter requires a processor which supports the SSE2 instruction
+1. traKmeter requires a processor which supports the SSE2 instruction
    set (if you run at Windows 8 and above, it does).  On Windows, you
    might also have to install the [Visual C++ Redistributable for
    Visual Studio 2017][VC++ Redist].
+
+2. traKmeter comes with a folder called `trakmeter`.  This folder must be
+   located in the same folder as the plug-in, so please copy it along
+   and try again!
+
+### Where are the LV2 plug-ins?
+
+- The last release with LV2 plug-ins was version **v2.4.6**.  You can
+  still download them from the "Releases" page.
+
+### The stand-alone version does not work
+
+- Unfortunately, I cannot do anything about it as I did not code this
+  part of the application.  The stand-alone works well for me - try
+  using another sound card or deleting the settings file.
 
 ## Documentation
 
@@ -43,7 +55,7 @@ bug reports or contributing to this project.  Thanks!
 
 ## License
 
-Copyright (c) 2012-2021 [Martin Zuther][]
+Copyright (c) 2012-2022 Martin Zuther
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -60,8 +72,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Thank you for using free software!
 
+## VST2 plug-ins
 
-[Martin Zuther]:  http://www.mzuther.de/
+Technically, my VST2 plug-ins are not free software.  However, I
+chose to provide them for your convenience.  All other binaries really
+are free software in the sense of the Free Software Foundation.
+
+*VST is a trademark of Steinberg Media Technologies GmbH, registered
+in Europe and other countries.*
+
+
 [COC]:            https://github.com/mzuther/traKmeter/tree/master/CODE_OF_CONDUCT.markdown
 [doc]:            https://github.com/mzuther/traKmeter/tree/master/doc/
 [manual]:         https://github.com/mzuther/traKmeter/raw/master/doc/trakmeter.pdf
