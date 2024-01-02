@@ -19,6 +19,19 @@ ideas haven't changed at all.
 
 *Please read the [manual][] for a more extensive introduction.*
 
+## Download
+
+traKmeter can be downloaded in the [releases][] section (you may need
+to click on "Assets").
+
+I have dropped LV2 plug-in support for good.  However, you can still
+use LV2 - just download version **v2.4.6**.
+
+## Documentation
+
+For documentation, licenses and further information, please see the
+[manual][] and the directory [doc][].
+
 ## FAQ
 
 ### traKmeter crashes when the plug-in is loaded / opened
@@ -42,11 +55,6 @@ ideas haven't changed at all.
 - Unfortunately, I cannot do anything about it as I did not code this
   part of the application.  The stand-alone works well for me - try
   using another sound card or deleting the settings file.
-
-## Documentation
-
-For documentation, licenses and further information, please see the
-[manual][] and the directory [doc][].
 
 ## Code of conduct
 
@@ -85,4 +93,6 @@ in Europe and other countries.*
 [COC]:            https://github.com/mzuther/traKmeter/tree/master/CODE_OF_CONDUCT.markdown
 [doc]:            https://github.com/mzuther/traKmeter/tree/master/doc/
 [manual]:         https://github.com/mzuther/traKmeter/raw/master/doc/trakmeter.pdf
+[releases]:       https://github.com/mzuther/traKmeter/releases
+
 [VC++ Redist]:    https://www.visualstudio.com/downloads/
