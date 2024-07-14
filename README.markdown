@@ -7,6 +7,9 @@
 
 ## About
 
+**I currently do not have time to develop or support this project. It still
+works, so please use it the way it is. Thank you!**
+
 Sadly, most digital audio equipment only has peak meters.  This is
 readily understandable as you want to avoid digital clippings by all
 means.  However, badly chosen meter ranges and scales often render
